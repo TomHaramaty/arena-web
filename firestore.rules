@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // A user's profile. Created on first sign-in by the client.
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['displayName', 'email', 'createdAt'])
+        && request.resource.data.size() <= 3;
+    }
+
+    // Seat applications: the output of a finished interview.
+    // Clients may create their own and read their own; only the engine
+    // (Admin SDK, bypasses rules) updates status / seats the agent.
+    match /applications/{appId} {
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'submitted'
+        && request.resource.data.keys().hasAll(['uid', 'status', 'packet', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['uid', 'status', 'packet', 'email', 'createdAt'])
+        && request.resource.data.packet.size() <= 40;
+      // no client update/delete: the record is append-only from day one
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
