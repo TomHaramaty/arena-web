@@ -39,8 +39,8 @@ client-side, plain ES modules from the gstatic CDN, no bundler:
 - **Auth** — Firebase Auth (Google popup + email link); a `users/{uid}`
   profile doc is written on first sign-in.
 - **The Registrar** — Firebase AI Logic (`firebase-ai.js`, Gemini Developer
-  API backend, `gemini-3.5-flash`; transient 429/500/503 errors retry twice
-  with backoff, the last attempt on `gemini-3.5-flash-lite`), streamed. The system prompt lives in
+  API backend, `gemini-3.5-flash`; transient 429/500/503 errors retry with
+  2s/6s/15s backoff, the last attempt on `gemini-3.5-flash-lite`), streamed. The system prompt lives in
   `registrar.js` and is built at runtime from `/arena.json` so the Registrar
   knows the current floor and the day's marks. Each reply carries a hidden
   fenced JSON block (`{draft, ready, done}`) that the client parses, strips,

@@ -345,10 +345,10 @@ async function sendTurn(userRaw) {
   const contents = state.history.map((h) => ({ role: h.role, parts: [{ text: h.raw }] }));
   let raw;
   try {
-    // 3 attempts on transient errors (429/500/503): primary, primary again
-    // after 2s, then the fallback flash model after 6s more.
+    // 4 attempts on transient errors (429/500/503): primary ×3 with
+    // 2s/6s/15s backoff, then the fallback flash model on the last try.
     raw = await withRetries(
-      (attempt) => streamOnce(attempt >= 2 ? state.fallback : state.model, contents, textEl),
+      (attempt) => streamOnce(attempt >= 3 ? state.fallback : state.model, contents, textEl),
       { onRetryWait: () => { textEl.innerHTML = `<span class="dwait">the line to the register is busy — holding…</span>`; } },
     );
   } catch (e) {
@@ -366,11 +366,14 @@ async function sendTurn(userRaw) {
     state.ready = !!side.ready;
     if (side.done) state.done = true;
   }
-  // if this reply was the answer to the tape, restyle it as first words
+  // if this reply was the answer to the tape, restyle it as first words —
+  // and treat the interview as done regardless of the model's flag: the
+  // tape is only handed over once the charter is ready.
   if (userRaw.startsWith("[TAPE]")) {
     bubble.className = "msg first";
     bubble.querySelector(".who").textContent =
       ((state.draft && state.draft.name) ? state.draft.name.toUpperCase() : "THE AGENT") + " — FIRST WORDS";
+    state.done = true;
   }
   saveInterview();
   setBusy(false);
@@ -381,11 +384,34 @@ async function sendTurn(userRaw) {
     await sendTurn(buildTapeMessage(tapeLines(), today()));
     return;
   }
+  updateFinishUI();
+  if (!state.done) $("#input").focus();
+}
+
+/**
+ * The review path never depends solely on the model's done flag: whenever the
+ * draft passes client validation, the way to the charter is open.
+ */
+function updateFinishUI() {
+  const bar = $("#finishbar");
+  const note = bar.querySelector(".note");
+  const btn = $("#btn-review");
+  const complete = state.draft && validatePacket(state.draft, state.floorNames).length === 0;
   if (state.done) {
     $("#composer").hidden = true;
-    $("#finishbar").hidden = false;
+    bar.hidden = false;
+    bar.classList.remove("quiet");
+    btn.className = "primary";
+    note.textContent = "The interview is closed. What remains is your signature.";
+  } else if (complete) {
+    $("#composer").hidden = false;
+    bar.hidden = false;
+    bar.classList.add("quiet");
+    btn.className = "plain";
+    note.textContent = "The charter appears complete — review and submit whenever you are ready.";
   } else {
-    $("#input").focus();
+    $("#composer").hidden = false;
+    bar.hidden = true;
   }
 }
 
@@ -399,13 +425,16 @@ function restoreInterview(saved) {
   for (const h of state.history) {
     if (h.role === "user") { lastUserRaw = h.raw; renderUserMsg(h.raw); }
     else {
-      renderModelMsg(h.raw, { first: lastUserRaw.startsWith("[TAPE]") });
+      const first = lastUserRaw.startsWith("[TAPE]");
+      if (first) state.done = true; // first words delivered = interview done, whatever the saved flag says
+      renderModelMsg(h.raw, { first });
       const side = parseSideChannel(h.raw);
       if (side && side.draft) state.draft = side.draft;
     }
   }
   renderDraft();
-  if (state.done) { $("#composer").hidden = true; $("#finishbar").hidden = false; }
+  updateFinishUI();
+  if (state.done) { /* nothing more to resume */ }
   else if (state.ready && !state.tapeSent) {
     // the charter was drafted but the hand-off was interrupted — resume it
     state.tapeSent = true;

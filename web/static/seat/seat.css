@@ -107,6 +107,9 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 #composer[data-busy="true"] textarea { opacity: 0.6; }
 .finishbar { position: sticky; bottom: 0; background: var(--page); border-top: 1px solid var(--border); padding: 12px 0 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .finishbar .note { font-size: 13px; color: var(--ink2); }
+/* the charter is complete but the interview may continue: a quiet bar above the composer */
+.finishbar.quiet { position: static; border-top: 1px dashed var(--border); padding: 10px 0 4px; }
+.finishbar.quiet .note { color: var(--muted); }
 
 /* ---------- the draft (materialization panel) ---------- */
 .draftcol { border-top: 1px solid var(--border); }
