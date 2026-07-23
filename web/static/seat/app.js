@@ -17,6 +17,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
 import {
   buildSystemPrompt, buildTapeMessage, validatePacket, nextFirstBell, fmtBell,
+  withRetries,
 } from "./registrar.js";
 
 const app = initializeApp({
@@ -31,6 +32,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const ai = getAI(app, { backend: new GoogleAIBackend() });
 const MODEL_ID = "gemini-3.5-flash";
+// Same contract, same prompt — used only for the last retry when the primary
+// model keeps returning transient errors (free-tier congestion).
+const FALLBACK_MODEL_ID = "gemini-3.5-flash-lite";
 
 const MAX_TURNS = 48;
 const $ = (s) => document.querySelector(s);
@@ -46,6 +50,8 @@ const state = {
   floor: null,          // arena.json (or null if unreachable)
   floorNames: [],
   model: null,
+  fallback: null,
+  undelivered: null,    // a PRINCIPAL bubble awaiting redelivery
   history: [],          // [{role:'user'|'model', raw}]
   draft: null,          // last parsed draft
   ready: false,
@@ -265,11 +271,13 @@ function renderDraft() {
 /* ---------------- the interview engine ---------------- */
 function buildModel() {
   const sys = buildSystemPrompt({ rosterLines: rosterLines(), tapeLines: tapeLines(), today: today() });
-  state.model = getGenerativeModel(ai, {
-    model: MODEL_ID,
+  const mk = (id) => getGenerativeModel(ai, {
+    model: id,
     systemInstruction: sys,
     generationConfig: { temperature: 0.9, maxOutputTokens: 2048 },
   });
+  state.model = mk(MODEL_ID);
+  state.fallback = mk(FALLBACK_MODEL_ID);
 }
 
 function setBusy(b) {
@@ -279,8 +287,50 @@ function setBusy(b) {
   $("#input").disabled = b;
 }
 
+async function streamOnce(model, contents, textEl) {
+  let raw = "";
+  const result = await model.generateContentStream({ contents });
+  for await (const chunk of result.stream) {
+    raw += chunk.text();
+    textEl.innerHTML = md(displayText(raw));
+  }
+  if (!raw.trim()) throw new Error("[503] the register returned an empty page");
+  return raw;
+}
+
+/** Terminal failure of a turn: never lose the principal's words. */
+function failTurn(userRaw, userEl, e) {
+  const err = $("#chaterr");
+  if (userRaw.startsWith("[TAPE]")) {
+    if (userEl) userEl.remove();
+    state.tapeSent = false; // the next Registrar reply re-triggers the hand-off
+    err.textContent = "The line dropped while the tape was being read — say anything to resume.";
+  } else if (userRaw === "[BEGIN]") {
+    err.textContent = "The register did not answer the bell — say hello to knock again.";
+  } else {
+    if (userEl) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "undelivered";
+      btn.textContent = "not delivered — retry";
+      btn.addEventListener("click", () => {
+        const input = $("#input");
+        if (input.value.trim() === userRaw) { input.value = ""; input.style.height = ""; }
+        sendTurn(userRaw); // sendTurn removes the undelivered bubble itself
+      });
+      userEl.appendChild(btn);
+      state.undelivered = userEl;
+    }
+    const input = $("#input");
+    if (!input.value) input.value = userRaw; // fallback: the words come home
+    err.textContent = "The register did not answer — your words are kept; retry when ready. (" + ((e && e.message) || e) + ")";
+  }
+  err.hidden = false;
+}
+
 async function sendTurn(userRaw) {
   if (state.busy || state.done) return;
+  if (state.undelivered) { state.undelivered.remove(); state.undelivered = null; }
   const userTurns = state.history.filter((h) => h.role === "user").length;
   if (userTurns >= MAX_TURNS) {
     addMsg("sys", null, "· the register closes — this interview has run its length ·");
@@ -292,23 +342,20 @@ async function sendTurn(userRaw) {
   const userEl = renderUserMsg(userRaw);
   const bubble = renderModelMsg("");
   const textEl = bubble.querySelector(".text");
-  let raw = "";
+  const contents = state.history.map((h) => ({ role: h.role, parts: [{ text: h.raw }] }));
+  let raw;
   try {
-    const contents = state.history.map((h) => ({ role: h.role, parts: [{ text: h.raw }] }));
-    const result = await state.model.generateContentStream({ contents });
-    for await (const chunk of result.stream) {
-      raw += chunk.text();
-      textEl.innerHTML = md(displayText(raw));
-    }
+    // 3 attempts on transient errors (429/500/503): primary, primary again
+    // after 2s, then the fallback flash model after 6s more.
+    raw = await withRetries(
+      (attempt) => streamOnce(attempt >= 2 ? state.fallback : state.model, contents, textEl),
+      { onRetryWait: () => { textEl.innerHTML = `<span class="dwait">the line to the register is busy — holding…</span>`; } },
+    );
   } catch (e) {
     console.error(e);
     bubble.remove();
-    if (userEl) userEl.remove();
-    state.history.pop(); // the failed turn never happened
-    if (userRaw.startsWith("[TAPE]")) state.tapeSent = false; // hand the tape over again after the next reply
-    const el = $("#chaterr");
-    el.textContent = "The line to the register dropped — say that again. (" + (e.message || e) + ")";
-    el.hidden = false;
+    state.history.pop(); // the turn never reached the register
+    failTurn(userRaw, userEl, e);
     setBusy(false);
     return;
   }
@@ -496,18 +543,18 @@ async function boot() {
   });
   $("#btn-begin").addEventListener("click", beginInterview);
 
-  /* interview wiring */
+  /* interview wiring — Enter sends, Shift+Enter breaks the line */
   const input = $("#input");
-  $("#composer").addEventListener("submit", (e) => {
-    e.preventDefault();
+  function submitComposer() {
     const text = input.value.trim();
-    if (!text || state.busy) return;
+    if (!text || state.busy || state.done) return;
     input.value = "";
     input.style.height = "";
     sendTurn(text);
-  });
+  }
+  $("#composer").addEventListener("submit", (e) => { e.preventDefault(); submitComposer(); });
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("#composer").requestSubmit(); }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submitComposer(); }
   });
   input.addEventListener("input", () => {
     input.style.height = "";

@@ -97,6 +97,9 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .msg .text em { font-style: italic; }
 .msg .text strong { font-weight: 650; }
 .msg .text code { font-family: var(--mono); font-size: 0.85em; background: var(--hover); border-radius: 4px; padding: 0 4px; }
+.msg .undelivered { display: block; width: max-content; margin-top: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--muted); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline dashed; text-underline-offset: 3px; }
+.msg .undelivered:hover { color: var(--ink); }
+.msg.me .undelivered { margin-left: auto; }
 
 #composer { display: flex; gap: 8px; align-items: flex-end; position: sticky; bottom: 0; background: var(--page); padding: 10px 0 14px; border-top: 1px solid var(--border); }
 #composer textarea { flex: 1; min-width: 0; resize: none; font: 15px/1.5 system-ui, sans-serif; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; max-height: 160px; }

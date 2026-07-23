@@ -110,6 +110,34 @@ export function validatePacket(p, floorNames = []) {
   return errs;
 }
 
+/** Errors worth retrying: rate limits and transient server trouble. */
+const TRANSIENT_RE = /\b(429|500|503)\b|high demand|overloaded|resource.?exhausted|try again|temporarily unavailable/i;
+export function isTransientError(e) {
+  const status = e && e.customErrorData && e.customErrorData.status;
+  if ([429, 500, 503].includes(Number(status))) return true;
+  return TRANSIENT_RE.test((e && (e.message || String(e))) || "");
+}
+
+/**
+ * Run attempt(i); on a transient failure wait delays[i] and try again.
+ * Non-transient errors, and the failure after the last delay, are thrown.
+ */
+export async function withRetries(attempt, {
+  delays = [2000, 6000],
+  isTransient = isTransientError,
+  onRetryWait = () => {},
+  sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
+} = {}) {
+  for (let i = 0; ; i++) {
+    try { return await attempt(i); }
+    catch (e) {
+      if (i >= delays.length || !isTransient(e)) throw e;
+      onRetryWait(i, e);
+      await sleep(delays[i]);
+    }
+  }
+}
+
 /** Next weekday 14:40 UTC strictly after `from`. */
 export function nextFirstBell(from = new Date()) {
   const d = new Date(Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate(), 14, 40));
