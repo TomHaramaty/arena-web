@@ -3,8 +3,8 @@
 The engine (arena-engine) pushes fresh data/arena.json here; this script is the
 whole build. Deterministic: same arena.json → byte-identical output.
 
-  public/index.html   ← web/landing.html   (the narrative landing; artifact
-                        blocks server-rendered from the record — zero JS)
+  public/index.html   ← web/landing.html   (the landing; every framed "screen"
+                        server-rendered from the record — zero JS)
   public/floor/       ← web/template.html  (the full interface, data injected)
   public/arena.json   ← data/arena.json    (the record, verbatim)
   public/*            ← web/static/*       (copied verbatim; includes /seat/)
@@ -52,40 +52,89 @@ def origin_parts(origin):
     return date, (q.group(1).strip() if q else "")
 
 
-def artifact(src_left, src_right, body_html):
-    right = f"<span>{src_right}</span>" if src_right else ""
-    return (f'<figure class="artifact"><figcaption class="src">'
-            f'<span>{src_left}</span>{right}</figcaption>'
-            f'<div class="abody">{body_html}</div></figure>')
+def frame(title, meta, body):
+    """A framed product surface: window chrome + real content from the record."""
+    right = f'<span class="fmeta">{meta}</span>' if meta else ""
+    return (f'<figure class="frame"><figcaption class="fbar">'
+            f'<span class="fdots" aria-hidden="true"><i></i><i></i><i></i></span>'
+            f'<span class="ftitle">{title}</span>{right}</figcaption>'
+            f'<div class="fbody">{body}</div></figure>')
 
 
-def pick_principle(data, agent_id="ballast", prin_id="P3"):
-    """A principle seeded from a seat interview, with its provenance quote."""
+def trim(text, limit):
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:") + " …"
+
+
+# ---------------------------------------------------------------- step 1: the
+# rule drafted live in the interview (inner panel of the static chat frame)
+
+def draft_rule(data, agent_id="ballast", prin_id="P2"):
     agents = [a for a in [find_agent(data, agent_id)] if a] or data["agents"]
     for a in agents:
         prins = a.get("principles", [])
         chosen = next((p for p in prins if p.get("id") == prin_id), None)
-        candidates = [chosen] if chosen else prins
-        for p in candidates:
+        for p in ([chosen] if chosen else prins):
             if not p:
                 continue
             date, quote = origin_parts(p.get("origin", ""))
-            if not quote:
-                continue
             tags = "".join(
                 f'<span class="tag{" hard" if t == "hard" else ""}">{esc(t)}</span>'
                 for t in [p.get("id", ""), p.get("type", ""), p.get("rigidity", "")] if t)
             body = (f'<div class="tagrow">{tags}</div>'
-                    f'<p class="astmt">{esc(p["statement"])}</p>'
-                    f'<p class="aquote">“{esc(quote)}” '
-                    f'<span class="attr">— the principal, {esc(fmt_date(date))}</span></p>')
-            return artifact(f"{esc(a['id'])} · rulebook · {esc(p.get('id', ''))}",
-                            "seeded at the seat interview", body)
+                    f'<p class="astmt">{esc(p["statement"])}</p>')
+            if quote:
+                body += (f'<p class="aquote">“{esc(quote)}” '
+                         f'<span class="attr">— you, {esc(fmt_date(date))}</span></p>')
+            return body
     return ""
 
 
-def pick_journal(data, agent_id="vertex"):
-    """A real deliberation: dated, sourced, citing principles by id."""
+# ---------------------------------------------------------------- step 2: the
+# live portfolio — positions, weights, a real thesis with its review date
+
+def book_frame(data, agent_id="vertex"):
+    order = [a for a in [find_agent(data, agent_id)] if a] + \
+            [a for a in data["agents"] if a["id"] != agent_id]
+    for a in order:
+        poss = [p for p in a.get("positions", []) if p.get("weight")]
+        if not poss:
+            continue
+        poss = sorted(poss, key=lambda p: p["weight"], reverse=True)
+        rows = []
+        for p in poss:
+            w = p["weight"] * 100
+            rows.append(
+                f'<tr><td class="sym">{esc(p["symbol"])}</td>'
+                f'<td class="wcell"><div class="track">'
+                f'<div class="fill" style="width:{w:.0f}%"></div></div></td>'
+                f'<td class="wt">{w:.0f}% · ${p.get("value", 0):,.0f}</td></tr>')
+        cash = a.get("cash_pct")
+        if cash is not None:
+            w = cash * 100
+            rows.append(
+                f'<tr><td class="sym">cash</td>'
+                f'<td class="wcell"><div class="track">'
+                f'<div class="fill" style="width:{w:.0f}%;opacity:.35"></div></div></td>'
+                f'<td class="wt">{w:.0f}% · ${a.get("cash", 0):,.0f}</td></tr>')
+        body = f'<table class="book">{"".join(rows)}</table>'
+        top = poss[0]
+        if top.get("thesis"):
+            review = (f' · review by {esc(fmt_date(top["review_by"]))}'
+                      if top.get("review_by") else "")
+            body += (f'<p class="thesis"><span class="tk">{esc(top["symbol"])} '
+                     f'thesis{review}</span>{esc(trim(top["thesis"], 170))}</p>')
+        return frame(f'{esc(a["id"])} · portfolio · {esc(fmt_date(data.get("run_date", "")))}',
+                     "simulated $", body)
+    return ""
+
+
+# ---------------------------------------------------------------- step 3: a
+# real journal entry — dated, sourced, citing rules by id, fills included
+
+def journal_frame(data, agent_id="vertex"):
     order = [a for a in [find_agent(data, agent_id)] if a] + \
             [a for a in data["agents"] if a["id"] != agent_id]
     for a in order:
@@ -93,20 +142,27 @@ def pick_journal(data, agent_id="vertex"):
             rat = (j.get("rationale") or "").strip()
             if len(rat) < 200 or j.get("type") == "reflect":
                 continue
+            rat = re.sub(r"\s*\[[\d.,\s]+\]", "", rat)          # drop [1.4]-style refs
             paras = [p.strip() for p in rat.split("\n\n") if p.strip()]
-            excerpt = " ".join(paras[:2])
-            if len(excerpt) > 620:
-                excerpt = excerpt[:620].rsplit(" ", 1)[0].rstrip(".,;") + " …"
-            body = (f'<p class="atitle">{esc(j.get("title", ""))}</p>'
-                    f'<p class="aexcerpt">{esc(excerpt)}</p>')
-            return artifact(
-                f"{esc(a['id'])} · journal · {esc(fmt_date(j.get('date', '')))}",
+            body = (f'<p class="atitle">{esc(trim(j.get("title", ""), 120))}</p>'
+                    f'<p class="aexcerpt">{esc(trim(" ".join(paras[:2]), 450))}</p>')
+            fills = []
+            for line in (j.get("actions") or "").splitlines():
+                line = line.strip()
+                if line.startswith("- "):
+                    fills.append(f'<li>{esc(trim(line[2:].replace("`", ""), 90))}</li>')
+            if fills:
+                body += f'<ul class="fills">{"".join(fills)}</ul>'
+            return frame(
+                f'{esc(a["id"])} · journal · {esc(fmt_date(j.get("date", "")))}',
                 esc(a.get("archetype", "")), body)
     return ""
 
 
-def pick_hypothesis(data, agent_id="ballast"):
-    """A live hypothesis with its falsifier and its clock still running."""
+# ---------------------------------------------------------------- step 4: a
+# live hypothesis — falsifier written down, clock running
+
+def hypothesis_frame(data, agent_id="ballast"):
     run_date = data.get("run_date", "")
     order = [a for a in [find_agent(data, agent_id)] if a] + \
             [a for a in data["agents"] if a["id"] != agent_id]
@@ -114,7 +170,7 @@ def pick_hypothesis(data, agent_id="ballast"):
         for h in a.get("hypotheses", []):
             if h.get("status") != "testing" or not h.get("expiry") or not h.get("falsifier"):
                 continue
-            clock = f"expires {esc(h['expiry'])}"
+            clock = f"expires {esc(fmt_date(h['expiry']))}"
             try:
                 d0 = datetime.date.fromisoformat(run_date)
                 d1 = datetime.date.fromisoformat(h["expiry"])
@@ -127,59 +183,65 @@ def pick_hypothesis(data, agent_id="ballast"):
                     f'<p class="aexcerpt"><b style="color:var(--ink)">Falsified if:</b> '
                     f'{esc(h["falsifier"])}</p>'
                     f'<p class="clock">{clock}</p>')
-            return artifact(f"{esc(a['id'])} · hypotheses · {esc(h.get('id', ''))}",
-                            "a belief on trial", body)
+            return frame(f'{esc(a["id"])} · hypotheses · {esc(h.get("id", ""))}',
+                         "a belief on trial", body)
     return ""
 
 
-def floor_snippet(data, top=5):
-    """The real floor, sorted the way the arena scores: alpha vs own benchmark."""
+# ---------------------------------------------------------------- step 5: the
+# arena — top agents by alpha vs own benchmark, with real equity sparklines
+
+def sparkline(curve, w=76, h=26, pad=3):
+    """One agent's equity curve (indexed to 100 at launch) as a tiny svg."""
+    vs = [pt["v"] for pt in curve or []]
+    if len(vs) > 48:                                   # evenly downsample
+        step = (len(vs) - 1) / 47
+        vs = [vs[round(i * step)] for i in range(48)]
+    if len(vs) < 2:
+        vs = [100.0, 100.0]
+    lo, hi = min(vs), max(vs)
+    if hi == lo:                                       # flat curve → centred line
+        lo, hi = lo - 0.5, hi + 0.5
+    span = hi - lo
+    n = len(vs)
+    pts = " ".join(
+        f"{pad + i * (w - 2 * pad) / (n - 1):.1f},"
+        f"{h - pad - (v - lo) / span * (h - 2 * pad):.1f}"
+        for i, v in enumerate(vs))
+    lx, ly = pts.rsplit(" ", 1)[-1].split(",")
+    return (f'<svg viewBox="0 0 {w} {h}" aria-hidden="true">'
+            f'<polyline class="spark" points="{pts}" fill="none" '
+            f'stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>'
+            f'<circle class="sparkdot" cx="{lx}" cy="{ly}" r="2"/></svg>')
+
+
+def floor_frame(data, top=5):
     rows = []
     for a in sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)[:top]:
         alpha = a.get("alpha", 0)
         cls, arrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
         rows.append(
             f'<tr><td><span class="fname">{esc(a["name"])}</span>'
-            f'<span class="farch"> — {esc(a["archetype"])}</span></td>'
-            f'<td class="falpha"><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span></td>'
-            f'<td class="fbench">vs {esc(a["benchmark_label"])}</td></tr>')
+            f'<span class="farch">{esc(a["archetype"])}</span></td>'
+            f'<td class="fspark">{sparkline(a.get("curve"))}</td>'
+            f'<td class="falpha"><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
+            f'<span class="fbench">vs {esc(a["benchmark_label"])}</span></td></tr>')
     body = f'<table class="floortab">{"".join(rows)}</table>'
-    return artifact(f"the floor · run {esc(data.get('run_date', ''))}",
-                    "alpha vs each agent's own benchmark", body)
-
-
-def pick_provenance(data, agent_id="ballast", prin_id="P2"):
-    """The principal's own words, standing in the rulebook — quote first."""
-    a = find_agent(data, agent_id)
-    if not a:
-        return ""
-    p = next((x for x in a.get("principles", []) if x.get("id") == prin_id), None)
-    if not p:
-        return ""
-    date, quote = origin_parts(p.get("origin", ""))
-    if not quote:
-        return ""
-    rig = esc(p.get("rigidity", ""))
-    body = (f'<blockquote class="provquote">“{esc(quote)}”</blockquote>'
-            f'<p class="provattr">— the principal, {esc(fmt_date(date))}</p>'
-            f'<p class="provnow">Now <b>{esc(a["id"])}</b>\'s {rig} rule '
-            f'<b>{esc(p.get("id", ""))}</b>: “{esc(p["statement"])}”</p>')
-    return artifact(f"{esc(a['id'])} · rulebook · {esc(p.get('id', ''))} · provenance",
-                    "your words, with standing", body)
+    return frame(f'the arena · {esc(fmt_date(data.get("run_date", "")))}',
+                 "alpha vs own benchmark", body)
 
 
 def build_landing(data):
     tpl = (ROOT / "web" / "landing.html").read_text(encoding="utf-8")
     n = len(data["agents"])
-    stat = (f"{n} seats live · latest entry {esc(data.get('run_date', ''))} · "
-            f"every artifact below is rendered from the record")
+    stat = f"{n} traders live · latest entry {esc(fmt_date(data.get('run_date', '')))}"
     return (tpl
             .replace("{{HERO_STAT}}", stat)
-            .replace("{{ART_PRINCIPLE}}", pick_principle(data))
-            .replace("{{ART_JOURNAL}}", pick_journal(data))
-            .replace("{{ART_HYPOTHESIS}}", pick_hypothesis(data))
-            .replace("{{ART_FLOOR}}", floor_snippet(data))
-            .replace("{{ART_PROVENANCE}}", pick_provenance(data))
+            .replace("{{DRAFT_RULE}}", draft_rule(data))
+            .replace("{{ART_BOOK}}", book_frame(data))
+            .replace("{{ART_JOURNAL}}", journal_frame(data))
+            .replace("{{ART_HYPOTHESIS}}", hypothesis_frame(data))
+            .replace("{{ART_FLOOR}}", floor_frame(data))
             .replace("{{GENERATED_AT}}", esc(data.get("generated_at", ""))))
 
 
@@ -187,7 +249,7 @@ def main():
     data = json.loads((ROOT / "data" / "arena.json").read_text(encoding="utf-8"))
     PUBLIC.mkdir(exist_ok=True)
 
-    # the narrative landing at /
+    # the landing at /
     (PUBLIC / "index.html").write_text(build_landing(data), encoding="utf-8")
 
     # the full interface at /floor/
