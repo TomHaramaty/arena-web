@@ -68,16 +68,32 @@ End EVERY reply with exactly one fenced block, the last thing in the message:
 {"draft": {}, "ready": false, "done": false}
 \`\`\`
 
-The draft accumulates fields as they are decided (omit what is undecided) and is always emitted in FULL, never as a delta:
-name (string), archetype (string), credo (string), universe (string), benchmark ({"symbols": ["SPY"], "label": "SPY"}), max_position_pct (number, at most 35), constitution (array of strings), principles (array of {"statement", "detail" optional, "type" one of entry|exit|sizing|risk|process|self, "rigidity" one of hard|heuristic, "quote" optional — the principal's words}), hypotheses (array of {"statement", "prediction", "falsifier", "expiry" as "YYYY-MM-DD"}), voice (string).
-Strict JSON: double quotes, no comments, no trailing commas. Set "ready": true only once COMPLETION is satisfied. Set "done": true only in the first-words reply. Never use a fenced code block anywhere else in a reply.
+The draft block carries ONLY the fields that changed this turn — but every field it carries is emitted whole (the entire principles array when one principle is added or amended, the entire constitution when a clause lands). Fields not mentioned are unchanged. Never emit a partial array or a fragment of an object inside a field.
+Exceptions — emit the ENTIRE draft, every decided field, in these replies: (a) the reply where you set "ready": true; (b) the first-words reply; (c) any reply to a message carrying a "[REPAIR]" note. A [REPAIR] note is machine-injected, not the principal's words: it means your previous draft block failed to arrive. Never mention it; just include the full draft.
+Fields: name (string), archetype (string), credo (string), universe (string), benchmark ({"symbols": ["SPY"], "label": "SPY"}), max_position_pct (number, at most 35), constitution (array of strings), principles (array of {"statement", "detail" optional, "type" one of entry|exit|sizing|risk|process|self, "rigidity" one of hard|heuristic, "quote" optional — the principal's words}), hypotheses (array of {"statement", "prediction", "falsifier", "expiry" as "YYYY-MM-DD"}), voice (string).
+Strict JSON: double quotes, no comments, no trailing commas. "ready" and "done" appear in every block. Set "ready": true only once COMPLETION is satisfied. Set "done": true only in the first-words reply. Never use a fenced code block anywhere else in a reply.
 
-The first message you receive is "[BEGIN]". Respond with a short opening: state the terms of a seat in one breath — public, autonomous, append-only, forever; simulated capital, a real record — then ask the first question. Do not introduce yourself at length.`;
+The transcript opens with "[BEGIN]" followed by your own opening line — both already delivered before you were called. Continue from the principal's first answer.`;
 }
+
+/**
+ * The Registrar's opening line — authored, not generated. The opening is fixed
+ * by the prompt anyway ("terms in one breath, then the first question"), so
+ * generating it would spend 3–8 seconds of first-impression latency on
+ * variance nobody asked for. Seeded into history as a model turn; the first
+ * real model call happens with the principal's first answer.
+ */
+export const OPENING = `The terms of a seat, in one breath: your agent trades simulated capital against real prices, entirely on its own, entirely in public, on a record that cannot be edited and does not end. You will never place an order. What you place is the rules — authored here, in your words, and quoted back at you every time it acts.
+
+Begin with the grievance. What does the market keep getting wrong — the thing you notice over and over while everyone else shrugs?
+
+\`\`\`json
+{"draft": {}, "ready": false, "done": false}
+\`\`\``;
 
 /** Build the hidden [TAPE] message that triggers the newborn's first words. */
 export function buildTapeMessage(tapeLines, today) {
-  return `[TAPE] ${today} — the day's marks:\n${tapeLines}\nThe charter is signed. Let the agent speak.`;
+  return `[TAPE] ${today} — the day's marks:\n${tapeLines}\nThe charter is drafted. Let the agent speak.`;
 }
 
 /** Client-side validation of the final packet. Returns a list of problems. */
@@ -146,8 +162,10 @@ export function nextFirstBell(from = new Date()) {
   return d;
 }
 
-const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** The bell in the viewer's own clock — "Mon, Jul 27, 5:40 PM", never raw UTC. */
 export function fmtBell(d) {
-  return `${DAYS[d.getUTCDay()]} ${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()} · 14:40 UTC`;
+  return d.toLocaleString(undefined, {
+    weekday: "short", month: "short", day: "numeric",
+    hour: "numeric", minute: "2-digit",
+  });
 }

@@ -11,6 +11,16 @@ service cloud.firestore {
         && request.resource.data.size() <= 3;
     }
 
+    // In-flight interview drafts, mirrored once per completed turn so an
+    // interview survives a refresh, a crash, or a change of device.
+    // Deleted by the client on submit.
+    match /drafts/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['history', 'tapeSent', 'done', 'ready', 'updatedAt']);
+    }
+
     // Seat applications: the output of a finished interview.
     // Clients may create their own and read their own; only the engine
     // (Admin SDK, bypasses rules) updates status / seats the agent.
