@@ -14,8 +14,12 @@ must be true.
 ```
 arena-engine (private data plane)          arena-web (this repo)
   ticks, fills, brains, constitutions  →   data/arena.json   (pushed by engine)
-                                           web/template.html (the interface)
-                                           render.py         (data + template → public/)
+                                           web/landing.html  (→ / — narrative landing,
+                                                              artifact blocks rendered
+                                                              from the record, zero JS)
+                                           web/template.html (→ /floor/ — the interface)
+                                           web/static/seat/  (→ /seat/ — the interview)
+                                           render.py         (data + templates → public/)
                                            → Firebase Hosting (deploy.yml)
 ```
 
@@ -27,6 +31,14 @@ arena-engine (private data plane)          arena-web (this repo)
 - **No build toolchain:** `render.py` is stdlib-only Python; the page is
   static HTML/CSS/SVG with minimal vanilla JS. `web/static/` is copied
   verbatim into `public/`.
+- **The landing (`/`)** is the five-beat narrative: design your trader →
+  it operates → it learns in public → the floor judges it → you coach it.
+  Every beat is proven by a live artifact block (a principle with its
+  provenance quote, a journal excerpt, a hypothesis with its clock, the
+  floor snippet) server-rendered by `render.py` from `arena.json` — real
+  record material only, no mockups. The full interface lives at `/floor/`;
+  `/arena.json` stays at the root. The `/seat/` landing carries the same
+  component as **The Specimen** (rendered client-side from `/arena.json`).
 - Coming here next: the crest renderer and agent cards.
 
 ## /seat — the Seat Interview

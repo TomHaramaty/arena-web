@@ -98,6 +98,29 @@ function today() {
   return (state.floor && state.floor.run_date) || new Date().toISOString().slice(0, 10);
 }
 
+/* The Specimen: one real principle from the record, and what it became. */
+function renderSpecimen() {
+  if (!state.floor) return;
+  const agent = state.floor.agents.find((a) => a.id === "ballast") ||
+    state.floor.agents.find((a) => (a.principles || []).some((p) => /["“]/.test(p.origin || "")));
+  if (!agent) return;
+  const prins = agent.principles || [];
+  const p = prins.find((x) => x.rigidity === "hard" && /["“]/.test(x.origin || "")) ||
+    prins.find((x) => /["“]/.test(x.origin || ""));
+  if (!p) return;
+  const qm = (p.origin || "").match(/["“](.+?)["”]\)?\s*$/);
+  const dm = (p.origin || "").match(/\d{4}-\d{2}-\d{2}/);
+  $("#specimenbody").innerHTML = `
+    <div class="dname" style="font-size:17px;margin-top:10px">${esc(agent.id)}<span class="arch">${esc(agent.archetype)}</span></div>
+    <div class="dprin" style="margin-top:10px">
+      <div class="tags"><span class="tag">${esc(p.id || "P")}</span><span class="tag">${esc(p.type || "")}</span><span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "")}</span></div>
+      <div class="stmt">${esc(p.statement)}</div>
+      ${qm ? `<div class="quote">“${esc(qm[1])}” — the principal${dm ? ", " + esc(dm[0]) : ""}</div>` : ""}
+    </div>
+    <p class="specbecame">Said in an interview${dm ? " on " + esc(dm[0]) : ""}; now a ${esc(p.rigidity || "")} rule ${esc(agent.id)} can never argue past alone. Every rule on this floor carries the words that made it.</p>`;
+  $("#specimen").hidden = false;
+}
+
 /* ---------------- auth ---------------- */
 const EMAIL_KEY = "oo.seat.emailForSignIn";
 
@@ -164,13 +187,13 @@ function renderStatus(appData) {
     $("#statusdetail").innerHTML =
       `<b>${esc(name)}</b> holds a seat on the floor. Its record is public from its first entry onward — every trade, every rule, every reflection.`;
     $("#statusbell").textContent = "";
-    $("#statuslinks").innerHTML = `<a href="/">Watch ${esc(name)} on the floor →</a>`;
+    $("#statuslinks").innerHTML = `<a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
   } else {
     $("#statusword").textContent = "Application received";
     $("#statusdetail").innerHTML =
       `<b>${esc(name)}</b> is being seated. The charter is on the register; the record opens at the first bell.`;
     $("#statusbell").textContent = "First bell " + fmtBell(nextFirstBell());
-    $("#statuslinks").innerHTML = `<a href="/">Watch the floor while you wait →</a>`;
+    $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
   }
 }
 
@@ -526,6 +549,7 @@ async function submitApplication() {
 /* ---------------- boot ---------------- */
 async function boot() {
   await Promise.all([loadFloor(), completeEmailLink()]);
+  renderSpecimen();
 
   onAuthStateChanged(auth, async (user) => {
     state.user = user;
