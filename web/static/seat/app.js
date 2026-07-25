@@ -17,8 +17,9 @@ import {
   getAI, getGenerativeModel, GoogleAIBackend,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
 import {
-  buildSystemPrompt, buildTapeMessage, validatePacket, nextFirstBell, fmtBell,
-  withRetries, OPENING, NAME_RE, PRINCIPLE_TYPES,
+  buildSystemPrompt, buildTapeMessage, buildWakeMessage, validatePacket,
+  validateWakeMinimum, nextFirstBell, fmtBell, withRetries, OPENING, NAME_RE,
+  PRINCIPLE_TYPES,
 } from "./registrar.js";
 
 const app = initializeApp({
@@ -66,6 +67,13 @@ const state = {
   streaming: false,     // a model turn is in flight (composer may already be unlocked)
   queued: null,         // {raw, el} — one message sent while the tail was still streaming
   needsRepair: false,   // last side-channel failed to parse; next turn requests a full draft
+  autoRepaired: false,  // the one automatic [REPAIR] turn around the handoff was spent
+  machineNote: "",      // one-shot machine note appended to the next turn's contents
+  wakeReadyTurns: 0,    // consecutive Act-I turns where the wake minimum passed with no handoff
+  lastOptions: [],      // labels offered on the pending question (restore)
+  tapped: [],           // every label sent by tap this session — never quotable
+  choicesHintShown: false,
+  handoffSeen: false,   // the Registrar closed the file; the creation moment ran
   ready: false,
   done: false,
   tapeSent: false,
@@ -202,8 +210,10 @@ function renderStatus(appData) {
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
   } else {
     $("#statusword").textContent = "Application received";
+    const fr = appData.packet && appData.packet.first_read;
     $("#statusdetail").innerHTML =
-      `<b>${esc(name)}</b> is being seated. The charter is on the register; the record opens at the first bell.`;
+      `<b>${esc(name)}</b> is being seated. The charter is on the register; the record opens at the first bell.` +
+      (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
     $("#statusbell").textContent = "First bell " + fmtBell(nextFirstBell());
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
   }
@@ -225,7 +235,8 @@ const saveKey = () => "oo.seat.interview." + (state.user ? state.user.uid : "ano
 const draftRef = () => doc(db, "drafts", state.user.uid);
 function saveInterview() {
   const data = {
-    history: state.history, tapeSent: state.tapeSent, done: state.done, ready: state.ready,
+    history: state.history, tapeSent: state.tapeSent, done: state.done,
+    ready: state.ready, handoffSeen: state.handoffSeen, tapped: state.tapped,
   };
   try { localStorage.setItem(saveKey(), JSON.stringify(data)); } catch { /* quota — the mirror still has it */ }
   if (state.user) {
@@ -269,17 +280,30 @@ function addMsg(cls, who, html) {
   const log = $("#chatlog");
   const el = document.createElement("div");
   el.className = "msg " + cls;
-  el.innerHTML = (who ? `<div class="who">${esc(who)}</div>` : "") + (cls === "sys" ? html : `<div class="text">${html}</div>`);
+  el.innerHTML = (who ? `<div class="who">${esc(who)}</div>` : "") + (cls.startsWith("sys") ? html : `<div class="text">${html}</div>`);
   log.appendChild(el);
   el.scrollIntoView({ block: "end" });
   return el;
 }
-function renderModelMsg(raw, { first = false } = {}) {
-  const who = first ? ((state.draft && state.draft.name ? state.draft.name.toUpperCase() : "THE AGENT") + " — FIRST WORDS") : "REGISTRAR";
-  return addMsg(first ? "first" : "reg", who, md(displayText(raw)));
+/* Two acts: the Registrar until the [WAKE] message, the agent after it. */
+const agentPhase = () => state.history.some((h) => h.role === "user" && h.raw === "[WAKE]");
+const agentName = () => (state.draft && state.draft.name) || "your agent";
+function whoLabel(kind) {
+  const n = agentName().toUpperCase();
+  if (kind === "firstwords") return n + " — FIRST WORDS";
+  if (kind === "firstread") return n + " — THE FIRST READ";
+  if (kind === "agent") return n;
+  return "REGISTRAR";
+}
+function renderModelMsg(raw, { kind = "registrar" } = {}) {
+  return addMsg(kind === "firstread" ? "first" : "reg", whoLabel(kind), md(displayText(raw)));
 }
 function renderUserMsg(raw) {
-  if (raw === "[BEGIN]") return null;
+  if (raw === "[BEGIN]" || raw.startsWith("[REPAIR]")) return null;
+  if (raw === "[WAKE]") {
+    addMsg("sys divider", null, "— the Registrar closes the file —");
+    return addMsg("sys divider", null, `— from here, you are speaking with ${esc(agentName())} —`);
+  }
   if (raw.startsWith("[TAPE]")) {
     const dm = raw.match(/\d{4}-\d{2}-\d{2}/);
     return addMsg("sys", null, `· the tape — marks of ${dm ? esc(dm[0]) : "the last session"} — is placed on the desk ·`);
@@ -302,15 +326,18 @@ function checklistItems(d) {
   const hyps = (n.hypotheses || []).filter((h) =>
     h && h.statement && h.prediction && h.falsifier && /^\d{4}-\d{2}-\d{2}$/.test(h.expiry || "")).length;
   const mp = Number(n.max_position_pct);
-  return [
+  const items = [
     ["name", NAME_RE.test(n.name || "")],
     ["credo", !!n.credo],
     [`principles ${prins}/2`, prins >= 2],
-    [`hypothesis ${hyps}/1`, hyps >= 1],
     ["benchmark", !!(n.benchmark && Array.isArray(n.benchmark.symbols) && n.benchmark.symbols.length && n.benchmark.label)],
     ["limits", !!(n.universe && mp > 0 && mp <= 35 && (n.constitution || []).length)],
     ["voice", !!n.voice],
   ];
+  // the hypothesis is the agent's to draft — its row appears only in Act II,
+  // so Act I never shows a requirement the Registrar will not ask for
+  if (agentPhase() || state.handoffSeen) items.splice(3, 0, [`hypothesis ${hyps}/1`, hyps >= 1]);
+  return items;
 }
 function renderChecklist() {
   $("#draftcount").innerHTML = checklistItems(state.draft).map(([label, ok]) =>
@@ -329,6 +356,7 @@ function renderDraft() {
   }
   let h = "";
   h += `<div class="dsec" data-sec="name"><span class="label">Agent</span><div class="dname">${d.name ? esc(d.name) : '<span class="dwait">unnamed</span>'}${d.archetype ? `<span class="arch">${esc(d.archetype)}</span>` : ""}</div></div>`;
+  if (d.address) h += `<div class="dsec" data-sec="address"><span class="label">It calls you</span><div class="dmono">${esc(d.address)}</div></div>`;
   if (d.credo) h += `<div class="dsec" data-sec="credo"><span class="label">Credo</span><div class="dcredo">“${esc(d.credo)}”</div></div>`;
   if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — the lazy twin</div></div>`;
   if (d.universe) h += `<div class="dsec" data-sec="universe"><span class="label">Universe</span><div class="dmono">${esc(d.universe)}</div></div>`;
@@ -374,7 +402,7 @@ function draftInscriptions(prev, next) {
   np.forEach((x, i) => {
     if (!x || !x.statement) return;
     const old = pp[i];
-    if (!old) push(`P${i + 1} added to the draft — ${x.type || "?"}, ${x.rigidity || "?"}`, "principles");
+    if (!old) push(`P${i + 1} added to the draft — ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}`, "principles");
     else if (JSON.stringify(old) !== JSON.stringify(x)) push(`P${i + 1} amended`, "principles");
   });
   const ph = p.hypotheses || [], nh = next.hypotheses || [];
@@ -384,6 +412,7 @@ function draftInscriptions(prev, next) {
     else if (JSON.stringify(ph[i]) !== JSON.stringify(x)) push(`H${i + 1} amended`, "hypotheses");
   });
   if (next.voice && next.voice !== p.voice) push("voice recorded", "voice");
+  if (next.address && next.address !== p.address) push(`address recorded — "${next.address}"`, "address");
   return lines;
 }
 function renderInscriptions(prev, next) {
@@ -400,6 +429,86 @@ function renderInscriptions(prev, next) {
       if (target) target.scrollIntoView({ block: "nearest" });
     });
   }
+}
+
+/* ---------------- answer chips ----------------
+   The law: chips decide ABOUT the record; prose IS the record. The model may
+   offer 2–4 selectable answers for enumerable decisions; the composer never
+   closes, and a tap sends the label verbatim as the principal's own message —
+   the record keeps what was said, not what was offered. */
+function validOptions(side) {
+  const o = side && side.options;
+  if (!Array.isArray(o) || o.length < 2 || o.length > 4) return null;
+  const out = [];
+  for (const it of o) {
+    if (!it || typeof it.label !== "string" || !it.label.trim() || it.label.length > 48) return null;
+    if (it.hint != null && typeof it.hint !== "string") return null;
+    out.push({ label: it.label.trim(), hint: String(it.hint || "").trim().slice(0, 120) });
+  }
+  return out;
+}
+function clearChoices() {
+  state.lastOptions = [];
+  document.querySelectorAll("#chatlog .choices").forEach((n) => {
+    n.classList.add("fading");
+    setTimeout(() => n.remove(), 140);
+  });
+}
+function renderChoices(opts) {
+  state.lastOptions = opts.map((o) => o.label);
+  const wrap = document.createElement("div");
+  wrap.className = "choices";
+  for (const o of opts) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.innerHTML = `<span class="clabel">${esc(o.label)}</span>` +
+      (o.hint ? `<span class="chint">${esc(o.hint)}</span>` : "");
+    b.addEventListener("click", () => { state.tapped.push(o.label); sendTurn(o.label); });
+    wrap.appendChild(b);
+  }
+  $("#chatlog").appendChild(wrap);
+  if (!state.choicesHintShown) {
+    state.choicesHintShown = true;
+    addMsg("sys", null, "· tap an answer, or write your own below ·");
+  }
+  wrap.scrollIntoView({ block: "end" });
+}
+
+/* ---------------- the creation moment ----------------
+   The one choreographed sequence in the product. Nothing here is interactive
+   and nothing is claimed: the charter on screen is the charter, the settle is
+   the existing transition vocabulary, the pulse is the product's entire
+   budget of sparkle, and the only wait afterward is a real model call. */
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function runCreationMoment({ instant = false } = {}) {
+  setBusy(true);
+  const wait = (ms) => (instant ? Promise.resolve() : sleep(ms));
+  await wait(600);
+  const line = addMsg("sys inscribe", null, "· the charter is drafted — every rule cites your words ·");
+  line.addEventListener("click", () => {
+    const col = $("#draftcol");
+    if (window.matchMedia("(max-width: 899px)").matches && !col.classList.contains("open")) {
+      col.classList.add("open");
+      $("#drafttoggle").setAttribute("aria-expanded", "true");
+      $("#draftcaret").textContent = "▾";
+    }
+  });
+  if (!instant) {
+    // the settle pass: each panel section lights once, top to bottom
+    const secs = [...document.querySelectorAll("#draftbody .dsec")];
+    secs.forEach((s, i) => setTimeout(() => {
+      s.classList.add("lit");
+      setTimeout(() => s.classList.remove("lit"), 700);
+    }, 300 + i * 150));
+    await wait(500 + secs.length * 150);
+  }
+  const d = state.draft || {};
+  const card = addMsg("ceremony", null,
+    `<div class="cname">${esc(d.name || "")}</div>` +
+    (d.archetype ? `<div class="carch">${esc(d.archetype)}</div>` : ""));
+  card.scrollIntoView({ block: "end" });
+  await wait(2200); // the single play-once pulse lives on .cname in CSS
 }
 
 /* ---------------- the interview engine ---------------- */
@@ -444,7 +553,7 @@ function failTurn(userRaw, userEl, e) {
   if (userRaw.startsWith("[TAPE]")) {
     if (userEl) userEl.remove();
     state.tapeSent = false;
-    err.append("The connection dropped while your agent was reading the tape. ");
+    err.append(`The connection dropped during the first read. `);
     const btn = document.createElement("button");
     btn.type = "button"; btn.className = "plain errretry"; btn.textContent = "Retry";
     btn.addEventListener("click", () => {
@@ -453,6 +562,24 @@ function failTurn(userRaw, userEl, e) {
       sendTurn(buildTapeMessage(tapeLines(), today()));
     });
     err.append(btn);
+  } else if (userRaw === "[WAKE]") {
+    // both dividers come down; a retry redraws them
+    if (userEl) {
+      const prev = userEl.previousElementSibling;
+      if (prev && prev.classList.contains("divider")) prev.remove();
+      userEl.remove();
+    }
+    err.append(`The connection dropped while ${agentName()} was reading its charter. `);
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "plain errretry"; btn.textContent = "Retry";
+    btn.addEventListener("click", () => { err.hidden = true; sendTurn("[WAKE]"); });
+    err.append(btn);
+  } else if (userRaw.startsWith("[REPAIR]")) {
+    // the automatic repair failed — fall back to the honest line; the next
+    // real turn carries the repair note
+    state.needsRepair = true;
+    addMsg("sys", null, "· that didn't reach the draft — it will catch up next reply ·");
+    return;
   } else {
     if (userEl) {
       const btn = document.createElement("button");
@@ -487,28 +614,39 @@ async function sendTurn(userRaw) {
   const queuedEl = state.queued && state.queued.raw === userRaw ? state.queued.el : null;
   state.queued = null;
   if (state.undelivered) { state.undelivered.remove(); state.undelivered = null; }
-  const userTurns = state.history.filter((h) => h.role === "user").length;
+  // machine messages ([BEGIN]/[WAKE]/[TAPE]/[REPAIR]) never count against the length
+  const userTurns = state.history.filter((h) => h.role === "user" && !h.raw.startsWith("[")).length;
   if (userTurns >= MAX_TURNS) {
     addMsg("sys", null, "· the register closes — this interview has run its length ·");
     return;
   }
   const isTape = userRaw.startsWith("[TAPE]");
+  const isWake = userRaw === "[WAKE]";
+  clearChoices();
   setBusy(true);
   state.streaming = true;
   $("#chaterr").hidden = true;
   state.history.push({ role: "user", raw: userRaw });
   const userEl = queuedEl || renderUserMsg(userRaw);
-  const bubble = renderModelMsg("");
+  const inAgentPhase = agentPhase();
+  const replyKind = isTape ? "firstread" : isWake ? "firstwords" : inAgentPhase ? "agent" : "registrar";
+  const bubble = renderModelMsg("", { kind: replyKind === "firstread" ? "agent" : replyKind });
   const textEl = bubble.querySelector(".text");
   // honest wait states: each string maps 1:1 to a real client state
-  textEl.innerHTML = `<span class="dwait">${isTape
-    ? "your agent is reading the day's marks — first words on the way…"
-    : "thinking…"}</span>`;
+  textEl.innerHTML = `<span class="dwait">${isWake
+    ? esc(agentName()) + " is reading its charter…"
+    : isTape
+      ? esc(agentName()) + " is reading the day's marks…"
+      : "thinking…"}</span>`;
   const contents = state.history.map((h) => ({ role: h.role, parts: [{ text: h.raw }] }));
-  if (state.needsRepair) {
+  if (state.needsRepair && !userRaw.startsWith("[REPAIR]")) {
     // machine-injected, never rendered: the previous side channel was lost
     contents[contents.length - 1].parts[0].text +=
       "\n\n[REPAIR] The last draft block did not arrive — include the entire draft in this reply.";
+  }
+  if (state.machineNote) {
+    contents[contents.length - 1].parts[0].text += "\n\n[NOTE] " + state.machineNote;
+    state.machineNote = "";
   }
   let raw;
   try {
@@ -549,6 +687,16 @@ async function sendTurn(userRaw) {
   if (side) {
     state.needsRepair = false;
     if (side.draft && typeof side.draft === "object") {
+      // backstop for the chips law: text that arrived by tap never enters a
+      // quote field — quotes hold only words the principal actually typed.
+      // Checked against every tapped label of the session, not just the last
+      // question's: the model has quoted a tap one turn late (QA 2026-07-25).
+      if (state.tapped.length && Array.isArray(side.draft.principles)) {
+        const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
+        for (const p of side.draft.principles) {
+          if (p && p.quote && tapped.has(String(p.quote).trim().toLowerCase())) delete p.quote;
+        }
+      }
       // delta contract: changed fields arrive whole; unchanged fields persist
       state.draft = Object.assign({}, state.draft || {}, side.draft);
       renderDraft();
@@ -557,17 +705,38 @@ async function sendTurn(userRaw) {
     state.ready = !!side.ready;
     if (side.done) state.done = true;
   } else {
-    // the record must never silently fall behind the conversation
+    // the record must never silently fall behind the conversation. Around the
+    // handoff, one automatic repair keeps the ceremony from stalling on a
+    // dropped packet; everywhere else the honest line appears and the next
+    // turn carries the repair note.
+    if (!inAgentPhase && !state.handoffSeen && !state.autoRepaired &&
+        validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+      state.autoRepaired = true;
+      state.needsRepair = false;
+      saveInterview();
+      setBusy(false);
+      await sendTurn("[REPAIR] The last draft block did not arrive — include the entire draft in this reply.");
+      return;
+    }
     state.needsRepair = true;
     addMsg("sys", null, "· that didn't reach the draft — it will catch up next reply ·");
   }
-  // if this reply was the answer to the tape, restyle it as first words —
-  // and treat the interview as done regardless of the model's flag: the
-  // tape is only handed over once the charter is ready.
+  // Act II: an agreed test must reach the record. If the tap that accepted it
+  // produced no hypothesis (observed in QA: "locked into the charter", nothing
+  // emitted), one machine turn demands the emission instead of dead air.
+  if (inAgentPhase && !state.done && !state.ready &&
+      /^agreed\b/i.test(userRaw) && state.tapped.includes(userRaw) &&
+      !((state.draft || {}).hypotheses || []).length) {
+    saveInterview();
+    setBusy(false);
+    await sendTurn("[REPAIR] The agreed test did not arrive in the machine block. Emit the ENTIRE draft including the hypothesis now, and set ready if COMPLETION is satisfied.");
+    return;
+  }
+  // the tape reply is the first read: restyled, and the interview is done
+  // regardless of the model's flag — the tape is only handed over at ready.
   if (isTape) {
     bubble.className = "msg first";
-    bubble.querySelector(".who").textContent =
-      ((state.draft && state.draft.name) ? state.draft.name.toUpperCase() : "THE AGENT") + " — FIRST WORDS";
+    bubble.querySelector(".who").textContent = whoLabel("firstread");
     state.done = true;
   }
   saveInterview();
@@ -579,12 +748,41 @@ async function sendTurn(userRaw) {
     await sendTurn(q.raw);
     return;
   }
-  if (state.ready && !state.done && !state.tapeSent) {
+  // THE HANDOFF: the Registrar closed the file. The client is the authority —
+  // the ceremony runs only if the wake minimum actually stands in the draft.
+  if (side && side.handoff && !inAgentPhase && !state.handoffSeen && !state.done) {
+    if (validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+      state.handoffSeen = true;
+      saveInterview();
+      await runCreationMoment();
+      setBusy(false); // the ceremony's lock ends where the wake call begins
+      await sendTurn("[WAKE]");
+      return;
+    }
+    addMsg("sys", null, "· the charter is missing something — the Registrar continues ·");
+    state.machineNote = "The handoff was early — the wake minimum is not complete in the compiled draft. Continue the interview as the Registrar until it is.";
+  }
+  // if the wake minimum stands for three turns and the Registrar never closes,
+  // ask for the handoff by machine note rather than stranding Act I
+  if (!agentPhase() && !state.handoffSeen && !state.done) {
+    if (validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+      state.wakeReadyTurns++;
+      if (state.wakeReadyTurns >= 3 && !state.machineNote) {
+        state.wakeReadyTurns = 0;
+        state.machineNote = "The wake minimum is complete. Close the file in two sentences and set handoff: true in this reply's machine block, with the entire draft.";
+      }
+    } else state.wakeReadyTurns = 0;
+  }
+  if (state.ready && agentPhase() && !state.done && !state.tapeSent) {
     state.tapeSent = true;
     saveInterview();
     await sendTurn(buildTapeMessage(tapeLines(), today()));
     return;
   }
+  // options render last: never before the question completed, never on a
+  // finished interview, never under a queued reply
+  const opts = side && !state.done && !state.queued ? validOptions(side) : null;
+  if (opts) renderChoices(opts);
   updateFinishUI();
   if (!state.done) $("#input").focus();
 }
@@ -597,7 +795,9 @@ function updateFinishUI() {
   const bar = $("#finishbar");
   const note = bar.querySelector(".note");
   const btn = $("#btn-review");
-  const complete = state.draft && validatePacket(state.draft, state.floorNames).length === 0;
+  const errs = state.draft ? validatePacket(state.draft, state.floorNames) : ["no draft was compiled"];
+  const complete = errs.length === 0;
+  const name = agentName();
   if (state.done && !complete) {
     // the model closed the interview but the charter fails validation — a
     // closed composer here is a dead end, so the line reopens for the fix
@@ -607,7 +807,7 @@ function updateFinishUI() {
     bar.hidden = false;
     bar.classList.add("quiet");
     btn.className = "plain";
-    note.textContent = "The charter is missing something — open the review to see what, or answer to continue.";
+    note.textContent = "Still needed: " + errs.slice(0, 2).join(" · ");
     return;
   }
   if (state.done) {
@@ -615,17 +815,20 @@ function updateFinishUI() {
     bar.hidden = false;
     bar.classList.remove("quiet");
     btn.className = "primary";
-    note.textContent = "The interview is closed. What remains is your signature.";
-  } else if (complete) {
+    note.textContent = `${name} is drafted and has spoken. Countersigning makes the charter permanent and puts ${name} on the floor.`;
+  } else if (complete && !agentPhase()) {
+    // a complete charter with no handoff yet (single-act fallback path)
     $("#composer").hidden = false;
     bar.hidden = false;
     bar.classList.add("quiet");
     btn.className = "plain";
     note.textContent = "The charter appears complete — review and submit whenever you are ready.";
   } else {
+    // in Act II the tape follows ready on its own; no bar until it lands
     $("#composer").hidden = false;
     bar.hidden = true;
   }
+  $("#input").placeholder = agentPhase() ? `Answer ${name}…` : "Answer the Registrar…";
 }
 
 function restoreInterview(saved) {
@@ -633,26 +836,56 @@ function restoreInterview(saved) {
   state.tapeSent = !!saved.tapeSent;
   state.done = !!saved.done;
   state.ready = !!saved.ready;
+  state.handoffSeen = !!saved.handoffSeen;
+  state.tapped = Array.isArray(saved.tapped) ? saved.tapped : [];
+  // the draft first: renderUserMsg("[WAKE]") and the who-labels need the name
+  const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
+  for (const h of state.history) {
+    if (h.role !== "model") continue;
+    const side = parseSideChannel(h.raw);
+    if (!side || !side.draft) continue;
+    if (tapped.size && Array.isArray(side.draft.principles)) {
+      for (const p of side.draft.principles) {
+        if (p && p.quote && tapped.has(String(p.quote).trim().toLowerCase())) delete p.quote;
+      }
+    }
+    state.draft = Object.assign({}, state.draft || {}, side.draft);
+  }
   $("#chatlog").innerHTML = "";
   let lastUserRaw = "";
+  let woke = false;
+  let lastSide = null;
   for (const h of state.history) {
-    if (h.role === "user") { lastUserRaw = h.raw; renderUserMsg(h.raw); }
-    else {
-      const first = lastUserRaw.startsWith("[TAPE]");
-      if (first) state.done = true; // first words delivered = interview done, whatever the saved flag says
-      renderModelMsg(h.raw, { first });
-      const side = parseSideChannel(h.raw);
-      if (side && side.draft) state.draft = Object.assign({}, state.draft || {}, side.draft);
+    if (h.role === "user") {
+      lastUserRaw = h.raw;
+      if (h.raw === "[WAKE]") woke = true;
+      renderUserMsg(h.raw);
+    } else {
+      const kind = lastUserRaw.startsWith("[TAPE]") ? "firstread"
+        : lastUserRaw === "[WAKE]" ? "firstwords"
+        : woke ? "agent" : "registrar";
+      if (kind === "firstread") state.done = true; // the read landed = done, whatever the saved flag says
+      renderModelMsg(h.raw, { kind });
+      lastSide = parseSideChannel(h.raw);
     }
   }
   renderDraft();
   updateFinishUI();
-  if (state.done) { /* nothing more to resume */ }
-  else if (state.ready && !state.tapeSent) {
-    // the charter was drafted but the hand-off was interrupted — resume it
+  if (state.done) return;
+  if (state.handoffSeen && !woke) {
+    // the file was closed but the wake never went out — no re-ceremony
+    runCreationMoment({ instant: true }).then(() => { setBusy(false); sendTurn("[WAKE]"); });
+    return;
+  }
+  if (state.ready && woke && !state.tapeSent) {
+    // the charter was complete but the tape hand-over was interrupted — resume it
     state.tapeSent = true;
     sendTurn(buildTapeMessage(tapeLines(), today()));
+    return;
   }
+  // the pending question's options come back with it
+  const opts = lastSide ? validOptions(lastSide) : null;
+  if (opts) renderChoices(opts);
 }
 
 async function beginInterview() {
@@ -675,18 +908,31 @@ function transcriptMarkdown() {
   const name = (state.draft && state.draft.name) || "unnamed";
   let out = `# Seat interview — ${name}\n\n_${today()} · Open Outcry registry_\n\n`;
   let lastUser = "";
+  let woke = false;
   for (const h of state.history) {
     if (h.role === "user") {
       lastUser = h.raw;
-      if (h.raw === "[BEGIN]") continue;
+      if (h.raw === "[BEGIN]" || h.raw.startsWith("[REPAIR]")) continue;
+      if (h.raw === "[WAKE]") { woke = true; out += `*The Registrar closes the file. From here, ${name} speaks for itself.*\n\n`; continue; }
       if (h.raw.startsWith("[TAPE]")) { out += `*The day's tape is placed on the desk.*\n\n`; continue; }
       out += `**Principal:** ${h.raw}\n\n`;
     } else {
-      const speaker = lastUser.startsWith("[TAPE]") ? `**${name} — first words:**` : "**Registrar:**";
+      if (lastUser.startsWith("[REPAIR]")) continue; // machine repair turns stay out of the readable record
+      const speaker = lastUser.startsWith("[TAPE]") ? `**${name} — the first read:**`
+        : lastUser === "[WAKE]" ? `**${name} — first words:**`
+        : woke ? `**${name}:**` : "**Registrar:**";
       out += `${speaker} ${displayText(h.raw)}\n\n`;
     }
   }
   return out;
+}
+/** The model reply that followed a machine message — the birth keepsakes. */
+function replyAfter(prefix) {
+  for (let i = 0; i < state.history.length - 1; i++) {
+    if (state.history[i].role === "user" && state.history[i].raw.startsWith(prefix) &&
+        state.history[i + 1].role === "model") return displayText(state.history[i + 1].raw);
+  }
+  return "";
 }
 
 function renderCharter() {
@@ -714,12 +960,17 @@ async function submitApplication() {
   const errs = validatePacket(d, state.floorNames);
   if (errs.length) { renderCharter(); return; }
   const privacy = document.querySelector('input[name="privacy"]:checked').value;
+  const firstWords = replyAfter("[WAKE]");
+  const firstRead = replyAfter("[TAPE]");
   const packet = {
     name: d.name, archetype: d.archetype, credo: d.credo, universe: d.universe,
     benchmark: { symbols: d.benchmark.symbols, label: d.benchmark.label },
     max_position_pct: Number(d.max_position_pct),
     constitution: d.constitution, principles: d.principles, hypotheses: d.hypotheses,
-    voice: d.voice, transcript_privacy: privacy, transcript: transcriptMarkdown(),
+    voice: d.voice, address: (d.address || "Principal").slice(0, 20),
+    ...(firstWords ? { first_words: firstWords } : {}),
+    ...(firstRead ? { first_read: firstRead } : {}),
+    transcript_privacy: privacy, transcript: transcriptMarkdown(),
   };
   const btn = $("#btn-submit");
   btn.disabled = true; btn.textContent = "Submitting…";

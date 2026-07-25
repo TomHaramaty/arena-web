@@ -98,6 +98,31 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 /* an inscription is evidence: tapping it opens the draft at that entry */
 .msg.inscribe { cursor: pointer; }
 .msg.inscribe:hover { color: var(--ink2); }
+
+/* ---------- the two acts ---------- */
+/* the dividers that close the Registrar's file */
+.msg.divider { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink2); padding: 10px 0 2px; }
+.msg.divider + .msg.divider { padding-top: 2px; }
+/* the creation moment: the name resolves, once */
+.msg.ceremony { text-align: center; padding: 18px 0 8px; }
+.msg.ceremony .cname { font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: 0.3px; }
+.msg.ceremony .carch { font-size: 13px; color: var(--muted); margin-top: 4px; }
+/* the settle pass over the draft panel */
+.dsec { transition: background 0.12s ease; }
+.dsec.lit { background: var(--hover); }
+
+/* ---------- answer chips ----------
+   chips decide about the record; prose is the record. Part of the asking
+   turn, never of the composer — which stays open beneath them. */
+.choices { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 4px; max-width: 62ch; }
+.choice { display: block; text-align: left; cursor: pointer; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; min-height: 44px; transition: background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease; }
+.choice:hover { background: var(--hover); border-color: var(--axis); }
+.choice .clabel { display: block; font-family: var(--display); font-size: 14.5px; color: var(--ink); }
+.choice .chint { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 3px; }
+.choices.fading { opacity: 0; transition: opacity 0.12s ease; }
+@media (max-width: 899px) {
+  .choice .chint { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
 .msg.first { border: 1px solid var(--border); border-left: 3px solid var(--ink); border-radius: 10px; background: var(--surface); padding: 14px 16px; }
 .msg.first .who { color: var(--ink); }
 .msg.first .text { font-family: var(--display); font-size: 16.5px; line-height: 1.62; }
@@ -185,13 +210,18 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .statusword { font-family: var(--display); font-size: 21px; font-weight: 700; }
 .pulse-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--good); flex: none; }
 @media (prefers-reduced-motion: no-preference) {
-  .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+  /* the whitelist's single 2s pulse, spent play-once where it is earned:
+     the moment the agent's name resolves (operator ruling 2026-07-25 —
+     the status dot's infinite loop was retired to pay for it) */
+  .msg.ceremony .cname { animation: pulse 2s ease-in-out 1; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
   button, a, .drafttoggle { transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease, opacity 0.12s ease; }
 }
-.pulse-dot.done { animation: none; }
 .statusdetail { font-size: 14.5px; color: var(--ink2); margin: 12px 0 0; line-height: 1.6; }
 .statusdetail b { color: var(--ink); font-weight: 600; }
+/* the kept artifact until the first bell: the agent's first read, verbatim */
+.firstread { margin: 14px 0 0; padding: 10px 0 2px 14px; border-left: 2px solid var(--grid); font-family: var(--display); font-size: 14px; line-height: 1.6; color: var(--ink); white-space: pre-wrap; }
+.firstread .label { display: block; margin-bottom: 6px; font-family: system-ui, sans-serif; }
 .statusbell { font-family: var(--mono); font-size: 13px; color: var(--ink); margin-top: 10px; }
 .statuslinks { margin-top: 18px; font-size: 14px; }
 
