@@ -7,10 +7,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/fireba
 import {
   getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, signOut,
+  connectAuthEmulator,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, collection, query,
-  where, limit, getDocs, onSnapshot, serverTimestamp,
+  where, limit, getDocs, onSnapshot, serverTimestamp, connectFirestoreEmulator,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import {
   getAI, getGenerativeModel, GoogleAIBackend,
@@ -30,6 +31,12 @@ const app = initializeApp({
 });
 const auth = getAuth(app);
 const db = getFirestore(app);
+// Local test rig: on localhost, auth and the database are emulators — no real
+// accounts, no production data. The Registrar (AI Logic) stays real.
+if (["localhost", "127.0.0.1"].includes(location.hostname)) {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
+  connectFirestoreEmulator(db, "127.0.0.1", 8080);
+}
 const ai = getAI(app, { backend: new GoogleAIBackend() });
 const MODEL_ID = "gemini-3.5-flash";
 // Same contract, same prompt — used only for the last retry when the primary
@@ -503,11 +510,14 @@ async function sendTurn(userRaw) {
   }
   let raw;
   try {
-    // 4 attempts on transient errors (429/500/503): primary ×3 with
-    // 2s/6s/15s backoff, then the fallback flash model on the last try.
+    // 4 attempts on transient errors (429/500/503). The primary model gets
+    // exactly one try, then the fallback flash model takes over: measured
+    // 2026-07-24, the primary 429/500s continuously under free-tier quota
+    // while the fallback answers every time — waiting three backoffs to
+    // switch cost 40-90s on every single turn.
     raw = await withRetries(
       (attempt) => streamOnce(
-        attempt >= 3 ? state.fallback : state.model, contents, textEl,
+        attempt >= 1 ? state.fallback : state.model, contents, textEl,
         // unlock the composer the moment the visible reply is complete —
         // the tail streams on in the background (not on the tape turn:
         // the interview is over and a queued reply would be dropped)
@@ -586,6 +596,18 @@ function updateFinishUI() {
   const note = bar.querySelector(".note");
   const btn = $("#btn-review");
   const complete = state.draft && validatePacket(state.draft, state.floorNames).length === 0;
+  if (state.done && !complete) {
+    // the model closed the interview but the charter fails validation — a
+    // closed composer here is a dead end, so the line reopens for the fix
+    state.done = false;
+    saveInterview();
+    $("#composer").hidden = false;
+    bar.hidden = false;
+    bar.classList.add("quiet");
+    btn.className = "plain";
+    note.textContent = "The charter is missing something — open the review to see what, or answer to continue.";
+    return;
+  }
   if (state.done) {
     $("#composer").hidden = true;
     bar.hidden = false;

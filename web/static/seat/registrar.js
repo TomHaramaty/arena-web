@@ -139,7 +139,7 @@ export function isTransientError(e) {
  * Non-transient errors, and the failure after the last delay, are thrown.
  */
 export async function withRetries(attempt, {
-  delays = [2000, 6000, 15000],
+  delays = [1000, 6000, 15000],
   isTransient = isTransientError,
   onRetryWait = () => {},
   sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
