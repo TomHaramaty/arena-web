@@ -70,7 +70,8 @@ const state = {
   autoRepaired: false,  // the one automatic [REPAIR] turn around the handoff was spent
   machineNote: "",      // one-shot machine note appended to the next turn's contents
   wakeReadyTurns: 0,    // consecutive Act-I turns where the wake minimum passed with no handoff
-  lastOptions: [],      // labels offered on the pending question (quote backstop + restore)
+  lastOptions: [],      // labels offered on the pending question (restore)
+  tapped: [],           // every label sent by tap this session — never quotable
   choicesHintShown: false,
   handoffSeen: false,   // the Registrar closed the file; the creation moment ran
   ready: false,
@@ -235,7 +236,7 @@ const draftRef = () => doc(db, "drafts", state.user.uid);
 function saveInterview() {
   const data = {
     history: state.history, tapeSent: state.tapeSent, done: state.done,
-    ready: state.ready, handoffSeen: state.handoffSeen,
+    ready: state.ready, handoffSeen: state.handoffSeen, tapped: state.tapped,
   };
   try { localStorage.setItem(saveKey(), JSON.stringify(data)); } catch { /* quota — the mirror still has it */ }
   if (state.user) {
@@ -401,7 +402,7 @@ function draftInscriptions(prev, next) {
   np.forEach((x, i) => {
     if (!x || !x.statement) return;
     const old = pp[i];
-    if (!old) push(`P${i + 1} added to the draft — ${x.type || "?"}, ${x.rigidity || "?"}`, "principles");
+    if (!old) push(`P${i + 1} added to the draft — ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}`, "principles");
     else if (JSON.stringify(old) !== JSON.stringify(x)) push(`P${i + 1} amended`, "principles");
   });
   const ph = p.hypotheses || [], nh = next.hypotheses || [];
@@ -463,7 +464,7 @@ function renderChoices(opts) {
     b.className = "choice";
     b.innerHTML = `<span class="clabel">${esc(o.label)}</span>` +
       (o.hint ? `<span class="chint">${esc(o.hint)}</span>` : "");
-    b.addEventListener("click", () => sendTurn(o.label));
+    b.addEventListener("click", () => { state.tapped.push(o.label); sendTurn(o.label); });
     wrap.appendChild(b);
   }
   $("#chatlog").appendChild(wrap);
@@ -621,9 +622,6 @@ async function sendTurn(userRaw) {
   }
   const isTape = userRaw.startsWith("[TAPE]");
   const isWake = userRaw === "[WAKE]";
-  // the labels offered on the question being answered now — kept for the
-  // quote backstop, then cleared from the screen
-  const offeredLabels = state.lastOptions.slice();
   clearChoices();
   setBusy(true);
   state.streaming = true;
@@ -689,12 +687,14 @@ async function sendTurn(userRaw) {
   if (side) {
     state.needsRepair = false;
     if (side.draft && typeof side.draft === "object") {
-      // backstop for the chips law: text that arrived by option never enters
-      // a quote field — quotes hold only words the principal typed
-      if (offeredLabels.length && Array.isArray(side.draft.principles)) {
-        const offered = new Set(offeredLabels.map((l) => l.toLowerCase()));
+      // backstop for the chips law: text that arrived by tap never enters a
+      // quote field — quotes hold only words the principal actually typed.
+      // Checked against every tapped label of the session, not just the last
+      // question's: the model has quoted a tap one turn late (QA 2026-07-25).
+      if (state.tapped.length && Array.isArray(side.draft.principles)) {
+        const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
         for (const p of side.draft.principles) {
-          if (p && p.quote && offered.has(String(p.quote).trim().toLowerCase())) delete p.quote;
+          if (p && p.quote && tapped.has(String(p.quote).trim().toLowerCase())) delete p.quote;
         }
       }
       // delta contract: changed fields arrive whole; unchanged fields persist
@@ -720,6 +720,17 @@ async function sendTurn(userRaw) {
     }
     state.needsRepair = true;
     addMsg("sys", null, "· that didn't reach the draft — it will catch up next reply ·");
+  }
+  // Act II: an agreed test must reach the record. If the tap that accepted it
+  // produced no hypothesis (observed in QA: "locked into the charter", nothing
+  // emitted), one machine turn demands the emission instead of dead air.
+  if (inAgentPhase && !state.done && !state.ready &&
+      /^agreed\b/i.test(userRaw) && state.tapped.includes(userRaw) &&
+      !((state.draft || {}).hypotheses || []).length) {
+    saveInterview();
+    setBusy(false);
+    await sendTurn("[REPAIR] The agreed test did not arrive in the machine block. Emit the ENTIRE draft including the hypothesis now, and set ready if COMPLETION is satisfied.");
+    return;
   }
   // the tape reply is the first read: restyled, and the interview is done
   // regardless of the model's flag — the tape is only handed over at ready.
@@ -817,6 +828,7 @@ function updateFinishUI() {
     $("#composer").hidden = false;
     bar.hidden = true;
   }
+  $("#input").placeholder = agentPhase() ? `Answer ${name}…` : "Answer the Registrar…";
 }
 
 function restoreInterview(saved) {
@@ -825,11 +837,19 @@ function restoreInterview(saved) {
   state.done = !!saved.done;
   state.ready = !!saved.ready;
   state.handoffSeen = !!saved.handoffSeen;
+  state.tapped = Array.isArray(saved.tapped) ? saved.tapped : [];
   // the draft first: renderUserMsg("[WAKE]") and the who-labels need the name
+  const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
   for (const h of state.history) {
     if (h.role !== "model") continue;
     const side = parseSideChannel(h.raw);
-    if (side && side.draft) state.draft = Object.assign({}, state.draft || {}, side.draft);
+    if (!side || !side.draft) continue;
+    if (tapped.size && Array.isArray(side.draft.principles)) {
+      for (const p of side.draft.principles) {
+        if (p && p.quote && tapped.has(String(p.quote).trim().toLowerCase())) delete p.quote;
+      }
+    }
+    state.draft = Object.assign({}, state.draft || {}, side.draft);
   }
   $("#chatlog").innerHTML = "";
   let lastUserRaw = "";
