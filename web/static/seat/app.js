@@ -7,7 +7,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/fireba
 import {
   getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, signOut,
-  connectAuthEmulator,
+  connectAuthEmulator, signInAnonymously,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, collection, query,
@@ -31,9 +31,11 @@ const app = initializeApp({
 });
 const auth = getAuth(app);
 const db = getFirestore(app);
-// Local test rig: on localhost, auth and the database are emulators — no real
-// accounts, no production data. The Registrar (AI Logic) stays real.
-if (["localhost", "127.0.0.1"].includes(location.hostname)) {
+// Local staging: on localhost, auth and the database are emulators — no real
+// accounts, no production data, no email round-trip. The Registrar (AI Logic)
+// stays real, so latency and conversation quality are the genuine article.
+const IS_LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
+if (IS_LOCAL) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
 }
@@ -796,6 +798,23 @@ async function boot() {
     } catch (err) { landingError("Could not send the link. (" + err.code + ")"); }
   });
   $("#btn-begin").addEventListener("click", beginInterview);
+
+  // Local staging only: one-click sign-in, so testing needs no second email and
+  // no sign-in link. Anonymous — a fresh principal each time the emulator is
+  // restarted. Never rendered anywhere but localhost.
+  if (IS_LOCAL) {
+    const dev = document.createElement("button");
+    dev.type = "button";
+    dev.className = "plain";
+    dev.style.cssText = "border-style:dashed;margin-top:4px";
+    dev.textContent = "Dev sign-in — local test, no email";
+    dev.addEventListener("click", async () => {
+      landingError("");
+      try { await signInAnonymously(auth); }
+      catch (e) { landingError("Dev sign-in failed. (" + (e.code || e) + ")"); }
+    });
+    $("#signinbox").appendChild(dev);
+  }
 
   /* interview wiring — Enter sends, Shift+Enter breaks the line */
   const input = $("#input");
