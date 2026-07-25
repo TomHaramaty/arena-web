@@ -17,6 +17,9 @@ import {
   getAI, getGenerativeModel, GoogleAIBackend,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
 import {
+  getFunctions, httpsCallable,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
+import {
   buildSystemPrompt, buildTapeMessage, buildWakeMessage, validatePacket,
   validateWakeMinimum, nextFirstBell, fmtBell, withRetries, OPENING, NAME_RE,
   PRINCIPLE_TYPES,
@@ -41,6 +44,7 @@ if (IS_LOCAL) {
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
 }
 const ai = getAI(app, { backend: new GoogleAIBackend() });
+const fns = getFunctions(app, "us-central1");
 const MODEL_ID = "gemini-3.5-flash";
 // Same contract, same prompt — used only for the last retry when the primary
 // model keeps returning transient errors (free-tier congestion).
@@ -200,6 +204,7 @@ async function findApplication(uid) {
 function renderStatus(appData) {
   const name = (appData.packet && appData.packet.name) || "your agent";
   const seated = appData.status === "seated";
+  const stage = appData.bell && appData.bell.stage;
   const dot = $("#statusdot");
   dot.classList.toggle("done", seated);
   if (seated) {
@@ -212,10 +217,57 @@ function renderStatus(appData) {
     $("#statusword").textContent = "Application received";
     const fr = appData.packet && appData.packet.first_read;
     $("#statusdetail").innerHTML =
-      `<b>${esc(name)}</b> is being seated. The charter is on the register; the record opens at the first bell.` +
+      `<b>${esc(name)}</b> is countersigned. The charter is on the register.` +
       (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
-    $("#statusbell").textContent = "First bell " + fmtBell(nextFirstBell());
+    $("#statusbell").textContent = stage ? "" : "Next daily bell " + fmtBell(nextFirstBell());
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
+  }
+  renderBellUI(appData, name);
+}
+
+/* "Run the first session": the principal starts the real first run and
+   watches it happen. Stages stream from the application doc — each one is
+   written by the engine only when that step is actually underway. */
+function renderBellUI(appData, name) {
+  const el = $("#statusrun");
+  if (!el) return;
+  const stage = appData.bell && appData.bell.stage;
+  if (appData.status === "rejected") { el.innerHTML = ""; return; }
+  if (stage === "done" || (appData.status === "seated" && !stage)) {
+    el.innerHTML = stage === "done"
+      ? `<p class="bellstage">${esc(name)}'s first entry is on the record — <a href="/floor/">read it on the floor →</a></p>`
+      : "";
+    return;
+  }
+  if (!stage || stage === "failed") {
+    el.innerHTML =
+      (stage === "failed"
+        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next daily bell regardless. You can try again now.</p>`
+        : "") +
+      `<button class="primary" id="btn-bell">Run the first session</button>
+       <p class="bellnote">A few minutes, live: ${esc(name)} is seated, reads the day's marks, and writes its first entry into the record.</p>`;
+    $("#btn-bell").addEventListener("click", () => ringBell(name));
+    return;
+  }
+  const line = stage === "first-session"
+    ? `${esc(name)} is on the floor, reading the day's marks — its first entry is being written.`
+    : `The bell is rung — ${esc(name)} is being seated.`;
+  el.innerHTML = `<p class="bellstage"><span class="pulse-dot"></span> ${line}</p>`;
+}
+
+async function ringBell(name) {
+  const btn = $("#btn-bell");
+  if (btn) { btn.disabled = true; btn.textContent = "The bell is rung…"; }
+  try {
+    await httpsCallable(fns, "ringFirstBell")({ appId: state.appDoc.id });
+    // stages take over from here via the doc listener
+  } catch (e) {
+    console.error(e);
+    if (btn) { btn.disabled = false; btn.textContent = "Run the first session"; }
+    const p = document.createElement("p");
+    p.className = "err";
+    p.textContent = "That didn't go through — try again. (" + (e.message || e) + ")";
+    $("#statusrun").appendChild(p);
   }
 }
 
