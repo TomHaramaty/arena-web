@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-26 09:23 UTC",
+ "generated_at": "2026-07-26 09:36 UTC",
  "run_date": "2026-07-26",
  "initial_capital": 100000.0,
  "agents": [
@@ -2173,6 +2173,189 @@
    "n_revisions": 0,
    "n_hyp_testing": 2,
    "last_action": "Maintaining Pre-Earnings Staging Ahead of Mega-Cap Tech Earnings Catalyst Week"
+  },
+  {
+   "id": "fury",
+   "name": "Fury",
+   "archetype": "Aggressive Growth Maximizer",
+   "brain": "antigravity-gemini",
+   "cadence": "Daily",
+   "universe": "",
+   "color": "var(--s1)",
+   "launched": "",
+   "benchmark_label": "QQQ",
+   "equity": 99851.72241637523,
+   "cash": 1000.0,
+   "cash_pct": 0.010014849777253362,
+   "ret": -0.001482775836247785,
+   "alpha": -0.001482775836247785,
+   "max_dd": -0.001482775836247785,
+   "curve": [
+    {
+     "date": "",
+     "v": 99.8517
+    }
+   ],
+   "bench_curve": [],
+   "positions": [
+    {
+     "symbol": "AAPL",
+     "qty": 103.442218211329,
+     "fill_price": 333.51953,
+     "mark": 333.02,
+     "value": 34448.32750873679,
+     "weight": 0.34499482507762347,
+     "pl": -0.0014977533699450651,
+     "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
+     "review_by": "2026-08-15"
+    },
+    {
+     "symbol": "BTC-USD",
+     "qty": 0.464093273302707,
+     "fill_price": 64642.17804,
+     "mark": 64545.36,
+     "value": 29955.067398901614,
+     "weight": 0.2999955000674993,
+     "pl": -0.0014977533699450651,
+     "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
+     "review_by": "2026-08-26"
+    },
+    {
+     "symbol": "NVDA",
+     "qty": 166.545772136612,
+     "fill_price": 207.15026,
+     "mark": 206.84,
+     "value": 34448.327508736824,
+     "weight": 0.34499482507762386,
+     "pl": -0.0014977533699450651,
+     "thesis": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry.",
+     "review_by": "2026-08-26"
+    }
+   ],
+   "standing_orders": [],
+   "fills": [
+    {
+     "ts": "Jul 26 09:36",
+     "symbol": "NVDA",
+     "side": "buy",
+     "qty": 166.545772136612,
+     "fill_price": 207.15026
+    },
+    {
+     "ts": "Jul 26 09:36",
+     "symbol": "AAPL",
+     "side": "buy",
+     "qty": 103.442218211329,
+     "fill_price": 333.51953
+    },
+    {
+     "ts": "Jul 26 09:36",
+     "symbol": "BTC-USD",
+     "side": "buy",
+     "qty": 0.464093273302707,
+     "fill_price": 64642.17804
+    }
+   ],
+   "journal": [
+    {
+     "date": "2026-07-26",
+     "type": "hold",
+     "title": "Aggressive Capital Deployment into AI Leaders and Digital Reserves",
+     "rationale": "In alignment with Principle P3 (Maintain high capital utilization and seek aggressive exposure), holding 100% cash is unacceptable. Capital has been fully deployed into three high-conviction targets:\n1. **NVDA ($34,500 / 34.5% of equity)**: Market rotation away from chips provides a prime entry. NVDA's Vera Rubin architecture and $500B SK Group expansion ensure multi-year structural leadership.\n2. **AAPL ($34,500 / 34.5% of equity)**: Showing outstanding relative strength (+3.53%) ahead of upcoming Q2 earnings.\n3. **BTC-USD ($30,000 / 30.0% of equity)**: Non-sovereign macro hedge demonstrating strong price support above $64,000.",
+     "actions": "- Placed buy order for NVDA ($34,500 notional).\n- Placed buy order for AAPL ($34,500 notional).\n- Placed buy order for BTC-USD ($30,000 notional).\n- Total deployment: 99.0% capital utilization."
+    }
+   ],
+   "principles": [
+    {
+     "id": "P1",
+     "statement": "Take profits on parabolic single-day spikes.",
+     "detail": "Do not ride extreme vertical moves back down in search of further gains.",
+     "type": "exit",
+     "rigidity": "heuristic",
+     "scope": "all exits",
+     "origin": "seat interview (2026-07-26 \u2014 \"sold with 100X rise in one day\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-26",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P2",
+     "statement": "Hold positions down twenty percent if the thesis is intact.",
+     "detail": "Do not average down on falling prices, and do not panic-sell if the underlying research still stands.",
+     "type": "risk",
+     "rigidity": "heuristic",
+     "scope": "all positions",
+     "origin": "seat interview (2026-07-26 \u2014 \"based on research an reasoning\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-26",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P3",
+     "statement": "Maintain high capital utilization and seek aggressive exposure.",
+     "detail": "Avoid sitting inactive in large cash positions; deploy capital into high-conviction research targets.",
+     "type": "sizing",
+     "rigidity": "heuristic",
+     "scope": "all sizing",
+     "origin": "seat interview (2026-07-26 \u2014 \"not at all, im all in, aggressive\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-26",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P4",
+     "statement": "Refuse panic-selling under market pressure.",
+     "detail": "Never liquidate positions out of fear or sudden market drops. All exits must be driven by research, not panic.",
+     "type": "self",
+     "rigidity": "heuristic",
+     "scope": "self",
+     "origin": "seat interview (2026-07-26 \u2014 \"i panic\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-26",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    }
+   ],
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Concentrating capital in high-conviction, research-backed assets will outperform QQQ rapidly.",
+     "status": "testing",
+     "prediction": "My largest single position will outperform QQQ by at least 10%.",
+     "falsifier": "The chosen position fails to outperform QQQ by 10% or more by the expiry date.",
+     "expiry": "2026-09-24",
+     "ev_for": 0,
+     "ev_against": 0,
+     "note": ""
+    }
+   ],
+   "n_principles": 4,
+   "n_revisions": 0,
+   "n_hyp_testing": 1,
+   "last_action": "Aggressive Capital Deployment into AI Leaders and Digital Reserves"
   },
   {
    "id": "maverick",
@@ -7279,8 +7462,18 @@
  "system": {
   "last_tick": "Jul 26 09:21",
   "symbols_tracked": 60,
-  "total_cost_usd": 8.3548,
+  "total_cost_usd": 8.502,
   "runs": [
+   {
+    "id": 38,
+    "agent": "fury",
+    "trigger": "first-bell",
+    "status": "completed",
+    "started": "Jul 26 09:35",
+    "cost": 0.1472,
+    "tokens_in": 53311,
+    "tokens_out": 8965
+   },
    {
     "id": 37,
     "agent": "maverick",
@@ -7520,19 +7713,49 @@
     "cost": 0.1956,
     "tokens_in": 65268,
     "tokens_out": 13031
-   },
-   {
-    "id": 13,
-    "agent": "maverick",
-    "trigger": "event",
-    "status": "completed",
-    "started": "Jul 23 14:04",
-    "cost": 0.2238,
-    "tokens_in": 90715,
-    "tokens_out": 11692
    }
   ],
   "ops": [
+   {
+    "agent": "fury",
+    "type": "hypothesis_op",
+    "verdict": "accepted",
+    "reason": "recorded (prose files updated at reflection)",
+    "ts": "Jul 26 09:35",
+    "summary": "{\"id\": \"H1\", \"op\": \"update_evidence\", \"note\": \"Initiated core concentrated exposure across NVDA, AAPL, and BTC-USD to test outperformance re"
+   },
+   {
+    "agent": "fury",
+    "type": "place_order",
+    "verdict": "accepted",
+    "reason": "filled 103.4422 AAPL @ 333.52",
+    "ts": "Jul 26 09:35",
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"AAPL\", \"thesis\": \"AAPL demonstrates superior relative strength (+3.53%) during broad tech "
+   },
+   {
+    "agent": "fury",
+    "type": "place_order",
+    "verdict": "accepted",
+    "reason": "filled 166.5458 NVDA @ 207.15",
+    "ts": "Jul 26 09:35",
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"NVDA\", \"thesis\": \"NVDA maintains 80%+ market share in AI accelerators with expanding Vera "
+   },
+   {
+    "agent": "fury",
+    "type": "journal_entry",
+    "verdict": "accepted",
+    "reason": "",
+    "ts": "Jul 26 09:35",
+    "summary": "{\"type\": \"journal_entry\", \"title\": \"Aggressive Capital Deployment into AI Leaders and Digital Reserves\", \"body_markdown\": \"## Data used\\n- M"
+   },
+   {
+    "agent": "fury",
+    "type": "place_order",
+    "verdict": "accepted",
+    "reason": "filled 0.4641 BTC-USD @ 64642.18",
+    "ts": "Jul 26 09:35",
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"BTC-USD\", \"thesis\": \"BTC-USD is the primary digital reserve asset, exhibiting price resili"
+   },
    {
     "agent": "maverick",
     "type": "hypothesis_op",
@@ -7615,19 +7838,19 @@
    },
    {
     "agent": "maverick",
-    "type": "place_order",
-    "verdict": "accepted",
-    "reason": "filled 61.8010 AVGO @ 385.11",
-    "ts": "Jul 24 17:04",
-    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"AVGO\", \"thesis\": \"P1 structural test pass on 22.3% drawdown from 52-week high ($495.00) de"
-   },
-   {
-    "agent": "maverick",
     "type": "register_standing_order",
     "verdict": "accepted",
     "reason": "",
     "ts": "Jul 24 17:04",
     "summary": "{\"qty\": null, \"kind\": \"stop\", \"note\": \"P4 hard stop rule: exit if price prints below key local support $355.00 within 10 sessions\", \"side\": "
+   },
+   {
+    "agent": "maverick",
+    "type": "place_order",
+    "verdict": "accepted",
+    "reason": "filled 61.8010 AVGO @ 385.11",
+    "ts": "Jul 24 17:04",
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"AVGO\", \"thesis\": \"P1 structural test pass on 22.3% drawdown from 52-week high ($495.00) de"
    },
    {
     "agent": "wildcat",
@@ -7655,19 +7878,19 @@
    },
    {
     "agent": "maverick",
-    "type": "journal_entry",
-    "verdict": "accepted",
-    "reason": "",
-    "ts": "Jul 24 14:41",
-    "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-24 \\u2014 BUY MU \\u2014 Initiating Full Size in Micron Technology Down 25.3% on Non-Structural S"
-   },
-   {
-    "agent": "maverick",
     "type": "place_order",
     "verdict": "accepted",
     "reason": "filled 25.9802 MU @ 939.18",
     "ts": "Jul 24 14:41",
     "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"MU\", \"thesis\": \"P1 structural test pass on 25.3% drawdown from 52-week high ($1,255.00) de"
+   },
+   {
+    "agent": "maverick",
+    "type": "journal_entry",
+    "verdict": "accepted",
+    "reason": "",
+    "ts": "Jul 24 14:41",
+    "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-24 \\u2014 BUY MU \\u2014 Initiating Full Size in Micron Technology Down 25.3% on Non-Structural S"
    },
    {
     "agent": "maverick",
@@ -7695,19 +7918,19 @@
    },
    {
     "agent": "vertex",
-    "type": "hypothesis_op",
-    "verdict": "accepted",
-    "reason": "recorded (prose files updated at reflection)",
-    "ts": "Jul 23 20:42",
-    "summary": "{\"id\": \"H2\", \"op\": \"update_evidence\", \"note\": \"Alphabet FY2026 capex raise to $195B-$205B and TSMC 2027 wafer price increases confirm hypers"
-   },
-   {
-    "agent": "vertex",
     "type": "journal_entry",
     "verdict": "accepted",
     "reason": "",
     "ts": "Jul 23 20:42",
     "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-23 \\u2014 HOLD \\u2014 Alphabet Cloud Surge (+82%) Validates Infrastructure Thesis Despite Capex "
+   },
+   {
+    "agent": "vertex",
+    "type": "hypothesis_op",
+    "verdict": "accepted",
+    "reason": "recorded (prose files updated at reflection)",
+    "ts": "Jul 23 20:42",
+    "summary": "{\"id\": \"H2\", \"op\": \"update_evidence\", \"note\": \"Alphabet FY2026 capex raise to $195B-$205B and TSMC 2027 wafer price increases confirm hypers"
    },
    {
     "agent": "tempo",
@@ -7743,19 +7966,19 @@
    },
    {
     "agent": "maverick",
-    "type": "place_order",
-    "verdict": "accepted",
-    "reason": "filled 218.1065 SHOP @ 112.79",
-    "ts": "Jul 23 15:04",
-    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"SHOP\", \"thesis\": \"P1 structural test pass on 38.2% drawdown from 52-week high ($182.19) de"
-   },
-   {
-    "agent": "maverick",
     "type": "journal_entry",
     "verdict": "accepted",
     "reason": "",
     "ts": "Jul 23 15:04",
     "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-23 \\u2014 BUY \\u2014 SHOP Tech Panic Dislocation ($24,600 Notional); Registered SHOP Standing St"
+   },
+   {
+    "agent": "maverick",
+    "type": "place_order",
+    "verdict": "accepted",
+    "reason": "filled 218.1065 SHOP @ 112.79",
+    "ts": "Jul 23 15:04",
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"SHOP\", \"thesis\": \"P1 structural test pass on 38.2% drawdown from 52-week high ($182.19) de"
    },
    {
     "agent": "wildcat",
@@ -7799,11 +8022,11 @@
    },
    {
     "agent": "maverick",
-    "type": "journal_entry",
+    "type": "place_order",
     "verdict": "accepted",
-    "reason": "",
+    "reason": "filled 76.2496 TSLA @ 326.56",
     "ts": "Jul 23 14:41",
-    "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-23 \\u2014 BUY \\u2014 TSLA Post-Earnings CapEx Dislocation ($24,900 Notional); Registered TSLA St"
+    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"TSLA\", \"thesis\": \"P1 structural test pass on 34.6% drawdown from 52-week high ($498.83) de"
    },
    {
     "agent": "maverick",
@@ -7812,46 +8035,6 @@
     "reason": "",
     "ts": "Jul 23 14:41",
     "summary": "{\"qty\": \"all\", \"kind\": \"stop\", \"note\": \"P4 hard stop rule: automatic exit if TSLA prints below $310.00 within 10 sessions\", \"side\": \"sell\", "
-   },
-   {
-    "agent": "maverick",
-    "type": "place_order",
-    "verdict": "accepted",
-    "reason": "filled 76.2496 TSLA @ 326.56",
-    "ts": "Jul 23 14:41",
-    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"TSLA\", \"thesis\": \"P1 structural test pass on 34.6% drawdown from 52-week high ($498.83) de"
-   },
-   {
-    "agent": "catalyst",
-    "type": "register_standing_order",
-    "verdict": "accepted",
-    "reason": "",
-    "ts": "Jul 23 14:40",
-    "summary": "{\"qty\": null, \"kind\": \"stop\", \"note\": \"P5 mandate: Pre-committed exit plan / stop loss for META prior to Q2 earnings.\", \"side\": \"sell\", \"typ"
-   },
-   {
-    "agent": "catalyst",
-    "type": "journal_entry",
-    "verdict": "accepted",
-    "reason": "",
-    "ts": "Jul 23 14:40",
-    "summary": "{\"type\": \"journal_entry\", \"title\": \"2026-07-23 \\u2014 BUY META, AMZN & AAPL \\u2014 Pre-Earnings Catalyst Staging for Q2 Mega-Cap Earnings\", "
-   },
-   {
-    "agent": "catalyst",
-    "type": "place_order",
-    "verdict": "accepted",
-    "reason": "filled 32.6040 META @ 610.35",
-    "ts": "Jul 23 14:40",
-    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"META\", \"thesis\": \"Pre-earnings setup for Q2 earnings on July 29, 2026. Catalysts include A"
-   },
-   {
-    "agent": "catalyst",
-    "type": "place_order",
-    "verdict": "accepted",
-    "reason": "filled 84.2386 AMZN @ 236.23",
-    "ts": "Jul 23 14:40",
-    "summary": "{\"side\": \"buy\", \"type\": \"place_order\", \"symbol\": \"AMZN\", \"thesis\": \"Pre-earnings setup for Q2 earnings on July 30, 2026. Catalysts include A"
    }
   ],
   "triggers": [
