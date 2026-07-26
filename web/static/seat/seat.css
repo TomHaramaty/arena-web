@@ -262,4 +262,19 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 #statusrun .bellstage { font-family: var(--mono); font-size: 13px; color: var(--ink); margin: 6px 0 0; display: flex; align-items: center; gap: 8px; }
 #statusrun .pulse-dot { background: var(--good); }
 
+/* the first-session stepper — steps check off as the engine advances */
+.bellsteps { list-style: none; margin: 16px 0 8px; padding: 0; }
+.bellstep { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 7px 0; font-size: 14px; line-height: 1.5; color: var(--ink2); }
+.bellstep::before { content: ""; position: absolute; left: 8px; top: 23px; bottom: -7px; width: 2px; background: var(--border); }
+.bellstep:last-child::before { display: none; }
+.bellstep .mk { flex: none; position: relative; z-index: 1; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; border: 2px solid var(--axis); background: var(--surface); display: grid; place-items: center; }
+.bellstep.pending { color: var(--muted); }
+.bellstep.active { color: var(--ink); font-weight: 550; }
+.bellstep.active .mk { border-color: var(--good); }
+.bellstep.active .mk::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+.bellstep.done .mk { border-color: var(--good); background: var(--good); }
+.bellstep.done .mk::after { content: "✓"; color: #fff; font-size: 11px; font-weight: 700; line-height: 1; }
+@keyframes bellpulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@media (prefers-reduced-motion: no-preference) { .bellstep.active .mk::after { animation: bellpulse 1.4s ease-in-out infinite; } }
+
 footer.provenance { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 14px; font-size: 12px; color: var(--muted); }

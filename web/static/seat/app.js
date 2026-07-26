@@ -276,33 +276,50 @@ function renderStatus(appData) {
 }
 
 /* "Run the first session": the principal starts the real first run and
-   watches it happen. Stages stream from the application doc — each one is
-   written by the engine only when that step is actually underway. */
+   watches it happen. Stages stream from the application doc (ringing →
+   seating → first-session → done); each is written by the engine only when
+   that step is actually underway. The UI shows them as a stepper so the
+   principal can see the whole process advance to completion. */
+const BELL_ORDER = ["ringing", "seating", "first-session", "done"];
+function bellSteps(name) {
+  return [
+    { key: "ringing",       label: "Ringing the opening bell" },
+    { key: "seating",       label: `Taking ${name}'s seat on the floor` },
+    { key: "first-session", label: "Reading today's market and writing its first entry" },
+    { key: "done",          label: "First entry is live" },
+  ];
+}
 function renderBellUI(appData, name) {
   const el = $("#statusrun");
   if (!el) return;
   const stage = appData.bell && appData.bell.stage;
   if (appData.status === "rejected") { el.innerHTML = ""; return; }
-  if (stage === "done" || (appData.status === "seated" && !stage)) {
-    el.innerHTML = stage === "done"
-      ? `<p class="bellstage">${esc(name)}'s first entry is on the record — <a href="/floor/">read it on the floor →</a></p>`
-      : "";
-    return;
-  }
+
+  // Seated some other way (e.g. the hourly ingest), with no launched run to show.
+  if (appData.status === "seated" && !stage) { el.innerHTML = ""; return; }
+
+  // Not launched yet, or a prior attempt failed → the launcher.
   if (!stage || stage === "failed") {
     el.innerHTML =
       (stage === "failed"
         ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next daily bell regardless. You can try again now.</p>`
         : "") +
       `<button class="primary" id="btn-bell">Run the first session</button>
-       <p class="bellnote">A few minutes, live: ${esc(name)} is seated, reads the day's marks, and writes its first entry into the record.</p>`;
+       <p class="bellnote">A few minutes, live — you'll watch each step below as it happens.</p>`;
     $("#btn-bell").addEventListener("click", () => ringBell(name));
     return;
   }
-  const line = stage === "first-session"
-    ? `${esc(name)} is on the floor, reading the day's marks — its first entry is being written.`
-    : `The bell is rung — ${esc(name)} is being seated.`;
-  el.innerHTML = `<p class="bellstage"><span class="pulse-dot"></span> ${line}</p>`;
+
+  // Launched → the stepper. Completed steps check off; the current one pulses.
+  const ci = BELL_ORDER.indexOf(stage);
+  const isDone = stage === "done";
+  const rows = bellSteps(esc(name)).map((s, i) => {
+    const st = (isDone || i < ci) ? "done" : i === ci ? "active" : "pending";
+    return `<li class="bellstep ${st}"><span class="mk"></span><span class="lbl">${s.label}</span></li>`;
+  }).join("");
+  el.innerHTML =
+    `<ol class="bellsteps">${rows}</ol>` +
+    (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes — you can leave this page and come back.</p>`);
 }
 
 async function ringBell(name) {
