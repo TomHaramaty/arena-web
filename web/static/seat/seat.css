@@ -121,6 +121,9 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .chatcol { display: flex; flex-direction: column; min-height: 60vh; }
 #chatlog { display: flex; flex-direction: column; gap: 18px; padding: 18px 0 12px; }
 .msg .who { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.msg.hasface { display: flex; flex-direction: row; gap: 11px; align-items: flex-start; }
+.msg.hasface .portrait { width: 42px; flex: none; color: var(--ink2); margin-top: 1px; }
+.msg.hasface .bubble { flex: 1; min-width: 0; }
 .msg .text { max-width: 62ch; white-space: pre-wrap; }
 .msg.reg .text { font-family: var(--display); font-size: 16.5px; line-height: 1.6; color: var(--ink); }
 .msg.me { align-self: flex-end; text-align: right; }
@@ -231,6 +234,34 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .privacy .opt b { font-weight: 600; }
 .privacy .opt .d { font-size: 13px; color: var(--ink2); }
 .finish .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+
+/* ---------- the seat picker (give it a face) ---------- */
+.facecard { padding: 16px 18px 18px; margin: 18px 0; }
+.facehint { font-size: 13px; line-height: 1.5; color: var(--ink2); margin: 6px 0 16px; }
+.facebuild { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.facepreview { flex: none; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.facestage { width: 150px; height: 150px; background: #141412; border: 1px solid var(--border);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 12px; }
+:root[data-theme="light"] .facestage, :root:not([data-theme="dark"]) .facestage { background: #141412; }
+.facearch { font-size: 11px; color: var(--brass); letter-spacing: 0.04em; }
+.facecontrols { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
+.fgroup { display: flex; flex-direction: column; gap: 8px; }
+.flabel { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.fopts { display: flex; flex-wrap: wrap; gap: 7px; }
+.fopt { background: var(--hover); border: 2px solid var(--border); border-radius: 6px;
+  cursor: pointer; padding: 3px; line-height: 0; transition: border-color 0.12s; }
+.fopt:hover { border-color: var(--ink2); }
+.fopt.sel { border-color: var(--brass); }
+.fopt:not(.dress):not(.sw) { width: 46px; height: 46px; }
+.fopt.sw { width: 30px; height: 30px; border-radius: 50%; padding: 0; }
+.fopt.sw.sel { border-color: var(--ink); }
+.fopt.dress { width: 60px; height: 78px; display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between; gap: 2px; padding: 4px 2px 5px; }
+.fopt.dress .fmini { display: block; width: 42px; height: 42px; flex: none; }
+.fopt.dress .fdl { font-size: 8px; line-height: 1.1; color: var(--muted); white-space: nowrap; }
+
+.statusface { line-height: 0; margin: 0 0 14px; }
+.statusface .oo-avatar { margin: 0 auto; }
 .errbox { border: 1px solid var(--bad); border-radius: 10px; padding: 12px 16px; margin: 14px 0; }
 .errbox .label { color: var(--bad); }
 .errbox ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--ink2); }

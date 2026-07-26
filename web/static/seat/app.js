@@ -24,6 +24,10 @@ import {
   validateWakeMinimum, nextFirstBell, fmtBell, withRetries, OPENING, NAME_RE,
   PRINCIPLE_TYPES,
 } from "./registrar.js";
+import {
+  avatar, headOnly, registrar as registrarAvatar, injectAvatarCSS, normalizeAvatar,
+  PALS, BASES, COSTUMES, DETAILS, DETAIL_LABELS, ARCHETYPE,
+} from "../avatar.js";
 
 const app = initializeApp({
   projectId: "open-outcry",
@@ -84,6 +88,7 @@ const state = {
   busy: false,
   appDoc: null,         // {id, data}
   unsubscribe: null,
+  avatar: { base: "fox", color: 0, costume: "suit", acc: "none" }, // the seat picker
 };
 
 /* ---------------- view switching ---------------- */
@@ -257,6 +262,10 @@ function renderStatus(appData) {
   const stage = appData.bell && appData.bell.stage;
   const dot = $("#statusdot");
   dot.classList.toggle("done", seated);
+  // the member portrait the principal built — shown once there's a face to show
+  const av = appData.packet && appData.packet.avatar;
+  const face = $("#statusface");
+  if (face) face.innerHTML = av ? avatar({ ...normalizeAvatar(av), name }, 56, { animate: true }) : "";
   if (seated) {
     $("#statusword").textContent = "Seated";
     $("#statusdetail").innerHTML =
@@ -356,6 +365,7 @@ function saveInterview() {
   const data = {
     history: state.history, tapeSent: state.tapeSent, done: state.done,
     ready: state.ready, handoffSeen: state.handoffSeen, tapped: state.tapped,
+    avatar: state.avatar,
   };
   try { localStorage.setItem(saveKey(), JSON.stringify(data)); } catch { /* quota — the mirror still has it */ }
   if (state.user) {
@@ -395,14 +405,26 @@ function parseSideChannel(raw) {
   if (!m.length) return null;
   try { return JSON.parse(m[m.length - 1][1]); } catch { return null; }
 }
-function addMsg(cls, who, html) {
+function addMsg(cls, who, html, portrait) {
   const log = $("#chatlog");
   const el = document.createElement("div");
-  el.className = "msg " + cls;
-  el.innerHTML = (who ? `<div class="who">${esc(who)}</div>` : "") + (cls.startsWith("sys") ? html : `<div class="text">${html}</div>`);
+  el.className = "msg " + cls + (portrait ? " hasface" : "");
+  const bubble = (who ? `<div class="who">${esc(who)}</div>` : "") +
+    (cls.startsWith("sys") ? html : `<div class="text">${html}</div>`);
+  el.innerHTML = portrait
+    ? `<div class="portrait" aria-hidden="true">${portrait}</div><div class="bubble">${bubble}</div>`
+    : bubble;
   log.appendChild(el);
   el.scrollIntoView({ block: "end" });
   return el;
+}
+/* The portrait beside a spoken bubble: the Registrar's engraved line while it
+   holds the file, the member's own face once the agent has woken and speaks. */
+function speakerPortrait(kind) {
+  if (kind === "registrar") return registrarAvatar(42);
+  if (kind === "agent" || kind === "firstwords" || kind === "firstread")
+    return avatar({ ...state.avatar, name: agentName() }, 42, { animate: true });
+  return null;
 }
 /* Two acts: the Registrar until the [WAKE] message, the agent after it. */
 const agentPhase = () => state.history.some((h) => h.role === "user" && h.raw === "[WAKE]");
@@ -415,7 +437,8 @@ function whoLabel(kind) {
   return "REGISTRAR";
 }
 function renderModelMsg(raw, { kind = "registrar" } = {}) {
-  return addMsg(kind === "firstread" ? "first" : "reg", whoLabel(kind), md(displayText(raw)));
+  return addMsg(kind === "firstread" ? "first" : "reg", whoLabel(kind),
+    md(displayText(raw)), speakerPortrait(kind));
 }
 function renderUserMsg(raw) {
   if (raw === "[BEGIN]" || raw.startsWith("[REPAIR]")) return null;
@@ -957,6 +980,7 @@ function restoreInterview(saved) {
   state.ready = !!saved.ready;
   state.handoffSeen = !!saved.handoffSeen;
   state.tapped = Array.isArray(saved.tapped) ? saved.tapped : [];
+  if (saved.avatar) state.avatar = normalizeAvatar(saved.avatar);
   // the draft first: renderUserMsg("[WAKE]") and the who-labels need the name
   const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
   for (const h of state.history) {
@@ -1054,9 +1078,45 @@ function replyAfter(prefix) {
   return "";
 }
 
+/* The seat picker — a small build moment on the review screen. Four choices
+   (base × colour × costume × detail) feed the four values that ride onto the
+   agent record and render its avatar on every surface. Pure preview; no seat is
+   taken until the charter is countersigned. */
+const COSTUME_SHORT = { suit: "wall st", gilet: "fin bro", professor: "professor",
+  pit: "pit", hoodie: "quant", banker: "old money" };
+function renderFacePicker() {
+  const a = state.avatar;
+  const name = (state.draft && state.draft.name) || "your agent";
+  $("#face-name").textContent = name;
+  $("#facestage").innerHTML = avatar({ ...a, name }, 150, { animate: true });
+  $("#facearch").textContent = ARCHETYPE[a.costume];
+  const opt = (inner, on, ds) =>
+    `<button type="button" class="fopt${on ? " sel" : ""}" ${ds}>${inner}</button>`;
+  $("#opt-base").innerHTML = BASES.map((b) =>
+    opt(headOnly({ base: b, color: a.color }, 0, false), b === a.base, `data-base="${b}"`)).join("");
+  $("#opt-color").innerHTML = PALS.map((p, i) =>
+    opt("", i === a.color, `data-color="${i}" style="background:${p[0]}" aria-label="${p[2]}"`).replace('class="fopt', 'class="fopt sw')).join("");
+  $("#opt-costume").innerHTML = COSTUMES.map((c) =>
+    opt(`<span class="fmini">${avatar({ ...a, costume: c, name }, 42)}</span><span class="fdl mono">${COSTUME_SHORT[c]}</span>`, c === a.costume, `data-costume="${c}"`).replace('class="fopt', 'class="fopt dress')).join("");
+  $("#opt-detail").innerHTML = ["none", ...DETAILS].map((d2) =>
+    opt(`<span class="fmini">${avatar({ ...a, acc: d2, name }, 42)}</span><span class="fdl mono">${DETAIL_LABELS[d2]}</span>`, d2 === a.acc, `data-detail="${d2}"`).replace('class="fopt', 'class="fopt dress')).join("");
+}
+function onFacePick(e) {
+  const t = e.target.closest("[data-base],[data-color],[data-costume],[data-detail]");
+  if (!t) return;
+  const a = state.avatar;
+  if (t.dataset.base) a.base = t.dataset.base;
+  else if (t.dataset.color) a.color = Number(t.dataset.color);
+  else if (t.dataset.costume) a.costume = t.dataset.costume;
+  else if (t.dataset.detail) a.acc = t.dataset.detail;
+  saveInterview();
+  renderFacePicker();
+}
+
 function renderCharter() {
   const d = state.draft || {};
   $("#charter-name").textContent = d.name || "—";
+  renderFacePicker();
   // reuse the panel renderer at full width
   const hold = $("#draftbody").innerHTML;
   renderDraft();
@@ -1087,6 +1147,7 @@ async function submitApplication() {
     max_position_pct: Number(d.max_position_pct),
     constitution: d.constitution, principles: d.principles, hypotheses: d.hypotheses,
     voice: d.voice, address: (d.address || "Principal").slice(0, 20),
+    avatar: normalizeAvatar(state.avatar),
     ...(firstWords ? { first_words: firstWords } : {}),
     ...(firstRead ? { first_read: firstRead } : {}),
     transcript_privacy: privacy, transcript: transcriptMarkdown(),
@@ -1115,6 +1176,7 @@ async function submitApplication() {
 
 /* ---------------- boot ---------------- */
 async function boot() {
+  injectAvatarCSS();
   await Promise.all([loadFloor(), completeEmailLink()]);
   renderSpecimen();
 
@@ -1214,6 +1276,7 @@ async function boot() {
   /* finish wiring */
   $("#btn-back").addEventListener("click", () => show("interview"));
   $("#btn-submit").addEventListener("click", submitApplication);
+  document.querySelector(".facecontrols").addEventListener("click", onFacePick);
 }
 
 boot();

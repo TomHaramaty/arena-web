@@ -245,6 +245,17 @@ def build_landing(data):
             .replace("{{GENERATED_AT}}", esc(data.get("generated_at", ""))))
 
 
+def avatar_inline():
+    """The avatar kit (web/static/avatar.js), de-exported and wrapped as an IIFE
+    named OO, for inlining into the floor's classic <script>. Keeps one source of
+    truth: the same module /seat imports. Only the public names are returned."""
+    mod = (ROOT / "web" / "static" / "avatar.js").read_text(encoding="utf-8")
+    mod = mod.replace("export function ", "function ").replace("export const ", "const ")
+    return ("const OO=(function(){\n" + mod +
+            "\nreturn {avatar,headOnly,registrar,injectAvatarCSS,normalizeAvatar,"
+            "PALS,BASES,COSTUMES,DETAILS,DETAIL_LABELS,ARCHETYPE};\n})();")
+
+
 def main():
     data = json.loads((ROOT / "data" / "arena.json").read_text(encoding="utf-8"))
     PUBLIC.mkdir(exist_ok=True)
@@ -254,6 +265,7 @@ def main():
 
     # the full interface at /floor/
     template = (ROOT / "web" / "template.html").read_text(encoding="utf-8")
+    template = template.replace("/*__AVATAR_JS__*/", avatar_inline())
     (PUBLIC / "floor").mkdir(exist_ok=True)
     (PUBLIC / "floor" / "index.html").write_text(
         template.replace("/*__ARENA_DATA__*/", json.dumps(data)), encoding="utf-8"

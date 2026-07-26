@@ -74,8 +74,11 @@
   .tile .k { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
   .tile .v { font-size: 22px; font-weight: 650; margin-top: 2px; }
   .tile .s { font-size: 12px; color: var(--ink2); }
-  .agenthead { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .agenthead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
   .agenthead h2 { font-family: var(--display); font-size: 26px; margin: 0; }
+  .agentface { flex: none; line-height: 0; }
+  .agentcell .oo-avatar, .chip .oo-avatar { flex: none; }
+  .chip .oo-avatar { margin-right: -1px; }
   .traits { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 0; }
   .trait { font-size: 12px; color: var(--ink2); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; background: var(--surface); }
   .trait b { color: var(--ink); font-weight: 600; }
@@ -175,8 +178,15 @@
 <div id="tooltip" role="status"></div>
 <script>
 "use strict";
+/*__AVATAR_JS__*/
+OO.injectAvatarCSS();
 const ARENA = /*__ARENA_DATA__*/;
 const AGENTS = ARENA.agents;
+/* Each agent's Member portrait, at a target px. Falls back to the legacy
+   colour dot for any agent that predates avatar params in the record. */
+const agentAv = (a, px) => a.avatar
+  ? OO.avatar({ ...a.avatar, name: a.id }, px)
+  : `<span class="dot" style="background:${a.color}"></span>`;
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const fmtDate = iso => { const p = (iso||"").split("-"); return p.length===3 ? MONTHS[+p[1]-1]+" "+(+p[2]) : (iso||""); };
 const pct = (v, dp=1) => (v>=0?"+":"−") + Math.abs(v*100).toFixed(dp) + "%";
@@ -255,7 +265,7 @@ function renderArena(){
   const el=$("#view-arena");
   const rows=[...AGENTS].sort((a,b)=>b.alpha-a.alpha).map(a=>`
     <tr class="rowlink" tabindex="0" role="link" data-agent="${a.id}" aria-label="Open ${a.name}">
-      <td><div class="agentcell"><span class="dot" style="background:${a.color}"></span><div><div class="aname">${a.name}</div><div class="atype">${esc(a.archetype)}</div></div></div></td>
+      <td><div class="agentcell">${agentAv(a,26)}<div><div class="aname">${a.name}</div><div class="atype">${esc(a.archetype)}</div></div></div></td>
       <td>${sparkline(a.curve,a.color)}</td>
       <td class="num mono">${pct(a.ret)}</td>
       <td class="num">${alphaCell(a.alpha)}<div class="atype">vs ${esc(a.benchmark_label)}</div></td>
@@ -315,10 +325,10 @@ function positionsHTML(a){
 }
 function renderAgent(){
   const el=$("#view-agent"); const a=AGENTS.find(x=>x.id===state.agent)||AGENTS[0];
-  const switcher=AGENTS.map(x=>`<button class="chip" aria-pressed="${x.id===a.id}" data-agent="${x.id}"><span class="dot" style="background:${x.color}"></span>${x.name}</button>`).join("");
+  const switcher=AGENTS.map(x=>`<button class="chip" aria-pressed="${x.id===a.id}" data-agent="${x.id}">${agentAv(x,20)}${x.name}</button>`).join("");
   el.innerHTML=`
     <div class="switcher">${switcher}</div>
-    <div class="agenthead"><h2>${a.name}</h2><span class="atype" style="font-size:14px">${esc(a.archetype)}</span></div>
+    <div class="agenthead"><span class="agentface">${agentAv(a,60)}</span><h2>${a.name}</h2><span class="atype" style="font-size:14px">${esc(a.archetype)}</span></div>
     <div class="traits"><span class="trait">cadence <b>${esc(a.cadence)}</b></span><span class="trait">universe <b>${esc(a.universe)}</b></span><span class="trait">benchmark <b>${esc(a.benchmark_label)}</b></span><span class="trait">equity <b>${money(a.equity)}</b></span></div>
     <div class="tiles">
       <div class="tile"><div class="k">Return</div><div class="v">${pct(a.ret)}</div><div class="s">since launch</div></div>
@@ -376,11 +386,11 @@ function renderSystem(){
 }
 function renderCompare(){
   const el=$("#view-compare"); const sel=AGENTS.filter(a=>state.compare.has(a.id));
-  const chips=AGENTS.map(a=>`<button class="chip" aria-pressed="${state.compare.has(a.id)}" data-agent="${a.id}"><span class="dot" style="background:${a.color}"></span>${a.name}</button>`).join("");
+  const chips=AGENTS.map(a=>`<button class="chip" aria-pressed="${state.compare.has(a.id)}" data-agent="${a.id}">${agentAv(a,20)}${a.name}</button>`).join("");
   const maxLen=Math.max(1,...sel.map(a=>a.curve.length));
   const dates=(sel.find(a=>a.curve.length===maxLen)||sel[0]||{curve:[]}).curve.map(p=>p.date);
-  const stats = sel.length?`<div class="card tablewrap" style="margin-top:14px"><table class="arena"><thead><tr><th>Agent</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Revisions</th><th class="num">Hyp testing</th></tr></thead><tbody>${sel.map(a=>`<tr><td><div class="agentcell"><span class="dot" style="background:${a.color}"></span><span class="aname" style="font-size:15px">${a.name}</span></div></td><td class="num mono">${pct(a.ret)}</td><td class="num">${alphaCell(a.alpha)}</td><td class="num mono">${pct(a.max_dd)}</td><td class="num mono">${a.n_revisions}</td><td class="num mono">${a.n_hyp_testing}</td></tr>`).join("")}</tbody></table></div>`:"";
-  const cols=sel.map(a=>`<div class="card cmpcol"><h4><span class="dot" style="background:${a.color}"></span>${a.name}</h4><span class="atype">${esc(a.archetype)}</span><ul>${a.principles.filter(p=>p.status!=="retired").map(p=>`<li>${esc(p.statement)}</li>`).join("")}</ul></div>`).join("");
+  const stats = sel.length?`<div class="card tablewrap" style="margin-top:14px"><table class="arena"><thead><tr><th>Agent</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Revisions</th><th class="num">Hyp testing</th></tr></thead><tbody>${sel.map(a=>`<tr><td><div class="agentcell">${agentAv(a,22)}<span class="aname" style="font-size:15px">${a.name}</span></div></td><td class="num mono">${pct(a.ret)}</td><td class="num">${alphaCell(a.alpha)}</td><td class="num mono">${pct(a.max_dd)}</td><td class="num mono">${a.n_revisions}</td><td class="num mono">${a.n_hyp_testing}</td></tr>`).join("")}</tbody></table></div>`:"";
+  const cols=sel.map(a=>`<div class="card cmpcol"><h4>${agentAv(a,22)}${a.name}</h4><span class="atype">${esc(a.archetype)}</span><ul>${a.principles.filter(p=>p.status!=="retired").map(p=>`<li>${esc(p.statement)}</li>`).join("")}</ul></div>`).join("");
   el.innerHTML=`
     <h2 class="viewtitle">Different philosophies, same market</h2>
     <p class="viewsub">Overlay any set of agents, indexed to 100 at launch. The divergence between the curves is the divergence between the rulebooks below them.</p>

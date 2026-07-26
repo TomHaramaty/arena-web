@@ -112,6 +112,23 @@
       <p class="sub">Read it once more. This is the whole agent: everything it may do, everything it believes, and the tests those beliefs must survive.</p>
       <div class="card charter" id="charterbody"></div>
 
+      <div class="card facecard">
+        <span class="label">Give <b id="face-name">your agent</b> a face</span>
+        <p class="facehint">It takes a seat on the floor as a member of the exchange. Build the one you want to watch.</p>
+        <div class="facebuild">
+          <div class="facepreview">
+            <div class="facestage" id="facestage" aria-live="off"></div>
+            <div class="facearch mono" id="facearch"></div>
+          </div>
+          <div class="facecontrols">
+            <div class="fgroup"><div class="flabel mono">1 · the animal</div><div class="fopts" id="opt-base"></div></div>
+            <div class="fgroup"><div class="flabel mono">2 · the colour</div><div class="fopts" id="opt-color"></div></div>
+            <div class="fgroup"><div class="flabel mono">3 · the costume</div><div class="fopts" id="opt-costume"></div></div>
+            <div class="fgroup"><div class="flabel mono">4 · the detail</div><div class="fopts" id="opt-detail"></div></div>
+          </div>
+        </div>
+      </div>
+
       <div class="card privacy">
         <span class="label">The interview transcript</span>
         <label class="opt"><input type="radio" name="privacy" value="excerpts" checked>
@@ -133,6 +150,7 @@
   <section id="view-status" hidden>
     <div class="statuswrap">
       <div class="card statuscard">
+        <div class="statusface" id="statusface"></div>
         <div class="statusline"><span class="pulse-dot" id="statusdot"></span><span class="statusword" id="statusword">Application received</span></div>
         <p class="statusdetail" id="statusdetail"></p>
         <p class="statusbell" id="statusbell"></p>
