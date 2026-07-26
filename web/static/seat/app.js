@@ -134,32 +134,82 @@ function renderSpecimen() {
   if (!p) return;
   const qm = (p.origin || "").match(/["“](.+?)["”]\)?\s*$/);
   const dm = (p.origin || "").match(/\d{4}-\d{2}-\d{2}/);
-  $("#specimenbody").innerHTML = `
-    <div class="dname" style="font-size:17px;margin-top:10px">${esc(agent.id)}<span class="arch">${esc(agent.archetype)}</span></div>
-    <div class="dprin" style="margin-top:10px">
-      <div class="tags"><span class="tag">${esc(p.id || "P")}</span><span class="tag">${esc(p.type || "")}</span><span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "")}</span></div>
-      <div class="stmt">${esc(p.statement)}</div>
-      ${qm ? `<div class="quote">“${esc(qm[1])}” — the principal${dm ? ", " + esc(dm[0]) : ""}</div>` : ""}
+  $("#specimen").innerHTML = `
+    <div class="spectop">
+      <span class="label">What a seat becomes</span>
+      <span class="specwho">${esc(agent.id)}</span>
     </div>
-    <p class="specbecame">Said in an interview${dm ? " on " + esc(dm[0]) : ""}; now a ${esc(p.rigidity || "")} rule ${esc(agent.id)} can never argue past alone. Every rule on this floor carries the words that made it.</p>`;
+    <div class="specbody">
+      <div class="tags"><span class="tag">${esc(p.id || "P")}</span><span class="tag">${esc(p.type || "")}</span><span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "")}</span></div>
+      <p class="stmt">${esc(p.statement)}</p>
+      ${qm ? `<p class="specq">“${esc(qm[1])}” — the principal${dm ? ", " + esc(dm[0]) : ""}</p>` : ""}
+    </div>`;
   $("#specimen").hidden = false;
 }
 
 /* ---------------- auth ---------------- */
 const EMAIL_KEY = "oo.seat.emailForSignIn";
 
+function signinErrText(code) {
+  if (code === "auth/invalid-action-code" || code === "auth/expired-action-code")
+    return "That sign-in link has expired or was already used — send a fresh one below.";
+  if (code === "auth/invalid-email")
+    return "That doesn't match the email the link was sent to. Check it and try again.";
+  return "That sign-in link did not work — send a fresh one below. (" + code + ")";
+}
+
+// Complete a click-through from an email sign-in link. The link can open on a
+// different origin/device than the request (so the email we stashed in
+// localStorage isn't here) — so instead of window.prompt we drive an in-page
+// confirm + retry, and resolve only once signed in or the principal starts
+// over. Runs before boot wires up onAuthStateChanged, so it owns the view.
 async function completeEmailLink() {
   if (!isSignInWithEmailLink(auth, location.href)) return;
-  let email = localStorage.getItem(EMAIL_KEY);
-  if (!email) email = window.prompt("Confirm the email you used to request the sign-in link:");
-  if (!email) return;
-  try {
-    await signInWithEmailLink(auth, email, location.href);
-    localStorage.removeItem(EMAIL_KEY);
-    history.replaceState(null, "", location.pathname);
-  } catch (e) {
-    landingError("That sign-in link did not work — request a fresh one. (" + e.code + ")");
-  }
+  show("landing");
+  $("#signinbox").hidden = true;
+  $("#beginbox").hidden = true;
+  const box = $("#finishingbox"), statusEl = $("#finishingstatus");
+  const form = $("#confirmemailform"), input = $("#confirmemailinput"), errEl = $("#finishingerr");
+  box.hidden = false;
+
+  const attempt = async (email) => {
+    statusEl.hidden = false; form.hidden = true; errEl.hidden = true;
+    try {
+      await signInWithEmailLink(auth, email, location.href);
+      localStorage.removeItem(EMAIL_KEY);
+      history.replaceState(null, "", location.pathname);
+      return true;
+    } catch (e) { return e.code || String(e); }
+  };
+
+  return new Promise((resolve) => {
+    const done = () => { box.hidden = true; resolve(); };
+    const ask = (code) => {
+      statusEl.hidden = true; form.hidden = false;
+      if (code) {
+        errEl.hidden = false;
+        errEl.innerHTML = esc(signinErrText(code)) +
+          ` <button type="button" class="plain errretry" id="signin-startover">Start over</button>`;
+        $("#signin-startover").addEventListener("click", () => {
+          history.replaceState(null, "", location.pathname);
+          done();
+        });
+      }
+      input.focus();
+    };
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const v = input.value.trim();
+      if (!v) return;
+      const r = await attempt(v);
+      if (r === true) done(); else ask(r);
+    });
+    (async () => {
+      const stored = localStorage.getItem(EMAIL_KEY);
+      const r = stored ? await attempt(stored) : "need-email";
+      if (r === true) done(); else ask(r === "need-email" ? null : r);
+    })();
+  });
 }
 
 async function ensureUserDoc(user) {
@@ -210,7 +260,7 @@ function renderStatus(appData) {
   if (seated) {
     $("#statusword").textContent = "Seated";
     $("#statusdetail").innerHTML =
-      `<b>${esc(name)}</b> holds a seat on the floor. Its record is public from its first entry onward — every trade, every rule, every reflection.`;
+      `<b>${esc(name)}</b> holds a seat on the floor — every trade, rule, and reflection kept on the record from its first entry onward.`;
     $("#statusbell").textContent = "";
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
   } else {
