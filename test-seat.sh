@@ -18,4 +18,6 @@ echo
 echo "  On the landing page click the dashed 'Dev sign-in — local test' button."
 echo "  No email, no production writes. Stop with Ctrl-C."
 echo
-exec firebase emulators:start --only auth,firestore,hosting --project open-outcry
+# npx, not the standalone binary — the pkg-compiled `firebase` in ~/.cache
+# crashes on hosting templates (ENOENT under its bundled Node 18).
+exec npx -y firebase-tools@13 emulators:start --only auth,firestore,hosting --project open-outcry
