@@ -507,6 +507,13 @@ function renderDraft() {
   if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — what it must beat</div></div>`;
   if (d.universe) h += `<div class="dsec" data-sec="universe"><span class="label">Universe</span><div class="dmono">${esc(d.universe)}</div></div>`;
   if (d.max_position_pct) h += `<div class="dsec" data-sec="limits"><span class="label">Max position</span><div class="dmono">${esc(String(d.max_position_pct))}% of equity</div></div>`;
+  if (d.class_pct) {
+    const cp = normalizeClassPct(d.class_pct);
+    h += `<div class="dsec" data-sec="limits"><span class="label">Markets it may enter</span><div class="dmono">` +
+      `Crypto — ${cp.crypto ? `up to ${cp.crypto}% of equity` : "not permitted"}<br>` +
+      `Inverse &amp; leveraged ETFs — ${cp.inverse_levered ? `up to ${cp.inverse_levered}% of equity` : "not permitted"}` +
+      `</div></div>`;
+  }
   if ((d.constitution || []).length) {
     h += `<div class="dsec" data-sec="constitution"><span class="label">Constitution — enforced in code</span><ul class="dlist">` +
       d.constitution.map((c) => `<li>${esc(c)}</li>`).join("") + `</ul></div>`;
@@ -542,6 +549,15 @@ function draftInscriptions(prev, next) {
   if (next.universe && next.universe !== p.universe) push("universe set", "universe");
   if (next.max_position_pct && next.max_position_pct !== p.max_position_pct)
     push(`limit set — max position ${next.max_position_pct}%`, "limits");
+  if (next.class_pct) {
+    const nc2 = normalizeClassPct(next.class_pct), pc2 = normalizeClassPct(p.class_pct);
+    if (nc2.crypto !== pc2.crypto)
+      push(nc2.crypto ? `crypto opened — up to ${nc2.crypto}%` : "crypto closed off", "limits");
+    if (nc2.inverse_levered !== pc2.inverse_levered)
+      push(nc2.inverse_levered
+        ? `inverse & leveraged ETFs opened — up to ${nc2.inverse_levered}%`
+        : "inverse & leveraged ETFs closed off", "limits");
+  }
   const pc = (p.constitution || []).length, nc = (next.constitution || []).length;
   if (nc > pc) push(nc - pc === 1 ? "constitution — clause added" : `constitution — ${nc - pc} clauses added`, "constitution");
   const pp = p.principles || [], np = next.principles || [];
@@ -1138,6 +1154,21 @@ function renderCharter() {
   }
 }
 
+/**
+ * Class ceilings, as percent of equity. A market the interview never opened
+ * stays at zero — the engine treats an unchartered class as forbidden, not as
+ * unlimited, and this must not be the place that quietly widens it.
+ */
+function normalizeClassPct(raw) {
+  const src = raw && typeof raw === "object" ? raw : {};
+  const out = {};
+  for (const cls of ["crypto", "inverse_levered"]) {
+    const n = Number(src[cls]);
+    out[cls] = Number.isFinite(n) && n > 0 ? Math.min(n, 35) : 0;
+  }
+  return out;
+}
+
 async function submitApplication() {
   const d = state.draft || {};
   const errs = validatePacket(d, state.floorNames);
@@ -1149,6 +1180,7 @@ async function submitApplication() {
     name: d.name, archetype: d.archetype, credo: d.credo, universe: d.universe,
     benchmark: { symbols: d.benchmark.symbols, label: d.benchmark.label },
     max_position_pct: Number(d.max_position_pct),
+    class_pct: normalizeClassPct(d.class_pct),
     constitution: d.constitution, principles: d.principles, hypotheses: d.hypotheses,
     voice: d.voice, address: (d.address || "Principal").slice(0, 20),
     avatar: normalizeAvatar(state.avatar),
