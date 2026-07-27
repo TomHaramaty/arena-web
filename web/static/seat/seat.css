@@ -168,6 +168,13 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .msg .undelivered:hover { color: var(--ink); }
 .msg.me .undelivered { margin-left: auto; }
 
+/* the way back to the live edge, shown only while the principal is reading
+   further up. A zero-height sticky rail keeps it clear of the composer, whose
+   real height app.js publishes as --foot. */
+.tailrow { position: sticky; bottom: var(--foot, 76px); height: 0; display: flex; justify-content: center; align-items: flex-start; z-index: 5; pointer-events: none; }
+.tailbtn { pointer-events: auto; transform: translateY(calc(-100% - 14px)); cursor: pointer; display: flex; align-items: center; min-height: 38px; font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink2); background: var(--surface); border: 1px solid var(--axis); border-radius: 999px; padding: 0 17px; box-shadow: 0 2px 12px rgba(0,0,0,0.16); transition: background 0.12s ease, color 0.12s ease; }
+.tailbtn:hover { background: var(--hover); color: var(--ink); }
+
 #composer { display: flex; gap: 8px; align-items: flex-end; position: sticky; bottom: 0; background: var(--page); padding: 10px 0 14px; border-top: 1px solid var(--border); }
 /* 16px minimum: any smaller and iOS Safari zooms the viewport on every focus */
 #composer textarea { flex: 1; min-width: 0; resize: none; font: 16px/1.5 system-ui, sans-serif; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; max-height: 160px; }

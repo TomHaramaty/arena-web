@@ -97,7 +97,11 @@ const state = {
 const VIEWS = ["loading", "landing", "interview", "finish", "status"];
 function show(view) {
   for (const v of VIEWS) $("#view-" + v).hidden = v !== view;
-  window.scrollTo({ top: 0 });
+  // the interview opens where it was left off — at the live edge, not at the
+  // top of a transcript the principal has already read
+  followTail = true;
+  if (view === "interview" && $("#chatlog").firstElementChild) { scrollTail(false); updateTailBtn(); }
+  else window.scrollTo({ top: 0 });
 }
 
 /* ---------------- floor data ---------------- */
@@ -410,6 +414,96 @@ function parseSideChannel(raw) {
   if (!m.length) return null;
   try { return JSON.parse(m[m.length - 1][1]); } catch { return null; }
 }
+/* ---------------- the scroll ----------------
+   The page itself scrolls and the composer rides sticky over its foot, so the
+   live edge of the conversation is not the bottom of the document — it is the
+   line just above the composer. Everything here measures against that line, so
+   a reply never streams in behind it.
+
+   The log follows the newest words while the principal is already reading at
+   the edge, and stops the moment they scroll up to re-read: only a gesture
+   (wheel, drag, a scrolling key) may break the follow, never a programmatic
+   scroll — so a streaming reply can never yank the page out from under them.
+   Sending re-attaches: you asked, you want to see the answer. */
+const TAIL_SLACK = 72; // within this of the edge still counts as being at it
+const TAIL_GAP = 16;   // the newest line rests this far above the composer
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)");
+let followTail = true;
+
+/** Height of the chrome resting on the foot of the viewport: the composer or
+ *  the finish bar, and the draft sheet they sit above on mobile. */
+function footHeight() {
+  let foot = 0;
+  const under = (el) => Math.round(window.innerHeight - el.getBoundingClientRect().top);
+  const sheet = $("#draftcol");
+  if (sheet && getComputedStyle(sheet).position === "fixed") foot = under(sheet);
+  for (const el of [$("#composer"), $("#finishbar")]) {
+    if (!el || el.hidden || getComputedStyle(el).position !== "sticky") continue;
+    foot = Math.max(foot, under(el));
+  }
+  return Math.max(0, Math.min(foot, window.innerHeight));
+}
+/** How far the newest content sits below the live edge (negative: above it). */
+function tailGap() {
+  const last = $("#chatlog").lastElementChild;
+  if (!last) return 0;
+  return Math.round(last.getBoundingClientRect().bottom -
+    (window.innerHeight - footHeight() - TAIL_GAP));
+}
+const atTail = () => tailGap() <= TAIL_SLACK;
+function scrollTail(smooth) {
+  const d = tailGap();
+  if (d <= 0) return; // the edge is already in view; never scroll backwards
+  window.scrollBy({ top: d, behavior: smooth && !REDUCED.matches ? "smooth" : "auto" });
+}
+/** New words arrived: follow them if the principal is still at the edge. */
+function tail(smooth) {
+  if (followTail) scrollTail(smooth);
+  updateTailBtn();
+}
+function updateTailBtn() {
+  const btn = $("#btn-tail");
+  if (!btn) return;
+  document.documentElement.style.setProperty("--foot", footHeight() + "px");
+  btn.hidden = $("#view-interview").hidden || followTail || tailGap() <= TAIL_SLACK;
+}
+function installScroll() {
+  let queued = false;
+  // read the position *after* the browser has applied the gesture's scroll
+  const onGesture = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; followTail = atTail(); updateTailBtn(); });
+  };
+  const SCROLL_KEYS = ["PageUp", "PageDown", "Home", "End", "ArrowUp", "ArrowDown", " "];
+  addEventListener("wheel", onGesture, { passive: true });
+  addEventListener("touchmove", onGesture, { passive: true });
+  addEventListener("keydown", (e) => {
+    if (e.target !== $("#input") && SCROLL_KEYS.includes(e.key)) onGesture();
+  });
+  // programmatic scrolls may only ever re-attach — including momentum landing
+  // back at the edge after a flick
+  addEventListener("scroll", () => {
+    if (!followTail && atTail()) followTail = true;
+    updateTailBtn();
+  }, { passive: true });
+  addEventListener("resize", () => tail(false), { passive: true });
+  // A streamed reply grows the log a few words at a time; follow every frame of
+  // it, and re-measure when the composer itself grows under a long answer. The
+  // correction runs inside the observer callback, before paint: deferring it a
+  // frame let a fresh line flash below the composer first (QA 2026-07-27).
+  // Scrolling resizes nothing, so this cannot loop the observer.
+  const ro = new ResizeObserver(() => tail(false));
+  ro.observe($("#chatlog"));
+  ro.observe($("#composer"));
+  $("#btn-tail").addEventListener("click", () => {
+    followTail = true;
+    scrollTail(true);
+    updateTailBtn();
+    if (!state.done) $("#input").focus();
+  });
+}
+
 function addMsg(cls, who, html, portrait) {
   const log = $("#chatlog");
   const el = document.createElement("div");
@@ -420,7 +514,7 @@ function addMsg(cls, who, html, portrait) {
     ? `<div class="portrait" aria-hidden="true">${portrait}</div><div class="bubble">${bubble}</div>`
     : bubble;
   log.appendChild(el);
-  el.scrollIntoView({ block: "end" });
+  tail(false);
   return el;
 }
 /* The portrait beside a spoken bubble: the Registrar's engraved line while it
@@ -637,7 +731,7 @@ function renderChoices(opts) {
     state.choicesHintShown = true;
     addMsg("sys", null, "· tap an answer, or write your own below ·");
   }
-  wrap.scrollIntoView({ block: "end" });
+  tail(false);
 }
 
 /* ---------------- the creation moment ----------------
@@ -669,10 +763,12 @@ async function runCreationMoment({ instant = false } = {}) {
     await wait(500 + secs.length * 150);
   }
   const d = state.draft || {};
-  const card = addMsg("ceremony", null,
+  addMsg("ceremony", null,
     `<div class="cname">${esc(d.name || "")}</div>` +
     (d.archetype ? `<div class="carch">${esc(d.archetype)}</div>` : ""));
-  card.scrollIntoView({ block: "end" });
+  // the one moment worth pulling the page to, follow or no follow
+  followTail = true;
+  scrollTail(true);
   await wait(2200); // the single play-once pulse lives on .cname in CSS
 }
 
@@ -768,6 +864,7 @@ function failTurn(userRaw, userEl, e) {
 
 async function sendTurn(userRaw) {
   if (state.busy || state.done) return;
+  followTail = true; // sending is a request to be at the live edge
   // prose is on screen but the machine tail is still streaming: take the
   // message now, hold it until the turn's history entry lands.
   if (state.streaming) {
@@ -906,7 +1003,7 @@ async function sendTurn(userRaw) {
   }
   saveInterview();
   setBusy(false);
-  bubble.scrollIntoView({ block: "end" });
+  tail(false);
   if (state.queued && !state.done) {
     // a reply arrived while the tail streamed — it goes next, before any hand-off
     const q = state.queued;
@@ -1252,6 +1349,7 @@ async function submitApplication() {
 /* ---------------- boot ---------------- */
 async function boot() {
   injectAvatarCSS();
+  installScroll();
   await Promise.all([loadFloor(), completeEmailLink()]);
   renderSpecimen();
 

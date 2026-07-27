@@ -193,10 +193,16 @@
 OO.injectAvatarCSS();
 const ARENA = /*__ARENA_DATA__*/;
 const AGENTS = ARENA.agents;
+/* The face carries the record. A member looks up or down on its own return
+   since launch — the same number printed beside it — and stays level inside a
+   half-point band, so an expression never twitches on noise. */
+const MOOD_BAND = 0.005;
+const moodOf = a => typeof a.ret !== "number" ? "flat"
+  : a.ret > MOOD_BAND ? "up" : a.ret < -MOOD_BAND ? "down" : "flat";
 /* Each agent's Member portrait, at a target px. Falls back to the legacy
    colour dot for any agent that predates avatar params in the record. */
 const agentAv = (a, px) => a.avatar
-  ? OO.avatar({ ...a.avatar, name: a.id }, px)
+  ? OO.avatar({ ...a.avatar, name: a.id }, px, { mood: moodOf(a) })
   : `<span class="dot" style="background:${a.color}"></span>`;
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const numword = n => ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"][n] || String(n);
