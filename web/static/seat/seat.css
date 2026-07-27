@@ -228,11 +228,13 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .finish h2 { font-family: var(--display); font-size: 26px; font-weight: 700; margin: 0 0 4px; }
 .finish .sub { color: var(--ink2); font-size: 13.5px; margin: 0 0 20px; }
 .charter { padding: 6px 18px 18px; }
-.privacy { padding: 14px 18px; margin: 18px 0; }
-.privacy .opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
-.privacy .opt input { margin-top: 3px; accent-color: var(--ink); }
-.privacy .opt b { font-weight: 600; }
-.privacy .opt .d { font-size: 13px; color: var(--ink2); }
+.privacy, .updatescard { padding: 14px 18px; margin: 18px 0; }
+.privacy .opt, .updatescard .opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
+.privacy .opt input, .updatescard .opt input { margin-top: 3px; accent-color: var(--ink); }
+.privacy .opt b, .updatescard .opt b { font-weight: 600; }
+.privacy .opt .d, .updatescard .opt .d { font-size: 13px; color: var(--ink2); }
+.updatescard .facehint { margin-bottom: 6px; }
+.updatescard .updfloor { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 12px; }
 .finish .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 
 /* ---------- the seat picker (give it a face) ---------- */

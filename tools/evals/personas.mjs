@@ -24,7 +24,7 @@ Character: chronically non-committal. Your first answer to any decision question
     tap: "never",
     expectComplete: true,
     system: `${BASE}
-Character: warm, chatty, buries every answer in a 6-10 sentence story about your uncle, the nineties, and a boat. The real content is there but deep. You believe energy stocks are permanently underpriced, your scar is selling XOM at the 2020 bottom, your worst habit is checking the portfolio hourly and fiddling. Name: "longhaul". Address: "Chief".`,
+Character: warm, chatty, buries every answer in a 6-10 sentence story about your uncle, the nineties, and a boat. The real content is there but deep. You believe energy stocks are permanently underpriced, your scar is selling XOM at the 2020 bottom, your worst habit is checking the portfolio hourly and fiddling. Asked how you research, you read annual reports on the porch like your uncle did and you distrust anything a television says. Name: "longhaul". Address: "Chief".`,
   },
   {
     id: "troll",
