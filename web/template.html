@@ -92,6 +92,14 @@
   .chip .dot { width: 9px; height: 9px; }
   .chartcard { padding: 16px 16px 8px; margin: 14px 0; }
   .charttitle { font-weight: 650; font-size: 14px; margin: 0 2px 2px; }
+  .chartbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 0 2px 2px; }
+  .chartbar .charttitle { margin: 0; }
+  .rangechips { display: flex; gap: 2px; }
+  .rangechips button { font: 600 11.5px/1 system-ui, sans-serif; color: var(--ink2); background: none; border: 1px solid transparent; border-radius: 6px; padding: 5px 8px; cursor: pointer; }
+  .rangechips button:hover:not(:disabled) { background: var(--hover); color: var(--ink); }
+  .rangechips button[aria-pressed="true"] { color: var(--ink); border-color: var(--border); background: var(--hover); }
+  .rangechips button:disabled { color: var(--muted); opacity: 0.45; cursor: default; }
+  .rangechips button:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
   .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink2); margin: 4px 2px 8px; }
   .legend .item { display: inline-flex; align-items: center; gap: 6px; }
   .legend .swatch { width: 14px; height: 3px; border-radius: 2px; }
@@ -210,7 +218,7 @@ function md(s){
 }
 const tooltip = document.getElementById("tooltip");
 const $ = s => document.querySelector(s);
-const state = { view:"arena", agent: AGENTS[0] && AGENTS[0].id, subtab:"journal", compare:new Set(AGENTS.map(a=>a.id)) };
+const state = { view:"arena", agent: AGENTS[0] && AGENTS[0].id, subtab:"journal", compare:new Set(AGENTS.map(a=>a.id)), range:"all", showAvg:true };
 
 document.getElementById("runchip").textContent = "tick " + ((ARENA.system&&ARENA.system.last_tick)||ARENA.run_date||"—") + " · simulated";
 
@@ -225,41 +233,97 @@ function sparkline(curve, color){
   return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${w}" cy="${ly.toFixed(1)}" r="3" fill="${color}"/></svg>`;
 }
 
-function lineChart(container, dates, seriesList, opts={}){
-  const pointCount = Math.max(...seriesList.map(s=>s.values.length));
-  if (pointCount < 2){
-    container.innerHTML = `<div class="emptychart">One data point so far. The equity curve draws itself as the twice-daily runs accumulate.</div>`;
+/* ---- time ranges: the standard set, disabled until the record has earned them ---- */
+const RANGES=[{id:"1d",label:"1D",s:86400},{id:"1w",label:"1W",s:7*86400},{id:"1m",label:"1M",s:30*86400},{id:"3m",label:"3M",s:91*86400},{id:"1y",label:"1Y",s:365*86400},{id:"all",label:"All",s:null}];
+const ALL_T = AGENTS.flatMap(a=>a.curve.filter(p=>p.t!=null).map(p=>p.t));
+const REC_FIRST = ALL_T.length?Math.min(...ALL_T):null, REC_LAST = ALL_T.length?Math.max(...ALL_T):null;
+const HAS_T = REC_FIRST!=null && REC_LAST>REC_FIRST;
+function rangeCutoff(){ const r=RANGES.find(x=>x.id===state.range); return (r&&r.s!=null&&HAS_T)?REC_LAST-r.s:null; }
+/* Clip a curve to the range and rebase it to 100 at its first visible point,
+   so every line reads "return over this window" — the standard comparison. */
+function sliceRebase(points, cutoff){
+  let pts = points.filter(p=>p.v!=null);
+  if (cutoff!=null){
+    pts = pts.filter(p=>p.t!=null && p.t>=cutoff);
+    const base = pts.length?pts[0].v:0;
+    if (base) pts = pts.map(p=>({t:p.t,date:p.date,v:p.v/base*100}));
+  }
+  return pts;
+}
+function rangeChipsHTML(){
+  if (!HAS_T) return "";
+  const span = REC_LAST-REC_FIRST, days = Math.max(1,Math.round(span/86400));
+  return `<div class="rangechips" role="group" aria-label="Time range">`+RANGES.map(r=>{
+    const dis = r.s!=null && span<r.s;
+    return `<button data-range="${r.id}" aria-pressed="${state.range===r.id}"${dis?` disabled title="the record is ${days} day${days===1?"":"s"} old"`:""}>${r.label}</button>`;
+  }).join("")+`</div>`;
+}
+function bindRangeChips(el, rerender){
+  el.querySelectorAll(".rangechips button").forEach(b=>b.addEventListener("click",()=>{ state.range=b.dataset.range; rerender(); }));
+}
+/* last index of pts with t <= t0, or -1 */
+function atOrBefore(pts, t0){ let lo=0,hi=pts.length-1,r=-1; while(lo<=hi){ const m=(lo+hi)>>1; if(pts[m].t<=t0){ r=m; lo=m+1; } else hi=m-1; } return r; }
+function niceStep(span){ const raw=(span/4)||1, p=Math.pow(10,Math.floor(Math.log10(raw))); for (const m of [1,2,5]) if (m*p>=raw) return m*p; return 10*p; }
+
+/* seriesList: [{name, color, points:[{t,date,v}], dashed, fill}] — plotted on a
+   real time axis, so traders born mid-record start mid-chart, not at the left edge. */
+function lineChart(container, seriesList, opts={}){
+  const series = seriesList.map(s=>({...s, pts:s.points.map((p,i)=>({t:p.t!=null?p.t:i, date:p.date, v:p.v}))})).filter(s=>s.pts.length);
+  if (!series.length || Math.max(...series.map(s=>s.pts.length)) < 2){
+    container.innerHTML = `<div class="emptychart">One data point so far. The curve draws itself as trading accumulates.</div>`;
     return;
   }
   const W=760,H=300,mL=46,mR=90,mT=14,mB=26,iw=W-mL-mR,ih=H-mT-mB;
-  const all = seriesList.flatMap(s=>s.values);
-  let lo=Math.min(...all), hi=Math.max(...all); const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad;
-  const n = pointCount;
-  const x = i => mL + (n>1 ? i/(n-1)*iw : iw/2);
+  const tMin=Math.min(...series.map(s=>s.pts[0].t)), tMax=Math.max(...series.map(s=>s.pts[s.pts.length-1].t));
+  const span=(tMax-tMin)||1;
+  const x = t => mL + (t-tMin)/span*iw;
+  const all = series.flatMap(s=>s.pts.map(p=>p.v));
+  let lo=Math.min(...all), hi=Math.max(...all); const pad=(hi-lo)*0.08||0.5; lo-=pad; hi+=pad;
   const y = v => mT + (1-(v-lo)/(hi-lo))*ih;
-  const step = Math.max(1, Math.round((hi-lo)/4)); let grid="",ylabels="";
-  for (let g=Math.ceil(lo/step)*step; g<=hi; g+=step){ const gy=y(g).toFixed(1);
+  const step=niceStep(hi-lo), dp=step>=1?0:(step>=0.1?1:2);
+  let grid="",ylabels="";
+  for (let k=Math.ceil(lo/step); k*step<=hi; k++){ const g=k*step, gy=y(g).toFixed(1);
     grid += `<line x1="${mL}" y1="${gy}" x2="${W-mR}" y2="${gy}" stroke="var(--grid)" stroke-width="1"/>`;
-    ylabels += `<text x="${mL-8}" y="${gy}" dy="4" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${(g-100>=0?"+":"−")+Math.abs(g-100)+"%"}</text>`; }
-  let xlabels="";
-  dates.forEach((d,i)=>{ if (i===0 || i===dates.length-1){ xlabels += `<text x="${x(i).toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${fmtDate(d)}</text>`; } });
+    ylabels += `<text x="${mL-8}" y="${gy}" dy="4" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${(g-100>=-1e-9?"+":"−")+Math.abs(g-100).toFixed(dp)+"%"}</text>`; }
+  /* merged timeline for the crosshair + x labels */
+  const dateByT=new Map();
+  series.forEach(s=>s.pts.forEach(p=>{ if(!dateByT.has(p.t)) dateByT.set(p.t,p.date); }));
+  const merged=[...dateByT.keys()].sort((a,b)=>a-b);
+  const dayLabel = d => (span>3*86400 && d) ? d.split(" ").slice(0,2).join(" ") : (d||"");
+  let xlabels=""; const used=[];
+  [0,0.35,0.7,1].forEach(f=>{
+    const target=tMin+span*f; let bi=0,bd=Infinity;
+    merged.forEach((t,i)=>{ const d=Math.abs(t-target); if(d<bd){bd=d;bi=i;} });
+    const t=merged[bi], lab=dayLabel(dateByT.get(t));
+    if (!lab || used.some(u=>u.lab===lab || Math.abs(u.x-x(t))<70)) return;
+    used.push({lab,x:x(t)});
+    xlabels += `<text x="${x(t).toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(lab)}</text>`;
+  });
   let paths="",endDots="",endLabels=""; const labelYs=[];
-  seriesList.forEach(s=>{
-    const d = s.values.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
-    if (s.fill) paths += `<path d="${d} L ${(W-mR).toFixed(1)} ${(mT+ih).toFixed(1)} L ${mL} ${(mT+ih).toFixed(1)} Z" fill="${s.color}" opacity="0.07"/>`;
-    paths += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${s.dashed?'stroke-dasharray="5 4"':""}/>`;
-    let ly=y(s.values[s.values.length-1]); while(labelYs.some(p=>Math.abs(p-ly)<14)) ly+=14; labelYs.push(ly);
-    endDots += `<circle cx="${(W-mR).toFixed(1)}" cy="${y(s.values[s.values.length-1]).toFixed(1)}" r="3.5" fill="${s.color}"/>`;
-    endLabels += `<g><rect x="${W-mR+8}" y="${(ly-5).toFixed(1)}" width="10" height="3" rx="1.5" fill="${s.color}"/><text x="${W-mR+22}" y="${ly.toFixed(1)}" dy="1" font-size="11.5" fill="var(--ink2)">${esc(s.name)}</text></g>`;
+  series.forEach(s=>{
+    const lastP=s.pts[s.pts.length-1];
+    if (s.pts.length===1){ paths += `<circle cx="${x(lastP.t).toFixed(1)}" cy="${y(lastP.v).toFixed(1)}" r="3" fill="${s.color}"/>`; }
+    else {
+      const d = s.pts.map((p,i)=>(i?"L":"M")+x(p.t).toFixed(1)+" "+y(p.v).toFixed(1)).join(" ");
+      if (s.fill) paths += `<path d="${d} L ${x(lastP.t).toFixed(1)} ${(mT+ih).toFixed(1)} L ${x(s.pts[0].t).toFixed(1)} ${(mT+ih).toFixed(1)} Z" fill="${s.color}" opacity="0.07"/>`;
+      paths += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${s.dashed?'stroke-dasharray="5 4"':""}/>`;
+    }
+    let ly=y(lastP.v); while(labelYs.some(p=>Math.abs(p-ly)<14)) ly+=14; labelYs.push(ly);
+    endDots += `<circle cx="${x(lastP.t).toFixed(1)}" cy="${y(lastP.v).toFixed(1)}" r="3.5" fill="${s.color}"/>`;
+    endLabels += `<g><rect x="${W-mR+8}" y="${(ly-5).toFixed(1)}" width="10" height="3" rx="1.5" fill="${s.color}"/><text x="${W-mR+22}" y="${ly.toFixed(1)}" dy="1" font-size="11.5" fill="var(--ink2)">${esc(s.short||s.name)}</text></g>`;
   });
   container.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.aria||"equity chart")}">${grid}<line x1="${mL}" y1="${(mT+ih).toFixed(1)}" x2="${W-mR}" y2="${(mT+ih).toFixed(1)}" stroke="var(--axis)" stroke-width="1"/>${ylabels}${xlabels}${paths}${endDots}${endLabels}<line class="xhair" x1="0" y1="${mT}" x2="0" y2="${mT+ih}" stroke="var(--axis)" stroke-width="1" opacity="0"/></svg>`;
   const svg=container.querySelector("svg"), xhair=svg.querySelector(".xhair");
   svg.addEventListener("mousemove", ev=>{ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W;
     if (px<mL||px>W-mR){ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; return; }
-    const i=Math.max(0,Math.min(n-1,Math.round((px-mL)/iw*(n-1))));
-    xhair.setAttribute("x1",x(i)); xhair.setAttribute("x2",x(i)); xhair.setAttribute("opacity","1");
+    const target=tMin+(px-mL)/iw*span; let bi=0,bd=Infinity;
+    merged.forEach((t,i)=>{ const d=Math.abs(t-target); if(d<bd){bd=d;bi=i;} });
+    const mt=merged[bi], cx=x(mt);
+    xhair.setAttribute("x1",cx); xhair.setAttribute("x2",cx); xhair.setAttribute("opacity","1");
     tooltip.style.display="block";
-    tooltip.innerHTML = `<div class="tdate">${fmtDate(dates[i])}</div>` + seriesList.map(s=>`<div class="trow"><span class="l"><span class="dot" style="background:${s.color}"></span>${esc(s.name)}</span><span class="v">${s.values[i]!=null?pct(s.values[i]/100-1):"—"}</span></div>`).join("");
+    tooltip.innerHTML = `<div class="tdate">${esc(dateByT.get(mt)||"")}</div>` + series.map(s=>{
+      const i=atOrBefore(s.pts,mt), v=i>=0?s.pts[i].v:null;
+      return `<div class="trow"><span class="l"><span class="dot" style="background:${s.color}"></span>${esc(s.name)}</span><span class="v">${v!=null?pct(v/100-1):"—"}</span></div>`; }).join("");
     const tw=tooltip.offsetWidth; let tx=ev.clientX+14; if (tx+tw>window.innerWidth-8) tx=ev.clientX-tw-14;
     tooltip.style.left=tx+"px"; tooltip.style.top=Math.max(8,ev.clientY-10)+"px"; });
   svg.addEventListener("mouseleave", ()=>{ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; });
@@ -281,7 +345,7 @@ function renderArena(){
   el.innerHTML=`
     <h2 class="viewtitle">The floor</h2>
     <p class="viewsub">${capfirst(numword(AGENTS.length))} traders, ${numword(AGENTS.length)} philosophies, one market. Each trades a simulated ${money(ARENA.initial_capital)} against real prices and revises its written principles from its own experience. Score = performance over each trader's <em>own</em> benchmark.</p>
-    <div class="metastrip"><span>Run <b>${ARENA.run_date||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per trader, simulated</span><span>Sorted by <b>alpha vs own benchmark</b></span></div>
+    <div class="metastrip"><span>Run <b>${ARENA.run_date||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per trader, simulated</span>${(ARENA.arena_curve||[]).length?`<span>Floor average <b class="${ARENA.arena_curve[ARENA.arena_curve.length-1].v>=100?"delta-up":"delta-dn"}">${pct(ARENA.arena_curve[ARENA.arena_curve.length-1].v/100-1)}</b></span>`:""}<span>Sorted by <b>alpha vs own benchmark</b></span></div>
     <div class="card tablewrap"><table class="arena">
       <thead><tr><th>Trader</th><th>Equity</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Rulebook</th><th>Last action</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
@@ -342,7 +406,7 @@ function renderAgent(){
       <div class="tile"><div class="k">Cash</div><div class="v">${pctPlain(a.cash_pct)}</div><div class="s">${money(a.cash)} idle</div></div>
       <div class="tile"><div class="k">Rulebook</div><div class="v">${a.n_principles}</div><div class="s">${a.n_revisions} revisions · ${a.n_hyp_testing} hyp testing</div></div>
     </div>
-    <div class="card chartcard"><div class="charttitle">Equity vs benchmark</div>${legendHTML([{name:a.name,color:a.color},{name:a.benchmark_label,color:"var(--muted)"}])}<div class="chartbox" id="agentchart"></div></div>
+    <div class="card chartcard"><div class="chartbar"><div class="charttitle">Equity vs benchmark</div>${rangeChipsHTML()}</div>${legendHTML([{name:a.name,color:a.color},{name:a.benchmark_label,color:"var(--muted)"}])}<div class="chartbox" id="agentchart"></div></div>
     <div class="subtabs" role="tablist" aria-label="Agent detail">
       <button role="tab" data-subtab="journal" aria-selected="${state.subtab==="journal"}">Journal</button>
       <button role="tab" data-subtab="principles" aria-selected="${state.subtab==="principles"}">Principles</button>
@@ -350,10 +414,11 @@ function renderAgent(){
       <button role="tab" data-subtab="positions" aria-selected="${state.subtab==="positions"}">Positions</button>
       <button role="tab" data-subtab="orders" aria-selected="${state.subtab==="orders"}">Orders</button>
     </div><div id="subview"></div>`;
-  const dates=a.curve.map(p=>p.date);
-  const series=[{name:a.name,color:a.color,values:a.curve.map(p=>p.v),fill:true}];
-  if (a.bench_curve.length) series.push({name:a.benchmark_label,color:"var(--muted)",values:a.bench_curve.map(p=>p.v),dashed:true});
-  lineChart($("#agentchart"), dates, series, {aria:a.name+" equity versus "+a.benchmark_label});
+  const cutoff=rangeCutoff();
+  const series=[{name:a.name,color:a.color,points:sliceRebase(a.curve,cutoff),fill:true}];
+  if (a.bench_curve.length) series.push({name:a.benchmark_label,color:"var(--muted)",points:sliceRebase(a.bench_curve,cutoff),dashed:true});
+  lineChart($("#agentchart"), series, {aria:a.name+" equity versus "+a.benchmark_label});
+  bindRangeChips(el, renderAgent);
   $("#subview").innerHTML = state.subtab==="journal"?journalHTML(a):state.subtab==="principles"?principlesHTML(a):state.subtab==="hypotheses"?hypothesesHTML(a):state.subtab==="orders"?ordersHTML(a):positionsHTML(a);
   el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{ state.agent=b.dataset.agent; renderAgent(); }));
   el.querySelectorAll(".subtabs button").forEach(b=>b.addEventListener("click",()=>{ state.subtab=b.dataset.subtab; renderAgent(); }));
@@ -391,19 +456,25 @@ function renderSystem(){
 }
 function renderCompare(){
   const el=$("#view-compare"); const sel=AGENTS.filter(a=>state.compare.has(a.id));
-  const chips=AGENTS.map(a=>`<button class="chip" aria-pressed="${state.compare.has(a.id)}" data-agent="${a.id}">${agentAv(a,20)}${a.name}</button>`).join("");
-  const maxLen=Math.max(1,...sel.map(a=>a.curve.length));
-  const dates=(sel.find(a=>a.curve.length===maxLen)||sel[0]||{curve:[]}).curve.map(p=>p.date);
+  const avgCurve=ARENA.arena_curve||[];
+  const chips=AGENTS.map(a=>`<button class="chip" aria-pressed="${state.compare.has(a.id)}" data-agent="${a.id}">${agentAv(a,20)}${a.name}</button>`).join("")
+    + (avgCurve.length?`<button class="chip" id="avgchip" aria-pressed="${state.showAvg}"><span class="dot" style="background:var(--muted)"></span>Floor average</button>`:"");
   const stats = sel.length?`<div class="card tablewrap" style="margin-top:14px"><table class="arena"><thead><tr><th>Agent</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Revisions</th><th class="num">Hyp testing</th></tr></thead><tbody>${sel.map(a=>`<tr><td><div class="agentcell">${agentAv(a,22)}<span class="aname" style="font-size:15px">${a.name}</span></div></td><td class="num mono">${pct(a.ret)}</td><td class="num">${alphaCell(a.alpha)}</td><td class="num mono">${pct(a.max_dd)}</td><td class="num mono">${a.n_revisions}</td><td class="num mono">${a.n_hyp_testing}</td></tr>`).join("")}</tbody></table></div>`:"";
   const cols=sel.map(a=>`<div class="card cmpcol"><h4>${agentAv(a,22)}${a.name}</h4><span class="atype">${esc(a.archetype)}</span><ul>${a.principles.filter(p=>p.status!=="retired").map(p=>`<li>${esc(p.statement)}</li>`).join("")}</ul></div>`).join("");
+  const cutoff=rangeCutoff();
+  const series=sel.map(a=>({name:a.name,color:a.color,points:sliceRebase(a.curve,cutoff)}));
+  if (state.showAvg && avgCurve.length) series.push({name:"Floor average",short:"Floor avg",color:"var(--muted)",dashed:true,points:sliceRebase(avgCurve,cutoff)});
   el.innerHTML=`
     <h2 class="viewtitle">Different philosophies, same market</h2>
-    <p class="viewsub">Overlay any set of traders, indexed to 100 at launch. The divergence between the curves is the divergence between the rulebooks below them.</p>
+    <p class="viewsub">Overlay any set of traders — each line is that trader's return from the start of the window, so a trader that joined mid-record starts where it joined. The divergence between the curves is the divergence between the rulebooks below them.</p>
     <div class="switcher">${chips}</div>
-    ${sel.length?`<div class="card chartcard"><div class="charttitle">Equity, indexed</div>${legendHTML(sel.map(a=>({name:a.name,color:a.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one agent.</p>`}
+    ${sel.length?`<div class="card chartcard"><div class="chartbar"><div class="charttitle">Performance</div>${rangeChipsHTML()}</div>${legendHTML(series.map(s=>({name:s.name,color:s.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one trader.</p>`}
     ${stats}<div class="cmpgrid">${cols}</div>`;
-  if (sel.length) lineChart($("#cmpchart"), dates, sel.map(a=>({name:a.name,color:a.color,values:a.curve.map(p=>p.v)})), {aria:"comparison of selected agents"});
-  el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{ const id=b.dataset.agent; if(state.compare.has(id)) state.compare.delete(id); else state.compare.add(id); renderCompare(); }));
+  if (sel.length) lineChart($("#cmpchart"), series, {aria:"comparison of selected traders"});
+  bindRangeChips(el, renderCompare);
+  const avgBtn=el.querySelector("#avgchip");
+  if (avgBtn) avgBtn.addEventListener("click",()=>{ state.showAvg=!state.showAvg; renderCompare(); });
+  el.querySelectorAll(".chip[data-agent]").forEach(b=>b.addEventListener("click",()=>{ const id=b.dataset.agent; if(state.compare.has(id)) state.compare.delete(id); else state.compare.add(id); renderCompare(); }));
 }
 function setView(v){
   state.view=v;
