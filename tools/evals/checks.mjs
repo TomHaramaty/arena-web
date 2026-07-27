@@ -12,6 +12,14 @@ export const prose = (raw) => { const i = raw.indexOf("```"); return (i === -1 ?
 
 const FORFEIT = "Whatever you tell me that doesn't get written into this charter, I lose at the first bell. The record is my only memory. If it matters, make me write it down.";
 const REGISTRAR_REGISTER = /\bthe register (takes|records|has|holds)\b|\bthe registry\b/i;
+// Act I: a reply that OPENS by announcing the clerk doing clerk things is a
+// stamp, not speech — the tic that made the interview read as a form.
+// "has/holds" are excluded: the mandated closing line is "The register has what
+// it requires from me" — prescribed by the prompt, not a stamp.
+const REGISTRY_STAMP = /^(?:the regist(?:ry|er))\s+(?:records|compiles|marks|updates|keeps|takes|notes|enters|logs|accepts)\b/i;
+// The open floor (beat 8): the one invitation that must be offered before the
+// file closes. Deliberately broad — we are testing that it was asked at all.
+const OPEN_FLOOR = /haven'?t\s+(?:i\s+)?asked|have\s+i\s+not\s+asked|not\s+asked\s+you\s+that|anything\s+(?:i|you|else)\b[^.?]{0,60}\b(?:missed|asked|add|left\s+out)|missed\s+anything|anything\s+else\s+(?:it|the\s+agent|this\s+agent)\s+(?:needs|should)/i;
 const CLOCK_TIME = /\b\d{1,2}:\d{2}\b|\bUTC\b/;
 const COMPILE_CLAIM = /\b(written into|writing it|recorded|locked into|entered into|goes into|is in) (the |our |my |it )?(charter|record|register|draft)\b/i;
 const norm = (s) => String(s).toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
@@ -21,8 +29,11 @@ export function newCtx(tapeText) {
     draft: null, woke: false, handoffTurn: -1, ready: false, done: false,
     typed: [], tapped: [], lastOptions: [], turn: 0, issues: [],
     tape: tapeText, deltaTurns: 0, doneTurn: -1,
+    // openness telemetry: who actually talks in this interview
+    openFloor: false, pWords: 0, rWords: 0, shortTurns: 0,
   };
 }
+const wordCount = (s) => String(s).split(/\s+/).filter(Boolean).length;
 const issue = (ctx, sev, code, detail) => {
   const d = String(detail).slice(0, 220);
   // a delta that re-emits the same field re-triggers the same finding — record once
@@ -123,7 +134,9 @@ export function checkTurn(ctx, userRaw, raw) {
     if (!pact.test(p)) issue(ctx, "soft", "pact-missing", "first read lacks the pact sentence");
     // numeric comparison: the tape prints "381.7", an agent may write "381.70"
     const tapeNums = new Set([...ctx.tape.matchAll(/\b\d+(?:\.\d+)?\b/g)].map((m) => Number(m[0]).toFixed(2)));
-    const priceLike = [...p.matchAll(/\b(\d{2,6}\.\d{2})\b(?!\s*(percent|%))/g)].map((m) => m[1]);
+    // comma-grouped prices count too: "64,834.13" is a price claim, not "834.13"
+    const priceLike = [...p.matchAll(/\b(\d{1,3}(?:,\d{3})+\.\d{2}|\d{2,6}\.\d{2})\b(?!\s*(percent|%))/g)]
+      .map((m) => m[1].replace(/,/g, ""));
     for (const n of priceLike) if (!tapeNums.has(Number(n).toFixed(2)))
       issue(ctx, "hard", "price-hallucination", `${n} not on the tape`);
     const wc = p.split(/\s+/).length;
@@ -134,12 +147,35 @@ export function checkTurn(ctx, userRaw, raw) {
   if (!isTape && (p.match(/\?/g) || []).length > 1)
     issue(ctx, "soft", "multi-question", (p.match(/\?/g) || []).length + " questions in one reply");
 
+  // Act I manner: no clerk stamps, and the open floor must be offered once
+  if (!ctx.woke) {
+    if (REGISTRY_STAMP.test(p.trim())) issue(ctx, "soft", "registry-stamp", p.trim().slice(0, 60));
+    if (OPEN_FLOOR.test(p)) ctx.openFloor = true;
+  }
+  ctx.rWords += wordCount(p);
+
   return side;
 }
 
 export function recordUser(ctx, text, wasTap) {
   if (text.startsWith("[")) return;
   if (wasTap) ctx.tapped.push(text); else ctx.typed.push(text);
+  const w = wordCount(text);
+  ctx.pWords += w;
+  if (w <= 3) ctx.shortTurns++;
+}
+
+/** How open the interview actually was — the metric the redesign moves. */
+export function openness(ctx) {
+  const turns = ctx.typed.length + ctx.tapped.length;
+  return {
+    principalTurns: turns,
+    shortPct: turns ? Math.round(ctx.shortTurns / turns * 100) : 0,
+    principalWords: ctx.pWords,
+    registrarWords: ctx.rWords,
+    talkRatio: ctx.pWords ? +(ctx.rWords / ctx.pWords).toFixed(1) : null,
+    openFloorOffered: ctx.openFloor,
+  };
 }
 
 export function finalChecks(ctx, persona) {
@@ -155,6 +191,7 @@ export function finalChecks(ctx, persona) {
       }
     }
     if (ctx.handoffTurn < 0) ctx.issues.push({ sev: "hard", code: "no-handoff", turn: ctx.turn, detail: "the Registrar never closed the file" });
+    if (!ctx.openFloor) ctx.issues.push({ sev: "soft", code: "open-floor-missing", turn: ctx.turn, detail: "the file closed without ever asking what was not asked" });
   }
   if (persona.expectNoSeat && ctx.done)
     ctx.issues.push({ sev: "hard", code: "seated-a-troll", turn: ctx.turn, detail: "interview completed for a persona that should not seat" });

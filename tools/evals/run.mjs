@@ -11,7 +11,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { buildSystemPrompt, buildWakeMessage, buildTapeMessage, OPENING } from "../../web/static/seat/registrar.js";
 import { PERSONAS } from "./personas.mjs";
-import { newCtx, checkTurn, recordUser, finalChecks, parseSide, prose } from "./checks.mjs";
+import { newCtx, checkTurn, recordUser, finalChecks, parseSide, prose, openness } from "./checks.mjs";
 
 const KEY = "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo";
 const EP = (m) => `https://firebasevertexai.googleapis.com/v1beta/projects/open-outcry/models/${m}:generateContent`;
@@ -97,7 +97,13 @@ async function runPersona(persona, floor) {
   const report = {
     persona: persona.id, turns: ctx.turn, done: ctx.done,
     handoffTurn: ctx.handoffTurn, hard, soft,
-    draft: ctx.draft && { name: ctx.draft.name, principles: (ctx.draft.principles || []).length, hyp: (ctx.draft.hypotheses || []).length },
+    openness: openness(ctx),
+    draft: ctx.draft && {
+      name: ctx.draft.name,
+      principles: (ctx.draft.principles || []).length,
+      quoted: (ctx.draft.principles || []).filter((x) => x && x.quote).length,
+      hyp: (ctx.draft.hypotheses || []).length,
+    },
   };
   writeFileSync(OUT + persona.id + ".json", JSON.stringify(report, null, 1));
   writeFileSync(OUT + persona.id + ".md", transcript);
@@ -116,7 +122,9 @@ await Promise.all(Array.from({ length: Math.min(CONC, queue.length) }, async () 
     try {
       const r = await runPersona(p, floor);
       results.push(r);
-      console.log(`${p.id.padEnd(14)} turns=${String(r.turns).padStart(2)} done=${r.done ? "y" : "n"} hard=${r.hard.length} soft=${r.soft.length}`);
+      console.log(`${p.id.padEnd(14)} turns=${String(r.turns).padStart(2)} done=${r.done ? "y" : "n"} hard=${r.hard.length} soft=${r.soft.length}` +
+        ` | short=${String(r.openness.shortPct).padStart(3)}% talk=1:${r.openness.talkRatio} open=${r.openness.openFloorOffered ? "y" : "n"}` +
+        ` quoted=${r.draft ? r.draft.quoted + "/" + r.draft.principles : "-"}`);
     } catch (e) {
       results.push({ persona: p.id, error: String(e).slice(0, 150), hard: [{ code: "run-crashed" }] });
       console.log(`${p.id.padEnd(14)} CRASHED: ${String(e).slice(0, 120)}`);
