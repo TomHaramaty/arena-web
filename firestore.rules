@@ -18,7 +18,7 @@ service cloud.firestore {
       allow read, delete: if request.auth != null && request.auth.uid == uid;
       allow create, update: if request.auth != null
         && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['history', 'tapeSent', 'done', 'ready', 'handoffSeen', 'tapped', 'avatar', 'updatedAt']);
+        && request.resource.data.keys().hasOnly(['history', 'tapeSent', 'done', 'ready', 'handoffSeen', 'tapped', 'avatar', 'updates', 'updatedAt']);
     }
 
     // Seat applications: the output of a finished interview.

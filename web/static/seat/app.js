@@ -90,6 +90,7 @@ const state = {
   appDoc: null,         // {id, data}
   unsubscribe: null,
   avatar: { base: "fox", color: 0, costume: "suit", acc: "none" }, // the seat picker
+  updates: { cadence: "daily", floor_digest: true }, // the updates card (letters, when they ship)
 };
 
 /* ---------------- view switching ---------------- */
@@ -369,7 +370,7 @@ function saveInterview() {
   const data = {
     history: state.history, tapeSent: state.tapeSent, done: state.done,
     ready: state.ready, handoffSeen: state.handoffSeen, tapped: state.tapped,
-    avatar: state.avatar,
+    avatar: state.avatar, updates: state.updates,
   };
   try { localStorage.setItem(saveKey(), JSON.stringify(data)); } catch { /* quota — the mirror still has it */ }
   if (state.user) {
@@ -506,7 +507,16 @@ function renderDraft() {
   if (d.credo) h += `<div class="dsec" data-sec="credo"><span class="label">Credo</span><div class="dcredo">“${esc(d.credo)}”</div></div>`;
   if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — what it must beat</div></div>`;
   if (d.universe) h += `<div class="dsec" data-sec="universe"><span class="label">Universe</span><div class="dmono">${esc(d.universe)}</div></div>`;
+  if (d.research && typeof d.research === "string") h += `<div class="dsec" data-sec="research"><span class="label">How it researches</span><div class="dmono">${esc(d.research)}</div></div>`;
+  if (d.horizon && typeof d.horizon === "string") h += `<div class="dsec" data-sec="horizon"><span class="label">Horizon</span><div class="dmono">${esc(d.horizon)}</div></div>`;
   if (d.max_position_pct) h += `<div class="dsec" data-sec="limits"><span class="label">Max position</span><div class="dmono">${esc(String(d.max_position_pct))}% of equity</div></div>`;
+  if (d.class_pct) {
+    const cp = normalizeClassPct(d.class_pct);
+    h += `<div class="dsec" data-sec="limits"><span class="label">Markets it may enter</span><div class="dmono">` +
+      `Crypto — ${cp.crypto ? `up to ${cp.crypto}% of equity` : "not permitted"}<br>` +
+      `Inverse &amp; leveraged ETFs — ${cp.inverse_levered ? `up to ${cp.inverse_levered}% of equity` : "not permitted"}` +
+      `</div></div>`;
+  }
   if ((d.constitution || []).length) {
     h += `<div class="dsec" data-sec="constitution"><span class="label">Constitution — enforced in code</span><ul class="dlist">` +
       d.constitution.map((c) => `<li>${esc(c)}</li>`).join("") + `</ul></div>`;
@@ -542,6 +552,15 @@ function draftInscriptions(prev, next) {
   if (next.universe && next.universe !== p.universe) push("universe set", "universe");
   if (next.max_position_pct && next.max_position_pct !== p.max_position_pct)
     push(`limit set — max position ${next.max_position_pct}%`, "limits");
+  if (next.class_pct) {
+    const nc2 = normalizeClassPct(next.class_pct), pc2 = normalizeClassPct(p.class_pct);
+    if (nc2.crypto !== pc2.crypto)
+      push(nc2.crypto ? `crypto opened — up to ${nc2.crypto}%` : "crypto closed off", "limits");
+    if (nc2.inverse_levered !== pc2.inverse_levered)
+      push(nc2.inverse_levered
+        ? `inverse & leveraged ETFs opened — up to ${nc2.inverse_levered}%`
+        : "inverse & leveraged ETFs closed off", "limits");
+  }
   const pc = (p.constitution || []).length, nc = (next.constitution || []).length;
   if (nc > pc) push(nc - pc === 1 ? "constitution — clause added" : `constitution — ${nc - pc} clauses added`, "constitution");
   const pp = p.principles || [], np = next.principles || [];
@@ -985,6 +1004,7 @@ function restoreInterview(saved) {
   state.handoffSeen = !!saved.handoffSeen;
   state.tapped = Array.isArray(saved.tapped) ? saved.tapped : [];
   if (saved.avatar) state.avatar = normalizeAvatar(saved.avatar);
+  if (saved.updates) state.updates = normalizeUpdates(saved.updates);
   // the draft first: renderUserMsg("[WAKE]") and the who-labels need the name
   const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
   for (const h of state.history) {
@@ -1117,10 +1137,32 @@ function onFacePick(e) {
   renderFacePicker();
 }
 
+/* The updates card — chrome, not chat. The agent never promises letters (its
+   capability whitelist forbids it); the product states the roadmap plainly and
+   stores the choice for the email feature to honor when letters ship. */
+function renderUpdatesCard() {
+  const name = (state.draft && state.draft.name) || "your agent";
+  $("#upd-name").textContent = name;
+  $("#upd-name2").textContent = name;
+  const u = state.updates;
+  const r = document.querySelector(`input[name="updcadence"][value="${u.cadence}"]`);
+  if (r) r.checked = true;
+  $("#upd-floor").checked = !!u.floor_digest;
+}
+function onUpdatesChange() {
+  const r = document.querySelector('input[name="updcadence"]:checked');
+  state.updates = normalizeUpdates({
+    cadence: r ? r.value : "daily",
+    floor_digest: $("#upd-floor").checked,
+  });
+  saveInterview();
+}
+
 function renderCharter() {
   const d = state.draft || {};
   $("#charter-name").textContent = d.name || "—";
   renderFacePicker();
+  renderUpdatesCard();
   // reuse the panel renderer at full width
   const hold = $("#draftbody").innerHTML;
   renderDraft();
@@ -1138,6 +1180,31 @@ function renderCharter() {
   }
 }
 
+/* The updates preference: a closed vocabulary with safe defaults. Nothing is
+   sent until letters ship; the stored choice is the email feature's input. */
+function normalizeUpdates(raw) {
+  const src = raw && typeof raw === "object" ? raw : {};
+  return {
+    cadence: ["daily", "weekly", "off"].includes(src.cadence) ? src.cadence : "daily",
+    floor_digest: src.floor_digest !== false,
+  };
+}
+
+/**
+ * Class ceilings, as percent of equity. A market the interview never opened
+ * stays at zero — the engine treats an unchartered class as forbidden, not as
+ * unlimited, and this must not be the place that quietly widens it.
+ */
+function normalizeClassPct(raw) {
+  const src = raw && typeof raw === "object" ? raw : {};
+  const out = {};
+  for (const cls of ["crypto", "inverse_levered"]) {
+    const n = Number(src[cls]);
+    out[cls] = Number.isFinite(n) && n > 0 ? Math.min(n, 35) : 0;
+  }
+  return out;
+}
+
 async function submitApplication() {
   const d = state.draft || {};
   const errs = validatePacket(d, state.floorNames);
@@ -1149,9 +1216,13 @@ async function submitApplication() {
     name: d.name, archetype: d.archetype, credo: d.credo, universe: d.universe,
     benchmark: { symbols: d.benchmark.symbols, label: d.benchmark.label },
     max_position_pct: Number(d.max_position_pct),
+    class_pct: normalizeClassPct(d.class_pct),
     constitution: d.constitution, principles: d.principles, hypotheses: d.hypotheses,
     voice: d.voice, address: (d.address || "Principal").slice(0, 20),
     avatar: normalizeAvatar(state.avatar),
+    updates: normalizeUpdates(state.updates),
+    ...(typeof d.research === "string" && d.research ? { research: d.research.slice(0, 400) } : {}),
+    ...(typeof d.horizon === "string" && d.horizon ? { horizon: d.horizon.slice(0, 120) } : {}),
     ...(firstWords ? { first_words: firstWords } : {}),
     ...(firstRead ? { first_read: firstRead } : {}),
     transcript_privacy: privacy, transcript: transcriptMarkdown(),
@@ -1281,6 +1352,7 @@ async function boot() {
   $("#btn-back").addEventListener("click", () => show("interview"));
   $("#btn-submit").addEventListener("click", submitApplication);
   document.querySelector(".facecontrols").addEventListener("click", onFacePick);
+  document.querySelector(".updatescard").addEventListener("change", onUpdatesChange);
 }
 
 boot();
