@@ -1,7 +1,8 @@
 // Open Outcry — the Seat Interview.
 // One page, four states: landing → interview → charter review → application status.
-// Everything runs client-side: Firebase Auth (identity), Firebase AI Logic
-// (the Registrar, streamed), Firestore (the application). No backend.
+// Runs client-side: Firebase Auth (identity), Firebase AI Logic (the Registrar,
+// streamed), Firestore (the application). One Cloud Function (ringFirstBell,
+// functions/index.js) fires the engine's first-bell workflow on request.
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import {
@@ -130,8 +131,11 @@ function today() {
 /* The Specimen: one real principle from the record, and what it became. */
 function renderSpecimen() {
   if (!state.floor) return;
-  const agent = state.floor.agents.find((a) => a.id === "ballast") ||
-    state.floor.agents.find((a) => (a.principles || []).some((p) => /["“]/.test(p.origin || "")));
+  // Prefer the newest interview-born member with a quotable origin; the
+  // specimen should show the floor as it grows, not one pinned agent.
+  const quotable = (a) => (a.principles || []).some((p) => /["“]/.test(p.origin || ""));
+  const agent = [...state.floor.agents].reverse().find(quotable) ||
+    state.floor.agents.find(quotable);
   if (!agent) return;
   const prins = agent.principles || [];
   const p = prins.find((x) => x.rigidity === "hard" && /["“]/.test(x.origin || "")) ||
@@ -278,7 +282,7 @@ function renderStatus(appData) {
     $("#statusdetail").innerHTML =
       `<b>${esc(name)}</b> is countersigned. The charter is on the register.` +
       (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
-    $("#statusbell").textContent = stage ? "" : "Next daily bell " + fmtBell(nextFirstBell());
+    $("#statusbell").textContent = stage ? "" : "Next bell " + fmtBell(nextFirstBell());
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
   }
   renderBellUI(appData, name);
@@ -311,7 +315,7 @@ function renderBellUI(appData, name) {
   if (!stage || stage === "failed") {
     el.innerHTML =
       (stage === "failed"
-        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next daily bell regardless. You can try again now.</p>`
+        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next bell regardless. You can try again now.</p>`
         : "") +
       `<button class="primary" id="btn-bell">Run the first session</button>
        <p class="bellnote">A few minutes, live — you'll watch each step below as it happens.</p>`;
@@ -493,14 +497,14 @@ function renderDraft() {
     (d ? (d.constitution || []).length + (d.principles || []).length + (d.hypotheses || []).length +
       ["name", "credo", "benchmark", "voice"].filter((k) => d[k]).length : 0);
   if (!d || !count) {
-    body.innerHTML = `<p class="dempty">Nothing on the register yet. It fills as you answer — name, credo, constitution, principles, hypotheses, benchmark.</p>`;
+    body.innerHTML = `<p class="dempty">Nothing in the draft yet. It fills as you answer — name, credo, constitution, principles, hypotheses, benchmark.</p>`;
     return;
   }
   let h = "";
   h += `<div class="dsec" data-sec="name"><span class="label">Agent</span><div class="dname">${d.name ? esc(d.name) : '<span class="dwait">unnamed</span>'}${d.archetype ? `<span class="arch">${esc(d.archetype)}</span>` : ""}</div></div>`;
   if (d.address) h += `<div class="dsec" data-sec="address"><span class="label">It calls you</span><div class="dmono">${esc(d.address)}</div></div>`;
   if (d.credo) h += `<div class="dsec" data-sec="credo"><span class="label">Credo</span><div class="dcredo">“${esc(d.credo)}”</div></div>`;
-  if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — the lazy twin</div></div>`;
+  if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — what it must beat</div></div>`;
   if (d.universe) h += `<div class="dsec" data-sec="universe"><span class="label">Universe</span><div class="dmono">${esc(d.universe)}</div></div>`;
   if (d.max_position_pct) h += `<div class="dsec" data-sec="limits"><span class="label">Max position</span><div class="dmono">${esc(String(d.max_position_pct))}% of equity</div></div>`;
   if ((d.constitution || []).length) {
@@ -759,7 +763,7 @@ async function sendTurn(userRaw) {
   // machine messages ([BEGIN]/[WAKE]/[TAPE]/[REPAIR]) never count against the length
   const userTurns = state.history.filter((h) => h.role === "user" && !h.raw.startsWith("[")).length;
   if (userTurns >= MAX_TURNS) {
-    addMsg("sys", null, "· the register closes — this interview has run its length ·");
+    addMsg("sys", null, "· the interview has run its length — review the charter below ·");
     return;
   }
   const isTape = userRaw.startsWith("[TAPE]");
@@ -957,7 +961,7 @@ function updateFinishUI() {
     bar.hidden = false;
     bar.classList.remove("quiet");
     btn.className = "primary";
-    note.textContent = `${name} is drafted and has spoken. Countersigning makes the charter permanent and puts ${name} on the floor.`;
+    note.textContent = `${name} is drafted and has spoken. Countersigning charters ${name} and puts it on the floor.`;
   } else if (complete && !agentPhase()) {
     // a complete charter with no handoff yet (single-act fallback path)
     $("#composer").hidden = false;
@@ -1126,7 +1130,7 @@ function renderCharter() {
   const box = $("#charter-errors");
   if (errs.length) {
     box.hidden = false;
-    box.innerHTML = `<span class="label">The register cannot accept this yet</span><ul>${errs.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>`;
+    box.innerHTML = `<span class="label">The charter isn't complete yet</span><ul>${errs.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>`;
     $("#btn-submit").disabled = true;
   } else {
     box.hidden = true;

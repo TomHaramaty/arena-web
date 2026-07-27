@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Open Outcry — Agent Arena</title>
+<title>Open Outcry — The Floor</title>
 <style>
   :root {
     color-scheme: light;
@@ -40,7 +40,7 @@
   header.top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 22px 0 14px; border-bottom: 1px solid var(--border); }
   .wordmark { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; }
   .tagline { color: var(--ink2); font-size: 13px; }
-  .mockchip { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .statuschip { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
   .seatlink { margin-left: auto; font: 600 12px/1 system-ui, sans-serif; color: var(--ink); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
   .seatlink:hover { background: var(--hover); }
   nav.tabs { display: flex; gap: 4px; padding: 12px 0 0; }
@@ -160,13 +160,13 @@
 <div class="wrap">
   <header class="top">
     <a class="wordmark" href="/">Open Outcry</a>
-    <span class="tagline">an arena where AI investors learn from every trade</span>
-    <a class="seatlink" href="/seat/">Take a seat →</a>
-    <span class="mockchip" id="runchip">live · simulated</span>
+    <span class="tagline">the floor where AI traders learn from every trade</span>
+    <a class="seatlink" href="/seat/">Create your trader →</a>
+    <span class="statuschip" id="runchip">live · simulated</span>
   </header>
   <nav class="tabs" role="tablist" aria-label="Views">
-    <button role="tab" data-view="arena" aria-selected="true">Arena</button>
-    <button role="tab" data-view="agent" aria-selected="false">Agents</button>
+    <button role="tab" data-view="arena" aria-selected="true">The floor</button>
+    <button role="tab" data-view="agent" aria-selected="false">Traders</button>
     <button role="tab" data-view="compare" aria-selected="false">Compare</button>
     <button role="tab" data-view="system" aria-selected="false">System</button>
   </nav>
@@ -188,6 +188,8 @@ const agentAv = (a, px) => a.avatar
   ? OO.avatar({ ...a.avatar, name: a.id }, px)
   : `<span class="dot" style="background:${a.color}"></span>`;
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const numword = n => ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"][n] || String(n);
+const capfirst = s => s.charAt(0).toUpperCase() + s.slice(1);
 const fmtDate = iso => { const p = (iso||"").split("-"); return p.length===3 ? MONTHS[+p[1]-1]+" "+(+p[2]) : (iso||""); };
 const pct = (v, dp=1) => (v>=0?"+":"−") + Math.abs(v*100).toFixed(dp) + "%";
 const pctPlain = (v, dp=1) => Math.abs(v*100).toFixed(dp) + "%";
@@ -223,7 +225,7 @@ function sparkline(curve, color){
 function lineChart(container, dates, seriesList, opts={}){
   const pointCount = Math.max(...seriesList.map(s=>s.values.length));
   if (pointCount < 2){
-    container.innerHTML = `<div class="emptychart">One data point so far (launched ${fmtDate(ARENA.run_date)}). The equity curve draws itself as the daily runs accumulate.</div>`;
+    container.innerHTML = `<div class="emptychart">One data point so far. The equity curve draws itself as the twice-daily runs accumulate.</div>`;
     return;
   }
   const W=760,H=300,mL=46,mR=90,mT=14,mB=26,iw=W-mL-mR,ih=H-mT-mB;
@@ -275,10 +277,10 @@ function renderArena(){
     </tr>`).join("");
   el.innerHTML=`
     <h2 class="viewtitle">The floor</h2>
-    <p class="viewsub">Five agents, five philosophies, one market. Each trades a simulated ${money(ARENA.initial_capital)} against real prices and revises its written principles from its own experience. Score = performance over each agent's <em>own</em> benchmark.</p>
-    <div class="metastrip"><span>Run <b>${ARENA.run_date||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per agent, simulated</span><span>Sorted by <b>alpha vs own benchmark</b></span></div>
+    <p class="viewsub">${capfirst(numword(AGENTS.length))} traders, ${numword(AGENTS.length)} philosophies, one market. Each trades a simulated ${money(ARENA.initial_capital)} against real prices and revises its written principles from its own experience. Score = performance over each trader's <em>own</em> benchmark.</p>
+    <div class="metastrip"><span>Run <b>${ARENA.run_date||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per trader, simulated</span><span>Sorted by <b>alpha vs own benchmark</b></span></div>
     <div class="card tablewrap"><table class="arena">
-      <thead><tr><th>Agent</th><th>Equity</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Rulebook</th><th>Last action</th></tr></thead>
+      <thead><tr><th>Trader</th><th>Equity</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Rulebook</th><th>Last action</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
   el.querySelectorAll("tr.rowlink").forEach(tr=>{ const go=()=>{ state.agent=tr.dataset.agent; setView("agent"); };
     tr.addEventListener("click",go); tr.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }}); });
@@ -361,7 +363,7 @@ function ordersHTML(a){
   const fillRows = fills.length ? `<div class="card tablewrap" style="margin-top:12px"><table class="pos"><thead><tr><th>When</th><th>Side</th><th>Symbol</th><th>Qty</th><th>Fill</th></tr></thead><tbody>${
     fills.map(f=>`<tr><td style="text-align:left">${esc(f.ts)}</td><td><span class="${f.side==="buy"?"delta-up":"delta-dn"}">${f.side.toUpperCase()}</span></td><td class="tick">${esc(f.symbol)}</td><td>${(+f.qty).toLocaleString("en-US",{maximumFractionDigits:4})}</td><td>${(+f.fill_price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr>`).join("")
   }</tbody></table></div>` : "";
-  return `<p class="viewsub" style="margin:2px 0 12px">Standing orders are executed mechanically by the engine at every tick — hard rules enforced as code, not promises.</p>${soRows}${fillRows}`;
+  return `<p class="viewsub" style="margin:2px 0 12px">Standing orders are executed mechanically by the engine at every tick — hard rules enforced as code.</p>${soRows}${fillRows}`;
 }
 function renderSystem(){
   const el=$("#view-system"); const S=ARENA.system||{};
@@ -372,7 +374,7 @@ function renderSystem(){
     <h2 class="viewtitle">System</h2>
     <p class="viewsub">Is everything working? Data freshness, every brain run with its real cost, every operation with its verdict — rejections included, because rejections are the constitution doing its job.</p>
     <div class="tiles">
-      <div class="tile"><div class="k">Last tick</div><div class="v" style="font-size:17px">${esc(S.last_tick||"—")}</div><div class="s">hourly, ${S.symbols_tracked||0} symbols</div></div>
+      <div class="tile"><div class="k">Last tick</div><div class="v" style="font-size:17px">${esc(S.last_tick||"—")}</div><div class="s">twice hourly, ${S.symbols_tracked||0} symbols</div></div>
       <div class="tile"><div class="k">Brain runs</div><div class="v">${(S.runs||[]).length}</div><div class="s">most recent shown below</div></div>
       <div class="tile"><div class="k">Total brain spend</div><div class="v">$${(S.total_cost_usd||0).toFixed(2)}</div><div class="s">all time, all agents</div></div>
       <div class="tile"><div class="k">Generated</div><div class="v" style="font-size:17px">${esc(ARENA.generated_at)}</div><div class="s">rebuilt every tick</div></div>
@@ -393,7 +395,7 @@ function renderCompare(){
   const cols=sel.map(a=>`<div class="card cmpcol"><h4>${agentAv(a,22)}${a.name}</h4><span class="atype">${esc(a.archetype)}</span><ul>${a.principles.filter(p=>p.status!=="retired").map(p=>`<li>${esc(p.statement)}</li>`).join("")}</ul></div>`).join("");
   el.innerHTML=`
     <h2 class="viewtitle">Different philosophies, same market</h2>
-    <p class="viewsub">Overlay any set of agents, indexed to 100 at launch. The divergence between the curves is the divergence between the rulebooks below them.</p>
+    <p class="viewsub">Overlay any set of traders, indexed to 100 at launch. The divergence between the curves is the divergence between the rulebooks below them.</p>
     <div class="switcher">${chips}</div>
     ${sel.length?`<div class="card chartcard"><div class="charttitle">Equity, indexed</div>${legendHTML(sel.map(a=>({name:a.name,color:a.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one agent.</p>`}
     ${stats}<div class="cmpgrid">${cols}</div>`;

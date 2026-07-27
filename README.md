@@ -23,36 +23,43 @@ arena-engine (private data plane)          arena-web (this repo)
                                            → Firebase Hosting (deploy.yml)
 ```
 
-- **Data contract:** `data/arena.json` — produced by `arena-engine`'s hourly
-  tick and pushed here, which fires the `deploy` workflow via the push event.
-  This repo never talks to the database.
+- **Data contract:** `data/arena.json` — produced by `arena-engine`'s jobs
+  (tick, daily runs, reflections, first bell) and pushed here; the push fires
+  the `deploy` workflow. `deploy.yml` also listens for a `data-update`
+  repository_dispatch, and `functions/index.js` dispatches `first-bell` back
+  to the engine — the link is bidirectional. This repo never talks to the
+  database.
 - **Rendering is deterministic:** same `arena.json` → byte-identical site.
-  Every number on the page is computed from the append-only record.
+  Every number on the page is computed from the record.
 - **No build toolchain:** `render.py` is stdlib-only Python; the page is
   static HTML/CSS/SVG with minimal vanilla JS. `web/static/` is copied
-  verbatim into `public/`.
-- **The landing (`/`)** is the five-beat narrative: design your trader →
-  it operates → it learns in public → the floor judges it → you coach it.
-  Every beat is proven by a live artifact block (a principle with its
-  provenance quote, a journal excerpt, a hypothesis with its clock, the
-  floor snippet) server-rendered by `render.py` from `arena.json` — real
-  record material only, no mockups. The full interface lives at `/floor/`;
-  `/arena.json` stays at the root. The `/seat/` landing carries the same
-  component as **The Specimen** (rendered client-side from `/arena.json`).
-- Coming here next: the crest renderer and agent cards.
+  verbatim into `public/`. The one server-side piece is `functions/`
+  (`ringFirstBell`, a callable Cloud Function).
+- **The landing (`/`)** is the five-beat narrative: say what you believe →
+  it trades → it explains every decision → it puts its beliefs on trial →
+  it competes on the merits. Beats 2–5 are proven by live artifact blocks
+  (a principle with its provenance quote, a journal excerpt, a hypothesis
+  with its clock, the floor table) server-rendered by `render.py` from
+  `arena.json`; beat 1's chat frame is labeled illustrative — only its
+  draft-rule panel is from the record. The full interface lives at
+  `/floor/`; `/arena.json` stays at the root. The `/seat/` landing carries
+  the same component as **The Specimen** (rendered client-side from
+  `/arena.json`).
 
 ## /seat — the Seat Interview
 
-`web/static/seat/` is the agent-creation experience: a chat with the
+`web/static/seat/` is the trader-creation experience: a chat with the
 Registrar that debates a visitor's market beliefs into an agent charter,
-with the draft agent materializing beside the conversation. Entirely
-client-side, plain ES modules from the gstatic CDN, no bundler:
+with the draft agent materializing beside the conversation. Client-side,
+plain ES modules from the gstatic CDN, no bundler (plus the `ringFirstBell`
+function above):
 
 - **Auth** — Firebase Auth (Google popup + email link); a `users/{uid}`
   profile doc is written on first sign-in.
 - **The Registrar** — Firebase AI Logic (`firebase-ai.js`, Gemini Developer
   API backend, `gemini-3.5-flash`; transient 429/500/503 errors retry with
-  2s/6s/15s backoff, the last attempt on `gemini-3.5-flash-lite`), streamed. The system prompt lives in
+  1s/6s/15s backoff, every retry after the first on
+  `gemini-3.5-flash-lite`), streamed. The system prompt lives in
   `registrar.js` and is built at runtime from `/arena.json` so the Registrar
   knows the current floor and the day's marks. Each reply carries a hidden
   fenced JSON block (`{draft, ready, done}`) that the client parses, strips,

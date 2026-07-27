@@ -215,9 +215,11 @@ def sparkline(curve, w=76, h=26, pad=3):
             f'<circle class="sparkdot" cx="{lx}" cy="{ly}" r="2"/></svg>')
 
 
-def floor_frame(data, top=5):
+def floor_frame(data, top=None):
+    """The whole floor, ranked; `top` trims only if the roster outgrows the frame."""
+    ranked = sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)
     rows = []
-    for a in sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)[:top]:
+    for a in (ranked[:top] if top else ranked):
         alpha = a.get("alpha", 0)
         cls, arrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
         rows.append(
@@ -227,7 +229,7 @@ def floor_frame(data, top=5):
             f'<td class="falpha"><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
             f'<span class="fbench">vs {esc(a["benchmark_label"])}</span></td></tr>')
     body = f'<table class="floortab">{"".join(rows)}</table>'
-    return frame(f'the arena · {esc(fmt_date(data.get("run_date", "")))}',
+    return frame(f'the floor · {esc(fmt_date(data.get("run_date", "")))}',
                  "alpha vs own benchmark", body)
 
 

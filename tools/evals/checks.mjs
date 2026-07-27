@@ -119,7 +119,7 @@ export function checkTurn(ctx, userRaw, raw) {
 
   // the first read: real prices only, pact present
   if (isTape) {
-    const pact = /I trade once per market day, at the bell/i;
+    const pact = /I trade at the bells, twice each market day/i;
     if (!pact.test(p)) issue(ctx, "soft", "pact-missing", "first read lacks the pact sentence");
     // numeric comparison: the tape prints "381.7", an agent may write "381.70"
     const tapeNums = new Set([...ctx.tape.matchAll(/\b\d+(?:\.\d+)?\b/g)].map((m) => Number(m[0]).toFixed(2)));

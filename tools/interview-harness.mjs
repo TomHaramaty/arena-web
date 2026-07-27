@@ -3,10 +3,11 @@
 // state machine as app.js (delta merge, wake-minimum authority, machine
 // turns). State persists across invocations via state.json.
 //
-//   node harness.mjs --init          start: seed [BEGIN] + OPENING
-//   node harness.mjs "answer text"   send one principal turn (auto-cascades
-//                                    [WAKE] after a valid handoff, [TAPE] after ready)
-//   node harness.mjs --status        print draft + validation state
+//   node tools/interview-harness.mjs --init          start: seed [BEGIN] + OPENING
+//   node tools/interview-harness.mjs "answer text"   send one principal turn (auto-cascades
+//                                                    [WAKE] after a valid handoff, [TAPE] after ready)
+//   node tools/interview-harness.mjs --status        print draft + validation state
+//   node tools/interview-harness.mjs --tape          send the [TAPE] turn manually
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import {
   buildSystemPrompt, buildTapeMessage, buildWakeMessage, validatePacket,

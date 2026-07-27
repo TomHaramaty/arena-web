@@ -4,8 +4,8 @@
 // card. Verify they own the application, mark the bell rung on the doc (the
 // card streams stages from it), and fire the engine's first-bell workflow via
 // repository_dispatch. The GitHub token lives in Secret Manager, never in the
-// browser. The hourly ingest + daily close bell remain the safety net, so a
-// failure here delays nothing beyond today.
+// browser. The hourly ingest + the twice-daily bells remain the safety net,
+// so a failure here delays nothing beyond the next slot.
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
