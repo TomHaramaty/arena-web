@@ -35,6 +35,36 @@ service cloud.firestore {
       // no client update/delete: the record is append-only from day one
     }
 
+    // The desk: one private thread per principal per trader. This is the
+    // conversation, not the record — it is never published, and the engine
+    // never reads it. Doc id is "<uid>_<traderId>".
+    match /desks/{deskId} {
+      allow read, delete: if request.auth != null
+        && deskId.split('_')[0] == request.auth.uid;
+      allow create, update: if request.auth != null
+        && deskId.split('_')[0] == request.auth.uid
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid', 'trader', 'messages', 'updatedAt'])
+        && request.resource.data.messages.size() <= 200;
+    }
+
+    // What the principal files: the one thing said at the desk that reaches
+    // the trader's work. Created by the principal, never edited or withdrawn;
+    // the engine (Admin SDK) stamps its id, ingests it, and writes back the
+    // disposition its next session gave it.
+    match /guidance/{gid} {
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'filed'
+        && request.resource.data.keys().hasOnly(['uid', 'trader', 'text', 'status', 'createdAt'])
+        && request.resource.data.trader is string
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 4000;
+      // no client update/delete: filed is filed
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

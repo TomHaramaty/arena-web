@@ -7,7 +7,7 @@ whole build. Deterministic: same arena.json → byte-identical output.
                         server-rendered from the record — zero JS)
   public/floor/       ← web/template.html  (the full interface, data injected)
   public/arena.json   ← data/arena.json    (the record, verbatim)
-  public/*            ← web/static/*       (copied verbatim; includes /seat/)
+  public/*            ← web/static/*       (copied verbatim; /seat/, /desk/)
 
 Usage: python3 render.py
 """

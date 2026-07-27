@@ -1,0 +1,881 @@
+// Open Outcry — the desk: the principal's private room with their own trader.
+// One page, four states: signed out → waiting for the first bell → the desk →
+// (several traders, one principal). Runs client-side: Firebase Auth (identity),
+// Firestore (the private thread and what gets filed), Firebase AI Logic (the
+// trader speaking), /arena.json (everything it is allowed to know).
+//
+// The law of this room lives in trader.js: talk is private, filing is the one
+// act that reaches the record, and nothing said here moves the book.
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
+  sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, signOut,
+  connectAuthEmulator, signInAnonymously,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, addDoc, collection, query, where,
+  getDocs, onSnapshot, serverTimestamp, connectFirestoreEmulator,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
+  getAI, getGenerativeModel, GoogleAIBackend,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
+import {
+  getFunctions, httpsCallable,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
+import {
+  buildSystemPrompt, arrivalPrompt, stripMark, wantsFiling, withRetries,
+  nextFirstBell, fmtBell, originQuote, originDate, citationCount, daysUntil,
+} from "./trader.js";
+import { avatar, injectAvatarCSS, normalizeAvatar } from "../avatar.js";
+
+const app = initializeApp({
+  projectId: "open-outcry",
+  appId: "1:56794274079:web:1fe7981df1430587e2782a",
+  apiKey: "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo",
+  authDomain: "open-outcry.firebaseapp.com",
+  storageBucket: "open-outcry.firebasestorage.app",
+  messagingSenderId: "56794274079",
+});
+const auth = getAuth(app);
+const db = getFirestore(app);
+const IS_LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
+if (IS_LOCAL) {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
+  connectFirestoreEmulator(db, "127.0.0.1", 8080);
+}
+const ai = getAI(app, { backend: new GoogleAIBackend() });
+const fns = getFunctions(app, "us-central1");
+const MODEL_ID = "gemini-3.5-flash";
+const FALLBACK_MODEL_ID = "gemini-3.5-flash-lite";
+
+const CONTEXT_TURNS = 24;   // how much of the conversation the trader carries
+const THREAD_CAP = 200;     // what the room keeps
+const DAY_TURNS = 80;       // one principal's model calls per day, per browser
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const md = (s) => esc(s)
+  .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
+  .replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:)]|$)/gm, "$1<em>$2</em>")
+  .replace(/`([^`\n]+)`/g, "<code>$1</code>");
+const money = (v) => "$" + Number(v || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = (v) => (v >= 0 ? "+" : "−") + Math.abs(v * 100).toFixed(2) + "%";
+const dayLabel = (iso) => {
+  const d = new Date(iso + "T12:00:00Z");
+  return isNaN(d) ? iso : d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+};
+// journal entries carry a date, not a time: the close bell is when they land
+const entryTime = (iso) => new Date(iso + "T20:40:00Z").getTime();
+
+const state = {
+  user: null,
+  floor: null,
+  apps: [],          // every application this principal has filed
+  traders: [],       // [{id, app}] — seated, in floor order
+  traderId: null,
+  agent: null,       // the arena.json entry for the selected trader
+  thread: [],        // [{role:'trader'|'you'|'sys', text, ts, basis?, gid?}]
+  guidance: [],      // live docs from the guidance collection, this trader
+  model: null, fallback: null,
+  busy: false,
+  offer: null,       // the trader has offered to file the last message
+  unsubGuidance: null,
+};
+
+const VIEWS = ["loading", "signin", "wait", "desk"];
+function show(view) {
+  for (const v of VIEWS) $("#view-" + v).hidden = v !== view;
+  followTail = true;
+  if (view === "desk" && $("#thread").firstElementChild) { scrollTail(false); updateTailBtn(); }
+  else window.scrollTo({ top: 0 });
+}
+
+/* ---------------- the record ---------------- */
+async function loadFloor() {
+  try {
+    const r = await fetch("/arena.json", { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    state.floor = await r.json();
+  } catch { state.floor = null; }
+}
+const agentOf = (id) => (state.floor ? (state.floor.agents || []).find((a) => a.id === id) : null);
+const traderName = () => (state.agent && state.agent.name) || "your trader";
+const packetOf = (t) => (t && t.app && t.app.data && t.app.data.packet) || {};
+const addressOf = () => packetOf(state.traders.find((t) => t.id === state.traderId)).address || "";
+const faceOf = (a) => normalizeAvatar((a && a.avatar) || {});
+
+/* ---------------- auth ---------------- */
+const EMAIL_KEY = "oo.seat.emailForSignIn";
+
+function signinErrText(code) {
+  if (code === "auth/invalid-action-code" || code === "auth/expired-action-code")
+    return "That sign-in link has expired or was already used — send a fresh one below.";
+  if (code === "auth/invalid-email")
+    return "That doesn't match the email the link was sent to. Check it and try again.";
+  return "That sign-in link did not work — send a fresh one below. (" + code + ")";
+}
+
+/* A click-through from an email sign-in link may land on a device that never
+   stashed the address, so the confirm-and-retry happens in the page. */
+async function completeEmailLink() {
+  if (!isSignInWithEmailLink(auth, location.href)) return;
+  show("signin");
+  $("#signinbox").hidden = true;
+  const box = $("#finishingbox"), statusEl = $("#finishingstatus");
+  const form = $("#confirmemailform"), input = $("#confirmemailinput"), errEl = $("#finishingerr");
+  box.hidden = false;
+
+  const attempt = async (email) => {
+    statusEl.hidden = false; form.hidden = true; errEl.hidden = true;
+    try {
+      await signInWithEmailLink(auth, email, location.href);
+      localStorage.removeItem(EMAIL_KEY);
+      history.replaceState(null, "", location.pathname + location.search);
+      return true;
+    } catch (e) { return e.code || String(e); }
+  };
+
+  return new Promise((resolve) => {
+    const done = () => { box.hidden = true; $("#signinbox").hidden = false; resolve(); };
+    const ask = (code) => {
+      statusEl.hidden = true; form.hidden = false;
+      if (code) {
+        errEl.hidden = false;
+        errEl.innerHTML = esc(signinErrText(code)) +
+          ` <button type="button" class="plain errretry" id="signin-startover">Start over</button>`;
+        $("#signin-startover").addEventListener("click", () => {
+          history.replaceState(null, "", location.pathname + location.search);
+          done();
+        });
+      }
+      input.focus();
+    };
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const v = input.value.trim();
+      if (!v) return;
+      const r = await attempt(v);
+      if (r === true) done(); else ask(r);
+    });
+    (async () => {
+      const stored = localStorage.getItem(EMAIL_KEY);
+      const r = stored ? await attempt(stored) : "need-email";
+      if (r === true) done(); else ask(r === "need-email" ? null : r);
+    })();
+  });
+}
+
+async function ensureUserDoc(user) {
+  try {
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      await setDoc(ref, {
+        displayName: user.displayName || null,
+        email: user.email || null,
+        createdAt: serverTimestamp(),
+      });
+    }
+  } catch (e) { console.warn("users doc:", e); }
+}
+
+function renderAuthChip() {
+  const chip = $("#authchip");
+  if (!state.user) { chip.hidden = true; chip.innerHTML = ""; return; }
+  chip.hidden = false;
+  chip.innerHTML = `${esc(state.user.email || state.user.displayName || "signed in")} · <a href="#" id="signoutlink">sign out</a>`;
+  $("#signoutlink").addEventListener("click", async (e) => {
+    e.preventDefault();
+    await signOut(auth);
+    location.reload();
+  });
+}
+
+/* ---------------- which traders are this principal's ---------------- */
+async function loadApplications(uid) {
+  try {
+    const snaps = await getDocs(query(collection(db, "applications"), where("uid", "==", uid)));
+    return snaps.docs.map((d) => ({ id: d.id, data: d.data() }));
+  } catch (e) { console.warn("applications:", e); return []; }
+}
+
+/* ---------------- the private thread ---------------- */
+const threadRef = () => doc(db, "desks", state.user.uid + "_" + state.traderId);
+
+async function loadThread() {
+  state.thread = [];
+  try {
+    const snap = await getDoc(threadRef());
+    if (snap.exists()) state.thread = (snap.data().messages || []).filter((m) => m && m.text);
+  } catch (e) { console.warn("thread:", e); }
+}
+
+let saveTimer = null;
+function saveThread() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try {
+      await setDoc(threadRef(), {
+        uid: state.user.uid,
+        trader: state.traderId,
+        messages: state.thread.slice(-THREAD_CAP),
+        updatedAt: serverTimestamp(),
+      });
+    } catch (e) { console.warn("thread save:", e); }
+  }, 400);
+}
+
+/* ---------------- what has been filed ---------------- */
+function watchGuidance() {
+  if (state.unsubGuidance) state.unsubGuidance();
+  // one equality filter, then filtered here: no composite index to deploy
+  state.unsubGuidance = onSnapshot(
+    query(collection(db, "guidance"), where("uid", "==", state.user.uid)),
+    (snaps) => {
+      state.guidance = snaps.docs.map((d) => ({ id: d.id, ...d.data() }))
+        .filter((g) => g.trader === state.traderId);
+      renderThread();
+    },
+    (e) => console.warn("guidance listener:", e));
+}
+
+const PER_DAY = 3;   // what the engine will take from one desk in a day
+const isToday = (ts) => ts && ts.seconds &&
+  new Date(ts.seconds * 1000).toDateString() === new Date().toDateString();
+
+async function fileMessage(idx) {
+  const m = state.thread[idx];
+  if (!m || m.role !== "you") return;
+  const g = m.gid ? guidanceOf(m.gid) : null;
+  if (m.gid && !(g && g.status === "rejected")) return;   // filed is filed
+  const today = state.guidance.filter(
+    (x) => x.status !== "rejected" && isToday(x.createdAt)).length;
+  if (today >= PER_DAY) {
+    showError(`${traderName()} takes ${PER_DAY} notes a day — this one can go in tomorrow.`);
+    return;
+  }
+  try {
+    const ref = await addDoc(collection(db, "guidance"), {
+      uid: state.user.uid,
+      trader: state.traderId,
+      text: m.text.slice(0, 4000),
+      status: "filed",
+      createdAt: serverTimestamp(),
+    });
+    m.gid = ref.id;
+    state.offer = null;
+    saveThread();
+    renderThread();
+  } catch (e) {
+    console.error(e);
+    showError("That didn't reach the record — try filing it again. (" + (e.message || e) + ")");
+  }
+}
+const guidanceOf = (gid) => state.guidance.find((g) => g.id === gid) || null;
+
+function showError(msg) {
+  const el = $("#chaterr");
+  el.hidden = false;
+  el.textContent = msg;
+}
+
+/* ---------------- the standing panel ---------------- */
+function bookHTML(a) {
+  const rows = [
+    ["equity", money(a.equity)],
+    ["since launch", `<span class="${a.ret >= 0 ? "up" : "dn"}">${pct(a.ret)}</span>`],
+    [`vs ${esc(a.benchmark_label || "benchmark")}`, `<span class="${a.alpha >= 0 ? "up" : "dn"}">${pct(a.alpha)}</span>`],
+    ["cash", (a.cash_pct * 100).toFixed(0) + "%"],
+  ].map(([k, v]) => `<div class="prow"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+  const pos = (a.positions || []).map((p) => `
+    <div class="ppos">
+      <div class="prow"><span class="psym">${esc(p.symbol)}</span>
+        <span class="v ${p.pl >= 0 ? "up" : "dn"}">${pct(p.pl)}</span></div>
+      <div class="prow"><span class="k">${(p.weight * 100).toFixed(1)}% of the book</span>
+        <span class="v">${money(p.value)}</span></div>
+      ${p.thesis ? `<p class="pthesis">${esc(p.thesis)}</p>` : ""}
+    </div>`).join("");
+  return rows + (pos || `<p class="pempty" style="margin-top:10px">No positions open — the book is all cash.</p>`);
+}
+
+function wordsHTML(a) {
+  const ps = (a.principles || []).filter((p) => p.status !== "retired");
+  if (!ps.length) return `<p class="pempty">No rules yet.</p>`;
+  const n = (a.journal || []).length;
+  return ps.map((p) => {
+    const q = originQuote(p.origin), d = originDate(p.origin);
+    const c = citationCount(a, p.id);
+    return `<div class="pword">
+      <div class="ptags"><span class="tag">${esc(p.id)}</span>
+        <span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "heuristic")}</span></div>
+      <div class="pstmt">${esc(p.statement)}</div>
+      ${q ? `<div class="pquote">“${esc(q)}” — you${d ? ", " + dayLabel(d) : ""}</div>` : ""}
+      <div class="pwork">${c ? `it drove ${c} of ${n} sessions` : n ? `not yet cited in a session` : `waiting for its first session`}</div>
+    </div>`;
+  }).join("");
+}
+
+function clocksHTML(a) {
+  const out = [];
+  for (const h of a.hypotheses || []) {
+    if (h.status === "falsified" || h.status === "promoted") continue;
+    const dd = h.expiry ? daysUntil(h.expiry) : null;
+    out.push(`<div class="pclock">
+      <span class="tag">${esc(h.id)}</span> ${esc(h.statement)}
+      ${h.falsifier ? `<span class="pwhen">falsified if ${esc(h.falsifier)}</span>` : ""}
+      ${h.expiry ? `<span class="pwhen">${dd != null && dd >= 0 ? `${dd} days left · expires ${dayLabel(h.expiry)}` : `expired ${dayLabel(h.expiry)}`} · ${h.ev_for} for, ${h.ev_against} against</span>` : ""}
+    </div>`);
+  }
+  for (const p of a.positions || []) {
+    if (!p.review_by) continue;
+    const dd = daysUntil(p.review_by);
+    out.push(`<div class="pclock"><span class="tag">${esc(p.symbol)}</span> thesis review
+      <span class="pwhen">${dd != null && dd >= 0 ? `in ${dd} days` : "overdue"} · ${dayLabel(p.review_by)}</span></div>`);
+  }
+  out.push(`<div class="pclock">Next session
+    <span class="pwhen">${esc(fmtBell(nextFirstBell()))}</span></div>`);
+  return out.join("");
+}
+
+function charterHTML(a) {
+  const c = a.charter || {};
+  const li = (xs) => `<ul>${(xs || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  return `<div class="pcharter">
+    ${c.constitution ? `<p class="label" style="margin-top:4px">what binds it</p>${li(c.constitution)}` : ""}
+    ${c.parameters ? li(c.parameters) : ""}
+    ${(c.amendments || []).map((am) => `<div class="pamend"><b>${esc(am.date)} — ${esc(am.title)}</b><br>${esc(am.text)}</div>`).join("")}
+  </div>`;
+}
+
+function renderPanel() {
+  const a = state.agent;
+  if (!a) return;
+  const nSessions = (a.journal || []).length;
+  const nRules = (a.principles || []).filter((p) => p.status !== "retired").length;
+  const nTests = (a.hypotheses || []).filter((h) => h.status === "testing").length;
+  $("#paneltitle").textContent = "the book · " + a.name;
+  $("#panelbody").innerHTML = `
+    <div class="pmast">
+      ${avatar({ ...faceOf(a), name: a.name }, 64, { animate: true })}
+      <div class="pname">${esc(a.name)}</div>
+      <div class="parch">${esc(a.archetype || "")}</div>
+      ${a.charter && a.charter.credo ? `<p class="pcredo">${esc(a.charter.credo)}</p>` : ""}
+      <p class="pservice">seated ${dayLabel(a.launched)} · ${nSessions} ${nSessions === 1 ? "session" : "sessions"} · ${nRules} rules · ${nTests} in test</p>
+    </div>
+    <div class="psec"><span class="label">the book</span>${bookHTML(a)}</div>
+    <div class="psec"><span class="label">your words at work</span>${wordsHTML(a)}</div>
+    <div class="psec"><span class="label">on the clock</span>${clocksHTML(a)}</div>
+    <div class="psec"><span class="label">the charter</span>
+      <details class="pmore"><summary>what it may and may not do</summary>${charterHTML(a)}</details>
+      <p class="footnote" style="margin-top:6px"><a href="/floor/#${esc(a.id)}">Read the whole record on the floor →</a></p>
+    </div>`;
+}
+
+/* ---------------- the thread ---------------- */
+function entryCard(e, a) {
+  const cites = [...new Set(((e.rationale || "") + " " + (e.actions || "")).match(/\b[PH]\d+\b/g) || [])];
+  const first = (e.rationale || "").split(/\n\s*\n/)[0] || "";
+  return `<div class="entry">
+    <div class="ehead"><span>from the entry of ${esc(dayLabel(e.date))}</span>
+      <span class="etype ${e.type === "trade" ? "trade" : ""}">${esc(e.type)}</span></div>
+    <p class="etitle">${esc(e.title)}</p>
+    ${first ? `<p class="esum">${md(first.length > 420 ? first.slice(0, 419) + "…" : first)}</p>` : ""}
+    ${cites.length ? `<div class="ecites">${cites.map((c) => `<span class="cite">${esc(c)}</span>`).join("")}</div>` : ""}
+    <a class="elink" href="/floor/#${esc(a.id)}">read the whole entry →</a>
+  </div>`;
+}
+
+function charteredCard(a, packet) {
+  const fr = packet.first_read || packet.first_words || "";
+  return `<div class="entry">
+    <div class="ehead"><span>chartered ${esc(dayLabel(a.launched))}</span></div>
+    <p class="etitle">${esc(a.name)} took its seat — ${(a.principles || []).length} rules and ${(a.hypotheses || []).length} test in your words.</p>
+    ${fr ? `<p class="esum">${md(fr.length > 600 ? fr.slice(0, 599) + "…" : fr)}</p>` : ""}
+  </div>`;
+}
+
+function answerCard(g) {
+  const label = {
+    adopted: "adopted", converted: "made testable", declined: "declined, with reasons",
+    refused: "refused — the charter forbids it",
+  }[g.disposition] || g.disposition;
+  return `<div class="answer">
+    <div class="ahead">${esc(g.cid || "filed")} · ${esc(label)}</div>
+    <p class="aquote">“${esc(g.text || "")}”</p>
+    ${g.answer ? `<p class="atext">${md(g.answer)}</p>` : ""}
+  </div>`;
+}
+
+function msgHTML(m, i) {
+  if (m.role === "trader") {
+    return `<div class="msg trader hasface">
+      <div class="portrait" aria-hidden="true">${avatar({ ...faceOf(state.agent), name: traderName() }, 42, { animate: true })}</div>
+      <div class="bubble"><div class="who">${esc(traderName())}</div><div class="text">${md(m.text)}</div></div>
+    </div>`;
+  }
+  const g = m.gid ? guidanceOf(m.gid) : null;
+  let foot = "";
+  if (!m.gid) {
+    foot = `<div class="fileline"><button class="filebtn" data-file="${i}">file this for the next session →</button></div>`;
+  } else if (g && g.status === "rejected") {
+    foot = `<div class="fileline">not filed${g.reason ? " — " + esc(g.reason) : ""}
+      <button class="filebtn" data-file="${i}">try again →</button></div>`;
+  } else if (g && g.disposition) {
+    foot = `<div class="fileline">${esc(g.cid || "filed")} · answered on the record</div>`;
+  } else {
+    foot = `<div class="fileline">${g && g.cid ? esc(g.cid) + " · on the record" : "filed"} · ${esc(traderName())} answers this at ${esc(fmtBell(nextFirstBell()))}</div>`;
+  }
+  return `<div class="msg me"><div class="who">you</div><div class="text">${md(m.text)}</div>${foot}</div>`;
+}
+
+/** Everything that has happened, in one column, oldest first. */
+function threadItems() {
+  const a = state.agent, out = [];
+  const packet = packetOf(state.traders.find((t) => t.id === state.traderId));
+  if (a.launched) out.push({ t: entryTime(a.launched) - 1, html: charteredCard(a, packet) });
+  for (const e of a.journal || []) out.push({ t: entryTime(e.date), html: entryCard(e, a) });
+  state.thread.forEach((m, i) => {
+    if (m.role === "sys") return;
+    out.push({ t: m.ts || 0, html: msgHTML(m, i) });
+  });
+  for (const g of state.guidance) {
+    if (!g.disposition) continue;
+    const t = (g.answeredAt && g.answeredAt.seconds ? g.answeredAt.seconds * 1000 : Date.now());
+    out.push({ t, html: answerCard(g) });
+  }
+  return out.sort((x, y) => x.t - y.t);
+}
+
+function renderThread() {
+  const el = $("#thread");
+  el.innerHTML = threadItems().map((x) => x.html).join("");
+  if (state.offer != null) {
+    const box = document.createElement("div");
+    box.className = "fileoffer";
+    box.innerHTML = `<button class="yes" type="button" id="offer-yes">File it for the next session</button>
+                     <button class="no" type="button" id="offer-no">Just talking</button>`;
+    el.appendChild(box);
+    $("#offer-yes").addEventListener("click", () => fileMessage(state.offer));
+    $("#offer-no").addEventListener("click", () => { state.offer = null; renderThread(); });
+  }
+  el.querySelectorAll("[data-file]").forEach((b) =>
+    b.addEventListener("click", () => fileMessage(Number(b.dataset.file))));
+  tail(false);
+}
+
+/* ---------------- the trader speaking ---------------- */
+function buildModel() {
+  const sys = buildSystemPrompt({
+    agent: state.agent,
+    guidance: state.guidance.map((g) => ({
+      cid: g.cid, text: g.text, disposition: g.disposition, answer: g.answer,
+      date: g.createdAt && g.createdAt.seconds
+        ? new Date(g.createdAt.seconds * 1000).toISOString().slice(0, 10) : "",
+    })),
+    address: addressOf(),
+    today: (state.floor && state.floor.run_date) || "",
+  });
+  const mk = (id) => getGenerativeModel(ai, {
+    model: id,
+    systemInstruction: sys,
+    generationConfig: { temperature: 0.85, maxOutputTokens: 1600 },
+  });
+  state.model = mk(MODEL_ID);
+  state.fallback = mk(FALLBACK_MODEL_ID);
+}
+
+function setBusy(b) {
+  state.busy = b;
+  $("#composer").dataset.busy = String(b);
+  $("#send").disabled = b;
+  $("#input").disabled = b;
+}
+
+function dayBudgetSpent() {
+  const key = "oo.desk.turns." + new Date().toISOString().slice(0, 10);
+  const n = Number(localStorage.getItem(key) || 0);
+  localStorage.setItem(key, String(n + 1));
+  return n + 1 > DAY_TURNS;
+}
+
+async function streamOnce(model, contents, textEl) {
+  let raw = "";
+  const result = await model.generateContentStream({ contents });
+  for await (const chunk of result.stream) {
+    raw += chunk.text();
+    textEl.innerHTML = md(stripMark(raw));
+  }
+  if (!raw.trim()) throw new Error("[503] empty reply");
+  return raw;
+}
+
+/** One turn: the trader answers whatever is at the end of the thread. */
+async function turn() {
+  if (dayBudgetSpent()) {
+    showError(`${traderName()} has done a lot of talking today — pick this up tomorrow, or read the record on the floor.`);
+    return;
+  }
+  setBusy(true);
+  $("#chaterr").hidden = true;
+  const bubble = document.createElement("div");
+  bubble.className = "msg trader hasface";
+  bubble.innerHTML = `<div class="portrait" aria-hidden="true">${avatar({ ...faceOf(state.agent), name: traderName() }, 42, { animate: true })}</div>
+    <div class="bubble"><div class="who">${esc(traderName())}</div><div class="text"><span class="dwait">thinking…</span></div></div>`;
+  $("#thread").appendChild(bubble);
+  const textEl = bubble.querySelector(".text");
+  tail(false);
+
+  const contents = state.thread.slice(-CONTEXT_TURNS).map((m) => ({
+    role: m.role === "trader" ? "model" : "user",
+    parts: [{ text: m.text }],
+  }));
+  let raw;
+  try {
+    raw = await withRetries(
+      (attempt) => streamOnce(attempt >= 1 ? state.fallback : state.model, contents, textEl),
+      { onRetryWait: () => { textEl.innerHTML = `<span class="dwait">busy — retrying…</span>`; } });
+  } catch (e) {
+    console.error(e);
+    bubble.remove();
+    setBusy(false);
+    showError(`${traderName()} can't get to its desk just now — try again in a moment.`);
+    return;
+  }
+  const text = stripMark(raw);
+  state.thread.push({ role: "trader", text, ts: Date.now() });
+  // the trader may offer to put the principal's last words in front of its next
+  // session; the marker never renders, and only their own message can be filed
+  const lastYou = [...state.thread].reverse().findIndex((m) => m.role === "you");
+  state.offer = wantsFiling(raw) && lastYou >= 0
+    ? state.thread.length - 1 - lastYou : null;
+  if (state.offer != null && state.thread[state.offer].gid) state.offer = null;
+  saveThread();
+  bubble.remove();
+  renderThread();
+  setBusy(false);
+  $("#input").focus();
+}
+
+/** The trader speaks first when something real has happened since last time. */
+async function maybeGreet() {
+  const a = state.agent;
+  const newest = (a.journal || [])[0];
+  const basis = newest ? "entry:" + newest.date : a.launched ? "seat:" + a.launched : "";
+  if (!basis) return;
+  if (state.thread.some((m) => m.basis === basis)) return;
+  // don't talk over a live conversation: only greet on a fresh arrival
+  const last = state.thread[state.thread.length - 1];
+  if (last && last.role === "you") return;
+
+  const line = newest
+    ? `your entry of ${newest.date} — "${newest.title}"`
+    : `your charter, countersigned ${a.launched}`;
+  const first = !state.thread.some((m) => m.role !== "sys");
+  state.thread.push({ role: "sys", text: arrivalPrompt(line, { first }), ts: Date.now() });
+  await turn();
+  const t = state.thread[state.thread.length - 1];
+  if (t && t.role === "trader") { t.basis = basis; saveThread(); }
+}
+
+/* ---------------- the waiting room ---------------- */
+const BELL_ORDER = ["ringing", "seating", "first-session", "done"];
+function bellSteps(name) {
+  return [
+    { key: "ringing", label: "Ringing the opening bell" },
+    { key: "seating", label: `Taking ${name}'s seat on the floor` },
+    { key: "first-session", label: "Reading today's market and writing its first entry" },
+    { key: "done", label: "First entry is live" },
+  ];
+}
+
+function renderWait(appDoc) {
+  const d = appDoc ? appDoc.data : null;
+  const packet = (d && d.packet) || {};
+  const name = packet.name || "your trader";
+  const face = $("#statusface");
+  face.innerHTML = packet.avatar
+    ? avatar({ ...normalizeAvatar(packet.avatar), name }, 56, { animate: true }) : "";
+  $("#statusrun").innerHTML = "";
+  $("#statusbell").textContent = "";
+
+  if (!d) {
+    $("#statusword").textContent = "No trader yet";
+    $("#statusdetail").innerHTML = "You haven't chartered a trader yet. The interview takes about fifteen minutes, and what you say in it becomes its rulebook.";
+    $("#statuslinks").innerHTML = `<a href="/seat/">Take a seat →</a>`;
+    return;
+  }
+  if (d.status === "rejected") {
+    $("#statusword").textContent = "Not seated";
+    $("#statusdetail").innerHTML = `The Registrar could not seat <b>${esc(name)}</b>.` +
+      ((d.reasons || []).length ? `<ul>${d.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>` : "");
+    $("#statuslinks").innerHTML = `<a href="/seat/">Sit the interview again →</a>`;
+    return;
+  }
+  $("#statusword").textContent = "Countersigned";
+  const fr = packet.first_read;
+  $("#statusdetail").innerHTML =
+    `<b>${esc(name)}</b> is chartered. Its first session writes the first entry on its record — after that, this page is where it reports to you.` +
+    (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
+  const stage = d.bell && d.bell.stage;
+  if (!stage || stage === "failed") {
+    $("#statusbell").textContent = "Next bell " + fmtBell(nextFirstBell());
+    $("#statusrun").innerHTML =
+      (stage === "failed"
+        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next bell regardless. You can try again now.</p>` : "") +
+      `<button class="primary" id="btn-bell">Run the first session</button>
+       <p class="bellnote">A few minutes, live — you'll watch each step below as it happens.</p>`;
+    $("#btn-bell").addEventListener("click", () => ringBell(appDoc, name));
+  } else {
+    const ci = BELL_ORDER.indexOf(stage), isDone = stage === "done";
+    $("#statusrun").innerHTML = `<ol class="bellsteps">${bellSteps(esc(name)).map((s, i) => {
+      const st = (isDone || i < ci) ? "done" : i === ci ? "active" : "pending";
+      return `<li class="bellstep ${st}"><span class="mk"></span><span class="lbl">${s.label}</span></li>`;
+    }).join("")}</ol>` +
+      (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes — you can leave this page and come back.</p>`);
+  }
+  $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
+}
+
+async function ringBell(appDoc, name) {
+  const btn = $("#btn-bell");
+  if (btn) { btn.disabled = true; btn.textContent = "The bell is rung…"; }
+  try {
+    await httpsCallable(fns, "ringFirstBell")({ appId: appDoc.id });
+  } catch (e) {
+    console.error(e);
+    if (btn) { btn.disabled = false; btn.textContent = "Run the first session"; }
+    const p = document.createElement("p");
+    p.className = "err";
+    p.textContent = "That didn't go through — try again. (" + (e.message || e) + ")";
+    $("#statusrun").appendChild(p);
+  }
+}
+
+function watchApplication(id) {
+  onSnapshot(doc(db, "applications", id), async (snap) => {
+    if (!snap.exists()) return;
+    const d = snap.data();
+    const seatedNow = d.status === "seated" && d.agent_id && agentOf(d.agent_id);
+    if (seatedNow) { await loadFloor(); await openPrincipal(); return; }
+    renderWait({ id, data: d });
+  }, (e) => console.warn("application listener:", e));
+}
+
+/* ---------------- several traders, one principal ---------------- */
+function renderSwitcher() {
+  const el = $("#switcher");
+  if (state.traders.length < 2) { el.hidden = true; el.innerHTML = ""; return; }
+  el.hidden = false;
+  el.innerHTML = state.traders.map((t) => {
+    const a = agentOf(t.id);
+    if (!a) return "";
+    return `<button class="swface" type="button" data-t="${esc(a.id)}"
+      aria-current="${a.id === state.traderId}">
+      ${avatar({ ...faceOf(a), name: a.name }, 28)}
+      <span class="swname">${esc(a.name)}</span>
+      <span class="swret ${a.ret >= 0 ? "up" : "dn"}">${pct(a.ret)}</span></button>`;
+  }).join("");
+  el.querySelectorAll("[data-t]").forEach((b) =>
+    b.addEventListener("click", () => selectTrader(b.dataset.t)));
+}
+
+async function selectTrader(id) {
+  if (id === state.traderId) return;
+  state.traderId = id;
+  state.agent = agentOf(id);
+  history.replaceState(null, "", location.pathname + "?t=" + encodeURIComponent(id));
+  await openDesk();
+}
+
+async function openDesk() {
+  document.title = `${state.agent.name} — Open Outcry`;
+  state.offer = null;
+  state.guidance = [];   // the new trader's notes arrive with its own listener
+  $("#topline").textContent = "the desk";
+  $("#composernote").innerHTML =
+    `Private — only what you file goes on the record. <b>${esc(state.agent.name)}</b> reads what you file before its next session, answers it there, and may overrule you.`;
+  $("#input").placeholder = `Say something to ${state.agent.name}…`;
+  renderSwitcher();
+  renderPanel();
+  await loadThread();
+  watchGuidance();
+  renderThread();
+  show("desk");
+  buildModel();
+  await maybeGreet();
+}
+
+/** Route the signed-in principal: the desk if anything is seated, else the
+    waiting room (or the invitation, if they have never sat an interview). */
+async function openPrincipal() {
+  state.apps = await loadApplications(state.user.uid);
+  state.traders = state.apps
+    .filter((a) => a.data.status === "seated" && a.data.agent_id && agentOf(a.data.agent_id))
+    .map((a) => ({ id: a.data.agent_id, app: a }));
+
+  if (!state.traders.length) {
+    const pending = state.apps.find((a) => a.data.status !== "seated") || null;
+    renderWait(pending);
+    show("wait");
+    if (pending) watchApplication(pending.id);
+    return;
+  }
+  const want = new URLSearchParams(location.search).get("t");
+  const picked = state.traders.find((t) => t.id === want) || state.traders[0];
+  state.traderId = picked.id;
+  state.agent = agentOf(picked.id);
+  await openDesk();
+}
+
+/* ---------------- following the live edge (the seat's controller) ---------------- */
+const TAIL_SLACK = 72;
+const TAIL_GAP = 16;
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)");
+let followTail = true;
+
+function footHeight() {
+  let foot = 0;
+  const under = (el) => Math.round(window.innerHeight - el.getBoundingClientRect().top);
+  const sheet = $("#panelcol");
+  if (sheet && getComputedStyle(sheet).position === "fixed") foot = under(sheet);
+  for (const el of [$("#footbar")]) {
+    if (!el || el.hidden || getComputedStyle(el).position !== "sticky") continue;
+    foot = Math.max(foot, under(el));
+  }
+  return Math.max(0, Math.min(foot, window.innerHeight));
+}
+function tailGap() {
+  const last = $("#thread").lastElementChild;
+  if (!last) return 0;
+  return Math.round(last.getBoundingClientRect().bottom -
+    (window.innerHeight - footHeight() - TAIL_GAP));
+}
+const atTail = () => tailGap() <= TAIL_SLACK;
+function scrollTail(smooth) {
+  const d = tailGap();
+  if (d <= 0) return;
+  window.scrollBy({ top: d, behavior: smooth && !REDUCED.matches ? "smooth" : "auto" });
+}
+function tail(smooth) {
+  if (followTail) scrollTail(smooth);
+  updateTailBtn();
+}
+function updateTailBtn() {
+  const btn = $("#btn-tail");
+  if (!btn) return;
+  document.documentElement.style.setProperty("--foot", footHeight() + "px");
+  btn.hidden = $("#view-desk").hidden || followTail || tailGap() <= TAIL_SLACK;
+}
+function installScroll() {
+  let queued = false;
+  const onGesture = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; followTail = atTail(); updateTailBtn(); });
+  };
+  const SCROLL_KEYS = ["PageUp", "PageDown", "Home", "End", "ArrowUp", "ArrowDown", " "];
+  addEventListener("wheel", onGesture, { passive: true });
+  addEventListener("touchmove", onGesture, { passive: true });
+  addEventListener("keydown", (e) => {
+    if (e.target !== $("#input") && SCROLL_KEYS.includes(e.key)) onGesture();
+  });
+  addEventListener("scroll", () => {
+    if (!followTail && atTail()) followTail = true;
+    updateTailBtn();
+  }, { passive: true });
+  addEventListener("resize", () => tail(false), { passive: true });
+  const ro = new ResizeObserver(() => tail(false));
+  ro.observe($("#thread"));
+  ro.observe($("#footbar"));
+  $("#btn-tail").addEventListener("click", () => {
+    followTail = true;
+    scrollTail(true);
+    updateTailBtn();
+    $("#input").focus();
+  });
+}
+
+/* ---------------- boot ---------------- */
+function wire() {
+  $("#btn-google").addEventListener("click", async () => {
+    $("#signinerr").hidden = true;
+    try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+    catch (e) {
+      if (e.code === "auth/popup-closed-by-user") return;
+      $("#signinerr").hidden = false;
+      $("#signinerr").textContent = "Sign-in failed. (" + e.code + ")";
+    }
+  });
+  $("#emailform").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = $("#emailinput").value.trim();
+    if (!email) return;
+    try {
+      await sendSignInLinkToEmail(auth, email, { url: location.origin + "/desk/", handleCodeInApp: true });
+      localStorage.setItem(EMAIL_KEY, email);
+      $("#emailsent").hidden = false;
+    } catch (err) {
+      $("#signinerr").hidden = false;
+      $("#signinerr").textContent = "Could not send the link. (" + err.code + ")";
+    }
+  });
+
+  const input = $("#input");
+  function submitComposer() {
+    const text = input.value.trim();
+    if (!text || state.busy) return;
+    input.value = "";
+    input.style.height = "";
+    followTail = true;
+    state.offer = null;
+    state.thread.push({ role: "you", text, ts: Date.now() });
+    saveThread();
+    renderThread();
+    turn();
+  }
+  $("#composer").addEventListener("submit", (e) => { e.preventDefault(); submitComposer(); });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submitComposer(); }
+  });
+  input.addEventListener("input", () => {
+    input.style.height = "";
+    input.style.height = Math.min(input.scrollHeight, 160) + "px";
+  });
+  $("#paneltoggle").addEventListener("click", () => {
+    const col = $("#panelcol");
+    const open = col.classList.toggle("open");
+    $("#paneltoggle").setAttribute("aria-expanded", String(open));
+    $("#panelcaret").textContent = open ? "▾" : "▴";
+  });
+
+  if (IS_LOCAL) {
+    const dev = document.createElement("button");
+    dev.type = "button";
+    dev.className = "plain";
+    dev.style.cssText = "border-style:dashed;margin-top:4px";
+    dev.textContent = "Dev sign-in — local test, no email";
+    dev.addEventListener("click", () => signInAnonymously(auth).catch((e) => {
+      $("#signinerr").hidden = false;
+      $("#signinerr").textContent = "Dev sign-in failed. (" + (e.code || e) + ")";
+    }));
+    $("#signinbox").appendChild(dev);
+  }
+}
+
+async function boot() {
+  injectAvatarCSS();
+  installScroll();
+  wire();
+  await Promise.all([loadFloor(), completeEmailLink()]);
+
+  onAuthStateChanged(auth, async (user) => {
+    state.user = user;
+    renderAuthChip();
+    if (!user) { show("signin"); return; }
+    ensureUserDoc(user);
+    await openPrincipal();
+  });
+}
+
+boot();

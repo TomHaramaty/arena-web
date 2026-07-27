@@ -280,7 +280,10 @@ function renderStatus(appData) {
     $("#statusdetail").innerHTML =
       `<b>${esc(name)}</b> holds a seat on the floor — every trade, rule, and reflection kept on the record from its first entry onward.`;
     $("#statusbell").textContent = "";
-    $("#statuslinks").innerHTML = `<a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
+    // the seat is finished; the desk is where this account lives from now on
+    $("#statuslinks").innerHTML =
+      `<a href="/desk/?t=${encodeURIComponent(appData.agent_id || name)}">Go to your desk →</a>` +
+      ` &nbsp;·&nbsp; <a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
   } else {
     $("#statusword").textContent = "Application received";
     const fr = appData.packet && appData.packet.first_read;
