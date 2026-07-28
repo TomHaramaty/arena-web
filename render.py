@@ -270,6 +270,16 @@ def chart_inline():
             "const lineChart=OOC.lineChart, niceStep=OOC.niceStep, atOrBefore=OOC.atOrBefore;")
 
 
+def script_json(obj):
+    """JSON for baking inside a <script> block. A `</script>` anywhere in the
+    record — a journal line, a thesis, a principal's own name — would close the
+    block early and take the whole floor down with it, so the sequence is
+    escaped; `\\/` is legal in both JSON and JS. U+2028/9 are line terminators
+    to a JS parser and illegal raw inside a string literal."""
+    return (json.dumps(obj).replace("</", "<\\/")
+            .replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+
+
 def main():
     data = json.loads((ROOT / "data" / "arena.json").read_text(encoding="utf-8"))
     PUBLIC.mkdir(exist_ok=True)
@@ -283,7 +293,7 @@ def main():
     template = template.replace("/*__CHART_JS__*/", chart_inline())
     (PUBLIC / "floor").mkdir(exist_ok=True)
     (PUBLIC / "floor" / "index.html").write_text(
-        template.replace("/*__ARENA_DATA__*/", json.dumps(data)), encoding="utf-8"
+        template.replace("/*__ARENA_DATA__*/", script_json(data)), encoding="utf-8"
     )
 
     # the record, verbatim

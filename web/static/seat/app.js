@@ -30,6 +30,9 @@ import {
   PALS, BASES, COSTUMES, DETAILS, DETAIL_LABELS, ARCHETYPE,
 } from "../avatar.js";
 import { notePrincipal } from "../whoami.js";
+import {
+  cleanName, normalizeCredit, saveCredit, saveCreditSoon, creditFormHTML, bindCreditForm,
+} from "../credit.js";
 
 const app = initializeApp({
   projectId: "open-outcry",
@@ -92,6 +95,7 @@ const state = {
   unsubscribe: null,
   avatar: { base: "fox", color: 0, costume: "suit", acc: "none" }, // the seat picker
   updates: { cadence: "daily", floor_digest: true }, // the updates card (letters, when they ship)
+  credit: { name: "", show: false }, // the principal's own name on the floor
 };
 
 /* ---------------- view switching ---------------- */
@@ -227,11 +231,17 @@ async function completeEmailLink() {
   });
 }
 
+/** The principal's own doc: created on first sign-in, and read for the one
+ *  thing on it the review screen needs — what the floor may print beside their
+ *  trader. Nothing is shown unless they ask for it there; a name they signed in
+ *  with is a suggestion to accept, never consent already given. */
 async function ensureUserDoc(user) {
+  let data = null;
   try {
     const ref = doc(db, "users", user.uid);
     const snap = await getDoc(ref);
-    if (!snap.exists()) {
+    if (snap.exists()) data = snap.data();
+    else {
       await setDoc(ref, {
         displayName: user.displayName || null,
         email: user.email || null,
@@ -239,6 +249,10 @@ async function ensureUserDoc(user) {
       });
     }
   } catch (e) { console.warn("users doc:", e); }
+  state.credit = normalizeCredit(data && data.credit);
+  if (!state.credit.name && user.displayName) {
+    state.credit.name = cleanName(user.displayName);
+  }
 }
 
 function landingError(msg) { const el = $("#signinerr"); el.textContent = msg; el.hidden = !msg; }
@@ -1271,6 +1285,24 @@ function renderUpdatesCard() {
   if (r) r.checked = true;
   $("#upd-floor").checked = !!u.floor_digest;
 }
+/* The name card — the principal's own line, not the trader's. It is not part of
+   the packet: it lives on their user doc, is theirs to change from the desk
+   forever after, and is saved as it is typed so countersigning never depends on
+   it. Off unless asked for. */
+let renderCreditForm = null;
+function renderNameCard() {
+  const name = (state.draft && state.draft.name) || "your agent";
+  $("#cred-agent").textContent = name;
+  const holder = $("#credform");
+  if (holder.dataset.subject !== name) {
+    holder.dataset.subject = name;
+    holder.innerHTML = creditFormHTML({ subject: name });
+    renderCreditForm = bindCreditForm(holder, state.credit, (c) => {
+      if (state.user) saveCreditSoon(db, state.user.uid, c);
+    });
+  } else if (renderCreditForm) renderCreditForm();
+}
+
 function onUpdatesChange() {
   const r = document.querySelector('input[name="updcadence"]:checked');
   state.updates = normalizeUpdates({
@@ -1284,6 +1316,7 @@ function renderCharter() {
   const d = state.draft || {};
   $("#charter-name").textContent = d.name || "—";
   renderFacePicker();
+  renderNameCard();
   renderUpdatesCard();
   // reuse the panel renderer at full width
   const hold = $("#draftbody").innerHTML;
@@ -1381,6 +1414,9 @@ async function submitApplication() {
   };
   const btn = $("#btn-submit");
   btn.disabled = true; btn.textContent = "Submitting…";
+  // the name card saves as it is typed; flush it here so a name entered in the
+  // last second before countersigning is not left in a pending timer
+  saveCredit(db, state.user.uid, state.credit).catch((e) => console.warn("credit:", e));
   try {
     const docData = {
       uid: state.user.uid, status: "submitted", packet, createdAt: serverTimestamp(),
@@ -1417,7 +1453,7 @@ async function boot() {
       show("landing");
       return;
     }
-    ensureUserDoc(user);
+    await ensureUserDoc(user);
     const existing = await findApplication(user.uid);
     if (existing) {
       state.appDoc = existing;
