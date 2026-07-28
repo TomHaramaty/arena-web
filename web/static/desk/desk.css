@@ -238,6 +238,28 @@ details.pmore[open] > summary { color: var(--muted); }
   #panelbody { display: block; }
 }
 
+/* ---------------- the phone ----------------
+   The room already stacks; what it does not do is respect a finger or a
+   pair of eyes at arm's length. Everything meant to be tapped gets 44px,
+   and the mono meta lines stop trying to be 10px. */
+@media (max-width: 720px) {
+  .wrap { padding: 0 14px 40px; }
+  button.primary, button.plain { min-height: 44px; }
+  #signoutlink, .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+  #signoutlink { font-size: 12.5px; }
+  .entry .ehead, .answer .ahead { font-size: 12px; }
+  .cite { font-size: 11px; }
+  .pservice, .met > summary { font-size: 12px; }
+  /* a disclosure line is a tap target, not a caption */
+  .met > summary, details.pmore > summary { min-height: 44px; display: flex; align-items: center; }
+  .entry .elink { min-height: 44px; display: inline-flex; align-items: center; font-size: 13px; }
+  .entry, .answer { max-width: none; }
+  /* the law of the room is worth one line at the bottom of a phone, not four:
+     the rest of it is the first thing the trader says on arrival */
+  .composernote { padding: 6px 0 10px; }
+  .composernote .long { display: none; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   button, a, .paneltoggle { transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease, opacity 0.12s ease; }
 }

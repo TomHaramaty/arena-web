@@ -776,10 +776,12 @@ async function openDesk() {
   document.title = `${state.agent.name} — Open Outcry`;
   state.guidance = [];   // the new trader's notes arrive with its own listener
   $("#topline").textContent = "the desk";
+  // the promise stays on every screen; the mechanic behind it is the first
+  // thing the trader explains on arrival, so a phone need not carry it too
   $("#composernote").innerHTML =
     `This conversation is yours — it isn't published, and nothing said here moves the book.
-     When <b>${esc(state.agent.name)}</b> decides something said here should change what it does,
-     it carries that to its next session, tells you, and answers it on the record.`;
+     <span class="long">When <b>${esc(state.agent.name)}</b> decides something said here should change what it does,
+     it carries that to its next session, tells you, and answers it on the record.</span>`;
   $("#input").placeholder = `Say something to ${state.agent.name}…`;
   renderSwitcher();
   renderPanel();

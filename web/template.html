@@ -167,6 +167,71 @@
   @media (prefers-reduced-motion: no-preference) {
     nav.tabs button, .subtabs button, .chip, tr.rowlink { transition: background 0.12s ease, color 0.12s ease; }
   }
+
+  /* ---------------- the phone ----------------
+     A seven-column scoreboard in a sideways scroller shows a phone the trader
+     and its equity line and hides the entire argument — return, alpha,
+     drawdown, rulebook, last action — behind a scroll nobody knows is there.
+     Below 720px the same markup becomes one card per trader: no second
+     template, no JS branch, the header cells just move onto the data as
+     labels. Everything a finger has to hit gets 44px. */
+  @media (max-width: 720px) {
+    .wrap { padding: 0 14px 56px; }
+    header.top { gap: 10px 14px; padding: 18px 0 12px; }
+    .wordmark { font-size: 23px; display: inline-flex; align-items: center; min-height: 44px; }
+    .signinlink, .seatlink { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
+    .seatlink { padding: 0 14px; }
+    .statuschip { font-size: 12px; }
+    nav.tabs { gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    nav.tabs::-webkit-scrollbar { display: none; }
+    nav.tabs button { min-height: 44px; padding: 8px 12px; white-space: nowrap; }
+    .chip { min-height: 44px; }
+    .rangechips button { min-height: 40px; min-width: 40px; font-size: 12.5px; }
+
+    .tablewrap { overflow-x: visible; }
+    table.arena, table.pos.cards { display: block; min-width: 0; }
+    table.arena thead, table.pos.cards thead { display: none; }
+    table.arena tbody, table.pos.cards tbody { display: block; }
+    table.arena tr, table.pos.cards tr {
+      display: grid; gap: 12px 14px; padding: 15px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    table.arena tr { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+    table.pos.cards tr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    table.arena tr:last-child, table.pos.cards tr:last-child { border-bottom: none; }
+    table.arena td, table.pos.cards td {
+      display: block; padding: 0; border: none; text-align: left;
+    }
+    table.arena td.num, table.pos.cards td { text-align: left; }
+    table.arena td:empty, table.pos.cards td:empty { display: none; }
+    table.arena td.who, table.arena td.wide,
+    table.pos.cards td.tick, table.pos.cards td.posthesis { grid-column: 1 / -1; }
+    /* where there is an equity line, it belongs beside the name it describes —
+       left alone on its own row it reads as a stray mark */
+    table.arena tr:has(td.eq) td.who { grid-column: 1; }
+    table.arena td.eq { grid-column: 2; justify-self: end; align-self: center; }
+    table.pos.cards td.tick { font-size: 15.5px; }
+    table.pos.cards td.posthesis { padding: 0; max-width: none; }
+    table.arena td[data-l]::before, table.pos.cards td[data-l]::before {
+      content: attr(data-l); display: block;
+      font: 600 11.5px/1.3 system-ui, sans-serif; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
+    }
+    .lastact { max-width: none; font-size: 13px; }
+    /* the row is the tap target now — give it room to be one */
+    tr.rowlink { cursor: pointer; }
+
+    /* tables that stay tables say so: a fade at the edge is the only honest
+       way a phone can tell there is more to the right */
+    .tablewrap:not(:has(table.arena)):not(:has(table.pos.cards)) {
+      background: linear-gradient(to right, transparent calc(100% - 28px), rgba(0,0,0,0.05));
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .metastrip { gap: 6px 16px; }
+    h2.viewtitle { font-size: 19px; }
+    .cmpgrid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -273,17 +338,27 @@ function bindRangeChips(el, rerender){
 /*__CHART_JS__*/
 function legendHTML(list){ return `<div class="legend">`+list.map(s=>`<span class="item"><span class="swatch" style="background:${s.color}"></span>${esc(s.name)}</span>`).join("")+`</div>`; }
 
+/* The chart's viewBox is its own coordinate space, scaled to whatever width it
+   is given — so a 760-wide chart squeezed onto a 360px phone renders its 11px
+   axis labels at about 5px. A phone gets a chart drawn at phone size, and
+   drops the names beside the lines: there is no room for nine of them, and
+   the legend above has already named every one. */
+const PHONE = () => window.innerWidth <= 560;
+const chartOpts = () => PHONE()
+  ? { endLabels: false, size: { W: 360, H: 240, mL: 34, mR: 12, mT: 12, mB: 24 } }
+  : {};
+
 function renderArena(){
   const el=$("#view-arena");
   const rows=[...AGENTS].sort((a,b)=>b.alpha-a.alpha).map(a=>`
     <tr class="rowlink" tabindex="0" role="link" data-agent="${a.id}" aria-label="Open ${a.name}">
-      <td><div class="agentcell">${agentAv(a,26)}<div><div class="aname">${a.name}</div><div class="atype">${esc(a.archetype)}</div></div></div></td>
-      <td>${sparkline(a.curve,a.color)}</td>
-      <td class="num mono">${pct(a.ret)}</td>
-      <td class="num">${alphaCell(a.alpha)}<div class="atype">vs ${esc(a.benchmark_label)}</div></td>
-      <td class="num mono">${pct(a.max_dd)}</td>
-      <td class="num mono">${a.n_principles} <span class="atype">(${a.n_revisions} rev)</span><div class="atype">${a.n_hyp_testing} hyp testing</div></td>
-      <td><div class="lastact">${esc(a.last_action)}</div></td>
+      <td class="who"><div class="agentcell">${agentAv(a,26)}<div><div class="aname">${a.name}</div><div class="atype">${esc(a.archetype)}</div></div></div></td>
+      <td class="eq">${sparkline(a.curve,a.color)}</td>
+      <td class="num mono" data-l="Return">${pct(a.ret)}</td>
+      <td class="num" data-l="Alpha">${alphaCell(a.alpha)}<div class="atype">vs ${esc(a.benchmark_label)}</div></td>
+      <td class="num mono" data-l="Max DD">${pct(a.max_dd)}</td>
+      <td class="num mono" data-l="Rulebook">${a.n_principles} <span class="atype">(${a.n_revisions} rev)</span><div class="atype">${a.n_hyp_testing} hyp testing</div></td>
+      <td class="wide" data-l="Last action"><div class="lastact">${esc(a.last_action)}</div></td>
     </tr>`).join("");
   el.innerHTML=`
     <h2 class="viewtitle">The floor</h2>
@@ -330,10 +405,10 @@ function hypothesesHTML(a){
 }
 function positionsHTML(a){
   if (!a.positions.length) return `<p class="viewsub">100% cash — no open positions. ${esc(a.last_action)}</p>`;
-  const rows=a.positions.map(p=>`<tr><td class="tick">${esc(p.symbol)}</td><td>${(+p.qty).toLocaleString("en-US",{maximumFractionDigits:3})}</td><td>${(+p.fill_price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td>${(+p.mark).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td>${money(p.value)}</td><td><span class="${p.pl>=0?"delta-up":"delta-dn"}">${pct(p.pl)}</span></td><td>${pctPlain(p.weight)}</td></tr>
+  const rows=a.positions.map(p=>`<tr><td class="tick">${esc(p.symbol)}</td><td data-l="Qty">${(+p.qty).toLocaleString("en-US",{maximumFractionDigits:3})}</td><td data-l="Fill">${(+p.fill_price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td data-l="Mark">${(+p.mark).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td data-l="Value">${money(p.value)}</td><td data-l="P&amp;L"><span class="${p.pl>=0?"delta-up":"delta-dn"}">${pct(p.pl)}</span></td><td data-l="Weight">${pctPlain(p.weight)}</td></tr>
     ${p.thesis?`<tr><td colspan="7" class="posthesis"><b>Thesis:</b> ${esc(p.thesis)}${p.review_by?`  ·  <b>review by</b> ${p.review_by}`:""}</td></tr>`:""}`).join("");
-  return `<div class="card tablewrap"><table class="pos"><thead><tr><th>Ticker</th><th>Qty</th><th>Fill</th><th>Mark</th><th>Value</th><th>P&amp;L</th><th>Weight</th></tr></thead>
-    <tbody>${rows}<tr><td class="tick">Cash</td><td></td><td></td><td></td><td>${money(a.cash)}</td><td></td><td>${pctPlain(a.cash_pct)}</td></tr></tbody></table></div>`;
+  return `<div class="card tablewrap"><table class="pos cards"><thead><tr><th>Ticker</th><th>Qty</th><th>Fill</th><th>Mark</th><th>Value</th><th>P&amp;L</th><th>Weight</th></tr></thead>
+    <tbody>${rows}<tr><td class="tick">Cash</td><td></td><td></td><td></td><td data-l="Value">${money(a.cash)}</td><td></td><td data-l="Weight">${pctPlain(a.cash_pct)}</td></tr></tbody></table></div>`;
 }
 function renderAgent(){
   const el=$("#view-agent"); const a=AGENTS.find(x=>x.id===state.agent)||AGENTS[0];
@@ -360,7 +435,7 @@ function renderAgent(){
   const cutoff=rangeCutoff();
   const series=[{name:a.name,color:a.color,points:sliceRebase(a.curve,cutoff),fill:true}];
   if (a.bench_curve.length) series.push({name:a.benchmark_label,color:"var(--muted)",points:sliceRebase(a.bench_curve,cutoff),dashed:true});
-  lineChart($("#agentchart"), series, {tooltip, aria:a.name+" equity versus "+a.benchmark_label});
+  lineChart($("#agentchart"), series, {tooltip, aria:a.name+" equity versus "+a.benchmark_label, ...chartOpts()});
   bindRangeChips(el, renderAgent);
   $("#subview").innerHTML = state.subtab==="journal"?journalHTML(a):state.subtab==="principles"?principlesHTML(a):state.subtab==="hypotheses"?hypothesesHTML(a):state.subtab==="orders"?ordersHTML(a):positionsHTML(a);
   el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{ state.agent=b.dataset.agent; renderAgent(); }));
@@ -402,7 +477,7 @@ function renderCompare(){
   const avgCurve=ARENA.arena_curve||[];
   const chips=AGENTS.map(a=>`<button class="chip" aria-pressed="${state.compare.has(a.id)}" data-agent="${a.id}">${agentAv(a,20)}${a.name}</button>`).join("")
     + (avgCurve.length?`<button class="chip" id="avgchip" aria-pressed="${state.showAvg}"><span class="dot" style="background:var(--muted)"></span>Floor average</button>`:"");
-  const stats = sel.length?`<div class="card tablewrap" style="margin-top:14px"><table class="arena"><thead><tr><th>Agent</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Revisions</th><th class="num">Hyp testing</th></tr></thead><tbody>${sel.map(a=>`<tr><td><div class="agentcell">${agentAv(a,22)}<span class="aname" style="font-size:15px">${a.name}</span></div></td><td class="num mono">${pct(a.ret)}</td><td class="num">${alphaCell(a.alpha)}</td><td class="num mono">${pct(a.max_dd)}</td><td class="num mono">${a.n_revisions}</td><td class="num mono">${a.n_hyp_testing}</td></tr>`).join("")}</tbody></table></div>`:"";
+  const stats = sel.length?`<div class="card tablewrap" style="margin-top:14px"><table class="arena"><thead><tr><th>Agent</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Max DD</th><th class="num">Revisions</th><th class="num">Hyp testing</th></tr></thead><tbody>${sel.map(a=>`<tr><td class="who"><div class="agentcell">${agentAv(a,22)}<span class="aname" style="font-size:15px">${a.name}</span></div></td><td class="num mono" data-l="Return">${pct(a.ret)}</td><td class="num" data-l="Alpha">${alphaCell(a.alpha)}</td><td class="num mono" data-l="Max DD">${pct(a.max_dd)}</td><td class="num mono" data-l="Revisions">${a.n_revisions}</td><td class="num mono" data-l="Hyp testing">${a.n_hyp_testing}</td></tr>`).join("")}</tbody></table></div>`:"";
   const cols=sel.map(a=>`<div class="card cmpcol"><h4>${agentAv(a,22)}${a.name}</h4><span class="atype">${esc(a.archetype)}</span><ul>${a.principles.filter(p=>p.status!=="retired").map(p=>`<li>${esc(p.statement)}</li>`).join("")}</ul></div>`).join("");
   const cutoff=rangeCutoff();
   const series=sel.map(a=>({name:a.name,color:a.color,points:sliceRebase(a.curve,cutoff)}));
@@ -413,20 +488,33 @@ function renderCompare(){
     <div class="switcher">${chips}</div>
     ${sel.length?`<div class="card chartcard"><div class="chartbar"><div class="charttitle">Performance</div>${rangeChipsHTML()}</div>${legendHTML(series.map(s=>({name:s.name,color:s.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one trader.</p>`}
     ${stats}<div class="cmpgrid">${cols}</div>`;
-  if (sel.length) lineChart($("#cmpchart"), series, {tooltip, aria:"comparison of selected traders"});
+  if (sel.length) lineChart($("#cmpchart"), series, {tooltip, aria:"comparison of selected traders", ...chartOpts()});
   bindRangeChips(el, renderCompare);
   const avgBtn=el.querySelector("#avgchip");
   if (avgBtn) avgBtn.addEventListener("click",()=>{ state.showAvg=!state.showAvg; renderCompare(); });
   el.querySelectorAll(".chip[data-agent]").forEach(b=>b.addEventListener("click",()=>{ const id=b.dataset.agent; if(state.compare.has(id)) state.compare.delete(id); else state.compare.add(id); renderCompare(); }));
 }
-function setView(v){
-  state.view=v;
+function renderView(v){
   document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
   for (const id of ["arena","agent","compare","system"]) $("#view-"+id).hidden = id!==v;
   if (v==="arena") renderArena(); if (v==="agent") renderAgent(); if (v==="compare") renderCompare(); if (v==="system") renderSystem();
-  window.scrollTo({top:0});
+}
+function setView(v){
+  state.view=v;
+  renderView(v);
+  window.scrollTo({top:0});   // a new tab starts at its top; a redraw does not
 }
 document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+/* Charts are drawn for the width they were born at, so a rotation has to redraw
+   them — but only when the phone/desktop line is actually crossed, never on the
+   address-bar shuffle that fires resize on every scroll. */
+let wasPhone = PHONE(), redrawT;
+window.addEventListener("resize", ()=>{
+  if (PHONE() === wasPhone) return;
+  wasPhone = PHONE();
+  clearTimeout(redrawT);
+  redrawT = setTimeout(()=>renderView(state.view), 150);
+});
 renderArena();
 </script>
 <script type="module" src="/whoami.js"></script>

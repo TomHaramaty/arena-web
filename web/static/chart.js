@@ -65,8 +65,12 @@ export function lineChart(container, seriesList, opts={}){
   const tooltip = opts.tooltip;
   if (!tooltip) return;   // a chart with nowhere to put a readout has no crosshair
   const svg=container.querySelector("svg"), xhair=svg.querySelector(".xhair");
-  svg.addEventListener("mousemove", ev=>{ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W;
-    if (px<mL||px>W-mR){ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; return; }
+  const hide = ()=>{ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; };
+  /* One reader for both hands. A finger covers whatever it points at, so on
+     touch the readout parks above the chart instead of under the fingertip. */
+  const read = (clientX, clientY, touch)=>{
+    const r=svg.getBoundingClientRect(); const px=(clientX-r.left)/r.width*W;
+    if (px<mL||px>W-mR){ hide(); return; }
     const target=tMin+(px-mL)/iw*span; let bi=0,bd=Infinity;
     merged.forEach((t,i)=>{ const d=Math.abs(t-target); if(d<bd){bd=d;bi=i;} });
     const mt=merged[bi], cx=x(mt);
@@ -75,8 +79,25 @@ export function lineChart(container, seriesList, opts={}){
     tooltip.innerHTML = `<div class="tdate">${esc(dateByT.get(mt)||"")}</div>` + series.map(s=>{
       const i=atOrBefore(s.pts,mt), v=i>=0?s.pts[i].v:null;
       return `<div class="trow"><span class="l"><span class="dot" style="background:${s.color}"></span>${esc(s.name)}</span><span class="v">${v!=null?pct(v/100-1):"—"}</span></div>`; }).join("");
-    const tw=tooltip.offsetWidth; let tx=ev.clientX+14; if (tx+tw>window.innerWidth-8) tx=ev.clientX-tw-14;
-    tooltip.style.left=tx+"px"; tooltip.style.top=Math.max(8,ev.clientY-10)+"px"; });
-  svg.addEventListener("mouseleave", ()=>{ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; });
+    const tw=tooltip.offsetWidth, th=tooltip.offsetHeight;
+    if (touch){
+      let tx=clientX-tw/2; tx=Math.max(8,Math.min(tx,window.innerWidth-tw-8));
+      let ty=r.top-th-12; if (ty<8) ty=Math.min(r.bottom+12,window.innerHeight-th-8);
+      tooltip.style.left=tx+"px"; tooltip.style.top=ty+"px";
+    } else {
+      let tx=clientX+14; if (tx+tw>window.innerWidth-8) tx=clientX-tw-14;
+      tooltip.style.left=tx+"px"; tooltip.style.top=Math.max(8,clientY-10)+"px";
+    }
+  };
+  /* Pointer events, not mouse+touch: a touch is followed by a synthesised
+     mousemove, which would re-open the readout the instant the finger lifts
+     and leave it stranded on screen. pointerType tells them apart, and a
+     touch-drag keeps sending pointermove to this element on its own. */
+  const onPoint = ev=>read(ev.clientX, ev.clientY, ev.pointerType !== "mouse");
+  svg.addEventListener("pointerdown", onPoint);
+  svg.addEventListener("pointermove", onPoint);
+  svg.addEventListener("pointerup", ev=>{ if (ev.pointerType !== "mouse") hide(); });
+  svg.addEventListener("pointerleave", ev=>{ if (ev.pointerType === "mouse") hide(); });
+  svg.addEventListener("pointercancel", hide);   // the page started scrolling
 }
 

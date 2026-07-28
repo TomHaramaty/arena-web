@@ -162,6 +162,23 @@
   @media (prefers-reduced-motion: no-preference) {
     a, .btn { transition: background 0.12s ease, color 0.12s ease, opacity 0.12s ease, border-color 0.12s ease; }
   }
+  /* ---------------- the phone ----------------
+     The page stacks well already. What it does at 390px is set its mono
+     labels at 10px and hand a finger a 29px-tall link. */
+  @media (max-width: 720px) {
+    .topnav { gap: 4px 14px; }
+    .topnav a, .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+    .kicker { font-size: 12px; letter-spacing: 0.07em; }
+    .herocap { font-size: 12px; text-align: left; }
+    .ftitle, .fmeta, .msg .who, .draft .dcap, .tag { font-size: 12px; }
+    /* the framed surfaces are miniatures of the real thing — a miniature
+       nobody can read sells nothing */
+    .clock, .thesis .tk, .floortab .farch, .floortab .fbench { font-size: 12px; }
+    .btn.primary .btnsub { font-size: 12px; }
+    /* the frame's caption stops squeezing two mono lines onto one row */
+    .fbar { flex-wrap: wrap; gap: 2px 10px; }
+    .fmeta { margin-left: 0; }
+  }
   @media (max-width: 480px) {
     .hero { padding-top: 38px; }
     .btn { width: 100%; text-align: center; align-items: center; }

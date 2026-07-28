@@ -221,6 +221,18 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
   #composer { bottom: 44px; }
   .finishbar { position: static; }
 }
+/* ---------------- the phone ----------------
+   The interview already stacks and the option chips already clear 44px; what
+   is left is the chrome around them and the mono lines that shrank to 11px. */
+@media (max-width: 720px) {
+  .wrap { padding: 0 14px 40px; }
+  button.primary, button.plain { min-height: 44px; }
+  #signoutlink, .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+  #signoutlink { font-size: 12.5px; }
+  .choice .chint, .dwait, .msg .undelivered { font-size: 12px; }
+  .msg .text, .msg.first .text { max-width: none; }
+}
+
 /* desktop: chat beside the panel */
 @media (min-width: 900px) {
   .igrid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: start; }
