@@ -29,6 +29,7 @@ import {
   avatar, headOnly, registrar as registrarAvatar, injectAvatarCSS, normalizeAvatar,
   PALS, BASES, COSTUMES, DETAILS, DETAIL_LABELS, ARCHETYPE,
 } from "../avatar.js";
+import { notePrincipal } from "../whoami.js";
 
 const app = initializeApp({
   projectId: "open-outcry",
@@ -249,6 +250,7 @@ function renderAuthChip() {
   chip.innerHTML = `${esc(state.user.email || state.user.displayName || "signed in")} · <a href="#" id="signoutlink">sign out</a>`;
   $("#signoutlink").addEventListener("click", async (e) => {
     e.preventDefault();
+    notePrincipal(null);
     await signOut(auth);
     location.reload();
   });
@@ -268,6 +270,12 @@ async function findApplication(uid) {
 function renderStatus(appData) {
   const name = (appData.packet && appData.packet.name) || "your agent";
   const seated = appData.status === "seated";
+  // the landing and the floor read this to stop inviting a principal who
+  // already has a trader to create another one
+  if (state.user) {
+    notePrincipal({ uid: state.user.uid, status: seated ? "seated" : "pending",
+                    trader: appData.agent_id || "", name });
+  }
   const stage = appData.bell && appData.bell.stage;
   const dot = $("#statusdot");
   dot.classList.toggle("done", seated);

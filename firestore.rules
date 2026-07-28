@@ -48,21 +48,27 @@ service cloud.firestore {
         && request.resource.data.messages.size() <= 200;
     }
 
-    // What the principal files: the one thing said at the desk that reaches
-    // the trader's work. Created by the principal, never edited or withdrawn;
-    // the engine (Admin SDK) stamps its id, ingests it, and writes back the
-    // disposition its next session gave it.
+    // What a trader carries from its desk to its next session: the one thing
+    // said in that room that reaches its work. Written when the trader says it
+    // is taking something; the engine (Admin SDK) stamps its id, ingests it,
+    // and writes back the disposition its session gave it.
     match /guidance/{gid} {
       allow read: if request.auth != null && resource.data.uid == request.auth.uid;
       allow create: if request.auth != null
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'filed'
-        && request.resource.data.keys().hasOnly(['uid', 'trader', 'text', 'status', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['uid', 'trader', 'text', 'author', 'status', 'createdAt'])
         && request.resource.data.trader is string
+        && request.resource.data.author in ['principal', 'trader']
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 4000;
-      // no client update/delete: filed is filed
+      // A note may be pulled back until a session has read it — before ingestion
+      // nothing has entered the record. After that it is answered, not withdrawn.
+      allow delete: if request.auth != null
+        && resource.data.uid == request.auth.uid
+        && resource.data.status == 'filed';
+      // never update: what a session was given is what it was given
     }
 
     match /{document=**} {

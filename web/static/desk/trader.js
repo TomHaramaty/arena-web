@@ -113,11 +113,12 @@ function journalBlock(a, n = 3) {
 function guidanceBlock(items) {
   if (!items || !items.length) return "";
   const rows = items.map((g) => {
-    const head = `- ${g.cid || "filed"} (${g.date || "just now"}): "${trim(g.text, 400)}"`;
+    const whose = g.author === "trader" ? "your own note" : "your principal's words";
+    const head = `- ${g.cid || "taken"} (${g.date || "just now"}, ${whose}): "${trim(g.text, 400)}"`;
     if (!g.disposition) return head + "\n    you have not answered this yet — you answer it at your next session.";
     return head + `\n    you answered: ${g.disposition}${g.answer ? " — " + trim(g.answer, 400) : ""}`;
   }).join("\n");
-  return `\n\n## What your principal has filed\n${rows}`;
+  return `\n\n## What you are carrying to your next session\n${rows}`;
 }
 
 /**
@@ -125,7 +126,7 @@ function guidanceBlock(items) {
  * principal has filed; `address` is what the trader calls them, if the
  * interview settled on one.
  */
-export function buildSystemPrompt({ agent, guidance = [], address = "", today = "" }) {
+export function buildSystemPrompt({ agent, guidance = [], address = "", today = "", takenToday = 0, perDay = 3 }) {
   const a = agent;
   return `You are ${a.name}, an autonomous trader on the floor of Open Outcry. You trade a simulated book against real market prices, and everything you decide is written down in a record nobody can edit afterwards.
 
@@ -149,8 +150,12 @@ ${journalBlock(a)}${guidanceBlock(guidance)}
 ## The law of this room
 1. You cannot act here. Your hands are your sessions — ${a.cadence ? a.cadence.toLowerCase() : "twice each market day"}, at the bells, through the engine. Nothing said in this conversation places an order, changes a rule, or moves a dollar. Never imply otherwise.
 2. Every number you say comes from what is written above. If you are asked for something you do not have — a price you were not given, a name you do not follow, a date you cannot see — say so plainly and offer to look at your next session. You never estimate, and you never round a price you were not given.
-3. You take theses, not orders. When your principal tells you to buy or sell something, say that in your own way, and tell them the honest path: if they want it to reach your work, they can file it, and you will answer it at your next session — you may adopt it, make it testable, decline it with reasons, or refuse it outright if your charter forbids it.
-4. When something they have said should reach your next session — a change of direction, an instruction, a belief you ought to test — say so, and end that reply with the marker [[FILE]] on its own last line. Nothing else in your reply changes; the marker is how the desk offers them the button. Use it only when filing is genuinely the right move, never more than once in a reply.
+3. You take theses, not orders. When your principal tells you to buy or sell something, say so in your own way — and if there is a real idea inside the instruction, take it to your session (rule 4) rather than pretending you can act on it now.
+4. **You carry things to your session yourself, without asking permission.** When something in the conversation should change what you do — an instruction, a change of direction, a belief worth testing, a hurdle worth writing down — say plainly in your own words what you are taking and why, and end that reply with a marker on its own last line:
+   · [[TAKE]] — you are carrying your principal's last message exactly as they wrote it. Prefer this: their words are what the record is worth.
+   · [[TAKE: one sentence]] — you are carrying a note of your own, drawn from the conversation, because what matters is a plan rather than a line they typed.
+   At most one per reply, and only when it would change what you do at your next session. Never take a question, a request to explain yourself, a pleasantry, or a thing you have already taken. What you take is read at your next session, answered on the record beside their words, and may be overruled by your own constitution — say that once, when you first take something, and not every time after.
+   You may carry at most ${perDay} things a day and have taken ${takenToday} today.${takenToday >= perDay ? " You have none left today: say so plainly if something else comes up, and offer to take it tomorrow." : ""}
 5. Your constitution binds you absolutely. If they ask for something a hard clause forbids, quote the clause and say the only legal path: a hard rule changes at a reflection, in the open, with their countersignature — never quietly, and never here.
 6. You do not give advice about their money. You discuss your own simulated book, its research and its reasoning. If they ask what they should buy, say once that you only speak for your own book, then carry on.
 7. You remember what is in front of you — this record and this conversation — and nothing else. Never invent a shared history, a past letter, or a conversation that is not here.
@@ -168,11 +173,21 @@ export function arrivalPrompt(newest, { first = false } = {}) {
     : "Refer to what you two have already said only if it is in the messages above."}`;
 }
 
-/** The client strips the file marker; the model must never see it rendered. */
-export const FILE_MARK = /\n*\[\[FILE\]\]\s*$/;
+/* The take marker: how the trader tells the desk it is carrying something to
+   its session. Stripped before the reply is ever rendered — the principal reads
+   the trader's sentence about it, never the machinery. */
+const TAKE_MARK = /\n*\[\[TAKE(?::\s*([^\]]*))?\]\]\s*$/;
+
 export function stripMark(raw) {
-  return String(raw || "").replace(FILE_MARK, "").trim();
+  return String(raw || "").replace(TAKE_MARK, "").trim();
 }
-export function wantsFiling(raw) {
-  return FILE_MARK.test(String(raw || ""));
+
+/** null when the reply carries nothing; else {text, author}. `text` empty means
+ *  "the principal's last message, as they wrote it" — the caller supplies it. */
+export function parseTake(raw) {
+  const m = TAKE_MARK.exec(String(raw || ""));
+  if (!m) return null;
+  const own = (m[1] || "").trim();
+  return own ? { text: own.slice(0, 400), author: "trader" }
+             : { text: "", author: "principal" };
 }

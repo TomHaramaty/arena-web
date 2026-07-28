@@ -86,15 +86,17 @@ right — with the Registrar's chair now the trader's own.
   every session entry in the trader's own words, interleaved with the
   conversation. On arrival the trader speaks first about the newest real thing
   on its record (Firebase AI Logic, same model and retry ladder as the seat).
-- **Two registers, one law** (`desk/trader.js` holds the whole system prompt):
-  talk is private — it is never published and cannot move the book — and
-  **filing** is the one act that reaches the record. The words are shown back
-  verbatim above the button that publishes them — filed notes are public, in the
-  principal's own words, which is what makes the trader's answer worth reading.
-  A filed note becomes a `guidance` doc, which the engine ingests as `C<n>`,
-  puts in front of the trader at its next session, and answers there with one of
-  four dispositions (adopted · converted · declined · refused). The answer comes
-  back to the thread.
+- **The trader carries things itself** (`desk/trader.js` holds the whole system
+  prompt). Talk is private — never published, and it cannot move the book. When
+  something said in the room should change what the trader does, *it* decides to
+  take it: it says so in its own words and ends that reply with a `[[TAKE]]`
+  marker the client strips. The desk writes the note — the principal's own words
+  wherever possible, the trader's own summary when a plan is what matters — as a
+  `guidance` doc, which the engine ingests as `C<n>`, puts in front of the trader
+  at its next session, and answers there with one of four dispositions (adopted ·
+  converted · declined · refused). The answer comes back to the thread. Nothing
+  is final until the session reads it: a quiet **leave it** pulls the note back
+  while it is still `filed`. Three a day.
 - **The standing panel** — the book, *your words at work* (each principle with
   the principal's own quote from the interview and how many sessions actually
   cited it, counted from the journals), the clocks, and the charter.

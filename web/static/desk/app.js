@@ -14,8 +14,8 @@ import {
   connectAuthEmulator, signInAnonymously,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import {
-  getFirestore, doc, getDoc, setDoc, addDoc, collection, query, where,
-  getDocs, onSnapshot, serverTimestamp, connectFirestoreEmulator,
+  getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, collection, query,
+  where, getDocs, onSnapshot, serverTimestamp, connectFirestoreEmulator,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import {
   getAI, getGenerativeModel, GoogleAIBackend,
@@ -24,10 +24,11 @@ import {
   getFunctions, httpsCallable,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
 import {
-  buildSystemPrompt, arrivalPrompt, stripMark, wantsFiling, withRetries,
+  buildSystemPrompt, arrivalPrompt, stripMark, parseTake, withRetries,
   nextFirstBell, fmtBell, originQuote, originDate, citationCount, daysUntil,
 } from "./trader.js";
 import { avatar, injectAvatarCSS, normalizeAvatar } from "../avatar.js";
+import { notePrincipal } from "../whoami.js";
 
 const app = initializeApp({
   projectId: "open-outcry",
@@ -79,8 +80,7 @@ const state = {
   guidance: [],      // live docs from the guidance collection, this trader
   model: null, fallback: null,
   busy: false,
-  offer: null,       // the trader has offered to file the last message
-  confirm: null,     // the principal asked to file one; the words are shown back
+  taking: false,     // a note is being written to the record right now
   unsubGuidance: null,
 };
 
@@ -188,6 +188,7 @@ function renderAuthChip() {
   chip.innerHTML = `${esc(state.user.email || state.user.displayName || "signed in")} · <a href="#" id="signoutlink">sign out</a>`;
   $("#signoutlink").addEventListener("click", async (e) => {
     e.preventDefault();
+    notePrincipal(null);
     await signOut(auth);
     location.reload();
   });
@@ -245,46 +246,53 @@ const PER_DAY = 3;   // what the engine will take from one desk in a day
 const isToday = (ts) => ts && ts.seconds &&
   new Date(ts.seconds * 1000).toDateString() === new Date().toDateString();
 
-/* Filing is a decision, so it is never one tap away from talking: the words
-   about to go on the record are shown back, verbatim, above the button that
-   sends them. Nobody discovers afterwards what they published. */
-function askToFile(idx) {
-  const m = state.thread[idx];
-  if (!m || m.role !== "you") return;
-  const g = m.gid ? guidanceOf(m.gid) : null;
-  if (m.gid && !(g && g.status === "rejected")) return;   // filed is filed
-  const today = state.guidance.filter(
-    (x) => x.status !== "rejected" && isToday(x.createdAt)).length;
-  if (today >= PER_DAY) {
-    showError(`${traderName()} takes ${PER_DAY} notes a day — this one can go in tomorrow.`);
-    return;
-  }
-  state.confirm = idx;
-  state.offer = null;
-  renderThread();
-}
-
-async function fileMessage(idx) {
-  const m = state.thread[idx];
-  if (!m || m.role !== "you") return;
-  state.confirm = null;
+/* The trader carries things to its session itself: no button, no ceremony. It
+   says in its own words what it is taking, and the desk writes that note to the
+   record — the principal's own words wherever possible. Until the session
+   starts, nothing is final: "leave it" pulls the note back before the engine
+   has ever seen it. */
+async function takeNote(take, msgIndex) {
+  const lastYou = [...state.thread].reverse().find((m) => m.role === "you");
+  const text = (take.author === "trader" ? take.text : (lastYou && lastYou.text) || "").trim();
+  if (!text) return null;
+  if (takenToday() >= PER_DAY) return "full";
+  state.taking = true;
   try {
     const ref = await addDoc(collection(db, "guidance"), {
       uid: state.user.uid,
       trader: state.traderId,
-      text: m.text.slice(0, 4000),
+      text: text.slice(0, 4000),
+      author: take.author,
       status: "filed",
       createdAt: serverTimestamp(),
     });
-    m.gid = ref.id;
-    state.offer = null;
+    const m = state.thread[msgIndex];
+    if (m) m.gid = ref.id;
+    return ref.id;
+  } catch (e) {
+    console.error(e);
+    return null;
+  } finally {
+    state.taking = false;
+  }
+}
+
+const takenToday = () => state.guidance.filter(
+  (x) => x.status !== "rejected" && isToday(x.createdAt)).length;
+
+/** Before the session reads it, a note can still be pulled back. */
+async function leaveIt(gid) {
+  try {
+    await deleteDoc(doc(db, "guidance", gid));
+    for (const m of state.thread) if (m.gid === gid) delete m.gid;
     saveThread();
     renderThread();
   } catch (e) {
     console.error(e);
-    showError("That didn't reach the record — try filing it again. (" + (e.message || e) + ")");
+    showError("That note is already with " + traderName() + " — it answers it at the next session.");
   }
 }
+
 const guidanceOf = (gid) => state.guidance.find((g) => g.id === gid) || null;
 
 function showError(msg) {
@@ -420,26 +428,35 @@ function answerCard(g) {
   </div>`;
 }
 
+/** The receipt for a note the trader took: quiet, one line, withdrawable until
+    the session reads it. */
+function takenLine(m) {
+  if (m.notaken) {
+    return `<div class="fileline">not carried — ${esc(traderName())} takes ${PER_DAY} a day; tomorrow</div>`;
+  }
+  const g = m.gid ? guidanceOf(m.gid) : null;
+  if (!m.gid) return "";
+  if (g && g.status === "rejected") {
+    return `<div class="fileline">not carried${g.reason ? " — " + esc(g.reason) : ""}</div>`;
+  }
+  if (g && g.disposition) {
+    return `<div class="fileline">${esc(g.cid || "")} · answered on the record</div>`;
+  }
+  const whose = g && g.author === "trader" ? "its own note" : "your words";
+  return `<div class="fileline">carrying ${whose} to the next session · answers at
+    ${esc(fmtBell(nextFirstBell()))}
+    <button class="filebtn" data-leave="${esc(m.gid)}">leave it</button></div>`;
+}
+
 function msgHTML(m, i) {
   if (m.role === "trader") {
     return `<div class="msg trader hasface">
       <div class="portrait" aria-hidden="true">${avatar({ ...faceOf(state.agent), name: traderName() }, 42, { animate: true })}</div>
-      <div class="bubble"><div class="who">${esc(traderName())}</div><div class="text">${md(m.text)}</div></div>
+      <div class="bubble"><div class="who">${esc(traderName())}</div><div class="text">${md(m.text)}</div>
+        ${takenLine(m)}</div>
     </div>`;
   }
-  const g = m.gid ? guidanceOf(m.gid) : null;
-  let foot = "";
-  if (!m.gid) {
-    foot = `<div class="fileline"><button class="filebtn" data-file="${i}">file this for the next session →</button></div>`;
-  } else if (g && g.status === "rejected") {
-    foot = `<div class="fileline">not filed${g.reason ? " — " + esc(g.reason) : ""}
-      <button class="filebtn" data-file="${i}">try again →</button></div>`;
-  } else if (g && g.disposition) {
-    foot = `<div class="fileline">${esc(g.cid || "filed")} · answered on the record</div>`;
-  } else {
-    foot = `<div class="fileline">${g && g.cid ? esc(g.cid) + " · on the record" : "filed"} · ${esc(traderName())} answers this at ${esc(fmtBell(nextFirstBell()))}</div>`;
-  }
-  return `<div class="msg me"><div class="who">you</div><div class="text">${md(m.text)}</div>${foot}</div>`;
+  return `<div class="msg me"><div class="who">you</div><div class="text">${md(m.text)}</div></div>`;
 }
 
 /** Everything that has happened, in one column, oldest first. */
@@ -472,28 +489,8 @@ function renderThread() {
   const packet = packetOf(state.traders.find((t) => t.id === state.traderId));
   el.innerHTML = interviewHTML(packet) + threadItems().map((x) => x.html).join("");
 
-  const idx = state.confirm != null ? state.confirm : state.offer;
-  if (idx != null && state.thread[idx]) {
-    const box = document.createElement("div");
-    box.className = "fileconfirm";
-    box.innerHTML = `
-      <div class="label">file this for the next session</div>
-      <p class="fcquote">“${esc(state.thread[idx].text)}”</p>
-      <p class="fcnote">Filed in your words, on the record beside ${esc(traderName())}'s
-        answer — that is what makes the answer worth reading. It goes in front of
-        ${esc(traderName())} at ${esc(fmtBell(nextFirstBell()))}, and it may be overruled.</p>
-      <div class="fcrow">
-        <button class="yes" type="button" id="file-yes">File it</button>
-        <button class="no" type="button" id="file-no">Keep it between us</button>
-      </div>`;
-    el.appendChild(box);
-    $("#file-yes").addEventListener("click", () => fileMessage(idx));
-    $("#file-no").addEventListener("click", () => {
-      state.confirm = null; state.offer = null; renderThread();
-    });
-  }
-  el.querySelectorAll("[data-file]").forEach((b) =>
-    b.addEventListener("click", () => askToFile(Number(b.dataset.file))));
+  el.querySelectorAll("[data-leave]").forEach((b) =>
+    b.addEventListener("click", () => leaveIt(b.dataset.leave)));
   tail(false);
 }
 
@@ -501,8 +498,11 @@ function renderThread() {
 function buildModel() {
   const sys = buildSystemPrompt({
     agent: state.agent,
+    takenToday: takenToday(),
+    perDay: PER_DAY,
     guidance: state.guidance.map((g) => ({
       cid: g.cid, text: g.text, disposition: g.disposition, answer: g.answer,
+      author: g.author || "principal",
       date: g.createdAt && g.createdAt.seconds
         ? new Date(g.createdAt.seconds * 1000).toISOString().slice(0, 10) : "",
     })),
@@ -577,12 +577,12 @@ async function turn() {
   }
   const text = stripMark(raw);
   state.thread.push({ role: "trader", text, ts: Date.now() });
-  // the trader may offer to put the principal's last words in front of its next
-  // session; the marker never renders, and only their own message can be filed
-  const lastYou = [...state.thread].reverse().findIndex((m) => m.role === "you");
-  state.offer = wantsFiling(raw) && lastYou >= 0
-    ? state.thread.length - 1 - lastYou : null;
-  if (state.offer != null && state.thread[state.offer].gid) state.offer = null;
+  const take = parseTake(raw);
+  if (take) {
+    const r = await takeNote(take, state.thread.length - 1);
+    if (r === "full") state.thread[state.thread.length - 1].notaken = true;
+    if (r && r !== "full") buildModel();   // the day's count moved
+  }
   saveThread();
   bubble.remove();
   renderThread();
@@ -729,11 +729,12 @@ async function selectTrader(id) {
 
 async function openDesk() {
   document.title = `${state.agent.name} — Open Outcry`;
-  state.offer = state.confirm = null;
   state.guidance = [];   // the new trader's notes arrive with its own listener
   $("#topline").textContent = "the desk";
   $("#composernote").innerHTML =
-    `Private — only what you file goes on the record. <b>${esc(state.agent.name)}</b> reads what you file before its next session, answers it there, and may overrule you.`;
+    `This conversation is yours — it isn't published, and nothing said here moves the book.
+     When <b>${esc(state.agent.name)}</b> decides something said here should change what it does,
+     it carries that to its next session, tells you, and answers it on the record.`;
   $("#input").placeholder = `Say something to ${state.agent.name}…`;
   renderSwitcher();
   renderPanel();
@@ -752,6 +753,12 @@ async function openPrincipal() {
   state.traders = state.apps
     .filter((a) => a.data.status === "seated" && a.data.agent_id && agentOf(a.data.agent_id))
     .map((a) => ({ id: a.data.agent_id, app: a }));
+
+  const first = state.traders[0];
+  notePrincipal(state.user && (first || state.apps.length)
+    ? { uid: state.user.uid, status: first ? "seated" : "pending",
+        trader: first ? first.id : "", name: first ? (agentOf(first.id) || {}).name || first.id : "" }
+    : null);
 
   if (!state.traders.length) {
     const pending = state.apps.find((a) => a.data.status !== "seated") || null;
@@ -868,7 +875,6 @@ function wire() {
     input.value = "";
     input.style.height = "";
     followTail = true;
-    state.offer = state.confirm = null;
     state.thread.push({ role: "you", text, ts: Date.now() });
     saveThread();
     renderThread();

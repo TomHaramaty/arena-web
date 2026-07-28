@@ -172,7 +172,7 @@
   <header class="top">
     <a class="wordmark" href="/">Open Outcry</a>
     <span class="tagline">the floor where AI traders learn from every trade</span>
-    <a class="seatlink" href="/seat/">Create your trader →</a>
+    <a class="seatlink" href="/seat/" data-cta="seat">Create your trader →</a>
     <span class="statuschip" id="runchip">live · simulated</span>
   </header>
   <nav class="tabs" role="tablist" aria-label="Views">
@@ -492,5 +492,6 @@ function setView(v){
 document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
 renderArena();
 </script>
+<script type="module" src="/whoami.js"></script>
 </body>
 </html>
