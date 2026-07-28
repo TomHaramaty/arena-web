@@ -28,6 +28,7 @@ import {
   nextFirstBell, fmtBell, originQuote, originDate, citationCount, daysUntil,
 } from "./trader.js";
 import { avatar, injectAvatarCSS, normalizeAvatar } from "../avatar.js";
+import { lineChart } from "../chart.js";
 import { notePrincipal } from "../whoami.js";
 
 const app = initializeApp({
@@ -282,9 +283,19 @@ const takenToday = () => state.guidance.filter(
 
 /** Before the session reads it, a note can still be pulled back. */
 async function leaveIt(gid) {
+  const g = guidanceOf(gid);
   try {
     await deleteDoc(doc(db, "guidance", gid));
     for (const m of state.thread) if (m.gid === gid) delete m.gid;
+    // The trader has already said it was carrying this. Unless it is told
+    // otherwise it will believe that for the rest of the conversation and
+    // refuse to take the same thing twice — so the withdrawal is spoken.
+    state.thread.push({ role: "stamp", text: "you took that note back", ts: Date.now() });
+    state.thread.push({
+      role: "sys", ts: Date.now(),
+      text: `[NOTE] Your principal took back the note you said you were carrying${
+        g && g.text ? ` ("${g.text.slice(0, 200)}")` : ""}. You are not carrying it. Do not raise it unless they do — and if they ask you to carry it after all, take it.`,
+    });
     saveThread();
     renderThread();
   } catch (e) {
@@ -302,6 +313,29 @@ function showError(msg) {
 }
 
 /* ---------------- the standing panel ---------------- */
+/* The same instrument the floor uses, sized for a 340px column: the trader's
+   equity against the benchmark it must beat, since launch. The floor keeps the
+   ranges and the crosshair; the desk shows the shape. */
+function drawBookChart(a) {
+  const box = $("#pchart");
+  if (!box) return;
+  const series = [{ name: a.name, color: a.color, points: a.curve || [], fill: true }];
+  if ((a.bench_curve || []).length) {
+    series.push({ name: a.benchmark_label, color: "var(--muted)",
+                  points: a.bench_curve, dashed: true });
+  }
+  lineChart(box, series, {
+    aria: `${a.name} against ${a.benchmark_label} since launch`,
+    size: { W: 320, H: 148, mL: 34, mR: 10, mT: 10, mB: 22 },
+    endLabels: false,
+  });
+  const legend = $("#pchartkey");
+  if (legend) {
+    legend.innerHTML = series.map((s) =>
+      `<span class="pkey"><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join("");
+  }
+}
+
 function bookHTML(a) {
   const rows = [
     ["equity", money(a.equity)],
@@ -317,7 +351,8 @@ function bookHTML(a) {
         <span class="v">${money(p.value)}</span></div>
       ${p.thesis ? `<p class="pthesis">${esc(p.thesis)}</p>` : ""}
     </div>`).join("");
-  return rows + (pos || `<p class="pempty" style="margin-top:10px">No positions open — the book is all cash.</p>`);
+  return `<div class="pchart" id="pchart"></div><div class="pchartkey" id="pchartkey"></div>` + rows +
+    (pos || `<p class="pempty" style="margin-top:10px">No positions open — the book is all cash.</p>`);
 }
 
 function wordsHTML(a) {
@@ -389,8 +424,9 @@ function renderPanel() {
     <div class="psec"><span class="label">on the clock</span>${clocksHTML(a)}</div>
     <div class="psec"><span class="label">the charter</span>
       <details class="pmore"><summary>what it may and may not do</summary>${charterHTML(a)}</details>
-      <p class="footnote" style="margin-top:6px"><a href="/floor/#${esc(a.id)}">Read the whole record on the floor →</a></p>
+      <p class="footnote" style="margin-top:6px"><a href="/floor/#${esc(a.id)}">The whole record, and the chart with its ranges, on the floor →</a></p>
     </div>`;
+  drawBookChart(a);
 }
 
 /* ---------------- the thread ---------------- */
@@ -449,6 +485,7 @@ function takenLine(m) {
 }
 
 function msgHTML(m, i) {
+  if (m.role === "stamp") return `<div class="msg stamp">${esc(m.text)}</div>`;
   if (m.role === "trader") {
     return `<div class="msg trader hasface">
       <div class="portrait" aria-hidden="true">${avatar({ ...faceOf(state.agent), name: traderName() }, 42, { animate: true })}</div>
@@ -559,10 +596,12 @@ async function turn() {
   const textEl = bubble.querySelector(".text");
   tail(false);
 
-  const contents = state.thread.slice(-CONTEXT_TURNS).map((m) => ({
-    role: m.role === "trader" ? "model" : "user",
-    parts: [{ text: m.text }],
-  }));
+  const contents = state.thread.slice(-CONTEXT_TURNS)
+    .filter((m) => m.role !== "stamp")
+    .map((m) => ({
+      role: m.role === "trader" ? "model" : "user",
+      parts: [{ text: m.text }],
+    }));
   let raw;
   try {
     raw = await withRetries(

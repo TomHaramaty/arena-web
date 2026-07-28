@@ -258,6 +258,18 @@ def avatar_inline():
             "PALS,BASES,COSTUMES,DETAILS,DETAIL_LABELS,ARCHETYPE};\n})();")
 
 
+def chart_inline():
+    """The chart (web/static/chart.js), de-exported and wrapped as an IIFE for
+    the floor's classic <script> — the avatar_inline pattern, and for the same
+    reason: the module has its own esc/pct, and redeclaring those in the floor's
+    scope is a SyntaxError that takes the whole page down."""
+    mod = (ROOT / "web" / "static" / "chart.js").read_text(encoding="utf-8")
+    mod = re.sub(r"(?m)^export\s+", "", mod)  # any export form, not just one
+    return ("const OOC=(function(){\n" + mod +
+            "\nreturn {lineChart,niceStep,atOrBefore};\n})();\n"
+            "const lineChart=OOC.lineChart, niceStep=OOC.niceStep, atOrBefore=OOC.atOrBefore;")
+
+
 def main():
     data = json.loads((ROOT / "data" / "arena.json").read_text(encoding="utf-8"))
     PUBLIC.mkdir(exist_ok=True)
@@ -268,6 +280,7 @@ def main():
     # the full interface at /floor/
     template = (ROOT / "web" / "template.html").read_text(encoding="utf-8")
     template = template.replace("/*__AVATAR_JS__*/", avatar_inline())
+    template = template.replace("/*__CHART_JS__*/", chart_inline())
     (PUBLIC / "floor").mkdir(exist_ok=True)
     (PUBLIC / "floor" / "index.html").write_text(
         template.replace("/*__ARENA_DATA__*/", json.dumps(data)), encoding="utf-8"

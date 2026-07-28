@@ -28,23 +28,25 @@ export function notePrincipal(p) {
 
 function apply(p) {
   const seated = p.status === "seated" && p.name;
-  const label = "Go to your desk";
-  const sub = seated ? `${p.name} is on the floor` : "your first session is waiting";
-  // the way back in is always there; once we know whose it is, it says so
-  for (const el of document.querySelectorAll('[data-cta="signin"]')) {
-    el.textContent = seated ? `${p.name}'s desk` : "Your desk";
-  }
+  const mine = seated ? `${p.name}'s desk` : "Your desk";
+
+  // The way back in and the invitation are the same door once we know who this
+  // is: the sign-in link steps aside rather than sitting beside its own twin.
+  for (const el of document.querySelectorAll('[data-cta="signin"]')) el.hidden = true;
+
   for (const el of document.querySelectorAll('[data-cta="seat"]')) {
     el.setAttribute("href", "/desk/");
     const small = el.querySelector(".btnsub");
     if (small) {
-      el.textContent = label;
+      // a page-body button has room to say what is waiting
+      el.textContent = "Go to your desk";
       const s = document.createElement("span");
       s.className = "btnsub";
-      s.textContent = sub;
+      s.textContent = seated ? `${p.name} is on the floor` : "your first session is waiting";
       el.appendChild(s);
     } else {
-      el.textContent = el.textContent.trim().endsWith("→") ? label + " →" : label;
+      // a header link says whose desk it is, and keeps its arrow if it had one
+      el.textContent = el.textContent.trim().endsWith("→") ? mine + " →" : mine;
     }
   }
 }

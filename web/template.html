@@ -44,9 +44,9 @@
   .wordmark { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; }
   .tagline { color: var(--ink2); font-size: 13px; }
   .statuschip { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
-  .signinlink { font-size: 13px; color: var(--ink2); text-decoration: none; margin-left: auto; }
-  .signinlink:hover { color: var(--ink); text-decoration: underline; }
-  .seatlink { margin-left: auto; font: 600 12px/1 system-ui, sans-serif; color: var(--ink); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+  .signinlink { margin-left: auto; font: 500 12px/1 system-ui, sans-serif; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .signinlink:hover { color: var(--ink2); text-decoration: underline; }
+  .seatlink { font: 600 12px/1 system-ui, sans-serif; color: var(--ink); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
   .seatlink:hover { background: var(--hover); }
   nav.tabs { display: flex; gap: 4px; padding: 12px 0 0; }
   nav.tabs button { font: 600 14px/1 system-ui, sans-serif; color: var(--ink2); background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px 10px; cursor: pointer; }
@@ -270,73 +270,7 @@ function rangeChipsHTML(){
 function bindRangeChips(el, rerender){
   el.querySelectorAll(".rangechips button").forEach(b=>b.addEventListener("click",()=>{ state.range=b.dataset.range; rerender(); }));
 }
-/* last index of pts with t <= t0, or -1 */
-function atOrBefore(pts, t0){ let lo=0,hi=pts.length-1,r=-1; while(lo<=hi){ const m=(lo+hi)>>1; if(pts[m].t<=t0){ r=m; lo=m+1; } else hi=m-1; } return r; }
-function niceStep(span){ const raw=(span/4)||1, p=Math.pow(10,Math.floor(Math.log10(raw))); for (const m of [1,2,5]) if (m*p>=raw) return m*p; return 10*p; }
-
-/* seriesList: [{name, color, points:[{t,date,v}], dashed, fill}] — plotted on a
-   real time axis, so traders born mid-record start mid-chart, not at the left edge. */
-function lineChart(container, seriesList, opts={}){
-  const series = seriesList.map(s=>({...s, pts:s.points.map((p,i)=>({t:p.t!=null?p.t:i, date:p.date, v:p.v}))})).filter(s=>s.pts.length);
-  if (!series.length || Math.max(...series.map(s=>s.pts.length)) < 2){
-    container.innerHTML = `<div class="emptychart">One data point so far. The curve draws itself as trading accumulates.</div>`;
-    return;
-  }
-  const W=760,H=300,mL=46,mR=90,mT=14,mB=26,iw=W-mL-mR,ih=H-mT-mB;
-  const tMin=Math.min(...series.map(s=>s.pts[0].t)), tMax=Math.max(...series.map(s=>s.pts[s.pts.length-1].t));
-  const span=(tMax-tMin)||1;
-  const x = t => mL + (t-tMin)/span*iw;
-  const all = series.flatMap(s=>s.pts.map(p=>p.v));
-  let lo=Math.min(...all), hi=Math.max(...all); const pad=(hi-lo)*0.08||0.5; lo-=pad; hi+=pad;
-  const y = v => mT + (1-(v-lo)/(hi-lo))*ih;
-  const step=niceStep(hi-lo), dp=step>=1?0:(step>=0.1?1:2);
-  let grid="",ylabels="";
-  for (let k=Math.ceil(lo/step); k*step<=hi; k++){ const g=k*step, gy=y(g).toFixed(1);
-    grid += `<line x1="${mL}" y1="${gy}" x2="${W-mR}" y2="${gy}" stroke="var(--grid)" stroke-width="1"/>`;
-    ylabels += `<text x="${mL-8}" y="${gy}" dy="4" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${(g-100>=-1e-9?"+":"−")+Math.abs(g-100).toFixed(dp)+"%"}</text>`; }
-  /* merged timeline for the crosshair + x labels */
-  const dateByT=new Map();
-  series.forEach(s=>s.pts.forEach(p=>{ if(!dateByT.has(p.t)) dateByT.set(p.t,p.date); }));
-  const merged=[...dateByT.keys()].sort((a,b)=>a-b);
-  const dayLabel = d => (span>3*86400 && d) ? d.split(" ").slice(0,2).join(" ") : (d||"");
-  let xlabels=""; const used=[];
-  [0,0.35,0.7,1].forEach(f=>{
-    const target=tMin+span*f; let bi=0,bd=Infinity;
-    merged.forEach((t,i)=>{ const d=Math.abs(t-target); if(d<bd){bd=d;bi=i;} });
-    const t=merged[bi], lab=dayLabel(dateByT.get(t));
-    if (!lab || used.some(u=>u.lab===lab || Math.abs(u.x-x(t))<70)) return;
-    used.push({lab,x:x(t)});
-    xlabels += `<text x="${x(t).toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(lab)}</text>`;
-  });
-  let paths="",endDots="",endLabels=""; const labelYs=[];
-  series.forEach(s=>{
-    const lastP=s.pts[s.pts.length-1];
-    if (s.pts.length===1){ paths += `<circle cx="${x(lastP.t).toFixed(1)}" cy="${y(lastP.v).toFixed(1)}" r="3" fill="${s.color}"/>`; }
-    else {
-      const d = s.pts.map((p,i)=>(i?"L":"M")+x(p.t).toFixed(1)+" "+y(p.v).toFixed(1)).join(" ");
-      if (s.fill) paths += `<path d="${d} L ${x(lastP.t).toFixed(1)} ${(mT+ih).toFixed(1)} L ${x(s.pts[0].t).toFixed(1)} ${(mT+ih).toFixed(1)} Z" fill="${s.color}" opacity="0.07"/>`;
-      paths += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${s.dashed?'stroke-dasharray="5 4"':""}/>`;
-    }
-    let ly=y(lastP.v); while(labelYs.some(p=>Math.abs(p-ly)<14)) ly+=14; labelYs.push(ly);
-    endDots += `<circle cx="${x(lastP.t).toFixed(1)}" cy="${y(lastP.v).toFixed(1)}" r="3.5" fill="${s.color}"/>`;
-    endLabels += `<g><rect x="${W-mR+8}" y="${(ly-5).toFixed(1)}" width="10" height="3" rx="1.5" fill="${s.color}"/><text x="${W-mR+22}" y="${ly.toFixed(1)}" dy="1" font-size="11.5" fill="var(--ink2)">${esc(s.short||s.name)}</text></g>`;
-  });
-  container.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.aria||"equity chart")}">${grid}<line x1="${mL}" y1="${(mT+ih).toFixed(1)}" x2="${W-mR}" y2="${(mT+ih).toFixed(1)}" stroke="var(--axis)" stroke-width="1"/>${ylabels}${xlabels}${paths}${endDots}${endLabels}<line class="xhair" x1="0" y1="${mT}" x2="0" y2="${mT+ih}" stroke="var(--axis)" stroke-width="1" opacity="0"/></svg>`;
-  const svg=container.querySelector("svg"), xhair=svg.querySelector(".xhair");
-  svg.addEventListener("mousemove", ev=>{ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W;
-    if (px<mL||px>W-mR){ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; return; }
-    const target=tMin+(px-mL)/iw*span; let bi=0,bd=Infinity;
-    merged.forEach((t,i)=>{ const d=Math.abs(t-target); if(d<bd){bd=d;bi=i;} });
-    const mt=merged[bi], cx=x(mt);
-    xhair.setAttribute("x1",cx); xhair.setAttribute("x2",cx); xhair.setAttribute("opacity","1");
-    tooltip.style.display="block";
-    tooltip.innerHTML = `<div class="tdate">${esc(dateByT.get(mt)||"")}</div>` + series.map(s=>{
-      const i=atOrBefore(s.pts,mt), v=i>=0?s.pts[i].v:null;
-      return `<div class="trow"><span class="l"><span class="dot" style="background:${s.color}"></span>${esc(s.name)}</span><span class="v">${v!=null?pct(v/100-1):"—"}</span></div>`; }).join("");
-    const tw=tooltip.offsetWidth; let tx=ev.clientX+14; if (tx+tw>window.innerWidth-8) tx=ev.clientX-tw-14;
-    tooltip.style.left=tx+"px"; tooltip.style.top=Math.max(8,ev.clientY-10)+"px"; });
-  svg.addEventListener("mouseleave", ()=>{ xhair.setAttribute("opacity","0"); tooltip.style.display="none"; });
-}
+/*__CHART_JS__*/
 function legendHTML(list){ return `<div class="legend">`+list.map(s=>`<span class="item"><span class="swatch" style="background:${s.color}"></span>${esc(s.name)}</span>`).join("")+`</div>`; }
 
 function renderArena(){
@@ -426,7 +360,7 @@ function renderAgent(){
   const cutoff=rangeCutoff();
   const series=[{name:a.name,color:a.color,points:sliceRebase(a.curve,cutoff),fill:true}];
   if (a.bench_curve.length) series.push({name:a.benchmark_label,color:"var(--muted)",points:sliceRebase(a.bench_curve,cutoff),dashed:true});
-  lineChart($("#agentchart"), series, {aria:a.name+" equity versus "+a.benchmark_label});
+  lineChart($("#agentchart"), series, {tooltip, aria:a.name+" equity versus "+a.benchmark_label});
   bindRangeChips(el, renderAgent);
   $("#subview").innerHTML = state.subtab==="journal"?journalHTML(a):state.subtab==="principles"?principlesHTML(a):state.subtab==="hypotheses"?hypothesesHTML(a):state.subtab==="orders"?ordersHTML(a):positionsHTML(a);
   el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{ state.agent=b.dataset.agent; renderAgent(); }));
@@ -479,7 +413,7 @@ function renderCompare(){
     <div class="switcher">${chips}</div>
     ${sel.length?`<div class="card chartcard"><div class="chartbar"><div class="charttitle">Performance</div>${rangeChipsHTML()}</div>${legendHTML(series.map(s=>({name:s.name,color:s.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one trader.</p>`}
     ${stats}<div class="cmpgrid">${cols}</div>`;
-  if (sel.length) lineChart($("#cmpchart"), series, {aria:"comparison of selected traders"});
+  if (sel.length) lineChart($("#cmpchart"), series, {tooltip, aria:"comparison of selected traders"});
   bindRangeChips(el, renderCompare);
   const avgBtn=el.querySelector("#avgchip");
   if (avgBtn) avgBtn.addEventListener("click",()=>{ state.showAvg=!state.showAvg; renderCompare(); });
