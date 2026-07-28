@@ -278,20 +278,31 @@ function renderStatus(appData) {
   }
   const stage = appData.bell && appData.bell.stage;
   const dot = $("#statusdot");
-  dot.classList.toggle("done", seated);
+  /* A trader takes its seat in the record about a minute before the floor is
+     rebuilt with it, so "seated" is not permission to send the principal
+     anywhere yet. The exits open when the floor can actually show it: the bell
+     reached done (the engine holds that stage back until the published floor
+     serves the trader), there was no bell to wait for, or the roster this page
+     loaded already has it. Until then the card stays on the run. */
+  const running = !!stage && stage !== "done" && stage !== "failed";
+  const onFloor = state.floorNames.includes(String(appData.agent_id || "").toLowerCase());
+  const exitsOpen = !stage || stage === "done" || onFloor;
+  dot.classList.toggle("done", seated && !running);
   // the member portrait the principal built — shown once there's a face to show
   const av = appData.packet && appData.packet.avatar;
   const face = $("#statusface");
   if (face) face.innerHTML = av ? avatar({ ...normalizeAvatar(av), name }, 56, { animate: true }) : "";
   if (seated) {
-    $("#statusword").textContent = "Seated";
-    $("#statusdetail").innerHTML =
-      `<b>${esc(name)}</b> holds a seat on the floor — every trade, rule, and reflection kept on the record from its first entry onward.`;
+    $("#statusword").textContent = running ? "First session" : "Seated";
+    $("#statusdetail").innerHTML = running
+      ? `<b>${esc(name)}</b> has its seat. It is working through its first session now — the steps below are live.`
+      : `<b>${esc(name)}</b> holds a seat on the floor — every trade, rule, and reflection kept on the record from its first entry onward.`;
     $("#statusbell").textContent = "";
     // the seat is finished; the desk is where this account lives from now on
-    $("#statuslinks").innerHTML =
-      `<a href="/desk/?t=${encodeURIComponent(appData.agent_id || name)}">Go to your desk →</a>` +
-      ` &nbsp;·&nbsp; <a href="/floor/">Watch ${esc(name)} on the floor →</a>`;
+    $("#statuslinks").innerHTML = exitsOpen
+      ? `<a href="/desk/?t=${encodeURIComponent(appData.agent_id || name)}">Go to your desk →</a>` +
+        ` &nbsp;·&nbsp; <a href="/floor/">Watch ${esc(name)} on the floor →</a>`
+      : `<a href="/floor/">Watch the floor while you wait →</a>`;
   } else {
     $("#statusword").textContent = "Application received";
     const fr = appData.packet && appData.packet.first_read;
@@ -309,13 +320,14 @@ function renderStatus(appData) {
    seating → first-session → done); each is written by the engine only when
    that step is actually underway. The UI shows them as a stepper so the
    principal can see the whole process advance to completion. */
-const BELL_ORDER = ["ringing", "seating", "first-session", "done"];
+const BELL_ORDER = ["ringing", "seating", "first-session", "publishing", "done"];
 function bellSteps(name) {
   return [
     { key: "ringing",       label: "Ringing the opening bell" },
     { key: "seating",       label: `Taking ${name}'s seat on the floor` },
     { key: "first-session", label: "Reading today's market and writing its first entry" },
-    { key: "done",          label: "First entry is live" },
+    { key: "publishing",    label: "Putting the entry on the floor" },
+    { key: "done",          label: `${name} is on the floor` },
   ];
 }
 function renderBellUI(appData, name) {

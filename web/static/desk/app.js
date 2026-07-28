@@ -651,13 +651,14 @@ async function maybeGreet() {
 }
 
 /* ---------------- the waiting room ---------------- */
-const BELL_ORDER = ["ringing", "seating", "first-session", "done"];
+const BELL_ORDER = ["ringing", "seating", "first-session", "publishing", "done"];
 function bellSteps(name) {
   return [
     { key: "ringing", label: "Ringing the opening bell" },
     { key: "seating", label: `Taking ${name}'s seat on the floor` },
     { key: "first-session", label: "Reading today's market and writing its first entry" },
-    { key: "done", label: "First entry is live" },
+    { key: "publishing", label: "Putting the entry on the floor" },
+    { key: "done", label: `${name} is on the floor` },
   ];
 }
 
@@ -728,8 +729,13 @@ function watchApplication(id) {
   onSnapshot(doc(db, "applications", id), async (snap) => {
     if (!snap.exists()) return;
     const d = snap.data();
-    const seatedNow = d.status === "seated" && d.agent_id && agentOf(d.agent_id);
-    if (seatedNow) { await loadFloor(); await openPrincipal(); return; }
+    if (d.status === "seated" && d.agent_id) {
+      // The desk cannot open on a trader the published record does not carry
+      // yet, and the roster this page loaded can predate publication — so read
+      // it again on every update, or a waiting room opened early never lets go.
+      await loadFloor();
+      if (agentOf(d.agent_id)) { await openPrincipal(); return; }
+    }
     renderWait({ id, data: d });
   }, (e) => console.warn("application listener:", e));
 }
@@ -800,7 +806,13 @@ async function openPrincipal() {
     : null);
 
   if (!state.traders.length) {
-    const pending = state.apps.find((a) => a.data.status !== "seated") || null;
+    /* A trader takes its seat in the record about a minute before the floor is
+       rebuilt with it, and the desk can only open on what the record publishes.
+       That minute is a waiting room, not an empty account — so a seated trader
+       the floor has not caught up with is the one to wait on, and the listener
+       opens the desk the moment it lands. */
+    const pending = state.apps.find((a) => a.data.status === "seated")
+      || state.apps.find((a) => a.data.status !== "seated") || null;
     renderWait(pending);
     show("wait");
     if (pending) watchApplication(pending.id);
