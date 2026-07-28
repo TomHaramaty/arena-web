@@ -28,6 +28,9 @@ import {
   nextFirstBell, fmtBell, originQuote, originDate, citationCount, daysUntil,
 } from "./trader.js";
 import { avatar, injectAvatarCSS, normalizeAvatar } from "../avatar.js";
+import {
+  cleanName, normalizeCredit, saveCreditSoon, creditFormHTML, bindCreditForm,
+} from "../credit.js";
 import { lineChart } from "../chart.js";
 import { notePrincipal } from "../whoami.js";
 
@@ -83,6 +86,7 @@ const state = {
   busy: false,
   taking: false,     // a note is being written to the record right now
   unsubGuidance: null,
+  credit: { name: "", show: false }, // their own name on the floor, if they want it
 };
 
 const VIEWS = ["loading", "signin", "wait", "desk"];
@@ -168,11 +172,17 @@ async function completeEmailLink() {
   });
 }
 
+/** The principal's own doc: created on first sign-in, and read for the one
+ *  thing on it the panel needs — what the floor may print beside their traders.
+ *  Awaited before anything renders, so the control never opens showing a
+ *  preference that is not theirs. */
 async function ensureUserDoc(user) {
+  let data = null;
   try {
     const ref = doc(db, "users", user.uid);
     const snap = await getDoc(ref);
-    if (!snap.exists()) {
+    if (snap.exists()) data = snap.data();
+    else {
       await setDoc(ref, {
         displayName: user.displayName || null,
         email: user.email || null,
@@ -180,6 +190,11 @@ async function ensureUserDoc(user) {
       });
     }
   } catch (e) { console.warn("users doc:", e); }
+  state.credit = normalizeCredit(data && data.credit);
+  // a name signed in with is a suggestion to accept, never consent already given
+  if (!state.credit.name && user.displayName) {
+    state.credit.name = cleanName(user.displayName);
+  }
 }
 
 function renderAuthChip() {
@@ -425,7 +440,14 @@ function renderPanel() {
     <div class="psec"><span class="label">the charter</span>
       <details class="pmore"><summary>what it may and may not do</summary>${charterHTML(a)}</details>
       <p class="footnote" style="margin-top:6px"><a href="/floor/#${esc(a.id)}">The whole record, and the chart with its ranges, on the floor →</a></p>
+    </div>
+    <div class="psec"><span class="label">your name on the floor</span>
+      <p class="footnote" style="margin:-2px 0 8px">The floor names whoever chartered each trader. Yours to change or take off whenever you like — the floor follows within the hour.</p>
+      <div id="credform">${creditFormHTML({ subject: a.name })}</div>
     </div>`;
+  bindCreditForm($("#credform"), state.credit, (c) => {
+    if (state.user) saveCreditSoon(db, state.user.uid, c);
+  });
   drawBookChart(a);
 }
 
@@ -972,7 +994,7 @@ async function boot() {
     state.user = user;
     renderAuthChip();
     if (!user) { show("signin"); return; }
-    ensureUserDoc(user);
+    await ensureUserDoc(user);
     await openPrincipal();
   });
 }

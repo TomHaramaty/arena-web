@@ -252,12 +252,12 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
   color: var(--muted); background: none; border: none; padding: 0; cursor: pointer;
   text-decoration: underline dashed; text-underline-offset: 3px; }
 .changeit:hover { color: var(--ink); }
-.privacy, .updatescard { padding: 14px 18px; margin: 18px 0; }
+.privacy, .updatescard, .namecard { padding: 14px 18px; margin: 18px 0; }
 .privacy .opt, .updatescard .opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
 .privacy .opt input, .updatescard .opt input { margin-top: 3px; accent-color: var(--ink); }
 .privacy .opt b, .updatescard .opt b { font-weight: 600; }
 .privacy .opt .d, .updatescard .opt .d { font-size: 13px; color: var(--ink2); }
-.updatescard .facehint { margin-bottom: 6px; }
+.updatescard .facehint, .namecard .facehint { margin-bottom: 10px; }
 .updatescard .updfloor { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 12px; }
 .finish .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 

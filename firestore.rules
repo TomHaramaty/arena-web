@@ -2,13 +2,21 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // A user's profile. Created on first sign-in by the client.
+    // A user's profile. Created on first sign-in by the client. `credit` is the
+    // one thing here that can reach a public page: the name the principal wants
+    // printed beside the traders they charter, and whether it is printed at all.
+    // Theirs to change or remove at any hour; the engine reads it each tick.
     match /users/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow create, update: if request.auth != null
         && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['displayName', 'email', 'createdAt'])
-        && request.resource.data.size() <= 3;
+        && request.resource.data.keys().hasOnly(['displayName', 'email', 'createdAt', 'credit'])
+        && request.resource.data.size() <= 4
+        && (!('credit' in request.resource.data) || (
+              request.resource.data.credit.keys().hasOnly(['name', 'show'])
+           && request.resource.data.credit.name is string
+           && request.resource.data.credit.name.size() <= 60
+           && request.resource.data.credit.show is bool));
     }
 
     // In-flight interview drafts, mirrored once per completed turn so an
