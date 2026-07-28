@@ -96,8 +96,16 @@ function bookBlock(a) {
   } else {
     lines.push("no open positions — the book is all cash.");
   }
+  // The record publishes a resting rule as its trigger price and the price it
+  // is watching (2026-07-28) — the raw params blob and the row id are gone, and
+  // a trader must never read "undefined" in its own book.
   for (const o of a.standing_orders || []) {
-    lines.push(`standing order #${o.id}: ${o.kind} ${o.side} ${o.symbol} ${JSON.stringify(o.params)}${o.note ? " — " + o.note : ""}`);
+    const fires = o.trigger != null
+      ? (o.kind === "limit" ? ` at ${money(o.trigger)}`
+                            : ` if it ${o.side === "sell" ? "falls" : "rises"} to ${money(o.trigger)}`)
+      : "";
+    lines.push(`standing order: ${o.kind} ${o.side} ${o.symbol}${fires}` +
+      `${o.mark != null ? ` (now ${money(o.mark)})` : ""}${o.note ? ` — ${o.note}` : ""}`);
   }
   return lines.join("\n");
 }
