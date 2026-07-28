@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Your desk — Open Outcry</title>
+<meta name="description" content="Where your trader reports to you: what it did, why, and the one place you can talk back.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/desk/desk.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="wordmark" href="/">Open Outcry</a>
+    <span class="tagline" id="topline">the desk</span>
+    <span class="authchip" id="authchip" hidden></span>
+  </header>
+
+  <!-- boot -->
+  <section id="view-loading">
+    <p class="mono muted" style="padding-top:40px">— loading —</p>
+  </section>
+
+  <!-- signed out -->
+  <section id="view-signin" hidden>
+    <div class="signinwrap">
+      <h1>Your desk</h1>
+      <p class="lede">Sign in to read what your trader did today, and to talk to it.</p>
+      <div class="signin" id="signinbox">
+        <button class="gbtn" id="btn-google">
+          <span class="gmark"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45 24c0-1.6-.1-2.8-.4-4H24v7.6h12c-.5 3-2 5.6-4.6 7.3v6h7.4C43.6 44 45 34.9 45 24z"/><path fill="#34A853" d="M24 46c6.5 0 11.9-2.1 15.9-5.9l-7.4-6c-2 1.4-4.7 2.3-8.5 2.3-6.5 0-12-4.4-14-10.3H2.3v6.5C6.3 40.9 14.5 46 24 46z"/><path fill="#FBBC05" d="M10 26.1c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6v-6.5H2.3C.8 13.4 0 17.6 0 21.5s.8 8.1 2.3 11.1l7.7-6.5z"/><path fill="#EA4335" d="M24 8.7c3.6 0 6.8 1.2 9.3 3.6l7-7C35.9 1.2 30.5-1 24-1 14.5-1 6.3 4.1 2.3 12l7.7 6.5C12 13.1 17.5 8.7 24 8.7z"/></svg></span>
+          Continue with Google
+        </button>
+        <span class="or">or sign in with email</span>
+        <form id="emailform">
+          <div class="emailrow">
+            <input id="emailinput" type="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+            <button class="plain" type="submit">Send link</button>
+          </div>
+        </form>
+        <p class="signedin" id="emailsent" hidden>The link is on its way — check your inbox (and your spam folder).</p>
+        <p class="err" id="signinerr" hidden></p>
+      </div>
+      <div class="finishing" id="finishingbox" hidden>
+        <p class="finishingstatus" id="finishingstatus">Finishing sign-in…</p>
+        <form id="confirmemailform" hidden>
+          <p class="confirmnote">Confirm the email you requested the link with, to finish signing in here.</p>
+          <div class="emailrow">
+            <input id="confirmemailinput" type="email" required autocomplete="email" placeholder="you@example.com" aria-label="Your email">
+            <button class="primary" type="submit">Finish sign-in</button>
+          </div>
+        </form>
+        <p class="err" id="finishingerr" hidden></p>
+      </div>
+      <p class="footnote">No trader yet? <a href="/seat/">Take a seat</a> — the interview takes about fifteen minutes.</p>
+    </div>
+  </section>
+
+  <!-- signed in, nothing seated yet (or rejected): the waiting room -->
+  <section id="view-wait" hidden>
+    <div class="waitwrap">
+      <div class="card statuscard">
+        <div class="statusface" id="statusface"></div>
+        <div class="statusline"><span class="statusword" id="statusword">—</span></div>
+        <p class="statusdetail" id="statusdetail"></p>
+        <p class="statusbell mono" id="statusbell"></p>
+        <div id="statusrun"></div>
+        <p class="statuslinks" id="statuslinks"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- the desk -->
+  <section id="view-desk" hidden>
+    <div class="switcher" id="switcher" hidden></div>
+    <div class="dgrid">
+      <div class="chatcol">
+        <div id="thread"></div>
+        <p class="err" id="chaterr" hidden></p>
+        <div class="tailrow"><button class="tailbtn" id="btn-tail" type="button" hidden>↓ latest</button></div>
+        <div class="footbar" id="footbar">
+          <form id="composer" autocomplete="off">
+            <textarea id="input" rows="1" placeholder="Say something…" aria-label="Write to your trader"></textarea>
+            <button class="primary" id="send" type="submit">Send</button>
+          </form>
+          <p class="composernote" id="composernote"></p>
+        </div>
+      </div>
+
+      <aside class="panelcol" id="panelcol">
+        <button class="paneltoggle" id="paneltoggle" aria-expanded="false">
+          <span id="paneltitle">the book</span>
+          <span class="caret" id="panelcaret">▴</span>
+        </button>
+        <div id="panelbody"></div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="provenance">
+    Simulated capital, real market prices. Everything your trader does is written down — this conversation is not.
+  </footer>
+</div>
+<script type="module" src="/desk/app.js"></script>
+</body>
+</html>

@@ -19,6 +19,8 @@ arena-engine (private data plane)          arena-web (this repo)
                                                               from the record, zero JS)
                                            web/template.html (→ /floor/ — the interface)
                                            web/static/seat/  (→ /seat/ — the interview)
+                                           web/static/desk/  (→ /desk/ — the private page,
+                                                              one per trader per principal)
                                            render.py         (data + templates → public/)
                                            → Firebase Hosting (deploy.yml)
 ```
@@ -72,6 +74,38 @@ function above):
   status page live-listens to the doc; the engine flips it to `seated`.
   Revisiting `/seat` with an application on file shows status, not a new
   interview.
+
+## /desk — the principal's private page
+
+`web/static/desk/` is where a chartered trader reports to the person whose
+beliefs it runs on, and the only surface where the two of them talk. Same room
+as the interview — conversation on the left, the trader's standing panel on the
+right — with the Registrar's chair now the trader's own.
+
+- **The thread** is woven from the record (`/arena.json`): the chartering, then
+  every session entry in the trader's own words, interleaved with the
+  conversation. On arrival the trader speaks first about the newest real thing
+  on its record (Firebase AI Logic, same model and retry ladder as the seat).
+- **The trader carries things itself** (`desk/trader.js` holds the whole system
+  prompt). Talk is private — never published, and it cannot move the book. When
+  something said in the room should change what the trader does, *it* decides to
+  take it: it says so in its own words and ends that reply with a `[[TAKE]]`
+  marker the client strips. The desk writes the note — the principal's own words
+  wherever possible, the trader's own summary when a plan is what matters — as a
+  `guidance` doc, which the engine ingests as `C<n>`, puts in front of the trader
+  at its next session, and answers there with one of four dispositions (adopted ·
+  converted · declined · refused). The answer comes back to the thread. Nothing
+  is final until the session reads it: a quiet **leave it** pulls the note back
+  while it is still `filed`. Three a day.
+- **The standing panel** — the book, *your words at work* (each principle with
+  the principal's own quote from the interview and how many sessions actually
+  cited it, counted from the journals), the clocks, and the charter.
+- **Several traders, one principal:** everything is keyed by trader
+  (`/desk/?t=<id>`; no parameter at all while there is only one), and a face
+  switcher appears as soon as there is more than one. The thread opens with one
+  collapsed line — *the interview that made it* — the origin of every quote in
+  the panel. Firestore: `desks/{uid}_{trader}` (private thread) and `guidance`
+  (create-only; the engine writes back the disposition).
 
 ## Develop
 
