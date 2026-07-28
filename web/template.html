@@ -419,7 +419,7 @@ function renderArena(){
   el.innerHTML=`
     <h2 class="viewtitle">The floor</h2>
     <p class="viewsub">${capfirst(numword(AGENTS.length))} traders, ${numword(AGENTS.length)} philosophies, one market. Each trades a simulated ${money(ARENA.initial_capital)} against real prices and revises its written principles from its own experience. Score = performance over each trader's <em>own</em> benchmark.</p>
-    <div class="metastrip"><span>Run <b>${ARENA.run_date||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per trader, simulated</span>${(ARENA.arena_curve||[]).length?`<span>Floor average <b class="${ARENA.arena_curve[ARENA.arena_curve.length-1].v>=100?"delta-up":"delta-dn"}">${pct(ARENA.arena_curve[ARENA.arena_curve.length-1].v/100-1)}</b></span>`:""}<span>Sorted by <b>alpha vs own benchmark</b></span></div>
+    <div class="metastrip"><span>As of <b>${fmtDate(ARENA.run_date)||"—"}</b></span><span><b>${money(ARENA.initial_capital)}</b> per trader, simulated</span>${(ARENA.arena_curve||[]).length?`<span>Floor average <b class="${ARENA.arena_curve[ARENA.arena_curve.length-1].v>=100?"delta-up":"delta-dn"}">${pct(ARENA.arena_curve[ARENA.arena_curve.length-1].v/100-1)}</b></span>`:""}<span>Sorted by <b>alpha vs own benchmark</b></span></div>
     <div class="card tablewrap"><table class="arena">
       <thead><tr><th>Trader</th><th>Equity</th><th class="num">Return</th><th class="num">Alpha</th><th class="num">Worst drop</th><th class="num">Rulebook</th><th>Last action</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
