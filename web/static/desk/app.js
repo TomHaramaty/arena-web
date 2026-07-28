@@ -80,6 +80,7 @@ const state = {
   model: null, fallback: null,
   busy: false,
   offer: null,       // the trader has offered to file the last message
+  confirm: null,     // the principal asked to file one; the words are shown back
   unsubGuidance: null,
 };
 
@@ -244,7 +245,10 @@ const PER_DAY = 3;   // what the engine will take from one desk in a day
 const isToday = (ts) => ts && ts.seconds &&
   new Date(ts.seconds * 1000).toDateString() === new Date().toDateString();
 
-async function fileMessage(idx) {
+/* Filing is a decision, so it is never one tap away from talking: the words
+   about to go on the record are shown back, verbatim, above the button that
+   sends them. Nobody discovers afterwards what they published. */
+function askToFile(idx) {
   const m = state.thread[idx];
   if (!m || m.role !== "you") return;
   const g = m.gid ? guidanceOf(m.gid) : null;
@@ -255,6 +259,15 @@ async function fileMessage(idx) {
     showError(`${traderName()} takes ${PER_DAY} notes a day — this one can go in tomorrow.`);
     return;
   }
+  state.confirm = idx;
+  state.offer = null;
+  renderThread();
+}
+
+async function fileMessage(idx) {
+  const m = state.thread[idx];
+  if (!m || m.role !== "you") return;
+  state.confirm = null;
   try {
     const ref = await addDoc(collection(db, "guidance"), {
       uid: state.user.uid,
@@ -447,20 +460,40 @@ function threadItems() {
   return out.sort((x, y) => x.t - y.t);
 }
 
+/** How you two met: the interview is the origin of every quote in the panel. */
+function interviewHTML(packet) {
+  if (!packet.transcript) return "";
+  return `<details class="met"><summary>the interview that made ${esc(traderName())} →</summary>
+    <div class="mettext">${md(packet.transcript)}</div></details>`;
+}
+
 function renderThread() {
   const el = $("#thread");
-  el.innerHTML = threadItems().map((x) => x.html).join("");
-  if (state.offer != null) {
+  const packet = packetOf(state.traders.find((t) => t.id === state.traderId));
+  el.innerHTML = interviewHTML(packet) + threadItems().map((x) => x.html).join("");
+
+  const idx = state.confirm != null ? state.confirm : state.offer;
+  if (idx != null && state.thread[idx]) {
     const box = document.createElement("div");
-    box.className = "fileoffer";
-    box.innerHTML = `<button class="yes" type="button" id="offer-yes">File it for the next session</button>
-                     <button class="no" type="button" id="offer-no">Just talking</button>`;
+    box.className = "fileconfirm";
+    box.innerHTML = `
+      <div class="label">file this for the next session</div>
+      <p class="fcquote">“${esc(state.thread[idx].text)}”</p>
+      <p class="fcnote">Filed in your words, on the record beside ${esc(traderName())}'s
+        answer — that is what makes the answer worth reading. It goes in front of
+        ${esc(traderName())} at ${esc(fmtBell(nextFirstBell()))}, and it may be overruled.</p>
+      <div class="fcrow">
+        <button class="yes" type="button" id="file-yes">File it</button>
+        <button class="no" type="button" id="file-no">Keep it between us</button>
+      </div>`;
     el.appendChild(box);
-    $("#offer-yes").addEventListener("click", () => fileMessage(state.offer));
-    $("#offer-no").addEventListener("click", () => { state.offer = null; renderThread(); });
+    $("#file-yes").addEventListener("click", () => fileMessage(idx));
+    $("#file-no").addEventListener("click", () => {
+      state.confirm = null; state.offer = null; renderThread();
+    });
   }
   el.querySelectorAll("[data-file]").forEach((b) =>
-    b.addEventListener("click", () => fileMessage(Number(b.dataset.file))));
+    b.addEventListener("click", () => askToFile(Number(b.dataset.file))));
   tail(false);
 }
 
@@ -680,17 +713,23 @@ function renderSwitcher() {
     b.addEventListener("click", () => selectTrader(b.dataset.t)));
 }
 
+function syncUrl() {
+  const one = state.traders.length < 2;
+  history.replaceState(null, "", location.pathname +
+    (one ? "" : "?t=" + encodeURIComponent(state.traderId)));
+}
+
 async function selectTrader(id) {
   if (id === state.traderId) return;
   state.traderId = id;
   state.agent = agentOf(id);
-  history.replaceState(null, "", location.pathname + "?t=" + encodeURIComponent(id));
+  syncUrl();
   await openDesk();
 }
 
 async function openDesk() {
   document.title = `${state.agent.name} — Open Outcry`;
-  state.offer = null;
+  state.offer = state.confirm = null;
   state.guidance = [];   // the new trader's notes arrive with its own listener
   $("#topline").textContent = "the desk";
   $("#composernote").innerHTML =
@@ -725,6 +764,7 @@ async function openPrincipal() {
   const picked = state.traders.find((t) => t.id === want) || state.traders[0];
   state.traderId = picked.id;
   state.agent = agentOf(picked.id);
+  syncUrl();
   await openDesk();
 }
 
@@ -828,7 +868,7 @@ function wire() {
     input.value = "";
     input.style.height = "";
     followTail = true;
-    state.offer = null;
+    state.offer = state.confirm = null;
     state.thread.push({ role: "you", text, ts: Date.now() });
     saveThread();
     renderThread();
