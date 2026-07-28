@@ -1,4 +1,4 @@
-// Open Outcry — the desk: the principal's private room with their own trader.
+// Conviction League — the desk: the principal's private room with their own trader.
 // One page, four states: signed out → waiting for the first bell → the desk →
 // (several traders, one principal). Runs client-side: Firebase Auth (identity),
 // Firestore (the private thread and what gets filed), Firebase AI Logic (the
@@ -795,7 +795,7 @@ async function selectTrader(id) {
 }
 
 async function openDesk() {
-  document.title = `${state.agent.name} — Open Outcry`;
+  document.title = `${state.agent.name} — Conviction League`;
   state.guidance = [];   // the new trader's notes arrive with its own listener
   $("#topline").textContent = "the desk";
   // the promise stays on every screen; the mechanic behind it is the first
