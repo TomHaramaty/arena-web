@@ -1084,11 +1084,13 @@ function updateFinishUI() {
     return;
   }
   if (state.done) {
-    $("#composer").hidden = true;
+    // The charter is the principal's until they countersign it, so the line
+    // stays open: anything in it can still be changed by saying so.
+    $("#composer").hidden = false;
     bar.hidden = false;
     bar.classList.remove("quiet");
     btn.className = "primary";
-    note.textContent = `${name} is drafted and has spoken. Countersigning charters ${name} and puts it on the floor.`;
+    note.textContent = `${name} is drafted and has spoken. Tell it what to change, or countersign to put it on the floor.`;
   } else if (complete && !agentPhase()) {
     // a complete charter with no handoff yet (single-act fallback path)
     $("#composer").hidden = false;
@@ -1276,6 +1278,7 @@ function renderCharter() {
   renderDraft();
   $("#charterbody").innerHTML = $("#draftbody").innerHTML;
   $("#draftbody").innerHTML = hold;
+  addChangeLinks();
   const errs = validatePacket(d, state.floorNames);
   const box = $("#charter-errors");
   if (errs.length) {
@@ -1286,6 +1289,35 @@ function renderCharter() {
     box.hidden = true;
     $("#btn-submit").disabled = false;
   }
+}
+
+/* Nothing on the charter is final until it is countersigned, so every block on
+   the review carries the way to change it: back to the conversation, with the
+   sentence started. The change itself is made where every other entry was made
+   — in the interview, by saying so. */
+function addChangeLinks() {
+  for (const sec of $("#charterbody").querySelectorAll(".dsec")) {
+    const label = sec.querySelector(".label");
+    if (!label || label.querySelector(".changeit")) continue;
+    const what = label.textContent.trim().toLowerCase();
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "changeit";
+    b.textContent = "change";
+    b.addEventListener("click", () => amendFromReview(what));
+    label.appendChild(b);
+  }
+}
+
+function amendFromReview(what) {
+  show("interview");
+  $("#composer").hidden = false;
+  const input = $("#input");
+  input.value = `I want to change the ${what}: `;
+  input.style.height = "";
+  input.style.height = Math.min(input.scrollHeight, 160) + "px";
+  input.focus();
+  input.setSelectionRange(input.value.length, input.value.length);
 }
 
 /* The updates preference: a closed vocabulary with safe defaults. Nothing is

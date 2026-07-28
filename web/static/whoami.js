@@ -30,6 +30,10 @@ function apply(p) {
   const seated = p.status === "seated" && p.name;
   const label = "Go to your desk";
   const sub = seated ? `${p.name} is on the floor` : "your first session is waiting";
+  // the way back in is always there; once we know whose it is, it says so
+  for (const el of document.querySelectorAll('[data-cta="signin"]')) {
+    el.textContent = seated ? `${p.name}'s desk` : "Your desk";
+  }
   for (const el of document.querySelectorAll('[data-cta="seat"]')) {
     el.setAttribute("href", "/desk/");
     const small = el.querySelector(".btnsub");

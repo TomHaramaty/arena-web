@@ -124,7 +124,9 @@ export function checkTurn(ctx, userRaw, raw) {
     issue(ctx, "hard", "ready-invalid", "ready=true but packet fails: " + validatePacket(ctx.draft, [])[0]);
   ctx.ready = !!side.ready;
   if (side.done) {
-    if (!isTape) issue(ctx, "hard", "done-off-tape", "done=true outside the first read");
+    // done belongs to the first read — but once it has landed, the principal may
+    // still amend the charter, and those replies stay done
+    if (!isTape && !ctx.done) issue(ctx, "hard", "done-off-tape", "done=true outside the first read");
     ctx.done = true; ctx.doneTurn = ctx.turn;
   }
 
@@ -179,6 +181,16 @@ export function openness(ctx) {
 }
 
 export function finalChecks(ctx, persona) {
+  // an amendment asked for after the read must land in the draft, not just in
+  // the prose ("of course" with no field change is the failure mode)
+  const want = persona.amendExpect;
+  if (want) {
+    const d = ctx.draft || {};
+    if (want.benchmark && !want.benchmark.test(JSON.stringify(d.benchmark || {})))
+      issue(ctx, "hard", "amend-ignored", "benchmark not changed: " + JSON.stringify(d.benchmark));
+    if (want.max_position_pct != null && Number(d.max_position_pct) !== want.max_position_pct)
+      issue(ctx, "hard", "amend-ignored", "max position not changed: " + d.max_position_pct);
+  }
   if (persona.expectComplete) {
     if (!ctx.done) ctx.issues.push({ sev: "hard", code: "never-done", turn: ctx.turn, detail: "interview never reached the first read" });
     else {

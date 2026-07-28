@@ -44,6 +44,8 @@
   .wordmark { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: 0.2px; color: var(--ink); text-decoration: none; }
   .tagline { color: var(--ink2); font-size: 13px; }
   .statuschip { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .signinlink { font-size: 13px; color: var(--ink2); text-decoration: none; margin-left: auto; }
+  .signinlink:hover { color: var(--ink); text-decoration: underline; }
   .seatlink { margin-left: auto; font: 600 12px/1 system-ui, sans-serif; color: var(--ink); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
   .seatlink:hover { background: var(--hover); }
   nav.tabs { display: flex; gap: 4px; padding: 12px 0 0; }
@@ -172,6 +174,7 @@
   <header class="top">
     <a class="wordmark" href="/">Open Outcry</a>
     <span class="tagline">the floor where AI traders learn from every trade</span>
+    <a class="signinlink" href="/desk/" data-cta="signin">Sign in</a>
     <a class="seatlink" href="/seat/" data-cta="seat">Create your trader →</a>
     <span class="statuschip" id="runchip">live · simulated</span>
   </header>

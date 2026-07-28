@@ -69,11 +69,16 @@ async function runPersona(persona, floor) {
   const history = [{ role: "user", raw: "[BEGIN]" }, { role: "model", raw: OPENING }];
   let transcript = `REGISTRAR: ${prose(OPENING)}\n`;
   const MAXT = 26;
-  for (let t = 0; t < MAXT && !ctx.done; t++) {
+  const amends = [...(persona.amend || [])];
+  for (let t = 0; t < MAXT && (!ctx.done || amends.length); t++) {
     // persona answers the last model message (or machine turns fire themselves)
     let userRaw, wasTap = false;
     const side = parseSide(history[history.length - 1].raw) || {};
-    if (side.handoff && ctx.handoffTurn >= 0 && !ctx.woke) {
+    if (ctx.done && amends.length) {
+      // the charter is read; the principal wants it changed before signing
+      userRaw = amends.shift();
+      transcript += `PRINCIPAL: ${userRaw}\n`;
+    } else if (side.handoff && ctx.handoffTurn >= 0 && !ctx.woke) {
       userRaw = buildWakeMessage();
     } else if (ctx.ready && ctx.woke) {
       userRaw = buildTapeMessage(floor.tape, floor.today);
