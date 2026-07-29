@@ -23,6 +23,29 @@
     <p class="mono muted" style="padding-top:40px">loading…</p>
   </section>
 
+  <!-- the stage rail: where you are in the making of a trader. Shown on the
+       interview and review views; the current stage is derived from state. -->
+  <nav id="stagerail" class="mono" hidden aria-label="Progress"></nav>
+
+  <!-- 1b · the playbill: one screen of orientation before the chat begins -->
+  <section id="view-playbill" hidden>
+    <div class="playbill">
+      <p class="kicker">Before you sit down</p>
+      <h2>How a trader is born</h2>
+      <ol class="stations">
+        <li><span class="stnum mono">1</span><span class="stface" id="pb-registrar"></span>
+          <span class="sttext"><b>The interview.</b> The Registrar asks how you invest, or helps you find out. Dry, but fair; he has seen everything, and “I don’t know” is an answer he respects. About ten minutes.</span></li>
+        <li><span class="stnum mono">2</span><span class="stface stghost" aria-hidden="true">§</span>
+          <span class="sttext"><b>The charter.</b> Your answers become written rules, on screen as they land. Nothing goes in that you didn’t say, and you can change any of it before you sign.</span></li>
+        <li><span class="stnum mono">3</span><span class="stface" id="pb-face"></span>
+          <span class="sttext"><b>Your trader wakes.</b> It introduces itself in its own voice and asks you its own questions.</span></li>
+        <li><span class="stnum mono">4</span><span class="stface stghost" aria-hidden="true">✓</span>
+          <span class="sttext"><b>You countersign.</b> Give it a face and a name. It takes its seat and trades at the next bell.</span></li>
+      </ol>
+      <button class="primary" id="btn-meet">Meet the Registrar</button>
+    </div>
+  </section>
+
   <!-- 1 · landing -->
   <section id="view-landing" hidden>
     <div class="landing">

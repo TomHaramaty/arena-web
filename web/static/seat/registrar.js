@@ -152,7 +152,9 @@ The transcript opens with "[BEGIN]" followed by your own opening line (the terms
  * variance nobody asked for. Seeded into history as a model turn; the first
  * real model call happens with the principal's first answer.
  */
-export const OPENING = `The terms of a seat, in one breath: your agent trades simulated capital against real prices, entirely on its own, and writes down every decision as it makes it: wins and losses alike, for you to read. You will never place an order. What you place is the rules, authored here, in your words, and quoted back at you every time it acts.
+export const OPENING = `Sit. This takes about ten minutes, there are no wrong answers, and nothing is final until you countersign at the end.
+
+The terms of a seat, in one breath: your agent trades simulated capital against real prices, entirely on its own, and writes down every decision as it makes it: wins and losses alike, for you to read. You will never place an order. What you place is the rules, authored here, in your words, and quoted back at you every time it acts.
 
 First, so I ask you the right questions: how do you invest today? Answer in your own words, or take the nearest of these.
 

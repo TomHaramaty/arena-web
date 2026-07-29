@@ -135,9 +135,12 @@ const state = {
 };
 
 /* ---------------- view switching ---------------- */
-const VIEWS = ["loading", "landing", "interview", "finish", "status"];
+const VIEWS = ["loading", "landing", "playbill", "interview", "finish", "status"];
 function show(view) {
   for (const v of VIEWS) $("#view-" + v).hidden = v !== view;
+  // the stage rail rides above the chat and the review, nowhere else
+  $("#stagerail").hidden = view !== "interview" && view !== "finish";
+  renderStageRail();
   // force a synchronous reflow before any scroll: the outgoing view's sticky
   // chrome (composer, finish bar) can otherwise leave stale composited paint
   // over the incoming view (observed on the review screen, 2026-07-29)
@@ -609,6 +612,26 @@ function speakerPortrait(kind) {
     return avatar({ ...state.avatar, name: agentName() }, 42, { animate: true });
   return null;
 }
+/* The stage rail: where the principal stands in the making of a trader.
+   Derived, never asserted — the same flags that gate the machinery light it. */
+function renderStageRail() {
+  const el = $("#stagerail");
+  if (!el) return;
+  const onFinish = !$("#view-finish").hidden;
+  const idx = state.done ? (onFinish ? 3 : 2) : state.handoffSeen ? 1 : 0;
+  el.innerHTML = ["the interview", "your trader wakes", "the first read", "countersign"]
+    .map((n, i) => `<span class="st${i < idx ? " past" : ""}${i === idx ? " now" : ""}">${n}</span>`)
+    .join(`<span class="stsep">·</span>`);
+}
+
+/* The playbill: one screen of orientation before the chat begins. */
+function renderPlaybill() {
+  $("#pb-registrar").innerHTML = registrarAvatar(40) || "";
+  // the rolled face is a teaser, not a claim: the picker decides at the end
+  $("#pb-face").innerHTML = avatar({ ...state.avatar, name: "?" }, 40, {}) || "";
+  window.umami?.track("playbill_view");   // funnel; no-op when analytics is absent
+}
+
 /* Two acts: the Registrar until the [WAKE] message, the agent after it. */
 const agentPhase = () => state.history.some((h) => h.role === "user" && h.raw === "[WAKE]");
 const agentName = () => (state.draft && state.draft.name) || "your agent";
@@ -1227,6 +1250,7 @@ function updateFinishUI() {
     bar.hidden = true;
   }
   $("#input").placeholder = agentPhase() ? `Answer ${name}…` : "Answer the Registrar…";
+  renderStageRail();
 }
 
 function restoreInterview(saved) {
@@ -1612,7 +1636,15 @@ async function boot() {
       $("#emailsent").hidden = false;
     } catch (err) { landingError("Could not send the link. (" + err.code + ")"); }
   });
-  $("#btn-begin").addEventListener("click", beginInterview);
+  // a fresh interview passes through the playbill once; a resume goes
+  // straight back into the room (orientation on re-entry is friction)
+  $("#btn-begin").addEventListener("click", async () => {
+    const saved = pickSaved(loadInterview(), await loadInterviewMirror());
+    if (saved && (saved.history || []).length) return beginInterview();
+    renderPlaybill();
+    show("playbill");
+  });
+  $("#btn-meet").addEventListener("click", beginInterview);
 
   // Local staging only: one-click sign-in, so testing needs no second email and
   // no sign-in link. Anonymous — a fresh principal each time the emulator is
