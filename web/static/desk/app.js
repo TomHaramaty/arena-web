@@ -38,7 +38,7 @@ const app = initializeApp({
   projectId: "open-outcry",
   appId: "1:56794274079:web:1fe7981df1430587e2782a",
   apiKey: "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo",
-  authDomain: "open-outcry.firebaseapp.com",
+  authDomain: "conviction-league.com",
   storageBucket: "open-outcry.firebasestorage.app",
   messagingSenderId: "56794274079",
 });
