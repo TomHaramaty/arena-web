@@ -75,11 +75,17 @@ async function runPersona(persona, floor) {
   let transcript = `REGISTRAR: ${prose(OPENING)}\n`;
   const MAXT = 26;
   const amends = [...(persona.amend || [])];
+  let repairNext = false;
   for (let t = 0; t < MAXT && (!ctx.done || amends.length); t++) {
     // persona answers the last model message (or machine turns fire themselves)
     let userRaw, wasTap = false;
     const side = parseSide(history[history.length - 1].raw) || {};
-    if (ctx.done && amends.length) {
+    if (repairNext) {
+      // product parity: the client repairs a dropped machine block with one
+      // machine turn; the runner does the same, never twice in a row
+      repairNext = false;
+      userRaw = "[REPAIR] The last draft block did not arrive. Include the entire draft in this reply.";
+    } else if (ctx.done && amends.length) {
       // the charter is read; the principal wants it changed before signing
       userRaw = amends.shift();
       transcript += `PRINCIPAL: ${userRaw}\n`;
@@ -99,6 +105,7 @@ async function runPersona(persona, floor) {
     const raw = await registrarTurn(sys, history);
     history.push({ role: "model", raw });
     checkTurn(ctx, userRaw, raw);
+    repairNext = !parseSide(raw) && !userRaw.startsWith("[REPAIR]");
     transcript += `${ctx.woke ? "AGENT" : "REGISTRAR"}: ${prose(raw)}\n`;
   }
   finalChecks(ctx, persona);

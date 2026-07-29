@@ -28,7 +28,7 @@ export function newCtx(tapeText) {
   return {
     draft: null, woke: false, handoffTurn: -1, ready: false, done: false,
     typed: [], tapped: [], lastOptions: [], turn: 0, issues: [],
-    tape: tapeText, deltaTurns: 0, doneTurn: -1,
+    tape: tapeText, deltaTurns: 0, doneTurn: -1, sideDrops: 0,
     // openness telemetry: who actually talks in this interview
     openFloor: false, pWords: 0, rWords: 0, shortTurns: 0,
   };
@@ -50,7 +50,17 @@ export function checkTurn(ctx, userRaw, raw) {
   const isTape = userRaw.startsWith("[TAPE]");
   if (userRaw.startsWith("[WAKE]")) ctx.woke = true;
 
-  if (!side) { issue(ctx, "hard", "side-missing", "no parseable machine block"); return side; }
+  if (!side) {
+    // product parity: the client answers a dropped block with a [REPAIR] turn
+    // and the interview continues. The runner does the same (run.mjs), so the
+    // drop itself is telemetry; a repair that ALSO fails is the real defect.
+    ctx.sideDrops++;
+    if (userRaw.startsWith("[REPAIR]"))
+      issue(ctx, "hard", "repair-failed", "the [REPAIR] reply still carried no machine block");
+    else
+      issue(ctx, "soft", "side-missing", "no parseable machine block; repaired next turn as the client does");
+    return side;
+  }
   if (typeof side.ready !== "boolean" || typeof side.done !== "boolean")
     issue(ctx, "hard", "flags-missing", "ready/done not both present as booleans");
 
@@ -202,6 +212,7 @@ export function openness(ctx) {
     registrarWords: ctx.rWords,
     talkRatio: ctx.pWords ? +(ctx.rWords / ctx.pWords).toFixed(1) : null,
     openFloorOffered: ctx.openFloor,
+    sideDrops: ctx.sideDrops,
   };
 }
 
