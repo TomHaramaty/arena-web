@@ -1150,6 +1150,20 @@ async function sendTurn(userRaw) {
     await sendTurn("[REPAIR] The agreed test did not arrive in the machine block. Emit the ENTIRE draft including the hypothesis now, and set ready if COMPLETION is satisfied.");
     return;
   }
+  // The same failure, generalized: Act II prose claims something was written
+  // ("locked into the charter") while the machine block carries no delta.
+  // Observed on the confession turn (evals 2026-07-29): the self principle is
+  // claimed, nothing lands, ready never sets, and the interview stalls. One
+  // machine turn demands the emission; [REPAIR] replies never chain.
+  if (inAgentPhase && !state.done && !userRaw.startsWith("[REPAIR]") &&
+      side && (!side.draft || !Object.keys(side.draft).length) &&
+      /\b(written into|writing it|recorded|locked into|entered into|goes into|is in) (the |our |my |it )?(charter|record|register|draft)\b/i
+        .test(displayText(raw))) {
+    saveInterview();
+    setBusy(false);
+    await sendTurn("[REPAIR] Your reply says something was written, but the machine block was empty. Emit the ENTIRE draft now, and set ready if COMPLETION is satisfied.");
+    return;
+  }
   // the tape reply is the first read: restyled, and the interview is done
   // regardless of the model's flag — the tape is only handed over at ready.
   if (isTape) {

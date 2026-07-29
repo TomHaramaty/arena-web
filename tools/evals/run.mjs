@@ -11,7 +11,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { buildSystemPrompt, buildWakeMessage, buildTapeMessage, OPENING } from "../../web/static/seat/registrar.js";
 import { PERSONAS } from "./personas.mjs";
-import { newCtx, checkTurn, recordUser, finalChecks, parseSide, prose, openness } from "./checks.mjs";
+import { newCtx, checkTurn, recordUser, finalChecks, parseSide, prose, openness, COMPILE_CLAIM } from "./checks.mjs";
 
 const KEY = "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo";
 const EP = (m) => `https://firebasevertexai.googleapis.com/v1beta/projects/open-outcry/models/${m}:generateContent`;
@@ -73,7 +73,9 @@ async function runPersona(persona, floor) {
     ctx.lastOptions = openSide.options.map((o) => o.label);
   const history = [{ role: "user", raw: "[BEGIN]" }, { role: "model", raw: OPENING }];
   let transcript = `REGISTRAR: ${prose(OPENING)}\n`;
-  const MAXT = 26;
+  // 30: Act II grew (the test slate + the confession moved last); the real
+  // client allows 48 principal turns, so the runner should not starve first
+  const MAXT = 30;
   const amends = [...(persona.amend || [])];
   let repairNext = false;
   for (let t = 0; t < MAXT && (!ctx.done || amends.length); t++) {
@@ -105,7 +107,12 @@ async function runPersona(persona, floor) {
     const raw = await registrarTurn(sys, history);
     history.push({ role: "model", raw });
     checkTurn(ctx, userRaw, raw);
-    repairNext = !parseSide(raw) && !userRaw.startsWith("[REPAIR]");
+    // product parity, both repairs the client sends: a dropped block, and an
+    // Act II compile-claim over an empty delta. Never chained off a [REPAIR].
+    const s2 = parseSide(raw);
+    const emptyClaim = s2 && ctx.woke && !ctx.done &&
+      (!s2.draft || !Object.keys(s2.draft).length) && COMPILE_CLAIM.test(prose(raw));
+    repairNext = (!s2 || emptyClaim) && !userRaw.startsWith("[REPAIR]");
     transcript += `${ctx.woke ? "AGENT" : "REGISTRAR"}: ${prose(raw)}\n`;
   }
   finalChecks(ctx, persona);

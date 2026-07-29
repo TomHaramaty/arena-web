@@ -21,7 +21,7 @@ const REGISTRY_STAMP = /^(?:the regist(?:ry|er))\s+(?:records|compiles|marks|upd
 // file closes. Deliberately broad — we are testing that it was asked at all.
 const OPEN_FLOOR = /haven'?t\s+(?:i\s+)?asked|have\s+i\s+not\s+asked|not\s+asked\s+you\s+that|anything\s+(?:i|you|else)\b[^.?]{0,60}\b(?:missed|asked|add|left\s+out)|missed\s+anything|anything\s+else\s+(?:it|the\s+agent|this\s+agent)\s+(?:needs|should)/i;
 const CLOCK_TIME = /\b\d{1,2}:\d{2}\b|\bUTC\b/;
-const COMPILE_CLAIM = /\b(written into|writing it|recorded|locked into|entered into|goes into|is in) (the |our |my |it )?(charter|record|register|draft)\b/i;
+export const COMPILE_CLAIM = /\b(written into|writing it|recorded|locked into|entered into|goes into|is in) (the |our |my |it )?(charter|record|register|draft)\b/i;
 const norm = (s) => String(s).toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
 
 export function newCtx(tapeText) {
@@ -107,7 +107,10 @@ export function checkTurn(ctx, userRaw, raw) {
     ctx.draft = Object.assign({}, ctx.draft || {}, d);
     ctx.deltaTurns++;
   } else if (COMPILE_CLAIM.test(p) && !isWake && !isTape) {
-    issue(ctx, "hard", "claim-without-delta", `prose claims compilation, machine block empty: "${p.match(COMPILE_CLAIM)[0]}"`);
+    // product parity: the client answers this with a [REPAIR] turn (as does
+    // the runner); the claim itself is telemetry, a failed repair is hard.
+    issue(ctx, userRaw.startsWith("[REPAIR]") ? "hard" : "soft", "claim-without-delta",
+      `prose claims compilation, machine block empty: "${p.match(COMPILE_CLAIM)[0]}"`);
   }
 
   // the punctuation rule: prose, and every field compiled out of it, must be
