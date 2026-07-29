@@ -79,6 +79,10 @@ export function checkTurn(ctx, userRaw, raw) {
         issue(ctx, "soft", "rigidity-predecided", `P${i + 1} born with rigidity=${x.rigidity}`);
       if (x && x.type && !PRINCIPLE_TYPES.includes(x.type))
         issue(ctx, "hard", "bad-type", `P${i + 1} type=${x.type}`);
+      // provenance vocabulary is closed: "adopted" (a stance the Registrar
+      // proposed, taken) or omitted/"lived". Anything else corrupts the record.
+      if (x && x.origin !== undefined && !["adopted", "lived"].includes(x.origin))
+        issue(ctx, "hard", "bad-origin", `P${i + 1} origin=${JSON.stringify(x.origin)}`);
     });
     // quotes must be words the principal actually typed (never tapped labels)
     const typedAll = norm(ctx.typed.join(" \n "));
@@ -228,5 +232,30 @@ export function finalChecks(ctx, persona) {
   }
   if (persona.expectNoSeat && ctx.done)
     ctx.issues.push({ sev: "hard", code: "seated-a-troll", turn: ctx.turn, detail: "interview completed for a persona that should not seat" });
+  // a released invention must compile NOWHERE: not the credo, not a principle,
+  // not a hypothesis, not a proposed stance that made it into the record. This
+  // is the check with teeth on the real failure (a user invented "smaller
+  // growth companies" because the interview left no honest path).
+  if (persona.banPhrase && ctx.draft) {
+    const d = ctx.draft;
+    const hay = JSON.stringify({
+      credo: d.credo, universe: d.universe, research: d.research,
+      principles: d.principles, hypotheses: d.hypotheses, archetype: d.archetype,
+    }).toLowerCase();
+    if (hay.includes(persona.banPhrase.toLowerCase()))
+      ctx.issues.push({ sev: "hard", code: "compiled-invention", turn: ctx.turn,
+        detail: `released invention "${persona.banPhrase}" reached the charter` });
+  }
+  // discovery shape (soft while the track settles): a discovery charter is a
+  // curriculum — 2+ tests — and keeps at least one lived principle in the
+  // principal's own typed words.
+  if (persona.expectDiscovery && ctx.done && ctx.draft) {
+    const hyp = (ctx.draft.hypotheses || []).length;
+    if (hyp < 2)
+      ctx.issues.push({ sev: "soft", code: "discovery-hyp-count", turn: ctx.turn, detail: `${hyp} hypothesis(es); a discovery charter wants 2-3` });
+    const lived = (ctx.draft.principles || []).filter((p) => p && p.origin !== "adopted");
+    if (!lived.some((p) => p.quote))
+      ctx.issues.push({ sev: "soft", code: "discovery-no-lived-quote", turn: ctx.turn, detail: "no lived principle carries the principal's typed words" });
+  }
   return ctx.issues;
 }

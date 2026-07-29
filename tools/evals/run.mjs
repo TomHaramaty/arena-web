@@ -66,6 +66,11 @@ async function floorData() {
 async function runPersona(persona, floor) {
   const sys = buildSystemPrompt({ rosterLines: floor.roster, tapeLines: floor.tape, today: floor.today });
   const ctx = newCtx(floor.tape);
+  // the authored opening may carry chips (the door); seed them so personas can
+  // tap turn 0 the way a real principal can. Old prompt: no options, no-op.
+  const openSide = parseSide(OPENING);
+  if (openSide && Array.isArray(openSide.options))
+    ctx.lastOptions = openSide.options.map((o) => o.label);
   const history = [{ role: "user", raw: "[BEGIN]" }, { role: "model", raw: OPENING }];
   let transcript = `REGISTRAR: ${prose(OPENING)}\n`;
   const MAXT = 26;
@@ -107,6 +112,7 @@ async function runPersona(persona, floor) {
       name: ctx.draft.name,
       principles: (ctx.draft.principles || []).length,
       quoted: (ctx.draft.principles || []).filter((x) => x && x.quote).length,
+      adopted: (ctx.draft.principles || []).filter((x) => x && x.origin === "adopted").length,
       hyp: (ctx.draft.hypotheses || []).length,
     },
   };

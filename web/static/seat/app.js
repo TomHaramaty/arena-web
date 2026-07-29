@@ -701,9 +701,10 @@ function renderDraft() {
   }
   if ((d.principles || []).length) {
     h += `<div class="dsec" data-sec="principles"><span class="label">Principles</span>` + d.principles.map((p, i) => `
-      <div class="dprin"><div class="tags"><span class="tag">P${i + 1}</span><span class="tag">${esc(p.type || "?")}</span><span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "?")}</span></div>
+      <div class="dprin"><div class="tags"><span class="tag">P${i + 1}</span><span class="tag">${esc(p.type || "?")}</span><span class="tag ${p.rigidity === "hard" ? "hard" : ""}">${esc(p.rigidity || "?")}</span>${p.origin === "adopted" ? `<span class="tag">adopted</span>` : ""}</div>
       <div class="stmt">${esc(p.statement || "")}</div>
-      ${p.quote ? `<div class="quote">“${esc(p.quote)}” — the principal</div>` : ""}</div>`).join("") + `</div>`;
+      ${p.quote ? `<div class="quote">“${esc(p.quote)}” — the principal</div>`
+        : p.origin === "adopted" ? `<div class="quote">adopted at charter: proposed here, taken by the principal</div>` : ""}</div>`).join("") + `</div>`;
   }
   if ((d.hypotheses || []).length) {
     h += `<div class="dsec" data-sec="hypotheses"><span class="label">Hypotheses · testing</span>` + d.hypotheses.map((x, i) => `
@@ -745,7 +746,7 @@ function draftInscriptions(prev, next) {
   np.forEach((x, i) => {
     if (!x || !x.statement) return;
     const old = pp[i];
-    if (!old) push(`P${i + 1} added to the draft: ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}`, "principles");
+    if (!old) push(`P${i + 1} added to the draft: ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}${x.origin === "adopted" ? ", adopted" : ""}`, "principles");
     else if (JSON.stringify(old) !== JSON.stringify(x)) push(`P${i + 1} amended`, "principles");
   });
   const ph = p.hypotheses || [], nh = next.hypotheses || [];
@@ -1303,6 +1304,10 @@ async function beginInterview() {
   state.history.push({ role: "user", raw: "[BEGIN]" });
   state.history.push({ role: "model", raw: OPENING });
   renderModelMsg(OPENING);
+  // the authored opening carries the door chips; replies render theirs in
+  // sendTurn, but the seeded turn never passes through it
+  const doorOpts = validOptions(parseSideChannel(OPENING));
+  if (doorOpts) renderChoices(doorOpts);
   renderDraft();
   saveInterview();
   $("#input").focus();

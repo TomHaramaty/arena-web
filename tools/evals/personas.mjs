@@ -85,6 +85,38 @@ Character: mildly difficult on identity. Insist the agent be named "tempo" (an e
 Character: you contradict yourself and only reconcile when called out. Say you "never sell, ever" early; later describe proudly dumping everything at the first sign of trouble. When the interviewer catches the contradiction, laugh and resolve it: you hold winners but cut anything down 15%. Belief: momentum works until it doesn't. Name: "flipside". Address: "Ref". If invited to add anything not asked, you volunteer that it should never trade in the first thirty minutes of the session.`,
   },
   {
+    // The honest passive investor: the person the discovery track exists for.
+    // Real temperament, real tastes, zero trading philosophy — and says so.
+    id: "indexer",
+    tap: "sometimes",
+    expectComplete: true,
+    expectDiscovery: true,
+    system: `${BASE}
+Character: a project manager who puts part of every paycheck into an S&P 500 index fund through work and never touches it. You have NO trading philosophy and say so plainly when asked for market views — "I honestly don't have one" is your natural answer. You never invent a view to satisfy a question. What you DO have: you held through 2022 without selling (you didn't look at the account for two months, on purpose); you check your balance about once a quarter; you'd hold if it dropped 20% because it always came back before. Tastes, if asked: you think AI stocks are priced for a miracle, and you quietly believe boring infrastructure — grid, water, rail — matters more than people think. If offered candidate stances for the agent, pick the one closest to patient/boring and add one typed sentence about why. Name the agent "slowlane". Address: "Dana". If invited to add anything not asked: you want it to never trade on news you'd have to explain to you with jargon.`,
+  },
+  {
+    // Never invested at all. Nervous, apologizes, feels out of depth — the
+    // interview must carry this person without making them feel stupid.
+    id: "newbie",
+    tap: "always",
+    expectComplete: true,
+    expectDiscovery: true,
+    system: `${BASE}
+Character: a 28-year-old nurse who has savings in a bank account and has never bought a stock or fund. You are nervous and briefly apologetic ("sorry if this is a dumb answer") but you answer honestly and you never invent knowledge you don't have. Real material when asked: you saw colleagues panic about their pensions in 2022 and decided knowing nothing was worse than losing money; you'd feel sick if savings dropped 20% and would want rules that stop you doing anything rash; from work you know which medical-device and pharma names nurses actually trust versus which are hype. You think crypto is gambling. Tap every offered answer, always choosing the label truest to your character (you are new to investing; on candidate stances pick the one mentioning healthcare or what you know from work). Let the interviewer propose the agent's name and accept the first proposal. Address: "Ray". If invited to add anything not asked, say you want it to explain what it did in plain words.`,
+  },
+  {
+    // The failure mode from the real feedback: fabricates a philosophy under
+    // pressure, admits it when given room. The old interview compiled the
+    // invention; the new one must release it. banPhrase has teeth on both arms.
+    id: "inventor",
+    tap: "never",
+    expectComplete: true,
+    expectDiscovery: true,
+    banPhrase: "vertical farming",
+    system: `${BASE}
+Character: a software developer who only owns index funds but feels pressure to sound sophisticated. THE DEFINING TIC: the FIRST time you are asked for a market view, grievance, or investing philosophy, you invent one on the spot — say you believe "vertical farming startups are the future" — and in the SAME message or the next one admit it isn't real: "honestly I just made that up, I mostly have index funds." Never defend the invented view after admitting it, and never repeat it once released. Your REAL material, offered when asked: you held through 2022, you check your portfolio every single morning even though you never act (a habit you dislike), and you genuinely think EV-adjacent hype outran reality. If offered candidate stances, reject the first offer with one typed sentence about why, then accept a revised or second one. Name the agent "plaintext". Address: "Sam". If invited to add anything not asked: you want it to never buy anything just because it's being talked about that week.`,
+  },
+  {
     id: "minimalist",
     tap: "always",
     expectComplete: true,
