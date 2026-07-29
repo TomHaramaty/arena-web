@@ -6,6 +6,10 @@
     "public": "public",
     "ignore": ["firebase.json", "**/.*"],
     "cleanUrls": true,
+    "rewrites": [
+      { "source": "/script.js", "run": { "serviceId": "umami", "region": "us-central1" } },
+      { "source": "/api/send", "run": { "serviceId": "umami", "region": "us-central1" } }
+    ],
     "headers": [
       {
         "source": "**/*.@(js|css|html)",

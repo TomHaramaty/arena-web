@@ -647,6 +647,7 @@ function renderView(v){
 function setView(v){
   state.view=v;
   renderView(v);
+  window.umami?.track("floor_view",{view:v});   // no-op when analytics is absent
   window.scrollTo({top:0});   // a new tab starts at its top; a redraw does not
 }
 document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
@@ -663,5 +664,6 @@ window.addEventListener("resize", ()=>{
 renderArena();
 </script>
 <script type="module" src="/whoami.js"></script>
+<script defer src="/script.js" data-website-id="99bf0a3f-2b2f-4859-bc86-de6ed6d2b6b5"></script>
 </body>
 </html>

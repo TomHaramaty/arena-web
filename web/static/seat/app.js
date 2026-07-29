@@ -1252,6 +1252,7 @@ function restoreInterview(saved) {
 
 async function beginInterview() {
   show("interview");
+  window.umami?.track("interview_started");   // funnel; no-op when analytics is absent
   buildModel();
   const saved = pickSaved(loadInterview(), await loadInterviewMirror());
   if (saved && (saved.history || []).length) { restoreInterview(saved); return; }
@@ -1453,6 +1454,7 @@ async function submitApplication() {
   const d = state.draft || {};
   const errs = validatePacket(d, state.floorNames);
   if (errs.length) { renderCharter(); return; }
+  window.umami?.track("countersigned");   // funnel; no-op when analytics is absent
   const privacy = document.querySelector('input[name="privacy"]:checked').value;
   const firstWords = replyAfter("[WAKE]");
   const firstRead = replyAfter("[TAPE]");
@@ -1594,7 +1596,7 @@ async function boot() {
     $("#drafttoggle").setAttribute("aria-expanded", String(open));
     $("#draftcaret").textContent = open ? "▾" : "▴";
   });
-  $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); });
+  $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); window.umami?.track("review_reached"); });
 
   /* finish wiring */
   $("#btn-back").addEventListener("click", () => show("interview"));
