@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-29 20:06 UTC",
+ "generated_at": "2026-07-29 20:47 UTC",
  "run_date": "2026-07-29",
  "initial_capital": 100000.0,
  "agents": [
@@ -2470,11 +2470,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 99663.83637912992,
-   "cash": 20528.0983975814,
-   "cash_pct": 0.2059733915870018,
-   "ret": -0.00336163620870078,
-   "alpha": 0.022399363791299143,
+   "equity": 99605.54100108251,
+   "cash": 19792.6994179136,
+   "cash_pct": 0.19871082691773637,
+   "ret": -0.003944589989174907,
+   "alpha": 0.021816410010825016,
    "max_dd": -0.01637298345670124,
    "curve": [
     {
@@ -5027,10 +5027,21 @@
      "fill_price": 320.94069,
      "mark": 338.19,
      "value": 20969.54736403165,
-     "weight": 0.21040277121444195,
+     "weight": 0.2105259120454328,
      "pl": 0.053746098695057976,
      "thesis": "Pre-earnings setup for Q3 FY26 earnings on July 30, 2026. Catalysts include strong iPhone 17 supercycle momentum, Services segment expanding at +16% YoY, and Apple Intelligence adoption outlook [4.1, 4.7]. Target $358.00 (+11.7%), Stop $305.00 (-4.82%), R/R 2.43:1.",
      "review_by": "2026-08-03"
+    },
+    {
+     "symbol": "AMD",
+     "qty": 46.0246402907046,
+     "fill_price": 430.20434,
+     "mark": 429.56,
+     "value": 19770.34448327507,
+     "weight": 0.19848639226868114,
+     "pl": -0.0014977533699450651,
+     "thesis": "Pre-earnings setup ahead of Q2 FY26 earnings release on August 4, 2026 AMC. Catalysts include acceleration in Data Center server CPU and GPU revenue, expanding MI350/MI450 deployments, and Core Scientific 2.5 GW AI infrastructure partnership. Target $485.00 (+12.9%), Stop $408.00 (-5.0%), Risk/Reward 2.57:1.",
+     "review_by": "2026-08-06"
     },
     {
      "symbol": "AMZN",
@@ -5038,21 +5049,10 @@
      "fill_price": 236.23382,
      "mark": 226.65,
      "value": 19092.67267489474,
-     "weight": 0.19157071781046586,
+     "weight": 0.19168283694867178,
      "pl": -0.040569212316847736,
      "thesis": "Pre-earnings setup for Q2 earnings on July 30, 2026. Catalysts include AWS growth re-acceleration toward >=30% YoY driven by custom Trainium AI chips and enterprise AI workloads [2.1, 2.6]. Target $265.00 (+12.35%), Stop $224.00 (-5.04%), R/R 2.45:1.",
      "review_by": "2026-08-03"
-    },
-    {
-     "symbol": "META",
-     "qty": 32.6040212456322,
-     "fill_price": 610.35416,
-     "mark": 585.61,
-     "value": 19093.24088165467,
-     "weight": 0.1915764190435367,
-     "pl": -0.04054065921333272,
-     "thesis": "Pre-earnings setup for Q2 earnings on July 29, 2026. Catalysts include Advantage+ ad automation expansion ($60B run rate) and official guidance/announcement on 'Meta Compute' GPU infrastructure monetization [3.2, 3.8]. Target $685.00 (+12.4%), Stop $578.00 (-5.16%), R/R 2.40:1.",
-     "review_by": "2026-07-31"
     },
     {
      "symbol": "MSFT",
@@ -5060,7 +5060,7 @@
      "fill_price": 390.92551,
      "mark": 390.54,
      "value": 19980.277060967466,
-     "weight": 0.20047670034455378,
+     "weight": 0.200594031819478,
      "pl": -0.0009861469516275756,
      "thesis": "MSFT Q2 earnings catalyst on July 29, 2026. Cloud/Azure re-acceleration supported by hyperscaler AI capex expansion (GOOGL Q2 $45B capex print). Target $430 (+10.1%), Stop $372 (-4.7%), Risk/Reward 2.16:1.",
      "review_by": "2026-07-31"
@@ -5076,16 +5076,6 @@
      "mark": 390.54,
      "placed": "Jul 23 07:01",
      "note": "Pre-committed hard stop per Principle P5 and P3 risk management."
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "META",
-     "qty": null,
-     "trigger": 578.0,
-     "mark": 585.61,
-     "placed": "Jul 23 14:40",
-     "note": "P5 mandate: Pre-committed exit plan / stop loss for META prior to Q2 earnings."
     },
     {
      "kind": "stop",
@@ -5106,9 +5096,33 @@
      "mark": 338.19,
      "placed": "Jul 23 14:40",
      "note": "P5 mandate: Pre-committed exit plan / stop loss for AAPL prior to Q3 earnings."
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "AMD",
+     "qty": null,
+     "trigger": 408.0,
+     "mark": 429.56,
+     "placed": "Jul 29 20:41",
+     "note": "P5 pre-committed stop-loss protection for AMD ahead of Q2 earnings."
     }
    ],
    "fills": [
+    {
+     "ts": "Jul 29 20:42",
+     "symbol": "AMD",
+     "side": "buy",
+     "qty": 46.0246402907046,
+     "fill_price": 430.20434
+    },
+    {
+     "ts": "Jul 29 20:42",
+     "symbol": "META",
+     "side": "sell",
+     "qty": 32.6040212456322,
+     "fill_price": 584.731585
+    },
     {
      "ts": "Jul 28 20:42",
      "symbol": "V",
@@ -5125,10 +5139,10 @@
     },
     {
      "ts": "Jul 23 14:41",
-     "symbol": "META",
+     "symbol": "AAPL",
      "side": "buy",
-     "qty": 32.6040212456322,
-     "fill_price": 610.35416
+     "qty": 62.0052259500034,
+     "fill_price": 320.94069
     },
     {
      "ts": "Jul 23 14:41",
@@ -5139,10 +5153,10 @@
     },
     {
      "ts": "Jul 23 14:41",
-     "symbol": "AAPL",
+     "symbol": "META",
      "side": "buy",
-     "qty": 62.0052259500034,
-     "fill_price": 320.94069
+     "qty": 32.6040212456322,
+     "fill_price": 610.35416
     },
     {
      "ts": "Jul 23 07:01",
@@ -9785,6 +9799,13 @@
      "title": "Fully Allocated Across Dislocated Quality (AMD, AVGO, CAT, GOOGL) and Registering CAT +15% Profit Target",
      "rationale": "1. Sizing Discipline & Capital Allocation (P5): Total portfolio equity stands at $96,777.44 with cash at $14.25 (0.01% of equity) [book]. The portfolio is 100% deployed across 4 high-conviction dislocated quality holdings: AMD ($23,877, 24.7%), AVGO ($23,446, 24.2%), CAT ($23,665, 24.5%), and GOOGL ($25,775, 26.6%). Per P5 (\"Never average down into a falling knife \u2014 one entry per dislocation\"), no scale-ins or additional entries are permitted.\n2. Fundamental P1 Structural Test Validation: All four holdings satisfy the P1 structural test:\n   - CAT: Pullback to $810.54 (-24.5% from 52-week high $1,073.46) reflects analyst downgrades over localized regulatory headlines [1.1, 1.23], while long-term data center power generation demand and $63B backlog are unimpaired [1.1, 1.19].\n   - AMD: Down -24.3% from 52-week high ($584.73), backed by +38% YoY Q1 growth and major hyperscaler commitments ahead of Aug 4 earnings [book].\n   - AVGO: Down -23.4% from 52-week high ($495.00), supported by $73B AI backlog and 143% YoY AI semiconductor growth [book].\n   - GOOGL: Trading at $332.68 (+3.5% above entry $321.38), generating $40.8B quarterly operating income [book].\n3. Mechanized Invalidation & Risk Control (P4): All holdings trade above active standing stop sell orders in the engine:\n   - AMD: $442.77 vs $420.00 stop (#44)\n   - AVGO: $379.38 vs $355.00 stop (#30)\n   - CAT: $810.54 vs $760.00 stop (#52)\n   - GOOGL: $332.68 vs $315.00 stop (#14)\n4. Take-Profit Mechanism Completion (P3): Registering a standing limit sell order for CAT at $933.52 (+15% gain from average fill $811.76) to automate profit capture per P3.",
      "actions": "- HOLD: Maintained full positions in AMD (53.93 shs), AVGO (61.80 shs), CAT (29.20 shs), and GOOGL (77.48 shs) [book].\n- Registered standing limit sell order for CAT at limit price $933.52 per P3 rule (+15% profit target from avg fill $811.76).\n- Verified active standing stop sell orders in engine: #14 (GOOGL @ $315.00), #30 (AVGO @ $355.00), #44 (AMD @ $420.00), and #52 (CAT @ $760.00) [book].\n- Verified active standing limit sell orders in engine: #45 (AMD @ $524.60), #46 (AVGO @ $442.87), and #47 (GOOGL @ $369.59) [book]."
+    },
+    {
+     "date": "2026-07-29",
+     "type": "hold",
+     "title": "Capital Fully Allocated Across Dislocated Leaders (AMD, AVGO, CAT, GOOGL) as Microsoft Validates Cloud and AI Demand",
+     "rationale": "1. Full Capital Deployment and Sizing Constraints (P5): Portfolio cash stands at $14.25 (0.01% of equity) across four high-conviction positions: AMD ($23,165, 24.4%), AVGO ($22,888, 24.1%), CAT ($22,852, 24.1%), and GOOGL ($26,088, 27.5%). Per P5 (\"Never average down into a falling knife: one entry per dislocation\"), no scale-ins are permitted, and cash reserves are fully committed.\n2. Fundamental Structural Test Validation (P1):\n   - CAT: A 27.1% drawdown from 52-week high ($1,073.46) triggered by analyst downgrades on regional data center moratorium concerns [3.5] misprices structural power demand. Hyper-scalers cannot build AI clusters without CAT's power generation engines [3.8].\n   - AMD: Down 26.5% from 52-week high ($584.73), backed by server CPU growth of over 70% YoY expected in Q2 and $10B+ AI accelerator commitments [2.3] ahead of its Aug 4 earnings report [2.2].\n   - AVGO: Down 25.2% from 52-week high ($495.00), protected by $30B+ custom silicon bookings and a $100B+ AI revenue trajectory for FY27 [4.8].\n   - GOOGL: Holding at $336.71 (+4.8% above fill), confirming the temporary nature of its post-earnings capex overreaction.\n3. Mechanized Risk Management (P4) and Profit Capture (P3):\n   - All positions trade above registered standing stop sell triggers: AMD ($420.00, #44), AVGO ($355.00, #30), CAT ($760.00, #52), and GOOGL ($315.00, #14).\n   - Profit target limit orders are active in the engine: AMD ($524.60, #45), AVGO ($442.87, #46), CAT ($933.52, #53), and GOOGL ($369.59, #47).",
+     "actions": "- HOLD: Maintained full positions in AMD (53.93 shares), AVGO (61.80 shares), CAT (29.20 shares), and GOOGL (77.48 shares) [book].\n- Verified active standing stop sell orders: #14 (GOOGL @ $315.00), #30 (AVGO @ $355.00), #44 (AMD @ $420.00), and #52 (CAT @ $760.00) [book].\n- Verified active standing limit sell orders: #45 (AMD @ $524.60), #46 (AVGO @ $442.87), #47 (GOOGL @ $369.59), and #53 (CAT @ $933.52) [book]."
     },
     {
      "date": "2026-07-28",
@@ -20046,6 +20067,7 @@
    "last_action": "Spot VIX at 18.20 and BTC funding positive (+0.0019%); cash preserved ahead of FOMC decision and Big Tech earnings"
   }
  ],
+ "sandbox": [],
  "arena_curve": [
   {
    "t": 1784747449,
@@ -21320,6 +21342,52 @@
  ],
  "tape": [
   {
+   "t": 1785357751,
+   "when": "Jul 29 20:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMD",
+   "qty": 46.0246402907046,
+   "price": 430.20434,
+   "mechanism": "market",
+   "note": "Pre-earnings setup ahead of Q2 FY26 earnings release on August 4, 2026 AMC. Catalysts include acceleration in Data Center server CPU and GPU revenue, expanding MI350/MI450 deployments, and Core Scientific 2.5 GW AI infrastructure partnership. Target $485.00 (+12.9%), Stop $408.00 (-5.0%), Risk/Reward 2.57:1."
+  },
+  {
+   "t": 1785357751,
+   "when": "Jul 29 20:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "META",
+   "qty": 32.6040212456322,
+   "price": 584.731585,
+   "mechanism": "market",
+   "note": "Q2 earnings resolved negatively on July 29, 2026 AMC with EPS missing estimates ($6.18 vs $7.19 est) due to $2.4B legal charges and $1.18B severance expenses, alongside soft Q3 revenue guidance. Per Principle P2, exiting post-catalyst to preserve capital."
+  },
+  {
+   "t": 1785357751,
+   "when": "Jul 29 20:42",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "META",
+   "mechanism": "stop",
+   "trigger": 578.0,
+   "note": "Canceling stop-loss order for META following full position liquidation."
+  },
+  {
+   "t": 1785357684,
+   "when": "Jul 29 20:41",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "stop",
+   "trigger": 408.0,
+   "note": "P5 pre-committed stop-loss protection for AMD ahead of Q2 earnings."
+  },
+  {
    "t": 1785337132,
    "when": "Jul 29 14:58",
    "agent": "tempo",
@@ -21452,17 +21520,6 @@
    "event": "armed",
    "agent": "maverick",
    "side": "sell",
-   "symbol": "AMD",
-   "mechanism": "limit",
-   "trigger": 524.6,
-   "note": "P3 +15% profit target (+15% from avg fill $456.17)"
-  },
-  {
-   "t": 1785249778,
-   "when": "Jul 28 14:42",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
    "symbol": "AVGO",
    "mechanism": "limit",
    "trigger": 442.87,
@@ -21474,10 +21531,10 @@
    "event": "armed",
    "agent": "maverick",
    "side": "sell",
-   "symbol": "VRT",
+   "symbol": "AMD",
    "mechanism": "limit",
-   "trigger": 319.83,
-   "note": "Position closed via stop-out on 2026-07-29"
+   "trigger": 524.6,
+   "note": "P3 +15% profit target (+15% from avg fill $456.17)"
   },
   {
    "t": 1785249778,
@@ -21489,6 +21546,17 @@
    "mechanism": "limit",
    "trigger": 369.59,
    "note": "P3 +15% profit target (+15% from avg fill $321.38)"
+  },
+  {
+   "t": 1785249778,
+   "when": "Jul 28 14:42",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "VRT",
+   "mechanism": "limit",
+   "trigger": 319.83,
+   "note": "Position closed via stop-out on 2026-07-29"
   },
   {
    "t": 1785247540,
@@ -21669,6 +21737,18 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
+   "symbol": "NVDA",
+   "qty": 166.545772136612,
+   "price": 207.15026,
+   "mechanism": "market",
+   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
+  },
+  {
+   "t": 1785058562,
+   "when": "Jul 26 09:36",
+   "agent": "fury",
+   "event": "fill",
+   "side": "buy",
    "symbol": "AAPL",
    "qty": 103.442218211329,
    "price": 333.51953,
@@ -21686,18 +21766,6 @@
    "price": 64642.17804,
    "mechanism": "market",
    "note": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction."
-  },
-  {
-   "t": 1785058562,
-   "when": "Jul 26 09:36",
-   "agent": "fury",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "NVDA",
-   "qty": 166.545772136612,
-   "price": 207.15026,
-   "mechanism": "market",
-   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
   },
   {
    "t": 1784912750,
@@ -21880,17 +21948,6 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "AMZN",
-   "mechanism": "stop",
-   "trigger": 224.0,
-   "note": "P5 mandate: Pre-committed exit plan / stop loss for AMZN prior to Q2 earnings."
-  },
-  {
-   "t": 1784817615,
-   "when": "Jul 23 14:40",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
    "symbol": "AAPL",
    "mechanism": "stop",
    "trigger": 305.0,
@@ -21905,7 +21962,18 @@
    "symbol": "META",
    "mechanism": "stop",
    "trigger": 578.0,
-   "note": "P5 mandate: Pre-committed exit plan / stop loss for META prior to Q2 earnings."
+   "note": "Canceling stop-loss order for META following full position liquidation."
+  },
+  {
+   "t": 1784817615,
+   "when": "Jul 23 14:40",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "stop",
+   "trigger": 224.0,
+   "note": "P5 mandate: Pre-committed exit plan / stop loss for AMZN prior to Q2 earnings."
   },
   {
    "t": 1784815537,
@@ -22011,24 +22079,24 @@
    "when": "Jul 23 07:03",
    "agent": "vertex",
    "event": "fill",
-   "side": "sell",
-   "symbol": "AMZN",
-   "qty": 81.9486,
-   "price": 244.482725,
-   "mechanism": "market",
-   "note": ""
-  },
-  {
-   "t": 1784790231,
-   "when": "Jul 23 07:03",
-   "agent": "vertex",
-   "event": "fill",
    "side": "buy",
    "symbol": "GOOGL",
    "qty": 100.699603930945,
    "price": 342.603135,
    "mechanism": "market",
    "note": "P1: Leadership over laggard catch-up. Google Cloud Q2 2026 revenue surged 82% YoY to $24.8B (operating margin 35.6%), driven by enterprise AI infrastructure/Gemini adoption across 90% of Fortune 100, with cloud backlog reaching $514B. Alphabet raised FY2026 capex guidance to $195B-$205B. GOOGL price at 342.09 offers attractive entry after pull-back on capex concerns."
+  },
+  {
+   "t": 1784790231,
+   "when": "Jul 23 07:03",
+   "agent": "vertex",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "AMZN",
+   "qty": 81.9486,
+   "price": 244.482725,
+   "mechanism": "market",
+   "note": ""
   },
   {
    "t": 1784790181,
