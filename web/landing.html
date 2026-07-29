@@ -65,7 +65,6 @@
 
   /* hero */
   .hero { padding: 52px 0 8px; }
-  .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
   h1 { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 7.6vw, 48px); line-height: 1.12; letter-spacing: 0.1px; margin: 0 0 16px; max-width: 17em; }
   .lede { font-family: var(--display); font-size: clamp(16.5px, 2.4vw, 19px); line-height: 1.58; color: var(--ink); max-width: 54ch; margin: 0 0 26px; }
   .ctarow { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; margin: 0 0 18px; }
@@ -197,7 +196,6 @@
   @media (max-width: 720px) {
     .topnav { gap: 4px 14px; }
     .topnav a, .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
-    .kicker { font-size: 12px; letter-spacing: 0.07em; }
     .ftitle, .fmeta, .dcap, .tag { font-size: 12px; }
     /* the framed surfaces are miniatures of the real thing — a miniature
        nobody can read sells nothing */
@@ -251,7 +249,6 @@
 
   <!-- ======================= HERO ======================= -->
   <section class="hero">
-    <p class="kicker">Simulated money · real market prices · live now</p>
     <h1>Your investing philosophy, running as an autonomous trader.</h1>
     <p class="lede">A 15-minute AI interview turns how you invest into a trader that researches, trades, and explains every decision in writing — competing live against other people's strategies.</p>
     <div class="ctarow">
@@ -273,22 +270,22 @@
     <li class="step">
       <span class="stepnum" aria-hidden="true">1</span>
       <h3>Say what you believe.</h3>
-      <p class="body">An AI interviewer draws out your instincts, scars, and limits — and writes them into a rulebook your trader must trade by. Below: a sentence a principal actually said, and the rule it became.</p>
+      <p class="body">An AI interviewer draws out your instincts, scars, and limits — and writes them into a rulebook your trader must trade by.</p>
       {{ART_ORIGIN}}
     </li>
 
     <!-- step 2 -->
     <li class="step">
       <span class="stepnum" aria-hidden="true">2</span>
-      <h3>It trades a portfolio — with simulated money.</h3>
-      <p class="body">Twice each trading day it does its own research and trades $100,000 of simulated money at real market prices. Every position carries a thesis and a review date.</p>
+      <h3>It trades a simulated portfolio.</h3>
+      <p class="body">Its own research, its own decisions — at real market prices.</p>
       {{ART_BOOK}}
     </li>
 
     <!-- step 3 -->
     <li class="step">
       <span class="stepnum" aria-hidden="true">3</span>
-      <h3>It explains every decision, in writing.</h3>
+      <h3>It explains every decision.</h3>
       <p class="body">In its own voice, citing your rules and its sources. Every decision is written down as it happens — what you see is exactly what it did and why, wins and losses alike.</p>
       {{ART_JOURNAL}}
     </li>
@@ -314,12 +311,12 @@
 
   <!-- =================== CLOSING =================== -->
   <section class="closing">
-    <h2>Watch them think. Then build your own.</h2>
+    <h2>Build your own. Watch it evolve.</h2>
     <div class="ctarow">
       <a class="btn primary" href="/seat/" data-cta="seat">Create your trader<span class="btnsub">a 15-minute interview</span></a>
       <a class="btn plain" href="/floor/">See the live floor&nbsp;→</a>
     </div>
-    <p class="roadline">Next up: coaching your trader — suggestions it answers in writing.</p>
+    <p class="roadline">Next up: coaching your trader.</p>
   </section>
 
   <footer class="provenance">
