@@ -82,6 +82,26 @@ const md = (s) => esc(s)
   .replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s.,;:)]|$)/gm, "$1<em>$2</em>")
   .replace(/`([^`\n]+)`/g, "<code>$1</code>");
 
+/* The picker's opening offer is a random Member, not a constant one.
+   A fixed default made every unedited trader the same fox in a suit, and —
+   because the same four values are also normalizeAvatar's fallback and the
+   engine's DEFAULT_AVATAR — a face nobody touched was indistinguishable from
+   one somebody chose. Rolling it means the floor reads as a cast, and
+   state.avatarChosen answers the other half honestly.
+
+   Rolled once per page load and persisted by the first saveInterview (which
+   runs on every model turn, long before the picker is ever seen on the review
+   screen), so the principal can never watch their agent's face change. */
+function randomAvatar() {
+  const pick = (xs) => xs[Math.floor(Math.random() * xs.length)];
+  return {
+    base: pick(BASES),
+    color: Math.floor(Math.random() * PALS.length),
+    costume: pick(COSTUMES),
+    acc: pick(["none", ...DETAILS]),
+  };
+}
+
 const state = {
   user: null,
   floor: null,          // arena.json (or null if unreachable)
@@ -108,7 +128,8 @@ const state = {
   busy: false,
   appDoc: null,         // {id, data}
   unsubscribe: null,
-  avatar: { base: "fox", color: 0, costume: "suit", acc: "none" }, // the seat picker
+  avatar: randomAvatar(),  // the seat picker's opening offer — see randomAvatar
+  avatarChosen: false,     // did the principal actually touch it? see onFacePick
   updates: { cadence: "daily", floor_digest: true }, // the updates card (letters, when they ship)
   credit: { name: "", show: false }, // the principal's own name on the floor
 };
@@ -426,7 +447,9 @@ function saveInterview() {
   const data = {
     history: state.history, tapeSent: state.tapeSent, done: state.done,
     ready: state.ready, handoffSeen: state.handoffSeen, tapped: state.tapped,
-    avatar: state.avatar, updates: state.updates,
+    // `chosen` nests INSIDE avatar deliberately: the drafts rule is a hasOnly
+    // on top-level keys, so a new one here would silently break the mirror.
+    avatar: { ...state.avatar, chosen: state.avatarChosen }, updates: state.updates,
   };
   try { localStorage.setItem(saveKey(), JSON.stringify(data)); } catch { /* quota — the mirror still has it */ }
   if (state.user) {
@@ -1198,7 +1221,12 @@ function restoreInterview(saved) {
   state.ready = !!saved.ready;
   state.handoffSeen = !!saved.handoffSeen;
   state.tapped = Array.isArray(saved.tapped) ? saved.tapped : [];
-  if (saved.avatar) state.avatar = normalizeAvatar(saved.avatar);
+  // normalizeAvatar returns only the four render values, so state.avatar stays
+  // clean and `chosen` is read back alongside it.
+  if (saved.avatar) {
+    state.avatar = normalizeAvatar(saved.avatar);
+    state.avatarChosen = saved.avatar.chosen === true;
+  }
   if (saved.updates) state.updates = normalizeUpdates(saved.updates);
   // the draft first: renderUserMsg("[WAKE]") and the who-labels need the name
   const tapped = new Set(state.tapped.map((l) => l.trim().toLowerCase()));
@@ -1329,6 +1357,11 @@ function onFacePick(e) {
   else if (t.dataset.color) a.color = Number(t.dataset.color);
   else if (t.dataset.costume) a.costume = t.dataset.costume;
   else if (t.dataset.detail) a.acc = t.dataset.detail;
+  // The face on the record is now known to be the principal's own doing.
+  if (!state.avatarChosen) {
+    state.avatarChosen = true;
+    window.umami?.track("avatar_picked");  // funnel; no-op when analytics is absent
+  }
   saveInterview();
   renderFacePicker();
 }
@@ -1465,7 +1498,7 @@ async function submitApplication() {
     class_pct: normalizeClassPct(d.class_pct),
     constitution: d.constitution, principles: d.principles, hypotheses: d.hypotheses,
     voice: d.voice, address: (d.address || "Principal").slice(0, 20),
-    avatar: normalizeAvatar(state.avatar),
+    avatar: { ...normalizeAvatar(state.avatar), chosen: state.avatarChosen },
     updates: normalizeUpdates(state.updates),
     ...(typeof d.research === "string" && d.research ? { research: d.research.slice(0, 400) } : {}),
     ...(typeof d.horizon === "string" && d.horizon ? { horizon: d.horizon.slice(0, 120) } : {}),
