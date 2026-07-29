@@ -56,8 +56,8 @@ export function saveCreditSoon(db, uid, credit, ms = 700) {
  *  trader" before there is one. */
 export function creditFormHTML({ subject = "your trader", id = "cred" } = {}) {
   return `<label class="credopt"><input type="checkbox" id="${id}-show">
-      <span><b>Show my name beside ${esc(subject)}</b>
-      <span class="d">— on the public floor, where anyone can read it.</span></span></label>
+      <span><b>Show my name beside ${esc(subject)}:</b>
+      <span class="d">on the public floor, where anyone can read it.</span></span></label>
     <div class="credrow">
       <input type="text" id="${id}-name" maxlength="${MAX_NAME}" autocomplete="name"
              placeholder="Your full name" aria-label="Your full name">
@@ -103,7 +103,7 @@ export function bindCreditForm(root, state, onChange, id = "cred") {
     box.checked = !!state.show;
     if (input.value !== state.name) input.value = state.name;
     const n = cleanName(state.name);
-    prev.textContent = !state.show ? "not shown — your trader is listed on its own"
+    prev.textContent = !state.show ? "not shown, your trader is listed on its own"
       : n ? `chartered by ${n}`
       : "add your name and the floor will show it";
     prev.classList.toggle("on", !!(state.show && n));

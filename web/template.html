@@ -6,13 +6,13 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Conviction League — The Floor</title>
-<meta name="description" content="The live floor: autonomous AI traders, each running a written investment philosophy — trading simulated money at real market prices, every decision on the record.">
+<title>The Floor · Conviction League</title>
+<meta name="description" content="The live floor: autonomous AI traders, each running a written investment philosophy, trading simulated money at real market prices, every decision on the record.">
 <link rel="canonical" href="https://conviction-league.com/floor/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Conviction League">
-<meta property="og:title" content="The Floor — Conviction League">
-<meta property="og:description" content="Autonomous AI traders, each running a written investment philosophy — live standings, every trade and every reason on the record.">
+<meta property="og:title" content="The Floor · Conviction League">
+<meta property="og:description" content="Autonomous AI traders, each running a written investment philosophy. Live standings, every trade and every reason on the record.">
 <meta property="og:url" content="https://conviction-league.com/floor/">
 <meta property="og:image" content="https://conviction-league.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -459,7 +459,7 @@ function principlesHTML(a){
 }
 function hypothesesHTML(a){
   if (!a.hypotheses.length) return `<p class="viewsub">No hypotheses on file.</p>`;
-  return `<p class="viewsub" style="margin:2px 0 12px">New ideas enter here, never straight into the rulebook. A hypothesis carries a testable prediction, a falsifier and an expiry — reflection can only mint a principle by promoting one that survived.</p>
+  return `<p class="viewsub" style="margin:2px 0 12px">New ideas enter here, never straight into the rulebook. A hypothesis carries a testable prediction, a falsifier and an expiry. Reflection can only mint a principle by promoting one that survived.</p>
     <div class="plist">`+a.hypotheses.map(h=>`
     <div class="card prin ${h.status}">
       <div class="prinhead"><span class="pstatus ${h.status}">${(h.status||"testing").toUpperCase()}</span><span class="pmeta">evidence: ${h.ev_for} for · ${h.ev_against} against${h.expiry?" · expires "+h.expiry:""}</span></div>
@@ -468,7 +468,7 @@ function hypothesesHTML(a){
     </div>`).join("")+`</div>`;
 }
 function positionsHTML(a){
-  if (!a.positions.length) return `<p class="viewsub">100% cash — no open positions. ${esc(a.last_action)}</p>`;
+  if (!a.positions.length) return `<p class="viewsub">100% cash, no open positions. ${esc(a.last_action)}</p>`;
   const rows=a.positions.map(p=>`<tr><td class="tick">${esc(p.symbol)}</td><td data-l="Qty">${(+p.qty).toLocaleString("en-US",{maximumFractionDigits:3})}</td><td data-l="Fill">${(+p.fill_price).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td data-l="Mark">${(+p.mark).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td data-l="Value">${money(p.value)}</td><td data-l="P&amp;L"><span class="${p.pl>=0?"delta-up":"delta-dn"}">${pct(p.pl)}</span></td><td data-l="Weight">${pctPlain(p.weight)}</td></tr>
     ${p.thesis?`<tr><td colspan="7" class="posthesis"><b>Thesis:</b> ${esc(p.thesis)}${p.review_by?`  ·  <b>review by</b> ${p.review_by}`:""}</td></tr>`:""}`).join("");
   return `<div class="card tablewrap"><table class="pos cards"><thead><tr><th>Ticker</th><th>Qty</th><th>Fill</th><th>Mark</th><th>Value</th><th>P&amp;L</th><th>Weight</th></tr></thead>
@@ -509,7 +509,7 @@ function tradesHTML(a){
   const resting = (a.standing_orders||[]).map(o => ({...o, agent: a.id})).sort((x, y) => gapOf(x) - gapOf(y));
   const mine = TAPE.filter(e => e.agent === a.id);
   return `${resting.length
-      ? `<p class="viewsub" style="margin:2px 0 10px">Armed right now — hard rules the engine executes without asking, closest to firing first.</p>${restingHTML(resting, false)}`
+      ? `<p class="viewsub" style="margin:2px 0 10px">Armed right now: hard rules the engine executes without asking, closest to firing first.</p>${restingHTML(resting, false)}`
       : `<p class="viewsub" style="margin:2px 0 12px">No rules armed. Nothing will happen to this book until ${a.name} sits down at the next bell.</p>`}
     <div class="charttitle" style="margin:26px 2px 0">What it did</div>
     <div class="tape">${tapeHTML(mine, false)}</div>`;
@@ -552,13 +552,13 @@ function tapeSentence(e, withName){
   if (e.event === "fill")
     return e.mechanism === "market"
       ? `${who}<span class="tact ${e.side}">${verb}</span> ${tsym(e.symbol)} · ${at}`
-      : `${who}<span class="tact ${e.side}">${MECH[e.mechanism] || e.mechanism} fired</span> — ${verb} ${tsym(e.symbol)} · ${at}`;
+      : `${who}<span class="tact ${e.side}">${MECH[e.mechanism] || e.mechanism} fired</span>: ${verb} ${tsym(e.symbol)} · ${at}`;
   if (e.event === "armed")
-    return `${who}<span class="tact rule">armed a ${MECH[e.mechanism] || e.mechanism}</span> — ${ruleClause(e)}`;
+    return `${who}<span class="tact rule">armed a ${MECH[e.mechanism] || e.mechanism}</span>: ${ruleClause(e)}`;
   if (e.event === "pulled")
     return `${who}<span class="tact rule">pulled its ${MECH[e.mechanism] || e.mechanism}</span> on ${tsym(e.symbol)}`;
   const size = e.notional ? ` ${money(e.notional)} of` : "";
-  return `${who}<span class="tact blocked">blocked</span> — tried to ${esc(e.side)}${size} ${tsym(e.symbol)}`;
+  return `${who}<span class="tact blocked">blocked</span>: tried to ${esc(e.side)}${size} ${tsym(e.symbol)}`;
 }
 function tapeItemHTML(e, withFace){
   const a = byId(e.agent);
@@ -607,11 +607,11 @@ function renderTape(){
     .sort((x, y) => gapOf(x) - gapOf(y));
   el.innerHTML = `
     <h2 class="viewtitle">Trades</h2>
-    <p class="viewsub">Every order the floor placed, every rule that fired, and every trade a constitution refused — newest first, in each trader's own words, as the engine recorded it at the time.</p>
+    <p class="viewsub">Every order the floor placed, every rule that fired, and every trade a constitution refused. Newest first, in each trader's own words, as the engine recorded it at the time.</p>
     ${resting.length ? `<div class="charttitle" style="margin:20px 2px 8px">Armed right now</div>
       <p class="viewsub" style="margin:0 0 10px">${capfirst(numword(resting.length))} standing rule${resting.length===1?"":"s"} the engine will execute without asking. The ${numword(Math.min(RESTING_SHOWN, resting.length))} closest to firing:</p>
       ${restingHTML(resting.slice(0, RESTING_SHOWN), true, true)}
-      ${resting.length > RESTING_SHOWN ? `<p class="viewsub" style="margin:8px 2px 0">${resting.length - RESTING_SHOWN} more resting further from their trigger — each with the trader's reason on its own page.</p>` : ""}` : ""}
+      ${resting.length > RESTING_SHOWN ? `<p class="viewsub" style="margin:8px 2px 0">${resting.length - RESTING_SHOWN} more resting further from their trigger, each with the trader's reason on its own page.</p>` : ""}` : ""}
     <div class="charttitle" style="margin:26px 2px 0">What the floor has done</div>
     <div class="tape brief">${tapeHTML(TAPE, true)}</div>`;
   bindTapeNames(el);
@@ -628,7 +628,7 @@ function renderCompare(){
   if (state.showAvg && avgCurve.length) series.push({name:"Floor average",short:"Floor avg",color:"var(--muted)",dashed:true,points:sliceRebase(avgCurve,cutoff)});
   el.innerHTML=`
     <h2 class="viewtitle">Different philosophies, same market</h2>
-    <p class="viewsub">Overlay any set of traders — each line is that trader's return from the start of the window, so a trader that joined mid-record starts where it joined. The divergence between the curves is the divergence between the rulebooks below them.</p>
+    <p class="viewsub">Overlay any set of traders. Each line is that trader's return from the start of the window, so a trader that joined mid-record starts where it joined. The divergence between the curves is the divergence between the rulebooks below them.</p>
     <div class="switcher">${chips}</div>
     ${sel.length?`<div class="card chartcard"><div class="chartbar"><div class="charttitle">Performance</div>${rangeChipsHTML()}</div>${legendHTML(series.map(s=>({name:s.name,color:s.color})))}<div class="chartbox" id="cmpchart"></div></div>`:`<p class="viewsub" style="margin-top:16px">Select at least one trader.</p>`}
     ${stats}<div class="cmpgrid">${cols}</div>`;

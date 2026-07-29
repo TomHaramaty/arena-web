@@ -130,10 +130,10 @@ const EMAIL_KEY = "oo.seat.emailForSignIn";
 
 function signinErrText(code) {
   if (code === "auth/invalid-action-code" || code === "auth/expired-action-code")
-    return "That sign-in link has expired or was already used — send a fresh one below.";
+    return "That sign-in link has expired or was already used. Send a fresh one below.";
   if (code === "auth/invalid-email")
     return "That doesn't match the email the link was sent to. Check it and try again.";
-  return "That sign-in link did not work — send a fresh one below. (" + code + ")";
+  return "That sign-in link did not work. Send a fresh one below. (" + code + ")";
 }
 
 /* A click-through from an email sign-in link may land on a device that never
@@ -323,13 +323,13 @@ async function leaveIt(gid) {
     state.thread.push({
       role: "sys", ts: Date.now(),
       text: `[NOTE] Your principal took back the note you said you were carrying${
-        g && g.text ? ` ("${g.text.slice(0, 200)}")` : ""}. You are not carrying it. Do not raise it unless they do — and if they ask you to carry it after all, take it.`,
+        g && g.text ? ` ("${g.text.slice(0, 200)}")` : ""}. You are not carrying it. Do not raise it unless they do, and if they ask you to carry it after all, take it.`,
     });
     saveThread();
     renderThread();
   } catch (e) {
     console.error(e);
-    showError("That note is already with " + traderName() + " — it answers it at the next session.");
+    showError("That note is already with " + traderName() + ". It answers it at the next session.");
   }
 }
 
@@ -381,7 +381,7 @@ function bookHTML(a) {
       ${p.thesis ? `<p class="pthesis">${esc(p.thesis)}</p>` : ""}
     </div>`).join("");
   return `<div class="pchart" id="pchart"></div><div class="pchartkey" id="pchartkey"></div>` + rows +
-    (pos || `<p class="pempty" style="margin-top:10px">No positions open — the book is all cash.</p>`);
+    (pos || `<p class="pempty" style="margin-top:10px">No positions open. The book is all cash.</p>`);
 }
 
 function wordsHTML(a) {
@@ -429,7 +429,7 @@ function charterHTML(a) {
   return `<div class="pcharter">
     ${c.constitution ? `<p class="label" style="margin-top:4px">what binds it</p>${li(c.constitution)}` : ""}
     ${c.parameters ? li(c.parameters) : ""}
-    ${(c.amendments || []).map((am) => `<div class="pamend"><b>${esc(am.date)} — ${esc(am.title)}</b><br>${esc(am.text)}</div>`).join("")}
+    ${(c.amendments || []).map((am) => `<div class="pamend"><b>${esc(am.date)} · ${esc(am.title)}</b><br>${esc(am.text)}</div>`).join("")}
   </div>`;
 }
 
@@ -456,7 +456,7 @@ function renderPanel() {
       <p class="footnote" style="margin-top:6px"><a href="/floor/#${esc(a.id)}">The whole record, and the chart with its ranges, on the floor →</a></p>
     </div>
     <div class="psec"><span class="label">your name on the floor</span>
-      <p class="footnote" style="margin:-2px 0 8px">The floor names whoever chartered each trader. Yours to change or take off whenever you like — the floor follows within the hour.</p>
+      <p class="footnote" style="margin:-2px 0 8px">The floor names whoever chartered each trader. Yours to change or take off whenever you like; the floor follows within the hour.</p>
       <div id="credform">${creditFormHTML({ subject: a.name })}</div>
     </div>`;
   bindCreditForm($("#credform"), state.credit, (c) => {
@@ -483,7 +483,7 @@ function charteredCard(a, packet) {
   const fr = packet.first_read || packet.first_words || "";
   return `<div class="entry">
     <div class="ehead"><span>chartered ${esc(dayLabel(a.launched))}</span></div>
-    <p class="etitle">${esc(a.name)} took its seat — ${(a.principles || []).length} rules and ${(a.hypotheses || []).length} test in your words.</p>
+    <p class="etitle">${esc(a.name)} took its seat with ${(a.principles || []).length} rules and ${(a.hypotheses || []).length} test in your words.</p>
     ${fr ? `<p class="esum">${md(fr.length > 600 ? fr.slice(0, 599) + "…" : fr)}</p>` : ""}
   </div>`;
 }
@@ -491,7 +491,7 @@ function charteredCard(a, packet) {
 function answerCard(g) {
   const label = {
     adopted: "adopted", converted: "made testable", declined: "declined, with reasons",
-    refused: "refused — the charter forbids it",
+    refused: "refused, the charter forbids it",
   }[g.disposition] || g.disposition;
   return `<div class="answer">
     <div class="ahead">${esc(g.cid || "filed")} · ${esc(label)}</div>
@@ -504,12 +504,12 @@ function answerCard(g) {
     the session reads it. */
 function takenLine(m) {
   if (m.notaken) {
-    return `<div class="fileline">not carried — ${esc(traderName())} takes ${PER_DAY} a day; tomorrow</div>`;
+    return `<div class="fileline">not carried · ${esc(traderName())} takes ${PER_DAY} a day; tomorrow</div>`;
   }
   const g = m.gid ? guidanceOf(m.gid) : null;
   if (!m.gid) return "";
   if (g && g.status === "rejected") {
-    return `<div class="fileline">not carried${g.reason ? " — " + esc(g.reason) : ""}</div>`;
+    return `<div class="fileline">not carried${g.reason ? " · " + esc(g.reason) : ""}</div>`;
   }
   if (g && g.disposition) {
     return `<div class="fileline">${esc(g.cid || "")} · answered on the record</div>`;
@@ -619,7 +619,7 @@ async function streamOnce(model, contents, textEl) {
 /** One turn: the trader answers whatever is at the end of the thread. */
 async function turn() {
   if (dayBudgetSpent()) {
-    showError(`${traderName()} has done a lot of talking today — pick this up tomorrow, or read the record on the floor.`);
+    showError(`${traderName()} has done a lot of talking today. Pick this up tomorrow, or read the record on the floor.`);
     return;
   }
   setBusy(true);
@@ -642,12 +642,12 @@ async function turn() {
   try {
     raw = await withRetries(
       (attempt) => streamOnce(attempt >= 1 ? state.fallback : state.model, contents, textEl),
-      { onRetryWait: () => { textEl.innerHTML = `<span class="dwait">busy — retrying…</span>`; } });
+      { onRetryWait: () => { textEl.innerHTML = `<span class="dwait">busy, retrying…</span>`; } });
   } catch (e) {
     console.error(e);
     bubble.remove();
     setBusy(false);
-    showError(`${traderName()} can't get to its desk just now — try again in a moment.`);
+    showError(`${traderName()} can't get to its desk just now. Try again in a moment.`);
     return;
   }
   const text = stripMark(raw);
@@ -677,7 +677,7 @@ async function maybeGreet() {
   if (last && last.role === "you") return;
 
   const line = newest
-    ? `your entry of ${newest.date} — "${newest.title}"`
+    ? `your entry of ${newest.date}, "${newest.title}"`
     : `your charter, countersigned ${a.launched}`;
   const first = !state.thread.some((m) => m.role !== "sys");
   state.thread.push({ role: "sys", text: arrivalPrompt(line, { first }), ts: Date.now() });
@@ -724,16 +724,16 @@ function renderWait(appDoc) {
   $("#statusword").textContent = "Countersigned";
   const fr = packet.first_read;
   $("#statusdetail").innerHTML =
-    `<b>${esc(name)}</b> is chartered. Its first session writes the first entry on its record — after that, this page is where it reports to you.` +
-    (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
+    `<b>${esc(name)}</b> is chartered. Its first session writes the first entry on its record. After that, this page is where it reports to you.` +
+    (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} · the first read</span>${md(fr)}</blockquote>` : "");
   const stage = d.bell && d.bell.stage;
   if (!stage || stage === "failed") {
     $("#statusbell").textContent = "Next bell " + fmtBell(nextFirstBell());
     $("#statusrun").innerHTML =
       (stage === "failed"
-        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next bell regardless. You can try again now.</p>` : "") +
+        ? `<p class="bellnote">The first session hit a problem. Nothing is lost; ${esc(name)} runs at the next bell regardless. You can try again now.</p>` : "") +
       `<button class="primary" id="btn-bell">Run the first session</button>
-       <p class="bellnote">A few minutes, live — you'll watch each step below as it happens.</p>`;
+       <p class="bellnote">A few minutes, live. You'll watch each step below as it happens.</p>`;
     $("#btn-bell").addEventListener("click", () => ringBell(appDoc, name));
   } else {
     const ci = BELL_ORDER.indexOf(stage), isDone = stage === "done";
@@ -741,7 +741,7 @@ function renderWait(appDoc) {
       const st = (isDone || i < ci) ? "done" : i === ci ? "active" : "pending";
       return `<li class="bellstep ${st}"><span class="mk"></span><span class="lbl">${s.label}</span></li>`;
     }).join("")}</ol>` +
-      (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes — you can leave this page and come back.</p>`);
+      (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes. You can leave this page and come back.</p>`);
   }
   $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
 }
@@ -756,7 +756,7 @@ async function ringBell(appDoc, name) {
     if (btn) { btn.disabled = false; btn.textContent = "Run the first session"; }
     const p = document.createElement("p");
     p.className = "err";
-    p.textContent = "That didn't go through — try again. (" + (e.message || e) + ")";
+    p.textContent = "That didn't go through. Try again. (" + (e.message || e) + ")";
     $("#statusrun").appendChild(p);
   }
 }
@@ -809,13 +809,13 @@ async function selectTrader(id) {
 }
 
 async function openDesk() {
-  document.title = `${state.agent.name} — Conviction League`;
+  document.title = `${state.agent.name} · Conviction League`;
   state.guidance = [];   // the new trader's notes arrive with its own listener
   $("#topline").textContent = "the desk";
   // the promise stays on every screen; the mechanic behind it is the first
   // thing the trader explains on arrival, so a phone need not carry it too
   $("#composernote").innerHTML =
-    `This conversation is yours — it isn't published, and nothing said here moves the book.
+    `This conversation is yours. It isn't published, and nothing said here moves the book.
      <span class="long">When <b>${esc(state.agent.name)}</b> decides something said here should change what it does,
      it carries that to its next session, tells you, and answers it on the record.</span>`;
   $("#input").placeholder = `Say something to ${state.agent.name}…`;
@@ -989,7 +989,7 @@ function wire() {
     dev.type = "button";
     dev.className = "plain";
     dev.style.cssText = "border-style:dashed;margin-top:4px";
-    dev.textContent = "Dev sign-in — local test, no email";
+    dev.textContent = "Dev sign-in · local test, no email";
     dev.addEventListener("click", () => signInAnonymously(auth).catch((e) => {
       $("#signinerr").hidden = false;
       $("#signinerr").textContent = "Dev sign-in failed. (" + (e.code || e) + ")";

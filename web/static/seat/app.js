@@ -158,9 +158,9 @@ async function loadFloor() {
   }
 }
 function rosterLines() {
-  if (!state.floor) return "(roster unavailable this session — rely on general differentiation)";
+  if (!state.floor) return "(roster unavailable this session; rely on general differentiation)";
   return state.floor.agents.map((a) =>
-    `- ${a.name} — ${a.archetype}. Benchmark ${a.benchmark_label}. Alpha ${(a.alpha * 100).toFixed(1)}%. Last action: ${a.last_action}`
+    `- ${a.name}: ${a.archetype}. Benchmark ${a.benchmark_label}. Alpha ${(a.alpha * 100).toFixed(1)}%. Last action: ${a.last_action}`
   ).join("\n");
 }
 function tapeLines() {
@@ -207,10 +207,10 @@ const EMAIL_KEY = "oo.seat.emailForSignIn";
 
 function signinErrText(code) {
   if (code === "auth/invalid-action-code" || code === "auth/expired-action-code")
-    return "That sign-in link has expired or was already used — send a fresh one below.";
+    return "That sign-in link has expired or was already used. Send a fresh one below.";
   if (code === "auth/invalid-email")
     return "That doesn't match the email the link was sent to. Check it and try again.";
-  return "That sign-in link did not work — send a fresh one below. (" + code + ")";
+  return "That sign-in link did not work. Send a fresh one below. (" + code + ")";
 }
 
 // Complete a click-through from an email sign-in link. The link can open on a
@@ -345,8 +345,8 @@ function renderStatus(appData) {
   if (seated) {
     $("#statusword").textContent = running ? "First session" : "Seated";
     $("#statusdetail").innerHTML = running
-      ? `<b>${esc(name)}</b> has its seat. It is working through its first session now — the steps below are live.`
-      : `<b>${esc(name)}</b> holds a seat on the floor — every trade, rule, and reflection kept on the record from its first entry onward.`;
+      ? `<b>${esc(name)}</b> has its seat. It is working through its first session now. The steps below are live.`
+      : `<b>${esc(name)}</b> holds a seat on the floor. Every trade, rule, and reflection is kept on the record from its first entry onward.`;
     $("#statusbell").textContent = "";
     // the seat is finished; the desk is where this account lives from now on
     $("#statuslinks").innerHTML = exitsOpen
@@ -358,7 +358,7 @@ function renderStatus(appData) {
     const fr = appData.packet && appData.packet.first_read;
     $("#statusdetail").innerHTML =
       `<b>${esc(name)}</b> is countersigned. The charter is on the register.` +
-      (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} — the first read</span>${md(fr)}</blockquote>` : "");
+      (fr ? `<blockquote class="firstread"><span class="label">${esc(name)} · the first read</span>${md(fr)}</blockquote>` : "");
     $("#statusbell").textContent = stage ? "" : "Next bell " + fmtBell(nextFirstBell());
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
   }
@@ -393,10 +393,10 @@ function renderBellUI(appData, name) {
   if (!stage || stage === "failed") {
     el.innerHTML =
       (stage === "failed"
-        ? `<p class="bellnote">The first session hit a problem. Nothing is lost — ${esc(name)} runs at the next bell regardless. You can try again now.</p>`
+        ? `<p class="bellnote">The first session hit a problem. Nothing is lost; ${esc(name)} runs at the next bell regardless. You can try again now.</p>`
         : "") +
       `<button class="primary" id="btn-bell">Run the first session</button>
-       <p class="bellnote">A few minutes, live — you'll watch each step below as it happens.</p>`;
+       <p class="bellnote">A few minutes, live. You'll watch each step below as it happens.</p>`;
     $("#btn-bell").addEventListener("click", () => ringBell(name));
     return;
   }
@@ -410,7 +410,7 @@ function renderBellUI(appData, name) {
   }).join("");
   el.innerHTML =
     `<ol class="bellsteps">${rows}</ol>` +
-    (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes — you can leave this page and come back.</p>`);
+    (isDone ? "" : `<p class="bellnote">This runs live and takes a few minutes. You can leave this page and come back.</p>`);
 }
 
 async function ringBell(name) {
@@ -424,7 +424,7 @@ async function ringBell(name) {
     if (btn) { btn.disabled = false; btn.textContent = "Run the first session"; }
     const p = document.createElement("p");
     p.className = "err";
-    p.textContent = "That didn't go through — try again. (" + (e.message || e) + ")";
+    p.textContent = "That didn't go through. Try again. (" + (e.message || e) + ")";
     $("#statusrun").appendChild(p);
   }
 }
@@ -605,8 +605,8 @@ const agentPhase = () => state.history.some((h) => h.role === "user" && h.raw ==
 const agentName = () => (state.draft && state.draft.name) || "your agent";
 function whoLabel(kind) {
   const n = agentName().toUpperCase();
-  if (kind === "firstwords") return n + " — FIRST WORDS";
-  if (kind === "firstread") return n + " — THE FIRST READ";
+  if (kind === "firstwords") return n + " · FIRST WORDS";
+  if (kind === "firstread") return n + " · THE FIRST READ";
   if (kind === "agent") return n;
   return "REGISTRAR";
 }
@@ -617,12 +617,12 @@ function renderModelMsg(raw, { kind = "registrar" } = {}) {
 function renderUserMsg(raw) {
   if (raw === "[BEGIN]" || raw.startsWith("[REPAIR]")) return null;
   if (raw === "[WAKE]") {
-    addMsg("sys divider", null, "— the Registrar closes the file —");
-    return addMsg("sys divider", null, `— from here, you are speaking with ${esc(agentName())} —`);
+    addMsg("sys divider", null, "· the Registrar closes the file ·");
+    return addMsg("sys divider", null, `· from here, you are speaking with ${esc(agentName())} ·`);
   }
   if (raw.startsWith("[TAPE]")) {
     const dm = raw.match(/\d{4}-\d{2}-\d{2}/);
-    return addMsg("sys", null, `· the tape — marks of ${dm ? esc(dm[0]) : "the last session"} — is placed on the desk ·`);
+    return addMsg("sys", null, `· the tape, marks of ${dm ? esc(dm[0]) : "the last session"}, is placed on the desk ·`);
   }
   return addMsg("me", "PRINCIPAL", md(raw));
 }
@@ -667,14 +667,14 @@ function renderDraft() {
     (d ? (d.constitution || []).length + (d.principles || []).length + (d.hypotheses || []).length +
       ["name", "credo", "benchmark", "voice"].filter((k) => d[k]).length : 0);
   if (!d || !count) {
-    body.innerHTML = `<p class="dempty">Nothing in the draft yet. It fills as you answer — name, credo, constitution, principles, hypotheses, benchmark.</p>`;
+    body.innerHTML = `<p class="dempty">Nothing in the draft yet. It fills as you answer: name, credo, constitution, principles, hypotheses, benchmark.</p>`;
     return;
   }
   let h = "";
   h += `<div class="dsec" data-sec="name"><span class="label">Agent</span><div class="dname">${d.name ? esc(d.name) : '<span class="dwait">unnamed</span>'}${d.archetype ? `<span class="arch">${esc(d.archetype)}</span>` : ""}</div></div>`;
   if (d.address) h += `<div class="dsec" data-sec="address"><span class="label">It calls you</span><div class="dmono">${esc(d.address)}</div></div>`;
   if (d.credo) h += `<div class="dsec" data-sec="credo"><span class="label">Credo</span><div class="dcredo">“${esc(d.credo)}”</div></div>`;
-  if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} — what it must beat</div></div>`;
+  if (d.benchmark && d.benchmark.label) h += `<div class="dsec" data-sec="benchmark"><span class="label">Benchmark</span><div class="dmono">${esc(d.benchmark.label)} · what it must beat</div></div>`;
   if (d.universe) h += `<div class="dsec" data-sec="universe"><span class="label">Universe</span><div class="dmono">${esc(d.universe)}</div></div>`;
   if (d.research && typeof d.research === "string") h += `<div class="dsec" data-sec="research"><span class="label">How it researches</span><div class="dmono">${esc(d.research)}</div></div>`;
   if (d.horizon && typeof d.horizon === "string") h += `<div class="dsec" data-sec="horizon"><span class="label">Horizon</span><div class="dmono">${esc(d.horizon)}</div></div>`;
@@ -682,12 +682,12 @@ function renderDraft() {
   if (d.class_pct) {
     const cp = normalizeClassPct(d.class_pct);
     h += `<div class="dsec" data-sec="limits"><span class="label">Markets it may enter</span><div class="dmono">` +
-      `Crypto — ${cp.crypto ? `up to ${cp.crypto}% of equity` : "not permitted"}<br>` +
-      `Inverse &amp; leveraged ETFs — ${cp.inverse_levered ? `up to ${cp.inverse_levered}% of equity` : "not permitted"}` +
+      `Crypto: ${cp.crypto ? `up to ${cp.crypto}% of equity` : "not permitted"}<br>` +
+      `Inverse &amp; leveraged ETFs: ${cp.inverse_levered ? `up to ${cp.inverse_levered}% of equity` : "not permitted"}` +
       `</div></div>`;
   }
   if ((d.constitution || []).length) {
-    h += `<div class="dsec" data-sec="constitution"><span class="label">Constitution — enforced in code</span><ul class="dlist">` +
+    h += `<div class="dsec" data-sec="constitution"><span class="label">Constitution · enforced in code</span><ul class="dlist">` +
       d.constitution.map((c) => `<li>${esc(c)}</li>`).join("") + `</ul></div>`;
   }
   if ((d.principles || []).length) {
@@ -697,7 +697,7 @@ function renderDraft() {
       ${p.quote ? `<div class="quote">“${esc(p.quote)}” — the principal</div>` : ""}</div>`).join("") + `</div>`;
   }
   if ((d.hypotheses || []).length) {
-    h += `<div class="dsec" data-sec="hypotheses"><span class="label">Hypotheses — testing</span>` + d.hypotheses.map((x, i) => `
+    h += `<div class="dsec" data-sec="hypotheses"><span class="label">Hypotheses · testing</span>` + d.hypotheses.map((x, i) => `
       <div class="dprin dhyp"><div class="tags"><span class="tag">H${i + 1}</span></div>
       <div class="stmt">${esc(x.statement || "")}</div>
       ${x.falsifier ? `<div class="quote">Falsified if: ${esc(x.falsifier)}</div>` : ""}
@@ -714,39 +714,39 @@ function renderDraft() {
 function draftInscriptions(prev, next) {
   const p = prev || {}, lines = [];
   const push = (text, sec) => lines.push({ text, sec });
-  if (next.name && next.name !== p.name) push(`name set — ${next.name}`, "name");
+  if (next.name && next.name !== p.name) push(`name set: ${next.name}`, "name");
   if (next.credo && next.credo !== p.credo) push(p.credo ? "credo revised" : "credo added to the draft", "credo");
   const pb = (p.benchmark && p.benchmark.label) || "", nb = (next.benchmark && next.benchmark.label) || "";
-  if (nb && nb !== pb) push(`benchmark set — ${nb}`, "benchmark");
+  if (nb && nb !== pb) push(`benchmark set: ${nb}`, "benchmark");
   if (next.universe && next.universe !== p.universe) push("universe set", "universe");
   if (next.max_position_pct && next.max_position_pct !== p.max_position_pct)
-    push(`limit set — max position ${next.max_position_pct}%`, "limits");
+    push(`limit set: max position ${next.max_position_pct}%`, "limits");
   if (next.class_pct) {
     const nc2 = normalizeClassPct(next.class_pct), pc2 = normalizeClassPct(p.class_pct);
     if (nc2.crypto !== pc2.crypto)
-      push(nc2.crypto ? `crypto opened — up to ${nc2.crypto}%` : "crypto closed off", "limits");
+      push(nc2.crypto ? `crypto opened: up to ${nc2.crypto}%` : "crypto closed off", "limits");
     if (nc2.inverse_levered !== pc2.inverse_levered)
       push(nc2.inverse_levered
-        ? `inverse & leveraged ETFs opened — up to ${nc2.inverse_levered}%`
+        ? `inverse & leveraged ETFs opened: up to ${nc2.inverse_levered}%`
         : "inverse & leveraged ETFs closed off", "limits");
   }
   const pc = (p.constitution || []).length, nc = (next.constitution || []).length;
-  if (nc > pc) push(nc - pc === 1 ? "constitution — clause added" : `constitution — ${nc - pc} clauses added`, "constitution");
+  if (nc > pc) push(nc - pc === 1 ? "constitution: clause added" : `constitution: ${nc - pc} clauses added`, "constitution");
   const pp = p.principles || [], np = next.principles || [];
   np.forEach((x, i) => {
     if (!x || !x.statement) return;
     const old = pp[i];
-    if (!old) push(`P${i + 1} added to the draft — ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}`, "principles");
+    if (!old) push(`P${i + 1} added to the draft: ${x.type || "?"}${x.rigidity ? ", " + x.rigidity : ""}`, "principles");
     else if (JSON.stringify(old) !== JSON.stringify(x)) push(`P${i + 1} amended`, "principles");
   });
   const ph = p.hypotheses || [], nh = next.hypotheses || [];
   nh.forEach((x, i) => {
     if (!x || !x.statement) return;
-    if (!ph[i]) push(`H${i + 1} added to the draft${x.expiry ? ` — expires ${x.expiry}` : ""}`, "hypotheses");
+    if (!ph[i]) push(`H${i + 1} added to the draft${x.expiry ? `, expires ${x.expiry}` : ""}`, "hypotheses");
     else if (JSON.stringify(ph[i]) !== JSON.stringify(x)) push(`H${i + 1} amended`, "hypotheses");
   });
   if (next.voice && next.voice !== p.voice) push("voice recorded", "voice");
-  if (next.address && next.address !== p.address) push(`address recorded — "${next.address}"`, "address");
+  if (next.address && next.address !== p.address) push(`address recorded: "${next.address}"`, "address");
   return lines;
 }
 function renderInscriptions(prev, next) {
@@ -859,7 +859,7 @@ async function runCreationMoment({ instant = false } = {}) {
   setBusy(true);
   const wait = (ms) => (instant ? Promise.resolve() : sleep(ms));
   await wait(600);
-  const line = addMsg("sys inscribe", null, "· the charter is drafted — every rule cites your words ·");
+  const line = addMsg("sys inscribe", null, "· the charter is drafted, every rule cites your words ·");
   line.addEventListener("click", () => {
     const col = $("#draftcol");
     if (window.matchMedia("(max-width: 899px)").matches && !col.classList.contains("open")) {
@@ -954,14 +954,14 @@ function failTurn(userRaw, userEl, e) {
     // the automatic repair failed — fall back to the honest line; the next
     // real turn carries the repair note
     state.needsRepair = true;
-    addMsg("sys", null, "· that didn't reach the draft — it will catch up next reply ·");
+    addMsg("sys", null, "· that didn't reach the draft, it will catch up next reply ·");
     return;
   } else {
     if (userEl) {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "undelivered";
-      btn.textContent = "not delivered — retry";
+      btn.textContent = "not delivered · retry";
       btn.addEventListener("click", () => {
         const input = $("#input");
         if (input.value.trim() === userRaw) { input.value = ""; input.style.height = ""; }
@@ -972,7 +972,7 @@ function failTurn(userRaw, userEl, e) {
     }
     const input = $("#input");
     if (!input.value) input.value = userRaw; // fallback: the words come home
-    err.textContent = "That didn't send — your message is kept. Retry when ready. (" + ((e && e.message) || e) + ")";
+    err.textContent = "That didn't send. Your message is kept. Retry when ready. (" + ((e && e.message) || e) + ")";
   }
   err.hidden = false;
 }
@@ -994,7 +994,7 @@ async function sendTurn(userRaw) {
   // machine messages ([BEGIN]/[WAKE]/[TAPE]/[REPAIR]) never count against the length
   const userTurns = state.history.filter((h) => h.role === "user" && !h.raw.startsWith("[")).length;
   if (userTurns >= MAX_TURNS) {
-    addMsg("sys", null, "· the interview has run its length — review the charter below ·");
+    addMsg("sys", null, "· the interview has run its length, review the charter below ·");
     return;
   }
   const isTape = userRaw.startsWith("[TAPE]");
@@ -1019,7 +1019,7 @@ async function sendTurn(userRaw) {
   if (state.needsRepair && !userRaw.startsWith("[REPAIR]")) {
     // machine-injected, never rendered: the previous side channel was lost
     contents[contents.length - 1].parts[0].text +=
-      "\n\n[REPAIR] The last draft block did not arrive — include the entire draft in this reply.";
+      "\n\n[REPAIR] The last draft block did not arrive. Include the entire draft in this reply.";
   }
   if (state.machineNote) {
     contents[contents.length - 1].parts[0].text += "\n\n[NOTE] " + state.machineNote;
@@ -1040,7 +1040,7 @@ async function sendTurn(userRaw) {
         // the interview is over and a queued reply would be dropped)
         isTape ? null : () => { setBusy(false); $("#input").focus(); },
       ),
-      { onRetryWait: () => { setBusy(true); textEl.innerHTML = `<span class="dwait">busy — retrying automatically…</span>`; } },
+      { onRetryWait: () => { setBusy(true); textEl.innerHTML = `<span class="dwait">busy, retrying automatically…</span>`; } },
     );
   } catch (e) {
     console.error(e);
@@ -1096,11 +1096,11 @@ async function sendTurn(userRaw) {
       state.needsRepair = false;
       saveInterview();
       setBusy(false);
-      await sendTurn("[REPAIR] The last draft block did not arrive — include the entire draft in this reply.");
+      await sendTurn("[REPAIR] The last draft block did not arrive. Include the entire draft in this reply.");
       return;
     }
     state.needsRepair = true;
-    addMsg("sys", null, "· that didn't reach the draft — it will catch up next reply ·");
+    addMsg("sys", null, "· that didn't reach the draft, it will catch up next reply ·");
   }
   // Act II: an agreed test must reach the record. If the tap that accepted it
   // produced no hypothesis (observed in QA: "locked into the charter", nothing
@@ -1140,8 +1140,8 @@ async function sendTurn(userRaw) {
       await sendTurn("[WAKE]");
       return;
     }
-    addMsg("sys", null, "· the charter is missing something — the Registrar continues ·");
-    state.machineNote = "The handoff was early — the wake minimum is not complete in the compiled draft. Continue the interview as the Registrar until it is.";
+    addMsg("sys", null, "· the charter is missing something, the Registrar continues ·");
+    state.machineNote = "The handoff was early. The wake minimum is not complete in the compiled draft. Continue the interview as the Registrar until it is.";
   }
   // if the wake minimum stands for three turns and the Registrar never closes,
   // ask for the handoff by machine note rather than stranding Act I
@@ -1205,7 +1205,7 @@ function updateFinishUI() {
     bar.hidden = false;
     bar.classList.add("quiet");
     btn.className = "plain";
-    note.textContent = "The charter appears complete — review and submit whenever you are ready.";
+    note.textContent = "The charter appears complete. Review and submit whenever you are ready.";
   } else {
     // in Act II the tape follows ready on its own; no bar until it lands
     $("#composer").hidden = false;
@@ -1297,7 +1297,7 @@ async function beginInterview() {
 /* ---------------- charter review & submit ---------------- */
 function transcriptMarkdown() {
   const name = (state.draft && state.draft.name) || "unnamed";
-  let out = `# Seat interview — ${name}\n\n_${today()} · Conviction League registry_\n\n`;
+  let out = `# Seat interview: ${name}\n\n_${today()} · Conviction League registry_\n\n`;
   let lastUser = "";
   let woke = false;
   for (const h of state.history) {
@@ -1309,8 +1309,8 @@ function transcriptMarkdown() {
       out += `**Principal:** ${h.raw}\n\n`;
     } else {
       if (lastUser.startsWith("[REPAIR]")) continue; // machine repair turns stay out of the readable record
-      const speaker = lastUser.startsWith("[TAPE]") ? `**${name} — the first read:**`
-        : lastUser === "[WAKE]" ? `**${name} — first words:**`
+      const speaker = lastUser.startsWith("[TAPE]") ? `**${name}, the first read:**`
+        : lastUser === "[WAKE]" ? `**${name}, first words:**`
         : woke ? `**${name}:**` : "**Registrar:**";
       out += `${speaker} ${displayText(h.raw)}\n\n`;
     }
@@ -1603,7 +1603,7 @@ async function boot() {
     dev.type = "button";
     dev.className = "plain";
     dev.style.cssText = "border-style:dashed;margin-top:4px";
-    dev.textContent = "Dev sign-in — local test, no email";
+    dev.textContent = "Dev sign-in · local test, no email";
     dev.addEventListener("click", async () => {
       landingError("");
       try { await signInAnonymously(auth); }

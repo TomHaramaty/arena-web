@@ -96,6 +96,27 @@ export function checkTurn(ctx, userRaw, raw) {
     issue(ctx, "hard", "claim-without-delta", `prose claims compilation, machine block empty: "${p.match(COMPILE_CLAIM)[0]}"`);
   }
 
+  // the punctuation rule: prose, and every field compiled out of it, must be
+  // free of em dashes. Soft for now, on the same footing registry-stamp had:
+  // promote after two clean full runs.
+  const dashes = (p.match(/—/g) || []).length;
+  if (dashes) issue(ctx, "soft", "em-dash", `${dashes} in prose: "${(p.match(/.{0,40}—.{0,40}/) || [""])[0].trim()}"`);
+  // A principal may type an em dash, and their quote is copied verbatim, so
+  // "quote" is exempt. Everything the model composes is not.
+  const composed = (d) => {
+    const out = [];
+    for (const [k, v] of Object.entries(d || {})) {
+      if (typeof v === "string") out.push([k, v]);
+      else if (Array.isArray(v)) v.forEach((x, i) => {
+        for (const [k2, v2] of Object.entries(x || {}))
+          if (typeof v2 === "string" && k2 !== "quote") out.push([`${k}[${i}].${k2}`, v2]);
+      });
+    }
+    return out;
+  };
+  for (const [field, text] of composed(ctx.draft))
+    if (text.includes("—")) issue(ctx, "soft", "em-dash-compiled", `${field}: ${text.slice(0, 90)}`);
+
   // the handoff
   if (side.handoff) {
     if (ctx.woke) issue(ctx, "hard", "handoff-after-wake", "handoff set in Act II");
