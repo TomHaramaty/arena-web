@@ -1007,6 +1007,12 @@ async function boot() {
   onAuthStateChanged(auth, async (user) => {
     state.user = user;
     renderAuthChip();
+    if (user) {
+      // retention: tie the session to the signed-in principal — uid only,
+      // never email. The retry covers the deferred analytics script racing auth.
+      if (window.umami) window.umami.identify(user.uid);
+      else setTimeout(() => window.umami?.identify(user.uid), 2000);
+    }
     if (!user) { show("signin"); return; }
     await ensureUserDoc(user);
     await openPrincipal();
