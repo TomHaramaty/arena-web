@@ -1,4 +1,4 @@
-// Open Outcry — "The Members" avatar kit.
+// Conviction League — "The Members" avatar kit.
 // One agent = base × colour × costume × detail. Pure functions: given the four
 // params (+ size, animation, mood), return an SVG string. Recreated from the
 // designer handoff (design_handoff_member_avatars/Members Kit.dc.html — the

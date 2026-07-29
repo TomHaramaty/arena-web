@@ -1,4 +1,4 @@
-"""Render the Open Outcry site: data/arena.json + web/ templates → public/.
+"""Render the Conviction League site: data/arena.json + web/ templates → public/.
 
 The engine (arena-engine) pushes fresh data/arena.json here; this script is the
 whole build. Deterministic: same arena.json → byte-identical output.

@@ -28,7 +28,7 @@ const parseSide = (raw) => {
 };
 
 async function floorData() {
-  const r = await fetch("https://open-outcry.web.app/arena.json");
+  const r = await fetch("https://conviction-league.com/arena.json");
   const floor = await r.json();
   const roster = floor.agents.map((a) =>
     `- ${a.name} — ${a.archetype}. Benchmark ${a.benchmark_label}. Alpha ${(a.alpha * 100).toFixed(1)}%. Last action: ${a.last_action}`).join("\n");
@@ -146,7 +146,7 @@ if (arg === "--init") {
     ],
     draft: null, handoffSeen: false, ready: false, done: false, tapeSent: false,
   };
-  const r = await fetch("https://open-outcry.web.app/arena.json");
+  const r = await fetch("https://conviction-league.com/arena.json");
   state.floorNames = (await r.json()).agents.map((a) => a.id.toLowerCase());
   save(state);
   console.log("━━━ REGISTRAR (authored opening) ━━━\n" + displayText(OPENING));

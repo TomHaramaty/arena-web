@@ -1,4 +1,4 @@
-// Open Outcry — server-side pieces the static site cannot hold.
+// Conviction League — server-side pieces the static site cannot hold.
 //
 // ringFirstBell: the principal clicked "Run the first session" on the status
 // card. Verify they own the application, mark the bell rung on the doc (the

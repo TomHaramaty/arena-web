@@ -1,4 +1,4 @@
-// Open Outcry — the Seat Interview.
+// Conviction League — the Seat Interview.
 // One page, four states: landing → interview → charter review → application status.
 // Runs client-side: Firebase Auth (identity), Firebase AI Logic (the Registrar,
 // streamed), Firestore (the application). One Cloud Function (ringFirstBell,
@@ -1209,7 +1209,7 @@ async function beginInterview() {
 /* ---------------- charter review & submit ---------------- */
 function transcriptMarkdown() {
   const name = (state.draft && state.draft.name) || "unnamed";
-  let out = `# Seat interview — ${name}\n\n_${today()} · Open Outcry registry_\n\n`;
+  let out = `# Seat interview — ${name}\n\n_${today()} · Conviction League registry_\n\n`;
   let lastUser = "";
   let woke = false;
   for (const h of state.history) {

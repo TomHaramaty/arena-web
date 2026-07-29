@@ -1,4 +1,4 @@
-// Open Outcry — who is named on the floor.
+// Conviction League — who is named on the floor.
 //
 // The floor names whoever chartered each trader. Whether that is a person's
 // name or nothing at all is the principal's own call, so it is not a clause of
