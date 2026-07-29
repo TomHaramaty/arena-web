@@ -85,6 +85,7 @@ const state = {
   wakeReadyTurns: 0,    // consecutive Act-I turns where the wake minimum passed with no handoff
   lastOptions: [],      // labels offered on the pending question (restore)
   tapped: [],           // every label sent by tap this session — never quotable
+  pendingRigidity: null, // a rigidity the principal just tapped, not yet in the draft
   choicesHintShown: false,
   handoffSeen: false,   // the Registrar closed the file; the creation moment ran
   ready: false,
@@ -743,6 +744,41 @@ function validOptions(side) {
   }
   return out;
 }
+/* The rigidity round-trip, made deterministic.
+
+   The prompt tells the Registrar to omit a principle's rigidity until the
+   principal has chosen, then fill it in a turn later. Nothing enforces that
+   second step, and when it is skipped validatePacket fails on "principle N has
+   no rigidity decision" — permanently. The principal reaches the end of a
+   fifteen-minute interview and the charter will not close. Observed on three
+   separate personas across two full eval runs.
+
+   So the tap itself becomes the record. Nothing here is invented: it writes
+   only a value the principal actually selected, and only onto a principle that
+   carries no rigidity at all. If the model does its job, this is a no-op.
+
+   Deliberately not mirrored to drafts/{uid}: a reload between the tap and the
+   reply loses the pending value, which degrades to exactly today's behaviour
+   and costs no Firestore rules change. */
+const RIGIDITY = { "hard rule": "hard", heuristic: "heuristic" };
+function rigidityOptions(labels) {
+  const vals = labels.map((l) => RIGIDITY[l.trim().toLowerCase()]);
+  // every option must be a rigidity AND both values present — otherwise this is
+  // some other question that merely happens to use one of the words
+  return vals.every(Boolean) && new Set(vals).size === 2;
+}
+function applyPendingRigidity() {
+  const v = state.pendingRigidity;
+  if (!v) return;
+  state.pendingRigidity = null;               // one tap, one application
+  const ps = (state.draft || {}).principles;
+  if (!Array.isArray(ps)) return;
+  for (let i = ps.length - 1; i >= 0; i--) {  // the newest one still undecided
+    const p = ps[i];
+    if (p && !["hard", "heuristic"].includes(p.rigidity)) { p.rigidity = v; return; }
+  }
+}
+
 function clearChoices() {
   state.lastOptions = [];
   document.querySelectorAll("#chatlog .choices").forEach((n) => {
@@ -752,6 +788,7 @@ function clearChoices() {
 }
 function renderChoices(opts) {
   state.lastOptions = opts.map((o) => o.label);
+  const isRigidity = rigidityOptions(state.lastOptions);
   const wrap = document.createElement("div");
   wrap.className = "choices";
   for (const o of opts) {
@@ -760,7 +797,11 @@ function renderChoices(opts) {
     b.className = "choice";
     b.innerHTML = `<span class="clabel">${esc(o.label)}</span>` +
       (o.hint ? `<span class="chint">${esc(o.hint)}</span>` : "");
-    b.addEventListener("click", () => { state.tapped.push(o.label); sendTurn(o.label); });
+    b.addEventListener("click", () => {
+      state.tapped.push(o.label);
+      if (isRigidity) state.pendingRigidity = RIGIDITY[o.label.trim().toLowerCase()];
+      sendTurn(o.label);
+    });
     wrap.appendChild(b);
   }
   $("#chatlog").appendChild(wrap);
@@ -998,6 +1039,10 @@ async function sendTurn(userRaw) {
       }
       // delta contract: changed fields arrive whole; unchanged fields persist
       state.draft = Object.assign({}, state.draft || {}, side.draft);
+      // after the merge, not before: when the reply omits `principles` because
+      // nothing else about them changed, the undecided one is only reachable
+      // on the merged draft
+      applyPendingRigidity();
       renderDraft();
       renderInscriptions(prevDraft, state.draft);
     }
