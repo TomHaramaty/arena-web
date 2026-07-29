@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <!-- The bell of Conviction League — flat ink, Engraved Ledger. Brass in both
-       themes; the dark strip gets the lighter cast. -->
+  <!-- The mark of Conviction League: the record, and the curve in it. Flat ink,
+       Engraved Ledger. Brass in both themes; the dark strip gets the lighter cast. -->
   <style>
-    .b { fill: #a06d12; }
-    @media (prefers-color-scheme: dark) { .b { fill: #d19a3f; } }
+    .b { fill: none; stroke: #a06d12; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) { .b { stroke: #d19a3f; } }
   </style>
-  <path class="b" d="M12 2.5c-.9 0-1.6.7-1.6 1.6v.6C7.6 5.5 5.7 8 5.7 11v3.8l-1.5 2c-.5.7 0 1.7.9 1.7h13.8c.9 0 1.4-1 .9-1.7l-1.5-2V11c0-3-1.9-5.5-4.7-6.3v-.6c0-.9-.7-1.6-1.6-1.6z"/>
-  <circle class="b" cx="12" cy="20.6" r="1.7"/>
+  <rect class="b" x="2.6" y="3.2" width="18.8" height="17.6" rx="2.8"/>
+  <path class="b" d="M6.6 16.4 10.4 12.2 13.2 14.6 17.4 8.4"/>
 </svg>
