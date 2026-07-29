@@ -54,7 +54,7 @@ async function personaTurn(persona, transcript, options, doTap) {
 }
 
 async function floorData() {
-  const r = await fetch("https://open-outcry.web.app/arena.json");
+  const r = await fetch("https://conviction-league.com/arena.json");
   const floor = await r.json();
   const roster = floor.agents.map((a) => `- ${a.name} — ${a.archetype}. Benchmark ${a.benchmark_label}.`).join("\n");
   const marks = {};
