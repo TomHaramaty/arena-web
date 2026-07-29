@@ -18,6 +18,9 @@ import {
   getAI, getGenerativeModel, GoogleAIBackend,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
 import {
+  initializeAppCheck, ReCaptchaV3Provider,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app-check.js";
+import {
   getFunctions, httpsCallable,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
 import {
@@ -41,6 +44,17 @@ const app = initializeApp({
   authDomain: "conviction-league.com",
   storageBucket: "open-outcry.firebasestorage.app",
   messagingSenderId: "56794274079",
+});
+
+// App Check attests that these calls come from this app rather than from a
+// script that copied the config out of the served JavaScript. It matters most
+// for AI Logic below: Firestore rules govern who may read a document, but
+// nothing governs who may spend the project's inference budget.
+// localhost is a registered reCAPTCHA domain, so the emulator QA rigs attest
+// normally; the Node eval scripts have no browser and need a debug token.
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider("6LdZOWstAAAAAFFN3gFIQYhYN4MBr1WCa1hrXwNH"),
+  isTokenAutoRefreshEnabled: true,
 });
 const auth = getAuth(app);
 const db = getFirestore(app);
