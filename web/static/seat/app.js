@@ -138,6 +138,10 @@ const state = {
 const VIEWS = ["loading", "landing", "interview", "finish", "status"];
 function show(view) {
   for (const v of VIEWS) $("#view-" + v).hidden = v !== view;
+  // force a synchronous reflow before any scroll: the outgoing view's sticky
+  // chrome (composer, finish bar) can otherwise leave stale composited paint
+  // over the incoming view (observed on the review screen, 2026-07-29)
+  void document.body.offsetHeight;
   // the interview opens where it was left off — at the live edge, not at the
   // top of a transcript the principal has already read
   followTail = true;
@@ -540,6 +544,11 @@ function updateTailBtn() {
   const btn = $("#btn-tail");
   if (!btn) return;
   document.documentElement.style.setProperty("--foot", footHeight() + "px");
+  // the finish bar stacks above the composer (see seat.css); it needs the
+  // composer's live height, which grows under a long draft answer
+  const comp = $("#composer");
+  document.documentElement.style.setProperty("--composer-h",
+    (comp && !comp.hidden ? Math.round(comp.getBoundingClientRect().height) : 0) + "px");
   btn.hidden = $("#view-interview").hidden || followTail || tailGap() <= TAIL_SLACK;
 }
 function installScroll() {
@@ -978,7 +987,11 @@ function failTurn(userRaw, userEl, e) {
 }
 
 async function sendTurn(userRaw) {
-  if (state.busy || state.done) return;
+  // done does NOT close the line: the charter is amendable until countersign,
+  // and the post-read composer exists exactly for that. Only busy blocks.
+  // (A done-guard here silently swallowed every post-read amendment — first
+  // real user hit it 2026-07-29: typed the change, Send did nothing.)
+  if (state.busy) return;
   followTail = true; // sending is a request to be at the live edge
   // prose is on screen but the machine tail is still streaming: take the
   // message now, hold it until the turn's history entry lands.
@@ -1123,8 +1136,9 @@ async function sendTurn(userRaw) {
   saveInterview();
   setBusy(false);
   tail(false);
-  if (state.queued && !state.done) {
-    // a reply arrived while the tail streamed — it goes next, before any hand-off
+  if (state.queued) {
+    // a reply arrived while the tail streamed — it goes next, before any
+    // hand-off. Post-read it is an amendment, and amendments are legal.
     const q = state.queued;
     await sendTurn(q.raw);
     return;
@@ -1616,7 +1630,7 @@ async function boot() {
   const input = $("#input");
   function submitComposer() {
     const text = input.value.trim();
-    if (!text || state.busy || state.done) return;
+    if (!text || state.busy) return;
     input.value = "";
     input.style.height = "";
     sendTurn(text);

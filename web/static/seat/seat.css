@@ -181,6 +181,11 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 #composer button { flex: none; }
 #composer[data-busy="true"] textarea { opacity: 0.6; }
 .finishbar { position: sticky; bottom: 0; background: var(--page); border-top: 1px solid var(--border); padding: 12px 0 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* The post-read state shows BOTH sticky bars. Two siblings sticky at bottom:0
+   stack on the same pixel and the composer paints over the Review button
+   (elementFromPoint proved it: clicks landed in the textarea). The finish bar
+   rides the composer's measured height instead — stacked, never overlapped. */
+#finishbar:not(.quiet):has(~ #composer:not([hidden])) { bottom: var(--composer-h, 64px); }
 .finishbar .note { font-size: 13px; color: var(--ink2); }
 /* the charter is complete but the interview may continue: a quiet bar above the composer */
 .finishbar.quiet { position: static; border-top: 1px dashed var(--border); padding: 10px 0 4px; }
