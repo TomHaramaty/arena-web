@@ -68,10 +68,32 @@ def trim(text, limit):
     return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:") + " …"
 
 
-# ---------------------------------------------------------------- step 1: the
-# rule drafted live in the interview (inner panel of the static chat frame)
+def clean_prose(text):
+    """Trader prose, made fit for an excerpt: markdown emphasis markers and
+    [1.4]-style citation refs are working notation, not typography."""
+    text = re.sub(r"\s*\[[\d.,\s]+\]", "", text or "")
+    return text.replace("**", "").replace("__", "")
 
-def draft_rule(data, agent_id="ballast", prin_id="P2"):
+
+# ---------------------------------------------------------------- the faces
+
+def avatar_cell(agent, size=28):
+    """A trader's face for server-rendered pages: the hosted PNG when the kit
+    has drawn one, a colour dot when it hasn't yet (a freshly seated trader has
+    no PNG until gen-avatars runs). Zero JS either way."""
+    png = ROOT / "web" / "static" / "avatars" / f"{agent['id']}.png"
+    if png.exists():
+        return (f'<img class="face" src="/avatars/{esc(agent["id"])}.png" '
+                f'width="{size}" height="{size}" alt="" loading="lazy">')
+    return (f'<span class="face dotface" style="width:{size}px;height:{size}px;'
+            f'background:{esc(agent.get("color", "#888"))}"></span>')
+
+
+# ---------------------------------------------------------------- step 1: how
+# a sentence someone said became a rule their trader now trades by — the real
+# quote and the real principle, straight from the record. Nothing staged.
+
+def origin_rule(data, agent_id="ballast", prin_id="P2"):
     agents = [a for a in [find_agent(data, agent_id)] if a] or data["agents"]
     for a in agents:
         prins = a.get("principles", [])
@@ -80,15 +102,22 @@ def draft_rule(data, agent_id="ballast", prin_id="P2"):
             if not p:
                 continue
             date, quote = origin_parts(p.get("origin", ""))
+            if not quote:
+                continue
             tags = "".join(
                 f'<span class="tag{" hard" if t == "hard" else ""}">{esc(t)}</span>'
                 for t in [p.get("id", ""), p.get("type", ""), p.get("rigidity", "")] if t)
-            body = (f'<div class="tagrow">{tags}</div>'
-                    f'<p class="astmt">{esc(p["statement"])}</p>')
-            if quote:
-                body += (f'<p class="aquote">“{esc(quote)}” '
-                         f'<span class="attr">— you, {esc(fmt_date(date))}</span></p>')
-            return body
+            body = (
+                f'<div class="origcard">'
+                f'<div class="orig"><p class="dcap">its principal said</p>'
+                f'<p class="oquote">“{esc(quote)}”</p>'
+                f'<p class="oattr">— {esc(a["name"])}’s principal, '
+                f'{esc(fmt_date(date))}</p></div>'
+                f'<div class="orule"><p class="dcap">→ written into the rulebook</p>'
+                f'<div class="tagrow">{tags}</div>'
+                f'<p class="astmt">{esc(p["statement"])}</p></div></div>')
+            return frame(f'{esc(a["id"])} · rulebook · {esc(p.get("id", ""))}',
+                         "the seat interview", body)
     return ""
 
 
@@ -142,7 +171,7 @@ def journal_frame(data, agent_id="vertex"):
             rat = (j.get("rationale") or "").strip()
             if len(rat) < 200 or j.get("type") == "reflect":
                 continue
-            rat = re.sub(r"\s*\[[\d.,\s]+\]", "", rat)          # drop [1.4]-style refs
+            rat = clean_prose(rat)
             paras = [p.strip() for p in rat.split("\n\n") if p.strip()]
             body = (f'<p class="atitle">{esc(trim(j.get("title", ""), 120))}</p>'
                     f'<p class="aexcerpt">{esc(trim(" ".join(paras[:2]), 450))}</p>')
@@ -215,35 +244,98 @@ def sparkline(curve, w=76, h=26, pad=3):
             f'<circle class="sparkdot" cx="{lx}" cy="{ly}" r="2"/></svg>')
 
 
-def floor_frame(data, top=None):
-    """The whole floor, ranked; `top` trims only if the roster outgrows the frame."""
+def floor_frame(data, top=6):
+    """The hero: the live league table, ranked by alpha vs own benchmark —
+    rank, face, name, equity curve, score. Capped so the hero stays a hero as
+    the roster grows; the overflow row says exactly what it is hiding."""
     ranked = sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)
     rows = []
-    for a in (ranked[:top] if top else ranked):
+    for i, a in enumerate(ranked[:top]):
         alpha = a.get("alpha", 0)
         cls, arrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
         rows.append(
-            f'<tr><td><span class="fname">{esc(a["name"])}</span>'
-            f'<span class="farch">{esc(a["archetype"])}</span></td>'
-            f'<td class="fspark">{sparkline(a.get("curve"))}</td>'
+            f'<tr><td class="frank mono">{i + 1}</td>'
+            f'<td class="fwho"><div class="fcell">{avatar_cell(a, 30)}<span class="fid">'
+            f'<span class="fname">{esc(a["name"])}</span>'
+            f'<span class="farch">{esc(a["archetype"])}</span></span></div></td>'
+            f'<td class="fspark">{sparkline(a.get("curve"), w=122, h=30)}</td>'
             f'<td class="falpha"><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
             f'<span class="fbench">vs {esc(a["benchmark_label"])}</span></td></tr>')
+    more = len(ranked) - top
+    if more > 0:
+        rows.append(f'<tr class="fmore"><td></td><td colspan="3">'
+                    f'<a href="/floor/">{more} more on the floor →</a></td></tr>')
     body = f'<table class="floortab">{"".join(rows)}</table>'
     return frame(f'the floor · {esc(fmt_date(data.get("run_date", "")))}',
-                 "alpha vs own benchmark", body)
+                 "ranked by alpha vs own benchmark", body)
+
+
+# ---------------------------------------------------------------- step 5: the
+# tape — recent fills across the floor, each at the real market price it got
+
+def tape_frame(data, n=4):
+    """The newest fills, preferring one per trader so the floor reads as a
+    floor and not one busy trader. Notes are each trader's own words."""
+    agents = {a["id"]: a for a in data["agents"]}
+    fills, seen = [], set()
+    pool = [t for t in data.get("tape", []) if t.get("event") == "fill"]
+    for t in pool:
+        if t["agent"] in seen:
+            continue
+        seen.add(t["agent"])
+        fills.append(t)
+        if len(fills) == n:
+            break
+    for t in pool:                                     # backfill if too few traders
+        if len(fills) == n:
+            break
+        if t not in fills:
+            fills.append(t)
+    fills.sort(key=lambda t: t.get("t", 0), reverse=True)
+    rows = []
+    for t in fills:
+        a = agents.get(t["agent"])
+        if not a:
+            continue
+        verb = "bought" if t.get("side") == "buy" else "sold"
+        note = trim(clean_prose(t.get("note", "")), 110)
+        rows.append(
+            f'<li>{avatar_cell(a, 20)}<div class="tbody">'
+            f'<span class="tline"><b>{esc(a["name"])}</b> {verb} '
+            f'<b>{esc(t["symbol"])}</b> at ${t.get("price", 0):,.2f}'
+            f'<span class="twhen mono">{esc(t.get("when", ""))}</span></span>'
+            + (f'<span class="tnote">{esc(note)}</span>' if note else "")
+            + '</div></li>')
+    if not rows:
+        return ""
+    body = f'<ul class="tape">{"".join(rows)}</ul>'
+    return frame("the tape · latest fills", "real prices · simulated $", body)
+
+
+def stats_row(data):
+    """The platform's numbers, computed from the record — never typed in."""
+    agents = data["agents"]
+    parts = [
+        f'<b>{len(agents)}</b> traders live',
+        f'<b>{sum(len(a.get("principles", [])) for a in agents)}</b> written principles',
+        f'<b>{sum(len(a.get("journal", [])) for a in agents)}</b> journal entries',
+    ]
+    n_fills = sum(1 for t in data.get("tape", []) if t.get("event") == "fill")
+    if n_fills:
+        parts.append(f'<b>{n_fills}</b> fills on the tape')
+    return '<span class="sep">·</span>'.join(f'<span>{p}</span>' for p in parts)
 
 
 def build_landing(data):
     tpl = (ROOT / "web" / "landing.html").read_text(encoding="utf-8")
-    n = len(data["agents"])
-    stat = f"{n} traders live · latest entry {esc(fmt_date(data.get('run_date', '')))}"
     return (tpl
-            .replace("{{HERO_STAT}}", stat)
-            .replace("{{DRAFT_RULE}}", draft_rule(data))
+            .replace("{{HERO_STATS}}", stats_row(data))
+            .replace("{{ART_FLOOR}}", floor_frame(data))
+            .replace("{{ART_ORIGIN}}", origin_rule(data))
             .replace("{{ART_BOOK}}", book_frame(data))
             .replace("{{ART_JOURNAL}}", journal_frame(data))
             .replace("{{ART_HYPOTHESIS}}", hypothesis_frame(data))
-            .replace("{{ART_FLOOR}}", floor_frame(data))
+            .replace("{{ART_TAPE}}", tape_frame(data))
             .replace("{{GENERATED_AT}}", esc(data.get("generated_at", ""))))
 
 

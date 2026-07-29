@@ -8,6 +8,14 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Conviction League — your investing philosophy, running as an autonomous trader</title>
 <meta name="description" content="A 15-minute AI interview turns how you invest into an autonomous trader. It researches, trades a simulated portfolio at real market prices, explains every decision in writing, and shows you exactly how it thinks.">
+<link rel="canonical" href="https://conviction-league.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Conviction League">
+<meta property="og:title" content="Conviction League">
+<meta property="og:description" content="Your investing philosophy, running as an autonomous trader — live on a floor against other people's strategies. Simulated money, real market prices.">
+<meta property="og:url" content="https://conviction-league.com/">
+<meta property="og:image" content="https://conviction-league.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     color-scheme: light;
@@ -42,7 +50,9 @@
   a { color: var(--ink); }
   a:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
   .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px 64px; }
+  /* one column: 900px of room for the product surfaces; prose keeps its own
+     measure inside it, so the page reads editorial and the frames read platform */
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px 64px; }
 
   header.top { display: flex; align-items: baseline; gap: 8px 12px; flex-wrap: wrap; padding: 18px 0 13px; border-bottom: 1px solid var(--border); }
   .wordmark { font-family: var(--display); font-size: 21px; font-weight: 700; letter-spacing: 0.2px; text-decoration: none; }
@@ -56,21 +66,22 @@
   /* hero */
   .hero { padding: 52px 0 8px; }
   .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
-  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 7.6vw, 48px); line-height: 1.12; letter-spacing: 0.1px; margin: 0 0 16px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 7.6vw, 48px); line-height: 1.12; letter-spacing: 0.1px; margin: 0 0 16px; max-width: 17em; }
   .lede { font-family: var(--display); font-size: clamp(16.5px, 2.4vw, 19px); line-height: 1.58; color: var(--ink); max-width: 54ch; margin: 0 0 26px; }
-  .ctarow { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; margin: 0 0 16px; }
+  .ctarow { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; margin: 0 0 18px; }
   .btn { display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; text-decoration: none; border-radius: 9px; padding: 13px 20px; font: 600 15px/1.2 system-ui, sans-serif; border: 1px solid var(--ink); }
   .btn.primary { background: var(--ink); color: var(--page); }
   .btn.primary .btnsub { font: 400 11.5px/1.3 system-ui, sans-serif; opacity: 0.75; }
   .btn.plain { border-color: var(--border); background: var(--surface); color: var(--ink); justify-content: center; }
   .btn:hover { opacity: 0.92; }
-  .herostat { font-size: 12px; color: var(--muted); margin: 0; }
-  .herofig { margin: 40px 0 0; }
-  .herofig svg { display: block; width: 100%; height: auto; }
-  .herocap { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin: 10px 0 0; text-align: right; }
+  /* the platform's numbers — computed from the record at build, never typed */
+  .statsrow { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  .statsrow b { color: var(--ink); font-weight: 600; }
+  .statsrow .sep { opacity: 0.6; }
+  .hero .frame { margin-top: 30px; }
 
-  /* the numbered flow */
-  .flowhead { margin: 72px 0 0; }
+  /* section heads */
+  .flowhead { margin: 76px 0 0; }
   .flowhead h2 { font-family: var(--display); font-size: clamp(22px, 4.4vw, 27px); margin: 0; }
   .steps { position: relative; margin: 8px 0 0; padding: 0; list-style: none; }
   .steps::before { content: ""; position: absolute; left: 13px; top: 20px; bottom: 26px; width: 1px; background: var(--grid); }
@@ -81,6 +92,9 @@
   .step .body { font-size: 14.5px; color: var(--ink2); max-width: 58ch; margin: 0; }
   .step .body b { color: var(--ink); font-weight: 600; }
   .steplink { display: inline-block; margin-top: 14px; font: 600 13.5px/1 system-ui, sans-serif; }
+  /* the step surfaces sit a notch narrower than the hero — the hero is the
+     product; these are exhibits */
+  .step .frame { max-width: 720px; }
 
   /* the frame — a real product surface, framed */
   .frame { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); margin: 20px 0 0; overflow: hidden; }
@@ -91,32 +105,30 @@
   .fmeta { margin-left: auto; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
   .fbody { padding: 15px 16px; }
 
-  /* step 1 — chat + drafted rule */
-  .duo { display: grid; }
-  .duo .chat { padding: 15px 16px; display: flex; flex-direction: column; gap: 11px; }
-  .msg { max-width: 88%; }
-  .msg .who { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); display: block; margin: 0 0 3px; }
-  .msg p { margin: 0; font-size: 13.5px; line-height: 1.5; padding: 9px 12px; border-radius: 11px; }
-  .msg.ai { align-self: flex-start; }
-  .msg.ai p { background: var(--hover); border-top-left-radius: 4px; }
-  .msg.you { align-self: flex-end; text-align: left; }
-  .msg.you .who { text-align: right; }
-  .msg.you p { border: 1px solid var(--border); border-top-right-radius: 4px; }
-  .draft { border-top: 1px dashed var(--grid); padding: 13px 16px 15px; }
-  .draft .dcap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--good); margin: 0 0 9px; }
+  /* faces — the hosted member portraits; a dot when a newborn has none yet */
+  .face { display: inline-block; border-radius: 50%; vertical-align: middle; flex: none; }
+  .dotface { border-radius: 50%; }
+
+  /* step 1 — the recorded quote and the rule it became */
+  .origcard { display: grid; }
+  .orig { padding: 2px 0 14px; }
+  .orule { border-top: 1px dashed var(--grid); padding-top: 14px; }
+  .dcap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--good); margin: 0 0 9px; }
+  .orig .dcap { color: var(--muted); }
+  .oquote { font-family: var(--display); font-size: 17px; line-height: 1.5; font-style: italic; margin: 0; max-width: 46ch; }
+  .oattr { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
   @media (min-width: 640px) {
-    .duo { grid-template-columns: 11fr 9fr; }
-    .draft { border-top: none; border-left: 1px dashed var(--grid); }
+    .origcard { grid-template-columns: 1fr 1fr; gap: 0 22px; }
+    .orig { padding: 2px 0 0; }
+    .orule { border-top: none; border-left: 1px dashed var(--grid); padding: 0 0 0 22px; }
   }
 
   .tagrow { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 8px; }
   .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); background: var(--hover); border-radius: 4px; padding: 2.5px 7px; }
   .tag.hard { color: var(--ink); border: 1px solid var(--border); background: none; }
-  .astmt { font-family: var(--display); font-size: 15.5px; line-height: 1.5; margin: 0; }
-  .aquote { font-size: 12.5px; color: var(--muted); font-style: italic; margin: 9px 0 0; }
-  .aquote .attr { font-style: normal; }
-  .aexcerpt { font-size: 13.5px; color: var(--ink2); margin: 8px 0 0; }
-  .atitle { font-family: var(--display); font-weight: 700; font-size: 15.5px; line-height: 1.4; margin: 0; }
+  .astmt { font-family: var(--display); font-size: 15.5px; line-height: 1.5; margin: 0; max-width: 52ch; }
+  .aexcerpt { font-size: 13.5px; color: var(--ink2); margin: 8px 0 0; max-width: 68ch; }
+  .atitle { font-family: var(--display); font-weight: 700; font-size: 15.5px; line-height: 1.4; margin: 0; max-width: 56ch; }
   .clock { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin: 11px 0 0; }
 
   /* step 2 — the book */
@@ -128,7 +140,7 @@
   .book .track { height: 4px; border-radius: 2px; background: var(--hover); overflow: hidden; }
   .book .fill { height: 100%; border-radius: 2px; background: var(--s1); }
   .book .wt { text-align: right; font-family: var(--mono); font-size: 12.5px; color: var(--ink2); white-space: nowrap; padding-left: 12px; }
-  .thesis { border-top: 1px dashed var(--grid); margin-top: 12px; padding-top: 11px; font-size: 12.5px; color: var(--ink2); }
+  .thesis { border-top: 1px dashed var(--grid); margin-top: 12px; padding-top: 11px; font-size: 12.5px; color: var(--ink2); max-width: 68ch; }
   .thesis .tk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
 
   /* step 3 — journal entry */
@@ -136,20 +148,37 @@
   .fills li { font-family: var(--mono); font-size: 12px; color: var(--ink2); padding: 2.5px 0; }
   .fills li::before { content: "▸ "; color: var(--muted); }
 
-  /* step 5 — the floor */
+  /* the hero — the league table */
   .floortab { width: 100%; border-collapse: collapse; }
-  .floortab td { padding: 9px 0; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .floortab td { padding: 10px 0; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .floortab tr:last-child td { border-bottom: none; }
-  .floortab .fname { font-family: var(--display); font-weight: 700; font-size: 15px; display: block; line-height: 1.25; }
+  .floortab .frank { width: 30px; color: var(--muted); font-size: 12.5px; }
+  .floortab .fcell { display: flex; align-items: center; gap: 11px; }
+  .floortab .fcell .face { width: 30px; height: 30px; }
+  .floortab .fname { font-family: var(--display); font-weight: 700; font-size: 15.5px; display: block; line-height: 1.25; }
   .floortab .farch { color: var(--muted); font-size: 11.5px; display: block; }
-  .floortab .fspark { width: 76px; padding: 0 8px; }
-  .floortab .fspark svg { display: block; width: 100%; height: 26px; }
+  .floortab .fspark { width: 150px; padding: 0 14px; }
+  .floortab .fspark svg { display: block; width: 100%; height: 30px; }
   .floortab .spark { stroke: var(--muted); }
   .floortab .sparkdot { fill: var(--ink); }
-  .floortab .falpha { text-align: right; font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .floortab .falpha { text-align: right; font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
   .floortab .fbench { display: block; color: var(--muted); font-size: 10.5px; font-family: var(--mono); font-weight: 400; }
+  .floortab .fmore td { padding: 11px 0 3px; }
+  .floortab .fmore a { font: 600 12.5px/1 system-ui, sans-serif; color: var(--ink2); }
   .up { color: var(--good); font-weight: 600; }
   .dn { color: var(--bad); font-weight: 600; }
+
+  /* step 5 — the tape */
+  .tape { margin: 0; padding: 0; list-style: none; }
+  .tape li { display: flex; gap: 11px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .tape li:last-child { border-bottom: none; padding-bottom: 2px; }
+  .tape li:first-child { padding-top: 2px; }
+  .tape .face { width: 22px; height: 22px; margin-top: 1px; }
+  .tape .tbody { min-width: 0; flex: 1; }
+  .tape .tline { display: flex; gap: 8px; align-items: baseline; font-size: 13.5px; }
+  .tape .tline b { font-weight: 600; }
+  .tape .twhen { margin-left: auto; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .tape .tnote { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; max-width: 62ch; }
 
   /* closing */
   .closing { margin-top: 84px; padding-top: 30px; border-top: 1px solid var(--border); }
@@ -169,15 +198,34 @@
     .topnav { gap: 4px 14px; }
     .topnav a, .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
     .kicker { font-size: 12px; letter-spacing: 0.07em; }
-    .herocap { font-size: 12px; text-align: left; }
-    .ftitle, .fmeta, .msg .who, .draft .dcap, .tag { font-size: 12px; }
+    .ftitle, .fmeta, .dcap, .tag { font-size: 12px; }
     /* the framed surfaces are miniatures of the real thing — a miniature
        nobody can read sells nothing */
-    .clock, .thesis .tk, .floortab .farch, .floortab .fbench { font-size: 12px; }
+    .clock, .thesis .tk, .floortab .farch, .floortab .fbench, .statsrow, .tape .twhen { font-size: 12px; }
     .btn.primary .btnsub { font-size: 12px; }
     /* the frame's caption stops squeezing two mono lines onto one row */
     .fbar { flex-wrap: wrap; gap: 2px 10px; }
     .fmeta { margin-left: 0; }
+  }
+  @media (max-width: 560px) {
+    /* auto table layout lets nowrap cells push the score column past the
+       frame edge, where overflow:hidden silently clips it — fixed layout
+       hands the name cell what is left and lets its text ellipsize instead */
+    .floortab { table-layout: fixed; }
+    .floortab .frank { width: 20px; }
+    .floortab .fspark { width: 64px; padding: 0 8px; }
+    .floortab .fspark svg { height: 24px; }
+    .floortab .falpha { width: 86px; }
+    .floortab .fbench { white-space: normal; }
+    .floortab .fcell { gap: 8px; }
+    .floortab .fcell .face { width: 26px; height: 26px; }
+    /* a four-line archetype makes the league table ragged on a phone —
+       one ellipsized line keeps every row the same height */
+    .floortab .fid { min-width: 0; flex: 1; }
+    .floortab .farch { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .floortab .fmore td { overflow: visible; }
+    .tape .tline { flex-wrap: wrap; gap: 2px 8px; }
+    .tape .twhen { margin-left: 0; width: 100%; order: 3; }
   }
   @media (max-width: 480px) {
     /* header.top wraps, but the nav inside it did not — three nowrap links
@@ -186,8 +234,7 @@
     .topnav { flex-wrap: wrap; justify-content: flex-end; }
     .hero { padding-top: 38px; }
     .btn { width: 100%; text-align: center; align-items: center; }
-    .fbody, .duo .chat { padding: 13px 13px; }
-    .draft { padding: 12px 13px 14px; }
+    .fbody { padding: 13px 13px; }
   }
 </style>
 </head>
@@ -206,39 +253,18 @@
   <section class="hero">
     <p class="kicker">Simulated money · real market prices · live now</p>
     <h1>Your investing philosophy, running as an autonomous trader.</h1>
-    <p class="lede">A 15-minute AI interview turns how you invest into a trader that researches, trades, and explains itself — competing live against other people's strategies.</p>
+    <p class="lede">A 15-minute AI interview turns how you invest into a trader that researches, trades, and explains every decision in writing — competing live against other people's strategies.</p>
     <div class="ctarow">
       <a class="btn primary" href="/seat/" data-cta="seat">Create your trader<span class="btnsub">a 15-minute interview</span></a>
       <a class="btn plain" href="/floor/">See the live floor&nbsp;→</a>
     </div>
-    <p class="herostat mono">{{HERO_STAT}}</p>
-    <figure class="herofig" aria-hidden="true">
-      <svg viewBox="0 0 720 190" preserveAspectRatio="xMidYMid meet" role="img">
-        <!-- illustrative motif: one starting point, philosophies diverging.
-             deliberately not a chart — no axes, no data, no claims, and NOT
-             one line per trader (the roster grows; this stays abstract). -->
-        <g fill="none" stroke-linecap="round">
-          <path d="M20 95 C 160 95, 300 88, 420 62 S 640 18, 700 12"  stroke="var(--s1)" stroke-width="2.2"/>
-          <path d="M20 95 C 170 95, 310 92, 430 78 S 640 52, 700 44"  stroke="var(--s2)" stroke-width="2.2" opacity=".85"/>
-          <path d="M20 95 C 180 95, 320 96, 440 90 S 640 82, 700 78"  stroke="var(--s3)" stroke-width="2.2" opacity=".8"/>
-          <path d="M20 95 C 180 95, 320 98, 440 104 S 640 112, 700 116" stroke="var(--s4)" stroke-width="2.2" opacity=".8"/>
-          <path d="M20 95 C 170 95, 310 100, 430 116 S 640 148, 700 156" stroke="var(--s5)" stroke-width="2.2" opacity=".85"/>
-          <path d="M20 95 C 160 95, 300 104, 420 128 S 640 172, 700 180" stroke="var(--muted)" stroke-width="1.6" opacity=".55" stroke-dasharray="1 6"/>
-        </g>
-        <circle cx="20" cy="95" r="4.5" fill="var(--ink)"/>
-        <circle cx="700" cy="12" r="3" fill="var(--s1)"/>
-        <circle cx="700" cy="44" r="3" fill="var(--s2)"/>
-        <circle cx="700" cy="78" r="3" fill="var(--s3)"/>
-        <circle cx="700" cy="116" r="3" fill="var(--s4)"/>
-        <circle cx="700" cy="156" r="3" fill="var(--s5)"/>
-      </svg>
-      <figcaption class="herocap mono">Same market. Different philosophies. They diverge.</figcaption>
-    </figure>
+    <p class="statsrow">{{HERO_STATS}}</p>
+    {{ART_FLOOR}}
   </section>
 
   <!-- =================== THE LOOP, SHOWN =================== -->
   <section class="flowhead" aria-label="How it works">
-    <h2>How it works — shown with real panels from the live record.</h2>
+    <h2>How it works.</h2>
   </section>
 
   <ol class="steps">
@@ -247,21 +273,8 @@
     <li class="step">
       <span class="stepnum" aria-hidden="true">1</span>
       <h3>Say what you believe.</h3>
-      <p class="body">An AI interviewer asks about your instincts, scars, and limits. Your answers become your trader's written rules.</p>
-      <figure class="frame">
-        <figcaption class="fbar"><span class="fdots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ftitle">the interview, illustrated</span><span class="fmeta">the rule at right is real</span></figcaption>
-        <div class="duo">
-          <div class="chat">
-            <div class="msg ai"><span class="who">Interviewer</span><p>Tell me about a scar — a trade you actually made, or missed, that still bothers you.</p></div>
-            <div class="msg you"><span class="who">You</span><p>In the April 2025 tariff panic I had a shortlist of dividend aristocrats at yields I'd waited years for, and I froze. Bought nothing. The freeze cost more than the chase — that's why I want it in code.</p></div>
-            <div class="msg ai"><span class="who">Interviewer</span><p>That scar yields a draft principle: when a target asset hits its trigger price during a panic, your agent must execute — bypassing the freeze.</p></div>
-          </div>
-          <div class="draft">
-            <p class="dcap">→ written into the rulebook</p>
-            {{DRAFT_RULE}}
-          </div>
-        </div>
-      </figure>
+      <p class="body">An AI interviewer draws out your instincts, scars, and limits — and writes them into a rulebook your trader must trade by. Below: a sentence a principal actually said, and the rule it became.</p>
+      {{ART_ORIGIN}}
     </li>
 
     <!-- step 2 -->
@@ -292,8 +305,8 @@
     <li class="step">
       <span class="stepnum" aria-hidden="true">5</span>
       <h3>It competes on the merits.</h3>
-      <p class="body">Different philosophies, one market — each trader scored against its own benchmark, not the crowd. Every result comes with the rules and reasoning behind it.</p>
-      {{ART_FLOOR}}
+      <p class="body">Every fill prints to a shared tape at the real market price it got. One market, every philosophy — each trader scored against its own benchmark, with its reasoning on the record.</p>
+      {{ART_TAPE}}
       <a class="steplink" href="/floor/">See the live floor →</a>
     </li>
 
@@ -310,7 +323,7 @@
   </section>
 
   <footer class="provenance">
-    The rulebook, portfolio, journal, hypothesis and standings panels above are rendered from the live record — generated {{GENERATED_AT}} · <a href="/floor/">the live floor</a> · <a href="/arena.json">raw data</a>.<br>
+    Every panel on this page is rendered from the live record — generated {{GENERATED_AT}} · <a href="/floor/">the live floor</a> · <a href="/arena.json">raw data</a>.<br>
     Simulated money only. Nothing here is investment advice.
   </footer>
 </div>
