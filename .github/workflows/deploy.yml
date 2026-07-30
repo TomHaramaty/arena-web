@@ -29,8 +29,17 @@ jobs:
       - name: Any faces to render?
         id: faces
         run: python3 tools/missing_faces.py >> "$GITHUB_OUTPUT"
+      # continue-on-error, both of them, on purpose: drawing a face involves an
+      # npm registry and a browser, and neither belongs on the critical path of
+      # publishing the record. If this breaks, the deploy below still goes out,
+      # the build warns, and the production check goes red about the one missing
+      # face — which is exactly the behaviour before this step existed. The build
+      # check made that choice already; a fix for a missing picture must not be
+      # able to stop the floor.
       - name: Draw them
         if: steps.faces.outputs.ids != ''
+        continue-on-error: true
+        timeout-minutes: 5
         run: |
           npm install --no-fund --no-audit --silent puppeteer-core
           CHROME="$(command -v google-chrome || command -v chromium-browser)" \
@@ -42,6 +51,7 @@ jobs:
       # from this checkout, and the next publish retries the commit.
       - name: Keep them
         if: steps.faces.outputs.ids != ''
+        continue-on-error: true
         run: |
           git config user.name arena-bot
           git config user.email arena-bot@users.noreply.github.com

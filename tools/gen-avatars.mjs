@@ -102,5 +102,14 @@ for (const a of agents) {
 
 await browser.close();
 server.close();
+
+// Asked to draw faces and drew none — every one of them lacked an avatar on the
+// record. Exit 1 rather than report success on an empty batch: this is the
+// failure that leaves a trader faceless while the log reads fine.
+if (!made) {
+  console.error(`nothing rendered: ${agents.map((a) => a.id).join(", ")} `
+    + `${agents.length > 1 ? "have" : "has"} no avatar on the record`);
+  process.exitCode = 1;
+}
 const sizes = fs.readdirSync(OUT).map((f) => fs.statSync(path.join(OUT, f)).size);
 console.log(`\n${made} avatars → web/static/avatars/  (largest ${Math.max(...sizes)} bytes)`);
