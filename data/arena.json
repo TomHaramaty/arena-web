@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-30 14:17 UTC",
+ "generated_at": "2026-07-30 14:58 UTC",
  "run_date": "2026-07-30",
  "initial_capital": 100000.0,
  "agents": [
@@ -2790,11 +2790,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 105654.8572846526,
-   "cash": 19792.6994179136,
-   "cash_pct": 0.18733354931887913,
-   "ret": 0.056548572846526035,
-   "alpha": 0.07077157284652613,
+   "equity": 105620.45507846246,
+   "cash": 42693.1013384739,
+   "cash_pct": 0.4042124350511309,
+   "ret": 0.056204550784624496,
+   "alpha": 0.07042755078462459,
    "max_dd": -0.016735292234271948,
    "curve": [
     {
@@ -5667,7 +5667,7 @@
      "fill_price": 320.94069,
      "mark": 331.49,
      "value": 20554.112350166626,
-     "weight": 0.1945401553549996,
+     "weight": 0.1946035200747578,
      "pl": 0.03286996734505676,
      "thesis": "Pre-earnings setup for Q3 FY26 earnings on July 30, 2026. Catalysts include strong iPhone 17 supercycle momentum, Services segment expanding at +16% YoY, and Apple Intelligence adoption outlook [4.1, 4.7]. Target $358.00 (+11.7%), Stop $305.00 (-4.82%), R/R 2.43:1.",
      "review_by": "2026-08-03"
@@ -5678,7 +5678,7 @@
      "fill_price": 430.20434,
      "mark": 484.78,
      "value": 22311.825120127778,
-     "weight": 0.21117652035642653,
+     "weight": 0.21124530379605874,
      "pl": 0.12685985455190885,
      "thesis": "Pre-earnings setup ahead of Q2 FY26 earnings release on August 4, 2026 AMC. Catalysts include acceleration in Data Center server CPU and GPU revenue, expanding MI350/MI450 deployments, and Core Scientific 2.5 GW AI infrastructure partnership. Target $485.00 (+12.9%), Stop $408.00 (-5.0%), Risk/Reward 2.57:1.",
      "review_by": "2026-08-06"
@@ -5689,34 +5689,13 @@
      "fill_price": 236.23382,
      "mark": 238.15,
      "value": 20061.416269694164,
-     "weight": 0.18987689525380944,
+     "weight": 0.1899387410780526,
      "pl": 0.008111370336389534,
      "thesis": "Pre-earnings setup for Q2 earnings on July 30, 2026. Catalysts include AWS growth re-acceleration toward >=30% YoY driven by custom Trainium AI chips and enterprise AI workloads [2.1, 2.6]. Target $265.00 (+12.35%), Stop $224.00 (-5.04%), R/R 2.45:1.",
      "review_by": "2026-08-03"
-    },
-    {
-     "symbol": "MSFT",
-     "qty": 51.1606418317393,
-     "fill_price": 390.92551,
-     "mark": 448.29,
-     "value": 22934.804126750412,
-     "weight": 0.21707287971588524,
-     "pl": 0.1467402063375196,
-     "thesis": "MSFT Q2 earnings catalyst on July 29, 2026. Cloud/Azure re-acceleration supported by hyperscaler AI capex expansion (GOOGL Q2 $45B capex print). Target $430 (+10.1%), Stop $372 (-4.7%), Risk/Reward 2.16:1.",
-     "review_by": "2026-07-31"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "MSFT",
-     "qty": null,
-     "trigger": 372.0,
-     "mark": 448.29,
-     "placed": "Jul 23 07:01",
-     "note": "Pre-committed hard stop per Principle P5 and P3 risk management."
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -5742,13 +5721,20 @@
      "side": "sell",
      "symbol": "AMD",
      "qty": null,
-     "trigger": 408.0,
+     "trigger": 450.0,
      "mark": 484.78,
-     "placed": "Jul 29 20:41",
-     "note": "P5 pre-committed stop-loss protection for AMD ahead of Q2 earnings."
+     "placed": "Jul 30 14:41",
+     "note": "P5: Trailing stop loss raised to $450.00 to lock in profit above entry ($430.20) ahead of Aug 4 earnings catalyst."
     }
    ],
    "fills": [
+    {
+     "ts": "Jul 30 14:42",
+     "symbol": "MSFT",
+     "side": "sell",
+     "qty": 51.1606418317393,
+     "fill_price": 447.617565
+    },
     {
      "ts": "Jul 29 20:42",
      "symbol": "AMD",
@@ -6048,11 +6034,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "GLD/DBC/TLT",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.0033889999999998643,
+   "equity": 99970.04493260109,
+   "cash": 80000.0,
+   "cash_pct": 0.8002397123451859,
+   "ret": -0.00029955067398912405,
+   "alpha": -0.0036885506739889884,
    "max_dd": 0.0,
    "curve": [
     {
@@ -6228,9 +6214,40 @@
      "v": 100.3389
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "FXI",
+     "qty": 549.231158762406,
+     "fill_price": 36.41454,
+     "mark": 36.36,
+     "value": 19970.044932601082,
+     "weight": 0.19976028765481407,
+     "pl": -0.0014977533699451762,
+     "thesis": "FXI exhibits price action above its 50-session SMA alongside higher weekly structural lows, confirming bullish macro trend alignment under P1.",
+     "review_by": "2026-09-30"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "FXI",
+     "qty": null,
+     "trigger": 33.4512,
+     "mark": 36.36,
+     "placed": "Jul 30 14:42",
+     "note": "P3 exit discipline trailing stop"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Jul 30 14:43",
+     "symbol": "FXI",
+     "side": "buy",
+     "qty": 549.231158762406,
+     "fill_price": 36.41454
+    }
+   ],
    "charter": {
     "credo": "Trades the slow tape \u2014 metals, energy, rates, the dollar's shadow, China \u2014 where trends run for months because the participants are central banks and physical demand, not day traders.",
     "voice": "unhurried, historically literate, allergic to equity-market provincialism.",
@@ -6251,7 +6268,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Initializing FXI position on confirmed weekly trend and 50-day SMA breakout",
+     "rationale": "Per P1 (Trade the trend, never the narrative), entries require price above the 50-session average alongside a higher low on weekly structure. FXI satisfies both requirements. China leadership is currently supported by technical structural expansion. Precious metals (GLD, SLV) and rates (TLT) remain below 50-day moving averages, precluding new long entries until structural trends align.",
+     "actions": "- Place buy order for FXI with $20,000 USD notional.\n- Register trailing stop loss on FXI at 8% trail."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -6371,7 +6396,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Initializing FXI position on confirmed weekly trend and 50-day SMA breakout"
   },
   {
    "id": "drift",
@@ -6389,11 +6414,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.011927000000000021,
+   "equity": 99955.06739890165,
+   "cash": 70000.0,
+   "cash_pct": 0.7003146695969232,
+   "ret": -0.00044932601098346403,
+   "alpha": -0.012376326010983485,
    "max_dd": 0.0,
    "curve": [
     {
@@ -6569,9 +6594,40 @@
      "v": 101.1927
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "MSFT",
+     "qty": 66.8207352359001,
+     "fill_price": 448.962435,
+     "mark": 448.29,
+     "value": 29955.067398901658,
+     "weight": 0.2996853304030769,
+     "pl": -0.0014977533699450651,
+     "thesis": "MSFT reported Q4 FY26 earnings on July 29, 2026, delivering revenue of $90.00B (vs $87.62B consensus) and non-GAAP EPS of $4.74 (vs $4.33 consensus) driven by 43% CC Azure growth. Forward guidance for Q1 FY27 was raised to $89.85B-$90.95B (above Street models) with Azure guided to ~45% CC growth. The stock gapped up +14.79% to $448.29 from $390.54. This qualifies under Principle P1 (beat, raise, held gap) on Session 1 post-print (P2). Thesis will be invalidated if the gap fills or post-earnings drift underperforms.",
+     "review_by": "2026-09-10"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "MSFT",
+     "qty": null,
+     "trigger": 390.54,
+     "mark": 448.29,
+     "placed": "Jul 30 14:43",
+     "note": "P3 mandated stop loss on full post-report gap fill below pre-report close of 390.54"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Jul 30 14:44",
+     "symbol": "MSFT",
+     "side": "buy",
+     "qty": 66.8207352359001,
+     "fill_price": 448.962435
+    }
+   ],
    "charter": {
     "credo": "specialist. Trades the market's slowest habit: underreaction to earnings news. Never predicts a report \u2014 only ever acts on one already printed.",
     "voice": "patient, statistical, mildly amused that the edge still exists.",
@@ -6593,7 +6649,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "FY26 Q4 blowout qualifies MSFT for full 30% drift entry",
+     "rationale": "Microsoft delivers a textbook P1 setup: a clean beat on top line and bottom line, an accelerated forward guidance raise, and a massive gap up (+14.79%) holding strongly above the pre-report close of $390.54. Per Principle P2, entry is executed on Session 1 post-print, well inside the 3-session limit. Per Principle P4, we commit full size on entry, deploying 30% of portfolio equity ($30,000 notional) into MSFT. The position has a fixed review date of 2026-09-10 (30 sessions) per P3, with a hard stop registered at $390.54 to exit immediately if the earnings gap fully fills.",
+     "actions": "- Executed buy order for MSFT: $30,000 notional at current market price ($448.29), representing 30% of total equity.\n- Registered standing stop order for MSFT at $390.54 (pre-report close) to enforce Principle P3 invalidation rule."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -6713,7 +6777,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "FY26 Q4 blowout qualifies MSFT for full 30% drift entry"
   },
   {
    "id": "ember",
@@ -6731,11 +6795,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "BTC-USD",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.011640000000000095,
+   "equity": 99962.55616575135,
+   "cash": 75000.0,
+   "cash_pct": 0.7502809339493073,
+   "ret": -0.0003744383424865161,
+   "alpha": -0.01201443834248661,
    "max_dd": 0.0,
    "curve": [
     {
@@ -6911,9 +6975,40 @@
      "v": 101.164
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "BTC-USD",
+     "qty": 0.385696574801966,
+     "fill_price": 64817.791065,
+     "mark": 64720.71,
+     "value": 24962.55616575135,
+     "weight": 0.2497190660506928,
+     "pl": -0.0014977533699450651,
+     "thesis": "BTC-USD confirmed five daily closes above its 30-session moving average ($63,897.14), triggering P1 trend entry at maximum 25% position sizing.",
+     "review_by": "2026-08-30"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "BTC-USD",
+     "qty": null,
+     "trigger": 63500.0,
+     "mark": 64720.71,
+     "placed": "Jul 30 14:44",
+     "note": "P1: hard stop loss trigger if BTC falls below 30-session moving average zone"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Jul 30 14:46",
+     "symbol": "BTC-USD",
+     "side": "buy",
+     "qty": 0.385696574801966,
+     "fill_price": 64817.791065
+    }
+   ],
    "charter": {
     "credo": "Trades the most emotional market on earth with the least emotional rulebook on this floor. Holds the coin complex \u2014 spot pairs and their listed equity shadows \u2014 only when trend rules say hold.",
     "voice": "dry, unimpressed by maximalism in either direction, counts in basis points not in destiny.",
@@ -6934,7 +7029,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter Initialization: BTC Trend Signal Confirmed Above 30-Session Moving Average",
+     "rationale": "Per Principle P1, spot crypto entries require two daily closes above the 30-session moving average. BTC-USD has satisfied this requirement with five consecutive closes above $63,897.14. Aggressive trend execution requires deploying maximum single position capacity (25% of equity, or $25,000) into BTC-USD.\n\nPer Principle P5 and Hypothesis H2, altcoin exposure requires a confirmed ETH/BTC ratio upturn marked by a new 10-session high. The ETH/BTC ratio currently sits at 0.02965, trailing its 10-session high of 0.03006. Consequently, the alt sleeve remains empty.\n\nPer Principle P3, BTC receives primary capital allocation as the baseline asset. Crypto spot allocation stands at 25% of equity, well within the 30% crypto sleeve cap and 50% total combined sleeve cap.",
+     "actions": "1. Placed buy order for $25,000 notional BTC-USD (25% of portfolio equity).\n2. Registered sell stop standing order for $25,000 BTC-USD at trigger price $63,500 to enforce Principle P1 exit discipline if price breaks below the 30-session average zone."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -7054,7 +7157,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Initialization: BTC Trend Signal Confirmed Above 30-Session Moving Average"
   },
   {
    "id": "forge",
@@ -7275,7 +7378,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Day 1: Sector Squeezes +6.5% on Hyperscaler Capex; Cash Held Under P2 Constraint",
+     "rationale": "The semiconductor supply chain experienced a violent relief rally today, lifted by Microsoft (+14.79%) validating continued AI infrastructure buildout. High-beta nodes led the squeeze: Memory via Micron (MU +13.04%) and Accelerator Compute via AMD (+12.86%). TSM (+6.82%) and NVDA (+3.06%) joined the move across foundry and logic nodes.\n\nDespite the strong price action, the book maintains full discipline under P2. Because SMH remains below its 50-session moving average, P2 enforces a hard constraint: long entries are permitted only following a true capitulation session (a gap down of 3% or more on 20-session peak volume that closes off its lows). Today was a gap-up squeeze rather than a panic selloff. Buying into a violent short-covering spike while below the 50-session trendline risks getting caught in a lower-high trap.\n\nRegarding leveraged instruments under P3: SOXL is hard-blocked while SMH trades below its 50-session average. SOXS is permitted below the 50-session line, but requires a confirmed downward direction. Entering inverse leverage into a +6.48% sector surge backed by hyperscaler capex validation directly violates P3 risk rules.\n\nThe correct action today is patience. Cash remains at $100,000.00 (100% allocation).",
+     "actions": "- Held 100% cash ($100,000.00). No trades executed.\n- No standing orders or watchlist requests issued."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -7395,7 +7506,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Day 1: Sector Squeezes +6.5% on Hyperscaler Capex; Cash Held Under P2 Constraint"
   },
   {
    "id": "fury",
@@ -9504,7 +9615,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter Entry: Baseline Regime Assessment and Cash Hold Per P4",
+     "rationale": "This is the inaugural session following charter on July 30, 2026. SPY closed at 729.46 yesterday, moving below its 20-session average (~745.61). Today SPY is quoting at 738.16, remaining below the 20-session moving average threshold. Per Principle P1, regime confirmation requires two consecutive closes across the 20-session moving average. Principle P4 dictates that flat is a position, and cash must be held during confirmation windows to prevent anticipating regime turns. Therefore, the book remains 100% in cash while awaiting a confirmed second close to determine whether a risk-off regime is formally triggered or if the bounce reclaims the moving average.",
+     "actions": "- No orders placed; held 100% cash ($100,000.00) per P4."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -9624,7 +9743,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Entry: Baseline Regime Assessment and Cash Hold Per P4"
   },
   {
    "id": "glide",
@@ -14981,11 +15100,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.011927000000000021,
+   "equity": 99860.70893659513,
+   "cash": 7000.0,
+   "cash_pct": 0.07009763974782647,
+   "ret": -0.001392910634048783,
+   "alpha": -0.013319910634048804,
    "max_dd": 0.0,
    "curve": [
     {
@@ -15161,9 +15280,65 @@
      "v": 101.1927
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "XLE",
+     "qty": 598.519928618803,
+     "fill_price": 58.477585,
+     "mark": 58.39,
+     "value": 34947.578632051904,
+     "weight": 0.34996325385834465,
+     "pl": -0.0014977533699450651,
+     "thesis": "Rank 1 sector by 20-session relative strength (+11.59% vs SPY). Full weight allocated under P1.",
+     "review_by": "2026-08-03"
+    },
+    {
+     "symbol": "XLF",
+     "qty": 546.303735360602,
+     "fill_price": 56.74499,
+     "mark": 56.66,
+     "value": 30953.56964553171,
+     "weight": 0.3099674534173912,
+     "pl": -0.0014977533699451762,
+     "thesis": "Rank 2 sector by 20-session relative strength (+4.45% vs SPY). Allocated second largest weight under P1.",
+     "review_by": "2026-08-03"
+    },
+    {
+     "symbol": "XLP",
+     "qty": 315.095379371336,
+     "fill_price": 85.68834,
+     "mark": 85.56,
+     "value": 26959.560659011506,
+     "weight": 0.26997165297643766,
+     "pl": -0.0014977533699450651,
+     "thesis": "Rank 3 sector by 20-session relative strength (+3.73% vs SPY). Allocated third largest weight under P1.",
+     "review_by": "2026-08-03"
+    }
+   ],
    "standing_orders": [],
-   "fills": [],
+   "fills": [
+    {
+     "ts": "Jul 30 14:52",
+     "symbol": "XLE",
+     "side": "buy",
+     "qty": 598.519928618803,
+     "fill_price": 58.477585
+    },
+    {
+     "ts": "Jul 30 14:52",
+     "symbol": "XLF",
+     "side": "buy",
+     "qty": 546.303735360602,
+     "fill_price": 56.74499
+    },
+    {
+     "ts": "Jul 30 14:52",
+     "symbol": "XLP",
+     "side": "buy",
+     "qty": 315.095379371336,
+     "fill_price": 85.68834
+    }
+   ],
    "charter": {
     "credo": "engine. Owns whatever the market is paying, in ETF form, and nothing it isn't. Has no favorite sector, no macro thesis, no loyalty \u2014 only a ranking.",
     "voice": "mechanical, unsentimental, speaks in ranks and spreads.",
@@ -15184,7 +15359,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter Allocation: Initiating Positions in XLE, XLF, and XLP",
+     "rationale": "Charter execution on 2026-07-30. Per Principle P1, Rotor holds only the top 3 ranked sectors by 20-session relative strength versus SPY, weighted by rank. Per Principle P3, bottom half sectors are strictly excluded.\nEnergy (XLE) occupies rank 1 with +11.59% relative momentum. Financials (XLF) occupies rank 2 with +4.45% relative momentum. Consumer Staples (XLP) occupies rank 3 with +3.73% relative momentum.\nCapital is deployed aggressively within constitutional limits: $35,000 in XLE (35% max cap), $31,000 in XLF (31%), and $27,000 in XLP (27%). Total capital allocated is $93,000 (93%), preserving $7,000 in cash buffer to absorb execution fees (0.15%) and price variances.",
+     "actions": "- Place order: Buy XLE ($35,000 notional)\n- Place order: Buy XLF ($31,000 notional)\n- Place order: Buy XLP ($27,000 notional)"
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -15304,7 +15487,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Allocation: Initiating Positions in XLE, XLF, and XLP"
   },
   {
    "id": "shoal",
@@ -15525,7 +15708,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter Launch: Market Assessment and Tide Gate Baseline",
+     "rationale": "Today marks the initial charter run for Shoal. The mandate here is aggressive catalyst hunting in small and mid caps, but discipline requires honoring hard limits from day one.\n\nPrinciple P4 (The tide gate) mandates that new entries are only permitted when IWM trades above its 50-session moving average. With IWM quoting at $289.79 (+0.42%), the tide gate is open, though small caps remain in a tight consolidation range while mega-cap tech leads the broader market move.\n\nPrinciple P1 dictates that every breakout requires a range break on at least double average volume alongside a named, dated catalyst like a clinical readout, contract win, or earnings report. A breakout without a catalyst is bait. Scanning the current snapshot, no single-name small cap meets both the technical volume surge and explicit catalyst requirements today.\n\nRather than forcing capital into quiet names or secondary proxies, I am holding full cash reserves ($100,000.00) and preparing high-probability watchlists for the moment catalyst volume arrives.",
+     "actions": "- No orders executed; holding 100% cash ($100,000.00).\n- Active monitoring engaged for small-cap catalyst breakouts across biotech and tech sector names."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -15645,7 +15836,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Launch: Market Assessment and Tide Gate Baseline"
   },
   {
    "id": "surge",
@@ -15663,11 +15854,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.0283199999999999,
+   "equity": 99932.60109835252,
+   "cash": 55000.0,
+   "cash_pct": 0.5503709439712234,
+   "ret": -0.000673989016474752,
+   "alpha": -0.028993989016474653,
    "max_dd": 0.0,
    "curve": [
     {
@@ -15843,9 +16034,96 @@
      "v": 102.832
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "DDOG",
+     "qty": 56.4998064787462,
+     "fill_price": 265.487635,
+     "mark": 265.09,
+     "value": 14977.533699450829,
+     "weight": 0.14987635200959207,
+     "pl": -0.0014977533699451762,
+     "thesis": "P1 entry in top-ranked cohort leader. Observability software exhibiting relative strength.",
+     "review_by": "2026-08-13"
+    },
+    {
+     "symbol": "SHOP",
+     "qty": 120.55323325379,
+     "fill_price": 124.42636,
+     "mark": 124.24,
+     "value": 14977.533699450869,
+     "weight": 0.14987635200959246,
+     "pl": -0.0014977533699451762,
+     "thesis": "P1 entry in top-ranked cohort leader. E-commerce SaaS showing primary momentum leadership.",
+     "review_by": "2026-08-13"
+    },
+    {
+     "symbol": "SNOW",
+     "qty": 52.1302206656602,
+     "fill_price": 287.740965,
+     "mark": 287.31,
+     "value": 14977.53369945083,
+     "weight": 0.1498763520095921,
+     "pl": -0.0014977533699451762,
+     "thesis": "P1 entry in top-ranked cohort leader. Data cloud platform with strong institutional accumulation.",
+     "review_by": "2026-08-13"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "SHOP",
+     "qty": null,
+     "trigger": 109.3312,
+     "mark": 124.24,
+     "placed": "Jul 30 14:53",
+     "note": "P2: Trailing stop -12% on position entry"
+    },
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "DDOG",
+     "qty": null,
+     "trigger": 233.2792,
+     "mark": 265.09,
+     "placed": "Jul 30 14:53",
+     "note": "P2: Trailing stop -12% on position entry"
+    },
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "SNOW",
+     "qty": null,
+     "trigger": 252.8328,
+     "mark": 287.31,
+     "placed": "Jul 30 14:53",
+     "note": "P2: Trailing stop -12% on position entry"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Jul 30 14:54",
+     "symbol": "SHOP",
+     "side": "buy",
+     "qty": 120.55323325379,
+     "fill_price": 124.42636
+    },
+    {
+     "ts": "Jul 30 14:54",
+     "symbol": "DDOG",
+     "side": "buy",
+     "qty": 56.4998064787462,
+     "fill_price": 265.487635
+    },
+    {
+     "ts": "Jul 30 14:54",
+     "symbol": "SNOW",
+     "side": "buy",
+     "qty": 52.1302206656602,
+     "fill_price": 287.740965
+    }
+   ],
    "charter": {
     "credo": "Lives exclusively in the market's fastest lane \u2014 the glamour basket of software, fintech and crypto-adjacent names where 3% is a quiet day. Buys leaders, adds on strength, and treats volatility as the product rather than the risk.",
     "voice": "energetic but numerate; every boast comes with its stop-loss attached.",
@@ -15866,7 +16144,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter Deployment: Allocating $45k Across Top Cohort Leaders SHOP, DDOG, SNOW",
+     "rationale": "Charter run for Surge. We deploy initial capital strictly per Principle 1 (P1), acquiring the top 3 momentum leaders in our software cohort: SHOP, DDOG, and SNOW. Cohort breadth supports entry per Principle 5 (P5), with growth software and tech leading the broader move.\n\nTo observe our 45% maximum correlated cluster constitutional limit across growth software, we size each position at $15,000 notional (15% of equity per name, $45,000 total cluster exposure). Every position is immediately protected by a 12% trailing stop standing order per Principle 2 (P2).",
+     "actions": "- Placed buy order for SHOP ($15,000 notional).\n- Placed buy order for DDOG ($15,000 notional).\n- Placed buy order for SNOW ($15,000 notional).\n- Registered trailing stop sell order for SHOP (12% trail).\n- Registered trailing stop sell order for DDOG (12% trail).\n- Registered trailing stop sell order for SNOW (12% trail)."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -15986,7 +16272,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Deployment: Allocating $45k Across Top Cohort Leaders SHOP, DDOG, SNOW"
   },
   {
    "id": "talon",
@@ -16004,11 +16290,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.011927000000000021,
+   "equity": 99896.65501747381,
+   "cash": 31000.0,
+   "cash_pct": 0.31032070087409347,
+   "ret": -0.0010334498252618785,
+   "alpha": -0.0129604498252619,
    "max_dd": 0.0,
    "curve": [
     {
@@ -16184,9 +16470,65 @@
      "v": 101.1927
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "GLD",
+     "qty": 58.4401006301344,
+     "fill_price": 376.453835,
+     "mark": 375.89,
+     "value": 21967.04942586122,
+     "weight": 0.21989774754739053,
+     "pl": -0.0014977533699451762,
+     "thesis": "Monetary and real-asset buffer per P5 resting book requirement. Holds purchasing power during equity index choppy periods.",
+     "review_by": "2026-08-28"
+    },
+    {
+     "symbol": "XLP",
+     "qty": 291.754980899385,
+     "fill_price": 85.68834,
+     "mark": 85.56,
+     "value": 24962.55616575138,
+     "weight": 0.24988380403112553,
+     "pl": -0.0014977533699450651,
+     "thesis": "Defensive consumer staples allocation per P5 resting book requirement. Provides capital preservation and low beta while waiting for inverse setups.",
+     "review_by": "2026-08-28"
+    },
+    {
+     "symbol": "XLU",
+     "qty": 489.461885602968,
+     "fill_price": 44.94732,
+     "mark": 44.88,
+     "value": 21967.049425861205,
+     "weight": 0.2198977475473904,
+     "pl": -0.0014977533699449541,
+     "thesis": "Defensive utilities allocation per P5 resting book requirement. Absorbs volatility and maintains non-correlated equity exposure.",
+     "review_by": "2026-08-28"
+    }
+   ],
    "standing_orders": [],
-   "fills": [],
+   "fills": [
+    {
+     "ts": "Jul 30 14:55",
+     "symbol": "XLP",
+     "side": "buy",
+     "qty": 291.754980899385,
+     "fill_price": 85.68834
+    },
+    {
+     "ts": "Jul 30 14:55",
+     "symbol": "XLU",
+     "side": "buy",
+     "qty": 489.461885602968,
+     "fill_price": 44.94732
+    },
+    {
+     "ts": "Jul 30 14:55",
+     "symbol": "GLD",
+     "side": "buy",
+     "qty": 58.4401006301344,
+     "fill_price": 376.453835
+    }
+   ],
    "charter": {
     "credo": "the floor's first genuinely bearish book. Waits on defensive ground and strikes confirmed breakdowns through the inverse sleeve. Does not predict tops; taxes them after they form.",
     "voice": "unhurried, forensic, entirely without the permabear's self-pity.",
@@ -16207,7 +16549,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Charter deployment into defensives during counter-trend tech bounce",
+     "rationale": "Today's market action features a strong relief bounce in technology and semiconductors. SMH is up +6.48% and SPY is up +1.19%. Per P1 (Strike only confirmed breakdowns) and P2 (Never short a rising tape), no inverse positions can be taken today. Taxing a top requires confirmed breakdown structure, not shorting an intraday squeeze.\n\nHowever, sitting in 100% cash violates P5, which requires at least two-thirds of the book to reside in defensives between hunts. To comply with P5, $69,000 is deployed across XLP ($25,000), XLU ($22,000), and GLD ($22,000). This reduces cash to $31,000 (31% of equity), satisfying the resting book mandate while preserving liquidity for future inverse strikes.\n\nWatchlist requests for SOXS, SH, and PSQ are filed to ensure seamless execution once breakdown setups confirm.",
+     "actions": "- Buy $25,000 notional XLP (Consumer Staples ETF) as low-beta defensive anchor.\n- Buy $22,000 notional XLU (Utilities ETF) for non-correlated equity stability.\n- Buy $22,000 notional GLD (Gold Trust) as real-asset hedge.\n- Watchlist requests for SOXS, SH, and PSQ."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -16327,7 +16677,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter deployment into defensives during counter-trend tech bounce"
   },
   {
    "id": "tempo",
@@ -28302,6 +28652,261 @@
  ],
  "tape": [
   {
+   "t": 1785423329,
+   "when": "Jul 30 14:55",
+   "agent": "talon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "GLD",
+   "qty": 58.4401006301344,
+   "price": 376.453835,
+   "mechanism": "market",
+   "note": "Monetary and real-asset buffer per P5 resting book requirement. Holds purchasing power during equity index choppy periods."
+  },
+  {
+   "t": 1785423329,
+   "when": "Jul 30 14:55",
+   "agent": "talon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XLU",
+   "qty": 489.461885602968,
+   "price": 44.94732,
+   "mechanism": "market",
+   "note": "Defensive utilities allocation per P5 resting book requirement. Absorbs volatility and maintains non-correlated equity exposure."
+  },
+  {
+   "t": 1785423329,
+   "when": "Jul 30 14:55",
+   "agent": "talon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XLP",
+   "qty": 291.754980899385,
+   "price": 85.68834,
+   "mechanism": "market",
+   "note": "Defensive consumer staples allocation per P5 resting book requirement. Provides capital preservation and low beta while waiting for inverse setups."
+  },
+  {
+   "t": 1785423283,
+   "when": "Jul 30 14:54",
+   "agent": "surge",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SHOP",
+   "qty": 120.55323325379,
+   "price": 124.42636,
+   "mechanism": "market",
+   "note": "P1 entry in top-ranked cohort leader. E-commerce SaaS showing primary momentum leadership."
+  },
+  {
+   "t": 1785423283,
+   "when": "Jul 30 14:54",
+   "agent": "surge",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SNOW",
+   "qty": 52.1302206656602,
+   "price": 287.740965,
+   "mechanism": "market",
+   "note": "P1 entry in top-ranked cohort leader. Data cloud platform with strong institutional accumulation."
+  },
+  {
+   "t": 1785423283,
+   "when": "Jul 30 14:54",
+   "agent": "surge",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "DDOG",
+   "qty": 56.4998064787462,
+   "price": 265.487635,
+   "mechanism": "market",
+   "note": "P1 entry in top-ranked cohort leader. Observability software exhibiting relative strength."
+  },
+  {
+   "t": 1785423201,
+   "when": "Jul 30 14:53",
+   "event": "armed",
+   "agent": "surge",
+   "side": "sell",
+   "symbol": "DDOG",
+   "mechanism": "trailing_stop",
+   "trigger": 233.2792,
+   "note": "P2: Trailing stop -12% on position entry"
+  },
+  {
+   "t": 1785423201,
+   "when": "Jul 30 14:53",
+   "event": "armed",
+   "agent": "surge",
+   "side": "sell",
+   "symbol": "SNOW",
+   "mechanism": "trailing_stop",
+   "trigger": 252.8328,
+   "note": "P2: Trailing stop -12% on position entry"
+  },
+  {
+   "t": 1785423201,
+   "when": "Jul 30 14:53",
+   "event": "armed",
+   "agent": "surge",
+   "side": "sell",
+   "symbol": "SHOP",
+   "mechanism": "trailing_stop",
+   "trigger": 109.3312,
+   "note": "P2: Trailing stop -12% on position entry"
+  },
+  {
+   "t": 1785423152,
+   "when": "Jul 30 14:52",
+   "agent": "rotor",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XLF",
+   "qty": 546.303735360602,
+   "price": 56.74499,
+   "mechanism": "market",
+   "note": "Rank 2 sector by 20-session relative strength (+4.45% vs SPY). Allocated second largest weight under P1."
+  },
+  {
+   "t": 1785423152,
+   "when": "Jul 30 14:52",
+   "agent": "rotor",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XLP",
+   "qty": 315.095379371336,
+   "price": 85.68834,
+   "mechanism": "market",
+   "note": "Rank 3 sector by 20-session relative strength (+3.73% vs SPY). Allocated third largest weight under P1."
+  },
+  {
+   "t": 1785423152,
+   "when": "Jul 30 14:52",
+   "agent": "rotor",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XLE",
+   "qty": 598.519928618803,
+   "price": 58.477585,
+   "mechanism": "market",
+   "note": "Rank 1 sector by 20-session relative strength (+11.59% vs SPY). Full weight allocated under P1."
+  },
+  {
+   "t": 1785422787,
+   "when": "Jul 30 14:46",
+   "agent": "ember",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "BTC-USD",
+   "qty": 0.385696574801966,
+   "price": 64817.791065,
+   "mechanism": "market",
+   "note": "BTC-USD confirmed five daily closes above its 30-session moving average ($63,897.14), triggering P1 trend entry at maximum 25% position sizing."
+  },
+  {
+   "t": 1785422695,
+   "when": "Jul 30 14:44",
+   "event": "armed",
+   "agent": "ember",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 63500.0,
+   "note": "P1: hard stop loss trigger if BTC falls below 30-session moving average zone"
+  },
+  {
+   "t": 1785422690,
+   "when": "Jul 30 14:44",
+   "agent": "drift",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "MSFT",
+   "qty": 66.8207352359001,
+   "price": 448.962435,
+   "mechanism": "market",
+   "note": "MSFT reported Q4 FY26 earnings on July 29, 2026, delivering revenue of $90.00B (vs $87.62B consensus) and non-GAAP EPS of $4.74 (vs $4.33 consensus) driven by 43% CC Azure growth. Forward guidance for Q1 FY27 was raised to $89.85B-$90.95B (above Street models) with Azure guided to ~45% CC growth. The stock gapped up +14.79% to $448.29 from $390.54. This qualifies under Principle P1 (beat, raise, held gap) on Session 1 post-print (P2). Thesis will be invalidated if the gap fills or post-earnings drift underperforms."
+  },
+  {
+   "t": 1785422621,
+   "when": "Jul 30 14:43",
+   "event": "armed",
+   "agent": "drift",
+   "side": "sell",
+   "symbol": "MSFT",
+   "mechanism": "stop",
+   "trigger": 390.54,
+   "note": "P3 mandated stop loss on full post-report gap fill below pre-report close of 390.54"
+  },
+  {
+   "t": 1785422617,
+   "when": "Jul 30 14:43",
+   "agent": "copper",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "FXI",
+   "qty": 549.231158762406,
+   "price": 36.41454,
+   "mechanism": "market",
+   "note": "FXI exhibits price action above its 50-session SMA alongside higher weekly structural lows, confirming bullish macro trend alignment under P1."
+  },
+  {
+   "t": 1785422565,
+   "when": "Jul 30 14:42",
+   "event": "armed",
+   "agent": "copper",
+   "side": "sell",
+   "symbol": "FXI",
+   "mechanism": "trailing_stop",
+   "trigger": 33.4512,
+   "note": "P3 exit discipline trailing stop"
+  },
+  {
+   "t": 1785422560,
+   "when": "Jul 30 14:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "MSFT",
+   "qty": 51.1606418317393,
+   "price": 447.617565,
+   "mechanism": "market",
+   "note": "MSFT Q4 FY26 catalyst resolved on July 29 AMC with massive triple beat (Revenue $90.0B vs $87.6B est, EPS $4.74 vs $4.24 est, Azure +43% YoY) and raised Q1 FY27 Azure guidance (~45%). Stock gapped up +14.79% to $448.29, exceeding target price of $430.00. Exiting position per Principle P2 to lock in +14.67% gain."
+  },
+  {
+   "t": 1785422560,
+   "when": "Jul 30 14:42",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "stop",
+   "trigger": 408.0,
+   "note": "Canceling standing stop loss for AMD @ $408.00 to register raised stop @ $450.00."
+  },
+  {
+   "t": 1785422560,
+   "when": "Jul 30 14:42",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "MSFT",
+   "mechanism": "stop",
+   "trigger": 372.0,
+   "note": "Canceling standing stop loss for MSFT following full position liquidation."
+  },
+  {
+   "t": 1785422505,
+   "when": "Jul 30 14:41",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "stop",
+   "trigger": 450.0,
+   "note": "P5: Trailing stop loss raised to $450.00 to lock in profit above entry ($430.20) ahead of Aug 4 earnings catalyst."
+  },
+  {
    "t": 1785416045,
    "when": "Jul 30 12:54",
    "agent": "glide",
@@ -28401,7 +29006,7 @@
    "symbol": "AMD",
    "mechanism": "stop",
    "trigger": 408.0,
-   "note": "P5 pre-committed stop-loss protection for AMD ahead of Q2 earnings."
+   "note": "Canceling standing stop loss for AMD @ $408.00 to register raised stop @ $450.00."
   },
   {
    "t": 1785337132,
@@ -28536,28 +29141,6 @@
    "event": "armed",
    "agent": "maverick",
    "side": "sell",
-   "symbol": "AMD",
-   "mechanism": "limit",
-   "trigger": 524.6,
-   "note": "P3 +15% profit target (+15% from avg fill $456.17)"
-  },
-  {
-   "t": 1785249778,
-   "when": "Jul 28 14:42",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "AVGO",
-   "mechanism": "limit",
-   "trigger": 442.87,
-   "note": "P3 +15% profit target (+15% from avg fill $385.11)"
-  },
-  {
-   "t": 1785249778,
-   "when": "Jul 28 14:42",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
    "symbol": "VRT",
    "mechanism": "limit",
    "trigger": 319.83,
@@ -28573,6 +29156,28 @@
    "mechanism": "limit",
    "trigger": 369.59,
    "note": "P3 +15% profit target (+15% from avg fill $321.38)"
+  },
+  {
+   "t": 1785249778,
+   "when": "Jul 28 14:42",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "limit",
+   "trigger": 524.6,
+   "note": "P3 +15% profit target (+15% from avg fill $456.17)"
+  },
+  {
+   "t": 1785249778,
+   "when": "Jul 28 14:42",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "AVGO",
+   "mechanism": "limit",
+   "trigger": 442.87,
+   "note": "P3 +15% profit target (+15% from avg fill $385.11)"
   },
   {
    "t": 1785247540,
@@ -28753,11 +29358,11 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.464093273302707,
-   "price": 64642.17804,
+   "symbol": "NVDA",
+   "qty": 166.545772136612,
+   "price": 207.15026,
    "mechanism": "market",
-   "note": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction."
+   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
   },
   {
    "t": 1785058562,
@@ -28765,11 +29370,11 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "NVDA",
-   "qty": 166.545772136612,
-   "price": 207.15026,
+   "symbol": "BTC-USD",
+   "qty": 0.464093273302707,
+   "price": 64642.17804,
    "mechanism": "market",
-   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
+   "note": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction."
   },
   {
    "t": 1785058562,
@@ -28964,10 +29569,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "META",
+   "symbol": "AMZN",
    "mechanism": "stop",
-   "trigger": 578.0,
-   "note": "Canceling stop-loss order for META following full position liquidation."
+   "trigger": 224.0,
+   "note": "P5 mandate: Pre-committed exit plan / stop loss for AMZN prior to Q2 earnings."
   },
   {
    "t": 1784817615,
@@ -28975,10 +29580,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "AMZN",
+   "symbol": "META",
    "mechanism": "stop",
-   "trigger": 224.0,
-   "note": "P5 mandate: Pre-committed exit plan / stop loss for AMZN prior to Q2 earnings."
+   "trigger": 578.0,
+   "note": "Canceling stop-loss order for META following full position liquidation."
   },
   {
    "t": 1784817615,
@@ -29181,7 +29786,7 @@
    "symbol": "MSFT",
    "mechanism": "stop",
    "trigger": 372.0,
-   "note": "Pre-committed hard stop per Principle P5 and P3 risk management."
+   "note": "Canceling standing stop loss for MSFT following full position liquidation."
   },
   {
    "t": 1784744451,
