@@ -179,23 +179,34 @@ def record_problems(data):
     return out
 
 
-def face_problems(data):
-    """Every trader on the floor needs a rendered face: the avatar PNGs are
-    served from this repo, and a newly seated trader has none until
-    tools/gen-avatars.mjs is run. vector shipped with a 404 for a face on
-    2026-07-29 and its principal's letter would have carried a broken image."""
+def missing_face_ids(data, avatars=None):
+    """The traders on the record with no rendered face, in roster order.
+
+    `avatars` is the directory to look in, because there are two and they mean
+    different things: web/static/avatars is what the repo ships and the generator
+    writes (what the deploy asks about, before the build), public/avatars is what
+    this build is about to serve (what the build check asks about, after it).
+
+    Every trader on the floor needs one: the avatar PNGs are served from this
+    repo, and a newly seated trader has none until tools/gen-avatars.mjs runs.
+    The deploy renders exactly this list before it publishes, so the same run that
+    puts a trader on the floor gives it a face — this is also what the build
+    warning and tools/missing_faces.py read, so all three agree by construction.
+    """
+    where = avatars if avatars is not None else PUBLIC / "avatars"
     agents = data.get("agents") or []
     if isinstance(agents, dict):
         agents = list(agents.values())
-    out = []
-    for a in agents:
-        aid = a.get("id")
-        if not aid:
-            continue
-        if not (PUBLIC / "avatars" / f"{aid}.png").exists():
-            out.append(f"avatars/{aid}.png: missing — run "
-                       f"`node tools/gen-avatars.mjs {aid}` and commit it")
-    return out
+    return [a["id"] for a in agents
+            if a.get("id") and not (where / f"{a['id']}.png").exists()]
+
+
+def face_problems(data):
+    """vector shipped with a 404 for a face on 2026-07-29 and glide on 07-30;
+    both principals' first letters would have carried a broken image."""
+    return [f"avatars/{aid}.png: missing — run "
+            f"`node tools/gen-avatars.mjs {aid}` and commit it"
+            for aid in missing_face_ids(data)]
 
 
 def main():

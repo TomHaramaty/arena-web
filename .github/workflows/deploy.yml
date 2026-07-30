@@ -9,12 +9,48 @@ concurrency:
   group: deploy
   cancel-in-progress: true
 
+permissions:
+  contents: write        # the faces this renders are committed back
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      # A newly seated trader has no face until the generator runs, and until
+      # today that was a human's job to remember. It was forgotten twice in two
+      # days, both times for a real principal: vector on 07-29 and glide on 07-30
+      # went onto the floor with a 404 where their face should be, and their first
+      # letter carried it as a broken image. Nobody should have to remember this.
+      #
+      # Before the render, so a face drawn here is copied into the build like any
+      # other static file, and the deploy below serves it in this same run.
+      - name: Any faces to render?
+        id: faces
+        run: python3 tools/missing_faces.py >> "$GITHUB_OUTPUT"
+      - name: Draw them
+        if: steps.faces.outputs.ids != ''
+        run: |
+          npm install --no-fund --no-audit --silent puppeteer-core
+          CHROME="$(command -v google-chrome || command -v chromium-browser)" \
+            node tools/gen-avatars.mjs --missing
+      # Commit them so this happens once per trader rather than once per deploy,
+      # and so the PNG a letter links to is in the record like everything else.
+      # Best effort: the engine pushes arena.json up to 38 times a day and can win
+      # the race. Losing it costs nothing — the deploy below still serves the face
+      # from this checkout, and the next publish retries the commit.
+      - name: Keep them
+        if: steps.faces.outputs.ids != ''
+        run: |
+          git config user.name arena-bot
+          git config user.email arena-bot@users.noreply.github.com
+          git add web/static/avatars
+          git commit -qm "avatars: faces for ${{ steps.faces.outputs.ids }}" || exit 0
+          git pull -q --rebase --autostash \
+            || { echo "::warning::faces rendered but not committed (rebase failed)"; exit 0; }
+          git push -q \
+            || echo "::warning::faces rendered but not committed (push lost the race)"
       - name: Render
         run: python3 render.py
       # Between render and deploy, because the record is the least predictable

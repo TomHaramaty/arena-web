@@ -6,11 +6,18 @@
 // retina, onto the letter's paper colour (email has no transparency story
 // worth relying on).
 //
-// Run it whenever a trader is seated: a newly chartered trader has no face
-// until this runs, and its letter would carry a broken image.
+// A newly chartered trader has no face until this runs, and its letter would
+// carry a broken image. The deploy workflow runs `--missing` on every publish, so
+// that is no longer anyone's job to remember — the forms below are for fixing or
+// re-rendering a face by hand.
 //
 //   node tools/gen-avatars.mjs           # every trader on the record
 //   node tools/gen-avatars.mjs vector    # only this one — leaves shipped PNGs untouched
+//   node tools/gen-avatars.mjs --missing # only traders with no PNG yet (what CI runs)
+//
+// Naming a trader that isn't on the record exits 1 rather than reporting "0
+// avatars", which reads like success and is how a stale data/arena.json wasted an
+// afternoon: git pull before blaming the generator.
 //
 // Needs puppeteer-core and a local Chrome; this repo has no root npm project,
 // so install it somewhere and symlink node_modules here, or set CHROME=.
@@ -48,9 +55,23 @@ const server = http.createServer((req, res) => {
 
 // Optional id filter, so backfilling one newly seated face never churns the
 // PNGs already shipped.
-const only = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const missingOnly = argv.includes("--missing");
+const only = argv.filter((a) => a !== "--missing");
 const agents = JSON.parse(fs.readFileSync(path.join(WEB, "data", "arena.json"), "utf8"))
-  .agents.filter((a) => !only.length || only.includes(a.id));
+  .agents.filter((a) => (!only.length || only.includes(a.id))
+    && (!missingOnly || !fs.existsSync(path.join(OUT, `${a.id}.png`))));
+
+// Nothing to draw: say so and don't pay for a browser. The deploy runs this on
+// every publish, and on all but a handful of them every face already exists.
+if (!agents.length) {
+  console.log(only.length && !missingOnly
+    ? `no such trader on the record: ${only.join(", ")}`
+    : "every trader already has a face — nothing to render");
+  server.close();
+  process.exit(only.length && !missingOnly ? 1 : 0);
+}
+
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new", args: ["--no-sandbox"] });
 const page = await browser.newPage();
 await page.setViewport({ width: 400, height: 400, deviceScaleFactor: SCALE });
