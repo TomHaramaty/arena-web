@@ -42,7 +42,7 @@ jobs:
         timeout-minutes: 5
         run: |
           npm install --no-fund --no-audit --silent puppeteer-core
-          CHROME="$(command -v google-chrome || command -v chromium-browser)" \
+          CHROME=/nonexistent/chrome \
             node tools/gen-avatars.mjs --missing
       # Commit them so this happens once per trader rather than once per deploy,
       # and so the PNG a letter links to is in the record like everything else.
