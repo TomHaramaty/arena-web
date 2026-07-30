@@ -40,10 +40,18 @@ jobs:
         if: steps.faces.outputs.ids != ''
         continue-on-error: true
         timeout-minutes: 5
+        env:
+          IDS: ${{ steps.faces.outputs.ids }}
         run: |
-          npm install --no-fund --no-audit --silent puppeteer-core
-          CHROME="$(command -v google-chrome || command -v chromium-browser)" \
-            node tools/gen-avatars.mjs --missing
+          # Annotate on the way out: continue-on-error means a failure here shows
+          # as a green step, and the run would otherwise say nothing about why a
+          # trader is still faceless except in the production check that follows.
+          npm install --no-fund --no-audit --silent puppeteer-core \
+            || { echo "::warning::no faces drawn ($IDS): puppeteer-core would not install"; exit 1; }
+          chrome="$(command -v google-chrome || command -v chromium-browser)" \
+            || { echo "::warning::no faces drawn ($IDS): no Chrome on this runner"; exit 1; }
+          CHROME="$chrome" node tools/gen-avatars.mjs --missing \
+            || { echo "::warning::no faces drawn ($IDS): the generator failed"; exit 1; }
       # Commit them so this happens once per trader rather than once per deploy,
       # and so the PNG a letter links to is in the record like everything else.
       # Best effort: the engine pushes arena.json up to 38 times a day and can win
