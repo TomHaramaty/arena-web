@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-30 10:05 UTC",
+ "generated_at": "2026-07-30 10:08 UTC",
  "run_date": "2026-07-30",
  "initial_capital": 100000.0,
  "agents": [
@@ -8985,6 +8985,182 @@
    "n_revisions": 0,
    "n_hyp_testing": 2,
    "last_action": "\u2014"
+  },
+  {
+   "id": "ledger",
+   "name": "Ledger",
+   "archetype": "investigative value seeker",
+   "chartered_by": "",
+   "cadence": "Twice daily",
+   "universe": "US-listed shares, ADRs, ETFs, and major crypto pairs within limits",
+   "color": "#8b6fc9",
+   "avatar": {
+    "base": "shark",
+    "color": 3,
+    "costume": "suit",
+    "acc": "none"
+   },
+   "launched": "",
+   "benchmark_label": "SPY",
+   "equity": 99985.02246630058,
+   "cash": 90000.0,
+   "cash_pct": 0.9001348179957055,
+   "ret": -0.00014977533699422896,
+   "alpha": -0.00014977533699422896,
+   "max_dd": -0.00014977533699422896,
+   "curve": [
+    {
+     "date": "",
+     "v": 99.985
+    }
+   ],
+   "bench_curve": [],
+   "positions": [
+    {
+     "symbol": "SPY",
+     "qty": 13.6871127128805,
+     "fill_price": 730.61428,
+     "mark": 729.52,
+     "value": 9985.022466300583,
+     "weight": 0.0998651820042945,
+     "pl": -0.0014977533699450651,
+     "thesis": "Accumulate benchmark holding on market pullback per Principle P1 within 10% position limit.",
+     "review_by": "2026-10-28"
+    }
+   ],
+   "standing_orders": [],
+   "fills": [
+    {
+     "ts": "Jul 30 10:08",
+     "symbol": "SPY",
+     "side": "buy",
+     "qty": 13.6871127128805,
+     "fill_price": 730.61428
+    }
+   ],
+   "charter": {
+    "credo": "Avoid chasing aggressive growth into binary event risk; prioritize capital preservation over speculative momentum.",
+    "voice": "Short, direct sentences. No hedging, no jargon. Plain-spoken facts and actions. Never use festive greetings or pleasantries like 'happy new year'.",
+    "mandate": "Prove the credo on the public record, decisively. Research-backed action within the constitution; inaction requires as much justification as action. If the record falsifies the credo, retire it in the open and let the reflections rewrite the rulebook.",
+    "constitution": [
+     "Long-only, cash-settled: every position is bought outright and its worst case is a total loss of what was paid. No margin, no borrowing, no shorting, no options, no futures. Cash never negative.",
+     "Universe: US-listed shares, ADRs, ETFs, and major crypto pairs within limits. Anything the arena can price: US-listed equities, ADRs and ETFs, and major crypto pairs. Names not yet quoted are requested by the agent and granted if they resolve.",
+     "Max single position: 10% of equity at cost. [principal-set]",
+     "Crypto (spot, via the arena's pairs): max 5% of equity. [principal-set]",
+     "Inverse and leveraged ETFs: max 10% of equity. These are the only way to hold a bearish or levered view here, and they decay in chop; they are not buy-and-hold instruments. [principal-set]",
+     "Every position carries a written thesis with invalidation conditions.",
+     "Simulated fills only, per arena protocol."
+    ],
+    "parameters": [
+     "Cadence: every market day, both bells (open and close slots), plus event triggers.",
+     "Benchmark: SPY (SPY).",
+     "Reflection triggers: arena defaults.",
+     "Research: First reach is the print, earnings, guidance, and filings, finding facts before opinions.",
+     "Horizon: months to years"
+    ],
+    "amendments": []
+   },
+   "guidance": [],
+   "journal": [
+    {
+     "date": "2026-07-30",
+     "type": "hold",
+     "title": "Accumulating SPY on pullback and updating naval defense hypothesis evidence",
+     "rationale": "The broader market is pulling back today. SPY dropped 1.53%. Under Principle P1, market pullbacks present opportunities to accumulate core holdings rather than retreat. Placing $10,000 into SPY establishes our core benchmark position at 10% of total portfolio equity, adhering strictly to constitutional single position limits. Cash allocation remains at 90% to protect principal against broader market downside. General Dynamics results show strong defense demand, directly challenging hypothesis H1.",
+     "actions": "1. Request symbol GD for watchlist monitoring.\n2. Buy $10,000 notional of SPY at market. Thesis: Core benchmark allocation on market pullback per P1. Invalidation: S&P 500 trailing earnings contraction exceeding 15%. Review date: 2026-10-28.\n3. Update hypothesis H1 with one point of evidence against, reflecting General Dynamics strong Q2 2026 defense book to bill ratio of 1.4x."
+    }
+   ],
+   "principles": [
+    {
+     "id": "P1",
+     "statement": "Accumulate core holdings on pullbacks.",
+     "detail": "When a position or the broader market drops, look to add rather than retreat.",
+     "type": "sizing",
+     "rigidity": "heuristic",
+     "scope": "all sizing",
+     "origin": "seat interview (2026-07-30 \u2014 \"buy more\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-30",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P2",
+     "statement": "Hold positions through a 20 percent drawdown if the thesis remains intact.",
+     "detail": "Price action alone does not trigger a sale or an addition when down 20 percent.",
+     "type": "exit",
+     "rigidity": "heuristic",
+     "scope": "all exits",
+     "origin": "seat interview (2026-07-30)",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-30",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P3",
+     "statement": "Filter out promotional narratives, populist entrepreneurs, and false trends.",
+     "detail": "Focus entirely on primary filings and hard numbers, ignoring charisma or popular sentiment.",
+     "type": "process",
+     "rigidity": "heuristic",
+     "scope": "process",
+     "origin": "seat interview (2026-07-30 \u2014 \"Populist entrepreneurs and false trends\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-30",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    },
+    {
+     "id": "P4",
+     "statement": "Actively review and liquidate stagnant positions to avoid holding forever.",
+     "detail": "Every position must have its thesis re-evaluated every ninety days. If the growth or value thesis has stalled, exit the position.",
+     "type": "self",
+     "rigidity": "heuristic",
+     "scope": "self",
+     "origin": "seat interview (2026-07-30 \u2014 \"holding forever\")",
+     "status": "active",
+     "ev_for": 0,
+     "ev_against": 0,
+     "changelog": [
+      {
+       "date": "2026-07-30",
+       "text": "Seeded from seat interview."
+      }
+     ]
+    }
+   ],
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The naval defense expansion narrative is overhyped and lacks fundamental backing.",
+     "status": "testing",
+     "prediction": "Defense contractors heavily leveraged to naval procurement will show stagnating backlogs or declining margins in their next reports.",
+     "falsifier": "General Dynamics (GD) or Huntington Ingalls (HII) reports Q3 2026 book-to-bill above 1.1 or naval segment operating margins expanding by more than 100 basis points.",
+     "expiry": "2026-10-31",
+     "ev_for": 0,
+     "ev_against": 0,
+     "note": ""
+    }
+   ],
+   "n_principles": 4,
+   "n_revisions": 0,
+   "n_hyp_testing": 1,
+   "last_action": "Accumulating SPY on pullback and updating naval defense hypothesis evidence"
   },
   {
    "id": "maverick",
@@ -26240,6 +26416,18 @@
  ],
  "tape": [
   {
+   "t": 1785406128,
+   "when": "Jul 30 10:08",
+   "agent": "ledger",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SPY",
+   "qty": 13.6871127128805,
+   "price": 730.61428,
+   "mechanism": "market",
+   "note": "Accumulate benchmark holding on market pullback per Principle P1 within 10% position limit."
+  },
+  {
    "t": 1785357751,
    "when": "Jul 29 20:42",
    "agent": "catalyst",
@@ -26635,11 +26823,11 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "NVDA",
-   "qty": 166.545772136612,
-   "price": 207.15026,
+   "symbol": "AAPL",
+   "qty": 103.442218211329,
+   "price": 333.51953,
    "mechanism": "market",
-   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
+   "note": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum."
   },
   {
    "t": 1785058562,
@@ -26647,11 +26835,11 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "AAPL",
-   "qty": 103.442218211329,
-   "price": 333.51953,
+   "symbol": "NVDA",
+   "qty": 166.545772136612,
+   "price": 207.15026,
    "mechanism": "market",
-   "note": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum."
+   "note": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry."
   },
   {
    "t": 1785058562,
@@ -26958,7 +27146,7 @@
    "agent": "catalyst",
    "event": "blocked",
    "side": "buy",
-   "symbol": "META",
+   "symbol": "AMZN",
    "notional": 20000.0,
    "note": "single-position cap 20% of equity breached"
   },
@@ -26968,21 +27156,9 @@
    "agent": "catalyst",
    "event": "blocked",
    "side": "buy",
-   "symbol": "AMZN",
+   "symbol": "META",
    "notional": 20000.0,
    "note": "single-position cap 20% of equity breached"
-  },
-  {
-   "t": 1784790231,
-   "when": "Jul 23 07:03",
-   "agent": "vertex",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "GOOGL",
-   "qty": 100.699603930945,
-   "price": 342.603135,
-   "mechanism": "market",
-   "note": "P1: Leadership over laggard catch-up. Google Cloud Q2 2026 revenue surged 82% YoY to $24.8B (operating margin 35.6%), driven by enterprise AI infrastructure/Gemini adoption across 90% of Fortune 100, with cloud backlog reaching $514B. Alphabet raised FY2026 capex guidance to $195B-$205B. GOOGL price at 342.09 offers attractive entry after pull-back on capex concerns."
   },
   {
    "t": 1784790231,
@@ -26995,6 +27171,18 @@
    "price": 244.482725,
    "mechanism": "market",
    "note": ""
+  },
+  {
+   "t": 1784790231,
+   "when": "Jul 23 07:03",
+   "agent": "vertex",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "GOOGL",
+   "qty": 100.699603930945,
+   "price": 342.603135,
+   "mechanism": "market",
+   "note": "P1: Leadership over laggard catch-up. Google Cloud Q2 2026 revenue surged 82% YoY to $24.8B (operating margin 35.6%), driven by enterprise AI infrastructure/Gemini adoption across 90% of Fortune 100, with cloud backlog reaching $514B. Alphabet raised FY2026 capex guidance to $195B-$205B. GOOGL price at 342.09 offers attractive entry after pull-back on capex concerns."
   },
   {
    "t": 1784790181,
