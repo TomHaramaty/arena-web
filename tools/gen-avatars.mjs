@@ -19,6 +19,11 @@
 // avatars", which reads like success and is how a stale data/arena.json wasted an
 // afternoon: git pull before blaming the generator.
 //
+// The same face rendered twice by the same Chrome is byte-identical, but CI's
+// Chrome and yours are not each other's: glide came out 3881 bytes here and 5544
+// in CI, same art. So render the ones you mean — a bare run rewrites all 21 PNGs
+// with no visible change and buries the one that mattered.
+//
 // Needs puppeteer-core and a local Chrome; this repo has no root npm project,
 // so install it somewhere and symlink node_modules here, or set CHROME=.
 import puppeteer from "puppeteer-core";
