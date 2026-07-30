@@ -134,6 +134,21 @@ const state = {
   credit: { name: "", show: false }, // the principal's own name on the floor
 };
 
+/* ---------------- the funnel ---------------- */
+/* One mark per milestone in the making of a trader, in the order they are
+   reached: signed_in · playbill_view · interview_started · handoff_seen ·
+   first_read_done · review_reached · countersigned, with interview_resumed
+   marking a session that picked up a draft rather than starting one.
+   Fired at most once per page load — a milestone re-entered by amendment,
+   re-render, or restore must not inflate its own count. No-op when analytics
+   is absent. */
+const funnelFired = new Set();
+function funnel(name) {
+  if (funnelFired.has(name)) return;
+  funnelFired.add(name);
+  window.umami?.track(name);
+}
+
 /* ---------------- view switching ---------------- */
 const VIEWS = ["loading", "landing", "playbill", "interview", "finish", "status"];
 function show(view) {
@@ -629,7 +644,7 @@ function renderPlaybill() {
   $("#pb-registrar").innerHTML = registrarAvatar(40) || "";
   // the rolled face is a teaser, not a claim: the picker decides at the end
   $("#pb-face").innerHTML = avatar({ ...state.avatar, name: "?" }, 40, {}) || "";
-  window.umami?.track("playbill_view");   // funnel; no-op when analytics is absent
+  funnel("playbill_view");
 }
 
 /* Two acts: the Registrar until the [WAKE] message, the agent after it. */
@@ -1171,6 +1186,9 @@ async function sendTurn(userRaw) {
     bubble.querySelector(".who").textContent = whoLabel("firstread");
     state.done = true;
   }
+  // the interview reached done, by the tape landing or by the model's flag —
+  // the one mark covers both roads in, and amendment never re-fires it
+  if (state.done) funnel("first_read_done");
   saveInterview();
   setBusy(false);
   tail(false);
@@ -1186,6 +1204,7 @@ async function sendTurn(userRaw) {
   if (side && side.handoff && !inAgentPhase && !state.handoffSeen && !state.done) {
     if (validateWakeMinimum(state.draft, state.floorNames).length === 0) {
       state.handoffSeen = true;
+      funnel("handoff_seen");
       saveInterview();
       await runCreationMoment();
       setBusy(false); // the ceremony's lock ends where the wake call begins
@@ -1268,6 +1287,9 @@ function updateFinishUI() {
 }
 
 function restoreInterview(saved) {
+  // a session that picked a draft back up, not one that began it — without this
+  // mark, every interview finished across two sittings reads as a drop-off
+  funnel("interview_resumed");
   state.history = saved.history || [];
   state.tapeSent = !!saved.tapeSent;
   state.done = !!saved.done;
@@ -1333,7 +1355,7 @@ function restoreInterview(saved) {
 
 async function beginInterview() {
   show("interview");
-  window.umami?.track("interview_started");   // funnel; no-op when analytics is absent
+  funnel("interview_started");
   buildModel();
   const saved = pickSaved(loadInterview(), await loadInterviewMirror());
   if (saved && (saved.history || []).length) { restoreInterview(saved); return; }
@@ -1417,7 +1439,7 @@ function onFacePick(e) {
   // The face on the record is now known to be the principal's own doing.
   if (!state.avatarChosen) {
     state.avatarChosen = true;
-    window.umami?.track("avatar_picked");  // funnel; no-op when analytics is absent
+    funnel("avatar_picked");
   }
   saveInterview();
   renderFacePicker();
@@ -1544,7 +1566,7 @@ async function submitApplication() {
   const d = state.draft || {};
   const errs = validatePacket(d, state.floorNames);
   if (errs.length) { renderCharter(); return; }
-  window.umami?.track("countersigned");   // funnel; no-op when analytics is absent
+  funnel("countersigned");
   const privacy = document.querySelector('input[name="privacy"]:checked').value;
   const firstWords = replyAfter("[WAKE]");
   const firstRead = replyAfter("[TAPE]");
@@ -1603,6 +1625,9 @@ async function boot() {
       // never email. The retry covers the deferred analytics script racing auth.
       if (window.umami) window.umami.identify(user.uid);
       else setTimeout(() => window.umami?.identify(user.uid), 2000);
+      // the funnel's first step: it separates a principal who would not sign in
+      // from one who signed in and then would not begin
+      funnel("signed_in");
     }
     if (!user) {
       $("#signinbox").hidden = false;
@@ -1700,7 +1725,7 @@ async function boot() {
     $("#drafttoggle").setAttribute("aria-expanded", String(open));
     $("#draftcaret").textContent = open ? "▾" : "▴";
   });
-  $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); window.umami?.track("review_reached"); });
+  $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); funnel("review_reached"); });
 
   /* finish wiring */
   $("#btn-back").addEventListener("click", () => show("interview"));
