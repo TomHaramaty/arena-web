@@ -723,6 +723,23 @@ function bellSteps(name) {
   ];
 }
 
+/** An interview this principal has already sat, if they have one. A finished
+    interview that was never countersigned leaves a draft here and nothing
+    anywhere else — and the desk used to greet its author with "you haven't
+    chartered a trader yet. The interview takes about fifteen minutes", which is
+    both wrong and the worst possible thing to say to someone who has already
+    spent those fifteen minutes. Best effort: if this read fails we simply say
+    less, never more. */
+async function loadDraft(uid) {
+  try {
+    const snap = await withTimeout(getDoc(doc(db, "drafts", uid)), LOOKUP_TIMEOUT_MS, "the draft lookup");
+    if (!snap.exists()) return null;
+    const d = snap.data() || {};
+    const turns = (d.history || []).length;
+    return turns ? { turns, ready: !!(d.ready && d.done) } : null;
+  } catch (e) { console.warn("draft:", e); return null; }
+}
+
 /** The desk could not be reached. Distinct from having no trader, and it must
     never read like it: whatever this principal has is on the floor, trading,
     whether or not this page can currently see it. */
@@ -737,6 +754,29 @@ function renderUnreachable() {
   $("#statuslinks").innerHTML =
     `<a href="" onclick="location.reload();return false;">Try again →</a>`
     + ` &middot; <a href="/floor/">Go to the floor →</a>`;
+}
+
+/** An interview is on file and no trader came of it. Say which of the two it is,
+    and never imply the work has to be done again — it doesn't. The interview
+    resumes from the record of the conversation itself, on any device. */
+function renderUnfinished(draft) {
+  $("#statusface").innerHTML = "";
+  $("#statusrun").innerHTML = "";
+  $("#statusbell").textContent = "";
+  if (draft.ready) {
+    $("#statusword").textContent = "One step left";
+    $("#statusdetail").innerHTML =
+      "Your interview is finished — it just wasn't countersigned, so your trader "
+      + "never took its seat. Everything you said is saved. Countersign it and it "
+      + "starts trading at the next bell.";
+    $("#statuslinks").innerHTML = `<a href="/seat/">Countersign and finish →</a>`;
+    return;
+  }
+  $("#statusword").textContent = "Interview unfinished";
+  $("#statusdetail").innerHTML =
+    "You started an interview and it's still waiting where you left it. Nothing "
+    + "needs redoing — pick it up and your trader takes its seat when you're done.";
+  $("#statuslinks").innerHTML = `<a href="/seat/">Pick up where you left off →</a>`;
 }
 
 function renderWait(appDoc) {
@@ -902,6 +942,13 @@ async function openPrincipal() {
        opens the desk the moment it lands. */
     const pending = state.apps.find((a) => a.data.status === "seated")
       || state.apps.find((a) => a.data.status !== "seated") || null;
+    // Nothing on file is not the same as nobody has been here. An interview
+    // sat but never countersigned is the one case where the invitation is
+    // exactly the wrong thing to show.
+    if (!pending) {
+      const draft = await loadDraft(state.user.uid);
+      if (draft) { renderUnfinished(draft); show("wait"); return; }
+    }
     renderWait(pending);
     show("wait");
     if (pending) watchApplication(pending.id);

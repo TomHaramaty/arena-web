@@ -68,15 +68,55 @@ say(`  DENIED   lookup rejects                   : "${denied}"`);
 
 // 3. OFFLINE — the backend is unreachable and getDocs never settles
 await setRules(OPEN);
+const blockFirestore = (r) => (r.url().includes("127.0.0.1:8080") ? r.abort() : r.continue());
 await page.setRequestInterception(true);
-page.on("request", (r) => (r.url().includes("127.0.0.1:8080") ? r.abort() : r.continue()));
+page.on("request", blockFirestore);
 const t0 = Date.now();
 await page.goto(`${BASE}/desk/`, { waitUntil: "domcontentloaded" });
 const offline = await word(page, 30000);
 say(`  OFFLINE  backend unreachable              : "${offline}"  (after ${Math.round((Date.now() - t0) / 1000)}s)`);
 await page.screenshot({ path: "desk-unreachable.png" });
 
-// 4. The seat page under the same condition: it must not invite a principal who
+// 4. An interview sat but never countersigned must never be met with the
+// invitation to sit one. This is the case a real principal hit: fifty turns,
+// finished, one click short — and the desk told him to allow fifteen minutes.
+// Seeded through the emulators' own admin APIs, so the page under test needs no
+// test hooks in it.
+page.off("request", blockFirestore);          // or it keeps continuing requests that are no longer intercepted
+await page.setRequestInterception(false);
+const ADMIN = { Authorization: "Bearer owner" };
+// accounts:query, not GET /accounts — the latter answers 200 with an empty body
+// for anonymous users, and seeding drafts/undefined fails silently and looks
+// exactly like the fix not working.
+const uid = await fetch("http://127.0.0.1:9099/identitytoolkit.googleapis.com/v1/projects/open-outcry/accounts:query",
+  { method: "POST", headers: { ...ADMIN, "Content-Type": "application/json" }, body: "{}" })
+  .then((r) => r.json())
+  .then((j) => (j.userInfo || []).sort((a, b) => Number(b.createdAt) - Number(a.createdAt))[0]?.localId);
+if (!uid) throw new Error("no signed-in account found in the auth emulator");
+const turnsOf = (n) => ({ arrayValue: { values: Array.from({ length: n }, () => (
+  { mapValue: { fields: { role: { stringValue: "user" }, text: { stringValue: "x" } } } })) } });
+const seedDraft = (n, ready) => fetch(
+  `http://127.0.0.1:8080/v1/projects/open-outcry/databases/(default)/documents/drafts/${uid}`,
+  { method: "PATCH", headers: { ...ADMIN, "Content-Type": "application/json" },
+    body: JSON.stringify({ fields: { history: turnsOf(n),
+      ready: { booleanValue: ready }, done: { booleanValue: ready } } }) })
+  .then((r) => r.ok || Promise.reject(new Error("seed " + r.status)));
+
+await seedDraft(50, true);
+await page.goto(`${BASE}/desk/`, { waitUntil: "domcontentloaded" });
+const ready = await word(page);
+say(`  DRAFT    finished, never countersigned  : "${ready}"`);
+
+await seedDraft(14, false);
+await page.goto(`${BASE}/desk/`, { waitUntil: "domcontentloaded" });
+const unfinished = await word(page);
+say(`  DRAFT    abandoned mid-interview        : "${unfinished}"`);
+
+// 5. The seat page, with the backend unreachable again — the lookup must fail,
+// not answer. (Re-armed here: the draft cases above needed a live backend.)
+await page.setRequestInterception(true);
+page.on("request", blockFirestore);
+// The seat page under the same condition: it must not invite a principal who
 // may already own a trader into a fresh fifteen-minute interview.
 await page.goto(`${BASE}/seat/`, { waitUntil: "domcontentloaded" });
 let seat = "(nothing rendered)";
@@ -91,7 +131,8 @@ try {
 } catch { /* leave the marker */ }
 say(`  SEAT     same condition, returning user  : ${seat}`);
 
-const pass = seat === "told the lookup failed"
+const pass = ready === "One step left" && unfinished === "Interview unfinished"
+  && seat === "told the lookup failed"
   && control === "No trader yet"
   && denied === "Can't reach your desk"
   && offline === "Can't reach your desk";
