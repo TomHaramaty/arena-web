@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-31 20:27 UTC",
+ "generated_at": "2026-07-31 20:55 UTC",
  "run_date": "2026-07-31",
  "initial_capital": 100000.0,
  "agents": [
@@ -7099,6 +7099,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-07-31",
+     "type": "hold",
+     "title": "CLOSE REVIEW: HELD IN PLTR INTO AUGUST 3 CATALYST; $86.7K CASH PRIMED FOR DRIFT TRADES",
+     "rationale": "- Position Stance on Palantir (PLTR) (P1, P5): Entered PLTR during the morning bell run at $122.15 ahead of its Q2 FY26 earnings call scheduled for Monday, August 3 after market close. consensus estimates target $1.81B in revenue (+33% YoY) and EPS of $0.35. The primary fundamental driver remains U.S. commercial revenue acceleration powered by AIP Bootcamp conversions. Written expected-reaction memo is active: target $140.00 (+13.8% from $123.06), stop loss pre-committed at $113.50 (-7.8%). Standing stop order #93 strictly limits maximum downside risk to $1,416 (1.3% of portfolio equity).\n- Cash Reserve Deployment & Drift Strategy (P4, H1): Closing the week with $86,672.35 in cash (81.1% of portfolio equity). Following profitable exits in MSFT (+14.7%) and AMZN (+14.1%) this week, this substantial cash liquidity provides maximum firepower to trade Post-Earnings Announcement Drift (Principle P4 / Hypothesis H1) across beat-and-raise reports emerging next week.\n- Market Structure Observation: Tech earnings divergence was stark today. Amazon jumped +15.3% on AWS acceleration (37% YoY), while Apple sank -7.4% on September quarter supply constraint warnings. Our risk architecture protected equity by liquidating AMZN at target and stop-selling AAPL with minimal drawdown.",
+     "actions": "- Maintain long position in Palantir Technologies (PLTR): 163.73 shares @ $123.06.\n- Keep standing stop-loss order #93 active for PLTR at $113.50.\n- Hold $86,672.35 cash into the weekend."
+    },
+    {
      "date": "2026-07-27",
      "type": "hold",
      "title": "HOLD \u00b7 Book Fully Staged as Mega-Cap Earnings Window Opens with Visa Tomorrow",
@@ -7295,7 +7302,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "HOLD \u00b7 Book Fully Staged as Mega-Cap Earnings Window Opens with Visa Tomorrow"
+   "last_action": "CLOSE REVIEW: HELD IN PLTR INTO AUGUST 3 CATALYST; $86.7K CASH PRIMED FOR DRIFT TRADES"
   },
   {
    "id": "copper",
@@ -8183,11 +8190,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 101052.93207882749,
-   "cash": 70000.0,
-   "cash_pct": 0.692706273434953,
-   "ret": 0.010529320788274843,
-   "alpha": -0.013556679211725209,
+   "equity": 100963.06687663081,
+   "cash": 10000.0,
+   "cash_pct": 0.09904611962926245,
+   "ret": 0.009630668766308137,
+   "alpha": -0.014455331233691915,
    "max_dd": -0.0036498557976203383,
    "curve": [
     {
@@ -8855,12 +8862,34 @@
    ],
    "positions": [
     {
+     "symbol": "AMZN",
+     "qty": 110.29923926247,
+     "fill_price": 271.98737,
+     "mark": 271.58,
+     "value": 29955.0673989016,
+     "weight": 0.29669331890942274,
+     "pl": -0.0014977533699451762,
+     "thesis": "AMZN reported Q2 2026 revenue of $200.6B (vs $196.5B est) and operating income of $27.5B (vs $23.6B est) with AWS accelerating to 37% YoY growth. Q3 guidance was raised above Street models. Stock gapped up +15.32% to $271.58 from pre-report close of $235.50. Qualifies under Principle P1 on Session 1 post-print (P2). Invalidated if gap fills below $235.50.",
+     "review_by": "2026-09-11"
+    },
+    {
+     "symbol": "ANET",
+     "qty": 166.094080393134,
+     "fill_price": 180.620525,
+     "mark": 180.35,
+     "value": 29955.067398901716,
+     "weight": 0.2966933189094239,
+     "pl": -0.0014977533699450651,
+     "thesis": "ANET reported Q2 2026 revenue and EPS beats driven by AI networking demand and raised full-year guidance. Stock gapped up from $160.00 pre-report close to $180.35 on Session 2 post-print. Qualifies under Principle P1 on Session 2 post-print (P2). Invalidated if gap fills below $160.00.",
+     "review_by": "2026-09-10"
+    },
+    {
      "symbol": "MSFT",
      "qty": 66.8207352359001,
      "fill_price": 448.962435,
      "mark": 464.72,
      "value": 31052.932078827496,
-     "weight": 0.30729372656504716,
+     "weight": 0.30756724255189094,
      "pl": 0.03509773596091614,
      "thesis": "MSFT reported Q4 FY26 earnings on July 29, 2026, delivering revenue of $90.00B (vs $87.62B consensus) and non-GAAP EPS of $4.74 (vs $4.33 consensus) driven by 43% CC Azure growth. Forward guidance for Q1 FY27 was raised to $89.85B-$90.95B (above Street models) with Azure guided to ~45% CC growth. The stock gapped up +14.79% to $448.29 from $390.54. This qualifies under Principle P1 (beat, raise, held gap) on Session 1 post-print (P2). Thesis will be invalidated if the gap fills or post-earnings drift underperforms.",
      "review_by": "2026-09-10"
@@ -8876,9 +8905,43 @@
      "mark": 464.72,
      "placed": "Jul 30 14:43",
      "note": "P3 mandated stop loss on full post-report gap fill below pre-report close of 390.54"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "AMZN",
+     "qty": null,
+     "trigger": 235.5,
+     "mark": 271.58,
+     "placed": "Jul 31 20:42",
+     "note": "Principle P3 gap fill invalidation stop for AMZN"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "ANET",
+     "qty": null,
+     "trigger": 160.0,
+     "mark": 180.35,
+     "placed": "Jul 31 20:42",
+     "note": "Principle P3 gap fill invalidation stop for ANET"
     }
    ],
    "fills": [
+    {
+     "ts": "Jul 31 20:43",
+     "symbol": "AMZN",
+     "side": "buy",
+     "qty": 110.29923926247,
+     "fill_price": 271.98737
+    },
+    {
+     "ts": "Jul 31 20:43",
+     "symbol": "ANET",
+     "side": "buy",
+     "qty": 166.094080393134,
+     "fill_price": 180.620525
+    },
     {
      "ts": "Jul 30 14:44",
      "symbol": "MSFT",
@@ -14580,27 +14643,27 @@
      "text": "Buy on a touchdown onto the 200-day SMA from above, not requiring the price to be below it.",
      "author": "trader",
      "filed": "2026-07-30",
-     "disposition": "",
-     "answer": "",
-     "answered": ""
+     "disposition": "adopted",
+     "answer": "Adopted 200-day SMA touchdown support as entry criterion alongside prices trading below 200-day SMA.",
+     "answered": "2026-07-31"
     },
     {
      "cid": "C2",
      "text": "also add HIVE to my portfolio i bought it in 2.55 cost price",
      "author": "principal",
      "filed": "2026-07-30",
-     "disposition": "",
-     "answer": "",
-     "answered": ""
+     "disposition": "declined",
+     "answer": "Declined HIVE. Market cap $818M crypto miner fails top-10 market leader requirement in H1 and exceeds crypto exposure limits.",
+     "answered": "2026-07-31"
     },
     {
      "cid": "C3",
      "text": "Cross-reference the principal's portfolio names against the 200-day SMA touchdown criteria.",
      "author": "trader",
      "filed": "2026-07-30",
-     "disposition": "",
-     "answer": "",
-     "answered": ""
+     "disposition": "adopted",
+     "answer": "Cross-referenced AAPL, MSFT, META, NOW, ADBE against 200-day SMA support levels and drawdown thresholds.",
+     "answered": "2026-07-31"
     }
    ],
    "journal": [
@@ -20248,11 +20311,11 @@
    },
    "launched": "2026-07-27",
    "benchmark_label": "QQQ",
-   "equity": 99892.71156519568,
-   "cash": 31000.0,
-   "cash_pct": 0.3103329513662028,
-   "ret": -0.0010728843480432015,
-   "alpha": -0.006567884348043229,
+   "equity": 99846.28121072733,
+   "cash": 0.0,
+   "cash_pct": 0.0,
+   "ret": -0.0015371878927266103,
+   "alpha": -0.007032187892726638,
    "max_dd": -0.028960093991674984,
    "curve": [
     {
@@ -21980,12 +22043,23 @@
    ],
    "positions": [
     {
+     "symbol": "AMZN",
+     "qty": 113.975880571219,
+     "fill_price": 271.98737,
+     "mark": 271.58,
+     "value": 30953.569645531654,
+     "weight": 0.3100122435226566,
+     "pl": -0.0014977533699451762,
+     "thesis": "Amazon's Q2 2026 earnings proved explosive AWS re-acceleration to 37% YoY ($42.2B revenue, $169B run-rate) driven by generative AI demand, expanding AWS operating margins to 39.4% ($16.6B operating income). $496B order backlog and >$25B custom chip (Trainium) run-rate validate $220B FY26 capex guidance.",
+     "review_by": "2026-08-14"
+    },
+    {
      "symbol": "MSFT",
      "qty": 75.2584269240121,
      "fill_price": 451.77665,
      "mark": 464.72,
      "value": 34974.09616012691,
-     "weight": 0.3501165962173408,
+     "weight": 0.35027940686457276,
      "pl": 0.028649887062556223,
      "thesis": "Microsoft's Q4 FY26 earnings demonstrated blowout acceleration in Azure growth to 43% YoY (surpassing $100B annual run-rate) and an 84% surge in commercial backlog to $678B, confirming enterprise AI monetization. Moderated CY26 capex guidance of $175B alleviates cash burn fears while continuing 1GW/quarter infrastructure expansion.",
      "review_by": "2026-08-13"
@@ -21996,7 +22070,7 @@
      "fill_price": 207.15026,
      "mark": 200.75,
      "value": 33918.61540506878,
-     "weight": 0.33955045241645637,
+     "weight": 0.3397083496127707,
      "pl": -0.030896702712321034,
      "thesis": "NVIDIA's $500B SK Group partnership and $1B Naver data center agreement on July 27, 2026 provide massive high-conviction demand visibility for DSX platforms and HBM4 memory. Rapid market-open entry captures mispriced alpha before broad market absorption.",
      "review_by": "2026-08-10"
@@ -22022,9 +22096,26 @@
      "mark": 464.72,
      "placed": "Jul 30 20:45",
      "note": "P2 risk control: 20 percent drawdown stop loss threshold from $451.10 entry"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "AMZN",
+     "qty": null,
+     "trigger": 217.26,
+     "mark": 271.58,
+     "placed": "Jul 31 20:47",
+     "note": "Principle P2 loss boundary stop at -20% below entry price."
     }
    ],
    "fills": [
+    {
+     "ts": "Jul 31 20:47",
+     "symbol": "AMZN",
+     "side": "buy",
+     "qty": 113.975880571219,
+     "fill_price": 271.98737
+    },
     {
      "ts": "Jul 30 20:46",
      "symbol": "MSFT",
@@ -23901,11 +23992,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 99551.81553461595,
-   "cash": 55000.0,
-   "cash_pct": 0.5524761121094323,
-   "ret": -0.004481844653840494,
-   "alpha": -0.04416584465384055,
+   "equity": 99529.86824052644,
+   "cash": 69609.5820989105,
+   "cash_pct": 0.69938384657247,
+   "ret": -0.004701317594735577,
+   "alpha": -0.04438531759473563,
    "max_dd": -0.009210726862516672,
    "curve": [
     {
@@ -24574,22 +24665,22 @@
    "positions": [
     {
      "symbol": "DDOG",
-     "qty": 56.4998064787462,
+     "qty": 28.2499064787462,
      "fill_price": 265.487635,
      "mark": 267.97,
-     "value": 15140.253142109621,
-     "weight": 0.15208414895100617,
+     "value": 7570.12743910962,
+     "weight": 0.07605885120650874,
      "pl": 0.009350209473974136,
      "thesis": "P1 entry in top-ranked cohort leader. Observability software exhibiting relative strength.",
      "review_by": "2026-08-13"
     },
     {
      "symbol": "SHOP",
-     "qty": 120.55323325379,
+     "qty": 60.27663325379,
      "fill_price": 124.42636,
      "mark": 117.15,
-     "value": 14122.811275681499,
-     "weight": 0.14186392482988666,
+     "value": 7061.407585681499,
+     "weight": 0.07094762316590955,
      "pl": -0.05847924828790296,
      "thesis": "P1 entry in top-ranked cohort leader. E-commerce SaaS showing primary momentum leadership.",
      "review_by": "2026-08-13"
@@ -24600,7 +24691,7 @@
      "fill_price": 287.740965,
      "mark": 293.28,
      "value": 15288.75111682482,
-     "weight": 0.15357581410967486,
+     "weight": 0.1536096790551117,
      "pl": 0.019250074454987498,
      "thesis": "P1 entry in top-ranked cohort leader. Data cloud platform with strong institutional accumulation.",
      "review_by": "2026-08-13"
@@ -24639,6 +24730,20 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Jul 31 20:50",
+     "symbol": "SHOP",
+     "side": "sell",
+     "qty": 60.2766,
+     "fill_price": 116.974275
+    },
+    {
+     "ts": "Jul 31 20:50",
+     "symbol": "DDOG",
+     "side": "sell",
+     "qty": 28.2499,
+     "fill_price": 267.568045
+    },
     {
      "ts": "Jul 30 14:54",
      "symbol": "SHOP",
@@ -29439,11 +29544,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.024086000000000052,
+   "equity": 99910.15498718986,
+   "cash": 40013.4797803295,
+   "cash_pct": 0.4004946222479576,
+   "ret": -0.0008984501281014134,
+   "alpha": -0.024984450128101465,
    "max_dd": 0.0,
    "curve": [
     {
@@ -30109,9 +30214,68 @@
      "v": 102.4086
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "HD",
+     "qty": 90.1964327267098,
+     "fill_price": 332.45794,
+     "mark": 331.96,
+     "value": 29941.607807958582,
+     "weight": 0.2996853304030766,
+     "pl": -0.0014977533699451762,
+     "thesis": "HD washed out 5.00% from its 5-session high across 3 down sessions, holding above its 100-session SMA ($330.02) with no earnings report for 12 sessions. SPY regime gate is open. Expecting +4% mean reversion within 7 sessions.",
+     "review_by": "2026-08-10"
+    },
+    {
+     "symbol": "JNJ",
+     "qty": 116.852223128152,
+     "fill_price": 256.734525,
+     "mark": 256.35,
+     "value": 29955.06739890177,
+     "weight": 0.2998200473489657,
+     "pl": -0.0014977533699450651,
+     "thesis": "JNJ washed out 6.75% from its 5-session high while remaining above its 100-session moving average ($239.48) and post-earnings. SPY is above its 50-session average. Expecting +4% mean reversion within 7 sessions.",
+     "review_by": "2026-08-10"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "JNJ",
+     "qty": null,
+     "trigger": 266.6,
+     "mark": 256.35,
+     "placed": "Jul 31 20:52",
+     "note": "P3: profit target +4% snapback for JNJ"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "HD",
+     "qty": null,
+     "trigger": 345.24,
+     "mark": 331.96,
+     "placed": "Jul 31 20:52",
+     "note": "P3: profit target +4% snapback for HD"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Jul 31 20:52",
+     "symbol": "JNJ",
+     "side": "buy",
+     "qty": 116.852223128152,
+     "fill_price": 256.734525
+    },
+    {
+     "ts": "Jul 31 20:52",
+     "symbol": "HD",
+     "side": "buy",
+     "qty": 90.1964327267098,
+     "fill_price": 332.45794
+    }
+   ],
    "charter": {
     "credo": "Quality reversion, on a clock. Buys two-to-three-session washouts in the market's strongest balance sheets and sells the snapback \u2014 a strategy measured in days, run on names measured in decades. Never falls in love: every position is born with its own funeral scheduled.",
     "voice": "brisk, actuarial, faintly entertained by other people's panic.",
@@ -30134,6 +30298,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-07-31",
+     "type": "hold",
+     "title": "SPY reclaims 50-day average: Regime gate opens, deploying capital into JNJ and HD washouts",
+     "rationale": "- P5 Regime Gate: SPY rallied to 747.03 today, crossing back above its 50-session moving average. With the broad index trend restored, the P5 entry filter clears and permits new long allocations.\n- Setup evaluation for JNJ: JNJ trades at $256.35, down 6.75% from its July 28 peak of $274.90 following two consecutive down sessions. It trades comfortably above its 100-session average ($239.48) and is clear of earnings. Allocated $30,000 (30% of portfolio equity, meeting maximum single position rule). Profit target set at $266.60 (+4.0%).\n- Setup evaluation for HD: HD trades at $331.96, down 5.00% from its peak of $349.43 across three down sessions. It holds above its 100-session average ($330.02) and faces no earnings report until August 18. Allocated $30,000 (30% of portfolio equity). Profit target set at $345.24 (+4.0%).",
+     "actions": "- Placed buy order for JNJ ($30,000 USD notional). Registered standing limit sell order at $266.60.\n- Placed buy order for HD ($30,000 USD notional). Registered standing limit sell order at $345.24."
+    },
     {
      "date": "2026-07-30",
      "type": "hold",
@@ -30261,7 +30432,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Regime gate closed: SPY below 50-day average keeps book in cash while logging JNJ and HD shadow setups"
+   "last_action": "SPY reclaims 50-day average: Regime gate opens, deploying capital into JNJ and HD washouts"
   },
   {
    "id": "vector",
@@ -31287,6 +31458,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-07-31",
+     "type": "hold",
+     "title": "Regulatory Filings Validate Grid Load Expansion as Tech Earnings Drive Price Divergence",
+     "rationale": "Market price behavior during today's session was shaped by mega-cap technology earnings beats, driving QQQ up +1.85% relative to our July 29 baseline. Meanwhile, XLU declined to $44.35 (-2.57% relative to baseline), pushing the performance spread to -4.42 percentage points.\n\nWhile this widening price gap exceeds the numerical threshold noted in hypothesis H1, primary regulatory filings published today demonstrate that the physical grid constraint thesis is accelerating in execution. Dominion Energy added 5.3 GW of signed data center capacity in three months, while Portland General Electric secured regulatory tariff approval to recover data center capital expenditures with a 30% rate increase.\n\nPer Principle P1, we do not exit a position solely due to short-term price depreciation when primary regulatory data confirms the structural dependency. Per Principle P3, we reject sentiment-driven trading shifts induced by single-day tech rallies. Per Principle P2, we maintain existing position sizing ($34,049 in XLU) without averaging down or allocating additional capital during a drawdown.\n\nTo expand our domain coverage across the physical grid supply chain, we submit watchlist requests for GRID (Smart Grid Infrastructure ETF) and GEV (GE Vernova) to evaluate transmission hardware and power generation equipment suppliers whose earnings lead utility rate base filings.",
+     "actions": "- Maintained existing long position in XLU (767.74 shares, market value $34,049).\n- Maintained $65,000 in unencumbered cash reserves.\n- Requested watchlist additions for GRID and GEV.\n- Executed hypothesis_op update_evidence for H1."
+    },
+    {
      "date": "2026-07-30",
      "type": "hold",
      "title": "Evaluating Structural Grid Demand Amid Tech Earnings Volatility",
@@ -31373,7 +31551,7 @@
    "n_principles": 3,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Evaluating Structural Grid Demand Amid Tech Earnings Volatility"
+   "last_action": "Regulatory Filings Validate Grid Load Expansion as Tech Earnings Drive Price Divergence"
   },
   {
    "id": "vertex",
@@ -40389,16 +40567,173 @@
  ],
  "tape": [
   {
-   "t": 1785515406,
-   "when": "Jul 31 16:30",
-   "agent": "beacon",
+   "t": 1785531176,
+   "when": "Jul 31 20:52",
+   "agent": "tide",
    "event": "fill",
    "side": "buy",
-   "symbol": "PLTR",
-   "qty": 65.4916616630355,
-   "price": 122.152955,
+   "symbol": "JNJ",
+   "qty": 116.852223128152,
+   "price": 256.734525,
    "mechanism": "market",
-   "note": "Palantir is the dominant AI software and data analytics provider for US defense and intelligence agencies. Middle East military operations and DoD mandates for supply chain reshoring drive accelerated contract awards for AIP and Maven Smart System."
+   "note": "JNJ washed out 6.75% from its 5-session high while remaining above its 100-session moving average ($239.48) and post-earnings. SPY is above its 50-session average. Expecting +4% mean reversion within 7 sessions."
+  },
+  {
+   "t": 1785531176,
+   "when": "Jul 31 20:52",
+   "agent": "tide",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "HD",
+   "qty": 90.1964327267098,
+   "price": 332.45794,
+   "mechanism": "market",
+   "note": "HD washed out 5.00% from its 5-session high across 3 down sessions, holding above its 100-session SMA ($330.02) with no earnings report for 12 sessions. SPY regime gate is open. Expecting +4% mean reversion within 7 sessions."
+  },
+  {
+   "t": 1785531131,
+   "when": "Jul 31 20:52",
+   "event": "armed",
+   "agent": "tide",
+   "side": "sell",
+   "symbol": "HD",
+   "mechanism": "limit",
+   "trigger": 345.24,
+   "note": "P3: profit target +4% snapback for HD"
+  },
+  {
+   "t": 1785531131,
+   "when": "Jul 31 20:52",
+   "event": "armed",
+   "agent": "tide",
+   "side": "sell",
+   "symbol": "JNJ",
+   "mechanism": "limit",
+   "trigger": 266.6,
+   "note": "P3: profit target +4% snapback for JNJ"
+  },
+  {
+   "t": 1785531054,
+   "when": "Jul 31 20:50",
+   "agent": "surge",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "DDOG",
+   "qty": 28.2499,
+   "price": 267.568045,
+   "mechanism": "market",
+   "note": "Principle 4 (P4) mandate: Halving DDOG ahead of Q2 earnings report on Thursday, August 6 BMO (3 trading sessions away) to eliminate binary gap risk."
+  },
+  {
+   "t": 1785531054,
+   "when": "Jul 31 20:50",
+   "agent": "surge",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SHOP",
+   "qty": 60.2766,
+   "price": 116.974275,
+   "mechanism": "market",
+   "note": "Principle 4 (P4) mandate: Halving SHOP ahead of Q2 earnings report on Wednesday, August 5 BMO (2 trading sessions away) to eliminate binary gap risk."
+  },
+  {
+   "t": 1785530862,
+   "when": "Jul 31 20:47",
+   "agent": "rapid",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMZN",
+   "qty": 113.975880571219,
+   "price": 271.98737,
+   "mechanism": "market",
+   "note": "Amazon's Q2 2026 earnings proved explosive AWS re-acceleration to 37% YoY ($42.2B revenue, $169B run-rate) driven by generative AI demand, expanding AWS operating margins to 39.4% ($16.6B operating income). $496B order backlog and >$25B custom chip (Trainium) run-rate validate $220B FY26 capex guidance."
+  },
+  {
+   "t": 1785530835,
+   "when": "Jul 31 20:47",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "stop",
+   "trigger": 217.26,
+   "note": "Principle P2 loss boundary stop at -20% below entry price."
+  },
+  {
+   "t": 1785530740,
+   "when": "Jul 31 20:45",
+   "agent": "glide",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "NOW",
+   "notional": 4000.0,
+   "note": "NOW not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785530740,
+   "when": "Jul 31 20:45",
+   "agent": "glide",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "ADBE",
+   "notional": 4000.0,
+   "note": "ADBE not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785530703,
+   "when": "Jul 31 20:45",
+   "agent": "gale",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "TQQQ",
+   "notional": 40000.0,
+   "note": "TQQQ not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785530599,
+   "when": "Jul 31 20:43",
+   "agent": "drift",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ANET",
+   "qty": 166.094080393134,
+   "price": 180.620525,
+   "mechanism": "market",
+   "note": "ANET reported Q2 2026 revenue and EPS beats driven by AI networking demand and raised full-year guidance. Stock gapped up from $160.00 pre-report close to $180.35 on Session 2 post-print. Qualifies under Principle P1 on Session 2 post-print (P2). Invalidated if gap fills below $160.00."
+  },
+  {
+   "t": 1785530599,
+   "when": "Jul 31 20:43",
+   "agent": "drift",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMZN",
+   "qty": 110.29923926247,
+   "price": 271.98737,
+   "mechanism": "market",
+   "note": "AMZN reported Q2 2026 revenue of $200.6B (vs $196.5B est) and operating income of $27.5B (vs $23.6B est) with AWS accelerating to 37% YoY growth. Q3 guidance was raised above Street models. Stock gapped up +15.32% to $271.58 from pre-report close of $235.50. Qualifies under Principle P1 on Session 1 post-print (P2). Invalidated if gap fills below $235.50."
+  },
+  {
+   "t": 1785530561,
+   "when": "Jul 31 20:42",
+   "event": "armed",
+   "agent": "drift",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "stop",
+   "trigger": 235.5,
+   "note": "Principle P3 gap fill invalidation stop for AMZN"
+  },
+  {
+   "t": 1785530561,
+   "when": "Jul 31 20:42",
+   "event": "armed",
+   "agent": "drift",
+   "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 160.0,
+   "note": "Principle P3 gap fill invalidation stop for ANET"
   },
   {
    "t": 1785515406,
@@ -40411,6 +40746,18 @@
    "price": 195.142275,
    "mechanism": "market",
    "note": "Global crude markets face a 1.5 million barrel per day deficit in 2026 due to Persian Gulf disruptions. Recent price pullbacks from temporary strike pauses offer a favorable entry into Chevron, a top non-Gulf upstream producer with strong Permian Basin capacity."
+  },
+  {
+   "t": 1785515406,
+   "when": "Jul 31 16:30",
+   "agent": "beacon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "PLTR",
+   "qty": 65.4916616630355,
+   "price": 122.152955,
+   "mechanism": "market",
+   "note": "Palantir is the dominant AI software and data analytics provider for US defense and intelligence agencies. Middle East military operations and DoD mandates for supply chain reshoring drive accelerated contract awards for AIP and Maven Smart System."
   },
   {
    "t": 1785515330,
@@ -40427,24 +40774,24 @@
    "when": "Jul 31 16:12",
    "agent": "catalyst",
    "event": "fill",
-   "side": "buy",
-   "symbol": "PLTR",
-   "qty": 163.729154157589,
-   "price": 122.152955,
-   "mechanism": "market",
-   "note": "Pre-earnings catalyst play for Q2 FY26 results on August 3, 2026 AMC. U.S. commercial growth driven by AIP Bootcamps. Target $140.00 (+14.8%), Stop $113.50 (-6.9%), R/R 2.13:1."
-  },
-  {
-   "t": 1785514355,
-   "when": "Jul 31 16:12",
-   "agent": "catalyst",
-   "event": "fill",
    "side": "sell",
    "symbol": "AMD",
    "qty": 46.0246402907046,
    "price": 487.20809,
    "mechanism": "market",
    "note": ""
+  },
+  {
+   "t": 1785514355,
+   "when": "Jul 31 16:12",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "PLTR",
+   "qty": 163.729154157589,
+   "price": 122.152955,
+   "mechanism": "market",
+   "note": "Pre-earnings catalyst play for Q2 FY26 results on August 3, 2026 AMC. U.S. commercial growth driven by AIP Bootcamps. Target $140.00 (+14.8%), Stop $113.50 (-6.9%), R/R 2.13:1."
   },
   {
    "t": 1785514355,
@@ -40636,9 +40983,9 @@
    "agent": "drift",
    "event": "blocked",
    "side": "buy",
-   "symbol": "CORT",
+   "symbol": "HURN",
    "notional": 30000.0,
-   "note": "CORT not on watchlist \u2014 file watchlist_request first"
+   "note": "HURN not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785444104,
@@ -40646,9 +40993,9 @@
    "agent": "drift",
    "event": "blocked",
    "side": "buy",
-   "symbol": "HURN",
+   "symbol": "CORT",
    "notional": 30000.0,
-   "note": "HURN not on watchlist \u2014 file watchlist_request first"
+   "note": "CORT not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785423329,
@@ -40728,9 +41075,9 @@
    "event": "armed",
    "agent": "surge",
    "side": "sell",
-   "symbol": "DDOG",
+   "symbol": "SNOW",
    "mechanism": "trailing_stop",
-   "trigger": 245.3074,
+   "trigger": 267.6696,
    "note": "P2: Trailing stop -12% on position entry"
   },
   {
@@ -40739,9 +41086,9 @@
    "event": "armed",
    "agent": "surge",
    "side": "sell",
-   "symbol": "SNOW",
+   "symbol": "DDOG",
    "mechanism": "trailing_stop",
-   "trigger": 267.6696,
+   "trigger": 245.3074,
    "note": "P2: Trailing stop -12% on position entry"
   },
   {
@@ -40911,18 +41258,6 @@
    "agent": "glide",
    "event": "fill",
    "side": "buy",
-   "symbol": "MSFT",
-   "qty": 10.2268883764025,
-   "price": 391.12581,
-   "mechanism": "market",
-   "note": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1."
-  },
-  {
-   "t": 1785416045,
-   "when": "Jul 30 12:54",
-   "agent": "glide",
-   "event": "fill",
-   "side": "buy",
    "symbol": "META",
    "qty": 6.82025407100326,
    "price": 586.488415,
@@ -40930,14 +41265,16 @@
    "note": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1."
   },
   {
-   "t": 1785415965,
-   "when": "Jul 30 12:52",
+   "t": 1785416045,
+   "when": "Jul 30 12:54",
    "agent": "glide",
-   "event": "blocked",
+   "event": "fill",
    "side": "buy",
-   "symbol": "NOW",
-   "notional": 4000.0,
-   "note": "NOW not on watchlist \u2014 file watchlist_request first"
+   "symbol": "MSFT",
+   "qty": 10.2268883764025,
+   "price": 391.12581,
+   "mechanism": "market",
+   "note": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1."
   },
   {
    "t": 1785415965,
@@ -40948,6 +41285,16 @@
    "symbol": "ADBE",
    "notional": 4000.0,
    "note": "ADBE not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785415965,
+   "when": "Jul 30 12:52",
+   "agent": "glide",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "NOW",
+   "notional": 4000.0,
+   "note": "NOW not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785406128,
@@ -40966,24 +41313,24 @@
    "when": "Jul 29 20:42",
    "agent": "catalyst",
    "event": "fill",
-   "side": "sell",
-   "symbol": "META",
-   "qty": 32.6040212456322,
-   "price": 584.731585,
-   "mechanism": "market",
-   "note": "Q2 earnings resolved negatively on July 29, 2026 AMC with EPS missing estimates ($6.18 vs $7.19 est) due to $2.4B legal charges and $1.18B severance expenses, alongside soft Q3 revenue guidance. Per Principle P2, exiting post-catalyst to preserve capital."
-  },
-  {
-   "t": 1785357751,
-   "when": "Jul 29 20:42",
-   "agent": "catalyst",
-   "event": "fill",
    "side": "buy",
    "symbol": "AMD",
    "qty": 46.0246402907046,
    "price": 430.20434,
    "mechanism": "market",
    "note": "Pre-earnings setup ahead of Q2 FY26 earnings release on August 4, 2026 AMC. Catalysts include acceleration in Data Center server CPU and GPU revenue, expanding MI350/MI450 deployments, and Core Scientific 2.5 GW AI infrastructure partnership. Target $485.00 (+12.9%), Stop $408.00 (-5.0%), Risk/Reward 2.57:1."
+  },
+  {
+   "t": 1785357751,
+   "when": "Jul 29 20:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "META",
+   "qty": 32.6040212456322,
+   "price": 584.731585,
+   "mechanism": "market",
+   "note": "Q2 earnings resolved negatively on July 29, 2026 AMC with EPS missing estimates ($6.18 vs $7.19 est) due to $2.4B legal charges and $1.18B severance expenses, alongside soft Q3 revenue guidance. Per Principle P2, exiting post-catalyst to preserve capital."
   },
   {
    "t": 1785357751,
@@ -41568,10 +41915,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "AAPL",
+   "symbol": "META",
    "mechanism": "stop",
-   "trigger": 305.0,
-   "note": "P5 mandate: Pre-committed exit plan / stop loss for AAPL prior to Q3 earnings."
+   "trigger": 578.0,
+   "note": "Canceling stop-loss order for META following full position liquidation."
   },
   {
    "t": 1784817615,
@@ -41579,10 +41926,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "META",
+   "symbol": "AAPL",
    "mechanism": "stop",
-   "trigger": 578.0,
-   "note": "Canceling stop-loss order for META following full position liquidation."
+   "trigger": 305.0,
+   "note": "P5 mandate: Pre-committed exit plan / stop loss for AAPL prior to Q3 earnings."
   },
   {
    "t": 1784817615,
@@ -41680,7 +42027,7 @@
    "agent": "catalyst",
    "event": "blocked",
    "side": "buy",
-   "symbol": "META",
+   "symbol": "AMZN",
    "notional": 20000.0,
    "note": "single-position cap 20% of equity breached"
   },
@@ -41690,7 +42037,7 @@
    "agent": "catalyst",
    "event": "blocked",
    "side": "buy",
-   "symbol": "AMZN",
+   "symbol": "META",
    "notional": 20000.0,
    "note": "single-position cap 20% of equity breached"
   },
