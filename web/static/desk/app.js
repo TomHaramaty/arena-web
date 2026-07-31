@@ -225,11 +225,36 @@ function renderAuthChip() {
 }
 
 /* ---------------- which traders are this principal's ---------------- */
+/** Firestore is offline-first: with the backend unreachable, getDocs does not
+    reject, it retries forever. Unbounded, that leaves the desk sitting on a
+    blank status line with no way to know anything is wrong. Bound it — a
+    principal is owed an answer, and "we cannot reach it" is one. */
+const LOOKUP_TIMEOUT_MS = 15000;
+
+function withTimeout(p, ms, what) {
+  let timer;
+  return Promise.race([
+    p.finally(() => clearTimeout(timer)),
+    new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(what + " timed out")), ms); }),
+  ]);
+}
+
+/** Throws if the lookup fails. It used to answer [] — which the caller could
+    not tell from "this principal has never chartered a trader", and so told
+    them exactly that. A principal wrote in to say his trader had disappeared;
+    what had actually happened is that this question failed and the page
+    answered it anyway. A failed question is not an answer. */
 async function loadApplications(uid) {
-  try {
-    const snaps = await getDocs(query(collection(db, "applications"), where("uid", "==", uid)));
-    return snaps.docs.map((d) => ({ id: d.id, data: d.data() }));
-  } catch (e) { console.warn("applications:", e); return []; }
+  const snaps = await getDocs(query(collection(db, "applications"), where("uid", "==", uid)));
+  // Firestore answers from its local cache when it cannot reach the backend, and
+  // an empty cache answers "nothing" indistinguishably from the server saying
+  // "nothing" — which is how a principal with a trader on the floor was told he
+  // had never chartered one. Cached AND empty is not an answer. (Cached with
+  // documents is fine: that is the offline resilience working.)
+  if (snaps.empty && snaps.metadata.fromCache) {
+    throw new Error("offline: an empty local cache is not an answer");
+  }
+  return snaps.docs.map((d) => ({ id: d.id, data: d.data() }));
 }
 
 /* ---------------- the private thread ---------------- */
@@ -698,6 +723,22 @@ function bellSteps(name) {
   ];
 }
 
+/** The desk could not be reached. Distinct from having no trader, and it must
+    never read like it: whatever this principal has is on the floor, trading,
+    whether or not this page can currently see it. */
+function renderUnreachable() {
+  $("#statusface").innerHTML = "";
+  $("#statusrun").innerHTML = "";
+  $("#statusbell").textContent = "";
+  $("#statusword").textContent = "Can't reach your desk";
+  $("#statusdetail").innerHTML =
+    "Something went wrong loading your desk just now. Your trader is unaffected — "
+    + "it's on the floor, trading as usual. Try again in a moment.";
+  $("#statuslinks").innerHTML =
+    `<a href="" onclick="location.reload();return false;">Try again →</a>`
+    + ` &middot; <a href="/floor/">Go to the floor →</a>`;
+}
+
 function renderWait(appDoc) {
   const d = appDoc ? appDoc.data : null;
   const packet = (d && d.packet) || {};
@@ -832,7 +873,17 @@ async function openDesk() {
 /** Route the signed-in principal: the desk if anything is seated, else the
     waiting room (or the invitation, if they have never sat an interview). */
 async function openPrincipal() {
-  state.apps = await loadApplications(state.user.uid);
+  try {
+    state.apps = await withTimeout(
+      loadApplications(state.user.uid), LOOKUP_TIMEOUT_MS, "the desk lookup");
+  } catch (e) {
+    // Say what is true — the lookup failed — and leave the stored hint alone,
+    // so the landing page goes on treating them as the principal they are.
+    console.warn("applications:", e);
+    renderUnreachable();
+    show("wait");
+    return;
+  }
   state.traders = state.apps
     .filter((a) => a.data.status === "seated" && a.data.agent_id && agentOf(a.data.agent_id))
     .map((a) => ({ id: a.data.agent_id, app: a }));

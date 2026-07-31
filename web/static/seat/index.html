@@ -88,6 +88,17 @@
         <button class="primary" id="btn-begin">Begin the interview</button>
       </div>
 
+      <!-- Shown when we cannot tell whether this principal already has a
+           trader. Never invite them to sit an interview on a question we
+           failed to ask: they may already own one. -->
+      <div id="lookupfailed" hidden>
+        <p class="signedin">Signed in as <b id="whoami2"></b>.</p>
+        <p class="micro">We couldn't check your account just now. If you already
+          have a trader it's on the floor and unaffected — this is only this page
+          failing to load.</p>
+        <button class="primary" id="btn-retry">Try again</button>
+      </div>
+
       <p class="micro">One seat per principal. <b>Simulated money, real prices, real answers.</b></p>
 
       <!-- the contract -->

@@ -329,14 +329,35 @@ function renderAuthChip() {
 }
 
 /* ---------------- application lookup / status ---------------- */
+/** Firestore is offline-first: unreachable, getDocs retries forever rather than
+    rejecting, which would leave a returning principal staring at a landing page
+    that never resolves. Bounded below. */
+const LOOKUP_TIMEOUT_MS = 15000;
+
+function withTimeout(p, ms, what) {
+  let timer;
+  return Promise.race([
+    p.finally(() => clearTimeout(timer)),
+    new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(what + " timed out")), ms); }),
+  ]);
+}
+
+/** Throws if the lookup fails; null means genuinely nothing on file. It used to
+    answer null either way, and null is what sends a principal into the
+    invitation — so a returning principal whose lookup happened to fail was
+    offered a fresh fifteen-minute interview for a trader they already own. */
 async function findApplication(uid) {
-  try {
-    const q = query(collection(db, "applications"), where("uid", "==", uid), limit(1));
-    const snaps = await getDocs(q);
-    if (snaps.empty) return null;
-    const d = snaps.docs[0];
-    return { id: d.id, data: d.data() };
-  } catch (e) { console.warn("application lookup:", e); return null; }
+  const q = query(collection(db, "applications"), where("uid", "==", uid), limit(1));
+  const snaps = await getDocs(q);
+  // Cached AND empty means the backend was unreachable and the local cache had
+  // nothing — not that this principal has nothing on file. Sending them into a
+  // fresh interview on that would be inventing an answer.
+  if (snaps.empty && snaps.metadata.fromCache) {
+    throw new Error("offline: an empty local cache is not an answer");
+  }
+  if (snaps.empty) return null;
+  const d = snaps.docs[0];
+  return { id: d.id, data: d.data() };
 }
 
 function renderStatus(appData) {
@@ -1636,7 +1657,22 @@ async function boot() {
       return;
     }
     await ensureUserDoc(user);
-    const existing = await findApplication(user.uid);
+    let existing = null;
+    try {
+      existing = await withTimeout(
+        findApplication(user.uid), LOOKUP_TIMEOUT_MS, "the application lookup");
+    } catch (e) {
+      // Do not fall through to the invitation: we do not know that they have no
+      // trader, only that we could not find out.
+      console.warn("application lookup:", e);
+      $("#signinbox").hidden = true;
+      $("#beginbox").hidden = true;
+      $("#whoami2").textContent = user.displayName || user.email || "signed in";
+      $("#lookupfailed").hidden = false;
+      $("#btn-retry").onclick = () => location.reload();
+      show("landing");
+      return;
+    }
     if (existing) {
       state.appDoc = existing;
       renderStatus(existing.data);
