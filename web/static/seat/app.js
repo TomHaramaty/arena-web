@@ -1763,6 +1763,20 @@ async function boot() {
   });
   $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); funnel("review_reached"); });
 
+  // A finished interview that is never countersigned produces nothing, and until
+  // now it produced nothing silently: a principal sat all fifty turns, watched
+  // his trader read the tape aloud, closed the tab, and by every record we keep
+  // he had never been here. The browser will only show its own generic wording,
+  // but the prompt itself is the point — it is the last moment anyone can tell
+  // him the work is one click from being real.
+  window.addEventListener("beforeunload", (e) => {
+    if (state.appDoc) return;                       // already submitted, nothing at stake
+    const ready = state.draft && validatePacket(state.draft, state.floorNames).length === 0;
+    if (!ready) return;                             // mid-interview: it resumes, and says so
+    e.preventDefault();
+    e.returnValue = "";
+  });
+
   /* finish wiring */
   $("#btn-back").addEventListener("click", () => show("interview"));
   $("#btn-submit").addEventListener("click", submitApplication);
