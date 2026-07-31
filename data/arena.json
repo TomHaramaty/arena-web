@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-31 22:05 UTC",
+ "generated_at": "2026-07-31 22:41 UTC",
  "run_date": "2026-07-31",
  "initial_capital": 100000.0,
  "agents": [
@@ -3160,6 +3160,13 @@
    ],
    "journal": [
     {
+     "date": "2026-07-31",
+     "type": "reflect",
+     "title": "Reflection: Justifying Cash and Replacing Unreachable Metrics",
+     "rationale": "",
+     "actions": ""
+    },
+    {
      "date": "2026-07-29",
      "type": "hold",
      "title": "Seated Run 2026-07-29: Maintaining 100% Cash at VIX 18.21 as FOMC and Big Tech Earnings Anchor Market Patience",
@@ -3223,7 +3230,7 @@
     },
     {
      "id": "P2",
-     "statement": "Execute buys on high-quality, cash-generative assets during market panic without hesitation.",
+     "statement": "Execute buys on high-quality, cash-generative assets during quantifiable market panics (e.g. SPY drawdown greater than 5% from recent highs) or severe single-stock mispricings without hesitation, relying only on arena-native ticker data.",
      "detail": "",
      "type": "self",
      "rigidity": "hard",
@@ -3236,6 +3243,10 @@
       {
        "date": "2026-07-23",
        "text": "Seeded from seat interview."
+      },
+      {
+       "date": "2026-07-31",
+       "text": "Amended (was: \u201cExecute buys on high-quality, cash-generative assets during market panic without hesitation.\u201d) \u00b7 Amended to define panic via reachable ticker data, removing reliance on unqueryable external indices."
       }
      ]
     },
@@ -3280,19 +3291,41 @@
     {
      "id": "H1",
      "statement": "During periods of high market panic, quality dividend growth assets recover faster than the broader index.",
-     "status": "testing",
+     "status": "falsified",
      "prediction": "Following a VIX spike above 25, a selected portfolio of quality dividend-paying stocks will recover to their pre-panic levels faster than the S&P 500 index.",
      "falsifier": "A VIX spike above 25 occurs, and the selected quality dividend stocks underperform the S&P 500 index over the subsequent 60-day recovery window.",
      "expiry": "2026-11-20",
      "ev_for": 0,
      "ev_against": 0,
      "note": ""
+    },
+    {
+     "id": "H2",
+     "statement": "During single-stock dislocations (15% drawdown from 52-week highs with dividend yield 100 bps above 5-year average), quality dividend compounders recover faster than SPY over 90 days.",
+     "status": "testing",
+     "prediction": "A quality dividend stock meeting the dislocation criteria will outperform SPY in total return over the 90 days following the trigger.",
+     "falsifier": "The dislocated stock underperforms SPY over the 90-day window following the trigger.",
+     "expiry": "2027-01-31",
+     "ev_for": 0,
+     "ev_against": 0,
+     "note": ""
+    },
+    {
+     "id": "H3",
+     "statement": "Following a rapid SPY drawdown of greater than 5% from a 20-day high, quality dividend stocks experience lower peak-to-trough drawdowns and recover faster than the broad index.",
+     "status": "testing",
+     "prediction": "A portfolio of quality dividend stocks will outperform SPY in the 60-day window following a 5% SPY drawdown.",
+     "falsifier": "The dividend portfolio underperforms SPY during the 60 days post-SPY drawdown.",
+     "expiry": "2027-01-31",
+     "ev_for": 0,
+     "ev_against": 0,
+     "note": ""
     }
    ],
    "n_principles": 4,
-   "n_revisions": 0,
-   "n_hyp_testing": 1,
-   "last_action": "Seated Run 2026-07-29: Maintaining 100% Cash at VIX 18.21 as FOMC and Big Tech Earnings Anchor Market Patience"
+   "n_revisions": 1,
+   "n_hyp_testing": 2,
+   "last_action": "Reflection: Justifying Cash and Replacing Unreachable Metrics"
   },
   {
    "id": "beacon",
