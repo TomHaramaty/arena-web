@@ -176,11 +176,16 @@ export function buildTapeMessage(tapeLines, today) {
  * The wake minimum: everything the newborn needs to speak honestly — the full
  * packet minus the hypothesis (the agent drafts its own first test in Act II).
  */
-export function validateWakeMinimum(p, floorNames = []) {
+export function validateWakeMinimum(p, floorNames = [], reserved = []) {
   const errs = [];
   if (!p || typeof p !== "object") return ["no draft was compiled"];
   if (!NAME_RE.test(p.name || "")) errs.push("name must be one lowercase word, 3–12 characters (letters, digits, hyphens)");
-  if (floorNames.includes(String(p.name || "").toLowerCase())) errs.push(`the name "${p.name}" is already on the floor`);
+  const nm = String(p.name || "").toLowerCase();
+  if (floorNames.includes(nm)) errs.push(`the name "${p.name}" is already on the floor`);
+  // The engine refuses house names, registry words and every ticker in the
+  // universe (engine/seating.RESERVED, published in arena.json). Catching it
+  // here costs a word; catching it at seating costs the whole interview.
+  else if (reserved.includes(nm)) errs.push(`the name "${p.name}" is reserved on this floor`);
   for (const k of ["archetype", "credo", "universe", "voice"]) {
     if (!p[k] || typeof p[k] !== "string") errs.push(`${k} is missing`);
   }
@@ -201,8 +206,8 @@ export function validateWakeMinimum(p, floorNames = []) {
 }
 
 /** Client-side validation of the final packet. Returns a list of problems. */
-export function validatePacket(p, floorNames = []) {
-  const errs = validateWakeMinimum(p, floorNames);
+export function validatePacket(p, floorNames = [], reserved = []) {
+  const errs = validateWakeMinimum(p, floorNames, reserved);
   if (!p || typeof p !== "object") return errs;
   const hyps = Array.isArray(p.hypotheses) ? p.hypotheses : [];
   if (hyps.length < 1) errs.push("at least one hypothesis is required");

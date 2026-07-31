@@ -336,6 +336,24 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visib
 .firstread .label { display: block; margin-bottom: 6px; font-family: system-ui, sans-serif; }
 .statusbell { font-family: var(--mono); font-size: 13px; color: var(--ink); margin-top: 10px; }
 .statuslinks { margin-top: 18px; font-size: 14px; }
+/* a charter the registry refused: what it said, and the way back in */
+#statusfix { margin-top: 16px; }
+.rejreasons { padding: 12px 14px; background: var(--sunk, rgba(0,0,0,0.03)); border-left: 2px solid var(--grid); }
+.rejreasons .label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.rejreasons ul { margin: 0; padding-left: 18px; }
+.rejreasons li { font-size: 14px; line-height: 1.6; color: var(--ink); }
+.renamerow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.renamerow input {
+  /* 16px minimum: any smaller and iOS Safari zooms the viewport on focus */
+  flex: 1 1 200px; min-width: 0; padding: 9px 11px; font: inherit; font-size: 16px;
+  color: var(--ink); background: var(--page); border: 1px solid var(--border);
+  border-radius: 8px; min-height: 44px;
+}
+.renamerow input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.renamerow button { min-height: 44px; }
+.renamenote { font-size: 13px; color: var(--muted); margin: 8px 0 0; line-height: 1.55; }
+.renamenote.bad { color: var(--bad, #a4342a); }
+@media (max-width: 560px) { .renamerow input, .renamerow button { flex-basis: 100%; } }
 /* the first-session launcher and its live stages */
 #statusrun { margin-top: 16px; }
 #statusrun .bellnote { font-size: 13px; color: var(--muted); margin: 8px 0 0; }

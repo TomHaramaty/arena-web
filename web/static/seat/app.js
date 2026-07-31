@@ -106,6 +106,7 @@ const state = {
   user: null,
   floor: null,          // arena.json (or null if unreachable)
   floorNames: [],
+  reserved: [],
   model: null,
   fallback: null,
   undelivered: null,    // a PRINCIPAL bubble awaiting redelivery
@@ -174,9 +175,12 @@ async function loadFloor() {
     if (!r.ok) throw new Error(r.status);
     state.floor = await r.json();
     state.floorNames = state.floor.agents.map((a) => a.id.toLowerCase());
+    // names the engine will refuse whatever else the packet says
+    state.reserved = Array.isArray(state.floor.reserved) ? state.floor.reserved : [];
   } catch {
     state.floor = null;
     state.floorNames = [];
+    state.reserved = [];
   }
 }
 function rosterLines() {
@@ -347,7 +351,7 @@ function withTimeout(p, ms, what) {
     invitation — so a returning principal whose lookup happened to fail was
     offered a fresh fifteen-minute interview for a trader they already own. */
 async function findApplication(uid) {
-  const q = query(collection(db, "applications"), where("uid", "==", uid), limit(1));
+  const q = query(collection(db, "applications"), where("uid", "==", uid), limit(20));
   const snaps = await getDocs(q);
   // Cached AND empty means the backend was unreachable and the local cache had
   // nothing — not that this principal has nothing on file. Sending them into a
@@ -356,13 +360,28 @@ async function findApplication(uid) {
     throw new Error("offline: an empty local cache is not an answer");
   }
   if (snaps.empty) return null;
-  const d = snaps.docs[0];
-  return { id: d.id, data: d.data() };
+  // A principal can hold more than one: a charter the registry refused, and
+  // then the same charter resubmitted under another name. This used to take
+  // whichever Firestore answered with first, so a returning principal could
+  // be shown a refusal they had already recovered from. A seat that exists
+  // outranks everything; otherwise the newest application is the live one.
+  const rows = snaps.docs.map((d) => ({ id: d.id, data: d.data() }));
+  const when = (r) => (r.data.createdAt && typeof r.data.createdAt.toMillis === "function"
+    ? r.data.createdAt.toMillis() : 0);
+  rows.sort((a, b) => when(b) - when(a));
+  return rows.find((r) => r.data.status === "seated") || rows[0];
 }
 
 function renderStatus(appData) {
   const name = (appData.packet && appData.packet.name) || "your agent";
   const seated = appData.status === "seated";
+  // A refused charter used to render as "Application received … the charter is
+  // on the register", which was false, and the reasons the engine wrote were
+  // shown to nobody. The seat clears the interview the moment an application
+  // is written, so this screen holds the only copy of the work: it says what
+  // happened, in the registry's own words, and gives the charter back.
+  if (appData.status === "rejected") return renderRejected(appData, name);
+  $("#statusfix").hidden = true;
   // the landing and the floor read this to stop inviting a principal who
   // already has a trader to create another one
   if (state.user) {
@@ -406,6 +425,99 @@ function renderStatus(appData) {
     $("#statuslinks").innerHTML = `<a href="/floor/">Watch the floor while you wait →</a>`;
   }
   renderBellUI(appData, name);
+}
+
+/* ---------------- a charter the registry refused ----------------
+
+   Losing a race for a word must cost the word, not fifteen minutes of
+   somebody's thinking. The packet is intact on the application doc, so when
+   the ONLY thing wrong is the name (the engine says so in `blocked`, rather
+   than this page guessing from prose) the principal picks another name and
+   the same charter goes back in, unchanged. The refused application is left
+   exactly as it is: a new one is written, and the record keeps both.
+
+   Anything else is not something this page can fix, so it says so plainly
+   instead of offering a button that would fail again. */
+function renderRejected(appData, name) {
+  const reasons = Array.isArray(appData.reasons) ? appData.reasons : [];
+  const renameable = Array.isArray(appData.blocked) && appData.blocked.includes("name")
+    && !!(appData.packet && appData.packet.name);
+  $("#statusdot").classList.remove("done");
+  $("#statusword").textContent = renameable ? "The name is taken" : "Not seated";
+  $("#statusdetail").innerHTML = renameable
+    ? `The registry could not enter <b>${esc(name)}</b> under that name. Nothing else about the charter is in question, and every word of it is still here.`
+    : `The registry could not enter <b>${esc(name)}</b> as it stands.`;
+  $("#statusbell").textContent = "";
+  $("#statuslinks").innerHTML = renameable ? ""
+    : `<a href="/floor/">See the floor →</a>`;
+
+  const said = reasons.length
+    ? `<div class="rejreasons"><span class="label">The registrar wrote</span><ul>${
+        reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>`
+    : "";
+  const box = $("#statusfix");
+  box.hidden = false;
+  box.innerHTML = said + (renameable
+    ? `<div class="renamerow">
+         <input type="text" id="newname" maxlength="12" autocapitalize="off" autocorrect="off"
+                spellcheck="false" placeholder="another name" aria-label="Another name for your trader">
+         <button type="button" class="primary" id="btn-rename" disabled>Countersign again</button>
+       </div>
+       <p class="renamenote" id="renamenote">One lowercase word, three to twelve characters. Everything else stays exactly as you wrote it.</p>`
+    : `<p class="renamenote">Write to us at <a href="mailto:hello@conviction-league.com">hello@conviction-league.com</a> and we will sort it out. Your charter is safe; nothing about it is lost.</p>`);
+  if (renameable) wireRename(appData);
+}
+
+/** The rename control: judged against the same three rules the engine uses,
+ *  so the answer here and the answer at seating cannot disagree. */
+function wireRename(appData) {
+  const input = $("#newname");
+  const btn = $("#btn-rename");
+  const note = $("#renamenote");
+  const taken = (n) => state.floorNames.includes(n) || state.reserved.includes(n);
+  const check = () => {
+    const n = input.value.trim().toLowerCase();
+    let why = "";
+    if (!n) why = "";
+    else if (!NAME_RE.test(n)) why = "One lowercase word, three to twelve characters: letters, digits or hyphens, beginning with a letter.";
+    else if (n === String(appData.packet.name || "").toLowerCase()) why = "That is the name the registry just refused.";
+    else if (taken(n)) why = `"${n}" is already spoken for on this floor.`;
+    note.textContent = why || (n ? `${n} it is. Everything else stays exactly as you wrote it.`
+                                 : "One lowercase word, three to twelve characters. Everything else stays exactly as you wrote it.");
+    note.classList.toggle("bad", !!why);
+    btn.disabled = !n || !!why;
+  };
+  input.addEventListener("input", check);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !btn.disabled) resubmitUnder(appData, input.value); });
+  btn.addEventListener("click", () => resubmitUnder(appData, input.value));
+  check();
+}
+
+/** The same charter, one word different. */
+async function resubmitUnder(appData, raw) {
+  const btn = $("#btn-rename");
+  const note = $("#renamenote");
+  const name = String(raw || "").trim().toLowerCase();
+  btn.disabled = true;
+  btn.textContent = "Countersigning…";
+  try {
+    const packet = { ...appData.packet, name };
+    const docData = {
+      uid: state.user.uid, status: "submitted", packet, createdAt: serverTimestamp(),
+      ...(state.user.email ? { email: state.user.email } : {}),
+    };
+    const ref = await addDoc(collection(db, "applications"), docData);
+    funnel("resubmitted_after_rename");
+    state.appDoc = { id: ref.id, data: docData };
+    renderStatus(docData);
+    watchApplication(ref.id);
+  } catch (e) {
+    console.error(e);
+    btn.disabled = false;
+    btn.textContent = "Countersign again";
+    note.textContent = `That did not go through: ${e.message || e}. Nothing is lost, try again.`;
+    note.classList.add("bad");
+  }
 }
 
 /* "Run the first session": the principal starts the real first run and
@@ -1200,7 +1312,7 @@ async function sendTurn(userRaw) {
     // dropped packet; everywhere else the honest line appears and the next
     // turn carries the repair note.
     if (!inAgentPhase && !state.handoffSeen && !state.autoRepaired &&
-        validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+        validateWakeMinimum(state.draft, state.floorNames, state.reserved).length === 0) {
       state.autoRepaired = true;
       state.needsRepair = false;
       saveInterview();
@@ -1259,7 +1371,7 @@ async function sendTurn(userRaw) {
   // THE HANDOFF: the Registrar closed the file. The client is the authority —
   // the ceremony runs only if the wake minimum actually stands in the draft.
   if (side && side.handoff && !inAgentPhase && !state.handoffSeen && !state.done) {
-    if (validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+    if (validateWakeMinimum(state.draft, state.floorNames, state.reserved).length === 0) {
       state.handoffSeen = true;
       funnel("handoff_seen");
       saveInterview();
@@ -1274,7 +1386,7 @@ async function sendTurn(userRaw) {
   // if the wake minimum stands for three turns and the Registrar never closes,
   // ask for the handoff by machine note rather than stranding Act I
   if (!agentPhase() && !state.handoffSeen && !state.done) {
-    if (validateWakeMinimum(state.draft, state.floorNames).length === 0) {
+    if (validateWakeMinimum(state.draft, state.floorNames, state.reserved).length === 0) {
       state.wakeReadyTurns++;
       if (state.wakeReadyTurns >= 3 && !state.machineNote) {
         state.wakeReadyTurns = 0;
@@ -1304,7 +1416,7 @@ function updateFinishUI() {
   const bar = $("#finishbar");
   const note = bar.querySelector(".note");
   const btn = $("#btn-review");
-  const errs = state.draft ? validatePacket(state.draft, state.floorNames) : ["no draft was compiled"];
+  const errs = state.draft ? validatePacket(state.draft, state.floorNames, state.reserved) : ["no draft was compiled"];
   const complete = errs.length === 0;
   const name = agentName();
   if (state.done && !complete) {
@@ -1553,7 +1665,7 @@ function renderCharter() {
   $("#charterbody").innerHTML = $("#draftbody").innerHTML;
   $("#draftbody").innerHTML = hold;
   addChangeLinks();
-  const errs = validatePacket(d, state.floorNames);
+  const errs = validatePacket(d, state.floorNames, state.reserved);
   const box = $("#charter-errors");
   if (errs.length) {
     box.hidden = false;
@@ -1621,7 +1733,7 @@ function normalizeClassPct(raw) {
 
 async function submitApplication() {
   const d = state.draft || {};
-  const errs = validatePacket(d, state.floorNames);
+  const errs = validatePacket(d, state.floorNames, state.reserved);
   if (errs.length) { renderCharter(); return; }
   funnel("countersigned");
   const privacy = document.querySelector('input[name="privacy"]:checked').value;
@@ -1834,7 +1946,7 @@ async function boot() {
   // him the work is one click from being real.
   window.addEventListener("beforeunload", (e) => {
     if (state.appDoc) return;                       // already submitted, nothing at stake
-    const ready = state.draft && validatePacket(state.draft, state.floorNames).length === 0;
+    const ready = state.draft && validatePacket(state.draft, state.floorNames, state.reserved).length === 0;
     if (!ready) return;                             // mid-interview: it resumes, and says so
     e.preventDefault();
     e.returnValue = "";
