@@ -516,9 +516,45 @@ function pickSaved(local, remote) {
   if (!len(local) && !len(remote)) return null;
   return len(remote) > len(local) ? remote : local;
 }
-function clearInterview() {
+/** Forget the saved interview. The mirror goes FIRST and, when strict, is
+    awaited: clearing the local copy first and then failing to delete the mirror
+    leaves the interview to resurrect itself on the next visit, which is worse
+    than not clearing at all. Strict callers report the failure; the submit path
+    stays fire-and-forget, because there the application already exists and a
+    lingering draft costs nothing. */
+async function clearInterview({ strict = false } = {}) {
+  if (state.user) {
+    // Offline, a Firestore write neither fails nor lands: it queues, and the
+    // promise waits forever for a server that isn't there — and once queued it
+    // cannot be called back, so "nothing was deleted" would stop being true the
+    // moment the connection returned. So ask the server something first. A read
+    // answered from the local cache means we never reached it, and a start-over
+    // we cannot confirm is one we must not begin.
+    if (strict) {
+      const snap = await withTimeout(getDoc(draftRef()), LOOKUP_TIMEOUT_MS, "the draft read");
+      if (snap.metadata.fromCache) throw new Error("offline: the server did not answer");
+    }
+    const gone = deleteDoc(draftRef());
+    if (strict) await withTimeout(gone, LOOKUP_TIMEOUT_MS, "the draft delete");
+    else gone.catch((e) => console.warn("draft delete:", e));
+  }
   localStorage.removeItem(saveKey());
-  if (state.user) deleteDoc(draftRef()).catch(() => {});
+}
+
+/** Back to the state a principal who has never sat an interview is in. Mirrors
+    the interview-owned half of the `state` literal above — if a field is added
+    there and it survives a start-over, it belongs here too. */
+function forgetInterview() {
+  Object.assign(state, {
+    history: [], draft: null, undelivered: null, queued: null,
+    needsRepair: false, autoRepaired: false, machineNote: "",
+    wakeReadyTurns: 0, lastOptions: [], tapped: [], pendingRigidity: null,
+    choicesHintShown: false, handoffSeen: false, ready: false, done: false,
+    tapeSent: false, busy: false, streaming: false,
+    avatar: randomAvatar(), avatarChosen: false,
+    updates: { cadence: "daily", floor_digest: true },
+  });
+  $("#chatlog").innerHTML = "";
 }
 
 /* ---------------- chat rendering ---------------- */
@@ -1684,13 +1720,18 @@ async function boot() {
     $("#beginbox").hidden = false;
     $("#whoami").textContent = user.displayName || user.email || "signed in";
     const local = loadInterview();
-    const hasLocal = !!(local && (local.history || []).length);
-    $("#btn-begin").textContent = hasLocal ? "Resume the interview" : "Begin the interview";
+    let resumable = !!(local && (local.history || []).length);
+    $("#btn-begin").textContent = resumable ? "Resume the interview" : "Begin the interview";
+    $("#btn-startover").hidden = !resumable;
     show("landing");
-    if (!hasLocal) {
+    if (!resumable) {
       // an interview started on another device resumes here too
       const remote = await loadInterviewMirror();
-      if (remote && (remote.history || []).length) $("#btn-begin").textContent = "Resume the interview";
+      if (remote && (remote.history || []).length) {
+        resumable = true;
+        $("#btn-begin").textContent = "Resume the interview";
+        $("#btn-startover").hidden = false;
+      }
     }
   });
 
@@ -1762,6 +1803,28 @@ async function boot() {
     $("#draftcaret").textContent = open ? "▾" : "▴";
   });
   $("#btn-review").addEventListener("click", () => { renderCharter(); show("finish"); funnel("review_reached"); });
+
+  // Until now an interview could only be left, never discarded — a principal who
+  // wanted to begin again had to ask someone with database access. Destructive,
+  // so it asks; and if the mirror cannot be reached it deletes NOTHING and says
+  // so, rather than clearing this device and letting the interview come back.
+  $("#btn-startover").addEventListener("click", async () => {
+    if (!confirm("Start over? This interview will be deleted, and it cannot be brought back.")) return;
+    const btn = $("#btn-startover");
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Clearing…";
+    try {
+      await clearInterview({ strict: true });
+    } catch (e) {
+      btn.disabled = false; btn.textContent = label;
+      landingError("Couldn't clear the interview just now — nothing was deleted. Try again in a moment.");
+      return;
+    }
+    forgetInterview();
+    landingError("");
+    btn.disabled = false; btn.textContent = label; btn.hidden = true;
+    $("#btn-begin").textContent = "Begin the interview";
+  });
 
   // A finished interview that is never countersigned produces nothing, and until
   // now it produced nothing silently: a principal sat all fifty turns, watched
