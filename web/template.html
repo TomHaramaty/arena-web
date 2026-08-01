@@ -197,6 +197,10 @@
   .tact.buy { color: var(--good); }
   .tact.sell { color: var(--bad); }
   .tact.rule { color: var(--ink2); }
+  /* Outside market hours the newest price the arena holds is the previous
+     close, so a trade decided before the open fills at that number. Saying so
+     costs a reader nothing and stops them reading a stale price as a live one. */
+  .tstale { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .tact.blocked { color: var(--st-weak); }
   .tapenote { margin: 4px 0 0; font-size: 13px; color: var(--ink2); max-width: 88ch; }
   .tapenote.stopped { color: var(--ink2); }
@@ -549,10 +553,16 @@ function tapeSentence(e, withName){
   const who = withName ? `<a class="tname" data-agent="${esc(e.agent)}">${nm}</a> ` : "";
   const at = `<span class="tnum">${qtyFmt(e.qty)} at ${priceFmt(e.price)}</span>`;
   const verb = e.side === "buy" ? "bought" : "sold";
+  /* The market was shut when this one ran, so it filled at the previous
+     close. Nearly always a first session, rung whenever its owner finished
+     the interview rather than when the exchange happened to be open. */
+  const shut = e.prior_close
+    ? ` <span class="tstale" title="The market was shut when this trade was decided, so it filled at the previous close.">· previous close</span>`
+    : "";
   if (e.event === "fill")
     return e.mechanism === "market"
-      ? `${who}<span class="tact ${e.side}">${verb}</span> ${tsym(e.symbol)} · ${at}`
-      : `${who}<span class="tact ${e.side}">${MECH[e.mechanism] || e.mechanism} fired</span>: ${verb} ${tsym(e.symbol)} · ${at}`;
+      ? `${who}<span class="tact ${e.side}">${verb}</span> ${tsym(e.symbol)} · ${at}${shut}`
+      : `${who}<span class="tact ${e.side}">${MECH[e.mechanism] || e.mechanism} fired</span>: ${verb} ${tsym(e.symbol)} · ${at}${shut}`;
   if (e.event === "armed")
     return `${who}<span class="tact rule">armed a ${MECH[e.mechanism] || e.mechanism}</span>: ${ruleClause(e)}`;
   if (e.event === "pulled")
