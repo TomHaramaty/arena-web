@@ -14,6 +14,8 @@ import {
   validateWakeMinimum, OPENING,
 } from "../web/static/seat/registrar.js";
 
+import { appCheckHeaders, appCheckStatus } from "./appcheck.mjs";
+
 const STATE = new URL("./interview-state.json", import.meta.url).pathname;
 const KEY = "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo";
 const EP = "https://firebasevertexai.googleapis.com/v1beta/projects/open-outcry/models/gemini-3.5-flash:generateContent";
@@ -44,10 +46,11 @@ async function callModel(sys, history) {
     contents: history.map((h) => ({ role: h.role, parts: [{ text: h.raw }] })),
     generationConfig: { temperature: 0.9, maxOutputTokens: 4096 },
   };
+  const ac = await appCheckHeaders();
   for (let i = 0; i < 4; i++) {
     const r = await fetch(EP, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
+      headers: { "Content-Type": "application/json", "x-goog-api-key": KEY, ...ac },
       body: JSON.stringify(body),
     });
     const d = await r.json();
@@ -136,6 +139,7 @@ async function turn(state, userRaw, depth = 0) {
   save(state);
 }
 
+console.log(appCheckStatus());
 const arg = process.argv.slice(2).join(" ").trim();
 if (arg === "--init") {
   const { roster, tape, today } = await floorData();

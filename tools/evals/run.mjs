@@ -11,6 +11,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { buildSystemPrompt, buildWakeMessage, buildTapeMessage, OPENING } from "../../web/static/seat/registrar.js";
 import { PERSONAS } from "./personas.mjs";
+import { appCheckHeaders, appCheckStatus } from "../appcheck.mjs";
 import { newCtx, checkTurn, recordUser, finalChecks, parseSide, prose, openness, COMPILE_CLAIM } from "./checks.mjs";
 
 const KEY = "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo";
@@ -19,11 +20,14 @@ const OUT = new URL("./out/", import.meta.url).pathname;
 mkdirSync(OUT, { recursive: true });
 
 async function call(model, body) {
+  // Attestation, when a debug token is set. Without App Check headers this rig
+  // is exactly the anonymous caller enforcement exists to refuse.
+  const ac = await appCheckHeaders();
   for (let i = 0; i < 5; i++) {
     try {
       const r = await fetch(EP(model), {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
+        headers: { "Content-Type": "application/json", "x-goog-api-key": KEY, ...ac },
         body: JSON.stringify(body),
       });
       const d = await r.json();
@@ -138,6 +142,7 @@ async function runPersona(persona, floor) {
 const filter = process.argv.slice(2);
 const picked = filter.length ? PERSONAS.filter((p) => filter.includes(p.id)) : PERSONAS;
 const CONC = parseInt(process.env.CONCURRENCY || "3");
+console.log(appCheckStatus());
 const floor = await floorData();
 const queue = [...picked];
 const results = [];
