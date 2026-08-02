@@ -2,3 +2,10 @@ public/
 firebase-debug.log
 .firebase/
 *-debug.log
+node_modules/
+tools/__pycache__/
+# Credentials. .env.local holds APPCHECK_DEBUG_TOKEN, and whoever holds that can
+# attest as this app — the exact thing App Check enforcement exists to check.
+# Nothing named .env belongs in this history.
+.env
+.env.*
