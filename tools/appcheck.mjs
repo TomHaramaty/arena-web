@@ -27,8 +27,15 @@
 
 const PROJECT = "open-outcry";
 const APP_ID = "1:56794274079:web:1fe7981df1430587e2782a";
+// The public web API key, the same one in the served JS. The exchange endpoint
+// refuses "unregistered callers" without it, and its 403 for a missing key is
+// word-for-word the 403 for an unregistered debug token — so a first attempt
+// without this reads exactly like a token problem and sends you to the console
+// to check something that was never wrong.
+const API_KEY = "AIzaSyBKkynHLzgHrpTCM4JeShFUu8CMjJIQdbo";
 const EXCHANGE =
-  `https://firebaseappcheck.googleapis.com/v1/projects/${PROJECT}/apps/${APP_ID}:exchangeDebugToken`;
+  `https://firebaseappcheck.googleapis.com/v1/projects/${PROJECT}/apps/${APP_ID}` +
+  `:exchangeDebugToken?key=${API_KEY}`;
 
 let cached = null; // { token, expiresAt }
 
