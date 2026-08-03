@@ -107,12 +107,17 @@
   .mo-bust { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 168px; height: 168px; }
   .mo-bust img, .mo-bust .oo-avatar { width: 100% !important; height: 100% !important; }
   .mo-bust .face { border-radius: 0; }   /* the bust ends at its shoulders, never a circle crop */
-  .mo-quote { font-family: var(--display); font-size: clamp(17.5px, 2.9vw, 24px); line-height: 1.35; font-weight: 400; color: var(--ink); margin: 0; max-width: 30ch; text-indent: -0.45em; }
-  .mo-quote.plain { text-indent: 0; }
-  .mo-meta { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0 7px; align-items: baseline; }
-  .mo-meta b { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink2); font-weight: 600; }
-  .mo-meta .mono { font-size: 11px; }
-  .mo-meta .sep { opacity: 0.6; }
+  /* the dispatch: dateline (mono) → action (sans, the lead) → voice (serif,
+     the trader; mono when the floor itself is talking) */
+  .mo-text { min-height: 118px; }
+  .mo-head { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; display: flex; align-items: baseline; gap: 7px; }
+  .mo-head b { color: var(--ink2); font-weight: 600; }
+  .mo-head time { letter-spacing: 0.04em; text-transform: none; font-variant-numeric: tabular-nums; }
+  .mo-act { font: 600 clamp(16px, 2.5vw, 18.5px)/1.45 system-ui, sans-serif; color: var(--ink); margin: 0; max-width: 34ch; }
+  .mo-act .px { font-family: var(--mono); font-weight: 500; font-size: 0.9em; background: var(--hover); border-radius: 4px; padding: 1px 5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .mo-voice { font-family: var(--display); font-style: italic; font-size: clamp(15.5px, 2.3vw, 17.5px); line-height: 1.5; color: var(--ink); margin: 9px 0 0; max-width: 40ch; padding-left: 12px; border-left: 2px solid color-mix(in srgb, var(--mo-accent) 70%, var(--ink)); }
+  .mo-voice.sys { font-family: var(--mono); font-style: normal; font-size: 12.5px; line-height: 1.6; color: var(--ink); border-left: 2px dashed var(--muted); }
+  .mo-voice.sys .tk { display: block; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
   .ldots { display: flex; gap: 2px; margin: 8px 0 0; padding-left: 221px; }
   .ldots button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
   .ldots button::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; border: 1px solid var(--muted); opacity: 0.45; }
@@ -190,31 +195,50 @@
   .up { color: var(--good); font-weight: 600; }
   .dn { color: var(--bad); font-weight: 600; }
 
-  /* ---- meet a member: the character card ---- */
+  /* ---- the leader: identity strip + the call, written first ---- */
   .member { margin-top: 84px; }
   .member .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
   .member h2 { font-family: var(--display); font-size: clamp(23px, 4.6vw, 29px); margin: 0 0 10px; }
   .member .intro { font-size: 14.5px; color: var(--ink2); max-width: 58ch; margin: 0; }
-  .membercard { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+  .membercard { display: grid; grid-template-columns: auto 1fr 150px; gap: 18px; align-items: center; margin-top: 20px; }
   .mface { width: 84px; height: 84px; flex: none; }
   .mface img, .mface .oo-avatar { width: 84px; height: 84px; }
   .mface img { border-radius: 50%; }
-  .mname { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2; margin: 2px 0 2px; }
-  .march { font-size: 12px; color: var(--muted); margin: 0 0 10px; }
-  .mcredo { font-family: var(--display); font-size: 15.5px; font-style: italic; line-height: 1.5; margin: 0 0 12px; max-width: 50ch; }
-  .mjournal { border-top: 1px dashed var(--grid); padding-top: 11px; min-height: 58px; }
-  .mjournal .tk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
-  .mline { font-family: var(--mono); font-size: 12.5px; line-height: 1.65; color: var(--ink2); margin: 0; max-width: 66ch; }
-  .mline .caret { display: inline-block; width: 7px; height: 14px; background: var(--ink2); vertical-align: -2px; margin-left: 1px; }
-  @media (prefers-reduced-motion: no-preference) { .js .mline .caret { animation: blink 1.1s steps(1) infinite; } }
-  @keyframes blink { 50% { opacity: 0; } }
-  .mstats { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .mname { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2; margin: 0 0 2px; }
+  .march { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+  .mcredo { font-family: var(--display); font-size: 15.5px; font-style: italic; line-height: 1.5; margin: 0; max-width: 50ch; }
+  .mspark svg { display: block; width: 100%; height: 30px; }
+  .mspark .spark { stroke: var(--muted); }
+  .mspark .sparkdot { fill: var(--ink); }
+  /* the call: a quiet evidence plate — record, not UI, so no window chrome */
+  .callplate { margin: 20px 0 0; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 18px 20px; display: grid; }
+  .callhalf.after { border-top: 1px dashed var(--grid); padding-top: 14px; margin-top: 14px; }
+  @media (min-width: 640px) {
+    .callplate { grid-template-columns: 1fr 1fr; gap: 0 22px; }
+    .callhalf.after { border-top: none; border-left: 1px dashed var(--grid); padding: 0 0 0 22px; margin: 0; }
+  }
+  .dcap.cat { color: var(--cat); }
+  .calllead { font-family: var(--display); font-size: 16.5px; line-height: 1.5; color: var(--ink); margin: 0; max-width: 44ch; }
+  .scen { list-style: none; margin: 12px 0 0; padding: 0; }
+  .scen li { display: flex; gap: 9px; align-items: baseline; padding: 4.5px 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  .scen i { flex: none; width: 7px; height: 7px; border-radius: 50%; transform: translateY(-1px); }
+  .scen b { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 600; min-width: 34px; }
+  .scen li.hit { color: var(--ink); }
+  .scen li.hit .flag { font-family: var(--mono); font-size: 10px; color: var(--good); letter-spacing: 0.05em; margin-left: 6px; white-space: nowrap; }
+  .callnum { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; font-size: clamp(27px, 5vw, 34px); line-height: 1.1; color: var(--good); margin: 12px 0 0; }
+  .callnum small { display: block; font: 400 12px/1.5 system-ui, sans-serif; color: var(--muted); letter-spacing: 0; }
+  .mstats { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; }
   .mstats b { color: var(--ink); font-weight: 600; }
   .mstats .sep { opacity: 0.6; }
   .memberlink { display: inline-block; margin-top: 14px; font: 600 13.5px/1 system-ui, sans-serif; }
-  @media (max-width: 560px) {
+  @media (max-width: 640px) {
     .membercard { grid-template-columns: auto 1fr; gap: 14px; }
+    .mspark { display: none; }
+  }
+  @media (max-width: 560px) {
     .mface, .mface img, .mface .oo-avatar { width: 64px; height: 64px; }
+    .callplate { padding: 15px 14px; }
+    .callnum { font-size: 27px; }
   }
 
   /* ---- closing ---- */
@@ -256,6 +280,10 @@
     .mo-arch { left: 6px; width: 104px; height: 92px; border-radius: 52px 52px 10px 10px; }
     .mo-kicker { padding-left: 132px; }
     .ldots { padding-left: 123px; }
+    .mo-text { min-height: 168px; }
+    .mo-head { font-size: 10px; }
+    .mo-act { font-size: 15.5px; }
+    .mo-voice { font-size: 15px; padding-left: 10px; }
   }
   @media (max-width: 430px) {
     .mo-kicker, .ldots { padding-left: 0; }
@@ -403,34 +431,6 @@ for (const el of document.querySelectorAll(".mo-bust[data-spec], .mface[data-spe
     const px = el.classList.contains("mface") ? (el.getBoundingClientRect().width || 84) : 168;
     el.innerHTML = avatar(spec, px, { animate: !REDUCE, title: spec.name });
   } catch (e) { /* the server-rendered PNG stays */ }
-}
-const lineEl = document.querySelector(".mline[data-lines]");
-if (lineEl) {
-  const lines = JSON.parse(lineEl.dataset.lines);
-  const text = () => lineEl.firstChild;   // text node; caret span follows it
-  let li = 0;
-  if (REDUCE) {
-    setInterval(() => { li = (li + 1) % lines.length; text().nodeValue = lines[li]; }, 9000);
-  } else {
-    async function cycle() {
-      while (true) {
-        await pause(5200);
-        li = (li + 1) % lines.length;
-        const target = lines[li];
-        while (text().nodeValue.length) {           // erase, quickly
-          text().nodeValue = text().nodeValue.slice(0, -1);
-          await pause(9);
-        }
-        await pause(350);
-        for (const ch of target) {                  // type, unhurried
-          text().nodeValue += ch;
-          await pause(26 + Math.random() * 34);
-        }
-      }
-    }
-    cycle();
-  }
-  function pause(ms) { return new Promise(r => setTimeout(r, ms)); }
 }
 </script>
 <script defer src="/script.js" data-website-id="99bf0a3f-2b2f-4859-bc86-de6ed6d2b6b5"></script>

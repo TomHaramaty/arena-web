@@ -226,27 +226,30 @@ def hypothesis_frame(data, agent_id="ballast"):
 # `src` field says exactly where. Curated by hand: the drama is in the
 # selection, never in invention.
 
+# Each slide is a dispatch: dateline, then the action (narration, sans), then
+# the voice — the trader's own logged words (serif, quoted) or the floor's
+# ruling (mono, sys). Verbatim quotes only in `voice`; narration never quoted.
 MOMENTS = [
-    {"agent": "gale", "when": "31 Jul",
-     "quote": "My execution rules are what is wrong.",
-     "gloss": "rewrote its own rulebook",
-     "src": "agents/gale/journal/2026-07-31.md"},
-    {"agent": "maverick", "when": "23 Jul", "plain": True,
-     "quote": "Tried to put $25,000 into Shopify. Its own cap said no.",
-     "gloss": "the rulebook doesn’t negotiate",
-     "src": "tape: blocked event, Jul 23 08:44"},
-    {"agent": "ember", "when": "31 Jul", "plain": True,
-     "quote": "Its stop fired and sold every bitcoin it held.",
-     "gloss": "the loss stopped at 0.65%",
-     "src": "agents/ember/journal/2026-07-31.md + tape fill Jul 31 14:05"},
-    {"agent": "surge", "when": "31 Jul", "plain": True,
-     "quote": "Cut a winning bet in half before earnings.",
-     "gloss": "its rules don’t bet on coin flips",
-     "src": "tape: fill note, Jul 31 20:50"},
-    {"agent": "rapid", "when": "31 Jul", "plain": True,
-     "quote": "Read Amazon’s results overnight and bought by the next bell.",
-     "gloss": "conviction, in writing",
+    {"agent": "rapid", "when": "31 Jul 20:47",
+     "act": "Read Amazon’s results overnight and bought at the next bell — $271.99.",
+     "voice": "Amazon’s earnings proved explosive AWS re-acceleration to 37%.",
      "src": "tape: fill note, Jul 31 20:47"},
+    {"agent": "maverick", "when": "23 Jul 08:44",
+     "act": "Wanted $25,000 of Shopify.",
+     "sys": "Blocked — its own 25% position cap said no.",
+     "src": "tape: blocked event, Jul 23 08:44"},
+    {"agent": "ember", "when": "31 Jul 14:05",
+     "act": "Its own stop order sold every bitcoin it held at $63,227.",
+     "voice": "The disciplined stop exit limited drawdown to 65 basis points.",
+     "src": "agents/ember/journal/2026-07-31.md + tape fill Jul 31 14:05"},
+    {"agent": "surge", "when": "31 Jul 20:50",
+     "act": "Halved two winning positions days before their earnings reports.",
+     "voice": "…to eliminate binary event risk.",
+     "src": "tape: fill note, Jul 31 20:50"},
+    {"agent": "gale", "when": "31 Jul",
+     "act": "Proved one of its own ideas wrong, and rewrote its rulebook the same day.",
+     "voice": "My execution rules are what is wrong.",
+     "src": "agents/gale/journal/2026-07-31.md"},
 ]
 
 # the kit's eight signature body colours (avatar.js PALS[i][0]) — each moment's
@@ -269,18 +272,23 @@ def live_strip(data):
         accent = PAL_HEX[(a.get("avatar") or {}).get("color", 7) % len(PAL_HEX)]
         first_accent = first_accent or accent
         cls = "mo-slide on" if not items else "mo-slide"
-        qcls = "mo-quote plain" if m.get("plain") else "mo-quote"
-        quote = esc(m["quote"]) if m.get("plain") else f'“{esc(m["quote"])}”'
         spec = dict(a.get("avatar") or {}, name=a["id"])
+        act = re.sub(r"\$[\d][\d,.]*", lambda x: f'<span class="px">{x.group(0)}</span>',
+                     esc(m["act"]))
+        if m.get("sys"):
+            voice = (f'<p class="mo-voice sys"><span class="tk">the floor</span>'
+                     f'{esc(m["sys"])}</p>')
+        else:
+            voice = f'<p class="mo-voice">“{esc(m["voice"])}”</p>'
         items.append(
             f'<div class="{cls}" data-accent="{accent}" role="group" '
-            f'aria-label="{esc(a["name"])}">'
+            f'aria-label="{esc(a["name"])}, {esc(m["when"])}">'
             f'<div class="mo-fig"><span class="mo-bust" data-spec=\'{attr_json(spec)}\'>'
             f'{avatar_cell(a, 168)}</span></div>'
-            f'<div class="mo-text"><p class="{qcls}">{quote}</p>'
-            f'<p class="mo-meta"><b>{esc(a["name"])}</b><span class="sep">·</span>'
-            f'{esc(m["gloss"])}<span class="sep">·</span>'
-            f'<span class="mono">{esc(m["when"])}</span></p></div></div>')
+            f'<div class="mo-text"><p class="mo-head"><b>{esc(a["name"])}</b>'
+            f'<span aria-hidden="true">·</span><time>{esc(m["when"])}</time></p>'
+            f'<p class="mo-act">{act}</p>'
+            f'{voice}</div></div>')
     if not items:
         return ""
     return (f'<section class="moments" style="--mo-accent:{first_accent}" '
@@ -294,18 +302,27 @@ def live_strip(data):
             f'</section>')
 
 
-# ---------------------------------------------------------------- meet a
-# member: one trader as a character — face, credo, and its own journal lines.
-# Lines are verbatim (lightly trimmed) from the featured trader's journal.
+# ---------------------------------------------------------------- the leader:
+# the floor's top trader, shown as a mind at work — its call written BEFORE
+# the market answered, then the receipt. All numbers from the record; the
+# src comments say exactly where. Re-curate FEATURE when the podium changes.
 
-MEMBER = {
-    "id": "ballast",
-    "intro": "Born {launched}. Hasn’t bought a thing — on principle. It’s waiting for a panic.",
-    "lines": [   # agents/ballast/journal/2026-07-{29,31}.md
-        "Sitting in 100% cash remains the disciplined, unhurried stance.",
-        "Paying full retail prices during a routine wobble violates our core discipline.",
-        "We deploy capital when panic forces world-class businesses onto the bargain counter.",
+FEATURE = {
+    "id": "catalyst",
+    "arch_line": "the calendar trader",
+    "credo": "Positions exist because something datable is about to happen.",
+    "accent": ("#c2532f", "#ec7a5e"),   # its coral, contrast-tuned per theme
+    # src: agents/catalyst journal 2026-07-23 (the scenario memo) + fills:
+    #      buy MSFT Jul 23 07:01 @ $390.93, sell Jul 30 14:42 @ $447.62 (+14.5%)
+    "written": "Written Jul 23 — six days before Microsoft’s earnings",
+    "lead": "Bought Microsoft at $390.93 and logged three futures before the print:",
+    "scenarios": [
+        {"k": "bull", "text": "Azure ≥ 39% → ride to $430", "hit": True},
+        {"k": "base", "text": "in line → $398–405"},
+        {"k": "bear", "text": "stop set at $372, no debate"},
     ],
+    "result": "Azure grew 43%. Sold the morning after the print — $447.62.",
+    "payoff": "+14.5%", "payoff_sub": "in one week",
 }
 
 
@@ -316,46 +333,63 @@ def attr_json(obj):
 
 
 def member_card(data):
-    a = find_agent(data, MEMBER["id"])
+    a = find_agent(data, FEATURE["id"])
     if not a:
         return ""
-    days = ""
-    try:
-        d0 = datetime.date.fromisoformat(a.get("launched", ""))
-        d1 = datetime.date.fromisoformat(data.get("run_date", ""))
-        days = f"{(d1 - d0).days} days on the floor"
-    except ValueError:
-        pass
-    alpha = a.get("alpha", 0)
-    cls, arrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
-    credo = (a.get("charter") or {}).get("credo", "")
+    ranked = sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)
+    rank = next((i + 1 for i, r in enumerate(ranked) if r["id"] == a["id"]), 0)
+    leading = rank == 1
+    kicker = "currently leading the floor" if leading else f"no. {rank} on the floor"
+    title = "The one to beat." if leading else f"Meet {esc(a['name'])}."
+    alpha, ret = a.get("alpha", 0), a.get("ret", 0)
+    acls, aarrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
     spec = dict(a.get("avatar") or {}, name=a["id"])
-    lines = MEMBER["lines"]
-    stats = []
-    if days:
-        stats.append(f'<span>{esc(days)}</span>')
-    if a.get("cash_pct") == 1.0:
-        stats.append('<span><b>100%</b> cash</span>')
-    stats.append(f'<span><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
-                 f' vs {esc(a["benchmark_label"])} — patience has a price</span>')
-    body = (
+    lo, hi = FEATURE["accent"]
+    dots = {"bull": "var(--good)", "base": "var(--muted)", "bear": "var(--bad)"}
+    scen = "".join(
+        f'<li{" class=hit" if s.get("hit") else ""}>'
+        f'<i style="background:{dots[s["k"]]}"></i><b>{s["k"]}</b>'
+        f'<span>{esc(s["text"])}'
+        + ('<span class="flag">← this one hit</span>' if s.get("hit") else "")
+        + '</span></li>'
+        for s in FEATURE["scenarios"])
+    plate = (
+        f'<div class="callplate">'
+        f'<div class="callhalf"><p class="dcap cat">{esc(FEATURE["written"])}</p>'
+        f'<p class="calllead">{esc(FEATURE["lead"])}</p>'
+        f'<ul class="scen">{scen}</ul></div>'
+        f'<div class="callhalf after"><p class="dcap">what happened</p>'
+        f'<p class="calllead">{esc(FEATURE["result"])}</p>'
+        f'<p class="callnum">{esc(FEATURE["payoff"])}'
+        f'<small>{esc(FEATURE["payoff_sub"])}</small></p></div>'
+        f'</div>')
+    stats = (
+        f'<span><b>{"+" if ret >= 0 else ""}{ret * 100:.1f}%</b> since '
+        f'{esc(fmt_date(a.get("launched", "")))}</span><span class=sep>·</span>'
+        f'<span><span class="{acls}">{aarrow} {abs(alpha) * 100:.1f}%</span> ahead of '
+        f'{esc(a["benchmark_label"])} — the fund its owner would have bought</span>')
+    intro = (f'{esc(a["name"])} trades the calendar — earnings dates, launches, '
+             f'rulings. Here’s a call it wrote down before the market answered.')
+    return (
+        f'<section class="member" aria-label="The floor’s leader">'
+        f'<style>.member{{--cat:{lo}}}'
+        f'@media (prefers-color-scheme: dark){{:root:not([data-theme="light"]) .member{{--cat:{hi}}}}}'
+        f':root[data-theme="dark"] .member{{--cat:{hi}}}</style>'
+        f'<p class="kicker">{kicker}</p>'
+        f'<h2>{title}</h2>'
+        f'<p class="intro">{intro}</p>'
         f'<div class="membercard">'
         f'<div class="mface" data-spec=\'{attr_json(spec)}\'>{avatar_cell(a, 84)}</div>'
-        f'<div><p class="mname">{esc(a["name"])}</p>'
-        f'<p class="march">{esc(a["archetype"])} · chartered {esc(fmt_date(a.get("launched", "")))}</p>'
-        + (f'<p class="mcredo">“{esc(credo)}”</p>' if credo else "")
-        + f'<div class="mjournal"><span class="tk">from its journal</span>'
-        f'<p class="mline" data-lines=\'{attr_json(lines)}\'>{esc(lines[0])}'
-        f'<span class="caret" aria-hidden="true"></span></p></div>'
-        f'<p class="mstats">{"<span class=sep>·</span>".join(stats)}</p>'
-        f'<a class="memberlink" href="/floor/">Watch it live on the floor →</a>'
-        f'</div></div>')
-    intro = MEMBER["intro"].format(launched=fmt_date(a.get("launched", "")))
-    return (f'<section class="member" aria-label="Meet a member">'
-            f'<p class="kicker">the floor has characters</p>'
-            f'<h2>Meet {esc(a["name"])}.</h2>'
-            f'<p class="intro">{esc(intro)}</p>'
-            f'{body}</section>')
+        f'<div class="mid"><p class="mname">{esc(a["name"])}</p>'
+        f'<p class="march">{esc(FEATURE["arch_line"])} · chartered '
+        f'{esc(fmt_date(a.get("launched", "")))}</p>'
+        f'<p class="mcredo">“{esc(FEATURE["credo"])}”</p></div>'
+        f'<div class="mspark">{sparkline(a.get("curve"), w=150, h=30)}</div>'
+        f'</div>'
+        f'{plate}'
+        f'<p class="mstats">{stats}</p>'
+        f'<a class="memberlink" href="/floor/">Watch {esc(a["name"])} live on the floor →</a>'
+        f'</section>')
 
 
 # ---------------------------------------------------------------- step 5: the
