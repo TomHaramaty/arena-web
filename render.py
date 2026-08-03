@@ -69,9 +69,12 @@ def trim(text, limit):
 
 
 def clean_prose(text):
-    """Trader prose, made fit for an excerpt: markdown emphasis markers and
-    [1.4]-style citation refs are working notation, not typography."""
+    """Trader prose, made fit for an excerpt: markdown emphasis markers,
+    [1.4]-style citation refs and (P1, H2)-style rule refs are working
+    notation, not typography — and rule ids are system language a visitor
+    hasn't been taught yet."""
     text = re.sub(r"\s*\[[\d.,\s]+\]", "", text or "")
+    text = re.sub(r"\s*\((?:per\s+)?[PH]\d[\d,.\s PH]*\)", "", text)
     return text.replace("**", "").replace("__", "")
 
 
@@ -104,20 +107,20 @@ def origin_rule(data, agent_id="ballast", prin_id="P2"):
             date, quote = origin_parts(p.get("origin", ""))
             if not quote:
                 continue
-            tags = "".join(
-                f'<span class="tag{" hard" if t == "hard" else ""}">{esc(t)}</span>'
-                for t in [p.get("id", ""), p.get("type", ""), p.get("rigidity", "")] if t)
+            hard = ('<div class="tagrow"><span class="tag hard">a hard rule — '
+                    'it can never be talked around</span></div>'
+                    if p.get("rigidity") == "hard" else "")
             body = (
                 f'<div class="origcard">'
-                f'<div class="orig"><p class="dcap">its principal said</p>'
+                f'<div class="orig"><p class="dcap">they said</p>'
                 f'<p class="oquote">“{esc(quote)}”</p>'
-                f'<p class="oattr">— {esc(a["name"])}’s principal, '
+                f'<p class="oattr">— {esc(a["name"])}’s owner, '
                 f'{esc(fmt_date(date))}</p></div>'
-                f'<div class="orule"><p class="dcap">→ written into the rulebook</p>'
-                f'<div class="tagrow">{tags}</div>'
-                f'<p class="astmt">{esc(p["statement"])}</p></div></div>')
-            return frame(f'{esc(a["id"])} · rulebook · {esc(p.get("id", ""))}',
-                         "the seat interview", body)
+                f'<div class="orule"><p class="dcap">→ the rule it became</p>'
+                f'{hard}'
+                f'<p class="astmt">{esc(trim(clean_prose(p["statement"]), 160))}</p></div></div>')
+            return frame(f'{esc(a["id"])} · rulebook',
+                         "from the interview", body)
     return ""
 
 
@@ -173,8 +176,8 @@ def journal_frame(data, agent_id="vertex"):
                 continue
             rat = clean_prose(rat)
             paras = [p.strip() for p in rat.split("\n\n") if p.strip()]
-            body = (f'<p class="atitle">{esc(trim(j.get("title", ""), 120))}</p>'
-                    f'<p class="aexcerpt">{esc(trim(" ".join(paras[:2]), 450))}</p>')
+            body = (f'<p class="atitle">{esc(trim(j.get("title", ""), 90))}</p>'
+                    f'<p class="aexcerpt">{esc(trim(" ".join(paras[:2]), 280))}</p>')
             fills = []
             for line in (j.get("actions") or "").splitlines():
                 line = line.strip()
@@ -225,54 +228,70 @@ def hypothesis_frame(data, agent_id="ballast"):
 
 MOMENTS = [
     {"agent": "gale", "when": "31 Jul",
-     "quote": "I have falsified H1 today. … My execution rules are what is wrong.",
-     "gloss": "killed its own hypothesis in writing, then rewrote the rule",
+     "quote": "My execution rules are what is wrong.",
+     "gloss": "rewrote its own rulebook",
      "src": "agents/gale/journal/2026-07-31.md"},
     {"agent": "maverick", "when": "23 Jul", "plain": True,
-     "quote": "Tried to buy $25,000 of SHOP — blocked by its own 25% position cap.",
+     "quote": "Tried to put $25,000 into Shopify. Its own cap said no.",
      "gloss": "the rulebook doesn’t negotiate",
      "src": "tape: blocked event, Jul 23 08:44"},
     {"agent": "ember", "when": "31 Jul", "plain": True,
-     "quote": "Its stop rule fired at $63,227 and sold every bitcoin it held — no debate, no averaging down.",
-     "gloss": "drawdown held to 0.65% while its benchmark kept falling",
+     "quote": "Its stop fired and sold every bitcoin it held.",
+     "gloss": "the loss stopped at 0.65%",
      "src": "agents/ember/journal/2026-07-31.md + tape fill Jul 31 14:05"},
-    {"agent": "surge", "when": "31 Jul",
-     "quote": "Halving DDOG ahead of Q2 earnings … to eliminate binary event risk.",
-     "gloss": "cut a winner in half because its rule said so",
+    {"agent": "surge", "when": "31 Jul", "plain": True,
+     "quote": "Cut a winning bet in half before earnings.",
+     "gloss": "its rules don’t bet on coin flips",
      "src": "tape: fill note, Jul 31 20:50"},
-    {"agent": "rapid", "when": "31 Jul",
-     "quote": "Amazon’s Q2 earnings proved explosive AWS re-acceleration to 37% YoY.",
-     "gloss": "bought AMZN at $271.99 — conviction, on the record",
+    {"agent": "rapid", "when": "31 Jul", "plain": True,
+     "quote": "Read Amazon’s results overnight and bought by the next bell.",
+     "gloss": "conviction, in writing",
      "src": "tape: fill note, Jul 31 20:47"},
 ]
 
+# the kit's eight signature body colours (avatar.js PALS[i][0]) — each moment's
+# slide carries its character's own colour as the niche accent
+PAL_HEX = ["#e0684b", "#d19a3f", "#3f9a8f", "#8b6fc9",
+           "#5b7fc0", "#d67aa8", "#7a9a3f", "#7f8a99"]
+
 
 def live_strip(data):
-    """Real moments from the record as a rotating strip (JS rotates; without
-    JS the first moment stands alone and the page is complete)."""
+    """Real moments from the record as an open two-column scene: the character
+    large in a colour-tinted arch niche, its words beside it. JS rotates;
+    without JS the first moment stands alone and the page is complete."""
     agents = {a["id"]: a for a in data["agents"]}
     items = []
-    for i, m in enumerate(MOMENTS):
+    first_accent = ""
+    for m in MOMENTS:
         a = agents.get(m["agent"])
         if not a:
             continue
-        cls = "lmoment on" if not items else "lmoment"
-        qcls = "lquote plain" if m.get("plain") else "lquote"
+        accent = PAL_HEX[(a.get("avatar") or {}).get("color", 7) % len(PAL_HEX)]
+        first_accent = first_accent or accent
+        cls = "mo-slide on" if not items else "mo-slide"
+        qcls = "mo-quote plain" if m.get("plain") else "mo-quote"
         quote = esc(m["quote"]) if m.get("plain") else f'“{esc(m["quote"])}”'
+        spec = dict(a.get("avatar") or {}, name=a["id"])
         items.append(
-            f'<li class="{cls}">{avatar_cell(a, 38)}<div>'
-            f'<p class="{qcls}">{quote}</p>'
-            f'<p class="lline"><b>{esc(a["name"])}</b> · {esc(m["gloss"])} '
-            f'<span class="lwhen">· {esc(m["when"])}</span></p></div></li>')
+            f'<div class="{cls}" data-accent="{accent}" role="group" '
+            f'aria-label="{esc(a["name"])}">'
+            f'<div class="mo-fig"><span class="mo-bust" data-spec=\'{attr_json(spec)}\'>'
+            f'{avatar_cell(a, 168)}</span></div>'
+            f'<div class="mo-text"><p class="{qcls}">{quote}</p>'
+            f'<p class="mo-meta"><b>{esc(a["name"])}</b><span class="sep">·</span>'
+            f'{esc(m["gloss"])}<span class="sep">·</span>'
+            f'<span class="mono">{esc(m["when"])}</span></p></div></div>')
     if not items:
         return ""
-    body = (f'<div class="livewrap"><ul class="lmoments">{"".join(items)}</ul>'
-            f'<div class="ldots" role="tablist" aria-label="more moments"></div></div>')
-    return (f'<figure class="frame"><figcaption class="fbar">'
-            f'<span class="livedot" aria-hidden="true"></span>'
-            f'<span class="ftitle">on the floor, this week</span>'
-            f'<span class="fmeta">from the record</span></figcaption>'
-            f'<div class="fbody">{body}</div></figure>')
+    return (f'<section class="moments" style="--mo-accent:{first_accent}" '
+            f'aria-roledescription="carousel" aria-live="off" '
+            f'aria-label="moments from the floor">'
+            f'<p class="mo-kicker"><span class="livedot" aria-hidden="true"></span> '
+            f'moments from the floor</p>'
+            f'<div class="mo-stack"><span class="mo-arch" aria-hidden="true"></span>'
+            f'{"".join(items)}</div>'
+            f'<div class="ldots" role="tablist" aria-label="more moments"></div>'
+            f'</section>')
 
 
 # ---------------------------------------------------------------- meet a
@@ -281,11 +300,10 @@ def live_strip(data):
 
 MEMBER = {
     "id": "ballast",
-    "intro": ("Chartered through the interview on {launched}. It has held 100% cash "
-              "ever since — on principle — waiting for the panic its rulebook demands."),
+    "intro": "Born {launched}. Hasn’t bought a thing — on principle. It’s waiting for a panic.",
     "lines": [   # agents/ballast/journal/2026-07-{29,31}.md
-        "With VIX at a serene 16.81, sitting in 100% cash remains the disciplined, unhurried stance.",
-        "Paying full retail prices for staples during a routine wobble violates our core discipline.",
+        "Sitting in 100% cash remains the disciplined, unhurried stance.",
+        "Paying full retail prices during a routine wobble violates our core discipline.",
         "We deploy capital when panic forces world-class businesses onto the bargain counter.",
     ],
 }
@@ -313,13 +331,13 @@ def member_card(data):
     credo = (a.get("charter") or {}).get("credo", "")
     spec = dict(a.get("avatar") or {}, name=a["id"])
     lines = MEMBER["lines"]
-    stats = [f'<span>equity <b>${a.get("equity", 0):,.0f}</b></span>']
-    if a.get("cash_pct") == 1.0:
-        stats.append('<span><b>100%</b> cash, on principle</span>')
-    stats.append(f'<span><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
-                 f' vs {esc(a["benchmark_label"])} — patience has a price</span>')
+    stats = []
     if days:
         stats.append(f'<span>{esc(days)}</span>')
+    if a.get("cash_pct") == 1.0:
+        stats.append('<span><b>100%</b> cash</span>')
+    stats.append(f'<span><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
+                 f' vs {esc(a["benchmark_label"])} — patience has a price</span>')
     body = (
         f'<div class="membercard">'
         f'<div class="mface" data-spec=\'{attr_json(spec)}\'>{avatar_cell(a, 84)}</div>'
