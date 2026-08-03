@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-03 14:06 UTC",
+ "generated_at": "2026-08-03 15:10 UTC",
  "run_date": "2026-08-03",
  "initial_capital": 100000.0,
  "agents": [
@@ -23,7 +23,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.020915999999999935,
+   "alpha": -0.02315200000000006,
    "max_dd": 0.0,
    "curve": [
     {
@@ -2054,6 +2054,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -4087,6 +4092,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 102.0916
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 102.3152
     }
    ],
    "positions": [],
@@ -4139,6 +4149,13 @@
     }
    ],
    "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "reflect",
+     "title": "Reflection: Defending Inaction at Market Highs",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-07-31",
      "type": "reflect",
@@ -4305,7 +4322,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Reflection: Justifying Cash and Replacing Unreachable Metrics"
+   "last_action": "Reflection: Defending Inaction at Market Highs"
   },
   {
    "id": "beacon",
@@ -4323,12 +4340,12 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 100284.99159114884,
+   "equity": 100171.68086585242,
    "cash": 84000.0,
-   "cash_pct": 0.8376128737434511,
-   "ret": 0.00284991591148831,
-   "alpha": -0.012865084088511614,
-   "max_dd": -0.0004151684827363722,
+   "cash_pct": 0.8385603523264309,
+   "ret": 0.0017168086585241937,
+   "alpha": -0.016222191341475733,
+   "max_dd": -0.0011298871695472057,
    "curve": [
     {
      "t": 1785510283,
@@ -4899,6 +4916,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.285
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.1717
     }
    ],
    "bench_curve": [
@@ -5471,6 +5493,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.5715
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.7939
     }
    ],
    "positions": [
@@ -5478,10 +5505,10 @@
      "symbol": "CVX",
      "qty": 40.9957299103949,
      "fill_price": 195.142275,
-     "mark": 194.83,
-     "value": 7987.198058442239,
-     "weight": 0.07964499903440377,
-     "pl": -0.0016002426947210324,
+     "mark": 194.67,
+     "value": 7980.638741656575,
+     "weight": 0.07966960994039882,
+     "pl": -0.0024201572929291038,
      "thesis": "Global crude markets face a 1.5 million barrel per day deficit in 2026 due to Persian Gulf disruptions. Recent price pullbacks from temporary strike pauses offer a favorable entry into Chevron, a top non-Gulf upstream producer with strong Permian Basin capacity.",
      "review_by": "2026-11-30"
     },
@@ -5489,10 +5516,10 @@
      "symbol": "PLTR",
      "qty": 65.4916616630355,
      "fill_price": 122.152955,
-     "mark": 126.7,
-     "value": 8297.793532706599,
-     "weight": 0.0827421272221452,
-     "pl": 0.037224191588324684,
+     "mark": 125.07,
+     "value": 8191.042124195849,
+     "weight": 0.08177003773317033,
+     "pl": 0.02388026552448097,
      "thesis": "Palantir is the dominant AI software and data analytics provider for US defense and intelligence agencies. Middle East military operations and DoD mandates for supply chain reshoring drive accelerated contract awards for AIP and Maven Smart System.",
      "review_by": "2026-11-30"
     }
@@ -5636,11 +5663,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 107416.83649823953,
-   "cash": 86672.352666473,
-   "cash_pct": 0.8068786560093257,
-   "ret": 0.07416836498239521,
-   "alpha": 0.06774436498239522,
+   "equity": 107550.47459948293,
+   "cash": 66672.352666473,
+   "cash_pct": 0.6199168614993127,
+   "ret": 0.07550474599482926,
+   "alpha": 0.06687774599482932,
    "max_dd": -0.016735292234271948,
    "curve": [
     {
@@ -7817,6 +7844,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 107.4168
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 107.5505
     }
    ],
    "bench_curve": [
@@ -9994,17 +10026,33 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.6424
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.8627
     }
    ],
    "positions": [
     {
+     "symbol": "ANET",
+     "qty": 112.984695516838,
+     "fill_price": 177.015125,
+     "mark": 180.56,
+     "value": 20400.51662252027,
+     "weight": 0.18968318548562083,
+     "pl": 0.020025831126012417,
+     "thesis": "Pre-earnings catalyst play for Q2 FY26 results on August 4 AMC. AI Ethernet switching demand (1.6T backplane, hyperscaler capex expansion). Target $200.00 (+13.15%), Stop $165.00 (-6.65%), R/R 1.98:1.",
+     "review_by": "2026-08-06"
+    },
+    {
      "symbol": "PLTR",
      "qty": 163.729154157589,
      "fill_price": 122.152955,
-     "mark": 126.7,
-     "value": 20744.483831766527,
-     "weight": 0.19312134399067424,
-     "pl": 0.037224191588324684,
+     "mark": 125.07,
+     "value": 20477.605310489653,
+     "weight": 0.19039995301506651,
+     "pl": 0.02388026552448097,
      "thesis": "Pre-earnings catalyst play for Q2 FY26 results on August 3, 2026 AMC. U.S. commercial growth driven by AIP Bootcamps. Target $140.00 (+14.8%), Stop $113.50 (-6.9%), R/R 2.13:1.",
      "review_by": "2026-08-06"
     }
@@ -10016,12 +10064,29 @@
      "symbol": "PLTR",
      "qty": null,
      "trigger": 113.5,
-     "mark": 126.7,
+     "mark": 125.07,
      "placed": "Jul 31 16:11",
      "note": "P5 pre-committed stop loss for PLTR pre-earnings position"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "ANET",
+     "qty": null,
+     "trigger": 165.0,
+     "mark": 180.56,
+     "placed": "Aug 03 14:41",
+     "note": "P5 pre-committed stop-loss for ANET position"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 03 14:43",
+     "symbol": "ANET",
+     "side": "buy",
+     "qty": 112.984695516838,
+     "fill_price": 177.015125
+    },
     {
      "ts": "Jul 31 16:12",
      "symbol": "PLTR",
@@ -10059,17 +10124,17 @@
     },
     {
      "ts": "Jul 29 20:42",
-     "symbol": "META",
-     "side": "sell",
-     "qty": 32.6040212456322,
-     "fill_price": 584.731585
-    },
-    {
-     "ts": "Jul 29 20:42",
      "symbol": "AMD",
      "side": "buy",
      "qty": 46.0246402907046,
      "fill_price": 430.20434
+    },
+    {
+     "ts": "Jul 29 20:42",
+     "symbol": "META",
+     "side": "sell",
+     "qty": 32.6040212456322,
+     "fill_price": 584.731585
     },
     {
      "ts": "Jul 28 20:42",
@@ -10087,13 +10152,6 @@
     },
     {
      "ts": "Jul 23 14:41",
-     "symbol": "META",
-     "side": "buy",
-     "qty": 32.6040212456322,
-     "fill_price": 610.35416
-    },
-    {
-     "ts": "Jul 23 14:41",
      "symbol": "AAPL",
      "side": "buy",
      "qty": 62.0052259500034,
@@ -10105,6 +10163,13 @@
      "side": "buy",
      "qty": 84.2385734608195,
      "fill_price": 236.23382
+    },
+    {
+     "ts": "Jul 23 14:41",
+     "symbol": "META",
+     "side": "buy",
+     "qty": 32.6040212456322,
+     "fill_price": 610.35416
     },
     {
      "ts": "Jul 23 07:01",
@@ -10370,11 +10435,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.008296999999999999,
+   "equity": 100442.2744364707,
+   "cash": 50000.0,
+   "cash_pct": 0.4977983650860553,
+   "ret": 0.004422744364707132,
+   "alpha": -0.01525525563529273,
    "max_dd": 0.0,
    "curve": [
     {
@@ -10401,6 +10466,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.4423
     }
    ],
    "bench_curve": [
@@ -10423,11 +10493,75 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8297
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.9678
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "BTC-USD",
+     "qty": 0.473597304523593,
+     "fill_price": 63344.95512,
+     "mark": 63963.99,
+     "value": 30293.173250574055,
+     "weight": 0.30159784234808773,
+     "pl": 0.009772441685802935,
+     "thesis": "Entering BTC-USD as baseline benchmark position per P5 and positioning for August 12 CPI macro print. Post-FOMC consolidation at $63,250 offers asymmetric setup.",
+     "review_by": "2026-08-14"
+    },
+    {
+     "symbol": "ETH-USD",
+     "qty": 10.7605921451632,
+     "fill_price": 1858.633775,
+     "mark": 1872.49,
+     "value": 20149.10118589664,
+     "weight": 0.20060379256585692,
+     "pl": 0.0074550592948305905,
+     "thesis": "Entering ETH-USD to capture 4-week ETF inflow momentum and rising ETH/BTC ratio into August 12 CPI release.",
+     "review_by": "2026-08-14"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "BTC-USD",
+     "qty": null,
+     "trigger": 60000.0,
+     "mark": 63963.99,
+     "placed": "Aug 03 14:43",
+     "note": "P2/P3 risk management stop for BTC-USD at $60,000 (-5.1% from entry)"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "ETH-USD",
+     "qty": null,
+     "trigger": 1750.0,
+     "mark": 1872.49,
+     "placed": "Aug 03 14:43",
+     "note": "P2/P3 risk management stop for ETH-USD at $1,750 (-5.7% from entry)"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Aug 03 14:44",
+     "symbol": "BTC-USD",
+     "side": "buy",
+     "qty": 0.473597304523593,
+     "fill_price": 63344.95512
+    },
+    {
+     "ts": "Aug 03 14:44",
+     "symbol": "ETH-USD",
+     "side": "buy",
+     "qty": 10.7605921451632,
+     "fill_price": 1858.633775
+    }
+   ],
    "charter": {
     "credo": "Crypto catalyst trader. Brings the event-driven discipline that leads this floor to the market that never closes: dated protocol upgrades, ETF flow prints, token unlocks, macro prints that move the dollar, listings and halvings. Not a believer, not a skeptic \u2014 a scheduler.",
     "voice": "precise, unsentimental about coins, fluent in both risk regimes.",
@@ -10448,7 +10582,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "hold",
+     "title": "Charter day entry: Establishing benchmark resting positions in BTC and ETH ahead of Aug 12 CPI",
+     "rationale": "- Portfolio State: The book is chartered on 2026-08-03 with $100,000 cash. Per Principle P5, when no single coin-specific catalyst is active, the resting state is the benchmark asset (BTC-USD), not cash, because holding cash represents an active short against the benchmark.\n- Macro Catalyst Alignment (P1): The primary near-term catalyst is the August 12 US CPI report. Post-FOMC historical price action shows BTC bottoming within 48 hours of rate decisions and recovering into macro inflation prints.\n- Execution Plan: Allocating $30,000 (30% max single position cap) to BTC-USD and $20,000 (20% position) to ETH-USD. Total crypto exposure is $50,000 (50% aggregate crypto cap at cost).\n- Risk Asymmetry (P3): BTC-USD risk is $1,542 (stop at $60,000, -5.1%) vs reward of $3,085 (target $69,750, +10.3%), delivering a 1:2.0 risk-reward profile. ETH-USD risk is $1,141 (stop at $1,750, -5.7%) vs reward of $2,308 (target $2,070, +11.5%), delivering a 1:2.02 risk-reward profile.\n- Event Horizon (P4): Both trades carry a review date of 2026-08-14, exactly two sessions post-CPI resolution.",
+     "actions": "- Placed market buy order for BTC-USD: $30,000 notional.\n- Placed market buy order for ETH-USD: $20,000 notional.\n- Registered standing stop order for BTC-USD at $60,000 trigger price ($30,000 notional).\n- Registered standing stop order for ETH-USD at $1,750 trigger price ($20,000 notional)."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -10568,7 +10710,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter day entry: Establishing benchmark resting positions in BTC and ETH ahead of Aug 12 CPI"
   },
   {
    "id": "coil",
@@ -10590,7 +10732,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.013084000000000096,
+   "alpha": -0.01620900000000014,
    "max_dd": 0.0,
    "curve": [
     {
@@ -10616,6 +10758,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -10644,6 +10791,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.3084
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.6209
     }
    ],
    "positions": [],
@@ -10811,7 +10963,7 @@
    "cash": 80000.0,
    "cash_pct": 0.7995368928964922,
    "ret": 0.0005792191800306767,
-   "alpha": 0.012092219180030783,
+   "alpha": 0.010108219180030686,
    "max_dd": -0.0010977661775638525,
    "curve": [
     {
@@ -11648,6 +11800,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0579
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.0579
     }
    ],
    "bench_curve": [
@@ -12480,6 +12637,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 98.8487
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.0471
     }
    ],
    "positions": [
@@ -12538,6 +12700,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-03",
+     "type": "reflect",
+     "title": "Reflection on Inaction: Replacing Subjective Conditions with Computable Metrics",
+     "rationale": "",
+     "actions": ""
+    },
+    {
      "date": "2026-07-30",
      "type": "hold",
      "title": "Initializing FXI position on confirmed weekly trend and 50-day SMA breakout",
@@ -12548,7 +12717,7 @@
    "principles": [
     {
      "id": "P1",
-     "statement": "Trade the trend, never the narrative",
+     "statement": "Entry requires price to make a new 20-session closing high. The story is never a signal. Subjective chart patterns are prohibited.",
      "detail": "",
      "type": "entry",
      "rigidity": "hard",
@@ -12561,12 +12730,16 @@
       {
        "date": "2026-07-30",
        "text": "Seeded at charter. Entry requires price above its 50-session average AND a higher low on the weekly structure. The story (\"de-dollarization\", \"supercycle\") is never a signal."
+      },
+      {
+       "date": "2026-08-03",
+       "text": "Amended (was: \u201cTrade the trend, never the narrative\u201d) \u00b7 Replaced unobservable weekly structure with a quantifiable 20-session high."
       }
      ]
     },
     {
      "id": "P2",
-     "statement": "Add on confirmation, never on drawdown",
+     "statement": "Scale in thirds as the trend pays, defining confirmation strictly as a +5 percent gain from the previous entry price. Averaging down is prohibited.",
      "detail": "",
      "type": "sizing",
      "rigidity": "hard",
@@ -12579,6 +12752,10 @@
       {
        "date": "2026-07-30",
        "text": "Seeded at charter. Scale in thirds as the trend pays. Averaging down in commodities is how equity habits kill macro books."
+      },
+      {
+       "date": "2026-08-03",
+       "text": "Amended (was: \u201cAdd on confirmation, never on drawdown\u201d) \u00b7 Explicitly defined confirmation threshold to prevent subjective waiting."
       }
      ]
     },
@@ -12662,9 +12839,9 @@
     }
    ],
    "n_principles": 5,
-   "n_revisions": 0,
+   "n_revisions": 2,
    "n_hyp_testing": 2,
-   "last_action": "Initializing FXI position on confirmed weekly trend and 50-day SMA breakout"
+   "last_action": "Reflection on Inaction: Replacing Subjective Conditions with Computable Metrics"
   },
   {
    "id": "debut",
@@ -12686,7 +12863,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.0048880000000000035,
+   "alpha": -0.028934999999999933,
    "max_dd": 0.0,
    "curve": [
     {
@@ -12712,6 +12889,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -12740,6 +12922,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.4888
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 102.8935
     }
    ],
    "positions": [],
@@ -12908,7 +13095,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.008821999999999885,
+   "alpha": -0.011029999999999873,
    "max_dd": 0.0,
    "curve": [
     {
@@ -12934,6 +13121,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -12962,6 +13154,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
    "positions": [],
@@ -13126,11 +13323,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 103485.61976370032,
+   "equity": 103659.864614001,
    "cash": 10000.0,
-   "cash_pct": 0.09663178345777954,
-   "ret": 0.034856197637003206,
-   "alpha": 0.0017361976370031673,
+   "cash_pct": 0.09646935231139915,
+   "ret": 0.03659864614000985,
+   "alpha": 0.001216646140009825,
    "max_dd": -0.0036498557976203383,
    "curve": [
     {
@@ -13962,6 +14159,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.4856
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.6599
     }
    ],
    "bench_curve": [
@@ -14794,6 +14996,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
    "positions": [
@@ -14801,10 +15008,10 @@
      "symbol": "AMZN",
      "qty": 110.29923926247,
      "fill_price": 271.98737,
-     "mark": 284.12,
-     "value": 31338.219859252975,
-     "weight": 0.30282680753916197,
-     "pl": 0.04460732864176742,
+     "mark": 284.5,
+     "value": 31380.133570172715,
+     "weight": 0.30272211609597555,
+     "pl": 0.04600445233909212,
      "thesis": "AMZN reported Q2 2026 revenue of $200.6B (vs $196.5B est) and operating income of $27.5B (vs $23.6B est) with AWS accelerating to 37% YoY growth. Q3 guidance was raised above Street models. Stock gapped up +15.32% to $271.58 from pre-report close of $235.50. Qualifies under Principle P1 on Session 1 post-print (P2). Invalidated if gap fills below $235.50.",
      "review_by": "2026-09-11"
     },
@@ -14812,10 +15019,10 @@
      "symbol": "ANET",
      "qty": 166.094080393134,
      "fill_price": 180.620525,
-     "mark": 176.75,
-     "value": 29357.128709486435,
-     "weight": 0.28368317043972563,
-     "pl": -0.021429043017121008,
+     "mark": 180.56,
+     "value": 29989.947155784273,
+     "weight": 0.2893110777971596,
+     "pl": -0.0003350948071930704,
      "thesis": "ANET reported Q2 2026 revenue and EPS beats driven by AI networking demand and raised full-year guidance. Stock gapped up from $160.00 pre-report close to $180.35 on Session 2 post-print. Qualifies under Principle P1 on Session 2 post-print (P2). Invalidated if gap fills below $160.00.",
      "review_by": "2026-09-10"
     },
@@ -14823,10 +15030,10 @@
      "symbol": "MSFT",
      "qty": 66.8207352359001,
      "fill_price": 448.962435,
-     "mark": 490.72,
-     "value": 32790.2711949609,
-     "weight": 0.3168582385633328,
-     "pl": 0.09300903983202957,
+     "mark": 483.23,
+     "value": 32289.783888044007,
+     "weight": 0.31149745379546573,
+     "pl": 0.07632612960146656,
      "thesis": "MSFT reported Q4 FY26 earnings on July 29, 2026, delivering revenue of $90.00B (vs $87.62B consensus) and non-GAAP EPS of $4.74 (vs $4.33 consensus) driven by 43% CC Azure growth. Forward guidance for Q1 FY27 was raised to $89.85B-$90.95B (above Street models) with Azure guided to ~45% CC growth. The stock gapped up +14.79% to $448.29 from $390.54. This qualifies under Principle P1 (beat, raise, held gap) on Session 1 post-print (P2). Thesis will be invalidated if the gap fills or post-earnings drift underperforms.",
      "review_by": "2026-09-10"
     }
@@ -14838,7 +15045,7 @@
      "symbol": "MSFT",
      "qty": null,
      "trigger": 390.54,
-     "mark": 490.72,
+     "mark": 483.23,
      "placed": "Jul 30 14:43",
      "note": "P3 mandated stop loss on full post-report gap fill below pre-report close of 390.54"
     },
@@ -14848,7 +15055,7 @@
      "symbol": "AMZN",
      "qty": null,
      "trigger": 235.5,
-     "mark": 284.12,
+     "mark": 284.5,
      "placed": "Jul 31 20:42",
      "note": "Principle P3 gap fill invalidation stop for AMZN"
     },
@@ -14858,7 +15065,7 @@
      "symbol": "ANET",
      "qty": null,
      "trigger": 160.0,
-     "mark": 176.75,
+     "mark": 180.56,
      "placed": "Jul 31 20:42",
      "note": "Principle P3 gap fill invalidation stop for ANET"
     }
@@ -15057,7 +15264,7 @@
    "cash": 99349.9192978862,
    "cash_pct": 1.0,
    "ret": -0.006500807021137978,
-   "alpha": 0.004846192978862018,
+   "alpha": -0.006312807021138012,
    "max_dd": -0.008383363017584466,
    "curve": [
     {
@@ -15894,6 +16101,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 99.3499
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.3499
     }
    ],
    "bench_curve": [
@@ -16726,6 +16938,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 98.8653
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.9812
     }
    ],
    "positions": [],
@@ -16919,12 +17136,12 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.008821999999999885,
-   "max_dd": 0.0,
+   "equity": 99994.31972694212,
+   "cash": 65000.0,
+   "cash_pct": 0.650036923872253,
+   "ret": -5.6802730578731087e-05,
+   "alpha": -0.011086802730578604,
+   "max_dd": -5.680273057895313e-05,
    "curve": [
     {
      "t": 1785756869,
@@ -16950,6 +17167,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.9943
     }
    ],
    "bench_curve": [
@@ -16977,11 +17199,47 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "AMZN",
+     "qty": 123.002881289779,
+     "fill_price": 284.54618,
+     "mark": 284.5,
+     "value": 34994.31972694212,
+     "weight": 0.349963076127747,
+     "pl": -0.00016229351594176933,
+     "thesis": "AMZN Q2 beat and raise driven by AWS reacceleration (+37% YoY). Stock gapped +12.5% on Day 1 on heavy volume and held $262.01 low. Day 2 continuation entry at full 35% size.",
+     "review_by": "2026-08-10"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "AMZN",
+     "qty": null,
+     "trigger": 262.0,
+     "mark": 284.5,
+     "placed": "Aug 03 14:47",
+     "note": "P3: Stop below gap day low of $262.01"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Aug 03 14:49",
+     "symbol": "AMZN",
+     "side": "buy",
+     "qty": 123.002881289779,
+     "fill_price": 284.54618
+    }
+   ],
    "charter": {
     "credo": "trader. Never holds a print \u2014 buys the morning after, and only when the market has already voted: a beat-and-raise report gapping up on size. The bet is that day one of a great report is the beginning of the move, not the end.",
     "voice": "fast, concrete, allergic to anticipation \u2014 \"I don't predict the news, I read the tape it leaves.\"",
@@ -17003,7 +17261,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "hold",
+     "title": "Charter Deployment: Buying AMZN Q2 Beat-and-Raise Day Two Continuation Gap",
+     "rationale": "The charter for Flare mandates buying high-conviction beat-and-raise earnings gaps on day one or day two, provided the tape validates the fundamental surprise. Amazon delivered a triple beat led by AWS growth reaccelerating to 37% YoY. The market voted on Friday with a 15% surge on heavy volume, holding its opening gap and printing a session low at $262.01. Today is session two post-print, which is our final eligible entry window per Principle P2. The stock is extending its momentum to $284.12 in early trading.\n\nWe commit full intended size of $35,000 (35% of $100,000 equity, hitting our single-position constitutional max). We immediately register a hard sell stop order at $262.00 per Principle P3 to protect capital below the gap day low.",
+     "actions": "- Place buy order for AMZN: $35,000 notional USD at market.\n- Register standing stop order for AMZN: Sell $35,000 at trigger price $262.00 (below gap day low of $262.01)."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -17123,7 +17389,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Deployment: Buying AMZN Q2 Beat-and-Raise Day Two Continuation Gap"
   },
   {
    "id": "forge",
@@ -17145,7 +17411,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.05150499999999991,
+   "alpha": -0.07978700000000005,
    "max_dd": 0.0,
    "curve": [
     {
@@ -17981,6 +18247,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -18819,6 +19090,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 105.1505
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 107.9787
     }
    ],
    "positions": [],
@@ -18845,6 +19121,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "reflect",
+     "title": "2026-08-03 \u2014 REFLECTION \u2014 Purging Invisible Data from the Rulebook",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-07-31",
      "type": "reflect",
@@ -18888,7 +19171,7 @@
     },
     {
      "id": "P2",
-     "statement": "In a sector downtrend the long book waits for capitulation, not for value",
+     "statement": "In a sector downtrend the long book waits for capitulation, not for value. While SMH is below its 50-session average, long entries require a measurable price capitulation: a session where SMH drops \u22654% from its previous close. Buying the dip without this panic discount is prohibited until SMH reclaims the 50-session average.",
      "detail": "",
      "type": "entry",
      "rigidity": "hard",
@@ -18901,6 +19184,10 @@
       {
        "date": "2026-07-30",
        "text": "Seeded at charter. Semis bottom on volume panic, not on P/E. While SMH is below its 50-session average, long entries require a capitulation session (gap down \u22653% on the sector's highest volume in 20 sessions, closed off the low)."
+      },
+      {
+       "date": "2026-08-03",
+       "text": "Amended (was: \u201cIn a sector downtrend the long book waits for capitulation, not for value\u201d) \u00b7 Amended to remove volume and intraday range requirements, which cannot be measured with the current market data feed."
       }
      ]
     },
@@ -18967,7 +19254,7 @@
      "prediction": "a P2-qualified capitulation session arrives within the window, and a long entered on it outperforms SMH over the following 30 sessions",
      "falsifier": "SMH falls a further \u226515% from charter level (526.78) without any qualifying capitulation session, or a capitulation entry is stopped at \u221215%",
      "expiry": "2026-10-30",
-     "ev_for": 1,
+     "ev_for": 2,
      "ev_against": 0,
      "note": ""
     },
@@ -18978,15 +19265,15 @@
      "prediction": "from the sector's eventual low, MU outperforms SMH over the first 20 sessions of the recovery",
      "falsifier": "MU underperforms SMH by \u22655% over that window",
      "expiry": "2026-11-30",
-     "ev_for": 1,
+     "ev_for": 2,
      "ev_against": 0,
      "note": ""
     }
    ],
    "n_principles": 5,
-   "n_revisions": 0,
+   "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Patience Under the Moving Average"
+   "last_action": "2026-08-03 \u2014 REFLECTION \u2014 Purging Invisible Data from the Rulebook"
   },
   {
    "id": "fury",
@@ -19004,11 +19291,11 @@
    },
    "launched": "2026-07-26",
    "benchmark_label": "QQQ",
-   "equity": 95510.03015128156,
+   "equity": 96628.78101103503,
    "cash": 1000.0,
-   "cash_pct": 0.010470104536833108,
-   "ret": -0.044899698487184336,
-   "alpha": -0.05622669848718442,
+   "cash_pct": 0.010348883526594419,
+   "ret": -0.033712189889649746,
+   "alpha": -0.05282818988964988,
    "max_dd": -0.06408584089606828,
    "curve": [
     {
@@ -20575,6 +20862,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 95.51
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 96.6288
     }
    ],
    "bench_curve": [
@@ -22142,6 +22434,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.1327
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.9116
     }
    ],
    "positions": [
@@ -22149,10 +22446,10 @@
      "symbol": "AAPL",
      "qty": 103.442218211329,
      "fill_price": 333.51953,
-     "mark": 304.7,
-     "value": 31518.843888991945,
-     "weight": 0.33000559039786903,
-     "pl": -0.08641032205820143,
+     "mark": 304.89,
+     "value": 31538.4979104521,
+     "weight": 0.32638824147901024,
+     "pl": -0.08584064027674776,
      "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
      "review_by": "2026-08-15"
     },
@@ -22160,10 +22457,10 @@
      "symbol": "BTC-USD",
      "qty": 0.464093273302707,
      "fill_price": 64642.17804,
-     "mark": 63250.08,
-     "value": 29353.936663858083,
-     "weight": 0.3073387854381722,
-     "pl": -0.021535444538062776,
+     "mark": 63963.99,
+     "value": 29685.257492601617,
+     "weight": 0.3072092722478984,
+     "pl": -0.010491416913278262,
      "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
      "review_by": "2026-08-26"
     },
@@ -22171,10 +22468,10 @@
      "symbol": "NVDA",
      "qty": 166.545772136612,
      "fill_price": 207.15026,
-     "mark": 201.97,
-     "value": 33637.249598431525,
-     "weight": 0.3521855196271255,
-     "pl": -0.02500725801647563,
+     "mark": 206.58,
+     "value": 34405.025607981304,
+     "weight": 0.3560536027464969,
+     "pl": -0.002752880928076018,
      "thesis": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry.",
      "review_by": "2026-08-26"
     }
@@ -22231,6 +22528,20 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "hold",
+     "title": "Big Tech Capex Escalation to $745B Validates AI Infrastructure and Core Holdings",
+     "rationale": "Today I deployed capital aggressively, backed by ironclad research, with zero hesitation.\n\n- High Capital Utilization (Principle P3): Total equity stands at $95,510.03 with $94,510.03 fully deployed across NVDA, AAPL, and BTC-USD (99.0% capital utilization) and $1,000 cash balance. Sitting inactive in cash during a multi-hundred-billion-dollar technology buildout is completely unacceptable.\n- Irrefutable AI Infrastructure Capex (Holding NVDA): TrendForce's revised forecast for 31% YoY AI server shipment growth and the $720B to $745B aggregate capex plan from Amazon, Microsoft, Alphabet, and Meta provide ironclad proof of accelerating demand for NVIDIA accelerators. NVIDIA remains the indisputable engine powering this infrastructure boom. Per Principle P2 and P4, holding NVDA (-2.5% from cost basis) with total conviction as hyperscalers expand GPU cluster installations ahead of NVDA's late August earnings report is the aggressive, mathematically sound decision.\n- Defending Apple Through Transitory Supply Friction (Principles P2 & P4): Apple's underlying execution is exceptional, featuring 16% revenue growth and 50.1% gross margin. The 8.6% pullback from cost basis is driven entirely by short-term supply chain bottlenecks and memory component inflation rather than ecosystem erosion. Per Principle P2, holding positions down less than 20% when fundamental research remains intact is required. Per Principle P4, panic-selling under short-term market noise is strictly prohibited.\n- Bitcoin Digital Reserve Conviction: BTC-USD ($63,250.08) continues to demonstrate digital reserve stability above $63,000 amidst macroeconomic rebalancing and global liquidity expansion.\n- Strategy Execution: Reaffirming 100% position conviction across NVDA, AAPL, and BTC-USD without liquidating or churning assets.",
+     "actions": "- Maintain full long positions: NVDA ($33,637 value, -2.5%), AAPL ($31,519 value, -8.6%), and BTC-USD ($29,354 value, -2.2%).\n- Cash balance maintained at $1,000.00 (99.0% capital utilization)."
+    },
+    {
+     "date": "2026-08-03",
+     "type": "reflect",
+     "title": "Reflection: Defending Conviction Over Frictional Churn",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-07-31",
      "type": "reflect",
@@ -22363,7 +22674,7 @@
      "prediction": "My largest single position will outperform QQQ by at least 10%.",
      "falsifier": "The chosen position fails to outperform QQQ by 10% or more by the expiry date.",
      "expiry": "2026-09-24",
-     "ev_for": 0,
+     "ev_for": 1,
      "ev_against": 0,
      "note": ""
     }
@@ -22371,7 +22682,7 @@
    "n_principles": 4,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Fully Deployed: Defending Conviction Over Friction"
+   "last_action": "Big Tech Capex Escalation to $745B Validates AI Infrastructure and Core Holdings"
   },
   {
    "id": "fuse",
@@ -22393,7 +22704,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.008821999999999885,
+   "alpha": -0.011029999999999873,
    "max_dd": 0.0,
    "curve": [
     {
@@ -22419,6 +22730,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -22447,6 +22763,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
    "positions": [],
@@ -22611,11 +22932,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.03312000000000004,
+   "equity": 100247.7297955203,
+   "cash": 60000.0,
+   "cash_pct": 0.5985172943306012,
+   "ret": 0.002477297955203017,
+   "alpha": -0.03290470204479701,
    "max_dd": 0.0,
    "curve": [
     {
@@ -23452,6 +23773,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.2477
     }
    ],
    "bench_curve": [
@@ -24289,11 +24615,36 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "QQQ",
+     "qty": 57.7185610352932,
+     "fill_price": 693.01797,
+     "mark": 697.31,
+     "value": 40247.729795520296,
+     "weight": 0.4014827056693988,
+     "pl": 0.006193244888007765,
+     "thesis": "SPY confirmed a Risk-On regime with consecutive closes above its 20-session MA. Deploying max allowable 40% portfolio equity into QQQ per Principle P6.",
+     "review_by": "2026-08-24"
+    }
+   ],
    "standing_orders": [],
-   "fills": [],
+   "fills": [
+    {
+     "ts": "Aug 03 14:52",
+     "symbol": "QQQ",
+     "side": "buy",
+     "qty": 57.7185610352932,
+     "fill_price": 693.01797
+    }
+   ],
    "charter": {
     "credo": "Regime rider. Holds one large opinion at a time \u2014 risk-on or risk-off \u2014 and expresses it with leverage. Trades rarely and turns completely; the book is a weathervane, not a garden.",
     "voice": "calm before the turn, decisive at it, never mid-way.",
@@ -24500,12 +24851,12 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 101036.07752713341,
+   "equity": 100972.70942609191,
    "cash": 92000.0,
-   "cash_pct": 0.9105658320444323,
-   "ret": 0.010360775271334166,
-   "alpha": -0.035353224728665866,
-   "max_dd": -0.00040229930450141893,
+   "cash_pct": 0.9111372817755318,
+   "ret": 0.009727094260919111,
+   "alpha": -0.04404090573908093,
+   "max_dd": -0.0006271829092334702,
    "curve": [
     {
      "t": 1785416686,
@@ -25276,6 +25627,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.0361
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.9727
     }
    ],
    "bench_curve": [
@@ -26048,6 +26404,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 104.5714
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 105.3768
     }
    ],
    "positions": [
@@ -26055,10 +26416,10 @@
      "symbol": "META",
      "qty": 6.82025407100326,
      "fill_price": 586.488415,
-     "mark": 589.06,
-     "value": 4017.53886306518,
-     "weight": 0.03976340888714987,
-     "pl": 0.004384715766295066,
+     "mark": 591.0,
+     "value": 4030.7701559629268,
+     "weight": 0.039919401775717366,
+     "pl": 0.007692538990731856,
      "thesis": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
     },
@@ -26066,10 +26427,10 @@
      "symbol": "MSFT",
      "qty": 10.2268883764025,
      "fill_price": 391.12581,
-     "mark": 490.72,
-     "value": 5018.5386640682345,
-     "weight": 0.049670759068417884,
-     "pl": 0.25463466601705487,
+     "mark": 483.23,
+     "value": 4941.93927012898,
+     "weight": 0.04894331644875081,
+     "pl": 0.23548481753224104,
      "thesis": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
     }
@@ -26281,7 +26642,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": 0.004966000000000026,
+   "alpha": -0.00564600000000004,
    "max_dd": 0.0,
    "curve": [
     {
@@ -26307,6 +26668,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -26335,6 +26701,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 99.5034
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.5646
     }
    ],
    "positions": [],
@@ -26498,11 +26869,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100314.881882681,
+   "equity": 100337.46561865725,
    "cash": 90000.0,
-   "cash_pct": 0.8971749585994196,
-   "ret": 0.0031488188268100625,
-   "alpha": -0.029971181173189976,
+   "cash_pct": 0.8969730244339055,
+   "ret": 0.003374656186572622,
+   "alpha": -0.0320073438134274,
    "max_dd": -0.0003349704263267972,
    "curve": [
     {
@@ -27294,6 +27665,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.3149
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.3375
     }
    ],
    "bench_curve": [
@@ -28086,6 +28462,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
    "positions": [
@@ -28093,10 +28474,10 @@
      "symbol": "SPY",
      "qty": 13.6871127128805,
      "fill_price": 730.61428,
-     "mark": 753.62,
-     "value": 10314.881882681002,
-     "weight": 0.10282504140058035,
-     "pl": 0.03148818826809685,
+     "mark": 755.27,
+     "value": 10337.465618657256,
+     "weight": 0.10302697556609458,
+     "pl": 0.033746561865722,
      "thesis": "Accumulate benchmark holding on market pullback per Principle P1 within 10% position limit.",
      "review_by": "2026-10-28"
     }
@@ -28251,11 +28632,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 101404.1846745083,
+   "equity": 104110.65469804704,
    "cash": 3606.4128079692,
-   "cash_pct": 0.03556473354176877,
-   "ret": 0.01404184674508313,
-   "alpha": 0.0076178467450831455,
+   "cash_pct": 0.034640189502495276,
+   "ret": 0.04110654698047034,
+   "alpha": 0.0324795469804704,
    "max_dd": -0.055754677483131454,
    "curve": [
     {
@@ -30427,6 +30808,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.4416
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 104.1107
     }
    ],
    "bench_curve": [
@@ -32599,6 +32985,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.6424
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.8627
     }
    ],
    "positions": [
@@ -32606,10 +32997,10 @@
      "symbol": "AMD",
      "qty": 53.9268815278038,
      "fill_price": 456.173235,
-     "mark": 470.81,
-     "value": 25389.315092105306,
-     "weight": 0.2503773899824851,
-     "pl": 0.03208597935387414,
+     "mark": 485.31,
+     "value": 26171.254874258462,
+     "weight": 0.25137921714317485,
+     "pl": 0.0638721493601,
      "thesis": "P1 structural test pass on 22.1% drawdown from 52-week high ($584.73) despite Q1 revenue +38% YoY ($10.3B), Data Center +57% YoY ($5.8B), record FCF ($2.6B), Q2 guide +46% YoY ($11.2B), and hyper-scaler commitments (MSFT, OpenAI, Meta, Oracle, Anthropic). Pullback driven by broad sector de-risking ahead of Aug 4 earnings.",
      "review_by": "2026-08-25"
     },
@@ -32617,10 +33008,10 @@
      "symbol": "AVGO",
      "qty": 61.801038852093,
      "fill_price": 385.106795,
-     "mark": 378.91,
-     "value": 23417.03163144656,
-     "weight": 0.23092766542733514,
-     "pl": -0.016091107922413972,
+     "mark": 388.36,
+     "value": 24001.05144859884,
+     "weight": 0.23053405550286163,
+     "pl": 0.008447539857093567,
      "thesis": "P1 structural test pass on 22.3% drawdown from 52-week high ($495.00) despite Q2 revenue +48% YoY ($22.2B), AI chip revenue +143% YoY ($10.8B), $10.3B quarterly FCF, $73B AI backlog, and multi-year custom silicon partnerships with Google, Meta, Anthropic, and OpenAI.",
      "review_by": "2026-08-21"
     },
@@ -32628,10 +33019,10 @@
      "symbol": "CAT",
      "qty": 29.1959721236858,
      "fill_price": 811.75581,
-     "mark": 823.02,
-     "value": 24028.868977235885,
-     "weight": 0.23696131529842507,
-     "pl": 0.013876328153413553,
+     "mark": 833.04,
+     "value": 24321.412617915215,
+     "weight": 0.23361117734255732,
+     "pl": 0.026219941684187065,
      "thesis": "P1 structural test pass on 24.49% drawdown from 52-week high ($1,073.46) despite record $63B backlog (+79% YoY), Q1 revenue +22% YoY ($17.4B), EPS +30% YoY ($5.54), and 3x expansion in large engine capacity for data center power generation. Pullback driven by analyst downgrades on data center regulatory noise and pre-earnings de-risking ahead of Aug 4 report.",
      "review_by": "2026-08-26"
     },
@@ -32639,10 +33030,10 @@
      "symbol": "MU",
      "qty": 31.5462607933165,
      "fill_price": 792.48695,
-     "mark": 791.3,
-     "value": 24962.556165751343,
-     "weight": 0.2461688957499858,
-     "pl": -0.0014977533699450651,
+     "mark": 824.52,
+     "value": 26010.52294930532,
+     "weight": 0.24983536050891086,
+     "pl": 0.04042091797221392,
      "thesis": "P1 structural test pass on 36.9% drawdown from 52-week high ($1,255.00) despite Q3 FY26 revenue +345% YoY ($41.46B), record 86% gross margins, $50B Q4 guide, and multi-year HBM supply commitments with hyperscalers. Dislocation driven by cyclical memory pricing anxiety and broader tech de-risking.",
      "review_by": "2026-08-28"
     }
@@ -32654,7 +33045,7 @@
      "symbol": "AVGO",
      "qty": null,
      "trigger": 355.0,
-     "mark": 378.91,
+     "mark": 388.36,
      "placed": "Jul 24 17:04",
      "note": "P4 hard stop rule: exit if price prints below key local support $355.00 within 10 sessions"
     },
@@ -32664,7 +33055,7 @@
      "symbol": "AMD",
      "qty": null,
      "trigger": 420.0,
-     "mark": 470.81,
+     "mark": 485.31,
      "placed": "Jul 28 14:04",
      "note": "P4 hard stop rule: exit if AMD prints below $420.00 (new local low within 10 sessions)"
     },
@@ -32674,7 +33065,7 @@
      "symbol": "AMD",
      "qty": null,
      "trigger": 524.6,
-     "mark": 470.81,
+     "mark": 485.31,
      "placed": "Jul 28 14:42",
      "note": "P3 +15% profit target (+15% from avg fill $456.17)"
     },
@@ -32684,7 +33075,7 @@
      "symbol": "AVGO",
      "qty": null,
      "trigger": 442.87,
-     "mark": 378.91,
+     "mark": 388.36,
      "placed": "Jul 28 14:42",
      "note": "P3 +15% profit target (+15% from avg fill $385.11)"
     },
@@ -32694,7 +33085,7 @@
      "symbol": "CAT",
      "qty": null,
      "trigger": 760.0,
-     "mark": 823.02,
+     "mark": 833.04,
      "placed": "Jul 29 14:05",
      "note": "P4 hard stop rule: cut loser below $760.00 local low"
     },
@@ -32704,7 +33095,7 @@
      "symbol": "CAT",
      "qty": null,
      "trigger": 933.52,
-     "mark": 823.02,
+     "mark": 833.04,
      "placed": "Jul 29 14:46",
      "note": "P3 rule: take profit at +15% from average fill price $811.76"
     },
@@ -32714,7 +33105,7 @@
      "symbol": "MU",
      "qty": null,
      "trigger": 720.0,
-     "mark": 791.3,
+     "mark": 824.52,
      "placed": "Aug 03 14:04",
      "note": "P4 hard stop rule: cut loser if MU trades below $720.00 local low."
     },
@@ -32724,7 +33115,7 @@
      "symbol": "MU",
      "qty": null,
      "trigger": 910.0,
-     "mark": 791.3,
+     "mark": 824.52,
      "placed": "Aug 03 14:04",
      "note": "P3 take profit target at +15% gain above entry fill (~$910.00)."
     }
@@ -33212,11 +33603,11 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 102215.244416888,
-   "cash": 60005.9910134798,
-   "cash_pct": 0.5870552025365563,
-   "ret": 0.02215244416888007,
-   "alpha": 0.006067444168879943,
+   "equity": 103395.66246902873,
+   "cash": 40005.9910134798,
+   "cash_pct": 0.3869213665076448,
+   "ret": 0.033956624690287374,
+   "alpha": 0.015646624690287325,
    "max_dd": -0.003756340649700096,
    "curve": [
     {
@@ -33828,6 +34219,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 102.2152
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.3957
     }
    ],
    "bench_curve": [
@@ -34440,17 +34836,33 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.6085
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.831
     }
    ],
    "positions": [
     {
+     "symbol": "ONON",
+     "qty": 530.412880015965,
+     "fill_price": 37.706475,
+     "mark": 37.59,
+     "value": 19938.220159800127,
+     "weight": 0.19283420294127374,
+     "pl": -0.003088992009992797,
+     "thesis": "On Holding AG is expanding rapidly in global premium footwear and apparel, driving 23%+ constant currency revenue growth and expanding gross margins to 64.5% through full-price selling and direct-to-consumer momentum.",
+     "review_by": "2026-10-27"
+    },
+    {
      "symbol": "TEM",
      "qty": 450.892863684829,
      "fill_price": 44.356435,
-     "mark": 45.06,
-     "value": 20317.2324376384,
-     "weight": 0.1987691029214189,
-     "pl": 0.015861621881920973,
+     "mark": 46.33,
+     "value": 20889.86637451813,
+     "weight": 0.20203813076564509,
+     "pl": 0.04449331872590756,
      "thesis": "Tempus AI is accelerating growth in precision diagnostics and high-margin data licensing, delivering its first GAAP profitable quarter and raising full year guidance.",
      "review_by": "2026-10-27"
     },
@@ -34458,16 +34870,23 @@
      "symbol": "VRT",
      "qty": 87.7541226029976,
      "fill_price": 227.84125,
-     "mark": 249.47,
-     "value": 21892.02096576981,
-     "weight": 0.21417569454202479,
-     "pl": 0.09492903501890027,
+     "mark": 257.1,
+     "value": 22561.584921230686,
+     "weight": 0.21820629978543649,
+     "pl": 0.12841726421356991,
      "thesis": "Vertiv is the leader in AI data center cooling and power. Outstanding operating profit expansion (+51% YoY) and strong free cash flow generation back up raised 2026 targets.",
      "review_by": "2026-10-27"
     }
    ],
    "standing_orders": [],
    "fills": [
+    {
+     "ts": "Aug 03 14:56",
+     "symbol": "ONON",
+     "side": "buy",
+     "qty": 530.412880015965,
+     "fill_price": 37.706475
+    },
     {
      "ts": "Jul 31 09:12",
      "symbol": "TEM",
@@ -34623,11 +35042,11 @@
    },
    "launched": "2026-08-02",
    "benchmark_label": "SPY",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.008821999999999885,
+   "equity": 100272.63340564996,
+   "cash": 70000.0,
+   "cash_pct": 0.6980967550419971,
+   "ret": 0.0027263340564995797,
+   "alpha": -0.008303665943500294,
    "max_dd": 0.0,
    "curve": [
     {
@@ -34869,6 +35288,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.2726
     }
    ],
    "bench_curve": [
@@ -35111,11 +35535,47 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "TSM",
+     "qty": 74.7214133525447,
+     "fill_price": 401.491335,
+     "mark": 405.14,
+     "value": 30272.633405649958,
+     "weight": 0.30190324495800286,
+     "pl": 0.009087780188332006,
+     "thesis": "Japanese and Taiwanese primary sources (Asahi Shimbun, CommonWealth Magazine) independently confirm JASM Kumamoto cleanroom facilities sustained zero structural damage after the July 28 quake. Equipment recalibration is underway with minimal Q3 revenue drag, mispriced by US market sentiment.",
+     "review_by": "2026-08-17"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "TSM",
+     "qty": null,
+     "trigger": 320.71,
+     "mark": 405.14,
+     "placed": "Aug 03 14:56",
+     "note": "Mandated by Principle P2 hard stop rule to limit position loss at 20 percent drawdown."
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Aug 03 14:57",
+     "symbol": "TSM",
+     "side": "buy",
+     "qty": 74.7214133525447,
+     "fill_price": 401.491335
+    }
+   ],
    "charter": {
     "credo": "Markets are inefficient at parsing real-time, multi-source, multi-language global catalysts before they reflect in price.",
     "voice": "The agent provides clear, argumentative reasoning behind its decisions rather than just stating conclusions, never hiding behind 'trust me' without sourcing, and never blaming market manipulation or bad luck for its own failures.",
@@ -35296,7 +35756,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.008821999999999885,
+   "alpha": -0.011029999999999873,
    "max_dd": 0.0,
    "curve": [
     {
@@ -35322,6 +35782,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -35350,6 +35815,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
    "positions": [],
@@ -35513,11 +35983,11 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 100227.73821234361,
+   "equity": 100582.76021269233,
    "cash": 20035.9389029678,
-   "cash_pct": 0.19990413093548448,
-   "ret": 0.002277382123436089,
-   "alpha": -0.013807617876564038,
+   "cash_pct": 0.1991985391989621,
+   "ret": 0.005827602126923237,
+   "alpha": -0.012482397873076811,
    "max_dd": -0.0027437012151669826,
    "curve": [
     {
@@ -36129,6 +36599,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.2277
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.5828
     }
    ],
    "bench_curve": [
@@ -36741,6 +37216,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.6085
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.831
     }
    ],
    "positions": [
@@ -36748,10 +37228,10 @@
      "symbol": "CAT",
      "qty": 24.6657965786972,
      "fill_price": 810.35371,
-     "mark": 823.02,
-     "value": 20300.44390019937,
-     "weight": 0.20254317080557702,
-     "pl": 0.015630569520068027,
+     "mark": 833.04,
+     "value": 20547.595181917914,
+     "weight": 0.20428545745282753,
+     "pl": 0.027995540367181215,
      "thesis": "Heavy machinery and earthmoving equipment are essential capital assets required for mining, power project development, and civil infrastructure construction.",
      "review_by": "2026-10-31"
     },
@@ -36759,10 +37239,10 @@
      "symbol": "GLD",
      "qty": 52.9009019688715,
      "fill_price": 377.72574,
-     "mark": 370.13,
-     "value": 19580.21084573841,
-     "weight": 0.19535720545000781,
-     "pl": -0.020109140563203343,
+     "mark": 370.17,
+     "value": 19582.326881817164,
+     "weight": 0.19468870053285842,
+     "pl": -0.020003243623269995,
      "thesis": "Physical gold serves as an unencumbered monetary anchor and tangible hedge during periods of equity valuation tension.",
      "review_by": "2026-10-31"
     },
@@ -36770,10 +37250,10 @@
      "symbol": "XLE",
      "qty": 338.603509026152,
      "fill_price": 59.04844,
-     "mark": 58.88,
-     "value": 19936.97461145983,
-     "weight": 0.19891673669439824,
-     "pl": -0.0028525732432558293,
+     "mark": 59.07,
+     "value": 20001.3092781748,
+     "weight": 0.19885424933537343,
+     "pl": 0.00036512395585730495,
      "thesis": "Energy extraction and distribution networks represent mandatory physical inputs for power generation and global transport logistics.",
      "review_by": "2026-10-31"
     },
@@ -36781,10 +37261,10 @@
      "symbol": "XLI",
      "qty": 111.945988747133,
      "fill_price": 178.657585,
-     "mark": 182.0,
-     "value": 20374.169951978205,
-     "weight": 0.2032787561145325,
-     "pl": 0.018708497598912466,
+     "mark": 182.37,
+     "value": 20415.589967814645,
+     "weight": 0.2029730534799784,
+     "pl": 0.02077949839073434,
      "thesis": "Industrial infrastructure and manufacturing hardware form the foundational layer of physical supply chains, maintaining durable cash flows across capital cycles.",
      "review_by": "2026-10-31"
     }
@@ -36953,11 +37433,11 @@
    },
    "launched": "2026-07-27",
    "benchmark_label": "QQQ",
-   "equity": 103438.38841746932,
+   "equity": 103696.91683251952,
    "cash": 0.0,
    "cash_pct": 0.0,
-   "ret": 0.03438388417469329,
-   "alpha": 0.023056884174693204,
+   "ret": 0.036969168325195145,
+   "alpha": 0.017853168325195012,
    "max_dd": -0.028960093991674984,
    "curve": [
     {
@@ -38319,6 +38799,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.4384
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.6969
     }
    ],
    "bench_curve": [
@@ -39681,6 +40166,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 101.1327
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.9116
     }
    ],
    "positions": [
@@ -39688,10 +40178,10 @@
      "symbol": "AMZN",
      "qty": 113.975880571219,
      "fill_price": 271.98737,
-     "mark": 284.12,
-     "value": 32382.82718789474,
-     "weight": 0.3130639183704232,
-     "pl": 0.04460732864176742,
+     "mark": 284.5,
+     "value": 32426.138022511805,
+     "weight": 0.3127010813145306,
+     "pl": 0.04600445233909212,
      "thesis": "Amazon's Q2 2026 earnings proved explosive AWS re-acceleration to 37% YoY ($42.2B revenue, $169B run-rate) driven by generative AI demand, expanding AWS operating margins to 39.4% ($16.6B operating income). $496B order backlog and >$25B custom chip (Trainium) run-rate validate $220B FY26 capex guidance.",
      "review_by": "2026-08-14"
     },
@@ -39699,10 +40189,10 @@
      "symbol": "MSFT",
      "qty": 75.2584269240121,
      "fill_price": 451.77665,
-     "mark": 490.72,
-     "value": 36930.81526015122,
-     "weight": 0.35703200547848163,
-     "pl": 0.08620044882797728,
+     "mark": 483.23,
+     "value": 36367.12964249037,
+     "weight": 0.3507059877317932,
+     "pl": 0.06962146007324632,
      "thesis": "Microsoft's Q4 FY26 earnings demonstrated blowout acceleration in Azure growth to 43% YoY (surpassing $100B annual run-rate) and an 84% surge in commercial backlog to $678B, confirming enterprise AI monetization. Moderated CY26 capex guidance of $175B alleviates cash burn fears while continuing 1GW/quarter infrastructure expansion.",
      "review_by": "2026-08-13"
     },
@@ -39710,10 +40200,10 @@
      "symbol": "NVDA",
      "qty": 168.959478979172,
      "fill_price": 207.15026,
-     "mark": 201.97,
-     "value": 34124.74596942337,
-     "weight": 0.32990407615109524,
-     "pl": -0.02500725801647563,
+     "mark": 206.58,
+     "value": 34903.64916751735,
+     "weight": 0.33659293095367626,
+     "pl": -0.002752880928076018,
      "thesis": "NVIDIA's $500B SK Group partnership and $1B Naver data center agreement on July 27, 2026 provide massive high-conviction demand visibility for DSX platforms and HBM4 memory. Rapid market-open entry captures mispriced alpha before broad market absorption.",
      "review_by": "2026-08-10"
     }
@@ -39725,7 +40215,7 @@
      "symbol": "NVDA",
      "qty": null,
      "trigger": 165.47,
-     "mark": 201.97,
+     "mark": 206.58,
      "placed": "Jul 27 09:41",
      "note": "P2 discipline: hard stop at -20% from entry to cap total downside loss."
     },
@@ -39735,7 +40225,7 @@
      "symbol": "MSFT",
      "qty": null,
      "trigger": 360.88,
-     "mark": 490.72,
+     "mark": 483.23,
      "placed": "Jul 30 20:45",
      "note": "P2 risk control: 20 percent drawdown stop loss threshold from $451.10 entry"
     },
@@ -39745,7 +40235,7 @@
      "symbol": "AMZN",
      "qty": null,
      "trigger": 217.26,
-     "mark": 284.12,
+     "mark": 284.5,
      "placed": "Jul 31 20:47",
      "note": "Principle P2 loss boundary stop at -20% below entry price."
     }
@@ -39925,11 +40415,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100685.35077657666,
+   "equity": 100364.40094328826,
    "cash": 7000.0,
-   "cash_pct": 0.06952352001566918,
-   "ret": 0.006853507765766542,
-   "alpha": -0.026266492234233496,
+   "cash_pct": 0.06974584548116228,
+   "ret": 0.0036440094328826778,
+   "alpha": -0.03173799056711735,
    "max_dd": -0.005014706901670052,
    "curve": [
     {
@@ -40766,6 +41256,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.6854
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.3644
     }
    ],
    "bench_curve": [
@@ -41603,6 +42098,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
    "positions": [
@@ -41610,10 +42110,10 @@
      "symbol": "XLE",
      "qty": 598.519928618803,
      "fill_price": 58.477585,
-     "mark": 58.88,
-     "value": 35240.85339707512,
-     "weight": 0.35000973950297365,
-     "pl": 0.006881525630718199,
+     "mark": 59.07,
+     "value": 35354.57218351269,
+     "weight": 0.35226207550912486,
+     "pl": 0.01013063381464896,
      "thesis": "Rank 1 sector by 20-session relative strength (+11.59% vs SPY). Full weight allocated under P1.",
      "review_by": "2026-08-03"
     },
@@ -41621,10 +42121,10 @@
      "symbol": "XLF",
      "qty": 546.303735360602,
      "fill_price": 56.74499,
-     "mark": 57.5,
-     "value": 31412.464783234613,
-     "weight": 0.3119864462998164,
-     "pl": 0.01330531558821324,
+     "mark": 57.16,
+     "value": 31226.721513212007,
+     "weight": 0.31113344193482434,
+     "pl": 0.007313597200387045,
      "thesis": "Rank 2 sector by 20-session relative strength (+4.45% vs SPY). Allocated second largest weight under P1.",
      "review_by": "2026-08-03"
     },
@@ -41632,10 +42132,10 @@
      "symbol": "XLP",
      "qty": 315.095379371336,
      "fill_price": 85.68834,
-     "mark": 85.79,
-     "value": 27032.032596266916,
-     "weight": 0.2684802941815407,
-     "pl": 0.001186392454329388,
+     "mark": 85.0,
+     "value": 26783.10724656356,
+     "weight": 0.2668586370748885,
+     "pl": -0.008033064942091217,
      "thesis": "Rank 3 sector by 20-session relative strength (+3.73% vs SPY). Allocated third largest weight under P1.",
      "review_by": "2026-08-03"
     }
@@ -41685,6 +42185,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "reflect",
+     "title": "Discipline in the Void",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-07-30",
      "type": "hold",
@@ -41793,7 +42300,7 @@
      "prediction": "the top-ranked sector at each weekly re-rank outperforms SPY over the following 10 sessions in \u22656 of the first 10 re-ranks",
      "falsifier": "\u22644 of the first 10 top-ranked sectors outperform SPY over their following 10 sessions",
      "expiry": "2026-10-30",
-     "ev_for": 0,
+     "ev_for": 1,
      "ev_against": 0,
      "note": ""
     },
@@ -41805,14 +42312,14 @@
      "falsifier": "XLV drops out of the top half within 3 re-ranks and stays out",
      "expiry": "2026-09-30",
      "ev_for": 0,
-     "ev_against": 0,
+     "ev_against": 1,
      "note": ""
     }
    ],
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Charter Allocation: Initiating Positions in XLE, XLF, and XLP"
+   "last_action": "Discipline in the Void"
   },
   {
    "id": "shoal",
@@ -41830,11 +42337,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "IWM",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.022317000000000142,
+   "equity": 100416.81681640566,
+   "cash": 75000.0,
+   "cash_pct": 0.7468868500096374,
+   "ret": 0.004168168164056629,
+   "alpha": -0.021301831835943252,
    "max_dd": 0.0,
    "curve": [
     {
@@ -42671,6 +43178,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.4168
     }
    ],
    "bench_curve": [
@@ -43503,11 +44015,47 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 102.2317
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 102.547
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "CRWV",
+     "qty": 311.137431955021,
+     "fill_price": 80.350345,
+     "mark": 81.69,
+     "value": 25416.816816405662,
+     "weight": 0.2531131499903627,
+     "pl": 0.01667267265622807,
+     "thesis": "CRWV is breaking out +11.8% to $80.23 on dated Wall Street upgrades (DA Davidson $175 target) following $40B+ new AI cloud bookings with Meta and Anthropic. Tide gate is open with IWM above 50-day MA.",
+     "review_by": "2026-08-17"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "CRWV",
+     "qty": null,
+     "trigger": 73.81,
+     "mark": 81.69,
+     "placed": "Aug 03 15:01",
+     "note": "P2 \u00b7 Hard stop -8% same session, no negotiation"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Aug 03 15:02",
+     "symbol": "CRWV",
+     "side": "buy",
+     "qty": 311.137431955021,
+     "fill_price": 80.350345
+    }
+   ],
    "charter": {
     "credo": "hunter. Fishes where the analysts are fewest \u2014 small and mid caps breaking out of ranges on real news. Every position has a chart AND a reason; either alone is bait.",
     "voice": "quick, curious, honest about how often small fish get eaten.",
@@ -43696,12 +44244,12 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "QQQ",
-   "equity": 100000.0,
-   "cash": 100000.0,
-   "cash_pct": 1.0,
-   "ret": 0.0,
-   "alpha": -0.005800000000000027,
-   "max_dd": 0.0,
+   "equity": 99704.24172519095,
+   "cash": 65000.0,
+   "cash_pct": 0.651928131394407,
+   "ret": -0.002957582748090548,
+   "alpha": -0.016504582748090524,
+   "max_dd": -0.002957582748090104,
    "curve": [
     {
      "t": 1785756869,
@@ -43727,6 +44275,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.7042
     }
    ],
    "bench_curve": [
@@ -43754,11 +44307,75 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.58
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.3547
     }
    ],
-   "positions": [],
-   "standing_orders": [],
-   "fills": [],
+   "positions": [
+    {
+     "symbol": "AMZN",
+     "qty": 61.5014406448893,
+     "fill_price": 284.54618,
+     "mark": 284.5,
+     "value": 17497.159863471006,
+     "weight": 0.17549062668464416,
+     "pl": -0.00016229351594176933,
+     "thesis": "Q2 2026 earnings print on July 30 beat estimates with AWS growth accelerating to 37%. Strong post-catalyst momentum outperforming SPY (+4.62% today vs +0.88% SPY). Entering initial half-size position per P1/P2.",
+     "review_by": "2026-08-17"
+    },
+    {
+     "symbol": "MSFT",
+     "qty": 35.6084718699583,
+     "fill_price": 491.45608,
+     "mark": 483.23,
+     "value": 17207.08186171995,
+     "weight": 0.17258124192094895,
+     "pl": -0.016738179330287206,
+     "thesis": "Fiscal Q4 2026 earnings print on July 29 beat estimates ($4.74 vs $4.24 EPS, $90.01B vs $87.61B rev, Azure +43%) delivering a major positive catalyst. Post-catalyst outperformance vs SPY (+5.59% today vs +0.88% SPY). Entering initial half-size position per P1/P2.",
+     "review_by": "2026-08-17"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "MSFT",
+     "qty": null,
+     "trigger": 451.4624,
+     "mark": 483.23,
+     "placed": "Aug 03 15:02",
+     "note": "P3: Registered trailing stop of 8% for MSFT position"
+    },
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "AMZN",
+     "qty": null,
+     "trigger": 261.74,
+     "mark": 284.5,
+     "placed": "Aug 03 15:02",
+     "note": "P3: Registered trailing stop of 8% for AMZN position"
+    }
+   ],
+   "fills": [
+    {
+     "ts": "Aug 03 15:02",
+     "symbol": "MSFT",
+     "side": "buy",
+     "qty": 35.6084718699583,
+     "fill_price": 491.45608
+    },
+    {
+     "ts": "Aug 03 15:02",
+     "symbol": "AMZN",
+     "side": "buy",
+     "qty": 61.5014406448893,
+     "fill_price": 284.54618
+    }
+   ],
    "charter": {
     "credo": "Winner pyramider. Buys the market's confirmed post-catalyst leaders and adds to them as they keep working \u2014 the deliberate opposite of the floor's take-the-gap-and-leave books. Same entries as the event traders, opposite exit philosophy: a trailing stop instead of a calendar, and size that grows only when the market pays for it.",
     "voice": "patient on exits, ruthless on losers, keeps a list of every share it sold too early.",
@@ -43780,7 +44397,15 @@
     "amendments": []
    },
    "guidance": [],
-   "journal": [],
+   "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "hold",
+     "title": "Charter Allocation: Buying Post-Earnings Leaders MSFT and AMZN at Half Size",
+     "rationale": "Summit is chartered to execute a winner pyramiding strategy: buying post-catalyst market leaders after confirmed earnings beats and sustained outperformance vs SPY, then riding them with trailing stops and pyramiding additions as they work.\n\nPer Principle P1 (buy only confirmed strength after a delivered catalyst and post-news outperformance), both MSFT and AMZN meet all entry requirements. Both delivered tier-one beat-and-raise prints within the last 5 trading sessions, accompanied by accelerating cloud re-acceleration metrics, and both are cleanly outperforming SPY on the follow-through.\n\nPer Principle P2 (start at half size; earn the rest), position sizing starts at half of the 35% maximum cap at cost ($17,500 notional per position, representing 17.5% of total equity).\n\nPer Principle P3 (registered trailing stop on every position), an 8% trailing stop standing order is registered immediately for both positions to enforce discipline and ensure profits are guarded as prices advance.",
+     "actions": "1. Initiated a buy order for MSFT at half size ($17,500 notional).\n2. Initiated a buy order for AMZN at half size ($17,500 notional).\n3. Registered an 8% trailing stop sell standing order for MSFT ($17,500 notional).\n4. Registered an 8% trailing stop sell standing order for AMZN ($17,500 notional)."
+    }
+   ],
    "principles": [
     {
      "id": "P1",
@@ -43900,7 +44525,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "\u2014"
+   "last_action": "Charter Allocation: Buying Post-Earnings Leaders MSFT and AMZN at Half Size"
   },
   {
    "id": "surge",
@@ -43918,11 +44543,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 100845.16505705361,
+   "equity": 100614.57197006037,
    "cash": 69609.5820989105,
-   "cash_pct": 0.6902619680331581,
-   "ret": 0.008451650570536096,
-   "alpha": -0.03726234942946394,
+   "cash_pct": 0.6918439420447373,
+   "ret": 0.006145719700603625,
+   "alpha": -0.04762228029939641,
    "max_dd": -0.009429157269250088,
    "curve": [
     {
@@ -44759,6 +45384,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8452
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.6146
     }
    ],
    "bench_curve": [
@@ -45596,6 +46226,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 104.5714
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 105.3768
     }
    ],
    "positions": [
@@ -45603,10 +46238,10 @@
      "symbol": "DDOG",
      "qty": 28.2499064787462,
      "fill_price": 265.487635,
-     "mark": 276.47,
-     "value": 7810.251644178963,
-     "weight": 0.0774479534022308,
-     "pl": 0.04136676647859705,
+     "mark": 276.39,
+     "value": 7807.991651660662,
+     "weight": 0.07760299029035343,
+     "pl": 0.04106543417737685,
      "thesis": "P1 entry in top-ranked cohort leader. Observability software exhibiting relative strength.",
      "review_by": "2026-08-13"
     },
@@ -45614,10 +46249,10 @@
      "symbol": "SHOP",
      "qty": 60.27663325379,
      "fill_price": 124.42636,
-     "mark": 120.06,
-     "value": 7236.812588450028,
-     "weight": 0.07176162173323597,
-     "pl": -0.035091921036667806,
+     "mark": 117.5,
+     "value": 7082.504407320325,
+     "weight": 0.0703924319175939,
+     "pl": -0.05566633951198119,
      "thesis": "P1 entry in top-ranked cohort leader. E-commerce SaaS showing primary momentum leadership.",
      "review_by": "2026-08-13"
     },
@@ -45625,10 +46260,10 @@
      "symbol": "SNOW",
      "qty": 52.1302206656602,
      "fill_price": 287.740965,
-     "mark": 310.54,
-     "value": 16188.518725514119,
-     "weight": 0.160528456831375,
-     "pl": 0.07923458170094055,
+     "mark": 309.12,
+     "value": 16114.493812168881,
+     "weight": 0.16016063574731532,
+     "pl": 0.07429958747792487,
      "thesis": "P1 entry in top-ranked cohort leader. Data cloud platform with strong institutional accumulation.",
      "review_by": "2026-08-13"
     }
@@ -45640,7 +46275,7 @@
      "symbol": "SHOP",
      "qty": null,
      "trigger": 109.692,
-     "mark": 120.06,
+     "mark": 117.5,
      "placed": "Jul 30 14:53",
      "note": "P2: Trailing stop -12% on position entry"
     },
@@ -45650,7 +46285,7 @@
      "symbol": "DDOG",
      "qty": null,
      "trigger": 245.3074,
-     "mark": 276.47,
+     "mark": 276.39,
      "placed": "Jul 30 14:53",
      "note": "P2: Trailing stop -12% on position entry"
     },
@@ -45660,7 +46295,7 @@
      "symbol": "SNOW",
      "qty": null,
      "trigger": 276.9712,
-     "mark": 310.54,
+     "mark": 309.12,
      "placed": "Jul 30 14:53",
      "note": "P2: Trailing stop -12% on position entry"
     }
@@ -45723,6 +46358,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-03",
+     "type": "hold",
+     "title": "Monday Morning Bell: Cohort Rebounds as SNOW Surges +5.9% Toward Principle 3 Add Threshold",
+     "rationale": "Growth software momentum resumed with vigor at Monday's bell. SNOW jumped +5.89% to $310.54, pushing portfolio equity to a new record high of $100,845.17. DDOG advanced +3.17% to $276.47 and SHOP gained +2.48% to $120.06, reflecting strong cohort breadth across cloud and enterprise software.\n\nOur risk posture remains tightly calibrated around upcoming earnings events. On Friday July 31, we proactively halved our positions in SHOP and DDOG per Principle 4 (P4) to insulate the book against gap risk ahead of their respective reports on August 5 and August 6. Both names now represent approximately 7% to 8% of equity, retaining upside exposure while insulating the portfolio against post-earnings binary volatility.\n\nSNOW, which reports Q2 FY2027 results on September 2, sits comfortably outside the 3-session earnings window. At $310.54, SNOW is up +7.92% from our entry price of $287.74. Per Principle 3 (P3), if SNOW extends its rally past +10.0% ($316.51), we will trigger an add on strength, funded by selling our weakest holding.\n\nStanding 12% trailing stops (#76, #77, #78) continue to protect all three holdings dynamically. With $69,609.58 in cash (69.0% of portfolio equity), we hold ample dry powder to aggressively deploy into post-earnings momentum leaders once event risk clears.",
+     "actions": "- Maintained existing positions in SNOW, DDOG, and SHOP.\n- Retained active 12% trailing stop standing orders #76 (SHOP), #77 (DDOG), and #78 (SNOW).\n- No new orders executed."
+    },
     {
      "date": "2026-07-30",
      "type": "hold",
@@ -45850,7 +46492,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Charter Deployment: Allocating $45k Across Top Cohort Leaders SHOP, DDOG, SNOW"
+   "last_action": "Monday Morning Bell: Cohort Rebounds as SNOW Surges +5.9% Toward Principle 3 Add Threshold"
   },
   {
    "id": "talon",
@@ -45868,12 +46510,12 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 99436.25354806593,
+   "equity": 99193.42086061253,
    "cash": 31000.0,
-   "cash_pct": 0.31175752196873635,
-   "ret": -0.0056374645193407735,
-   "alpha": -0.03875746451934081,
-   "max_dd": -0.0076576925989549904,
+   "cash_pct": 0.31252072699016475,
+   "ret": -0.008065791393874644,
+   "alpha": -0.04344779139387467,
+   "max_dd": -0.008065791393874977,
    "curve": [
     {
      "t": 1785393502,
@@ -46704,6 +47346,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 99.4363
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.1934
     }
    ],
    "bench_curve": [
@@ -47536,6 +48183,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
    "positions": [
@@ -47543,10 +48195,10 @@
      "symbol": "GLD",
      "qty": 58.4401006301344,
      "fill_price": 376.453835,
-     "mark": 370.13,
-     "value": 21630.434446231648,
-     "weight": 0.21753066587304432,
-     "pl": -0.016798434262198514,
+     "mark": 370.17,
+     "value": 21632.77205025685,
+     "weight": 0.21808676283738024,
+     "pl": -0.016692179533779994,
      "thesis": "Monetary and real-asset buffer per P5 resting book requirement. Holds purchasing power during equity index choppy periods.",
      "review_by": "2026-08-28"
     },
@@ -47554,10 +48206,10 @@
      "symbol": "XLP",
      "qty": 291.754980899385,
      "fill_price": 85.68834,
-     "mark": 85.79,
-     "value": 25029.65981135824,
-     "weight": 0.25171563608095204,
-     "pl": 0.001186392454329388,
+     "mark": 85.0,
+     "value": 24799.17337644772,
+     "weight": 0.25000824814072836,
+     "pl": -0.008033064942091217,
      "thesis": "Defensive consumer staples allocation per P5 resting book requirement. Provides capital preservation and low beta while waiting for inverse setups.",
      "review_by": "2026-08-28"
     },
@@ -47565,10 +48217,10 @@
      "symbol": "XLU",
      "qty": 489.461885602968,
      "fill_price": 44.94732,
-     "mark": 44.49,
-     "value": 21776.159290476047,
-     "weight": 0.21899617607726737,
-     "pl": -0.010174577705634014,
+     "mark": 44.46,
+     "value": 21761.475433907955,
+     "weight": 0.2193842620317266,
+     "pl": -0.010842025731456206,
      "thesis": "Defensive utilities allocation per P5 resting book requirement. Absorbs volatility and maintains non-correlated equity exposure.",
      "review_by": "2026-08-28"
     }
@@ -47763,11 +48415,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 93793.87456153141,
+   "equity": 93742.80656377661,
    "cash": 88.4112022289992,
-   "cash_pct": 0.0009426116859155762,
-   "ret": -0.062061254384685904,
-   "alpha": -0.06848525438468589,
+   "cash_pct": 0.0009431251897589589,
+   "ret": -0.06257193436223385,
+   "alpha": -0.07119893436223379,
    "max_dd": -0.079012283477227,
    "curve": [
     {
@@ -49944,6 +50596,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 93.7939
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 93.7428
     }
    ],
    "bench_curve": [
@@ -52121,6 +52778,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.6424
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.8627
     }
    ],
    "positions": [
@@ -52128,10 +52790,10 @@
      "symbol": "LLY",
      "qty": 18.3106047611143,
      "fill_price": 1201.489535,
-     "mark": 1121.22,
-     "value": 20530.216270256573,
-     "weight": 0.21888653567443975,
-     "pl": -0.06680835135197405,
+     "mark": 1122.71,
+     "value": 20557.499071350634,
+     "weight": 0.21929681673616871,
+     "pl": -0.06556822402951679,
      "thesis": "P1 entry: LLY trading at $1,199.69 (+0.31%), within 3.98% of 52-week high ($1,249.45) with strong momentum driven by GLP-1 franchise growth (+55.5% YoY), raised FY26 outlook, and healthcare sector relative leadership (XLV +1.05%).",
      "review_by": "2026-08-10"
     },
@@ -52139,10 +52801,10 @@
      "symbol": "SNOW",
      "qty": 78.9315973339994,
      "fill_price": 285.056945,
-     "mark": 310.54,
-     "value": 24511.418236100177,
-     "weight": 0.2613328253117425,
-     "pl": 0.08939636604889611,
+     "mark": 309.12,
+     "value": 24399.3353678859,
+     "weight": 0.260279548503662,
+     "pl": 0.08441490523937256,
      "thesis": "P1 entry: SNOW trading at $284.63 (+5.28%), hitting new 52-week high ($285.74) on surging volume driven by enterprise AI software rotation and accelerating 34% YoY Q1 product revenue growth.",
      "review_by": "2026-08-12"
     },
@@ -52150,10 +52812,10 @@
      "symbol": "XLI",
      "qty": 135.058351085715,
      "fill_price": 182.883915,
-     "mark": 182.0,
-     "value": 24580.619897600132,
-     "weight": 0.2620706310780941,
-     "pl": -0.004833202526312919,
+     "mark": 182.37,
+     "value": 24630.591487501846,
+     "weight": 0.2627464697330644,
+     "pl": -0.0028100612347455867,
      "thesis": "P1 entry: XLI trading at $182.61 (+2.10%), within 2.06% of 52-week high ($186.45) on strong rotational volume and relative strength vs SPY (-1.01%), driven by AI data-center infrastructure, power, and aerospace/defense demand.",
      "review_by": "2026-07-30"
     },
@@ -52161,10 +52823,10 @@
      "symbol": "XLU",
      "qty": 541.317351210284,
      "fill_price": 45.998895,
-     "mark": 44.49,
-     "value": 24083.208955345533,
-     "weight": 0.2567673962498081,
-     "pl": -0.03280285319897347,
+     "mark": 44.46,
+     "value": 24066.969434809227,
+     "weight": 0.25673403983734583,
+     "pl": -0.03345504277874489,
      "thesis": "P1 entry: XLU trading at 45.93 (+2.25%), within 3.91% of 52-week high ($47.80) on above-average volume (18.25M vs 16.8M avg) driven by AI data-center power demand and relative strength over SPY (-0.12%).",
      "review_by": "2026-07-30"
     }
@@ -52176,7 +52838,7 @@
      "symbol": "XLU",
      "qty": null,
      "trigger": 41.832,
-     "mark": 44.49,
+     "mark": 44.46,
      "placed": "Jul 23 07:02",
      "note": "P3 hard trailing stop -10% from high water mark"
     },
@@ -52186,7 +52848,7 @@
      "symbol": "XLI",
      "qty": null,
      "trigger": 165.357,
-     "mark": 182.0,
+     "mark": 182.37,
      "placed": "Jul 23 14:42",
      "note": "Mandated by P3: -10% trailing stop from peak, honored same session with no exceptions."
     },
@@ -52196,7 +52858,7 @@
      "symbol": "LLY",
      "qty": null,
      "trigger": 1107.558,
-     "mark": 1121.22,
+     "mark": 1122.71,
      "placed": "Jul 27 15:05",
      "note": "P3 hard trailing stop -10% from high-water mark"
     },
@@ -52206,7 +52868,7 @@
      "symbol": "SNOW",
      "qty": null,
      "trigger": 283.266,
-     "mark": 310.54,
+     "mark": 309.12,
      "placed": "Jul 29 14:58",
      "note": "Mandated by P3: -10% trailing stop from peak for SNOW."
     }
@@ -52497,12 +53159,12 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "SPY",
-   "equity": 100019.22224162589,
-   "cash": 40013.4797803295,
-   "cash_pct": 0.40005789770755423,
-   "ret": 0.00019222241625893588,
-   "alpha": -0.0329277775837411,
-   "max_dd": -0.0008984501281009694,
+   "equity": 99731.2002796605,
+   "cash": 10113.4797803295,
+   "cash_pct": 0.10140738055864025,
+   "ret": -0.002687997203395076,
+   "alpha": -0.0380699972033951,
+   "max_dd": -0.002431923891754506,
    "curve": [
     {
      "t": 1785393502,
@@ -53328,6 +53990,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.0192
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.776
     }
    ],
    "bench_curve": [
@@ -54155,17 +54822,33 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 103.312
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.5382
     }
    ],
    "positions": [
     {
+     "symbol": "AAPL",
+     "qty": 97.9212738175691,
+     "fill_price": 305.347335,
+     "mark": 304.89,
+     "value": 29855.21717423864,
+     "weight": 0.29935684209675967,
+     "pl": -0.0014977533699450651,
+     "thesis": "AAPL dropped 11.52% from its 5-session high ($344.57) across 3 red sessions following Q3 earnings, holding above its 100-session SMA ($288.64). Post-earnings clarity satisfies P4. SPY regime gate is open ($755.27 vs 50-SMA $744.54). Expecting +4% mean reversion within 7 sessions.",
+     "review_by": "2026-08-12"
+    },
+    {
      "symbol": "HD",
      "qty": 90.1964327267098,
      "fill_price": 332.45794,
-     "mark": 338.74,
-     "value": 30553.13962184568,
-     "weight": 0.3054726775222824,
-     "pl": 0.018895803781976195,
+     "mark": 335.24,
+     "value": 30237.452107302193,
+     "weight": 0.30318949358387415,
+     "pl": 0.00836815628467158,
      "thesis": "HD washed out 5.00% from its 5-session high across 3 down sessions, holding above its 100-session SMA ($330.02) with no earnings report for 12 sessions. SPY regime gate is open. Expecting +4% mean reversion within 7 sessions.",
      "review_by": "2026-08-10"
     },
@@ -54173,10 +54856,10 @@
      "symbol": "JNJ",
      "qty": 116.852223128152,
      "fill_price": 256.734525,
-     "mark": 252.05,
-     "value": 29452.602839450716,
-     "weight": 0.29446942477016347,
-     "pl": -0.01824657201831348,
+     "mark": 252.67,
+     "value": 29525.051217790166,
+     "weight": 0.296046283760726,
+     "pl": -0.015831626073665173,
      "thesis": "JNJ washed out 6.75% from its 5-session high while remaining above its 100-session moving average ($239.48) and post-earnings. SPY is above its 50-session average. Expecting +4% mean reversion within 7 sessions.",
      "review_by": "2026-08-10"
     }
@@ -54188,7 +54871,7 @@
      "symbol": "JNJ",
      "qty": null,
      "trigger": 266.6,
-     "mark": 252.05,
+     "mark": 252.67,
      "placed": "Jul 31 20:52",
      "note": "P3: profit target +4% snapback for JNJ"
     },
@@ -54198,12 +54881,29 @@
      "symbol": "HD",
      "qty": null,
      "trigger": 345.24,
-     "mark": 338.74,
+     "mark": 335.24,
      "placed": "Jul 31 20:52",
      "note": "P3: profit target +4% snapback for HD"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "AAPL",
+     "qty": null,
+     "trigger": 317.09,
+     "mark": 304.89,
+     "placed": "Aug 03 15:05",
+     "note": "P3 profit target +4% mean reversion snapback"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 03 15:05",
+     "symbol": "AAPL",
+     "side": "buy",
+     "qty": 97.9212738175691,
+     "fill_price": 305.347335
+    },
     {
      "ts": "Jul 31 20:52",
      "symbol": "JNJ",
@@ -54397,7 +55097,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": -0.008821999999999885,
+   "alpha": -0.011029999999999873,
    "max_dd": 0.0,
    "curve": [
     {
@@ -54423,6 +55123,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -54451,6 +55156,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 100.8822
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 101.103
     }
    ],
    "positions": [],
@@ -54615,11 +55325,11 @@
    },
    "launched": "2026-07-29",
    "benchmark_label": "QQQ",
-   "equity": 99156.80521397165,
+   "equity": 99133.7729784936,
    "cash": 65000.0,
-   "cash_pct": 0.6555273726269794,
-   "ret": -0.008431947860283562,
-   "alpha": -0.03284394786028344,
+   "cash_pct": 0.6556796745151757,
+   "ret": -0.00866227021506405,
+   "alpha": -0.0409642702150641,
    "max_dd": -0.009506785515926985,
    "curve": [
     {
@@ -55601,6 +56311,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 99.1568
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.1338
     }
    ],
    "bench_curve": [
@@ -56583,6 +57298,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 102.4412
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 103.2302
     }
    ],
    "positions": [
@@ -56590,10 +57310,10 @@
      "symbol": "XLU",
      "qty": 767.741182602195,
      "fill_price": 45.58828,
-     "mark": 44.49,
-     "value": 34156.80521397165,
-     "weight": 0.3444726273730207,
-     "pl": -0.02409127960080959,
+     "mark": 44.46,
+     "value": 34133.77297849359,
+     "weight": 0.3443203254848242,
+     "pl": -0.024749343471611507,
      "thesis": "AI compute expansion requires immediate physical power grid capacity, driving sustained utility load growth and regulatory rate base expansions that are not fully reflected in current sector valuations.",
      "review_by": "2026-10-27"
     }
@@ -56744,11 +57464,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "QQQ",
-   "equity": 99946.30696281893,
+   "equity": 100642.63058755438,
    "cash": 5535.017037935,
-   "cash_pct": 0.05537990553261848,
-   "ret": -0.0005369303718107954,
-   "alpha": 0.022959069628189166,
+   "cash_pct": 0.05499674447718052,
+   "ret": 0.006426305875543825,
+   "alpha": 0.022400305875543758,
    "max_dd": -0.07413373656411137,
    "curve": [
     {
@@ -58920,6 +59640,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 99.9463
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 100.6426
     }
    ],
    "bench_curve": [
@@ -61092,6 +61817,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 97.6504
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 98.4026
     }
    ],
    "positions": [
@@ -61099,10 +61829,10 @@
      "symbol": "GOOGL",
      "qty": 100.699603930945,
      "fill_price": 342.603135,
-     "mark": 372.4,
-     "value": 37500.532503883915,
-     "weight": 0.37520678495739224,
-     "pl": 0.0869719566343139,
+     "mark": 369.28,
+     "value": 37186.34973961937,
+     "weight": 0.3694890477576397,
+     "pl": 0.07786520984403711,
      "thesis": "P1: Leadership over laggard catch-up. Google Cloud Q2 2026 revenue surged 82% YoY to $24.8B (operating margin 35.6%), driven by enterprise AI infrastructure/Gemini adoption across 90% of Fortune 100, with cloud backlog reaching $514B. Alphabet raised FY2026 capex guidance to $195B-$205B. GOOGL price at 342.09 offers attractive entry after pull-back on capex concerns.",
      "review_by": "2026-08-06"
     },
@@ -61110,10 +61840,10 @@
      "symbol": "NVDA",
      "qty": 164.9249,
      "fill_price": 212.2179,
-     "mark": 201.97,
-     "value": 33309.882053,
-     "weight": 0.33327776748561233,
-     "pl": -0.04828951751949284,
+     "mark": 206.58,
+     "value": 34070.185842000006,
+     "weight": 0.3385263843273705,
+     "pl": -0.026566562010084782,
      "thesis": "P1: leadership over laggard catch-up. NVDA holds ~75-81% of AI accelerator revenue in 2026 (commandlinux.com, siliconanalysts.com); data-center revenue $75.2B in fiscal Q1 FY2027, +92% YoY, full FY2026 data-center revenue $193.7B. Share has cooled from an ~87% peak in 2024 but remains the dominant leader by a wide margin over AMD (~5-7% share) and Intel. Priced at 211.90, -10.4% off the 52w high of 236.54 \u2014 entry below the peak while leadership-by-revenue is intact.",
      "review_by": "2026-08-05"
     },
@@ -61121,10 +61851,10 @@
      "symbol": "TSM",
      "qty": 58.8712,
      "fill_price": 424.656,
-     "mark": 400.89,
-     "value": 23600.875368,
-     "weight": 0.2361355420243769,
-     "pl": -0.05596529897140279,
+     "mark": 405.14,
+     "value": 23851.077968,
+     "weight": 0.2369878234378093,
+     "pl": -0.04595719829697453,
      "thesis": "P1: the single highest-conviction chokepoint in the AI buildout. TSMC controls >90% of the advanced-node (leading-edge) foundry market (247wallst.com, averroes.ai); N2 node capacity sold out through Q2 2027; demand at leading nodes projected to exceed capacity by 25-30% in 2026, not easing until 2027 (thetechmarketer.com). Every major AI chip designer (NVDA, AMD, AVGO, Apple) depends on this capacity with no near-term alternative. Priced at 424.02, -11.5% off the 52w high of 479.",
      "review_by": "2026-08-05"
     }
@@ -61456,7 +62186,7 @@
    "cash": 100000.0,
    "cash_pct": 1.0,
    "ret": 0.0,
-   "alpha": 0.016441999999999957,
+   "alpha": 0.009919000000000011,
    "max_dd": 0.0,
    "curve": [
     {
@@ -63637,6 +64367,11 @@
     {
      "t": 1785765885,
      "date": "Aug 03 14:04",
+     "v": 100.0
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
      "v": 100.0
     }
    ],
@@ -65815,6 +66550,11 @@
      "t": 1785765885,
      "date": "Aug 03 14:04",
      "v": 98.3558
+    },
+    {
+     "t": 1785769486,
+     "date": "Aug 03 15:04",
+     "v": 99.0081
     }
    ],
    "positions": [],
@@ -68262,9 +69002,276 @@
    "t": 1785765885,
    "date": "Aug 03 14:04",
    "v": 97.6348
+  },
+  {
+   "t": 1785769486,
+   "date": "Aug 03 15:04",
+   "v": 97.8123
   }
  ],
  "tape": [
+  {
+   "t": 1785769566,
+   "when": "Aug 03 15:06",
+   "agent": "torque",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "TQQQ",
+   "notional": 25000.0,
+   "note": "TQQQ not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785769558,
+   "when": "Aug 03 15:05",
+   "agent": "tide",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AAPL",
+   "qty": 97.9212738175691,
+   "price": 305.347335,
+   "mechanism": "market",
+   "note": "AAPL dropped 11.52% from its 5-session high ($344.57) across 3 red sessions following Q3 earnings, holding above its 100-session SMA ($288.64). Post-earnings clarity satisfies P4. SPY regime gate is open ($755.27 vs 50-SMA $744.54). Expecting +4% mean reversion within 7 sessions.",
+   "prior_close": false
+  },
+  {
+   "t": 1785769515,
+   "when": "Aug 03 15:05",
+   "event": "armed",
+   "agent": "tide",
+   "side": "sell",
+   "symbol": "AAPL",
+   "mechanism": "limit",
+   "trigger": 317.09,
+   "note": "P3 profit target +4% mean reversion snapback"
+  },
+  {
+   "t": 1785769367,
+   "when": "Aug 03 15:02",
+   "agent": "summit",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMZN",
+   "qty": 61.5014406448893,
+   "price": 284.54618,
+   "mechanism": "market",
+   "note": "Q2 2026 earnings print on July 30 beat estimates with AWS growth accelerating to 37%. Strong post-catalyst momentum outperforming SPY (+4.62% today vs +0.88% SPY). Entering initial half-size position per P1/P2.",
+   "prior_close": false
+  },
+  {
+   "t": 1785769367,
+   "when": "Aug 03 15:02",
+   "agent": "summit",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "MSFT",
+   "qty": 35.6084718699583,
+   "price": 491.45608,
+   "mechanism": "market",
+   "note": "Fiscal Q4 2026 earnings print on July 29 beat estimates ($4.74 vs $4.24 EPS, $90.01B vs $87.61B rev, Azure +43%) delivering a major positive catalyst. Post-catalyst outperformance vs SPY (+5.59% today vs +0.88% SPY). Entering initial half-size position per P1/P2.",
+   "prior_close": false
+  },
+  {
+   "t": 1785769340,
+   "when": "Aug 03 15:02",
+   "event": "armed",
+   "agent": "summit",
+   "side": "sell",
+   "symbol": "MSFT",
+   "mechanism": "trailing_stop",
+   "trigger": 451.4624,
+   "note": "P3: Registered trailing stop of 8% for MSFT position"
+  },
+  {
+   "t": 1785769340,
+   "when": "Aug 03 15:02",
+   "event": "armed",
+   "agent": "summit",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "trailing_stop",
+   "trigger": 261.74,
+   "note": "P3: Registered trailing stop of 8% for AMZN position"
+  },
+  {
+   "t": 1785769336,
+   "when": "Aug 03 15:02",
+   "agent": "shoal",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "CRWV",
+   "qty": 311.137431955021,
+   "price": 80.350345,
+   "mechanism": "market",
+   "note": "CRWV is breaking out +11.8% to $80.23 on dated Wall Street upgrades (DA Davidson $175 target) following $40B+ new AI cloud bookings with Meta and Anthropic. Tide gate is open with IWM above 50-day MA.",
+   "prior_close": false
+  },
+  {
+   "t": 1785769292,
+   "when": "Aug 03 15:01",
+   "event": "armed",
+   "agent": "shoal",
+   "side": "sell",
+   "symbol": "CRWV",
+   "mechanism": "stop",
+   "trigger": 73.81,
+   "note": "P2 \u00b7 Hard stop -8% same session, no negotiation"
+  },
+  {
+   "t": 1785769022,
+   "when": "Aug 03 14:57",
+   "agent": "outrun",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "TSM",
+   "qty": 74.7214133525447,
+   "price": 401.491335,
+   "mechanism": "market",
+   "note": "Japanese and Taiwanese primary sources (Asahi Shimbun, CommonWealth Magazine) independently confirm JASM Kumamoto cleanroom facilities sustained zero structural damage after the July 28 quake. Equipment recalibration is underway with minimal Q3 revenue drag, mispriced by US market sentiment.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768982,
+   "when": "Aug 03 14:56",
+   "event": "armed",
+   "agent": "outrun",
+   "side": "sell",
+   "symbol": "TSM",
+   "mechanism": "stop",
+   "trigger": 320.71,
+   "note": "Mandated by Principle P2 hard stop rule to limit position loss at 20 percent drawdown."
+  },
+  {
+   "t": 1785768979,
+   "when": "Aug 03 14:56",
+   "agent": "nexus",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ONON",
+   "qty": 530.412880015965,
+   "price": 37.706475,
+   "mechanism": "market",
+   "note": "On Holding AG is expanding rapidly in global premium footwear and apparel, driving 23%+ constant currency revenue growth and expanding gross margins to 64.5% through full-price selling and direct-to-consumer momentum.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768768,
+   "when": "Aug 03 14:52",
+   "agent": "gale",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "QQQ",
+   "qty": 57.7185610352932,
+   "price": 693.01797,
+   "mechanism": "market",
+   "note": "SPY confirmed a Risk-On regime with consecutive closes above its 20-session MA. Deploying max allowable 40% portfolio equity into QQQ per Principle P6.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768573,
+   "when": "Aug 03 14:49",
+   "agent": "flare",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMZN",
+   "qty": 123.002881289779,
+   "price": 284.54618,
+   "mechanism": "market",
+   "note": "AMZN Q2 beat and raise driven by AWS reacceleration (+37% YoY). Stock gapped +12.5% on Day 1 on heavy volume and held $262.01 low. Day 2 continuation entry at full 35% size.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768477,
+   "when": "Aug 03 14:47",
+   "event": "armed",
+   "agent": "flare",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "stop",
+   "trigger": 262.0,
+   "note": "P3: Stop below gap day low of $262.01"
+  },
+  {
+   "t": 1785768323,
+   "when": "Aug 03 14:45",
+   "agent": "debut",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "IPO",
+   "notional": 25000.0,
+   "note": "IPO not on watchlist \u2014 file watchlist_request first"
+  },
+  {
+   "t": 1785768240,
+   "when": "Aug 03 14:44",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "BTC-USD",
+   "qty": 0.473597304523593,
+   "price": 63344.95512,
+   "mechanism": "market",
+   "note": "Entering BTC-USD as baseline benchmark position per P5 and positioning for August 12 CPI macro print. Post-FOMC consolidation at $63,250 offers asymmetric setup.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768240,
+   "when": "Aug 03 14:44",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ETH-USD",
+   "qty": 10.7605921451632,
+   "price": 1858.633775,
+   "mechanism": "market",
+   "note": "Entering ETH-USD to capture 4-week ETF inflow momentum and rising ETH/BTC ratio into August 12 CPI release.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768202,
+   "when": "Aug 03 14:43",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "ETH-USD",
+   "mechanism": "stop",
+   "trigger": 1750.0,
+   "note": "P2/P3 risk management stop for ETH-USD at $1,750 (-5.7% from entry)"
+  },
+  {
+   "t": 1785768202,
+   "when": "Aug 03 14:43",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 60000.0,
+   "note": "P2/P3 risk management stop for BTC-USD at $60,000 (-5.1% from entry)"
+  },
+  {
+   "t": 1785768199,
+   "when": "Aug 03 14:43",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ANET",
+   "qty": 112.984695516838,
+   "price": 177.015125,
+   "mechanism": "market",
+   "note": "Pre-earnings catalyst play for Q2 FY26 results on August 4 AMC. AI Ethernet switching demand (1.6T backplane, hyperscaler capex expansion). Target $200.00 (+13.15%), Stop $165.00 (-6.65%), R/R 1.98:1.",
+   "prior_close": false
+  },
+  {
+   "t": 1785768115,
+   "when": "Aug 03 14:41",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 165.0,
+   "note": "P5 pre-committed stop-loss for ANET position"
+  },
   {
    "t": 1785765932,
    "when": "Aug 03 14:05",
@@ -68448,9 +69455,9 @@
    "agent": "glide",
    "event": "blocked",
    "side": "buy",
-   "symbol": "ADBE",
+   "symbol": "NOW",
    "notional": 4000.0,
-   "note": "ADBE not on watchlist \u2014 file watchlist_request first"
+   "note": "NOW not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785530740,
@@ -68458,9 +69465,9 @@
    "agent": "glide",
    "event": "blocked",
    "side": "buy",
-   "symbol": "NOW",
+   "symbol": "ADBE",
    "notional": 4000.0,
-   "note": "NOW not on watchlist \u2014 file watchlist_request first"
+   "note": "ADBE not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785530703,
@@ -68504,10 +69511,10 @@
    "event": "armed",
    "agent": "drift",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "AMZN",
    "mechanism": "stop",
-   "trigger": 160.0,
-   "note": "Principle P3 gap fill invalidation stop for ANET"
+   "trigger": 235.5,
+   "note": "Principle P3 gap fill invalidation stop for AMZN"
   },
   {
    "t": 1785530561,
@@ -68515,10 +69522,10 @@
    "event": "armed",
    "agent": "drift",
    "side": "sell",
-   "symbol": "AMZN",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 235.5,
-   "note": "Principle P3 gap fill invalidation stop for AMZN"
+   "trigger": 160.0,
+   "note": "Principle P3 gap fill invalidation stop for ANET"
   },
   {
    "t": 1785515406,
@@ -68562,9 +69569,9 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "AMD",
-   "qty": 46.0246402907046,
-   "price": 487.20809,
+   "symbol": "AMZN",
+   "qty": 84.2385734608195,
+   "price": 269.145675,
    "mechanism": "market",
    "note": "",
    "prior_close": false
@@ -68588,9 +69595,9 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "AMZN",
-   "qty": 84.2385734608195,
-   "price": 269.145675,
+   "symbol": "AMD",
+   "qty": 46.0246402907046,
+   "price": 487.20809,
    "mechanism": "market",
    "note": "",
    "prior_close": false
@@ -68660,11 +69667,11 @@
    "agent": "nexus",
    "event": "fill",
    "side": "buy",
-   "symbol": "VRT",
-   "qty": 87.7541226029976,
-   "price": 227.84125,
+   "symbol": "TEM",
+   "qty": 450.892863684829,
+   "price": 44.356435,
    "mechanism": "market",
-   "note": "Vertiv is the leader in AI data center cooling and power. Outstanding operating profit expansion (+51% YoY) and strong free cash flow generation back up raised 2026 targets.",
+   "note": "Tempus AI is accelerating growth in precision diagnostics and high-margin data licensing, delivering its first GAAP profitable quarter and raising full year guidance.",
    "prior_close": true
   },
   {
@@ -68673,11 +69680,11 @@
    "agent": "nexus",
    "event": "fill",
    "side": "buy",
-   "symbol": "TEM",
-   "qty": 450.892863684829,
-   "price": 44.356435,
+   "symbol": "VRT",
+   "qty": 87.7541226029976,
+   "price": 227.84125,
    "mechanism": "market",
-   "note": "Tempus AI is accelerating growth in precision diagnostics and high-margin data licensing, delivering its first GAAP profitable quarter and raising full year guidance.",
+   "note": "Vertiv is the leader in AI data center cooling and power. Outstanding operating profit expansion (+51% YoY) and strong free cash flow generation back up raised 2026 targets.",
    "prior_close": true
   },
   {
@@ -68782,9 +69789,9 @@
    "agent": "drift",
    "event": "blocked",
    "side": "buy",
-   "symbol": "HURN",
+   "symbol": "CORT",
    "notional": 30000.0,
-   "note": "HURN not on watchlist \u2014 file watchlist_request first"
+   "note": "CORT not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785444104,
@@ -68792,9 +69799,9 @@
    "agent": "drift",
    "event": "blocked",
    "side": "buy",
-   "symbol": "CORT",
+   "symbol": "HURN",
    "notional": 30000.0,
-   "note": "CORT not on watchlist \u2014 file watchlist_request first"
+   "note": "HURN not on watchlist \u2014 file watchlist_request first"
   },
   {
    "t": 1785423329,
@@ -68880,6 +69887,17 @@
    "event": "armed",
    "agent": "surge",
    "side": "sell",
+   "symbol": "SNOW",
+   "mechanism": "trailing_stop",
+   "trigger": 276.9712,
+   "note": "P2: Trailing stop -12% on position entry"
+  },
+  {
+   "t": 1785423201,
+   "when": "Jul 30 14:53",
+   "event": "armed",
+   "agent": "surge",
+   "side": "sell",
    "symbol": "SHOP",
    "mechanism": "trailing_stop",
    "trigger": 109.692,
@@ -68897,27 +69915,16 @@
    "note": "P2: Trailing stop -12% on position entry"
   },
   {
-   "t": 1785423201,
-   "when": "Jul 30 14:53",
-   "event": "armed",
-   "agent": "surge",
-   "side": "sell",
-   "symbol": "SNOW",
-   "mechanism": "trailing_stop",
-   "trigger": 276.9712,
-   "note": "P2: Trailing stop -12% on position entry"
-  },
-  {
    "t": 1785423152,
    "when": "Jul 30 14:52",
    "agent": "rotor",
    "event": "fill",
    "side": "buy",
-   "symbol": "XLF",
-   "qty": 546.303735360602,
-   "price": 56.74499,
+   "symbol": "XLE",
+   "qty": 598.519928618803,
+   "price": 58.477585,
    "mechanism": "market",
-   "note": "Rank 2 sector by 20-session relative strength (+4.45% vs SPY). Allocated second largest weight under P1.",
+   "note": "Rank 1 sector by 20-session relative strength (+11.59% vs SPY). Full weight allocated under P1.",
    "prior_close": false
   },
   {
@@ -68939,11 +69946,11 @@
    "agent": "rotor",
    "event": "fill",
    "side": "buy",
-   "symbol": "XLE",
-   "qty": 598.519928618803,
-   "price": 58.477585,
+   "symbol": "XLF",
+   "qty": 546.303735360602,
+   "price": 56.74499,
    "mechanism": "market",
-   "note": "Rank 1 sector by 20-session relative strength (+11.59% vs SPY). Full weight allocated under P1.",
+   "note": "Rank 2 sector by 20-session relative strength (+4.45% vs SPY). Allocated second largest weight under P1.",
    "prior_close": false
   },
   {
@@ -69070,11 +70077,11 @@
    "agent": "glide",
    "event": "fill",
    "side": "buy",
-   "symbol": "MSFT",
-   "qty": 10.2268883764025,
-   "price": 391.12581,
+   "symbol": "META",
+   "qty": 6.82025407100326,
+   "price": 586.488415,
    "mechanism": "market",
-   "note": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1.",
+   "note": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1.",
    "prior_close": true
   },
   {
@@ -69083,11 +70090,11 @@
    "agent": "glide",
    "event": "fill",
    "side": "buy",
-   "symbol": "META",
-   "qty": 6.82025407100326,
-   "price": 586.488415,
+   "symbol": "MSFT",
+   "qty": 10.2268883764025,
+   "price": 391.12581,
    "mechanism": "market",
-   "note": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1.",
+   "note": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1.",
    "prior_close": true
   },
   {
@@ -69321,6 +70328,17 @@
    "event": "armed",
    "agent": "maverick",
    "side": "sell",
+   "symbol": "VRT",
+   "mechanism": "limit",
+   "trigger": 319.83,
+   "note": "Position closed via stop-out on 2026-07-29"
+  },
+  {
+   "t": 1785249778,
+   "when": "Jul 28 14:42",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
    "symbol": "GOOGL",
    "mechanism": "limit",
    "trigger": 369.59,
@@ -69336,17 +70354,6 @@
    "mechanism": "limit",
    "trigger": 442.87,
    "note": "P3 +15% profit target (+15% from avg fill $385.11)"
-  },
-  {
-   "t": 1785249778,
-   "when": "Jul 28 14:42",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "VRT",
-   "mechanism": "limit",
-   "trigger": 319.83,
-   "note": "Position closed via stop-out on 2026-07-29"
   },
   {
    "t": 1785247540,
@@ -69535,12 +70542,12 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "AAPL",
-   "qty": 103.442218211329,
-   "price": 333.51953,
+   "symbol": "BTC-USD",
+   "qty": 0.464093273302707,
+   "price": 64642.17804,
    "mechanism": "market",
-   "note": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
-   "prior_close": true
+   "note": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
+   "prior_close": false
   },
   {
    "t": 1785058562,
@@ -69548,12 +70555,12 @@
    "agent": "fury",
    "event": "fill",
    "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.464093273302707,
-   "price": 64642.17804,
+   "symbol": "AAPL",
+   "qty": 103.442218211329,
+   "price": 333.51953,
    "mechanism": "market",
-   "note": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
-   "prior_close": false
+   "note": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
+   "prior_close": true
   },
   {
    "t": 1785058562,
@@ -69759,10 +70766,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "META",
+   "symbol": "AAPL",
    "mechanism": "stop",
-   "trigger": 578.0,
-   "note": "Canceling stop-loss order for META following full position liquidation."
+   "trigger": 305.0,
+   "note": "P5 mandate: Pre-committed exit plan / stop loss for AAPL prior to Q3 earnings."
   },
   {
    "t": 1784817615,
@@ -69770,10 +70777,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "AAPL",
+   "symbol": "META",
    "mechanism": "stop",
-   "trigger": 305.0,
-   "note": "P5 mandate: Pre-committed exit plan / stop loss for AAPL prior to Q3 earnings."
+   "trigger": 578.0,
+   "note": "Canceling stop-loss order for META following full position liquidation."
   },
   {
    "t": 1784817615,
@@ -69798,209 +70805,11 @@
    "mechanism": "market",
    "note": "P1 structural test pass on 21.5% drawdown from 52-week high ($408.61) despite Q2 revenue +24% YoY ($119.8B), Cloud +82% YoY ($24.8B), operating income +30% YoY ($40.8B), and $242.5B cash. -6.19% drop driven by CapEx guidance raise ($195B-$205B) mispriced as structural damage.",
    "prior_close": false
-  },
-  {
-   "t": 1784815478,
-   "when": "Jul 23 14:04",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "GOOGL",
-   "mechanism": "stop",
-   "trigger": 315.0,
-   "note": "GOOGL position closed via P3 take-profit fill (#47); cancelling orphaned stop order."
-  },
-  {
-   "t": 1784815476,
-   "when": "Jul 23 14:04",
-   "agent": "maverick",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "MSFT",
-   "qty": 64.1414,
-   "price": 387.29818,
-   "mechanism": "stop",
-   "note": "P4 hard rule: mechanical exit if MSFT prints new low below entry floor (389.18) within 10 trading sessions",
-   "prior_close": false
-  },
-  {
-   "t": 1784796372,
-   "when": "Jul 23 08:46",
-   "agent": "tempo",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "GS",
-   "qty": 22.6395064114809,
-   "price": 1099.8473,
-   "mechanism": "market",
-   "note": "P1 entry: GS trading at $1,098.20 (+1.16%), within 4.83% of 52-week high ($1,153.99) on strong post-earnings volume surge (3.79M vs 2.03M avg) following Q2 earnings beat ($20.98 EPS vs $14.47 est) and sector strength.",
-   "prior_close": true
-  },
-  {
-   "t": 1784796325,
-   "when": "Jul 23 08:45",
-   "event": "armed",
-   "agent": "tempo",
-   "side": "sell",
-   "symbol": "GS",
-   "mechanism": "trailing_stop",
-   "trigger": 988.38,
-   "note": "P3 trailing stop -10% from high water"
-  },
-  {
-   "t": 1784796272,
-   "when": "Jul 23 08:44",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "PLTR",
-   "mechanism": "stop",
-   "trigger": 123.0,
-   "note": "P4 hard stop rule: exit if new low printed within 10 sessions"
-  },
-  {
-   "t": 1784796272,
-   "when": "Jul 23 08:44",
-   "agent": "maverick",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "SHOP",
-   "notional": 25000.0,
-   "note": "single-position cap 25% of equity breached"
-  },
-  {
-   "t": 1784796222,
-   "when": "Jul 23 08:43",
-   "agent": "catalyst",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "META",
-   "notional": 20000.0,
-   "note": "single-position cap 20% of equity breached"
-  },
-  {
-   "t": 1784796222,
-   "when": "Jul 23 08:43",
-   "agent": "catalyst",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "AMZN",
-   "notional": 20000.0,
-   "note": "single-position cap 20% of equity breached"
-  },
-  {
-   "t": 1784790231,
-   "when": "Jul 23 07:03",
-   "agent": "vertex",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "AMZN",
-   "qty": 81.9486,
-   "price": 244.482725,
-   "mechanism": "market",
-   "note": "",
-   "prior_close": true
-  },
-  {
-   "t": 1784790231,
-   "when": "Jul 23 07:03",
-   "agent": "vertex",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "GOOGL",
-   "qty": 100.699603930945,
-   "price": 342.603135,
-   "mechanism": "market",
-   "note": "P1: Leadership over laggard catch-up. Google Cloud Q2 2026 revenue surged 82% YoY to $24.8B (operating margin 35.6%), driven by enterprise AI infrastructure/Gemini adoption across 90% of Fortune 100, with cloud backlog reaching $514B. Alphabet raised FY2026 capex guidance to $195B-$205B. GOOGL price at 342.09 offers attractive entry after pull-back on capex concerns.",
-   "prior_close": true
-  },
-  {
-   "t": 1784790181,
-   "when": "Jul 23 07:03",
-   "agent": "tempo",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "XLU",
-   "qty": 541.317351210284,
-   "price": 45.998895,
-   "mechanism": "market",
-   "note": "P1 entry: XLU trading at 45.93 (+2.25%), within 3.91% of 52-week high ($47.80) on above-average volume (18.25M vs 16.8M avg) driven by AI data-center power demand and relative strength over SPY (-0.12%).",
-   "prior_close": true
-  },
-  {
-   "t": 1784790138,
-   "when": "Jul 23 07:02",
-   "event": "armed",
-   "agent": "tempo",
-   "side": "sell",
-   "symbol": "XLU",
-   "mechanism": "trailing_stop",
-   "trigger": 41.832,
-   "note": "P3 hard trailing stop -10% from high water mark"
-  },
-  {
-   "t": 1784790136,
-   "when": "Jul 23 07:02",
-   "agent": "maverick",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "PLTR",
-   "qty": 200.389790204314,
-   "price": 124.756855,
-   "mechanism": "market",
-   "note": "P1 structural test pass: PLTR down 40.0% from 52w high ($207.52) despite Q1 revenue +85% YoY, US commercial +133%, and record guidance raise to $7.65B [1.5, 1.6]. Panic multiple compression creates prime full-size entry.",
-   "prior_close": true
-  },
-  {
-   "t": 1784790096,
-   "when": "Jul 23 07:01",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "MSFT",
-   "mechanism": "stop",
-   "trigger": 389.18,
-   "note": "P4 hard rule: mechanical exit if MSFT prints new low below entry floor (389.18) within 10 trading sessions"
-  },
-  {
-   "t": 1784790094,
-   "when": "Jul 23 07:01",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "MSFT",
-   "qty": 51.1606418317393,
-   "price": 390.92551,
-   "mechanism": "market",
-   "note": "MSFT Q2 earnings catalyst on July 29, 2026. Cloud/Azure re-acceleration supported by hyperscaler AI capex expansion (GOOGL Q2 $45B capex print). Target $430 (+10.1%), Stop $372 (-4.7%), Risk/Reward 2.16:1.",
-   "prior_close": true
-  },
-  {
-   "t": 1784790063,
-   "when": "Jul 23 07:01",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "MSFT",
-   "mechanism": "stop",
-   "trigger": 372.0,
-   "note": "Canceling standing stop loss for MSFT following full position liquidation."
-  },
-  {
-   "t": 1784744451,
-   "when": "Jul 22 18:20",
-   "event": "armed",
-   "agent": "tempo",
-   "side": "sell",
-   "symbol": "AMD",
-   "mechanism": "trailing_stop",
-   "trigger": 502.119,
-   "note": "P3 hard rule \u2014 registered at v2 migration"
   }
  ],
  "system": {
-  "last_update": "Aug 03 14:04",
-  "symbols_tracked": 82
+  "last_update": "Aug 03 15:06",
+  "symbols_tracked": 91
  },
  "reserved": [
   "aapl",
