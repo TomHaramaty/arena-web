@@ -91,143 +91,7 @@ def avatar_cell(agent, size=28):
             f'background:{esc(agent.get("color", "#888"))}"></span>')
 
 
-# ---------------------------------------------------------------- step 1: how
-# a sentence someone said became a rule their trader now trades by — the real
-# quote and the real principle, straight from the record. Nothing staged.
-
-def origin_rule(data, agent_id="ballast", prin_id="P2"):
-    agents = [a for a in [find_agent(data, agent_id)] if a] or data["agents"]
-    for a in agents:
-        prins = a.get("principles", [])
-        chosen = next((p for p in prins if p.get("id") == prin_id), None)
-        for p in ([chosen] if chosen else prins):
-            if not p:
-                continue
-            date, quote = origin_parts(p.get("origin", ""))
-            if not quote:
-                continue
-            hard = ('<p class="tagrow"><span class="tagchip">a hard rule, '
-                    'it can never be talked around</span></p>'
-                    if p.get("rigidity") == "hard" else "")
-            body = (
-                f'<div class="fbody m-split2">'
-                f'<div><p class="dcap">they said</p>'
-                f'<p class="oquote">“{esc(quote)}”</p>'
-                f'<p class="oattr">{esc(a["name"])}’s owner, '
-                f'{esc(fmt_date(date))}</p></div>'
-                f'<div><p class="dcap good">→ the rule it became</p>'
-                f'{hard}'
-                f'<p class="astmt">{esc(trim(clean_prose(p["statement"]), 92))}</p></div></div>')
-            return frame(f'{esc(a["id"])} · rulebook',
-                         "from the interview", body)
-    return ""
-
-
-# ---------------------------------------------------------------- step 2: the
-# live portfolio — positions, weights, a real thesis with its review date
-
-def book_frame(data, agent_id="vertex"):
-    order = [a for a in [find_agent(data, agent_id)] if a] + \
-            [a for a in data["agents"] if a["id"] != agent_id]
-    for a in order:
-        poss = [p for p in a.get("positions", []) if p.get("weight")]
-        if not poss:
-            continue
-        poss = sorted(poss, key=lambda p: p["weight"], reverse=True)
-        rows = []
-        for p in poss:
-            w = p["weight"] * 100
-            rows.append(
-                f'<tr><td class="sym">{esc(p["symbol"])}</td>'
-                f'<td class="wcell"><div class="track">'
-                f'<div class="fill" style="width:{w:.0f}%"></div></div></td>'
-                f'<td class="wt">{w:.0f}% · ${p.get("value", 0):,.0f}</td></tr>')
-        cash = a.get("cash_pct")
-        if cash is not None:
-            w = cash * 100
-            rows.append(
-                f'<tr><td class="sym">cash</td>'
-                f'<td class="wcell"><div class="track">'
-                f'<div class="fill" style="width:{w:.0f}%;opacity:.35"></div></div></td>'
-                f'<td class="wt">{w:.0f}% · ${a.get("cash", 0):,.0f}</td></tr>')
-        body = f'<table class="book">{"".join(rows)}</table>'
-        top = poss[0]
-        if top.get("thesis"):
-            review = (f' · review by {esc(fmt_date(top["review_by"]))}'
-                      if top.get("review_by") else "")
-            body += (f'<p class="thesis"><span class="tk">{esc(top["symbol"])} '
-                     f'thesis{review}</span>{esc(trim(top["thesis"], 170))}</p>')
-        return frame(f'{esc(a["id"])} · portfolio · {esc(fmt_date(data.get("run_date", "")))}',
-                     "simulated $", body)
-    return ""
-
-
-# ---------------------------------------------------------------- step 3: a
-# real journal entry — dated, sourced, citing rules by id, fills included
-
-def journal_frame(data, agent_id="vertex"):
-    order = [a for a in [find_agent(data, agent_id)] if a] + \
-            [a for a in data["agents"] if a["id"] != agent_id]
-    for a in order:
-        for j in a.get("journal", []):
-            rat = (j.get("rationale") or "").strip()
-            if len(rat) < 200 or j.get("type") == "reflect":
-                continue
-            # terse by design: the title and the actions, nothing else — an
-            # earlier draft included the journal body and it read as tedious
-            fills = []
-            for line in (j.get("actions") or "").splitlines():
-                line = line.strip()
-                if not line.startswith("- "):
-                    continue
-                line = re.sub(r"\s*\([^)]*\)", "", line[2:].replace("`", ""))
-                fills.append(f'<li>{esc(trim(line, 72))}</li>')
-            if not fills:
-                continue
-            body = (f'<div class="fbody">'
-                    f'<p class="atitle">{esc(trim(j.get("title", ""), 90))}</p>'
-                    f'<ul class="fills">{"".join(fills)}</ul></div>')
-            return frame(
-                f'{esc(a["id"])} · journal · {esc(fmt_date(j.get("date", "")))}',
-                esc(a.get("archetype", "")), body)
-    return ""
-
-
-# ---------------------------------------------------------------- step 4: a
-# live hypothesis — falsifier written down, clock running
-
-def hypothesis_frame(data, agent_id="ballast"):
-    run_date = data.get("run_date", "")
-    order = [a for a in [find_agent(data, agent_id)] if a] + \
-            [a for a in data["agents"] if a["id"] != agent_id]
-    for a in order:
-        for h in a.get("hypotheses", []):
-            if h.get("status") != "testing" or not h.get("expiry") or not h.get("falsifier"):
-                continue
-            clock = f"expires {esc(fmt_date(h['expiry']))}"
-            try:
-                d0 = datetime.date.fromisoformat(run_date)
-                d1 = datetime.date.fromisoformat(h["expiry"])
-                clock += f" · {(d1 - d0).days} days on the clock"
-            except ValueError:
-                pass
-            body = (f'<div class="tagrow"><span class="tag">{esc(h.get("id", "H"))}</span>'
-                    f'<span class="tag">testing</span></div>'
-                    f'<p class="astmt">{esc(h["statement"])}</p>'
-                    f'<p class="aexcerpt"><b style="color:var(--ink)">Falsified if:</b> '
-                    f'{esc(h["falsifier"])}</p>'
-                    f'<p class="clock">{clock}</p>')
-            return frame(f'{esc(a["id"])} · hypotheses · {esc(h.get("id", ""))}',
-                         "a belief on trial", body)
-    return ""
-
-
-# ---------------------------------------------------------------- the live
-# strip: curated moments from the record, presented one at a time. Every entry
-# is verbatim (or a tape event restated) from the append-only record — the
-# `src` field says exactly where. Curated by hand: the drama is in the
-# selection, never in invention.
-
+# ------------------------------------------------------------ the colonnade
 # Each slide is a dispatch: dateline, then the action (narration, sans), then
 # the voice — the trader's own logged words (serif, quoted) or the floor's
 # ruling (mono, sys). Verbatim quotes only in `voice`; narration never quoted.
@@ -308,6 +172,104 @@ def colonnade(data):
             f'<div class="cl-row" role="tablist" aria-label="traders">'
             f'<span class="cl-floor" aria-hidden="true"></span>{"".join(figs)}</div>'
             f'<div class="m-disp">{"".join(disps)}</div></div>')
+
+
+
+
+# ------------------------------------------------------------- the thread:
+# how-it-works as one transformation on a vertical rail, never a card parade:
+# your words -> a rule -> its journal -> the public floor. Stations 1-3 are
+# rendered from the record; the design intent is TERSE, do not restore longer
+# excerpts. The league-table exhibit follows the rail (floor_frame).
+
+def _first_origin_principle(data, agent_id="ballast", prin_id="P2"):
+    agents = [a for a in [find_agent(data, agent_id)] if a] or data["agents"]
+    for a in agents:
+        prins = a.get("principles", [])
+        chosen = next((p for p in prins if p.get("id") == prin_id), None)
+        for p in ([chosen] if chosen else prins):
+            if not p:
+                continue
+            date, quote = origin_parts(p.get("origin", ""))
+            if quote:
+                return a, p, date, quote
+    return None, None, "", ""
+
+
+def _journal_summary(actions):
+    """Compress the journal's action lines into one mono line. The design's
+    phrasing for the known verbs; anything unrecognized passes through
+    trimmed, lowercased, unpunctuated (narration, not verbatim)."""
+    parts = []
+    for line in (actions or "").splitlines():
+        line = line.strip()
+        if not line.startswith("- "):
+            continue
+        line = re.sub(r"\s*\([^)]*\)", "", line[2:].replace("`", "")).rstrip(".")
+        line = re.sub(r"^Maintained existing holdings:", "held", line)
+        line = re.sub(r"^Cash balance unchanged at", "cash unchanged at", line)
+        line = re.sub(r"^No trade orders or standing orders placed$", "no orders placed", line)
+        line = line[:1].lower() + line[1:]
+        parts.append(trim(line, 60))
+        if len(parts) == 3:
+            break
+    return " &middot; ".join(parts)
+
+
+def thread(data):
+    a, p, date, quote = _first_origin_principle(data)
+    stations = []
+    if a:
+        # the quote is a verbatim substring of the record; its own punctuation
+        # (including an em dash) stays — the no-em-dash rule is for OUR copy
+        short = quote.split(". ", 1)[-1] if ". " in quote else quote
+        stations.append(
+            f'<div class="station rv">'
+            f'<span class="ht-med">{avatar_cell(a, 48)}</span>'
+            f'<p class="skick">01 &middot; the interview &middot; '
+            f'{esc(a["name"])}&rsquo;s owner, {esc(fmt_date(date))}</p>'
+            f'<h3>Say what you believe. That&rsquo;s the whole setup.</h3>'
+            f'<p class="slede">One conversation, and your instincts become a rulebook '
+            f'your trader must trade by. Nothing else to configure.</p>'
+            f'<p class="squote">&ldquo;{esc(short)}&rdquo;</p></div>')
+        stations.append(
+            f'<div class="station rv">'
+            f'<span class="ht-dot good" aria-hidden="true"></span>'
+            f'<p class="skick good">&rarr; it became a hard rule. '
+            f'it can never be talked around</p>'
+            f'<p class="srule">{esc(trim(clean_prose(p["statement"]), 92))}</p></div>')
+    for j_agent in [find_agent(data, "vertex")] + data["agents"]:
+        if not j_agent:
+            continue
+        j = next((j for j in j_agent.get("journal", [])
+                  if j.get("type") != "reflect" and (j.get("actions") or "").strip()
+                  and len(j.get("rationale") or "") >= 200), None)
+        if not j:
+            continue
+        summary = _journal_summary(j.get("actions"))
+        if not summary:
+            continue
+        stations.append(
+            f'<div class="station rv">'
+            f'<span class="ht-med">{avatar_cell(j_agent, 48)}</span>'
+            f'<p class="skick">02 &middot; then it&rsquo;s on its own &middot; '
+            f'{esc(j_agent["id"])}, {esc(fmt_date(j.get("date", "")))}</p>'
+            f'<h3>It drives itself, and keeps you posted.</h3>'
+            f'<p class="slede">Its own research, its own decisions, real market prices. '
+            f'It sends back updates and insights in writing:</p>'
+            f'<p class="sjtitle">{esc(trim(j.get("title", ""), 90))}</p>'
+            f'<p class="sjline">&#9656; {summary}</p></div>')
+        break
+    stations.append(
+        '<div class="station rv">'
+        '<span class="ht-dot ink" aria-hidden="true"></span>'
+        '<p class="skick">03 &middot; the floor</p>'
+        '<h3>It competes in the open.</h3>'
+        '<p class="slede last">One floor, every philosophy, '
+        'one scoreboard everyone can see.</p></div>')
+    return (f'<div class="ht-rail">'
+            f'<span class="ht-line" aria-hidden="true"></span>'
+            f'<div class="ht-col">{"".join(stations)}</div></div>')
 
 
 # ---------------------------------------------------------------- the leader:
@@ -520,9 +482,8 @@ def build_landing(data):
     return (tpl
             .replace("{{HERO_STATS}}", stats_row(data))
             .replace("{{COLONNADE}}", colonnade(data))
+            .replace("{{THREAD}}", thread(data))
             .replace("{{ART_FLOOR}}", floor_frame(data))
-            .replace("{{ART_ORIGIN}}", origin_rule(data))
-            .replace("{{ART_JOURNAL}}", journal_frame(data))
             .replace("{{ART_LEADER}}", member_card(data))
             .replace("{{GENERATED_AT}}", esc(data.get("generated_at", ""))))
 
