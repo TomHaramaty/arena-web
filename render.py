@@ -53,12 +53,11 @@ def origin_parts(origin):
 
 
 def frame(title, meta, body):
-    """A framed product surface: window chrome + real content from the record."""
+    """An exhibit card: a real product surface with a labeled header bar."""
     right = f'<span class="fmeta">{meta}</span>' if meta else ""
     return (f'<figure class="frame"><figcaption class="fbar">'
-            f'<span class="fdots" aria-hidden="true"><i></i><i></i><i></i></span>'
             f'<span class="ftitle">{title}</span>{right}</figcaption>'
-            f'<div class="fbody">{body}</div></figure>')
+            f'{body}</figure>')
 
 
 def trim(text, limit):
@@ -107,18 +106,18 @@ def origin_rule(data, agent_id="ballast", prin_id="P2"):
             date, quote = origin_parts(p.get("origin", ""))
             if not quote:
                 continue
-            hard = ('<div class="tagrow"><span class="tag hard">a hard rule — '
-                    'it can never be talked around</span></div>'
+            hard = ('<p class="tagrow"><span class="tagchip">a hard rule, '
+                    'it can never be talked around</span></p>'
                     if p.get("rigidity") == "hard" else "")
             body = (
-                f'<div class="origcard">'
-                f'<div class="orig"><p class="dcap">they said</p>'
+                f'<div class="fbody m-split2">'
+                f'<div><p class="dcap">they said</p>'
                 f'<p class="oquote">“{esc(quote)}”</p>'
-                f'<p class="oattr">— {esc(a["name"])}’s owner, '
+                f'<p class="oattr">{esc(a["name"])}’s owner, '
                 f'{esc(fmt_date(date))}</p></div>'
-                f'<div class="orule"><p class="dcap">→ the rule it became</p>'
+                f'<div><p class="dcap good">→ the rule it became</p>'
                 f'{hard}'
-                f'<p class="astmt">{esc(trim(clean_prose(p["statement"]), 160))}</p></div></div>')
+                f'<p class="astmt">{esc(trim(clean_prose(p["statement"]), 92))}</p></div></div>')
             return frame(f'{esc(a["id"])} · rulebook',
                          "from the interview", body)
     return ""
@@ -174,17 +173,20 @@ def journal_frame(data, agent_id="vertex"):
             rat = (j.get("rationale") or "").strip()
             if len(rat) < 200 or j.get("type") == "reflect":
                 continue
-            rat = clean_prose(rat)
-            paras = [p.strip() for p in rat.split("\n\n") if p.strip()]
-            body = (f'<p class="atitle">{esc(trim(j.get("title", ""), 90))}</p>'
-                    f'<p class="aexcerpt">{esc(trim(" ".join(paras[:2]), 280))}</p>')
+            # terse by design: the title and the actions, nothing else — an
+            # earlier draft included the journal body and it read as tedious
             fills = []
             for line in (j.get("actions") or "").splitlines():
                 line = line.strip()
-                if line.startswith("- "):
-                    fills.append(f'<li>{esc(trim(line[2:].replace("`", ""), 90))}</li>')
-            if fills:
-                body += f'<ul class="fills">{"".join(fills)}</ul>'
+                if not line.startswith("- "):
+                    continue
+                line = re.sub(r"\s*\([^)]*\)", "", line[2:].replace("`", ""))
+                fills.append(f'<li>{esc(trim(line, 72))}</li>')
+            if not fills:
+                continue
+            body = (f'<div class="fbody">'
+                    f'<p class="atitle">{esc(trim(j.get("title", ""), 90))}</p>'
+                    f'<ul class="fills">{"".join(fills)}</ul></div>')
             return frame(
                 f'{esc(a["id"])} · journal · {esc(fmt_date(j.get("date", "")))}',
                 esc(a.get("archetype", "")), body)
@@ -231,12 +233,12 @@ def hypothesis_frame(data, agent_id="ballast"):
 # ruling (mono, sys). Verbatim quotes only in `voice`; narration never quoted.
 MOMENTS = [
     {"agent": "rapid", "when": "31 Jul 20:47",
-     "act": "Read Amazon’s results overnight and bought at the next bell — $271.99.",
+     "act": "Read Amazon’s results overnight and bought at the next bell, at $271.99.",
      "voice": "Amazon’s earnings proved explosive AWS re-acceleration to 37%.",
      "src": "tape: fill note, Jul 31 20:47"},
     {"agent": "maverick", "when": "23 Jul 08:44",
      "act": "Wanted $25,000 of Shopify.",
-     "sys": "Blocked — its own 25% position cap said no.",
+     "sys": "Blocked. Its own 25% position cap said no.",
      "src": "tape: blocked event, Jul 23 08:44"},
     {"agent": "ember", "when": "31 Jul 14:05",
      "act": "Its own stop order sold every bitcoin it held at $63,227.",
@@ -258,48 +260,54 @@ PAL_HEX = ["#e0684b", "#d19a3f", "#3f9a8f", "#8b6fc9",
            "#5b7fc0", "#d67aa8", "#7a9a3f", "#7f8a99"]
 
 
-def live_strip(data):
-    """Real moments from the record as an open two-column scene: the character
-    large in a colour-tinted arch niche, its words beside it. JS rotates;
-    without JS the first moment stands alone and the page is complete."""
+def colonnade(data):
+    """The signature element: the five traders of the week standing on a shared
+    floor line, each in a tinted arch niche; one active at a time, its dispatch
+    below. JS runs the rotation; without JS figure 1 stands active with its
+    PNG bust and dispatch, and the page is complete."""
     agents = {a["id"]: a for a in data["agents"]}
-    items = []
-    first_accent = ""
-    for m in MOMENTS:
+    figs, disps = [], []
+    for i, m in enumerate(MOMENTS):
         a = agents.get(m["agent"])
         if not a:
             continue
-        accent = PAL_HEX[(a.get("avatar") or {}).get("color", 7) % len(PAL_HEX)]
-        first_accent = first_accent or accent
-        cls = "mo-slide on" if not items else "mo-slide"
-        spec = dict(a.get("avatar") or {}, name=a["id"])
+        av = a.get("avatar") or {}
+        pal = PAL_HEX[av.get("color", 7) % len(PAL_HEX)]
+        on = " on" if not figs else ""
+        sel = "true" if not figs else "false"
+        bust_attrs = (f'data-base="{esc(av.get("base", "fox"))}" '
+                      f'data-color="{av.get("color", 0)}" '
+                      f'data-costume="{esc(av.get("costume", "suit"))}" '
+                      f'data-acc="{esc(av.get("acc", "none"))}" '
+                      f'data-name="{esc(a["id"])}" data-size="204"')
+        figs.append(
+            f'<button class="cl-fig{on}" type="button" role="tab" '
+            f'aria-selected="{sel}" data-idx="{i}" '
+            f'aria-label="{esc(a["name"])}&rsquo;s moment" style="--pal:{pal}">'
+            f'<span class="cl-stage"><span class="cl-arch2" aria-hidden="true"></span>'
+            f'<span class="cl-arch" aria-hidden="true"></span>'
+            f'<span class="cl-bust" {bust_attrs}>{avatar_cell(a, 204)}</span></span>'
+            f'<span class="cl-name">{esc(a["name"])}</span></button>')
         act = re.sub(r"\$[\d][\d,.]*", lambda x: f'<span class="px">{x.group(0)}</span>',
                      esc(m["act"]))
         if m.get("sys"):
-            voice = (f'<p class="mo-voice sys"><span class="tk">the floor</span>'
+            voice = (f'<p class="d-voice sys"><span class="tk">The floor</span>'
                      f'{esc(m["sys"])}</p>')
         else:
-            voice = f'<p class="mo-voice">“{esc(m["voice"])}”</p>'
-        items.append(
-            f'<div class="{cls}" data-accent="{accent}" role="group" '
-            f'aria-label="{esc(a["name"])}, {esc(m["when"])}">'
-            f'<div class="mo-fig"><span class="mo-bust" data-spec=\'{attr_json(spec)}\'>'
-            f'{avatar_cell(a, 168)}</span></div>'
-            f'<div class="mo-text"><p class="mo-head"><b>{esc(a["name"])}</b>'
-            f'<span aria-hidden="true">·</span><time>{esc(m["when"])}</time></p>'
-            f'<p class="mo-act">{act}</p>'
-            f'{voice}</div></div>')
-    if not items:
+            voice = f'<p class="d-voice">“{esc(m["voice"])}”</p>'
+        disps.append(
+            f'<div class="disp{on}" data-idx="{i}" role="group" '
+            f'aria-label="{esc(a["name"])}, {esc(m["when"])}" style="--pal:{pal}">'
+            f'<p class="d-head"><b>{esc(a["name"])}</b> · '
+            f'<time>{esc(m["when"])}</time></p>'
+            f'<p class="d-act">{act}</p>{voice}</div>')
+    if not figs:
         return ""
-    return (f'<section class="moments" style="--mo-accent:{first_accent}" '
-            f'aria-roledescription="carousel" aria-live="off" '
+    return (f'<div class="moments" id="moments" aria-roledescription="carousel" '
             f'aria-label="moments from the floor">'
-            f'<p class="mo-kicker"><span class="livedot" aria-hidden="true"></span> '
-            f'moments from the floor</p>'
-            f'<div class="mo-stack"><span class="mo-arch" aria-hidden="true"></span>'
-            f'{"".join(items)}</div>'
-            f'<div class="ldots" role="tablist" aria-label="more moments"></div>'
-            f'</section>')
+            f'<div class="cl-row" role="tablist" aria-label="traders">'
+            f'<span class="cl-floor" aria-hidden="true"></span>{"".join(figs)}</div>'
+            f'<div class="m-disp">{"".join(disps)}</div></div>')
 
 
 # ---------------------------------------------------------------- the leader:
@@ -311,17 +319,19 @@ FEATURE = {
     "id": "catalyst",
     "arch_line": "the calendar trader",
     "credo": "Positions exist because something datable is about to happen.",
-    "accent": ("#c2532f", "#ec7a5e"),   # its coral, contrast-tuned per theme
+    "intro": "Catalyst trades the calendar. Here’s a call it wrote down before the market answered.",
+    # NOTE: --cat in web/landing.html carries this trader's accent per theme;
+    # change it there when the featured trader changes.
     # src: agents/catalyst journal 2026-07-23 (the scenario memo) + fills:
     #      buy MSFT Jul 23 07:01 @ $390.93, sell Jul 30 14:42 @ $447.62 (+14.5%)
-    "written": "Written Jul 23 — six days before Microsoft’s earnings",
-    "lead": "Bought Microsoft at $390.93 and logged three futures before the print:",
+    "written": "Written Jul 23, six days before Microsoft’s earnings",
+    "lead": "Bought Microsoft at {px}$390.93{/px} and logged three futures before the print:",
     "scenarios": [
-        {"k": "bull", "text": "Azure ≥ 39% → ride to $430", "hit": True},
-        {"k": "base", "text": "in line → $398–405"},
+        {"k": "bull", "text": "Azure ≥ 39%, ride to $430", "hit": True},
+        {"k": "base", "text": "in line, $398–405"},
         {"k": "bear", "text": "stop set at $372, no debate"},
     ],
-    "result": "Azure grew 43%. Sold the morning after the print — $447.62.",
+    "result": "Azure grew 43%. Sold the morning after the print, at {px}$447.62{/px}.",
     "payoff": "+14.5%", "payoff_sub": "in one week",
 }
 
@@ -338,65 +348,68 @@ def member_card(data):
         return ""
     ranked = sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)
     rank = next((i + 1 for i, r in enumerate(ranked) if r["id"] == a["id"]), 0)
-    leading = rank == 1
-    kicker = "currently leading the floor" if leading else f"no. {rank} on the floor"
-    title = "The one to beat." if leading else f"Meet {esc(a['name'])}."
+    title = ("Meet the floor&rsquo;s top trader." if rank == 1
+             else f"Meet {esc(a['name'])}.")
     alpha, ret = a.get("alpha", 0), a.get("ret", 0)
-    acls, aarrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
-    spec = dict(a.get("avatar") or {}, name=a["id"])
-    lo, hi = FEATURE["accent"]
+    acls, aarrow = ("up", "&#9650;") if alpha >= 0 else ("dn", "&#9660;")
+    av = a.get("avatar") or {}
+    face_attrs = (f'data-base="{esc(av.get("base", "fox"))}" '
+                  f'data-color="{av.get("color", 0)}" '
+                  f'data-costume="{esc(av.get("costume", "suit"))}" '
+                  f'data-acc="{esc(av.get("acc", "none"))}" '
+                  f'data-name="{esc(a["id"])}" data-size="84"')
+    def px_spans(text):
+        return esc(text).replace("{px}", '<span class="mono">').replace("{/px}", "</span>")
     dots = {"bull": "var(--good)", "base": "var(--muted)", "bear": "var(--bad)"}
     scen = "".join(
-        f'<li{" class=hit" if s.get("hit") else ""}>'
+        f'<li{"" if s.get("hit") else " class=mut" if s["k"] == "base" else ""}>'
         f'<i style="background:{dots[s["k"]]}"></i><b>{s["k"]}</b>'
-        f'<span>{esc(s["text"])}'
-        + ('<span class="flag">← this one hit</span>' if s.get("hit") else "")
-        + '</span></li>'
+        f'<span class="stext">{esc(s["text"])}</span>'
+        + ('<span class="hitpill">this one hit</span>' if s.get("hit") else "")
+        + '</li>'
         for s in FEATURE["scenarios"])
     plate = (
-        f'<div class="callplate">'
-        f'<div class="callhalf"><p class="dcap cat">{esc(FEATURE["written"])}</p>'
-        f'<p class="calllead">{esc(FEATURE["lead"])}</p>'
+        f'<div class="callplate rv rv2">'
+        f'<div><p class="dcap cat">{esc(FEATURE["written"])}</p>'
+        f'<p class="calllead">{px_spans(FEATURE["lead"])}</p>'
         f'<ul class="scen">{scen}</ul></div>'
-        f'<div class="callhalf after"><p class="dcap">what happened</p>'
-        f'<p class="calllead">{esc(FEATURE["result"])}</p>'
-        f'<p class="callnum">{esc(FEATURE["payoff"])}'
+        f'<div><p class="dcap good">what happened</p>'
+        f'<p class="calllead">{px_spans(FEATURE["result"])}</p>'
+        f'<p class="callnum rv rv3">{esc(FEATURE["payoff"])}'
         f'<small>{esc(FEATURE["payoff_sub"])}</small></p></div>'
         f'</div>')
     stats = (
         f'<span><b>{"+" if ret >= 0 else ""}{ret * 100:.1f}%</b> since '
-        f'{esc(fmt_date(a.get("launched", "")))}</span><span class=sep>·</span>'
-        f'<span><span class="{acls}">{aarrow} {abs(alpha) * 100:.1f}%</span> ahead of '
-        f'{esc(a["benchmark_label"])} — the fund its owner would have bought</span>')
-    intro = (f'{esc(a["name"])} trades the calendar — earnings dates, launches, '
-             f'rulings. Here’s a call it wrote down before the market answered.')
+        f'{esc(fmt_date(a.get("launched", "")))}</span>'
+        f'<span style="opacity:.6">&middot;</span>'
+        f'<span class="amp"><span class="{acls}">{aarrow} {abs(alpha) * 100:.1f}%</span> '
+        f'ahead of {esc(a["benchmark_label"])}, the fund its owner would have bought</span>')
     return (
-        f'<section class="member" aria-label="The floor’s leader">'
-        f'<style>.member{{--cat:{lo}}}'
-        f'@media (prefers-color-scheme: dark){{:root:not([data-theme="light"]) .member{{--cat:{hi}}}}}'
-        f':root[data-theme="dark"] .member{{--cat:{hi}}}</style>'
-        f'<p class="kicker">{kicker}</p>'
-        f'<h2>{title}</h2>'
-        f'<p class="intro">{intro}</p>'
-        f'<div class="membercard">'
-        f'<div class="mface" data-spec=\'{attr_json(spec)}\'>{avatar_cell(a, 84)}</div>'
+        f'<section class="member" aria-label="The floor&rsquo;s leader">'
+        f'<h2 class="rv">{title}</h2>'
+        f'<p class="intro rv">{esc(FEATURE["intro"])}</p>'
+        f'<div class="mident rv">'
+        f'<span class="mface" {face_attrs}>{avatar_cell(a, 84)}</span>'
         f'<div class="mid"><p class="mname">{esc(a["name"])}</p>'
-        f'<p class="march">{esc(FEATURE["arch_line"])} · chartered '
+        f'<p class="march">{esc(FEATURE["arch_line"])} &middot; chartered '
         f'{esc(fmt_date(a.get("launched", "")))}</p>'
-        f'<p class="mcredo">“{esc(FEATURE["credo"])}”</p></div>'
-        f'<div class="mspark">{sparkline(a.get("curve"), w=150, h=30)}</div>'
+        f'<p class="mcredo">&ldquo;{esc(FEATURE["credo"])}&rdquo;</p></div>'
+        f'<span class="m-spark">{sparkline(a.get("curve"), w=150, h=30, draw=True)}</span>'
         f'</div>'
         f'{plate}'
-        f'<p class="mstats">{stats}</p>'
-        f'<a class="memberlink" href="/floor/">Watch {esc(a["name"])} live on the floor →</a>'
+        f'<p class="mstats rv rv2">{stats}</p>'
+        f'<p class="memberlink rv rv2"><a href="/floor/">Watch {esc(a["name"])} '
+        f'live on the floor &rarr;</a></p>'
         f'</section>')
 
 
 # ---------------------------------------------------------------- step 5: the
 # arena — top agents by alpha vs own benchmark, with real equity sparklines
 
-def sparkline(curve, w=76, h=26, pad=3):
-    """One agent's equity curve (indexed to 100 at launch) as a tiny svg."""
+def sparkline(curve, w=76, h=26, pad=3, draw=False):
+    """One agent's equity curve (indexed to 100 at launch) as a tiny svg.
+    draw=True emits the leader variant that draws itself on scroll (class
+    `sparkline draw`, id `leadspark`; stroke comes from CSS, --len from JS)."""
     vs = [pt["v"] for pt in curve or []]
     if len(vs) > 48:                                   # evenly downsample
         step = (len(vs) - 1) / 47
@@ -413,36 +426,37 @@ def sparkline(curve, w=76, h=26, pad=3):
         f"{h - pad - (v - lo) / span * (h - 2 * pad):.1f}"
         for i, v in enumerate(vs))
     lx, ly = pts.rsplit(" ", 1)[-1].split(",")
-    return (f'<svg viewBox="0 0 {w} {h}" aria-hidden="true">'
-            f'<polyline class="spark" points="{pts}" fill="none" '
+    poly_attrs = ('id="leadspark" class="sparkline draw" style="--len:400"'
+                  if draw else 'class="spark"')
+    return (f'<svg viewBox="0 0 {w} {h}" width="{w}" height="{h}" aria-hidden="true">'
+            f'<polyline {poly_attrs} points="{pts}" fill="none" '
             f'stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>'
-            f'<circle class="sparkdot" cx="{lx}" cy="{ly}" r="2"/></svg>')
+            f'<circle class="sparkdot" cx="{lx}" cy="{ly}" r="2" fill="var(--ink)"/></svg>')
 
 
 def floor_frame(data, top=6):
-    """The hero: the live league table, ranked by alpha vs own benchmark —
-    rank, face, name, equity curve, score. Capped so the hero stays a hero as
-    the roster grows; the overflow row says exactly what it is hiding."""
+    """The league table exhibit: rank, face, name, equity curve, score vs own
+    benchmark. Capped so the exhibit stays an exhibit as the roster grows; the
+    overflow link says exactly what it is hiding."""
     ranked = sorted(data["agents"], key=lambda x: x.get("alpha", 0), reverse=True)
     rows = []
     for i, a in enumerate(ranked[:top]):
         alpha = a.get("alpha", 0)
         cls, arrow = ("up", "▲") if alpha >= 0 else ("dn", "▼")
         rows.append(
-            f'<tr><td class="frank mono">{i + 1}</td>'
-            f'<td class="fwho"><div class="fcell">{avatar_cell(a, 30)}<span class="fid">'
-            f'<span class="fname">{esc(a["name"])}</span>'
-            f'<span class="farch">{esc(a["archetype"])}</span></span></div></td>'
-            f'<td class="fspark">{sparkline(a.get("curve"), w=122, h=30)}</td>'
-            f'<td class="falpha"><span class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</span>'
-            f'<span class="fbench">vs {esc(a["benchmark_label"])}</span></td></tr>')
+            f'<div class="lrow"><span class="lrank">{i + 1}</span>'
+            f'<span class="lwho">{avatar_cell(a, 30)}<span class="lid">'
+            f'<b class="lname">{esc(a["name"])}</b>'
+            f'<span class="larch">{esc(a["archetype"])}</span></span></span>'
+            f'<span class="m-spark">{sparkline(a.get("curve"), w=122, h=30)}</span>'
+            f'<span class="lscore"><b class="{cls}">{arrow} {abs(alpha) * 100:.1f}%</b>'
+            f'<span class="lbench">vs {esc(a["benchmark_label"])}</span></span></div>')
     more = len(ranked) - top
     if more > 0:
-        rows.append(f'<tr class="fmore"><td></td><td colspan="3">'
-                    f'<a href="/floor/">{more} more on the floor →</a></td></tr>')
-    body = f'<table class="floortab">{"".join(rows)}</table>'
+        rows.append(f'<p class="lmore"><a href="/floor/">{more} more on the floor →</a></p>')
+    body = f'<div class="ltab">{"".join(rows)}</div>'
     return frame(f'the floor · {esc(fmt_date(data.get("run_date", "")))}',
-                 "ranked by alpha vs own benchmark", body)
+                 "ranked by score vs own benchmark", body)
 
 
 # ---------------------------------------------------------------- step 5: the
@@ -498,18 +512,18 @@ def stats_row(data):
     n_fills = sum(1 for t in data.get("tape", []) if t.get("event") == "fill")
     if n_fills:
         parts.append(f'<b>{n_fills}</b> fills on the tape')
-    return '<span class="sep">·</span>'.join(f'<span>{p}</span>' for p in parts)
+    return "".join(f'<span>{p}</span>' for p in parts)
 
 
 def build_landing(data):
     tpl = (ROOT / "web" / "landing.html").read_text(encoding="utf-8")
     return (tpl
             .replace("{{HERO_STATS}}", stats_row(data))
-            .replace("{{ART_LIVE}}", live_strip(data))
+            .replace("{{COLONNADE}}", colonnade(data))
             .replace("{{ART_FLOOR}}", floor_frame(data))
             .replace("{{ART_ORIGIN}}", origin_rule(data))
             .replace("{{ART_JOURNAL}}", journal_frame(data))
-            .replace("{{ART_MEMBER}}", member_card(data))
+            .replace("{{ART_LEADER}}", member_card(data))
             .replace("{{GENERATED_AT}}", esc(data.get("generated_at", ""))))
 
 
