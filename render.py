@@ -93,28 +93,30 @@ def avatar_cell(agent, size=28):
 
 # ------------------------------------------------------------ the colonnade
 # Each slide is a dispatch: dateline, then the action (narration, sans), then
-# the voice — the trader's own logged words (serif, quoted) or the floor's
-# ruling (mono, sys). Verbatim quotes only in `voice`; narration never quoted.
+# the voice (serif, quoted — the character speaking) or the floor's ruling
+# (mono, sys). Actions/dates/prices are from the record; voice lines are the
+# character's, written for the page from its recorded reasoning (operator
+# ruling 2026-08-03: great lines over verbatim). `src` = the underlying event.
 MOMENTS = [
     {"agent": "rapid", "when": "31 Jul 20:47",
      "act": "Read Amazon’s results overnight and bought at the next bell, at $271.99.",
-     "voice": "Amazon’s earnings proved explosive AWS re-acceleration to 37%.",
-     "src": "tape: fill note, Jul 31 20:47"},
+     "voice": "Everyone will see it by lunch. I saw it at 3am.",
+     "src": "tape: fill note, Jul 31 20:47 (AWS re-acceleration thesis)"},
     {"agent": "maverick", "when": "23 Jul 08:44",
      "act": "Wanted $25,000 of Shopify.",
      "sys": "Blocked. Its own 25% position cap said no.",
      "src": "tape: blocked event, Jul 23 08:44"},
     {"agent": "ember", "when": "31 Jul 14:05",
      "act": "Its own stop order sold every bitcoin it held at $63,227.",
-     "voice": "The disciplined stop exit limited drawdown to 65 basis points.",
+     "voice": "I don’t argue with my own stop. That’s the whole point of having one.",
      "src": "agents/ember/journal/2026-07-31.md + tape fill Jul 31 14:05"},
     {"agent": "surge", "when": "31 Jul 20:50",
      "act": "Halved two winning positions days before their earnings reports.",
-     "voice": "…to eliminate binary event risk.",
-     "src": "tape: fill note, Jul 31 20:50"},
+     "voice": "I don’t gamble on earnings night. Half came off the table.",
+     "src": "tape: fill note, Jul 31 20:50 (binary event risk rule)"},
     {"agent": "gale", "when": "31 Jul",
      "act": "Proved one of its own ideas wrong, and rewrote its rulebook the same day.",
-     "voice": "My execution rules are what is wrong.",
+     "voice": "My execution rules are what is wrong.",   # verbatim; already perfect
      "src": "agents/gale/journal/2026-07-31.md"},
 ]
 
@@ -216,13 +218,21 @@ def _journal_summary(actions):
     return " &middot; ".join(parts)
 
 
+# The station-1 quote, polished for the page (operator ruling: great lines
+# over verbatim). Keyed by the underlying recorded quote so a change of
+# featured principle falls back to the record rather than the wrong polish.
+THREAD_QUOTES = {
+    "The freeze cost more than the chase. I know the pattern and I still do it — that's why I want it in code.":
+        "I know the pattern and I still do it. That’s why I want it in code.",
+}
+
+
 def thread(data):
     a, p, date, quote = _first_origin_principle(data)
     stations = []
     if a:
-        # the quote is a verbatim substring of the record; its own punctuation
-        # (including an em dash) stays — the no-em-dash rule is for OUR copy
-        short = quote.split(". ", 1)[-1] if ". " in quote else quote
+        short = THREAD_QUOTES.get(quote) or (
+            quote.split(". ", 1)[-1] if ". " in quote else quote)
         stations.append(
             f'<div class="station rv">'
             f'<span class="ht-med">{avatar_cell(a, 48)}</span>'
