@@ -791,7 +791,7 @@ function renderWait(appDoc) {
 
   if (!d) {
     $("#statusword").textContent = "No trader yet";
-    $("#statusdetail").innerHTML = "You haven't chartered a trader yet. The interview takes about fifteen minutes, and what you say in it becomes its rulebook.";
+    $("#statusdetail").innerHTML = "You haven't chartered a trader yet. The interview takes about ten minutes, and what you say in it becomes its rulebook.";
     $("#statuslinks").innerHTML = `<a href="/seat/">Take a seat →</a>`;
     return;
   }
