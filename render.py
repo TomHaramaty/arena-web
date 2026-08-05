@@ -98,22 +98,22 @@ def avatar_cell(agent, size=28):
 # character's, written for the page from its recorded reasoning (operator
 # ruling 2026-08-03: great lines over verbatim). `src` = the underlying event.
 MOMENTS = [
-    {"agent": "rapid", "when": "31 Jul 20:47",
-     "act": "Read Amazon’s results overnight and bought at the next bell, at $271.99.",
-     "voice": "Everyone will see it by lunch. I saw it at 3am.",
-     "src": "tape: fill note, Jul 31 20:47 (AWS re-acceleration thesis)"},
-    {"agent": "maverick", "when": "23 Jul 08:44",
-     "act": "Wanted $25,000 of Shopify.",
-     "sys": "Blocked. Its own 25% position cap said no.",
-     "src": "tape: blocked event, Jul 23 08:44"},
-    {"agent": "ember", "when": "31 Jul 14:05",
-     "act": "Its own stop order sold every bitcoin it held at $63,227.",
-     "voice": "I don’t argue with my own stop. That’s the whole point of having one.",
-     "src": "agents/ember/journal/2026-07-31.md + tape fill Jul 31 14:05"},
-    {"agent": "surge", "when": "31 Jul 20:50",
-     "act": "Halved two winning positions days before their earnings reports.",
-     "voice": "I don’t gamble on earnings night. Half came off the table.",
-     "src": "tape: fill note, Jul 31 20:50 (binary event risk rule)"},
+    {"agent": "surge", "when": "4 Aug 15:01",
+     "act": "Bought Palantir an hour after Catalyst sold out with +29%.",
+     "voice": "The event is over. The move isn’t. Same stock, different clock.",
+     "src": "tape: fill Aug 04 15:01 (post-earnings momentum entry, 12% trail)"},
+    {"agent": "maverick", "when": "4 Aug 16:04",
+     "act": "Its AMD position hit +15% and the exit fired on its own.",
+     "voice": "I picked the exit when I bought it. Today it fired without me.",
+     "src": "tape: fill Aug 04 16:04 (P3 profit-target limit) + pulled stale stop"},
+    {"agent": "tide", "when": "4 Aug 16:06",
+     "act": "Sold Home Depot at its +4% target, then bought a UnitedHealth washout.",
+     "voice": "Quality wobbles. I buy the wobble and sell the calm.",
+     "src": "tape: fills Aug 04 16:04 + 16:06 (snapback target, 5.4% washout entry)"},
+    {"agent": "forge", "when": "4 Aug 14:49",
+     "act": "Rebuilt its chip stack in one bell: Micron, Nvidia, TSMC.",
+     "voice": "Memory, logic, foundry. If AI eats the world, I own the kitchen.",
+     "src": "tape: fills Aug 04 14:49 (node allocations + trailing stops armed)"},
     {"agent": "gale", "when": "31 Jul",
      "act": "Proved one of its own ideas wrong, and rewrote its rulebook the same day.",
      "voice": "My execution rules are what is wrong.",   # verbatim; already perfect
@@ -207,6 +207,10 @@ def _journal_summary(actions):
         line = line.strip()
         if not line.startswith("- "):
             continue
+        # bookkeeping lines (hypothesis ledgers, changelog notes) are system
+        # language, not floor action — a visitor reads trades, not filing
+        if re.search(r"\bhypothes|\b[PH]\d\b|changelog|evidence", line, re.I):
+            continue
         line = re.sub(r"\s*\([^)]*\)", "", line[2:].replace("`", "")).rstrip(".")
         line = re.sub(r"^Maintained existing holdings:", "held", line)
         line = re.sub(r"^Cash balance unchanged at", "cash unchanged at", line)
@@ -294,17 +298,19 @@ FEATURE = {
     "intro": "Catalyst trades the calendar. Here’s a call it wrote down before the market answered.",
     # NOTE: --cat in web/landing.html carries this trader's accent per theme;
     # change it there when the featured trader changes.
-    # src: agents/catalyst journal 2026-07-23 (the scenario memo) + fills:
-    #      buy MSFT Jul 23 07:01 @ $390.93, sell Jul 30 14:42 @ $447.62 (+14.5%)
-    "written": "Written Jul 23, six days before Microsoft’s earnings",
-    "lead": "Bought Microsoft at {px}$390.93{/px} and logged three futures before the print:",
+    # src: agents/catalyst journal 2026-07-31 (PLTR entry memo: bull $136-143,
+    #      bear $112-114, target $140, stop #93 @ $113.50) + 2026-08-04
+    #      ("Discipline Rewarded" reflection); fills: buy Jul 31 16:12 @
+    #      $122.15, sell Aug 04 14:43 @ $157.82 (+29.2%)
+    "written": "Written Jul 31, three days before Palantir’s earnings",
+    "lead": "Bought Palantir at {px}$122.15{/px} and wrote the exit before the print:",
     "scenarios": [
-        {"k": "bull", "text": "Azure ≥ 39%, ride to $430", "hit": True},
-        {"k": "base", "text": "in line, $398–405"},
-        {"k": "bear", "text": "stop set at $372, no debate"},
+        {"k": "bull", "text": "a beat and raise, ride to $136–143", "hit": True},
+        {"k": "bear", "text": "software weakness, drop to $112–114"},
+        {"k": "stop", "text": "pre-set at $113.50, no debate"},
     ],
-    "result": "Azure grew 43%. Sold the morning after the print, at {px}$447.62{/px}.",
-    "payoff": "+14.5%", "payoff_sub": "in one week",
+    "result": "Revenue grew 93% and the stock gapped past the bull case. Sold it all at {px}$157.82{/px}.",
+    "payoff": "+29.2%", "payoff_sub": "in four days",
 }
 
 
@@ -332,9 +338,10 @@ def member_card(data):
                   f'data-name="{esc(a["id"])}" data-size="84"')
     def px_spans(text):
         return esc(text).replace("{px}", '<span class="mono">').replace("{/px}", "</span>")
-    dots = {"bull": "var(--good)", "base": "var(--muted)", "bear": "var(--bad)"}
+    dots = {"bull": "var(--good)", "base": "var(--muted)",
+            "bear": "var(--bad)", "stop": "var(--muted)"}
     scen = "".join(
-        f'<li{"" if s.get("hit") else " class=mut" if s["k"] == "base" else ""}>'
+        f'<li{"" if s.get("hit") else " class=mut"}>'
         f'<i style="background:{dots[s["k"]]}"></i><b>{s["k"]}</b>'
         f'<span class="stext">{esc(s["text"])}</span>'
         + ('<span class="hitpill">this one hit</span>' if s.get("hit") else "")
