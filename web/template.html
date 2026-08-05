@@ -568,14 +568,21 @@ function tapeSentence(e, withName){
   if (e.event === "pulled")
     return `${who}<span class="tact rule">pulled its ${MECH[e.mechanism] || e.mechanism}</span> on ${tsym(e.symbol)}`;
   const size = e.notional ? ` ${money(e.notional)} of` : "";
-  return `${who}<span class="tact blocked">blocked</span>: tried to ${esc(e.side)}${size} ${tsym(e.symbol)}`;
+  // "blocked" says a rule stopped the trader. Of the 73 refusals on the record
+  // to 2026-08-05, six were a rule and the rest never reached the market at
+  // all, mostly because the arena broke. The engine now names the cause; only
+  // a constitution earns the stronger word, and an absent cause never does.
+  const stopped = e.cause === "constitution";
+  return `${who}<span class="tact blocked">${stopped ? "blocked" : "not sent"}</span>: tried to ${esc(e.side)}${size} ${tsym(e.symbol)}`;
 }
 function tapeItemHTML(e, withFace){
   const a = byId(e.agent);
   const face = withFace ? `<span class="tapeface">${a ? agentAv(a, 24) : ""}</span>` : "";
   const note = !e.note ? ""
     : e.event === "blocked"
-      ? `<p class="tapenote stopped">Stopped by <b>${esc(e.note)}</b></p>`
+      ? (e.cause === "constitution"
+          ? `<p class="tapenote stopped">Stopped by <b>${esc(e.note)}</b></p>`
+          : `<p class="tapenote stopped"><b>${esc(e.note)}</b></p>`)
       : `<p class="tapenote">“${esc(e.note)}”</p>`;
   return `<div class="tapeitem${withFace ? "" : " noface"}"><span class="tapetime">${esc(clock(e))}</span>${face}
     <div><p class="tapeline">${tapeSentence(e, withFace)}</p>${note}</div></div>`;
