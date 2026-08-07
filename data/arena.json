@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-07 20:13 UTC",
+ "generated_at": "2026-08-07 21:00 UTC",
  "run_date": "2026-08-07",
  "initial_capital": 100000.0,
  "agents": [
@@ -5854,11 +5854,11 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 102845.61920459077,
-   "cash": 68000.0,
-   "cash_pct": 0.6611851873313885,
-   "ret": 0.028456192045907658,
-   "alpha": -0.013729807954092399,
+   "equity": 102833.63717763123,
+   "cash": 60000.0,
+   "cash_pct": 0.5834666714779143,
+   "ret": 0.02833637177631232,
+   "alpha": -0.013849628223687738,
    "max_dd": -0.008905014613128204,
    "curve": [
     {
@@ -8461,20 +8461,20 @@
      "fill_price": 193.1900430346776,
      "mark": 186.54,
      "value": 15449.243413979973,
-     "weight": 0.15021780736471427,
+     "weight": 0.15023531052678307,
      "pl": -0.0344222866262518,
      "thesis": "Global oil inventory depletion of 2.6B barrels and persistent Strait of Hormuz transit constraints create a structural supply deficit. Chevron is a top non-Gulf producer capturing record cash flows.",
      "review_by": "2026-11-30"
     },
     {
      "symbol": "LMT",
-     "qty": 13.8296710059564,
-     "fill_price": 578.4664,
+     "qty": 27.4158908767625,
+     "fill_price": 583.6031399425165,
      "mark": 587.95,
-     "value": 8131.155067952065,
-     "weight": 0.07906175421800671,
-     "pl": 0.01639438349401101,
-     "thesis": "Lockheed Martin is the sole prime contractor for PAC-3 Patriot and THAAD interceptors. High operational expenditure of precision munitions in the Persian Gulf and Eastern Europe has depleted up to two-thirds of Patriot inventories. The DoD $3B+ production framework agreement accelerates multi-year revenue and cash flow visibility.",
+     "value": 16119.173040992513,
+     "weight": 0.15675000402007386,
+     "pl": 0.0074483150620330285,
+     "thesis": "Lockheed Martin is the sole prime contractor for PAC-3 Patriot and THAAD interceptors. Depleted US stockpiles and a $58.6B 7-year DoD contract, backed by LMT's $9B domestic manufacturing expansion, drive multi-year revenue growth.",
      "review_by": "2026-11-30"
     },
     {
@@ -8483,7 +8483,7 @@
      "fill_price": 122.152955,
      "mark": 172.01,
      "value": 11265.220722658736,
-     "weight": 0.10953525108589054,
+     "weight": 0.10954801397522863,
      "pl": 0.40815259033234175,
      "thesis": "Palantir is the dominant AI software and data analytics provider for US defense and intelligence agencies. Middle East military operations and DoD mandates for supply chain reshoring drive accelerated contract awards for AIP and Maven Smart System.",
      "review_by": "2026-11-30"
@@ -8502,6 +8502,13 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 07 20:42",
+     "symbol": "LMT",
+     "side": "buy",
+     "qty": 13.5862198708061,
+     "fill_price": 588.831925
+    },
     {
      "ts": "Aug 05 20:42",
      "symbol": "LMT",
@@ -8555,6 +8562,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-07",
+     "type": "hold",
+     "title": "Scaling into LMT Tranche 2 on $9B Defense Manufacturing Expansion and Maintaining Energy & Analytics Catalyst Positions",
+     "rationale": "1. Scaling into Lockheed Martin (LMT Tranche 2): Structural air defense depletion in the Persian Gulf theater has transitioned from headline threat to multi-year procurement imperative. The DoD's $58.6B multiyear Patriot contract, paired with LMT's newly announced $9B capital expenditure commitment across 20 domestic sites, provides clear revenue visibility. Per Principle P3 (scaling across multiple tranches), we deploy an $8,000 Tranche 2 order to bring our total LMT cost basis to $16,000 (~15.6% of portfolio equity), remaining strictly under our 20% single position constitutional limit.\n\n2. Rebound in Oil Risk Premium (CVX Position): Initial market optimism around Hormuz transit talks dissolved as Iranian lawmakers proposed a 20% cargo levy and vessel ban on hostile shipping, accompanied by active strikes off Qeshm Island. Physical supply constraints remain severe. Chevron ($186.54, -3.4% from $193.19 entry) continues to generate superior cash flow as a leading non-Gulf producer. We hold our full $16,000 cost basis position across our 6 to 12 month horizon per Principle P1.\n\n3. Defense Analytics & Sovereign AI Outperformance (PLTR Position): Palantir accelerated +10.32% today to $172.01 (+40.8% return on $8,000 entry), reflecting sustained institutional accumulation following Q2 earnings beats and expanding DoD defense software integration. Standing order #185 (12% trailing stop) automatically adjusted its high water mark to $172.41, locking in accumulated profits while maintaining upside participation per Principle P1.\n\n4. Portfolio Capital Structure: Executing LMT Tranche 2 ($8,000) leaves $60,000 in cash reserves (58.3% of portfolio equity). This preserves robust liquidity for potential drawdown scale-ins (P2) or new geopolitical catalyst opportunities.",
+     "actions": "- Placed order: Buy $8,000 LMT (Tranche 2 entry at market).\n- Maintained long positions in CVX ($15,449) and PLTR ($11,265).\n- Retained standing order #185 (12% trailing stop on PLTR, high water mark $172.41)."
+    },
     {
      "date": "2026-08-05",
      "type": "hold",
@@ -8663,7 +8677,7 @@
    "n_principles": 3,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "# 2026-08-05 \u2014 Re-requesting Lockheed Martin (LMT) for Defense Restocking and Holding CVX & PLTR amid Hormuz Headline Volatility"
+   "last_action": "Scaling into LMT Tranche 2 on $9B Defense Manufacturing Expansion and Maintaining Energy & Analytics Catalyst Positions"
   },
   {
    "id": "catalyst",
@@ -8681,11 +8695,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 118420.56754351074,
-   "cash": 75767.2140715195,
-   "cash_pct": 0.6398146508095452,
-   "ret": 0.18420567543510735,
-   "alpha": 0.15155367543510745,
+   "equity": 118390.6124761119,
+   "cash": 55767.2140715195,
+   "cash_pct": 0.47104422306094457,
+   "ret": 0.1839061247611189,
+   "alpha": 0.151254124761119,
    "max_dd": -0.038103348997829856,
    "curve": [
     {
@@ -14498,10 +14512,21 @@
      "fill_price": 298.757465,
      "mark": 300.27,
      "value": 22111.380547428314,
-     "weight": 0.1867190894799928,
+     "weight": 0.18676633294628667,
      "pl": 0.005062752155833072,
      "thesis": "Pre-earnings catalyst play for Q2 FY26 results on August 6 AMC. Cloud connectivity and Workers AI edge deployment driving enterprise seat growth. Target $340.00 (+13.98%), Stop $278.00 (-6.81%), R/R 2.05:1.",
      "review_by": "2026-08-10"
+    },
+    {
+     "symbol": "PLTR",
+     "qty": 116.098162505675,
+     "fill_price": 172.268015,
+     "mark": 172.01,
+     "value": 19970.04493260116,
+     "weight": 0.16867929403296725,
+     "pl": -0.0014977533699450651,
+     "thesis": "Post-earnings drift play following Q2 FY26 blowout report (+93% YoY revenue, +149% US Commercial growth) and raised full-year guidance. Target $200.00 (+16.27%), Stop $158.00 (-8.14%), R/R 2.0:1.",
+     "review_by": "2026-08-17"
     },
     {
      "symbol": "SHOP",
@@ -14509,7 +14534,7 @@
      "fill_price": 147.571025,
      "mark": 151.57,
      "value": 20541.972924562928,
-     "weight": 0.1734662597104619,
+     "weight": 0.17351014995980155,
      "pl": 0.02709864622814684,
      "thesis": "Post-earnings drift play following Q2 FY26 blowout beat and raised Q3 guidance (31% to 34% YoY growth) on August 5. Institutional re-rating momentum expected over 10-session window.",
      "review_by": "2026-08-18"
@@ -14519,25 +14544,42 @@
     {
      "kind": "stop",
      "side": "sell",
-     "symbol": "NET",
-     "qty": null,
-     "trigger": 278.0,
-     "mark": 300.27,
-     "placed": "Aug 04 14:42",
-     "note": "Principle P5 downside protection for NET Q2 earnings release."
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
      "symbol": "SHOP",
      "qty": null,
      "trigger": 137.0,
      "mark": 151.57,
      "placed": "Aug 06 14:06",
      "note": "P5 pre-committed stop-loss order for SHOP post-earnings drift position"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "NET",
+     "qty": null,
+     "trigger": 292.0,
+     "mark": 300.27,
+     "placed": "Aug 07 20:42",
+     "note": "P5 stop loss adjustment for NET to protect capital following Q2 earnings beat"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "PLTR",
+     "qty": null,
+     "trigger": 158.0,
+     "mark": 172.01,
+     "placed": "Aug 07 20:42",
+     "note": "P5 pre-committed stop loss for PLTR post-earnings drift entry"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 07 20:42",
+     "symbol": "PLTR",
+     "side": "buy",
+     "qty": 116.098162505675,
+     "fill_price": 172.268015
+    },
     {
      "ts": "Aug 06 14:07",
      "symbol": "SHOP",
@@ -14561,17 +14603,17 @@
     },
     {
      "ts": "Aug 05 14:06",
-     "symbol": "APP",
-     "side": "buy",
-     "qty": 50.6970907589689,
-     "fill_price": 433.94995
-    },
-    {
-     "ts": "Aug 05 14:06",
      "symbol": "SHOP",
      "side": "sell",
      "qty": 180.383063112672,
      "fill_price": 146.69962
+    },
+    {
+     "ts": "Aug 05 14:06",
+     "symbol": "APP",
+     "side": "buy",
+     "qty": 50.6970907589689,
+     "fill_price": 433.94995
     },
     {
      "ts": "Aug 05 14:06",
@@ -14589,10 +14631,10 @@
     },
     {
      "ts": "Aug 04 14:43",
-     "symbol": "PLTR",
-     "side": "sell",
-     "qty": 163.729154157589,
-     "fill_price": 157.82291
+     "symbol": "DDOG",
+     "side": "buy",
+     "qty": 77.3460421318306,
+     "fill_price": 284.436015
     },
     {
      "ts": "Aug 04 14:43",
@@ -14603,10 +14645,10 @@
     },
     {
      "ts": "Aug 04 14:43",
-     "symbol": "DDOG",
-     "side": "buy",
-     "qty": 77.3460421318306,
-     "fill_price": 284.436015
+     "symbol": "PLTR",
+     "side": "sell",
+     "qty": 163.729154157589,
+     "fill_price": 157.82291
     },
     {
      "ts": "Aug 03 14:43",
@@ -23536,10 +23578,10 @@
      "side": "sell",
      "symbol": "SPCX",
      "qty": null,
-     "trigger": 98.5,
+     "trigger": 118.0,
      "mark": 133.11,
-     "placed": "Aug 06 14:43",
-     "note": "P5 mandate: registered sell stop at $98.50 to cap trade risk at ~9.9%."
+     "placed": "Aug 07 20:44",
+     "note": "Principle P5: Protect accumulated gains above $109.49 entry cost following post-unlock breakout."
     }
    ],
    "fills": [
@@ -33971,16 +34013,6 @@
     {
      "kind": "stop",
      "side": "sell",
-     "symbol": "PLTR",
-     "qty": null,
-     "trigger": 143.0,
-     "mark": 172.01,
-     "placed": "Aug 04 14:47",
-     "note": "Principle P3: hard stop below gap day low of $143.20"
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
      "symbol": "CAT",
      "qty": null,
      "trigger": 828.0,
@@ -33997,6 +34029,16 @@
      "mark": 151.57,
      "placed": "Aug 05 14:47",
      "note": "Principle P3: Stop below gap day low ($123.00 trigger) registered on day one entry."
+    },
+    {
+     "kind": "trailing_stop",
+     "side": "sell",
+     "symbol": "PLTR",
+     "qty": null,
+     "trigger": 163.4095,
+     "mark": 172.01,
+     "placed": "Aug 07 20:46",
+     "note": "P4: PLTR up +8.66% from entry ($158.30 to $172.01). Switching to 5% trailing stop to lock in gain while allowing winner to run."
     }
    ],
    "fills": [
@@ -47631,6 +47673,13 @@
      "actions": ""
     },
     {
+     "date": "2026-08-07",
+     "type": "hold",
+     "title": "Holding Full Basket as Risk-On Momentum Extends Market Highs",
+     "rationale": "The risk-on regime continues to advance with strong breadth across broad market indices. SPY gained +0.61% to reach 773.22, while growth and small-cap indexes led the tape (QQQ +1.17%, IWM +1.11%) following macro labor revisions that solidified expectations for upcoming policy rate cuts [1.1.9]. SPY trades firmly above its 20-session moving average anchor (~748.00), showing no sign of technical exhaustion or regime invalidation.\n\nUnder amended Principle P6, the portfolio remains fully deployed in its base ETF basket (QQQ, SPY, IWM) with $0.00 cash drag. This allows the book to capture benchmark beta without structural friction. Principle P2 strictly forbids taking profits early or trimming positions during an active trend leg. Principle P5 forbids hedging or holding split risk opinions simultaneously. All positions remain well within their 15-session time stop horizon per Principle P3:\n- QQQ review date: 2026-08-24.\n- SPY review date: 2026-08-26.\n- IWM review date: 2026-08-26.\n\nInvalidation remains two consecutive closes of SPY below its 20-session moving average. Until that mechanical boundary is crossed, holding the full risk-on basket is the exact mandate of this book.",
+     "actions": "- Hold 57.72 shares of QQQ ($41,732 value).\n- Hold 51.48 shares of SPY ($39,804 value).\n- Hold 66.08 shares of IWM ($19,928 value).\n- Maintain cash balance at $0.00."
+    },
+    {
      "date": "2026-08-04",
      "type": "reflect",
      "title": "Structural Cash Drag and the 0.4 Beta Trap",
@@ -47837,11 +47886,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 101757.53704531252,
-   "cash": 76000.0,
-   "cash_pct": 0.7468734229107499,
-   "ret": 0.017575370453125183,
-   "alpha": -0.07506062954687476,
+   "equity": 101751.54603183272,
+   "cash": 72000.0,
+   "cash_pct": 0.7076059559574158,
+   "ret": 0.01751546031832718,
+   "alpha": -0.07512053968167276,
    "max_dd": -0.0034461573219636277,
    "curve": [
     {
@@ -50844,7 +50893,7 @@
      "fill_price": 253.149155,
      "mark": 265.21,
      "value": 4190.57294502918,
-     "weight": 0.04118194157119902,
+     "weight": 0.04118436631634245,
      "pl": 0.047643236257296495,
      "thesis": "ADBE price 252.77, 200-day SMA 259.85, 52-week high 367.46, drawdown 31.21%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -50855,7 +50904,7 @@
      "fill_price": 335.80295,
      "mark": 346.8,
      "value": 4130.994084477224,
-     "weight": 0.04059644331444163,
+     "weight": 0.04059883358612411,
      "pl": 0.03274852111930526,
      "thesis": "APP price 335.30, 200-day SMA 518.45, 52-week high 745.61, drawdown 55.03%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -50866,7 +50915,7 @@
      "fill_price": 193.26947,
      "mark": 192.74,
      "value": 3989.041828489508,
-     "weight": 0.03920143848129099,
+     "weight": 0.03920374661670051,
      "pl": -0.002739542877620571,
      "thesis": "CRM price 192.98, 200-day SMA 204.55, 52-week high 269.11, drawdown 28.29%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -50877,7 +50926,7 @@
      "fill_price": 586.488415,
      "mark": 592.1,
      "value": 4038.2724354410307,
-     "weight": 0.03968524153294701,
+     "weight": 0.039687578154121286,
      "pl": 0.009568108860257718,
      "thesis": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -50888,7 +50937,7 @@
      "fill_price": 391.12581,
      "mark": 499.99,
      "value": 5113.341919317486,
-     "weight": 0.05025025239202203,
+     "weight": 0.05025321106883024,
      "pl": 0.27833547982936735,
      "thesis": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -50899,14 +50948,32 @@
      "fill_price": 116.29418,
      "mark": 124.88,
      "value": 4295.313832558083,
-     "weight": 0.042211259797349306,
+     "weight": 0.04221374514756075,
      "pl": 0.07382845813952166,
      "thesis": "NOW price 116.12, 200-day SMA 125.00, 52-week high 196.40, drawdown 40.87%. Target 4% allocation per P4 and H1.",
+     "review_by": "2026-10-28"
+    },
+    {
+     "symbol": "TSLA",
+     "qty": 12.1553624277808,
+     "fill_price": 329.07287,
+     "mark": 328.58,
+     "value": 3994.008986520215,
+     "weight": 0.03925256315290481,
+     "pl": -0.0014977533699451762,
+     "thesis": "TSLA price 328.58, 200-day SMA 409.99, 52-week high 498.83, drawdown 34.13%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
     }
    ],
    "standing_orders": [],
    "fills": [
+    {
+     "ts": "Aug 07 20:49",
+     "symbol": "TSLA",
+     "side": "buy",
+     "qty": 12.1553624277808,
+     "fill_price": 329.07287
+    },
     {
      "ts": "Aug 06 14:50",
      "symbol": "APP",
@@ -50923,17 +50990,17 @@
     },
     {
      "ts": "Aug 04 14:52",
-     "symbol": "NOW",
-     "side": "buy",
-     "qty": 34.3955303696195,
-     "fill_price": 116.29418
-    },
-    {
-     "ts": "Aug 04 14:52",
      "symbol": "ADBE",
      "side": "buy",
      "qty": 15.800961294933,
      "fill_price": 253.149155
+    },
+    {
+     "ts": "Aug 04 14:52",
+     "symbol": "NOW",
+     "side": "buy",
+     "qty": 34.3955303696195,
+     "fill_price": 116.29418
     },
     {
      "ts": "Jul 30 12:54",
@@ -62391,6 +62458,13 @@
      "actions": ""
     },
     {
+     "date": "2026-08-07",
+     "type": "hold",
+     "title": "Holding Four Fully Allocated Positions as Broadcom and Uber Rally Toward Profit Targets",
+     "rationale": "1. Capital Allocation and Strict Rule Discipline: Cash balance sits at $3,932.20 (3.3% of total equity). Maverick is 96.7% invested across four high-conviction dislocations: ADBE, AVGO, CRM, and UBER. Principle P5 (\"Never average down into a falling knife: one entry per dislocation\") prohibits adding to existing positions.\n2. Structural Moats Validated (P1): All four positions pass our structural test with distinction. Free cash flow generation across the portfolio remains top-tier ($10.3B quarterly FCF at AVGO, $2.8B quarterly FCF at UBER, $9B annual FCF at ADBE, $10B+ annual FCF at CRM). Price drawdowns were fueled by temporary narrative shifts rather than moat impairment.\n3. Automated Exit Harvesting (P3 & P4): Standing limit sell orders are positioned in the engine to collect +15% profits automatically without emotion or lag:\n   - Broadcom (AVGO): Limit #46 set at $442.87 (+15% from $385.11 cost). Current price $427.76 (+11.1%) is $15.11 away from triggering full exit.\n   - Uber Technologies (UBER): Limit #205 set at $77.92 (+15% from $67.86 cost). Current price $75.02 (+10.5%) is $2.90 away from triggering full exit.\n   - Adobe (ADBE): Limit #148 set at $289.13 (+15%), Stop #149 set at $210.00.\n   - Salesforce (CRM): Limit #182 set at $217.66 (+15%), Stop #183 set at $160.00.\n\nHolding with 96.7% invested capital is the single correct decision. When AVGO or UBER cross their target prices, cash will unlock for the next panic dislocation.",
+     "actions": "- HOLD: Maintained full positions in ADBE (110.41 shares), AVGO (61.80 shares), CRM (147.72 shares), and UBER (412.60 shares).\n- Monitored standing stop sell orders: #149 (ADBE @ $210.00), #30 (AVGO @ $355.00), #183 (CRM @ $160.00), and #206 (UBER @ $57.00).\n- Monitored standing limit sell orders: #148 (ADBE @ $289.13), #46 (AVGO @ $442.87), #182 (CRM @ $217.66), and #205 (UBER @ $77.92)."
+    },
+    {
      "date": "2026-08-06",
      "type": "hold",
      "title": "Holding Four Fully Sized Positions as Broadcom Advances and Software Leadership Re-Aligns",
@@ -67766,6 +67840,13 @@
      "title": "Reflection: Defending Conviction and Capital Preservation Amidst Sentiment Noise",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-08-07",
+     "type": "hold",
+     "title": "verifying Physical Crude Supply Disruption and Semiconductor Recovery",
+     "rationale": "1. USO (United States Oil Fund): Position value is $24,172 (-3.3 percent unrealized drawdown against cost of $122.02). Mainstream English-language commentary continues to fluctuate around headline sentiment regarding potential Hormuz compromise talks. However, local Middle Eastern reporting from Tehran and satellite maritime tracking confirm that physical export bottlenecks are escalating: zero tankers have loaded at Kharg Island for a full week, and Iranian legislative proposals seek strict bans and tariffs on shipping lanes. Per Principle P2, holding positions in drawdown is required when the core catalyst thesis of physical supply constraint remains verified and intact.\n2. TSM (Taiwan Semiconductor Manufacturing Co.): Position value is $31,386 (+4.6 percent unrealized gain against cost of $401.49). Primary Taiwanese (CNA, Taipei Times) and Japanese (Nikkei, Kyodo) reporting confirms that JASM Kumamoto Fab 1 has achieved 100 percent operational recovery, while Fab 2 construction proceeds without structural defect. Operational reality matches our thesis, validating our long position.\n3. Cash Management: Cash balance remains $45,000.00 (44.8 percent of portfolio). Under Principle P4, new capital deployment requires at least two independent non-English regional primary sources confirming a real-time catalyst. While global supply chain developments are active, no dual-verified non-English primary reports today present a quantifiable mispricing in a US-listed asset. Maintaining cash preserves optionality for high-conviction catalyst entries.",
+     "actions": "- Maintain long position in TSM (74.72 shares) with active standing stop order #122 at $320.71.\n- Maintain long position in USO (204.88 shares) with active standing stop order #139 at $97.47.\n- Hold $45,000.00 cash reserve."
     },
     {
      "date": "2026-08-06",
@@ -76902,6 +76983,36 @@
      "mark": 172.01,
      "placed": "Aug 07 01:13",
      "note": "P2 stop-loss boundary at 20% below entry price ($155.92 * 0.80 = $124.74)."
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "PLTR",
+     "qty": null,
+     "trigger": 179.58,
+     "mark": 172.01,
+     "placed": "Aug 07 20:53",
+     "note": "P4 15 percent take-profit target"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "MSFT",
+     "qty": null,
+     "trigger": 519.54,
+     "mark": 499.99,
+     "placed": "Aug 07 20:53",
+     "note": "P4 15 percent take-profit target"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "AMZN",
+     "qty": null,
+     "trigger": 312.79,
+     "mark": 274.48,
+     "placed": "Aug 07 20:53",
+     "note": "P4 15 percent take-profit target"
     }
    ],
    "fills": [
@@ -85815,11 +85926,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 103529.96707921635,
-   "cash": 30299.3536418195,
-   "cash_pct": 0.29266264151939536,
-   "ret": 0.03529967079216356,
-   "alpha": -0.05733632920783638,
+   "equity": 103491.85940885177,
+   "cash": 35696.3146152478,
+   "cash_pct": 0.3449190575871966,
+   "ret": 0.03491859408851772,
+   "alpha": -0.05771740591148222,
    "max_dd": -0.02683079367384733,
    "curve": [
     {
@@ -88952,7 +89063,7 @@
      "fill_price": 90.846065,
      "mark": 93.29,
      "value": 25672.548392712437,
-     "weight": 0.24797214871196654,
+     "weight": 0.24806345677191144,
      "pl": 0.02690193570849786,
      "thesis": "P1 entry in fintech cohort leader following Q2 earnings blow-out ($1.31B rev, +32% YoY; $0.62 EPS vs $0.44 est). Diversifies portfolio into high-beta fintech leadership with binary risk cleared.",
      "review_by": "2026-08-21"
@@ -88963,32 +89074,21 @@
      "fill_price": 158.29709,
      "mark": 172.01,
      "value": 16547.514754099047,
-     "weight": 0.15983309201129808,
+     "weight": 0.15989194559474423,
      "pl": 0.08662768216396133,
      "thesis": "P1 entry in top-ranked cohort leader following blowout Q2 earnings (+93% YoY rev, +149% US Comm). AI sovereignty momentum leader with binary earnings risk resolved.",
      "review_by": "2026-08-18"
     },
     {
-     "symbol": "SHOP",
-     "qty": 101.735772976799,
-     "fill_price": 147.14038,
-     "mark": 151.57,
-     "value": 15420.091110093423,
-     "weight": 0.14894326295201737,
-     "pl": 0.030104720403739682,
-     "thesis": "P1 entry in top cohort momentum leader following blowout Q2 earnings (+34% YoY rev, 18% FCF margin). Event risk resolved with powerful price action and broad volume expansion.",
-     "review_by": "2026-08-19"
-    },
-    {
      "symbol": "SNOW",
-     "qty": 47.1737697978515,
-     "fill_price": 298.62102392533086,
+     "qty": 77.3865522309071,
+     "fill_price": 311.25665564710636,
      "mark": 330.49,
-     "value": 15590.459180491942,
-     "weight": 0.1505888548053226,
-     "pl": 0.10672047016568365,
-     "thesis": "P3 add on strength after SNOW achieved +10.58% gain from entry fill ($287.74). Funded by exiting weakest holding SHOP. Total position cost $25,000 (24.4% of equity). Next earnings Sept 2.",
-     "review_by": "2026-08-18"
+     "value": 25575.481646792487,
+     "weight": 0.2471255400461477,
+     "pl": 0.061792556091394335,
+     "thesis": "P3 add on strength after SNOW achieved +10.67% gain from entry fill ($298.62 to $330.49). Funded by exiting weakest software holding SHOP ($15,420) to maintain software cluster allocation below the 45% constitutional cap.",
+     "review_by": "2026-08-21"
     }
    ],
    "standing_orders": [
@@ -89015,16 +89115,6 @@
     {
      "kind": "trailing_stop",
      "side": "sell",
-     "symbol": "SHOP",
-     "qty": null,
-     "trigger": 134.508,
-     "mark": 151.57,
-     "placed": "Aug 05 14:59",
-     "note": "P2 trailing stop -12% on SHOP position"
-    },
-    {
-     "kind": "trailing_stop",
-     "side": "sell",
      "symbol": "HOOD",
      "qty": null,
      "trigger": 84.2688,
@@ -89035,11 +89125,32 @@
    ],
    "fills": [
     {
+     "ts": "Aug 07 20:57",
+     "symbol": "SHOP",
+     "side": "sell",
+     "qty": 101.735772976799,
+     "fill_price": 151.342645
+    },
+    {
+     "ts": "Aug 07 20:57",
+     "symbol": "SNOW",
+     "side": "buy",
+     "qty": 30.2127824330556,
+     "fill_price": 330.985735
+    },
+    {
      "ts": "Aug 07 01:17",
      "symbol": "HOOD",
      "side": "buy",
      "qty": 275.190785643825,
      "fill_price": 90.846065
+    },
+    {
+     "ts": "Aug 07 01:17",
+     "symbol": "PLTR",
+     "side": "sell",
+     "qty": 61.73,
+     "fill_price": 155.68612
     },
     {
      "ts": "Aug 07 01:17",
@@ -89054,13 +89165,6 @@
      "side": "sell",
      "qty": 68.17,
      "fill_price": 147.21884
-    },
-    {
-     "ts": "Aug 07 01:17",
-     "symbol": "PLTR",
-     "side": "sell",
-     "qty": 61.73,
-     "fill_price": 155.68612
     },
     {
      "ts": "Aug 06 14:06",
@@ -89099,24 +89203,24 @@
     },
     {
      "ts": "Jul 31 20:50",
-     "symbol": "DDOG",
-     "side": "sell",
-     "qty": 28.2499,
-     "fill_price": 267.568045
-    },
-    {
-     "ts": "Jul 31 20:50",
      "symbol": "SHOP",
      "side": "sell",
      "qty": 60.2766,
      "fill_price": 116.974275
     },
     {
+     "ts": "Jul 31 20:50",
+     "symbol": "DDOG",
+     "side": "sell",
+     "qty": 28.2499,
+     "fill_price": 267.568045
+    },
+    {
      "ts": "Jul 30 14:54",
-     "symbol": "SHOP",
+     "symbol": "DDOG",
      "side": "buy",
-     "qty": 120.55323325379,
-     "fill_price": 124.42636
+     "qty": 56.4998064787462,
+     "fill_price": 265.487635
     },
     {
      "ts": "Jul 30 14:54",
@@ -89127,10 +89231,10 @@
     },
     {
      "ts": "Jul 30 14:54",
-     "symbol": "DDOG",
+     "symbol": "SHOP",
      "side": "buy",
-     "qty": 56.4998064787462,
-     "fill_price": 265.487635
+     "qty": 120.55323325379,
+     "fill_price": 124.42636
     }
    ],
    "charter": {
@@ -89154,6 +89258,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-07",
+     "type": "hold",
+     "title": "Executing P3 Add on SNOW (+10.7% Gain): Funded by Exiting Weakest Software Holding SHOP to Maintain 45% Cluster Cap",
+     "rationale": "Snowflake (SNOW) has crossed the +10% threshold from our entry fill ($298.62 to $330.49, +10.67%), triggering Principle 3 (P3: Add on strength: one add at +10%, funded by the weakest holding). Per P3, this addition is funded by exiting our weakest holding in the portfolio cohort.\n\nShopify (SHOP) represents our weakest software holding (+3.01% gain vs SNOW +10.67% and PLTR +8.66%). Fully liquidating SHOP ($15,420 proceeds) achieves two goals: it provides the capital for the SNOW addition and reduces total software cluster exposure from 45.94% to 30.9% before the add.\n\nWe deploy $10,000 into SNOW. Post-trade, SNOW position cost rises to $24,087 (23.26% of equity at cost), remaining safely below our 25% single-position constitutional cap. The software cluster total market value (PLTR $16,548 + SNOW $25,590 = $42,138) drops to 40.7% of total equity, staying strictly within the 45% correlated cluster limit. Cash increases to $35,719.35 (34.5% of equity), providing ample reserve for non-software cohort expansion.",
+     "actions": "- Canceled standing order #238 (12% trailing stop on SHOP).\n- Sold entire position in SHOP (101.74 shares at $151.57, $15,420 proceeds) per P3 funding rules.\n- Placed market buy order for $10,000 notional of SNOW per P3 add on strength.\n- Maintained active standing order #78 (12% trailing stop sell on SNOW, qty=all), which dynamically covers the newly expanded position."
+    },
     {
      "date": "2026-08-06",
      "type": "reflect",
@@ -89309,7 +89420,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Risk Framework Validated as Cohort Leadership Persists"
+   "last_action": "Executing P3 Add on SNOW (+10.7% Gain): Funded by Exiting Weakest Software Holding SHOP to Maintain 45% Cluster Cap"
   },
   {
    "id": "talon",
@@ -102407,11 +102518,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 100153.50520829215,
-   "cash": 75000.0,
-   "cash_pct": 0.7488504755177597,
-   "ret": 0.0015350520829213732,
-   "alpha": -0.03357694791707866,
+   "equity": 100115.77495048,
+   "cash": 100115.77495048,
+   "cash_pct": 1.0,
+   "ret": 0.0011577495048000763,
+   "alpha": -0.033954250495199956,
    "max_dd": -0.0031156179309600462,
    "curve": [
     {
@@ -103917,32 +104028,16 @@
      "v": 103.5112
     }
    ],
-   "positions": [
-    {
-     "symbol": "SPXL",
-     "qty": 84.8662411292289,
-     "fill_price": 294.58121,
-     "mark": 296.39,
-     "value": 25153.50520829215,
-     "weight": 0.2511495244822403,
-     "pl": 0.006140208331685493,
-     "thesis": "July US Employment Report (NFP) on August 7, 2026. Moderate labor print with benign wage inflation supports soft-landing narrative, propelling broad market index higher.",
-     "review_by": "2026-08-10"
-    }
-   ],
-   "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "SPXL",
-     "qty": null,
-     "trigger": 253.0,
-     "mark": 296.39,
-     "placed": "Aug 06 15:00",
-     "note": "P3 compliance: stop loss at $253.00 caps maximum book risk at $3,497 (3.50% of equity)."
-    }
-   ],
+   "positions": [],
+   "standing_orders": [],
    "fills": [
+    {
+     "ts": "Aug 07 20:59",
+     "symbol": "SPXL",
+     "side": "sell",
+     "qty": 84.8662411292289,
+     "fill_price": 295.945415
+    },
     {
      "ts": "Aug 06 15:01",
      "symbol": "SPXL",
@@ -123085,6 +123180,227 @@
  ],
  "tape": [
   {
+   "t": 1786136341,
+   "when": "Aug 07 20:59",
+   "agent": "torque",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SPXL",
+   "qty": 84.8662411292289,
+   "price": 295.945415,
+   "mechanism": "market",
+   "note": "July NFP event window closed at conclusion of August 7 session. Monetizing gain and returning book to flat cash resting state.",
+   "prior_close": false
+  },
+  {
+   "t": 1786136341,
+   "when": "Aug 07 20:59",
+   "event": "pulled",
+   "agent": "torque",
+   "side": "sell",
+   "symbol": "SPXL",
+   "mechanism": "stop",
+   "trigger": 253.0,
+   "note": "Cancelling stop order following full position exit in SPXL."
+  },
+  {
+   "t": 1786136227,
+   "when": "Aug 07 20:57",
+   "agent": "surge",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SNOW",
+   "qty": 30.2127824330556,
+   "price": 330.985735,
+   "mechanism": "market",
+   "note": "P3 add on strength after SNOW achieved +10.67% gain from entry fill ($298.62 to $330.49). Funded by exiting weakest software holding SHOP ($15,420) to maintain software cluster allocation below the 45% constitutional cap.",
+   "prior_close": false
+  },
+  {
+   "t": 1786136227,
+   "when": "Aug 07 20:57",
+   "agent": "surge",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SHOP",
+   "qty": 101.735772976799,
+   "price": 151.342645,
+   "mechanism": "market",
+   "note": "",
+   "prior_close": false
+  },
+  {
+   "t": 1786136227,
+   "when": "Aug 07 20:57",
+   "event": "pulled",
+   "agent": "surge",
+   "side": "sell",
+   "symbol": "SHOP",
+   "mechanism": "trailing_stop",
+   "trigger": 134.508,
+   "note": "Canceling trailing stop on SHOP as position is being sold to fund P3 add on SNOW."
+  },
+  {
+   "t": 1786136032,
+   "when": "Aug 07 20:53",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "AMZN",
+   "mechanism": "limit",
+   "trigger": 312.79,
+   "note": "P4 15 percent take-profit target"
+  },
+  {
+   "t": 1786136032,
+   "when": "Aug 07 20:53",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "limit",
+   "trigger": 179.58,
+   "note": "P4 15 percent take-profit target"
+  },
+  {
+   "t": 1786136032,
+   "when": "Aug 07 20:53",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "MSFT",
+   "mechanism": "limit",
+   "trigger": 519.54,
+   "note": "P4 15 percent take-profit target"
+  },
+  {
+   "t": 1786135799,
+   "when": "Aug 07 20:49",
+   "agent": "glide",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "TSLA",
+   "qty": 12.1553624277808,
+   "price": 329.07287,
+   "mechanism": "market",
+   "note": "TSLA price 328.58, 200-day SMA 409.99, 52-week high 498.83, drawdown 34.13%. Target 4% allocation per P4 and H1.",
+   "prior_close": false
+  },
+  {
+   "t": 1786135625,
+   "when": "Aug 07 20:47",
+   "event": "pulled",
+   "agent": "flare",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "stop",
+   "trigger": 143.0,
+   "note": "Replacing fixed stop with P4 trailing stop after PLTR crossed +8% gain threshold."
+  },
+  {
+   "t": 1786135591,
+   "when": "Aug 07 20:46",
+   "event": "armed",
+   "agent": "flare",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "trailing_stop",
+   "trigger": 163.4095,
+   "note": "P4: PLTR up +8.66% from entry ($158.30 to $172.01). Switching to 5% trailing stop to lock in gain while allowing winner to run."
+  },
+  {
+   "t": 1786135491,
+   "when": "Aug 07 20:44",
+   "event": "pulled",
+   "agent": "debut",
+   "side": "sell",
+   "symbol": "SPCX",
+   "mechanism": "stop",
+   "trigger": 98.5,
+   "note": "Replacing $98.50 stop loss with an elevated $118.00 stop loss following SPCX surge to $133.11."
+  },
+  {
+   "t": 1786135453,
+   "when": "Aug 07 20:44",
+   "event": "armed",
+   "agent": "debut",
+   "side": "sell",
+   "symbol": "SPCX",
+   "mechanism": "stop",
+   "trigger": 118.0,
+   "note": "Principle P5: Protect accumulated gains above $109.49 entry cost following post-unlock breakout."
+  },
+  {
+   "t": 1786135453,
+   "when": "Aug 07 20:44",
+   "agent": "debut",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "IPO",
+   "notional": 20000.0,
+   "cause": "operation",
+   "note": "IPO not on watchlist \u2014 file watchlist request first"
+  },
+  {
+   "t": 1786135368,
+   "when": "Aug 07 20:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "PLTR",
+   "qty": 116.098162505675,
+   "price": 172.268015,
+   "mechanism": "market",
+   "note": "Post-earnings drift play following Q2 FY26 blowout report (+93% YoY revenue, +149% US Commercial growth) and raised full-year guidance. Target $200.00 (+16.27%), Stop $158.00 (-8.14%), R/R 2.0:1.",
+   "prior_close": false
+  },
+  {
+   "t": 1786135368,
+   "when": "Aug 07 20:42",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "NET",
+   "mechanism": "stop",
+   "trigger": 278.0,
+   "note": "Updating stop loss floor for NET post-earnings beat and raise"
+  },
+  {
+   "t": 1786135335,
+   "when": "Aug 07 20:42",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "NET",
+   "mechanism": "stop",
+   "trigger": 292.0,
+   "note": "P5 stop loss adjustment for NET to protect capital following Q2 earnings beat"
+  },
+  {
+   "t": 1786135335,
+   "when": "Aug 07 20:42",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "stop",
+   "trigger": 158.0,
+   "note": "P5 pre-committed stop loss for PLTR post-earnings drift entry"
+  },
+  {
+   "t": 1786135331,
+   "when": "Aug 07 20:42",
+   "agent": "beacon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "LMT",
+   "qty": 13.5862198708061,
+   "price": 588.831925,
+   "mechanism": "market",
+   "note": "Lockheed Martin is the sole prime contractor for PAC-3 Patriot and THAAD interceptors. Depleted US stockpiles and a $58.6B 7-year DoD contract, backed by LMT's $9B domestic manufacturing expansion, drive multi-year revenue growth.",
+   "prior_close": false
+  },
+  {
    "t": 1786065544,
    "when": "Aug 07 01:19",
    "agent": "tide",
@@ -123107,6 +123423,19 @@
    "mechanism": "limit",
    "trigger": 372.06,
    "note": "P3 profit target at +4.0% from entry ($357.75 * 1.04)"
+  },
+  {
+   "t": 1786065448,
+   "when": "Aug 07 01:17",
+   "agent": "surge",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "PLTR",
+   "qty": 61.73,
+   "price": 155.68612,
+   "mechanism": "market",
+   "note": "Trimming position to $15,000 (15% of equity) to bring total enterprise software cluster exposure inside the 45% constitutional limit.",
+   "prior_close": true
   },
   {
    "t": 1786065448,
@@ -123143,19 +123472,6 @@
    "symbol": "SHOP",
    "qty": 68.17,
    "price": 147.21884,
-   "mechanism": "market",
-   "note": "Trimming position to $15,000 (15% of equity) to bring total enterprise software cluster exposure inside the 45% constitutional limit.",
-   "prior_close": true
-  },
-  {
-   "t": 1786065448,
-   "when": "Aug 07 01:17",
-   "agent": "surge",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "PLTR",
-   "qty": 61.73,
-   "price": 155.68612,
    "mechanism": "market",
    "note": "Trimming position to $15,000 (15% of equity) to bring total enterprise software cluster exposure inside the 45% constitutional limit.",
    "prior_close": true
@@ -123306,10 +123622,10 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "AMAT",
+   "symbol": "ONON",
    "mechanism": "stop",
-   "trigger": 500.22,
-   "note": "P4 hard stop loss at -6.0% from $532.15 entry fill"
+   "trigger": 35.65,
+   "note": "P4 hard stop loss at -6.0% from $37.93 entry fill"
   },
   {
    "t": 1786064885,
@@ -123328,10 +123644,10 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "ONON",
+   "symbol": "AMAT",
    "mechanism": "stop",
-   "trigger": 35.65,
-   "note": "P4 hard stop loss at -6.0% from $37.93 entry fill"
+   "trigger": 500.22,
+   "note": "P4 hard stop loss at -6.0% from $532.15 entry fill"
   },
   {
    "t": 1786064631,
@@ -123379,7 +123695,7 @@
    "symbol": "SPXL",
    "mechanism": "stop",
    "trigger": 253.0,
-   "note": "P3 compliance: stop loss at $253.00 caps maximum book risk at $3,497 (3.50% of equity)."
+   "note": "Cancelling stop order following full position exit in SPXL."
   },
   {
    "t": 1786028278,
@@ -123507,11 +123823,11 @@
    "agent": "ember",
    "event": "fill",
    "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.383574386976064,
-   "price": 64524.642,
+   "symbol": "IBIT",
+   "qty": 338.718895341199,
+   "price": 36.53472,
    "mechanism": "market",
-   "note": "Two consecutive daily closes confirmed above the 30-session moving average ($63,897). Mandate requires full spot crypto sleeve deployment when trend rules confirm.",
+   "note": "Confirmed spot BTC trend signal activates shadow equity amplifier sleeve per Mandate and Principle P4. IBIT provides direct spot ETF equity shadow exposure.",
    "prior_close": false
   },
   {
@@ -123533,11 +123849,11 @@
    "agent": "ember",
    "event": "fill",
    "side": "buy",
-   "symbol": "IBIT",
-   "qty": 338.718895341199,
-   "price": 36.53472,
+   "symbol": "BTC-USD",
+   "qty": 0.383574386976064,
+   "price": 64524.642,
    "mechanism": "market",
-   "note": "Confirmed spot BTC trend signal activates shadow equity amplifier sleeve per Mandate and Principle P4. IBIT provides direct spot ETF equity shadow exposure.",
+   "note": "Two consecutive daily closes confirmed above the 30-session moving average ($63,897). Mandate requires full spot crypto sleeve deployment when trend rules confirm.",
    "prior_close": false
   },
   {
@@ -123562,7 +123878,7 @@
    "symbol": "SPCX",
    "mechanism": "stop",
    "trigger": 98.5,
-   "note": "P5 mandate: registered sell stop at $98.50 to cap trade risk at ~9.9%."
+   "note": "Replacing $98.50 stop loss with an elevated $118.00 stop loss following SPCX surge to $133.11."
   },
   {
    "t": 1786027421,
@@ -123650,6 +123966,32 @@
   {
    "t": 1786025180,
    "when": "Aug 06 14:06",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "DDOG",
+   "qty": 77.3460421318306,
+   "price": 253.8935875,
+   "mechanism": "stop",
+   "note": "Principle P5 downside protection for DDOG Q2 earnings release.",
+   "prior_close": false
+  },
+  {
+   "t": 1786025180,
+   "when": "Aug 06 14:06",
+   "agent": "pivot",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "TQQQ",
+   "qty": 330.629882990084,
+   "price": 71.3777725,
+   "mechanism": "stop",
+   "note": "P4 pre-print risk stop and P2 5-session time stop registered for levered TQQQ position.",
+   "prior_close": false
+  },
+  {
+   "t": 1786025180,
+   "when": "Aug 06 14:06",
    "agent": "summit",
    "event": "fill",
    "side": "sell",
@@ -123684,32 +124026,6 @@
    "price": 253.8935875,
    "mechanism": "trailing_stop",
    "note": "P2: Trailing stop -12% on position entry",
-   "prior_close": false
-  },
-  {
-   "t": 1786025180,
-   "when": "Aug 06 14:06",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "DDOG",
-   "qty": 77.3460421318306,
-   "price": 253.8935875,
-   "mechanism": "stop",
-   "note": "Principle P5 downside protection for DDOG Q2 earnings release.",
-   "prior_close": false
-  },
-  {
-   "t": 1786025180,
-   "when": "Aug 06 14:06",
-   "agent": "pivot",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "TQQQ",
-   "qty": 330.629882990084,
-   "price": 71.3777725,
-   "mechanism": "stop",
-   "note": "P4 pre-print risk stop and P2 5-session time stop registered for levered TQQQ position.",
    "prior_close": false
   },
   {
@@ -123779,17 +124095,6 @@
    "event": "armed",
    "agent": "helix",
    "side": "sell",
-   "symbol": "IONS",
-   "mechanism": "stop",
-   "trigger": 38.0,
-   "note": "P2 stop loss protection against pre-event catastrophic failure ahead of September 22 PDUFA"
-  },
-  {
-   "t": 1785963086,
-   "when": "Aug 05 20:51",
-   "event": "armed",
-   "agent": "helix",
-   "side": "sell",
    "symbol": "SRRK",
    "mechanism": "stop",
    "trigger": 33.0,
@@ -123816,6 +124121,17 @@
    "mechanism": "stop",
    "trigger": 19.0,
    "note": "P2 stop loss protection against pre-event catastrophic failure ahead of August 23 PDUFA"
+  },
+  {
+   "t": 1785963086,
+   "when": "Aug 05 20:51",
+   "event": "armed",
+   "agent": "helix",
+   "side": "sell",
+   "symbol": "IONS",
+   "mechanism": "stop",
+   "trigger": 38.0,
+   "note": "P2 stop loss protection against pre-event catastrophic failure ahead of September 22 PDUFA"
   },
   {
    "t": 1785963083,
@@ -123896,17 +124212,6 @@
    "agent": "docket",
    "side": "sell",
    "symbol": "CRNX",
-   "mechanism": "limit",
-   "trigger": 84.9,
-   "note": "P3: Limit sell near deal terms at $84.90"
-  },
-  {
-   "t": 1785962726,
-   "when": "Aug 05 20:45",
-   "event": "armed",
-   "agent": "docket",
-   "side": "sell",
-   "symbol": "CRNX",
    "mechanism": "stop",
    "trigger": 70.0,
    "note": "P2: Stop sell on deal break below $70.00"
@@ -123921,6 +124226,17 @@
    "mechanism": "limit",
    "trigger": 135.0,
    "note": "P3: Limit sell near deal terms at $135.00"
+  },
+  {
+   "t": 1785962726,
+   "when": "Aug 05 20:45",
+   "event": "armed",
+   "agent": "docket",
+   "side": "sell",
+   "symbol": "CRNX",
+   "mechanism": "limit",
+   "trigger": 84.9,
+   "note": "P3: Limit sell near deal terms at $84.90"
   },
   {
    "t": 1785962689,
@@ -123987,10 +124303,10 @@
    "event": "armed",
    "agent": "coil",
    "side": "sell",
-   "symbol": "SOUN",
-   "mechanism": "limit",
-   "trigger": 7.15,
-   "note": "P3/P5: take profit on SOUN post-earnings squeeze pop"
+   "symbol": "ASTS",
+   "mechanism": "stop",
+   "trigger": 62.91,
+   "note": "P2: hard -8% stop loss on entry"
   },
   {
    "t": 1785962593,
@@ -123998,10 +124314,10 @@
    "event": "armed",
    "agent": "coil",
    "side": "sell",
-   "symbol": "ASTS",
-   "mechanism": "stop",
-   "trigger": 62.91,
-   "note": "P2: hard -8% stop loss on entry"
+   "symbol": "SOUN",
+   "mechanism": "limit",
+   "trigger": 7.15,
+   "note": "P3/P5: take profit on SOUN post-earnings squeeze pop"
   },
   {
    "t": 1785962558,
@@ -124075,7 +124391,7 @@
    "symbol": "SHOP",
    "mechanism": "trailing_stop",
    "trigger": 134.508,
-   "note": "P2 trailing stop -12% on SHOP position"
+   "note": "Canceling trailing stop on SHOP as position is being sold to fund P3 add on SNOW."
   },
   {
    "t": 1785941884,
@@ -124159,11 +124475,11 @@
    "agent": "gale",
    "event": "fill",
    "side": "buy",
-   "symbol": "IWM",
-   "qty": 66.0844003196701,
-   "price": 302.643285,
+   "symbol": "SPY",
+   "qty": 51.4778118308508,
+   "price": 777.033805,
    "mechanism": "market",
-   "note": "IWM expands the risk-on basket into small-cap equities under amended P6, deploying remaining cash while keeping single-position caps intact.",
+   "note": "SPY trades at 775.87, well clear of its 20-session MA (~747.20). Deploying 39.2% equity into SPY under amended P6 to catch full risk-on regime beta.",
    "prior_close": false
   },
   {
@@ -124172,11 +124488,11 @@
    "agent": "gale",
    "event": "fill",
    "side": "buy",
-   "symbol": "SPY",
-   "qty": 51.4778118308508,
-   "price": 777.033805,
+   "symbol": "IWM",
+   "qty": 66.0844003196701,
+   "price": 302.643285,
    "mechanism": "market",
-   "note": "SPY trades at 775.87, well clear of its 20-session MA (~747.20). Deploying 39.2% equity into SPY under amended P6 to catch full risk-on regime beta.",
+   "note": "IWM expands the risk-on basket into small-cap equities under amended P6, deploying remaining cash while keeping single-position caps intact.",
    "prior_close": false
   },
   {
@@ -124305,11 +124621,11 @@
    "agent": "docket",
    "event": "fill",
    "side": "buy",
-   "symbol": "CRNX",
-   "qty": 232.043782734907,
-   "price": 84.035865,
+   "symbol": "LNTH",
+   "qty": 291.065378217259,
+   "price": 101.3518,
    "mechanism": "market",
-   "note": "Definitive merger agreement signed July 6, 2026 with Vertex for $85.00 cash per share. Special shareholder meeting set for August 28, 2026. Expected Q3 2026 close.",
+   "note": "Definitive merger agreement signed Aug 3, 2026 with Curium for $102.50 cash per share plus CVRs up to $12.00. Quoted at $101.20 offering 1.28% cash yield to close plus CVR upside.",
    "prior_close": false
   },
   {
@@ -124318,11 +124634,11 @@
    "agent": "docket",
    "event": "fill",
    "side": "buy",
-   "symbol": "LNTH",
-   "qty": 291.065378217259,
-   "price": 101.3518,
+   "symbol": "CRNX",
+   "qty": 232.043782734907,
+   "price": 84.035865,
    "mechanism": "market",
-   "note": "Definitive merger agreement signed Aug 3, 2026 with Curium for $102.50 cash per share plus CVRs up to $12.00. Quoted at $101.20 offering 1.28% cash yield to close plus CVR upside.",
+   "note": "Definitive merger agreement signed July 6, 2026 with Vertex for $85.00 cash per share. Special shareholder meeting set for August 28, 2026. Expected Q3 2026 close.",
    "prior_close": false
   },
   {
@@ -124358,9 +124674,9 @@
    "agent": "docket",
    "side": "sell",
    "symbol": "LNTH",
-   "mechanism": "limit",
-   "trigger": 102.45,
-   "note": "P3: Take profit near $102.50 cash merger consideration."
+   "mechanism": "stop",
+   "trigger": 93.0,
+   "note": "P2: Cut position if deal breaks toward pre-announcement floor."
   },
   {
    "t": 1785941183,
@@ -124379,10 +124695,10 @@
    "event": "armed",
    "agent": "docket",
    "side": "sell",
-   "symbol": "LNTH",
-   "mechanism": "stop",
-   "trigger": 93.0,
-   "note": "P2: Cut position if deal breaks toward pre-announcement floor."
+   "symbol": "ITGR",
+   "mechanism": "limit",
+   "trigger": 126.9,
+   "note": "P3: Take profit near $127.00 cash merger consideration."
   },
   {
    "t": 1785941183,
@@ -124390,10 +124706,10 @@
    "event": "armed",
    "agent": "docket",
    "side": "sell",
-   "symbol": "ITGR",
+   "symbol": "LNTH",
    "mechanism": "limit",
-   "trigger": 126.9,
-   "note": "P3: Take profit near $127.00 cash merger consideration."
+   "trigger": 102.45,
+   "note": "P3: Take profit near $102.50 cash merger consideration."
   },
   {
    "t": 1785941128,
@@ -124462,10 +124778,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "COIN",
+   "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 136.0,
-   "note": "P2 standing stop to guarantee gap protection on COIN position."
+   "trigger": 88.0,
+   "note": "P2 standing stop to guarantee gap protection on MSTR position."
   },
   {
    "t": 1785940956,
@@ -124473,10 +124789,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "COIN",
    "mechanism": "stop",
-   "trigger": 88.0,
-   "note": "P2 standing stop to guarantee gap protection on MSTR position."
+   "trigger": 136.0,
+   "note": "P2 standing stop to guarantee gap protection on COIN position."
   },
   {
    "t": 1785938896,
@@ -124509,9 +124825,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "UBER",
-   "mechanism": "limit",
-   "trigger": 77.92,
-   "note": "P3: +15% profit target above $67.76 entry."
+   "mechanism": "stop",
+   "trigger": 57.0,
+   "note": "P4: hard stop rule below local support."
   },
   {
    "t": 1785938860,
@@ -124520,9 +124836,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "UBER",
-   "mechanism": "stop",
-   "trigger": 57.0,
-   "note": "P4: hard stop rule below local support."
+   "mechanism": "limit",
+   "trigger": 77.92,
+   "note": "P3: +15% profit target above $67.76 entry."
   },
   {
    "t": 1785938819,
@@ -124658,229 +124974,6 @@
    "mechanism": "market",
    "note": "P3 add on strength after SNOW achieved +10.58% gain from entry fill ($287.74). Funded by exiting weakest holding SHOP. Total position cost $25,000 (24.4% of equity). Next earnings Sept 2.",
    "prior_close": false
-  },
-  {
-   "t": 1785877085,
-   "when": "Aug 04 20:58",
-   "agent": "surge",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "SHOP",
-   "qty": 60.27663325379,
-   "price": 121.59733,
-   "mechanism": "market",
-   "note": "Funding P3 add on SNOW by exiting weakest portfolio holding (-2.13%) and eliminating binary gap risk ahead of SHOP Q2 earnings tomorrow BMO.",
-   "prior_close": false
-  },
-  {
-   "t": 1785877085,
-   "when": "Aug 04 20:58",
-   "event": "pulled",
-   "agent": "surge",
-   "side": "sell",
-   "symbol": "SHOP",
-   "mechanism": "trailing_stop",
-   "trigger": 109.692,
-   "note": "Canceling SHOP trailing stop as full position is being exited."
-  },
-  {
-   "t": 1785877043,
-   "when": "Aug 04 20:57",
-   "agent": "summit",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "CAT",
-   "qty": 19.6057147364697,
-   "price": 892.59689,
-   "mechanism": "market",
-   "note": "Caterpillar reported blowout Q2 2026 earnings on August 4, 2026, with record quarterly revenue of $20.5B (+24% YoY), adjusted EPS of $8.17 (+73% YoY), and backlog expanding to $72B (+92% YoY) driven by massive data center power generation demand. Full year revenue guidance was raised to mid-to-high teens. Stock gained +7.38% today vs SPY +2.02%, demonstrating strong post-catalyst relative strength. Initiating half-size position per P1 and P2.",
-   "prior_close": false
-  },
-  {
-   "t": 1785877004,
-   "when": "Aug 04 20:56",
-   "event": "armed",
-   "agent": "summit",
-   "side": "sell",
-   "symbol": "CAT",
-   "mechanism": "trailing_stop",
-   "trigger": 833.2624,
-   "note": "Principle P3: Registered 8% trailing stop on CAT."
-  },
-  {
-   "t": 1785876844,
-   "when": "Aug 04 20:54",
-   "agent": "pivot",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "TQQQ",
-   "notional": 25000.0,
-   "cause": "operation",
-   "note": "TQQQ not on watchlist \u2014 file watchlist request first"
-  },
-  {
-   "t": 1785876611,
-   "when": "Aug 04 20:50",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "DDOG",
-   "qty": 101.873134038921,
-   "price": 287.777685,
-   "mechanism": "market",
-   "note": "Harvesting pre-event run-up gain prior to Thursday BMO earnings release.",
-   "prior_close": false
-  },
-  {
-   "t": 1785876611,
-   "when": "Aug 04 20:50",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "DDOG",
-   "mechanism": "stop",
-   "trigger": 257.97,
-   "note": "Closing DDOG position."
-  },
-  {
-   "t": 1785876611,
-   "when": "Aug 04 20:50",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "NET",
-   "mechanism": "stop",
-   "trigger": 268.0,
-   "note": "Updating NET stop loss to higher level to protect unrealized gains."
-  },
-  {
-   "t": 1785876563,
-   "when": "Aug 04 20:49",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "NET",
-   "mechanism": "stop",
-   "trigger": 284.43,
-   "note": "Canceling standing stop loss for NET as position is being closed."
-  },
-  {
-   "t": 1785876434,
-   "when": "Aug 04 20:47",
-   "agent": "forge",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "SOXL",
-   "notional": 20000.0,
-   "cause": "operation",
-   "note": "SOXL not on watchlist \u2014 file watchlist request first"
-  },
-  {
-   "t": 1785876432,
-   "when": "Aug 04 20:47",
-   "agent": "flare",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "CAT",
-   "qty": 33.8338620023648,
-   "price": 892.59689,
-   "mechanism": "market",
-   "note": "CAT Q2 2026 blowout beat and raise ($20.54B revenue +24% YoY, Adj EPS $8.17 +73% YoY, backlog $72B +92% YoY powered by AI data center demand). Day 1 continuation entry post +7.38% gap up.",
-   "prior_close": false
-  },
-  {
-   "t": 1785876399,
-   "when": "Aug 04 20:46",
-   "event": "armed",
-   "agent": "flare",
-   "side": "sell",
-   "symbol": "CAT",
-   "mechanism": "stop",
-   "trigger": 828.0,
-   "note": "P3: Hard stop registered below gap day low of $830.00"
-  },
-  {
-   "t": 1785876299,
-   "when": "Aug 04 20:44",
-   "agent": "debut",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "MDLN",
-   "qty": 300.898700165759,
-   "price": 41.54222,
-   "mechanism": "market",
-   "note": "Medline (MDLN) completed lockup expiry in June 2026 and cleared a 60M share secondary offering in May 2026, satisfying post-lockup wash criteria (P4). Sized at half-capacity ($12,500 / 12.5% equity) per P3 ahead of its Q2 earnings print on August 5, 2026.",
-   "prior_close": false
-  },
-  {
-   "t": 1785876255,
-   "when": "Aug 04 20:44",
-   "event": "armed",
-   "agent": "debut",
-   "side": "sell",
-   "symbol": "MDLN",
-   "mechanism": "stop",
-   "trigger": 37.5,
-   "note": "Principle P5 mandates registered stop loss protection on all open positions."
-  },
-  {
-   "t": 1785876255,
-   "when": "Aug 04 20:44",
-   "agent": "debut",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "IPO",
-   "notional": 20000.0,
-   "cause": "operation",
-   "note": "IPO not on watchlist \u2014 file watchlist request first"
-  },
-  {
-   "t": 1785876230,
-   "when": "Aug 04 20:43",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "SPCX",
-   "qty": 183.177810792525,
-   "price": 125.681195,
-   "mechanism": "market",
-   "note": "Catalyst resolved: SPCX reported Q2 earnings on Aug 4 after close with revenue/EBITDA beat. Price reached $125.87 (+15.3% gain from $109.18 cost, touching thesis target $126.50). Per Principle P3 (sell into squeeze) and P5 (never hold past catalyst, resolved is resolved), closing position before Aug 6 lockup expiration (911M shares unlock).",
-   "prior_close": false
-  },
-  {
-   "t": 1785876230,
-   "when": "Aug 04 20:43",
-   "event": "pulled",
-   "agent": "coil",
-   "side": "sell",
-   "symbol": "SPCX",
-   "mechanism": "stop",
-   "trigger": 100.3,
-   "note": "Canceling stop order #132 as SPCX position is being fully closed per P3 and P5."
-  },
-  {
-   "t": 1785876171,
-   "when": "Aug 04 20:42",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "SHOP",
-   "qty": 180.383063112672,
-   "price": 121.96267,
-   "mechanism": "market",
-   "note": "Pre-earnings catalyst play for Q2 FY26 results on August 5 BMO. E-commerce merchant GMV acceleration and AI tools driving growth. Target $138.00 (+13.3%), Stop $113.50 (-6.8%), R/R 1.96:1.",
-   "prior_close": false
-  },
-  {
-   "t": 1785876171,
-   "when": "Aug 04 20:42",
-   "event": "pulled",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "ANET",
-   "mechanism": "stop",
-   "trigger": 165.0,
-   "note": "Replacing pre-earnings stop with a post-earnings standing limit sell order at $200.00 target."
   }
  ],
  "system": {
