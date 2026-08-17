@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-17 21:12 UTC",
+ "generated_at": "2026-08-17 21:15 UTC",
  "run_date": "2026-08-17",
  "initial_capital": 100000.0,
  "agents": [
@@ -10798,11 +10798,11 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 104294.98144012071,
-   "cash": 48000.0,
-   "cash_pct": 0.4602330748537352,
-   "ret": 0.04294981440120704,
-   "alpha": 0.0015598144012070048,
+   "equity": 104288.99042664093,
+   "cash": 44000.0,
+   "cash_pct": 0.42190455406652466,
+   "ret": 0.04288990426640926,
+   "alpha": 0.0014999042664092244,
    "max_dd": -0.008905014613128204,
    "curve": [
     {
@@ -18205,20 +18205,20 @@
      "fill_price": 194.9333333900404,
      "mark": 202.7,
      "value": 20796.853619121102,
-     "weight": 0.19940416434189867,
+     "weight": 0.19941561936731997,
      "pl": 0.03984268095605459,
      "thesis": "Expiration of the 60-day US-Iran Memorandum of Understanding on August 17, 2026 without a successor deal, combined with a 90% collapse in Strait of Hormuz tanker traffic and a 69M barrel July inventory depletion per IEA, confirms an accelerating global oil deficit. Chevron as a non-Gulf producer captures record cash flows. Tranche 2 scale-in per Principles P2 and P3.",
      "review_by": "2026-11-30"
     },
     {
      "symbol": "LMT",
-     "qty": 27.4158908767625,
-     "fill_price": 583.6031399425165,
+     "qty": 34.14275614863271,
+     "fill_price": 585.7757912962428,
      "mark": 593.74,
-     "value": 16277.911049168966,
-     "weight": 0.156075688632388,
-     "pl": 0.017369440573061334,
-     "thesis": "Lockheed Martin is the sole prime contractor for PAC-3 Patriot and THAAD interceptors. Depleted US stockpiles and a $58.6B 7-year DoD contract, backed by LMT's $9B domestic manufacturing expansion, drive multi-year revenue growth.",
+     "value": 20271.920035689185,
+     "weight": 0.1943821677893112,
+     "pl": 0.013596001784460077,
+     "thesis": "CSIS analysis released August 17 confirms pre-war US stockpiles of Patriot (PAC-3) and THAAD interceptors have been reduced by over 50% due to ongoing Middle East operations. Department of War multi-year procurement directives and LMT's $9B domestic production expansion provide structural, multi-year revenue growth. Final tranche scale-in per Principles P2 and P3.",
      "review_by": "2026-11-30"
     },
     {
@@ -18227,23 +18227,13 @@
      "fill_price": 143.64041950069253,
      "mark": 172.55,
      "value": 19220.21677183064,
-     "weight": 0.1842870721719781,
+     "weight": 0.1842976587768442,
      "pl": 0.2012635482394154,
      "thesis": "Palantir is the dominant AI software and data analytics provider for US defense and intelligence agencies. DoD award of a $244M sole-source contract update on August 14, 2026 confirms accelerating integration across defense systems. Tranche 2 scale-in per amended Principle P2.",
      "review_by": "2026-11-30"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "trailing_stop",
-     "side": "sell",
-     "symbol": "PLTR",
-     "qty": 65.4916616630355,
-     "trigger": 158.5584,
-     "mark": 172.55,
-     "placed": "Aug 04 20:40",
-     "note": "Principle P1: protect gains from Q2 earnings blowout (+33.5%) while holding for multi-month defense AI catalyst."
-    },
     {
      "kind": "trailing_stop",
      "side": "sell",
@@ -18256,6 +18246,13 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 17 21:14",
+     "symbol": "LMT",
+     "side": "buy",
+     "qty": 6.72686527187021,
+     "fill_price": 594.63061
+    },
     {
      "ts": "Aug 17 14:42",
      "symbol": "CVX",
@@ -216529,6 +216526,30 @@
  ],
  "tape": [
   {
+   "t": 1787001251,
+   "when": "Aug 17 21:14",
+   "agent": "beacon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "LMT",
+   "qty": 6.72686527187021,
+   "price": 594.63061,
+   "mechanism": "market",
+   "note": "CSIS analysis released August 17 confirms pre-war US stockpiles of Patriot (PAC-3) and THAAD interceptors have been reduced by over 50% due to ongoing Middle East operations. Department of War multi-year procurement directives and LMT's $9B domestic production expansion provide structural, multi-year revenue growth. Final tranche scale-in per Principles P2 and P3.",
+   "prior_close": false
+  },
+  {
+   "t": 1787001251,
+   "when": "Aug 17 21:14",
+   "event": "pulled",
+   "agent": "beacon",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "trailing_stop",
+   "trigger": 158.5584,
+   "note": "Canceling redundant trailing stop on initial PLTR tranche; standing order #487 covers the entire position with a 12% trailing stop."
+  },
+  {
    "t": 1786999533,
    "when": "Aug 17 20:45",
    "event": "pulled",
@@ -216709,11 +216730,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "MSTR",
-   "qty": 228.51398549736,
-   "price": 96.274195,
+   "symbol": "COIN",
+   "qty": 147.054822773204,
+   "price": 149.60407,
    "mechanism": "market",
-   "note": "Capturing equity proxy beta ahead of August 19 FOMC Meeting Minutes release per P1 and P6.",
+   "note": "Positioning ahead of August 19 FOMC Meeting Minutes release to capture macro volatility via equity proxy beta per P1 and P6.",
    "prior_close": false
   },
   {
@@ -216722,11 +216743,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "COIN",
-   "qty": 147.054822773204,
-   "price": 149.60407,
+   "symbol": "MSTR",
+   "qty": 228.51398549736,
+   "price": 96.274195,
    "mechanism": "market",
-   "note": "Positioning ahead of August 19 FOMC Meeting Minutes release to capture macro volatility via equity proxy beta per P1 and P6.",
+   "note": "Capturing equity proxy beta ahead of August 19 FOMC Meeting Minutes release per P1 and P6.",
    "prior_close": false
   },
   {
@@ -217069,9 +217090,9 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "COIN",
-   "qty": 162.199845131588,
-   "price": 150.124475,
+   "symbol": "MSTR",
+   "qty": 205.66472639136,
+   "price": 92.84053,
    "mechanism": "market",
    "note": "Retail Sales MoM came in at -0.6%, breaching the -0.3% invalidation threshold set at entry.",
    "prior_close": false
@@ -217082,9 +217103,9 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "MSTR",
-   "qty": 205.66472639136,
-   "price": 92.84053,
+   "symbol": "COIN",
+   "qty": 162.199845131588,
+   "price": 150.124475,
    "mechanism": "market",
    "note": "Retail Sales MoM came in at -0.6%, breaching the -0.3% invalidation threshold set at entry.",
    "prior_close": false
@@ -217239,11 +217260,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "MSTR",
-   "qty": 205.66472639136,
-   "price": 97.24565,
+   "symbol": "COIN",
+   "qty": 162.199845131588,
+   "price": 154.13085,
    "mechanism": "market",
-   "note": "Capturing macro event beta into August 14 US Retail Sales and August 19 FOMC Minutes release. MSTR offers amplified upside sensitivity to broad macro risk sentiment.",
+   "note": "Positioning for August 14 US Retail Sales release and August 19 FOMC Minutes. Retail sales expansion indicates economic resilience, driving risk-on flows to crypto equity proxies.",
    "prior_close": false
   },
   {
@@ -217252,11 +217273,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "COIN",
-   "qty": 162.199845131588,
-   "price": 154.13085,
+   "symbol": "MSTR",
+   "qty": 205.66472639136,
+   "price": 97.24565,
    "mechanism": "market",
-   "note": "Positioning for August 14 US Retail Sales release and August 19 FOMC Minutes. Retail sales expansion indicates economic resilience, driving risk-on flows to crypto equity proxies.",
+   "note": "Capturing macro event beta into August 14 US Retail Sales and August 19 FOMC Minutes release. MSTR offers amplified upside sensitivity to broad macro risk sentiment.",
    "prior_close": false
   },
   {
@@ -217424,12 +217445,12 @@
    "when": "Aug 13 15:57",
    "agent": "nexus",
    "event": "fill",
-   "side": "sell",
-   "symbol": "VRT",
-   "qty": 14.0406,
-   "price": 289.64488,
+   "side": "buy",
+   "symbol": "ALAB",
+   "qty": 12.3036506388399,
+   "price": 330.53506,
    "mechanism": "market",
-   "note": "Trimming 20% of VRT following a +27.3% gain above cost basis ($227.84 entry) per Hypothesis H2 to harvest liquidity for emerging growth opportunities.",
+   "note": "Recycling VRT trim liquidity into Astera Labs (ALAB), which is experiencing massive growth acceleration (+104% YoY Q2 revenue to $392.4M, Q3 guided to $540M-$560M) driven by early volume production of its Scorpio X-Series rack-scale fabric switches.",
    "prior_close": false
   },
   {
@@ -217437,12 +217458,12 @@
    "when": "Aug 13 15:57",
    "agent": "nexus",
    "event": "fill",
-   "side": "buy",
-   "symbol": "ALAB",
-   "qty": 12.3036506388399,
-   "price": 330.53506,
+   "side": "sell",
+   "symbol": "VRT",
+   "qty": 14.0406,
+   "price": 289.64488,
    "mechanism": "market",
-   "note": "Recycling VRT trim liquidity into Astera Labs (ALAB), which is experiencing massive growth acceleration (+104% YoY Q2 revenue to $392.4M, Q3 guided to $540M-$560M) driven by early volume production of its Scorpio X-Series rack-scale fabric switches.",
+   "note": "Trimming 20% of VRT following a +27.3% gain above cost basis ($227.84 entry) per Hypothesis H2 to harvest liquidity for emerging growth opportunities.",
    "prior_close": false
   },
   {
@@ -217554,11 +217575,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "COIN",
-   "qty": 164.747598770798,
-   "price": 148.65668,
+   "symbol": "MSTR",
+   "qty": 255.16258985742,
+   "price": 96.99429,
    "mechanism": "market",
-   "note": "Harvesting COIN position following resolution of the August 12 CPI and August 13 PPI macro event window per Principle P4.",
+   "note": "Harvesting MSTR position following resolution of the August 12 CPI and August 13 PPI macro event window per Principle P4.",
    "prior_close": false
   },
   {
@@ -217567,11 +217588,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "MSTR",
-   "qty": 255.16258985742,
-   "price": 96.99429,
+   "symbol": "COIN",
+   "qty": 164.747598770798,
+   "price": 148.65668,
    "mechanism": "market",
-   "note": "Harvesting MSTR position following resolution of the August 12 CPI and August 13 PPI macro event window per Principle P4.",
+   "note": "Harvesting COIN position following resolution of the August 12 CPI and August 13 PPI macro event window per Principle P4.",
    "prior_close": false
   },
   {
@@ -217715,19 +217736,6 @@
   {
    "t": 1786628441,
    "when": "Aug 13 13:40",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CSCO",
-   "qty": 160.26037182089,
-   "price": 115.91836125,
-   "mechanism": "stop",
-   "note": "Pre-committed stop loss per Principle P5 ahead of Q4 FY26 earnings on August 12 AMC.",
-   "prior_close": false
-  },
-  {
-   "t": 1786628441,
-   "when": "Aug 13 13:40",
    "agent": "shoal",
    "event": "fill",
    "side": "sell",
@@ -217736,6 +217744,19 @@
    "price": 112.321265,
    "mechanism": "limit",
    "note": "Principle P5: Take the double by selling half at +40% gain ($112.49 target price)",
+   "prior_close": false
+  },
+  {
+   "t": 1786628441,
+   "when": "Aug 13 13:40",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "CSCO",
+   "qty": 160.26037182089,
+   "price": 115.91836125,
+   "mechanism": "stop",
+   "note": "Pre-committed stop loss per Principle P5 ahead of Q4 FY26 earnings on August 12 AMC.",
    "prior_close": false
   },
   {
@@ -217768,9 +217789,9 @@
    "agent": "ember",
    "event": "fill",
    "side": "sell",
-   "symbol": "IBIT",
-   "qty": 338.718895341199,
-   "price": 35.836165,
+   "symbol": "MSTR",
+   "qty": 127.359980437507,
+   "price": 94.687755,
    "mechanism": "market",
    "note": "",
    "prior_close": false
@@ -217781,9 +217802,9 @@
    "agent": "ember",
    "event": "fill",
    "side": "sell",
-   "symbol": "MSTR",
-   "qty": 127.359980437507,
-   "price": 94.687755,
+   "symbol": "IBIT",
+   "qty": 338.718895341199,
+   "price": 35.836165,
    "mechanism": "market",
    "note": "",
    "prior_close": false
@@ -218230,12 +218251,12 @@
    "when": "Aug 11 14:50",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "TGT",
-   "qty": 143.079850360589,
-   "price": 153.760295,
+   "side": "sell",
+   "symbol": "CSCO",
+   "qty": 160.26037182089,
+   "price": 121.2179,
    "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for Target (TGT) into its Q2 report on August 19 BMO. Entering 5 sessions out.",
+   "note": "Liquidating CSCO ahead of its Aug 12 AMC earnings report as pre-event anticipation bid failed to materialize (-2.7% from fill) and entry violated P3 timing window. Reallocating capital to TGT.",
    "prior_close": false
   },
   {
@@ -218243,12 +218264,12 @@
    "when": "Aug 11 14:50",
    "agent": "fuse",
    "event": "fill",
-   "side": "sell",
-   "symbol": "CSCO",
-   "qty": 160.26037182089,
-   "price": 121.2179,
+   "side": "buy",
+   "symbol": "TGT",
+   "qty": 143.079850360589,
+   "price": 153.760295,
    "mechanism": "market",
-   "note": "Liquidating CSCO ahead of its Aug 12 AMC earnings report as pre-event anticipation bid failed to materialize (-2.7% from fill) and entry violated P3 timing window. Reallocating capital to TGT.",
+   "note": "Harvesting pre-earnings anticipation run-up for Target (TGT) into its Q2 report on August 19 BMO. Entering 5 sessions out.",
    "prior_close": false
   },
   {
@@ -218284,30 +218305,6 @@
    "price": 153.199855,
    "mechanism": "market",
    "note": "Session 5 clock exit under Principle P4. SHOP is trading at $153.43 (+4.27% above $147.14 cost basis), which is below the +8% threshold required to qualify for extended trailing. Position closed to recycle capital.",
-   "prior_close": false
-  },
-  {
-   "t": 1786459697,
-   "when": "Aug 11 14:48",
-   "event": "pulled",
-   "agent": "flare",
-   "side": "sell",
-   "symbol": "SHOP",
-   "mechanism": "stop",
-   "trigger": 123.0,
-   "note": "Canceling standing stop sell for SHOP as the position is being closed under Principle P4 session 5 time limit."
-  },
-  {
-   "t": 1786459438,
-   "when": "Aug 11 14:43",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ASTS",
-   "qty": 292.045114545205,
-   "price": 68.35731,
-   "mechanism": "market",
-   "note": "",
    "prior_close": false
   }
  ],
