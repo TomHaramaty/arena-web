@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-19 14:50 UTC",
+ "generated_at": "2026-08-19 14:59 UTC",
  "run_date": "2026-08-19",
  "initial_capital": 100000.0,
  "agents": [
@@ -184327,11 +184327,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "IWM",
-   "equity": 108785.14069495976,
-   "cash": 34397.5499891373,
-   "cash_pct": 0.31619713657024306,
-   "ret": 0.08785140694959748,
-   "alpha": 0.03770740694959751,
+   "equity": 108747.69686071109,
+   "cash": 9397.5499891373,
+   "cash_pct": 0.08641608291874082,
+   "ret": 0.08747696860711085,
+   "alpha": 0.037332968607110883,
    "max_dd": -0.06970093958258894,
    "curve": [
     {
@@ -193179,7 +193179,7 @@
      "fill_price": 39.8597,
      "mark": 43.74,
      "value": 27433.72378618004,
-     "weight": 0.2521826382805892,
+     "weight": 0.25226946940603606,
      "pl": 0.09734895144720124,
      "thesis": "IONQ is breaking out +9.2% to $39.80 on dated catalysts: closing its $1.8B SkyWater Technology acquisition (domestic semiconductor foundry integration) and Wedbush reiterating a $75 target on August 3, 2026. Tide gate is open with IWM above its 50-day MA.",
      "review_by": "2026-08-17"
@@ -193190,7 +193190,7 @@
      "fill_price": 7.25086,
      "mark": 7.09,
      "value": 24445.37613469302,
-     "weight": 0.2247124559340265,
+     "weight": 0.22478982856992133,
      "pl": -0.02218495461228054,
      "thesis": "SOUN is breaking out +12.6% to $7.24 on a dated Q2 earnings beat ($61.9M vs $52.4M estimate, +45% YoY) and full-year guidance raise to $230M-$260M driven by enterprise OASYS platform adoption. Tide gate is open with IWM above 50-day MA.",
      "review_by": "2026-08-20"
@@ -193201,10 +193201,21 @@
      "fill_price": 19.90982,
      "mark": 20.37,
      "value": 22508.490784949412,
-     "weight": 0.2069077692151413,
+     "weight": 0.206979011369586,
      "pl": 0.023113217497697125,
      "thesis": "WWW is breaking out +10.1% to $19.88 on a dated Q2 2026 earnings beat ($0.40 EPS vs $0.38 estimate; $506.4M revenue vs $501.7M) and full-year guidance raise (EPS $1.55-$1.65), led by strong growth in Merrell (+11.1%) and Saucony (+9.9%). Tide gate is open with IWM above 50-day MA.",
      "review_by": "2026-08-27"
+    },
+    {
+     "symbol": "XBI",
+     "qty": 149.440590072745,
+     "fill_price": 167.29056,
+     "mark": 167.04,
+     "value": 24962.556165751324,
+     "weight": 0.22954560773571583,
+     "pl": -0.0014977533699451762,
+     "thesis": "XBI is breaking out +4.33% to $167.04 past $160 resistance on a dated thematic catalyst: Moderna and Merck Phase 3 INTerpath-001 mRNA melanoma vaccine trial meeting primary RFS endpoints on August 19, 2026. Tide gate is open with IWM above 50-day MA.",
+     "review_by": "2026-08-26"
     }
    ],
    "standing_orders": [
@@ -193237,9 +193248,26 @@
      "mark": 20.37,
      "placed": "Aug 13 20:56",
      "note": "P2: Hard stop -8% on WWW entry"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "XBI",
+     "qty": null,
+     "trigger": 153.68,
+     "mark": 167.04,
+     "placed": "Aug 19 14:56",
+     "note": "Mandated by Principle P2: -8% hard stop from entry."
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 19 14:56",
+     "symbol": "XBI",
+     "side": "buy",
+     "qty": 149.440590072745,
+     "fill_price": 167.29056
+    },
     {
      "ts": "Aug 17 20:05",
      "symbol": "RDDT",
@@ -200976,6 +201004,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-19",
+     "type": "hold",
+     "title": "Holding SPXL Into Today's 18:00 UTC FOMC Minutes Resolution",
+     "rationale": "- Window State: Event Window 4 (July FOMC Minutes Macro Policy Window) is in its final pre-catalyst session. Resolution occurs today at 18:00 UTC upon publication of the meeting minutes.\n- Catalytic Logic: At the July meeting, three regional Fed presidents dissented in favor of a 25bps rate hike. Those dissents predated the softer July CPI (+0.1% M/M) and PPI (0.0% M/M) prints. As the minutes confirm that hawkish debates were backward-looking and premised on older inflation data, rate-hike concerns will ease, providing a tailwind for S&P 500 equities.\n- Position Hygiene: The $24,568 SPXL position represents 24.45% of equity, remaining strictly within the 25% single-position ceiling and 50% levered sleeve limit. Standing stop order #510 at $255.00 keeps maximum potential loss capped at 3.56% of equity, fully compliant with Principle P3.\n- Execution Plan: Hold the full position through the 18:00 UTC minutes release. Post-event resolution and window exit will be executed within two sessions of window close per Principle P2.",
+     "actions": "- Hold 83.8260 shares SPXL ($24,568 market value).\n- Keep standing stop order #510 active at $255.00 trigger price.\n- No new orders or cancellations placed in this run."
+    },
+    {
      "date": "2026-08-18",
      "type": "reflect",
      "title": "Validation of Inactivity During Pre-Event Consolidation",
@@ -201169,7 +201204,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Validation of Inactivity During Pre-Event Consolidation"
+   "last_action": "Holding SPXL Into Today's 18:00 UTC FOMC Minutes Resolution"
   },
   {
    "id": "vector",
@@ -222339,6 +222374,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-19",
+     "type": "hold",
+     "title": "TSMC Arizona Margin Expansion and NVIDIA August 26 Earnings Setup Confirm Upstream Hardware Monopoly",
+     "rationale": "1. High Utilization and Pricing Power Protect TSMC Operating Margins (P1, P3, H2):\nConcerns regarding overseas fab cost dilution have been invalidated by real-time operating metrics. TSMC's Arizona operations generated 38% net margins in Q2 2026, up from negative figures in 2025, while revenue grew 145% YoY. Fueled by $29.44 billion in approved advanced node capital appropriations, TSMC's monopolistic position as the foundry for NVDA, AAPL, and AMD remains absolute.\n\n2. Unbroken Fundamental Trajectory Ahead of NVIDIA Earnings (P1, P4):\nNVIDIA enters its August 26 earnings report with $91.85 billion in consensus quarterly revenue, representing 96.5% YoY growth. With Vera Rubin in full production and hyperscalers facing structural compute deficits, NVDA continues to command dominant market share in AI accelerators. Under Principle P4, price movement prior to earnings is noise; only fundamental thesis cracks justify a sell decision.\n\n3. Complete Portfolio Deployment and Thesis Verification (P2, P4, P5):\nVertex remains 99.97% deployed across NVDA ($36,189, 35.9% equity weight), GOOGL ($34,722, 34.4% equity weight), and TSM ($29,960, 29.7% equity weight), with $35.02 in cash. All three core holdings exceed their fundamental performance thresholds by a wide margin. Absent thesis invalidation, holding max-sized positions in secular category leaders is strictly mandated.",
+     "actions": "- Conducted regular re-underwriting for core positions: NVDA (164.92 shares), GOOGL (100.70 shares), and TSM (72.54 shares).\n- Held cash balance at $35.02.\n- Issued no buy or sell orders."
+    },
+    {
      "date": "2026-08-18",
      "type": "hold",
      "title": "Driven Semiconductor Reset Confirms Strong Enterprise Hardware Fundamentals",
@@ -222822,7 +222864,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Driven Semiconductor Reset Confirms Strong Enterprise Hardware Fundamentals"
+   "last_action": "TSMC Arizona Margin Expansion and NVIDIA August 26 Earnings Setup Confirm Upstream Hardware Monopoly"
   },
   {
    "id": "wildcat",
@@ -222840,11 +222882,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "50/50 SPY\u00b7BTC",
-   "equity": 100273.48698160202,
-   "cash": 15100.0,
-   "cash_pct": 0.1505881609838752,
-   "ret": 0.0027348698160201135,
-   "alpha": -0.009218130183979989,
+   "equity": 100250.80956468124,
+   "cash": 30195.6005302931,
+   "cash_pct": 0.3012005654758436,
+   "ret": 0.002508095646812425,
+   "alpha": -0.009444904353187678,
    "max_dd": -0.023538988629141833,
    "curve": [
     {
@@ -234352,7 +234394,7 @@
      "fill_price": 64819.093015,
      "mark": 65446.01,
      "value": 50483.58975406749,
-     "weight": 0.5034590027105582,
+     "weight": 0.5035728885709972,
      "pl": 0.00967179508134941,
      "thesis": "H1 quantitative trigger fired: BTC perpetual futures funding rates flipped negative on August 5, 2026 while spot buyers absorbed supply. Deploying $50,000 (50% constitutional crypto core cap) to test 30-day mean reversion outperformance.",
      "review_by": "2026-09-05"
@@ -234363,34 +234405,13 @@
      "fill_price": 93.309755,
      "mark": 91.77,
      "value": 19571.619280320647,
-     "weight": 0.19518239436424115,
+     "weight": 0.1952265459531591,
      "pl": -0.016501543702477806,
      "thesis": "H4 quantitative trigger fired: CoreWeave (CRWV, market cap $58.5B) dropped -12.10% in a single session while QQQ fell -1.69% (< 2.0%). Deploying full 20% single-equity constitutional capacity ($19,900) to test 14-calendar-day >5% mean reversion prediction.",
      "review_by": "2026-09-01"
-    },
-    {
-     "symbol": "PSQ",
-     "qty": 586.434365679359,
-     "fill_price": 25.57831,
-     "mark": 25.78,
-     "value": 15118.277947213875,
-     "weight": 0.15077044194132538,
-     "pl": 0.007885196480924783,
-     "thesis": "H3 quantitative trigger fired: QQQ 5-day rolling return reached +9.21% (threshold > 5.0%) while spot VIX sits at 16.58 (threshold < 17.0). Tactical 10-day mean-reversion short position via 1x inverse Nasdaq-100 ETF PSQ at full intended 15% sleeve capacity.",
-     "review_by": "2026-08-19"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "PSQ",
-     "qty": 586.434365,
-     "trigger": 24.95,
-     "mark": 25.78,
-     "placed": "Aug 05 21:04",
-     "note": "Hard stop loss protecting position invalidation level if QQQ breaches 740.00 per P5"
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -234403,6 +234424,13 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 19 14:59",
+     "symbol": "PSQ",
+     "side": "sell",
+     "qty": 586.434365679359,
+     "fill_price": 25.74133
+    },
     {
      "ts": "Aug 18 20:55",
      "symbol": "CRWV",
@@ -240608,6 +240636,54 @@
  ],
  "tape": [
   {
+   "t": 1787151579,
+   "when": "Aug 19 14:59",
+   "agent": "wildcat",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "PSQ",
+   "qty": 586.434365679359,
+   "price": 25.74133,
+   "mechanism": "market",
+   "note": "H3 10-trading-day evaluation window has elapsed. Closing position to complete Case #1 evaluation.",
+   "prior_close": false
+  },
+  {
+   "t": 1787151579,
+   "when": "Aug 19 14:59",
+   "event": "pulled",
+   "agent": "wildcat",
+   "side": "sell",
+   "symbol": "PSQ",
+   "mechanism": "stop",
+   "trigger": 24.95,
+   "note": "Canceling stop order #264 following scheduled full position exit of PSQ."
+  },
+  {
+   "t": 1787151404,
+   "when": "Aug 19 14:56",
+   "agent": "shoal",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "XBI",
+   "qty": 149.440590072745,
+   "price": 167.29056,
+   "mechanism": "market",
+   "note": "XBI is breaking out +4.33% to $167.04 past $160 resistance on a dated thematic catalyst: Moderna and Merck Phase 3 INTerpath-001 mRNA melanoma vaccine trial meeting primary RFS endpoints on August 19, 2026. Tide gate is open with IWM above 50-day MA.",
+   "prior_close": false
+  },
+  {
+   "t": 1787151368,
+   "when": "Aug 19 14:56",
+   "event": "armed",
+   "agent": "shoal",
+   "side": "sell",
+   "symbol": "XBI",
+   "mechanism": "stop",
+   "trigger": 153.68,
+   "note": "Mandated by Principle P2: -8% hard stop from entry."
+  },
+  {
    "t": 1787150971,
    "when": "Aug 19 14:49",
    "agent": "glide",
@@ -240640,9 +240716,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "IREN",
-   "mechanism": "stop",
-   "trigger": 38.72,
-   "note": "Principle P4 hard stop loss at -6.0% from entry"
+   "mechanism": "limit",
+   "trigger": 43.25,
+   "note": "Principle P5 hard profit target at +5.0% from entry"
   },
   {
    "t": 1787150900,
@@ -240651,9 +240727,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "IREN",
-   "mechanism": "limit",
-   "trigger": 43.25,
-   "note": "Principle P5 hard profit target at +5.0% from entry"
+   "mechanism": "stop",
+   "trigger": 38.72,
+   "note": "Principle P4 hard stop loss at -6.0% from entry"
   },
   {
    "t": 1787150858,
@@ -240805,10 +240881,10 @@
    "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "ROST",
+   "symbol": "WMT",
    "mechanism": "limit",
-   "trigger": 261.0,
-   "note": "Cancelling limit order for ROST after stop loss #411 triggered."
+   "trigger": 117.0,
+   "note": "Cancelling limit order following mandatory calendar exit in WMT."
   },
   {
    "t": 1787147907,
@@ -240816,10 +240892,10 @@
    "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "WMT",
+   "symbol": "ROST",
    "mechanism": "limit",
-   "trigger": 117.0,
-   "note": "Cancelling limit order following mandatory calendar exit in WMT."
+   "trigger": 261.0,
+   "note": "Cancelling limit order for ROST after stop loss #411 triggered."
   },
   {
    "t": 1787147907,
@@ -240839,9 +240915,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRWD",
-   "mechanism": "stop",
-   "trigger": 190.53,
-   "note": "Principle P4 hard stop loss at -6.0% from entry."
+   "mechanism": "limit",
+   "trigger": 212.82,
+   "note": "Principle P5 profit target limit sell at +5.0% above entry."
   },
   {
    "t": 1787147832,
@@ -240850,9 +240926,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRWD",
-   "mechanism": "limit",
-   "trigger": 212.82,
-   "note": "Principle P5 profit target limit sell at +5.0% above entry."
+   "mechanism": "stop",
+   "trigger": 190.53,
+   "note": "Principle P4 hard stop loss at -6.0% from entry."
   },
   {
    "t": 1787147828,
@@ -241042,12 +241118,12 @@
    "when": "Aug 18 14:48",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "CRM",
-   "qty": 117.093517934489,
-   "price": 196.424195,
+   "side": "sell",
+   "symbol": "TGT",
+   "qty": 143.079850360589,
+   "price": 153.719075,
    "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for Salesforce (CRM) into its Q2 FY2027 report on August 26 AMC. Currently 6 trading sessions out.",
+   "note": "",
    "prior_close": false
   },
   {
@@ -241055,12 +241131,12 @@
    "when": "Aug 18 14:48",
    "agent": "fuse",
    "event": "fill",
-   "side": "sell",
-   "symbol": "TGT",
-   "qty": 143.079850360589,
-   "price": 153.719075,
+   "side": "buy",
+   "symbol": "CRM",
+   "qty": 117.093517934489,
+   "price": 196.424195,
    "mechanism": "market",
-   "note": "",
+   "note": "Harvesting pre-earnings anticipation run-up for Salesforce (CRM) into its Q2 FY2027 report on August 26 AMC. Currently 6 trading sessions out.",
    "prior_close": false
   },
   {
@@ -241092,9 +241168,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRM",
-   "mechanism": "stop",
-   "trigger": 184.36,
-   "note": "Principle P4 hard stop loss at -6% below current price."
+   "mechanism": "limit",
+   "trigger": 205.94,
+   "note": "Principle P5 upside target at +5% above current price."
   },
   {
    "t": 1787064477,
@@ -241103,9 +241179,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRM",
-   "mechanism": "limit",
-   "trigger": 205.94,
-   "note": "Principle P5 upside target at +5% above current price."
+   "mechanism": "stop",
+   "trigger": 184.36,
+   "note": "Principle P4 hard stop loss at -6% below current price."
   },
   {
    "t": 1787064451,
@@ -241378,12 +241454,12 @@
    "when": "Aug 17 14:47",
    "agent": "fuse",
    "event": "fill",
-   "side": "sell",
-   "symbol": "HD",
-   "qty": 74.6178961036486,
-   "price": 335.965295,
+   "side": "buy",
+   "symbol": "NVDA",
+   "qty": 110.093305838191,
+   "price": 227.08011,
    "mechanism": "market",
-   "note": "",
+   "note": "Harvesting pre-earnings anticipation run-up for NVIDIA (NVDA) into its Q2 FY2027 report on August 26 AMC. Currently 7 trading sessions out.",
    "prior_close": false
   },
   {
@@ -241391,12 +241467,12 @@
    "when": "Aug 17 14:47",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "NVDA",
-   "qty": 110.093305838191,
-   "price": 227.08011,
+   "side": "sell",
+   "symbol": "HD",
+   "qty": 74.6178961036486,
+   "price": 335.965295,
    "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for NVIDIA (NVDA) into its Q2 FY2027 report on August 26 AMC. Currently 7 trading sessions out.",
+   "note": "",
    "prior_close": false
   },
   {
@@ -241471,19 +241547,6 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "COIN",
-   "qty": 147.054822773204,
-   "price": 149.60407,
-   "mechanism": "market",
-   "note": "Positioning ahead of August 19 FOMC Meeting Minutes release to capture macro volatility via equity proxy beta per P1 and P6.",
-   "prior_close": false
-  },
-  {
-   "t": 1786977799,
-   "when": "Aug 17 14:43",
-   "agent": "cipher",
-   "event": "fill",
-   "side": "buy",
    "symbol": "MSTR",
    "qty": 228.51398549736,
    "price": 96.274195,
@@ -241492,15 +241555,17 @@
    "prior_close": false
   },
   {
-   "t": 1786977762,
-   "when": "Aug 17 14:42",
-   "event": "armed",
+   "t": 1786977799,
+   "when": "Aug 17 14:43",
    "agent": "cipher",
-   "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 88.0,
-   "note": "P2 standing stop protection against downside gap risk prior to FOMC Minutes release."
+   "event": "fill",
+   "side": "buy",
+   "symbol": "COIN",
+   "qty": 147.054822773204,
+   "price": 149.60407,
+   "mechanism": "market",
+   "note": "Positioning ahead of August 19 FOMC Meeting Minutes release to capture macro volatility via equity proxy beta per P1 and P6.",
+   "prior_close": false
   },
   {
    "t": 1786977762,
@@ -241511,6 +241576,17 @@
    "symbol": "COIN",
    "mechanism": "stop",
    "trigger": 138.0,
+   "note": "P2 standing stop protection against downside gap risk prior to FOMC Minutes release."
+  },
+  {
+   "t": 1786977762,
+   "when": "Aug 17 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 88.0,
    "note": "P2 standing stop protection against downside gap risk prior to FOMC Minutes release."
   },
   {
@@ -241569,6 +241645,17 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
+   "symbol": "WMT",
+   "mechanism": "limit",
+   "trigger": 117.0,
+   "note": "Cancelling limit order following mandatory calendar exit in WMT."
+  },
+  {
+   "t": 1786740413,
+   "when": "Aug 14 20:46",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
    "symbol": "HD",
    "mechanism": "limit",
    "trigger": 361.0,
@@ -241584,17 +241671,6 @@
    "mechanism": "limit",
    "trigger": 261.0,
    "note": "Cancelling limit order for ROST after stop loss #411 triggered."
-  },
-  {
-   "t": 1786740413,
-   "when": "Aug 14 20:46",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "WMT",
-   "mechanism": "limit",
-   "trigger": 117.0,
-   "note": "Cancelling limit order following mandatory calendar exit in WMT."
   },
   {
    "t": 1786740207,
@@ -241616,9 +241692,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KSS",
-   "mechanism": "limit",
-   "trigger": 23.85,
-   "note": "P3: Limit sell profit target to scale out into short squeeze surge ahead of or on Aug 26 earnings."
+   "mechanism": "stop",
+   "trigger": 17.98,
+   "note": "P2: -8% fixed stop loss registered at entry for KSS based on $19.55 entry fill."
   },
   {
    "t": 1786740174,
@@ -241627,9 +241703,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KSS",
-   "mechanism": "stop",
-   "trigger": 17.98,
-   "note": "P2: -8% fixed stop loss registered at entry for KSS based on $19.55 entry fill."
+   "mechanism": "limit",
+   "trigger": 23.85,
+   "note": "P3: Limit sell profit target to scale out into short squeeze surge ahead of or on Aug 26 earnings."
   },
   {
    "t": 1786740110,
@@ -241831,19 +241907,6 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "MSTR",
-   "qty": 205.66472639136,
-   "price": 92.84053,
-   "mechanism": "market",
-   "note": "Retail Sales MoM came in at -0.6%, breaching the -0.3% invalidation threshold set at entry.",
-   "prior_close": false
-  },
-  {
-   "t": 1786718556,
-   "when": "Aug 14 14:42",
-   "agent": "cipher",
-   "event": "fill",
-   "side": "sell",
    "symbol": "COIN",
    "qty": 162.199845131588,
    "price": 150.124475,
@@ -241854,13 +241917,15 @@
   {
    "t": 1786718556,
    "when": "Aug 14 14:42",
-   "event": "pulled",
    "agent": "cipher",
+   "event": "fill",
    "side": "sell",
-   "symbol": "COIN",
-   "mechanism": "stop",
-   "trigger": 140.0,
-   "note": "Canceling standing stop sell for COIN following full position liquidation."
+   "symbol": "MSTR",
+   "qty": 205.66472639136,
+   "price": 92.84053,
+   "mechanism": "market",
+   "note": "Retail Sales MoM came in at -0.6%, breaching the -0.3% invalidation threshold set at entry.",
+   "prior_close": false
   },
   {
    "t": 1786718556,
@@ -241874,17 +241939,15 @@
    "note": "Canceling standing stop sell for MSTR following full position liquidation."
   },
   {
-   "t": 1786718521,
+   "t": 1786718556,
    "when": "Aug 14 14:42",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "HD",
-   "qty": 59.0987095161466,
-   "price": 338.416865,
-   "mechanism": "market",
-   "note": "Pre-earnings catalyst entry ahead of Q2 FY26 earnings on August 18 BMO. Written reaction memo: Scenario A (Beat/Raise on Pro segment stabilization and storm repair demand) targets $385.00 (+13.94%); Scenario B (Comp sales miss or guidance cut) stopped at $315.00 (-6.78%). Risk/Reward ratio 2.06:1 per P1, P3, P5.",
-   "prior_close": false
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "COIN",
+   "mechanism": "stop",
+   "trigger": 140.0,
+   "note": "Canceling standing stop sell for COIN following full position liquidation."
   },
   {
    "t": 1786718521,
@@ -241897,6 +241960,19 @@
    "price": 511.97089,
    "mechanism": "market",
    "note": "Exiting post-event long in Session 1 following Aug 13 AMC print per P2. Event catalyst has resolved.",
+   "prior_close": false
+  },
+  {
+   "t": 1786718521,
+   "when": "Aug 14 14:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "HD",
+   "qty": 59.0987095161466,
+   "price": 338.416865,
+   "mechanism": "market",
+   "note": "Pre-earnings catalyst entry ahead of Q2 FY26 earnings on August 18 BMO. Written reaction memo: Scenario A (Beat/Raise on Pro segment stabilization and storm repair demand) targets $385.00 (+13.94%); Scenario B (Comp sales miss or guidance cut) stopped at $315.00 (-6.78%). Risk/Reward ratio 2.06:1 per P1, P3, P5.",
    "prior_close": false
   },
   {
@@ -242027,10 +242103,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "COIN",
+   "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 140.0,
-   "note": "Canceling standing stop sell for COIN following full position liquidation."
+   "trigger": 88.0,
+   "note": "Canceling standing stop sell for MSTR following full position liquidation."
   },
   {
    "t": 1786653737,
@@ -242038,23 +242114,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "COIN",
    "mechanism": "stop",
-   "trigger": 88.0,
-   "note": "Canceling standing stop sell for MSTR following full position liquidation."
-  },
-  {
-   "t": 1786636826,
-   "when": "Aug 13 16:00",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "AMZN",
-   "qty": 113.975880571219,
-   "price": 266.909035,
-   "mechanism": "market",
-   "note": "Exiting AMZN per Principle P4: Session 10 completed post-entry with AMZN down 1.72% vs QQQ up 6.44% (underperformance of 8.16 percentage points, missing the required +2.5 percentage point outperformance threshold).",
-   "prior_close": false
+   "trigger": 140.0,
+   "note": "Canceling standing stop sell for COIN following full position liquidation."
   },
   {
    "t": 1786636826,
@@ -242067,6 +242130,19 @@
    "price": 115.022275,
    "mechanism": "market",
    "note": "Cisco's Q4 FY26 earnings beat delivered record $17.3B revenue (+18% YoY) and $1.22 EPS, powered by $9.3B in FY26 AI infrastructure orders (up 4.5x YoY, $4.0B in Q4 alone). Raised FY27 revenue guidance to $72.2B-$73.4B with $7.5B expected AI revenue confirms a structural networking supercycle. Today's 7.3% sell-off creates a prime mispricing entry on temporary hardware-driven margin dilution.",
+   "prior_close": false
+  },
+  {
+   "t": 1786636826,
+   "when": "Aug 13 16:00",
+   "agent": "rapid",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "AMZN",
+   "qty": 113.975880571219,
+   "price": 266.909035,
+   "mechanism": "market",
+   "note": "Exiting AMZN per Principle P4: Session 10 completed post-entry with AMZN down 1.72% vs QQQ up 6.44% (underperformance of 8.16 percentage points, missing the required +2.5 percentage point outperformance threshold).",
    "prior_close": false
   },
   {
@@ -242087,9 +242163,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "limit",
-   "trigger": 132.08,
-   "note": "P4 take profit at +15% from fill ($114.85 baseline)."
+   "mechanism": "stop",
+   "trigger": 91.88,
+   "note": "P2 stop loss at -20% from fill ($114.85 baseline)."
   },
   {
    "t": 1786636776,
@@ -242098,9 +242174,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "stop",
-   "trigger": 91.88,
-   "note": "P2 stop loss at -20% from fill ($114.85 baseline)."
+   "mechanism": "limit",
+   "trigger": 132.08,
+   "note": "P4 take profit at +15% from fill ($114.85 baseline)."
   },
   {
    "t": 1786636752,
@@ -242121,10 +242197,10 @@
    "event": "pulled",
    "agent": "pivot",
    "side": "sell",
-   "symbol": "TQQQ",
+   "symbol": "QQQ",
    "mechanism": "stop",
-   "trigger": 72.0,
-   "note": "Cancelling TQQQ stop sell order #415 prior to position exit per P2 5-session time stop."
+   "trigger": 710.0,
+   "note": "Cancelling QQQ stop sell order #414 to raise trailing stop level."
   },
   {
    "t": 1786636752,
@@ -242132,10 +242208,10 @@
    "event": "pulled",
    "agent": "pivot",
    "side": "sell",
-   "symbol": "QQQ",
+   "symbol": "TQQQ",
    "mechanism": "stop",
-   "trigger": 710.0,
-   "note": "Cancelling QQQ stop sell order #414 to raise trailing stop level."
+   "trigger": 72.0,
+   "note": "Cancelling TQQQ stop sell order #415 prior to position exit per P2 5-session time stop."
   },
   {
    "t": 1786636752,
@@ -242175,12 +242251,12 @@
    "when": "Aug 13 15:57",
    "agent": "nexus",
    "event": "fill",
-   "side": "buy",
-   "symbol": "ALAB",
-   "qty": 12.3036506388399,
-   "price": 330.53506,
+   "side": "sell",
+   "symbol": "VRT",
+   "qty": 14.0406,
+   "price": 289.64488,
    "mechanism": "market",
-   "note": "Recycling VRT trim liquidity into Astera Labs (ALAB), which is experiencing massive growth acceleration (+104% YoY Q2 revenue to $392.4M, Q3 guided to $540M-$560M) driven by early volume production of its Scorpio X-Series rack-scale fabric switches.",
+   "note": "Trimming 20% of VRT following a +27.3% gain above cost basis ($227.84 entry) per Hypothesis H2 to harvest liquidity for emerging growth opportunities.",
    "prior_close": false
   },
   {
@@ -242188,12 +242264,12 @@
    "when": "Aug 13 15:57",
    "agent": "nexus",
    "event": "fill",
-   "side": "sell",
-   "symbol": "VRT",
-   "qty": 14.0406,
-   "price": 289.64488,
+   "side": "buy",
+   "symbol": "ALAB",
+   "qty": 12.3036506388399,
+   "price": 330.53506,
    "mechanism": "market",
-   "note": "Trimming 20% of VRT following a +27.3% gain above cost basis ($227.84 entry) per Hypothesis H2 to harvest liquidity for emerging growth opportunities.",
+   "note": "Recycling VRT trim liquidity into Astera Labs (ALAB), which is experiencing massive growth acceleration (+104% YoY Q2 revenue to $392.4M, Q3 guided to $540M-$560M) driven by early volume production of its Scorpio X-Series rack-scale fabric switches.",
    "prior_close": false
   },
   {
@@ -242346,54 +242422,6 @@
    "mechanism": "stop",
    "trigger": 88.0,
    "note": "Canceling MSTR stop sell order following post-event position exit per P4."
-  },
-  {
-   "t": 1786633635,
-   "when": "Aug 13 15:07",
-   "agent": "nexus",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "NET",
-   "qty": 12.6681041087049,
-   "price": 325.838025,
-   "mechanism": "market",
-   "note": "Cloudflare is accelerating leadership in edge AI computing and connectivity cloud infrastructure, delivering Q2 2026 revenue of $696.1M (+36% YoY acceleration), non-GAAP operating income of $96.1M, and raising FY2026 revenue guidance to $2.864B-$2.870B driven by surging machine-to-machine traffic from AI agents.",
-   "prior_close": false
-  },
-  {
-   "t": 1786633591,
-   "when": "Aug 13 15:06",
-   "event": "armed",
-   "agent": "nexus",
-   "side": "sell",
-   "symbol": "TEM",
-   "mechanism": "limit",
-   "trigger": 69.31,
-   "note": "P4 / H2: Automatically trim 20 percent of remaining TEM position upon achieving an additional 25 percent gain ($69.31) from $55.45 execution price."
-  },
-  {
-   "t": 1786633591,
-   "when": "Aug 13 15:06",
-   "event": "armed",
-   "agent": "nexus",
-   "side": "sell",
-   "symbol": "NET",
-   "mechanism": "limit",
-   "trigger": 406.69,
-   "note": "P4 / H2: Automatically trim 20 percent of NET position upon achieving a 25 percent gain ($406.69) from $325.35 entry price."
-  },
-  {
-   "t": 1786633574,
-   "when": "Aug 13 15:06",
-   "agent": "nexus",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "TEM",
-   "qty": 72.143,
-   "price": 55.366825,
-   "mechanism": "limit",
-   "note": "Automated 20 percent trim at 25 percent gain threshold above cost basis per P4 and H2",
-   "prior_close": false
   }
  ],
  "system": {
