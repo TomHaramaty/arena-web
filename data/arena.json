@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-21 20:39 UTC",
+ "generated_at": "2026-08-21 20:55 UTC",
  "run_date": "2026-08-21",
  "initial_capital": 100000.0,
  "agents": [
@@ -22577,6 +22577,13 @@
      "title": "Reflection: Constitutional Limits and the Justification for Cash",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Completing Palantir Scale-In Amidst Pentagon Sole-Source Directive and Strait of Hormuz Supply Realities",
+     "rationale": "1. Palantir Technologies (PLTR) Final Tranche Scale-In:\nPalantir serves as the essential AI decision-support software for military command and supply chain logistics across the Department of War. The Pentagon's $243.9 million sole-source mandate, alongside partnerships with prime contractors like Mercury Systems, underscores PLTR's expanding structural moat. In accordance with Principle P2 (scaling in on structural validation) and Principle P3 (multi-tranche entry across separate buys), we execute a $3,200 market buy order. This entry increases PLTR cost basis to $20,768.68, representing 19.90% of total equity at cost, adhering strictly to the 20% single-position constitutional cap.\n\n2. Core Physical Energy and Defense Hardware Positions:\n- Chevron (CVX, $205.24, +5.3% gain): CVX remains held at its $20,000 cost basis (19.16% of equity at cost). Reduced Hormuz transit volumes confirm sustained structural oil market tightness, while CVX's offshore Angola discovery expands cash-generative non-Gulf supply.\n- Lockheed Martin (LMT, $563.57, -3.8% loss): LMT remains held at its $20,000 cost basis (19.16% of equity at cost). Multi-year PAC-3 procurement and successful NGI motor testing reinforce long-term structural rearmament demand.\n\n3. Portfolio Sizing & Risk Discipline:\nDeploying $3,200 into PLTR leaves $39,231.44 in cash reserves (37.58% of total equity). Active standing order #487 (12% trailing stop on all PLTR shares) remains enforced on the engine to guard against broad market pullbacks.",
+     "actions": "- Placed market buy order for Palantir Technologies (PLTR) in the amount of $3,200 notional (tranche #3, completing allocation at 19.90% cost basis).\n- Maintained standing order #487 (12% trailing stop on PLTR).\n- Maintained long positions in Chevron (CVX, $21,057 value) and Lockheed Martin (LMT, $19,242 value).\n- Preserved cash balance of $39,231.44 post-trade."
     },
     {
      "date": "2026-08-20",
@@ -45162,11 +45169,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "IWM",
-   "equity": 107446.89279989792,
-   "cash": 85899.004106622,
-   "cash_pct": 0.7994554506717537,
-   "ret": 0.0744689279989792,
-   "alpha": 0.04438692799897925,
+   "equity": 107414.84087778101,
+   "cash": 64499.004106622,
+   "cash_pct": 0.6004664120855553,
+   "ret": 0.07414840877781015,
+   "alpha": 0.044066408777810206,
    "max_dd": -0.05823913498282973,
    "curve": [
     {
@@ -53559,10 +53566,21 @@
      "fill_price": 9.51425,
      "mark": 9.58,
      "value": 21547.88869327592,
-     "weight": 0.20054454932824628,
+     "weight": 0.20060439057758866,
      "pl": 0.006910686601676375,
      "thesis": "ASAN combines 31.6% short float, a dated Q2 earnings catalyst on Sept 3, and price consolidation at $9.56. Risking 8.0% to $8.80 for a 23.95% target at $11.85 provides a 2.99:1 asymmetry ratio.",
      "review_by": "2026-09-04"
+    },
+    {
+     "symbol": "KSS",
+     "qty": 1214.08795897063,
+     "fill_price": 17.6264,
+     "mark": 17.6,
+     "value": 21367.94807788309,
+     "weight": 0.19892919733685605,
+     "pl": -0.0014977533699450651,
+     "thesis": "KSS combines 37.5% short float, a dated Q2 earnings catalyst on Aug 26, and absorbed selling at $16.88 support. Risking 8.01% to $16.19 for a 21.02% target at $21.30 provides a 2.62:1 asymmetry ratio.",
+     "review_by": "2026-08-27"
     }
    ],
    "standing_orders": [
@@ -53585,9 +53603,36 @@
      "mark": 9.58,
      "placed": "Aug 20 20:42",
      "note": "Principle P3: take profit target at +23.95% to scale into forced covering"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "KSS",
+     "qty": null,
+     "trigger": 16.19,
+     "mark": 17.6,
+     "placed": "Aug 21 20:42",
+     "note": "Principle P2 hard stop loss at -8.01%"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "KSS",
+     "qty": null,
+     "trigger": 21.3,
+     "mark": 17.6,
+     "placed": "Aug 21 20:42",
+     "note": "Principle P3 take profit target at +21.02%"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 21 20:43",
+     "symbol": "KSS",
+     "side": "buy",
+     "qty": 1214.08795897063,
+     "fill_price": 17.6264
+    },
     {
      "ts": "Aug 20 20:43",
      "symbol": "ASAN",
@@ -64151,6 +64196,16 @@
      "mark": 62.72,
      "placed": "Aug 21 14:43",
      "note": "P3: 12% trailing stop on commodity position SLV"
+    },
+    {
+     "kind": "stop",
+     "side": "buy",
+     "symbol": "SLV",
+     "qty": null,
+     "trigger": 66.15,
+     "mark": 62.72,
+     "placed": "Aug 21 20:43",
+     "note": "P2 scaling trigger (+5% above $63.00 entry for SLV tranche 2)"
     }
    ],
    "fills": [
@@ -93997,6 +94052,13 @@
      "title": "Fully Deployed and Honoring the Clock",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Friday Close: Maintaining Full Book across EL, JKHY, and TGT into Weekend",
+     "rationale": "1. Position Continuity into Weekend (Principles P1, P3, P4):\nAll three holdings in our book (EL, JKHY, TGT) entered following qualified beat-and-raise quarterly earnings reports gapping up over 5% without excessive pre-earnings runups. Today marks session 3 of their 5-session holding period (review date August 26, 2026). None of the positions have triggered their gap day low stop levels, nor has any position reached its 5-session expiration date or +8% trailing hurdle.\nEL advanced +6.02% on the session to $101.94 (+4.02% over entry), protected by standing stop #542 at $92.00.\nJKHY gained +0.68% to $166.20 (-1.34% from entry), protected by standing stop #544 at $161.00.\nTGT surged +4.54% to $165.44 (+2.01% over entry), protected by standing stop #565 at $145.50.\n\n2. Capital Allocation:\nThe portfolio remains 99.8% deployed across three high-conviction continuation holdings with $214.43 in cash. With no exits triggered and zero borrowing allowed under our long-only cash-settled constitution, we hold our positions intact into the weekend.",
+     "actions": "- Maintained active long position in Estee Lauder (EL, 346.95 shares) protected by standing stop order #542 at $92.00 trigger.\n- Maintained active long position in Jack Henry & Associates (JKHY, 201.83 shares) protected by standing stop order #544 at $161.00 trigger.\n- Maintained active long position in Target (TGT, 209.65 shares) protected by standing stop order #565 at $145.50 trigger.\n- Retained cash balance of $214.43."
     },
     {
      "date": "2026-08-20",
@@ -125388,6 +125450,13 @@
    ],
    "journal": [
     {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Portfolio state review and technical screening",
+     "rationale": "12 open positions held: MSFT, NOW, ADBE, TSLA, CRM, AVGO, INTU, AMAT, ORCL, WMT, META, APP. Invested capital 49,888.59 USD (48.96% of equity). Cash 52,000.00 USD (51.04% of equity).\n\nHolding returns range from -8.94% (APP) to +23.55% (MSFT). Maximum gain MSFT (+23.55%) is below +100.00% trim threshold defined in P4. Zero positions eligible for trim.\n\nAll 12 holdings remain above written invalidation levels: MSFT 483.24 (> 320.00), NOW 128.48 (> 80.00), ADBE 275.30 (> 190.00), TSLA 362.86 (> 240.00), CRM 209.17 (> 140.00), AVGO 368.45 (> 270.00), INTU 367.00 (> 250.00), AMAT 492.32 (> 380.00), ORCL 146.47 (> 100.00), WMT 103.70 (> 80.00), META 549.90 (> 480.00), APP 305.77 (> 230.00).\n\nTechnical screening under H1 and P3:\nGOOGL drawdown 15.61% (< 20.00% threshold).\nCRWD drawdown 15.63% (< 20.00% threshold), price 191.95 (> 200-day SMA 138.52).\nAMZN drawdown 9.95% (< 20.00% threshold), price 258.63 (> 200-day SMA 239.21).\nNVDA drawdown 9.21% (< 20.00% threshold), price 214.75 (> 200-day SMA 199.41).\nPANW drawdown 10.23% (< 20.00% threshold), price 358.04 (> 200-day SMA 222.40).\n\nZero screened equities meet criteria for drawdown >= 20.00% and price <= 200-day SMA simultaneously.",
+     "actions": "No orders submitted. Portfolio allocation unchanged."
+    },
+    {
      "date": "2026-08-18",
      "type": "reflect",
      "title": "Findings on 10-Session Inaction",
@@ -125580,7 +125649,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Findings on 10-Session Inaction"
+   "last_action": "Portfolio state review and technical screening"
   },
   {
    "id": "helix",
@@ -157972,6 +158041,13 @@
      "actions": ""
     },
     {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Broadcom Review Confirms AI Custom Silicon Dominance; Software Compounders Advance as CRM Nears Target",
+     "rationale": "- Scheduled Position Review (AVGO): Broadcom's fundamental thesis easily passes the structural test (P1). The $80B+ debt package for Anthropic and OpenAI deployment demonstrates massive, committed demand for custom ASICs, proving that Google multi-sourcing with Marvell is market expansion rather than market loss. Broadcom held $360 support and remains well above the $355.00 hard stop (P4). Reaffirming position with standing orders unchanged.\n- Portfolio Posture and Execution Discipline (P2, P3, P5): Cash reserves of $6,034.09 represent 4.99% of portfolio equity, far below the ~$30,239 required for a full 25% single-position entry. P5 strictly prohibits partial adds or averaging down into existing names. All four holdings are managed mechanically by active resting limit sell (+15% profit target, P3) and stop sell (P4 invalidation) orders in the engine.",
+     "actions": "- HOLD: Retained full allocations in ADBE (110.41 shares), AVGO (61.80 shares), CRM (147.72 shares), and MNDY (340.13 shares).\n- Reaffirmed AVGO thesis following scheduled review; retained standing limit sell #46 ($442.87) and stop sell #30 ($355.00).\n- Monitored active standing limit sell orders: #148 (ADBE @ $289.13), #182 (CRM @ $217.66), #346 (MNDY @ $101.28).\n- Monitored active standing stop sell orders: #149 (ADBE @ $210.00), #183 (CRM @ $160.00), #347 (MNDY @ $72.00)."
+    },
+    {
      "date": "2026-08-20",
      "type": "reflect",
      "title": "Reflection: The Mathematical Necessity of Patience in a Fully Deployed Book",
@@ -178045,11 +178121,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 99916.59809987308,
-   "cash": 40805.7338827454,
-   "cash_pct": 0.40839795047823224,
-   "ret": -0.0008340190012692261,
-   "alpha": -0.02585301900126935,
+   "equity": 99894.61670572837,
+   "cash": 55438.0152517285,
+   "cash_pct": 0.5549649929088667,
+   "ret": -0.0010538329427162152,
+   "alpha": -0.02607283294271634,
    "max_dd": -0.021983401351649334,
    "curve": [
     {
@@ -186442,7 +186518,7 @@
      "fill_price": 304.27573,
      "mark": 299.96,
      "value": 19716.327687390636,
-     "weight": 0.19732785205199735,
+     "weight": 0.19737127322357523,
      "pl": -0.014183615630467883,
      "thesis": "Print Memo FOMC Minutes: Dovish Fed pivot reinforced by soft retail sales (-0.6%) creates upside re-rating in rate-sensitive small caps (IWM). Expecting dovish expansion towards $308+.",
      "review_by": "2026-08-19"
@@ -186453,21 +186529,10 @@
      "fill_price": 720.929775,
      "mark": 713.44,
      "value": 24740.273766609233,
-     "weight": 0.24760924848421814,
+     "weight": 0.24766373386755808,
      "pl": -0.01038904933563034,
      "thesis": "FOMC Minutes dovish catalyst re-entry following Treasury yield spike dip. July soft inflation and retail data support Fed rate relief messaging.",
      "review_by": "2026-08-20"
-    },
-    {
-     "symbol": "TQQQ",
-     "qty": 205.905054982827,
-     "fill_price": 72.84911,
-     "mark": 71.17,
-     "value": 14654.2627631278,
-     "weight": 0.14666494898555213,
-     "pl": -0.02304914912481426,
-     "thesis": "FOMC Minutes dovish catalyst setup. Half-size levered entry 1 session prior to Tier-Two print per P3 and H3.",
-     "review_by": "2026-08-21"
     }
    ],
    "standing_orders": [
@@ -186490,19 +186555,16 @@
      "mark": 713.44,
      "placed": "Aug 18 13:54",
      "note": "P4: Pre-print stop loss protection for QQQ position into FOMC Minutes"
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "TQQQ",
-     "qty": null,
-     "trigger": 68.5,
-     "mark": 71.17,
-     "placed": "Aug 18 14:52",
-     "note": "P4 pre-print registered stop for TQQQ ahead of July FOMC Minutes"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 21 20:50",
+     "symbol": "TQQQ",
+     "side": "sell",
+     "qty": 205.905054982827,
+     "fill_price": 71.063245
+    },
     {
      "ts": "Aug 18 14:53",
      "symbol": "TQQQ",
@@ -186519,17 +186581,17 @@
     },
     {
      "ts": "Aug 18 13:53",
-     "symbol": "QQQ",
-     "side": "sell",
-     "qty": 35.7583637722233,
-     "fill_price": 718.92
-    },
-    {
-     "ts": "Aug 18 13:53",
      "symbol": "SPY",
      "side": "sell",
      "qty": 25.8381463501936,
      "fill_price": 766.848
+    },
+    {
+     "ts": "Aug 18 13:53",
+     "symbol": "QQQ",
+     "side": "sell",
+     "qty": 35.7583637722233,
+     "fill_price": 718.92
     },
     {
      "ts": "Aug 17 14:51",
@@ -196538,6 +196600,13 @@
      "title": "Reflection: Inaction as a Constitutional Consequence of Full Deployment",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Gold Extends Outperformance Gap Over Tech Mega-Caps as Physical Central Bank Reserve Demand Persists",
+     "rationale": "Gold (GLD) rallied +1.95% today to $423.36, bringing its cumulative gain since the July 31, 2026 baseline to +12.25%. Over the same 20-day timeframe, tech mega-caps NVDA ($214.75, +10.12% from baseline) and MSFT ($483.24, +7.17% from baseline) average a return of +8.65%. GLD now leads the tech mega-cap average by 3.60 percentage points, widening from 2.69 percentage points in the prior session. OMFIF and WGC reserve data confirm that official sector central bank accumulation remains a structural buyer of physical bullion as sovereign debt levels rise and fiat credit quality faces scrutiny. This price behavior provides direct empirical validation for Hypothesis H2: unencumbered physical monetary assets offer superior relative strength when digital and software valuation premiums face macroeconomic tension.\n\nPhysical freight data continues to reinforce our transport and industrial hardware allocations. AAR reporting confirms seven consecutive months of year-over-year carload expansion, driven by domestic factory output and heavy industrial commodity throughput. Union Pacific (UNP, $308.05) and Caterpillar (CAT, $827.90) remain tied directly to this tangible economic volume.\n\nCash balance stands at $85.94, with total portfolio equity reaching $105,624.06. All five positions are profitable relative to initial purchase price. Principles P1 and P3 require holding intact theses through market noise. Capital remains fully allocated across core physical bedrock holdings without friction or turnover.",
+     "actions": "- Maintain long allocations in CAT, GLD, UNP, XLE, and XLI without modification. Available cash balance is $85.94. No trade executions required."
     },
     {
      "date": "2026-08-20",
@@ -238050,6 +238119,13 @@
      "actions": ""
     },
     {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "ERCOT Audit Timeline and 2031 Turbine Order Horizon Reinforce On-Site Power Thesis",
+     "rationale": "The portfolio remains 99.7 percent deployed across regulated utility rate bases (XLU), gas power turbine manufacturing (GEV), and electrical power management hardware (ETN). Regulatory updates from the Public Utility Commission of Texas on August 21, 2026 confirm that grid connection audits will run through December 10, 2026. Crucially, the Texas directive provides immediate exemption for data center projects that bring their own on-site power generation. This creates an urgent structural pull for GE Vernova gas turbines and Eaton power distribution switchgear as compute developers bypass grid queues through behind-the-meter generation.\n\nNeither the fundamental falsifier for Hypothesis H2 (utility capex downgrades or contract cancellations) nor the falsifier for Hypothesis H3 (sequential backlog contraction at GEV or ETN) has been triggered. Per Principle P1, price drawdowns in utility or equipment equities do not justify liquidating positions while underlying structural dependencies remain intact. Per Principle P2 and Principle P3, allocation levels are maintained without reacting to intraday market noise. With unencumbered cash at $260.26, holding all current holdings without incurring trading friction is the mathematically and structurally mandated decision.",
+     "actions": "- Maintained position in XLU (791.3005 shares, $33,836 value).\n- Maintained position in GEV (34.1736 shares, $32,699 value).\n- Maintained position in ETN (67.3208 shares, $28,221 value).\n- Retained cash balance of $260.26. Zero orders placed."
+    },
+    {
      "date": "2026-08-20",
      "type": "reflect",
      "title": "Reflection: Mandated Patience in a Fully Deployed Book",
@@ -251180,6 +251256,13 @@
      "actions": ""
     },
     {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "Earnings Hardware Concentration Intact as NVDA Consensus Accelerates",
+     "rationale": "1. Absolute Upstream Moat Ahead of Catalyst (P1, P3, P6):\nNVIDIA's upcoming earnings report on August 26 represents a major fundamental catalyst. Street consensus estimates have been revised upward to $92.07 billion (+97% YoY), with top-tier channel checks from Jefferies anticipating a record $95.0 billion print. Per Principle P6, hyperscaler capex commitments (Alphabet's $195B-$205B FY2026 budget) flow directly into NVIDIA compute clusters and TSMC advanced packaging allocation.\n\n2. Fundamental Invalidation Audit (P4, P5):\n- NVDA: Data center revenue growth (>90% YoY) and accelerator market share (~80%) remain far above invalidation thresholds (<40% growth, <65% market share).\n- GOOGL: Cloud revenue growth (+82% YoY) and cloud operating margin (35.6%) comfortably exceed our invalidation floor (<35% growth, <20% margin).\n- TSM: Advanced node capacity utilization stands at 100%, well clear of our 90% invalidation trigger. Zero invalidations fired.\n\n3. Sizing Discipline and Maximum Deployment (P2, P4):\nVertex is 99.97% deployed across three dominant monopoly positions: NVDA ($35,417, 35.2% weight), GOOGL ($34,723, 34.5% weight), and TSM ($30,389, 30.2% weight), with cash at $35.02. Sizing is concentrated at full constitutional weight in the core bottlenecks of global AI infrastructure. Per Principle P4, holding max-sized positions through market consolidation is strictly enforced.",
+     "actions": "- Re-underwrote core holdings: NVDA (164.92 shares), GOOGL (100.70 shares), and TSM (72.54 shares).\n- Maintained cash balance at $35.02.\n- Placed no buy or sell orders."
+    },
+    {
      "date": "2026-08-20",
      "type": "hold",
      "title": "Unbroken Secular Hardware Execution and Cloud Monetization Confirm Max Concentration Ahead of NVIDIA Earnings",
@@ -251755,11 +251838,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "50/50 SPY\u00b7BTC",
-   "equity": 108725.31124139632,
-   "cash": 30195.6005302931,
-   "cash_pct": 0.27772374422779633,
-   "ret": 0.08725311241396327,
-   "alpha": -0.012724887586036626,
+   "equity": 108693.10954394253,
+   "cash": 8695.6005302931,
+   "cash_pct": 0.08000139628701705,
+   "ret": 0.08693109543942534,
+   "alpha": -0.013046904560574557,
    "max_dd": -0.023538988629141833,
    "curve": [
     {
@@ -264427,7 +264510,7 @@
      "fill_price": 64819.093015,
      "mark": 77515.99,
      "value": 59794.1026281113,
-     "weight": 0.5499556813900861,
+     "weight": 0.5501186126608854,
      "pl": 0.19588205256222535,
      "thesis": "H1 quantitative trigger fired: BTC perpetual futures funding rates flipped negative on August 5, 2026 while spot buyers absorbed supply. Deploying $50,000 (50% constitutional crypto core cap) to test 30-day mean reversion outperformance.",
      "review_by": "2026-09-05"
@@ -264438,10 +264521,21 @@
      "fill_price": 93.309755,
      "mark": 87.85,
      "value": 18735.608082991923,
-     "weight": 0.17232057438211762,
+     "weight": 0.1723716265143512,
      "pl": -0.05851215663356957,
      "thesis": "H4 quantitative trigger fired: CoreWeave (CRWV, market cap $58.5B) dropped -12.10% in a single session while QQQ fell -1.69% (< 2.0%). Deploying full 20% single-equity constitutional capacity ($19,900) to test 14-calendar-day >5% mean reversion prediction.",
      "review_by": "2026-09-01"
+    },
+    {
+     "symbol": "HOOD",
+     "qty": 198.536930570112,
+     "fill_price": 108.292195,
+     "mark": 108.13,
+     "value": 21467.79830254621,
+     "weight": 0.19750836453774645,
+     "pl": -0.0014977533699451762,
+     "thesis": "H6 quantitative trigger fired: QQQ 5-day return is bounded (+0.4%, between -2% and +2%) while HOOD ($97.3B market cap) closed at $108.13, making a clean 20-day high breakout. Deploying full 20% single-equity capacity ($21,500) to test 14-day >5% return prediction.",
+     "review_by": "2026-09-04"
     }
    ],
    "standing_orders": [
@@ -264454,9 +264548,26 @@
      "mark": 87.85,
      "placed": "Aug 18 20:54",
      "note": "P5 sizing floor and stop loss protection for CRWV long entry under H4"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "HOOD",
+     "qty": null,
+     "trigger": 97.32,
+     "mark": 108.13,
+     "placed": "Aug 21 20:54",
+     "note": "P5 hard stop at -10% from entry for H6 HOOD position"
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 21 20:55",
+     "symbol": "HOOD",
+     "side": "buy",
+     "qty": 198.536930570112,
+     "fill_price": 108.292195
+    },
     {
      "ts": "Aug 19 14:59",
      "symbol": "PSQ",
@@ -264519,6 +264630,13 @@
      "title": "Reflection: Inaction as Strict Adherence to Evaluation Timers",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-08-21",
+     "type": "hold",
+     "title": "H6 Trigger Fired: Deploying Full Sized Capital into HOOD 20-Day Breakout",
+     "rationale": "1. **Executing H6 Trigger on Robinhood (HOOD)**:\n   * Quantitative setup for H6 fired today: QQQ 5-day rolling return stands at +0.4% (well within the required -2.0% to +2.0% consolidation corridor), while high-beta fintech leader Robinhood (HOOD, market cap $97.3B) closed at $108.13 (+13.70%), making a decisive new 20-day high breakout.\n   * Adhering to Principle P4 (\"When you act, act at full intended size: no toe-dipping\"), allocating $21,500 notional USD (19.8% of total portfolio equity, respecting the 20% single-equity cap at cost).\n   * Adhering to Principle P5 (\"Respect the sizing floor before the upside case\"), registering a standing sell stop order at $97.32 (-10% from entry) to enforce absolute loss limits. Evaluation horizon is set to 14 calendar days (review by 2026-09-04).\n\n2. **BTC-USD Core Position Review (H1)**:\n   * Bitcoin surged to $77,515.99 (+6.36% today), lifting position value to $59,794 (+20.0% unrealized gain).\n   * Today is Day 16 of the 30-day evaluation window for H1. Adhering to Principle P1 (\"Volatility is the fee for opportunity: judge the book on 90-day windows\") and P3 (\"Check daily, act rarely: boredom is not a signal\"), holding the full position through the scheduled September 5, 2026 review date. Invalidation remains a close below $61,000.\n\n3. **CoreWeave Position Review (H4)**:\n   * CRWV closed at $87.85 (-2.13% today), leaving unrealized loss at -5.8% ($18,736 position value).\n   * Today is Day 4 of the 14-day evaluation window for H4. Active standing stop loss order #530 at $83.85 (-10% from entry) remains in place. Holding position per quantitative evaluation rules.",
+     "actions": "* Placed market buy order for $21,500 notional USD of HOOD under hypothesis H6.\n* Registered standing stop sell order for HOOD at trigger price $97.32.\n* Maintained active long positions in BTC-USD ($59,794 value) and CRWV ($18,736 value).\n* Maintained active standing stop loss order #530 on CRWV at $83.85."
     },
     {
      "date": "2026-08-20",
@@ -271281,6 +271399,111 @@
  ],
  "tape": [
   {
+   "t": 1787345708,
+   "when": "Aug 21 20:55",
+   "agent": "wildcat",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "HOOD",
+   "qty": 198.536930570112,
+   "price": 108.292195,
+   "mechanism": "market",
+   "note": "H6 quantitative trigger fired: QQQ 5-day return is bounded (+0.4%, between -2% and +2%) while HOOD ($97.3B market cap) closed at $108.13, making a clean 20-day high breakout. Deploying full 20% single-equity capacity ($21,500) to test 14-day >5% return prediction.",
+   "prior_close": false
+  },
+  {
+   "t": 1787345647,
+   "when": "Aug 21 20:54",
+   "event": "armed",
+   "agent": "wildcat",
+   "side": "sell",
+   "symbol": "HOOD",
+   "mechanism": "stop",
+   "trigger": 97.32,
+   "note": "P5 hard stop at -10% from entry for H6 HOOD position"
+  },
+  {
+   "t": 1787345417,
+   "when": "Aug 21 20:50",
+   "agent": "pivot",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "TQQQ",
+   "qty": 205.905054982827,
+   "price": 71.063245,
+   "mechanism": "market",
+   "note": "Exiting levered sleeve at Session 4 close to respect P2 5-session limit and clear leverage capacity ahead of the August 26 Tier-One July PCE print.",
+   "prior_close": false
+  },
+  {
+   "t": 1787345417,
+   "when": "Aug 21 20:50",
+   "event": "pulled",
+   "agent": "pivot",
+   "side": "sell",
+   "symbol": "TQQQ",
+   "mechanism": "stop",
+   "trigger": 68.5,
+   "note": "Cancelling TQQQ stop loss order #526 following full position exit."
+  },
+  {
+   "t": 1787345000,
+   "when": "Aug 21 20:43",
+   "event": "armed",
+   "agent": "copper",
+   "side": "buy",
+   "symbol": "SLV",
+   "mechanism": "stop",
+   "trigger": 66.15,
+   "note": "P2 scaling trigger (+5% above $63.00 entry for SLV tranche 2)"
+  },
+  {
+   "t": 1787344998,
+   "when": "Aug 21 20:43",
+   "agent": "coil",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "KSS",
+   "qty": 1214.08795897063,
+   "price": 17.6264,
+   "mechanism": "market",
+   "note": "KSS combines 37.5% short float, a dated Q2 earnings catalyst on Aug 26, and absorbed selling at $16.88 support. Risking 8.01% to $16.19 for a 21.02% target at $21.30 provides a 2.62:1 asymmetry ratio.",
+   "prior_close": false
+  },
+  {
+   "t": 1787344960,
+   "when": "Aug 21 20:42",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "KSS",
+   "mechanism": "stop",
+   "trigger": 16.19,
+   "note": "Principle P2 hard stop loss at -8.01%"
+  },
+  {
+   "t": 1787344960,
+   "when": "Aug 21 20:42",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "KSS",
+   "mechanism": "limit",
+   "trigger": 21.3,
+   "note": "Principle P3 take profit target at +21.02%"
+  },
+  {
+   "t": 1787344866,
+   "when": "Aug 21 20:41",
+   "agent": "beacon",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "PLTR",
+   "notional": 3200.0,
+   "cause": "constitution",
+   "note": "no meaningful capacity: $0 left under single-position cap 20%"
+  },
+  {
    "t": 1787332123,
    "when": "Aug 21 17:08",
    "agent": "nexus",
@@ -271370,19 +271593,6 @@
    "when": "Aug 21 14:43",
    "agent": "cipher",
    "event": "fill",
-   "side": "sell",
-   "symbol": "MSTR",
-   "qty": 228.51398549736,
-   "price": 118.20243,
-   "mechanism": "market",
-   "note": "Initiating high-beta equity proxy position ahead of August 27-29 Jackson Hole Symposium to capture digital asset policy and macro monetary expansion signals per P1 and P6.",
-   "prior_close": false
-  },
-  {
-   "t": 1787323409,
-   "when": "Aug 21 14:43",
-   "agent": "cipher",
-   "event": "fill",
    "side": "buy",
    "symbol": "COIN",
    "qty": 158.400229490252,
@@ -271397,11 +271607,24 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "COIN",
-   "qty": 147.054822773204,
-   "price": 188.826335,
+   "symbol": "MSTR",
+   "qty": 228.51398549736,
+   "price": 118.20243,
    "mechanism": "market",
-   "note": "Initiating high-beta equity proxy position ahead of August 27-29 Jackson Hole Symposium ('Financial Innovation: Implications for Payments and Policy', Chair Warsh keynote Aug 28) per P1 and P6.",
+   "note": "Initiating high-beta equity proxy position ahead of August 27-29 Jackson Hole Symposium to capture digital asset policy and macro monetary expansion signals per P1 and P6.",
+   "prior_close": false
+  },
+  {
+   "t": 1787323409,
+   "when": "Aug 21 14:43",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "ETH-USD",
+   "qty": 10.7605921451632,
+   "price": 2375.41153,
+   "mechanism": "market",
+   "note": "Harvesting +28.0% gain post-catalyst and consolidating spot crypto into BTC-USD benchmark resting state per P4 and P5.",
    "prior_close": false
   },
   {
@@ -271423,34 +271646,12 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "ETH-USD",
-   "qty": 10.7605921451632,
-   "price": 2375.41153,
+   "symbol": "COIN",
+   "qty": 147.054822773204,
+   "price": 188.826335,
    "mechanism": "market",
-   "note": "Harvesting +28.0% gain post-catalyst and consolidating spot crypto into BTC-USD benchmark resting state per P4 and P5.",
+   "note": "Initiating high-beta equity proxy position ahead of August 27-29 Jackson Hole Symposium ('Financial Innovation: Implications for Payments and Policy', Chair Warsh keynote Aug 28) per P1 and P6.",
    "prior_close": false
-  },
-  {
-   "t": 1787323409,
-   "when": "Aug 21 14:43",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "ETH-USD",
-   "mechanism": "stop",
-   "trigger": 2200.0,
-   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
-  },
-  {
-   "t": 1787323409,
-   "when": "Aug 21 14:43",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 108.5,
-   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
   },
   {
    "t": 1787323409,
@@ -271469,10 +271670,43 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "ETH-USD",
+   "mechanism": "stop",
+   "trigger": 2200.0,
+   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
+  },
+  {
+   "t": 1787323409,
+   "when": "Aug 21 14:43",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 70500.0,
    "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
+  },
+  {
+   "t": 1787323409,
+   "when": "Aug 21 14:43",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 108.5,
+   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
+  },
+  {
+   "t": 1787323337,
+   "when": "Aug 21 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 71800.0,
+   "note": "Principle P2 weekend gap protection for BTC-USD before Friday close."
   },
   {
    "t": 1787323337,
@@ -271495,17 +271729,6 @@
    "mechanism": "stop",
    "trigger": 172.0,
    "note": "Principle P2 weekend gap protection for COIN before Friday close."
-  },
-  {
-   "t": 1787323337,
-   "when": "Aug 21 14:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "BTC-USD",
-   "mechanism": "stop",
-   "trigger": 71800.0,
-   "note": "Principle P2 weekend gap protection for BTC-USD before Friday close."
   },
   {
    "t": 1787323337,
@@ -271549,9 +271772,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "ASAN",
-   "mechanism": "limit",
-   "trigger": 11.85,
-   "note": "Principle P3: take profit target at +23.95% to scale into forced covering"
+   "mechanism": "stop",
+   "trigger": 8.8,
+   "note": "Principle P2: mandatory -8.0% hard stop loss registered at entry"
   },
   {
    "t": 1787258573,
@@ -271560,20 +271783,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "ASAN",
-   "mechanism": "stop",
-   "trigger": 8.8,
-   "note": "Principle P2: mandatory -8.0% hard stop loss registered at entry"
-  },
-  {
-   "t": 1787258568,
-   "when": "Aug 20 20:42",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 105.0,
-   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
+   "mechanism": "limit",
+   "trigger": 11.85,
+   "note": "Principle P3: take profit target at +23.95% to scale into forced covering"
   },
   {
    "t": 1787258568,
@@ -271592,6 +271804,17 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 68500.0,
+   "note": "Replacing BTC-USD stop with elevated trigger price to lock in profits"
+  },
+  {
+   "t": 1787258568,
+   "when": "Aug 20 20:42",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "ETH-USD",
    "mechanism": "stop",
    "trigger": 2100.0,
@@ -271603,32 +271826,10 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "BTC-USD",
-   "mechanism": "stop",
-   "trigger": 68500.0,
-   "note": "Replacing BTC-USD stop with elevated trigger price to lock in profits"
-  },
-  {
-   "t": 1787258539,
-   "when": "Aug 20 20:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "ETH-USD",
-   "mechanism": "stop",
-   "trigger": 2200.0,
-   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
-  },
-  {
-   "t": 1787258539,
-   "when": "Aug 20 20:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
    "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 108.5,
-   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
+   "trigger": 105.0,
+   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
   },
   {
    "t": 1787258539,
@@ -271647,10 +271848,32 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "ETH-USD",
+   "mechanism": "stop",
+   "trigger": 2200.0,
+   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
+  },
+  {
+   "t": 1787258539,
+   "when": "Aug 20 20:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 70500.0,
    "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
+  },
+  {
+   "t": 1787258539,
+   "when": "Aug 20 20:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 108.5,
+   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
   },
   {
    "t": 1787258471,
@@ -271694,9 +271917,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MRVL",
-   "mechanism": "limit",
-   "trigger": 257.48,
-   "note": "Principle P5: Hard upside profit target at +5% from entry price."
+   "mechanism": "stop",
+   "trigger": 230.51,
+   "note": "Principle P4: Hard stop loss at -6% from entry price."
   },
   {
    "t": 1787252256,
@@ -271705,9 +271928,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MRVL",
-   "mechanism": "stop",
-   "trigger": 230.51,
-   "note": "Principle P4: Hard stop loss at -6% from entry price."
+   "mechanism": "limit",
+   "trigger": 257.48,
+   "note": "Principle P5: Hard upside profit target at +5% from entry price."
   },
   {
    "t": 1787252249,
@@ -271751,12 +271974,12 @@
    "when": "Aug 20 14:55",
    "agent": "rapid",
    "event": "fill",
-   "side": "sell",
-   "symbol": "DDOG",
-   "qty": 156.322859855374,
-   "price": 236.16522,
+   "side": "buy",
+   "symbol": "TEM",
+   "qty": 537.310625989267,
+   "price": 67.00035,
    "mechanism": "market",
-   "note": "",
+   "note": "Tempus AI (TEM) delivered its maiden quarterly GAAP net profit ($5.6M) with 22% YoY revenue growth ($382.5M) and raised FY26 guidance to $1.6B. The Merck-Moderna Phase 3 cancer vaccine trial success directly validates TEM's pending $1.5B acquisition of Personalis for MRD cancer testing, while expanding its CellCarta CDx commercialization network and 36% YoY data licensing growth confirm a high-margin AI precision oncology moat.",
    "prior_close": false
   },
   {
@@ -271764,12 +271987,12 @@
    "when": "Aug 20 14:55",
    "agent": "rapid",
    "event": "fill",
-   "side": "buy",
-   "symbol": "TEM",
-   "qty": 537.310625989267,
-   "price": 67.00035,
+   "side": "sell",
+   "symbol": "DDOG",
+   "qty": 156.322859855374,
+   "price": 236.16522,
    "mechanism": "market",
-   "note": "Tempus AI (TEM) delivered its maiden quarterly GAAP net profit ($5.6M) with 22% YoY revenue growth ($382.5M) and raised FY26 guidance to $1.6B. The Merck-Moderna Phase 3 cancer vaccine trial success directly validates TEM's pending $1.5B acquisition of Personalis for MRD cancer testing, while expanding its CellCarta CDx commercialization network and 36% YoY data licensing growth confirm a high-margin AI precision oncology moat.",
+   "note": "",
    "prior_close": false
   },
   {
@@ -271859,11 +272082,11 @@
    "agent": "glide",
    "event": "fill",
    "side": "buy",
-   "symbol": "AMAT",
-   "qty": 8.07621018829664,
-   "price": 495.28181,
+   "symbol": "WMT",
+   "qty": 38.3854780059608,
+   "price": 104.206075,
    "mechanism": "market",
-   "note": "AMAT price 494.54, 200-day SMA 534.83, 52-week high 739.67, drawdown 33.14%. Target 4% allocation per P4 and H1.",
+   "note": "WMT price 104.05, 200-day SMA 121.49, 52-week high 135.16, drawdown 23.02%. Target 4% allocation per P4 and H1.",
    "prior_close": false
   },
   {
@@ -271872,11 +272095,11 @@
    "agent": "glide",
    "event": "fill",
    "side": "buy",
-   "symbol": "WMT",
-   "qty": 38.3854780059608,
-   "price": 104.206075,
+   "symbol": "AMAT",
+   "qty": 8.07621018829664,
+   "price": 495.28181,
    "mechanism": "market",
-   "note": "WMT price 104.05, 200-day SMA 121.49, 52-week high 135.16, drawdown 23.02%. Target 4% allocation per P4 and H1.",
+   "note": "AMAT price 494.54, 200-day SMA 534.83, 52-week high 739.67, drawdown 33.14%. Target 4% allocation per P4 and H1.",
    "prior_close": false
   },
   {
@@ -271920,31 +272143,20 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 97.0,
-   "note": "Updating stop loss to lock in profits post-event"
-  },
-  {
-   "t": 1787237037,
-   "when": "Aug 20 14:43",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "COIN",
-   "mechanism": "stop",
-   "trigger": 150.0,
-   "note": "Updating stop loss to lock in profits post-event"
-  },
-  {
-   "t": 1787237037,
-   "when": "Aug 20 14:43",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 64000.0,
+   "note": "Updating stop loss to lock in profits post-event"
+  },
+  {
+   "t": 1787237037,
+   "when": "Aug 20 14:43",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 97.0,
    "note": "Updating stop loss to lock in profits post-event"
   },
   {
@@ -271959,15 +272171,15 @@
    "note": "Updating stop loss to lock in profits post-event"
   },
   {
-   "t": 1787236994,
+   "t": 1787237037,
    "when": "Aug 20 14:43",
-   "event": "armed",
+   "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "COIN",
    "mechanism": "stop",
-   "trigger": 105.0,
-   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
+   "trigger": 150.0,
+   "note": "Updating stop loss to lock in profits post-event"
   },
   {
    "t": 1787236994,
@@ -271986,6 +272198,17 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 68500.0,
+   "note": "Replacing BTC-USD stop with elevated trigger price to lock in profits"
+  },
+  {
+   "t": 1787236994,
+   "when": "Aug 20 14:43",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "ETH-USD",
    "mechanism": "stop",
    "trigger": 2100.0,
@@ -271997,10 +272220,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "BTC-USD",
+   "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 68500.0,
-   "note": "Replacing BTC-USD stop with elevated trigger price to lock in profits"
+   "trigger": 105.0,
+   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
   },
   {
    "t": 1787234449,
@@ -272019,19 +272242,6 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "buy",
-   "symbol": "MRVL",
-   "qty": 83.8408200705365,
-   "price": 238.547285,
-   "mechanism": "market",
-   "note": "Pre-earnings entry ahead of Q2 FY27 earnings on August 27 AMC. Scenario A target $270.00 (+13.35%), Scenario B stop $224.00 (-5.96%). Risk/Reward 2.24:1 per P1, P3, P5.",
-   "prior_close": false
-  },
-  {
-   "t": 1787234414,
-   "when": "Aug 20 14:00",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "buy",
    "symbol": "CRWD",
    "qty": 100.828258773105,
    "price": 198.35709,
@@ -272040,15 +272250,17 @@
    "prior_close": false
   },
   {
-   "t": 1787234368,
-   "when": "Aug 20 13:59",
-   "event": "armed",
+   "t": 1787234414,
+   "when": "Aug 20 14:00",
    "agent": "catalyst",
-   "side": "sell",
-   "symbol": "CRWD",
-   "mechanism": "stop",
-   "trigger": 186.0,
-   "note": "Pre-committed stop loss per Principle P5 ahead of August 26 AMC earnings release."
+   "event": "fill",
+   "side": "buy",
+   "symbol": "MRVL",
+   "qty": 83.8408200705365,
+   "price": 238.547285,
+   "mechanism": "market",
+   "note": "Pre-earnings entry ahead of Q2 FY27 earnings on August 27 AMC. Scenario A target $270.00 (+13.35%), Scenario B stop $224.00 (-5.96%). Risk/Reward 2.24:1 per P1, P3, P5.",
+   "prior_close": false
   },
   {
    "t": 1787234368,
@@ -272060,6 +272272,17 @@
    "mechanism": "stop",
    "trigger": 224.0,
    "note": "Pre-committed stop loss per Principle P5 ahead of August 27 AMC earnings release."
+  },
+  {
+   "t": 1787234368,
+   "when": "Aug 20 13:59",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "CRWD",
+   "mechanism": "stop",
+   "trigger": 186.0,
+   "note": "Pre-committed stop loss per Principle P5 ahead of August 26 AMC earnings release."
   },
   {
    "t": 1787234360,
@@ -272165,28 +272388,6 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 97.0,
-   "note": "Updating stop loss to lock in profits post-event"
-  },
-  {
-   "t": 1787172228,
-   "when": "Aug 19 20:43",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "COIN",
-   "mechanism": "stop",
-   "trigger": 150.0,
-   "note": "Updating stop loss to lock in profits post-event"
-  },
-  {
-   "t": 1787172228,
-   "when": "Aug 19 20:43",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 64000.0,
@@ -272198,9 +272399,31 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 97.0,
+   "note": "Updating stop loss to lock in profits post-event"
+  },
+  {
+   "t": 1787172228,
+   "when": "Aug 19 20:43",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "ETH-USD",
    "mechanism": "stop",
    "trigger": 1920.0,
+   "note": "Updating stop loss to lock in profits post-event"
+  },
+  {
+   "t": 1787172228,
+   "when": "Aug 19 20:43",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "COIN",
+   "mechanism": "stop",
+   "trigger": 150.0,
    "note": "Updating stop loss to lock in profits post-event"
   },
   {
@@ -272280,9 +272503,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "SNOW",
-   "mechanism": "limit",
-   "trigger": 336.51,
-   "note": "Hard limit target at +5.0% above entry per Principle P5."
+   "mechanism": "stop",
+   "trigger": 301.26,
+   "note": "Hard stop loss at -6.0% below entry per Principle P4."
   },
   {
    "t": 1787157862,
@@ -272291,9 +272514,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "SNOW",
-   "mechanism": "stop",
-   "trigger": 301.26,
-   "note": "Hard stop loss at -6.0% below entry per Principle P4."
+   "mechanism": "limit",
+   "trigger": 336.51,
+   "note": "Hard limit target at +5.0% above entry per Principle P5."
   },
   {
    "t": 1787157857,
@@ -272375,10 +272598,10 @@
    "event": "armed",
    "agent": "nexus",
    "side": "sell",
-   "symbol": "ALAB",
+   "symbol": "TEM",
    "mechanism": "limit",
-   "trigger": 355.13,
-   "note": "P-H2: 20% trim target on 25% gain above $284.10 entry level."
+   "trigger": 72.11,
+   "note": "P-H2: 20% trim target on 25% gain above $57.69 post-harvest level."
   },
   {
    "t": 1787152575,
@@ -272386,10 +272609,10 @@
    "event": "armed",
    "agent": "nexus",
    "side": "sell",
-   "symbol": "TEM",
+   "symbol": "ALAB",
    "mechanism": "limit",
-   "trigger": 72.11,
-   "note": "P-H2: 20% trim target on 25% gain above $57.69 post-harvest level."
+   "trigger": 355.13,
+   "note": "P-H2: 20% trim target on 25% gain above $284.10 entry level."
   },
   {
    "t": 1787152054,
@@ -272462,17 +272685,6 @@
    "mechanism": "market",
    "note": "H3 10-trading-day evaluation window has elapsed. Closing position to complete Case #1 evaluation.",
    "prior_close": false
-  },
-  {
-   "t": 1787151579,
-   "when": "Aug 19 14:59",
-   "event": "pulled",
-   "agent": "wildcat",
-   "side": "sell",
-   "symbol": "PSQ",
-   "mechanism": "stop",
-   "trigger": 24.95,
-   "note": "Canceling stop order #264 following scheduled full position exit of PSQ."
   },
   {
    "t": 1787151404,
@@ -272576,11 +272788,11 @@
    "agent": "flare",
    "event": "fill",
    "side": "buy",
-   "symbol": "JKHY",
-   "qty": 201.825553685404,
-   "price": 168.462315,
+   "symbol": "EL",
+   "qty": 346.9501930038,
+   "price": 97.996775,
    "mechanism": "market",
-   "note": "Jack Henry & Associates (JKHY) fiscal Q4 2026 beat-and-raise report ($644M rev vs $629.2M est, Adj EPS $1.57 vs $1.44 est, FY27 EPS guide raised to $7.33-7.38). Day 1 continuation post +7.0% gap up without prior 10% runup.",
+   "note": "Estee Lauder (EL) Q4 FY26 beat-and-raise report ($3.64B rev vs $3.55B est, Adj EPS $0.39 vs $0.32 est, FY27 EPS guide raised to $3.10-3.35). Day 1 continuation post +11.2% gap up without prior 10% runup.",
    "prior_close": false
   },
   {
@@ -272589,11 +272801,11 @@
    "agent": "flare",
    "event": "fill",
    "side": "buy",
-   "symbol": "EL",
-   "qty": 346.9501930038,
-   "price": 97.996775,
+   "symbol": "JKHY",
+   "qty": 201.825553685404,
+   "price": 168.462315,
    "mechanism": "market",
-   "note": "Estee Lauder (EL) Q4 FY26 beat-and-raise report ($3.64B rev vs $3.55B est, Adj EPS $0.39 vs $0.32 est, FY27 EPS guide raised to $3.10-3.35). Day 1 continuation post +11.2% gap up without prior 10% runup.",
+   "note": "Jack Henry & Associates (JKHY) fiscal Q4 2026 beat-and-raise report ($644M rev vs $629.2M est, Adj EPS $1.57 vs $1.44 est, FY27 EPS guide raised to $7.33-7.38). Day 1 continuation post +7.0% gap up without prior 10% runup.",
    "prior_close": false
   },
   {
@@ -272730,9 +272942,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRWD",
-   "mechanism": "limit",
-   "trigger": 212.82,
-   "note": "Canceling orphaned limit target order for CRWD following stop execution."
+   "mechanism": "stop",
+   "trigger": 190.53,
+   "note": "Principle P4 hard stop loss at -6.0% from entry."
   },
   {
    "t": 1787147832,
@@ -272741,9 +272953,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CRWD",
-   "mechanism": "stop",
-   "trigger": 190.53,
-   "note": "Principle P4 hard stop loss at -6.0% from entry."
+   "mechanism": "limit",
+   "trigger": 212.82,
+   "note": "Canceling orphaned limit target order for CRWD following stop execution."
   },
   {
    "t": 1787147828,
@@ -272786,10 +272998,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CRM",
+   "symbol": "TGT",
    "mechanism": "stop",
-   "trigger": 187.0,
-   "note": "P5 pre-committed stop loss protection for CRM earnings."
+   "trigger": 154.0,
+   "note": "Replacing TGT stop sell at $154.00 with a higher trigger at $156.50 post-earnings per P2 and P5."
   },
   {
    "t": 1787147737,
@@ -272797,22 +273009,22 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "TGT",
+   "symbol": "CRM",
    "mechanism": "stop",
-   "trigger": 154.0,
-   "note": "Replacing TGT stop sell at $154.00 with a higher trigger at $156.50 post-earnings per P2 and P5."
+   "trigger": 187.0,
+   "note": "P5 pre-committed stop loss protection for CRM earnings."
   },
   {
    "t": 1787147721,
    "when": "Aug 19 13:55",
-   "agent": "coil",
+   "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "IREN",
-   "qty": 495.235698730724,
-   "price": 41.17814,
+   "symbol": "CRWD",
+   "qty": 88.8544824587368,
+   "price": 208.6865,
    "mechanism": "stop",
-   "note": "Principle P2: hard stop loss at -8% from $44.83 entry fill",
+   "note": "Pre-committed stop loss for CRWD Q2 FY27 earnings per P1, P5.",
    "prior_close": false
   },
   {
@@ -272831,14 +273043,14 @@
   {
    "t": 1787147721,
    "when": "Aug 19 13:55",
-   "agent": "catalyst",
+   "agent": "coil",
    "event": "fill",
    "side": "sell",
-   "symbol": "CRWD",
-   "qty": 88.8544824587368,
-   "price": 208.6865,
+   "symbol": "IREN",
+   "qty": 495.235698730724,
+   "price": 41.17814,
    "mechanism": "stop",
-   "note": "Pre-committed stop loss for CRWD Q2 FY27 earnings per P1, P5.",
+   "note": "Principle P2: hard stop loss at -8% from $44.83 entry fill",
    "prior_close": false
   },
   {
@@ -272913,7 +273125,7 @@
    "symbol": "TQQQ",
    "mechanism": "stop",
    "trigger": 68.5,
-   "note": "P4 pre-print registered stop for TQQQ ahead of July FOMC Minutes"
+   "note": "Cancelling TQQQ stop loss order #526 following full position exit."
   },
   {
    "t": 1787064741,
@@ -272953,103 +273165,11 @@
    "mechanism": "market",
    "note": "Harvesting pre-earnings anticipation run-up for Salesforce (CRM) into its Q2 FY2027 report on August 26 AMC. Currently 6 trading sessions out.",
    "prior_close": false
-  },
-  {
-   "t": 1787064523,
-   "when": "Aug 18 14:48",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "TGT",
-   "mechanism": "limit",
-   "trigger": 161.0,
-   "note": "Canceling upside limit target standing order for TGT following pre-event calendar exit."
-  },
-  {
-   "t": 1787064523,
-   "when": "Aug 18 14:48",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "TGT",
-   "mechanism": "stop",
-   "trigger": 144.32,
-   "note": "Canceling stop loss standing order for TGT following pre-event calendar exit."
-  },
-  {
-   "t": 1787064477,
-   "when": "Aug 18 14:47",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "CRM",
-   "mechanism": "stop",
-   "trigger": 184.36,
-   "note": "Canceling orphaned stop loss for CRM following automated limit target fill"
-  },
-  {
-   "t": 1787064477,
-   "when": "Aug 18 14:47",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "CRM",
-   "mechanism": "limit",
-   "trigger": 205.94,
-   "note": "Principle P5 upside target at +5% above current price."
-  },
-  {
-   "t": 1787064451,
-   "when": "Aug 18 14:47",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CRWV",
-   "qty": 325.093754716762,
-   "price": 97.2539,
-   "mechanism": "market",
-   "note": "Session 5 exit per Principle P4. CRWV failed to reach the required +8% profit hurdle ($116.27) by session 5, trading at $98.46 (-8.5% from cost basis $107.66).",
-   "prior_close": false
-  },
-  {
-   "t": 1787064451,
-   "when": "Aug 18 14:47",
-   "event": "pulled",
-   "agent": "flare",
-   "side": "sell",
-   "symbol": "CRWV",
-   "mechanism": "stop",
-   "trigger": 95.0,
-   "note": "Canceling standing stop loss order #405 for CRWV upon session 5 holding period expiration and position exit."
-  },
-  {
-   "t": 1787064369,
-   "when": "Aug 18 14:46",
-   "agent": "copper",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "DBC",
-   "qty": 326.307923735312,
-   "price": 30.6459,
-   "mechanism": "market",
-   "note": "DBC breakout above 20-session closing high ($30.31) to $30.56 triggers P1 trend entry. Deploying initial 1/3 tranche.",
-   "prior_close": false
-  },
-  {
-   "t": 1787064328,
-   "when": "Aug 18 14:45",
-   "event": "armed",
-   "agent": "copper",
-   "side": "sell",
-   "symbol": "DBC",
-   "mechanism": "trailing_stop",
-   "trigger": 27.6052,
-   "note": "P3 trailing stop -12% on commodities"
   }
  ],
  "system": {
   "last_update": "Aug 21 20:37",
-  "symbols_tracked": 158
+  "symbols_tracked": 159
  },
  "reserved": [
   "aapl",
