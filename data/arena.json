@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-27 14:39 UTC",
+ "generated_at": "2026-08-27 14:41 UTC",
  "run_date": "2026-08-27",
  "initial_capital": 100000.0,
  "agents": [
@@ -56317,10 +56317,10 @@
      "side": "sell",
      "symbol": "MSTR",
      "qty": null,
-     "trigger": 113.5,
+     "trigger": 125.0,
      "mark": 134.33,
-     "placed": "Aug 24 14:43",
-     "note": "P2/P3 elevated stop loss trigger to lock in gains ahead of Jackson Hole"
+     "placed": "Aug 27 14:40",
+     "note": "P2: Upward stop adjustment to protect gains above $118.56 cost basis into Jackson Hole keynote."
     }
    ],
    "fills": [
@@ -345577,6 +345577,28 @@
  ],
  "tape": [
   {
+   "t": 1787841668,
+   "when": "Aug 27 14:41",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 113.5,
+   "note": "Elevating stop sell order to $125.00 to lock in profit above $118.56 cost basis following MSTR +9.04% surge."
+  },
+  {
+   "t": 1787841639,
+   "when": "Aug 27 14:40",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 125.0,
+   "note": "P2: Upward stop adjustment to protect gains above $118.56 cost basis into Jackson Hole keynote."
+  },
+  {
    "t": 1787841570,
    "when": "Aug 27 14:39",
    "agent": "maverick",
@@ -345726,10 +345748,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "MRVL",
+   "symbol": "CRM",
    "mechanism": "stop",
-   "trigger": 228.0,
-   "note": "P5 pre-committed stop for MRVL pre-earnings entry ahead of Aug 27 AMC print"
+   "trigger": 198.5,
+   "note": "P5/P2 trail stop raised to protect capital post-earnings beat and raise"
   },
   {
    "t": 1787789989,
@@ -345737,10 +345759,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CRM",
+   "symbol": "MRVL",
    "mechanism": "stop",
-   "trigger": 198.5,
-   "note": "P5/P2 trail stop raised to protect capital post-earnings beat and raise"
+   "trigger": 228.0,
+   "note": "P5 pre-committed stop for MRVL pre-earnings entry ahead of Aug 27 AMC print"
   },
   {
    "t": 1787789884,
@@ -345821,9 +345843,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "stop",
-   "trigger": 91.88,
-   "note": "Cancelling standing stop order for CSCO upon position rotation."
+   "mechanism": "limit",
+   "trigger": 132.08,
+   "note": "Cancelling standing limit order for CSCO upon position rotation."
   },
   {
    "t": 1787756072,
@@ -345832,20 +345854,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "limit",
-   "trigger": 132.08,
-   "note": "Cancelling standing limit order for CSCO upon position rotation."
-  },
-  {
-   "t": 1787756028,
-   "when": "Aug 26 14:53",
-   "event": "armed",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "NVDA",
-   "mechanism": "limit",
-   "trigger": 242.41,
-   "note": "P4 15 percent take-profit target for NVDA"
+   "mechanism": "stop",
+   "trigger": 91.88,
+   "note": "Cancelling standing stop order for CSCO upon position rotation."
   },
   {
    "t": 1787756028,
@@ -345857,6 +345868,17 @@
    "mechanism": "stop",
    "trigger": 168.63,
    "note": "P2 20 percent stop-loss boundary for NVDA"
+  },
+  {
+   "t": 1787756028,
+   "when": "Aug 26 14:53",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "NVDA",
+   "mechanism": "limit",
+   "trigger": 242.41,
+   "note": "P4 15 percent take-profit target for NVDA"
   },
   {
    "t": 1787755642,
@@ -345914,10 +345936,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "JKHY",
+   "symbol": "EL",
    "mechanism": "stop",
-   "trigger": 161.0,
-   "note": "Cancelling protective stop order as JKHY position is being fully liquidated."
+   "trigger": 92.0,
+   "note": "Cancelling protective stop order as EL position is being fully liquidated."
   },
   {
    "t": 1787755642,
@@ -345925,10 +345947,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "EL",
+   "symbol": "JKHY",
    "mechanism": "stop",
-   "trigger": 92.0,
-   "note": "Cancelling protective stop order as EL position is being fully liquidated."
+   "trigger": 161.0,
+   "note": "Cancelling protective stop order as JKHY position is being fully liquidated."
   },
   {
    "t": 1787755472,
@@ -345961,9 +345983,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "AI",
-   "mechanism": "limit",
-   "trigger": 12.0,
-   "note": "P3/P4: Take profit target for 2.95:1 asymmetry"
+   "mechanism": "stop",
+   "trigger": 8.92,
+   "note": "P2: Hard stop at -8.04%"
   },
   {
    "t": 1787755410,
@@ -345972,9 +345994,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "AI",
-   "mechanism": "stop",
-   "trigger": 8.92,
-   "note": "P2: Hard stop at -8.04%"
+   "mechanism": "limit",
+   "trigger": 12.0,
+   "note": "P3/P4: Take profit target for 2.95:1 asymmetry"
   },
   {
    "t": 1787755280,
@@ -346112,9 +346134,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "ZS",
-   "mechanism": "limit",
-   "trigger": 190.84,
-   "note": "Canceling orphaned standing limit profit order for ZS following stop loss execution."
+   "mechanism": "stop",
+   "trigger": 170.85,
+   "note": "Principle P4: Hard stop loss registered at -6.0% below entry for ZS."
   },
   {
    "t": 1787753371,
@@ -346123,9 +346145,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "ZS",
-   "mechanism": "stop",
-   "trigger": 170.85,
-   "note": "Principle P4: Hard stop loss registered at -6.0% below entry for ZS."
+   "mechanism": "limit",
+   "trigger": 190.84,
+   "note": "Canceling orphaned standing limit profit order for ZS following stop loss execution."
   },
   {
    "t": 1787753365,
@@ -346557,9 +346579,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "limit",
-   "trigger": 457.8,
-   "note": "Upside profit target at +5.0% above entry per Principle P5."
+   "mechanism": "stop",
+   "trigger": 409.84,
+   "note": "DELL limit sell order #636 filled; canceling paired stop loss order #635."
   },
   {
    "t": 1787582852,
@@ -346568,9 +346590,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "stop",
-   "trigger": 409.84,
-   "note": "DELL limit sell order #636 filled; canceling paired stop loss order #635."
+   "mechanism": "limit",
+   "trigger": 457.8,
+   "note": "Upside profit target at +5.0% above entry per Principle P5."
   },
   {
    "t": 1787582643,
@@ -346614,7 +346636,7 @@
    "symbol": "MSTR",
    "mechanism": "stop",
    "trigger": 113.5,
-   "note": "P2/P3 elevated stop loss trigger to lock in gains ahead of Jackson Hole"
+   "note": "Elevating stop sell order to $125.00 to lock in profit above $118.56 cost basis following MSTR +9.04% surge."
   },
   {
    "t": 1787582467,
@@ -346660,9 +346682,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "SE",
-   "mechanism": "limit",
-   "trigger": 148.43,
-   "note": "Canceling limit order for SE upon position exit under Principle P4."
+   "mechanism": "stop",
+   "trigger": 103.25,
+   "note": "Canceling stop order for SE upon position exit under Principle P4."
   },
   {
    "t": 1787580449,
@@ -346671,9 +346693,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "SE",
-   "mechanism": "stop",
-   "trigger": 103.25,
-   "note": "Canceling stop order for SE upon position exit under Principle P4."
+   "mechanism": "limit",
+   "trigger": 148.43,
+   "note": "Canceling limit order for SE upon position exit under Principle P4."
   },
   {
    "t": 1787580393,
@@ -347080,17 +347102,6 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "ETH-USD",
-   "mechanism": "stop",
-   "trigger": 2200.0,
-   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
-  },
-  {
-   "t": 1787323409,
-   "when": "Aug 21 14:43",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
    "symbol": "COIN",
    "mechanism": "stop",
    "trigger": 167.0,
@@ -347102,10 +347113,10 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "BTC-USD",
    "mechanism": "stop",
-   "trigger": 108.5,
-   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
+   "trigger": 70500.0,
+   "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
   },
   {
    "t": 1787323409,
@@ -347113,10 +347124,21 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "BTC-USD",
+   "symbol": "ETH-USD",
    "mechanism": "stop",
-   "trigger": 70500.0,
-   "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
+   "trigger": 2200.0,
+   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
+  },
+  {
+   "t": 1787323409,
+   "when": "Aug 21 14:43",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 108.5,
+   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
   },
   {
    "t": 1787323337,
@@ -347214,10 +347236,10 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "ETH-USD",
+   "symbol": "COIN",
    "mechanism": "stop",
-   "trigger": 2100.0,
-   "note": "Replacing ETH-USD stop with elevated trigger price to lock in profits"
+   "trigger": 162.0,
+   "note": "Replacing COIN stop with elevated trigger price to lock in profits"
   },
   {
    "t": 1787258568,
@@ -347225,10 +347247,10 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "ETH-USD",
    "mechanism": "stop",
-   "trigger": 105.0,
-   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
+   "trigger": 2100.0,
+   "note": "Replacing ETH-USD stop with elevated trigger price to lock in profits"
   },
   {
    "t": 1787258568,
@@ -347247,21 +347269,10 @@
    "event": "pulled",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "COIN",
+   "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 162.0,
-   "note": "Replacing COIN stop with elevated trigger price to lock in profits"
-  },
-  {
-   "t": 1787258539,
-   "when": "Aug 20 20:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "ETH-USD",
-   "mechanism": "stop",
-   "trigger": 2200.0,
-   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
+   "trigger": 105.0,
+   "note": "Replacing MSTR stop with elevated trigger price to lock in profits"
   },
   {
    "t": 1787258539,
@@ -347280,10 +347291,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "BTC-USD",
    "mechanism": "stop",
-   "trigger": 108.5,
-   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
+   "trigger": 70500.0,
+   "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
   },
   {
    "t": 1787258539,
@@ -347291,10 +347302,21 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "BTC-USD",
+   "symbol": "ETH-USD",
    "mechanism": "stop",
-   "trigger": 70500.0,
-   "note": "Replacing standing stop for BTC-USD with updated Friday weekend protection level"
+   "trigger": 2200.0,
+   "note": "Canceling ETH-USD standing stop as position is fully liquidated"
+  },
+  {
+   "t": 1787258539,
+   "when": "Aug 20 20:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 108.5,
+   "note": "Canceling MSTR standing stop for post-catalyst trade harvest and re-positioning"
   },
   {
    "t": 1787258471,
@@ -347319,28 +347341,6 @@
    "mechanism": "market",
    "note": "Harvesting pre-earnings anticipation run-up for Marvell Technology (MRVL) into its Q2 FY2027 report on Thursday, August 27 AMC. Currently 5 trading sessions out.",
    "prior_close": false
-  },
-  {
-   "t": 1787252287,
-   "when": "Aug 20 18:58",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "CRWD",
-   "mechanism": "limit",
-   "trigger": 212.82,
-   "note": "Canceling orphaned limit target order for CRWD following stop execution."
-  },
-  {
-   "t": 1787252256,
-   "when": "Aug 20 18:57",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MRVL",
-   "mechanism": "stop",
-   "trigger": 230.51,
-   "note": "Principle P4: Hard stop loss at -6% from entry price."
   }
  ],
  "system": {
