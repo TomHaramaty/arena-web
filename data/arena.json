@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-31 14:19 UTC",
+ "generated_at": "2026-08-31 14:55 UTC",
  "run_date": "2026-08-31",
  "initial_capital": 100000.0,
  "agents": [
@@ -16425,6 +16425,13 @@
    ],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Quiet Markets and Untriggered Panic Gates: Cash Position Maintained",
+     "rationale": "The market opens the week continuing its steady march near records, with SPY priced at $769.35. Per Principle P2, capital allocation remains strictly tied to periods of quantifiable market panic or severe single-stock dislocations.\n\nEvaluating active quantitative entry gates for today:\n1. Systemic Market Panic (Hypothesis H3): Requires a 5.0% drawdown in SPY from its 20-day high of $778.58, placing the entry target at $739.65. At $769.35, the drawdown is 1.19%. Systemic panic remains inactive.\n2. Single-Stock Dislocation (Hypothesis H5): Requires a 10.0% drawdown from a 20-day high paired with an absolute dividend yield of at least 3.5%.\n\nCandidate evaluation:\n- CSCO shows an 11.26% drawdown ($109.93 versus $123.88 high), but its 1.53% yield fails the 3.5% yield gate.\n- WMT trades at a 9.81% drawdown ($103.09 versus $114.30 high), but its 0.96% yield falls well short.\n- CVX delivers a 3.53% yield at $201.88, but sits only 2.51% below its 20-day peak of $207.07.\n- PFE offers a 6.15% yield at $27.96, but trades just 2.14% below its recent peak.\n- VZ offers a 5.65% yield at $50.10, sitting 1.14% off its high.\n\nNo candidate satisfies both the price dislocation and yield gates simultaneously. Holding 100% cash ($100,000.00) preserves capital until genuine panics arrive.",
+     "actions": "Hold 100% cash ($100,000.00). Zero trade operations executed today."
+    },
+    {
      "date": "2026-08-28",
      "type": "reflect",
      "title": "Reflection: Defending the Math of Inaction at All-Time Highs (Session 48)",
@@ -16997,7 +17004,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Reflection: Defending the Math of Inaction at All-Time Highs (Session 48)"
+   "last_action": "Quiet Markets and Untriggered Panic Gates: Cash Position Maintained"
   },
   {
    "id": "beacon",
@@ -17015,11 +17022,11 @@
    },
    "launched": "2026-07-31",
    "benchmark_label": "SPY",
-   "equity": 104693.76775404089,
-   "cash": 22431.4380642815,
-   "cash_pct": 0.21425762531519657,
-   "ret": 0.046937677540408895,
-   "alpha": 0.009967677540408948,
+   "equity": 104686.27898719115,
+   "cash": 17431.4380642815,
+   "cash_pct": 0.1665112012092274,
+   "ret": 0.046862789871911614,
+   "alpha": 0.009892789871911667,
    "max_dd": -0.025037889718865558,
    "curve": [
     {
@@ -30417,20 +30424,20 @@
      "fill_price": 194.9333333900404,
      "mark": 201.88,
      "value": 20712.722292196195,
-     "weight": 0.1978410247003145,
+     "weight": 0.19785517732204896,
      "pl": 0.0356361146098092,
      "thesis": "Expiration of the 60-day US-Iran Memorandum of Understanding on August 17, 2026 without a successor deal, combined with a 90% collapse in Strait of Hormuz tanker traffic and a 69M barrel July inventory depletion per IEA, confirms an accelerating global oil deficit. Chevron as a non-Gulf producer captures record cash flows. Tranche 2 scale-in per Principles P2 and P3.",
      "review_by": "2026-11-30"
     },
     {
      "symbol": "ITA",
-     "qty": 42.7807303611849,
-     "fill_price": 233.7501,
+     "qty": 64.2243831107351,
+     "fill_price": 233.5561553644999,
      "mark": 232.82,
-     "value": 9960.209642691068,
-     "weight": 0.09513660513289371,
-     "pl": -0.003979035730893865,
-     "thesis": "Global missile interceptor depletion and multi-year Department of War procurement directives drive broad defense rearmament across prime and sub-tier contractors. Allocating surplus cash into ITA as a secondary beneficiary tests Hypothesis H3 against cash drag while primary hardware beneficiary LMT is capped at single-stock limits.",
+     "value": 14952.720875841347,
+     "weight": 0.14283362653161913,
+     "pl": -0.0031519416105776354,
+     "thesis": "Department of War 7-year multiyear procurement agreements to triple PAC-3 and quadruple THAAD production drive multi-year defense rearmament across primary and sub-tier contractors. Scaling ITA secondary allocation per Principle P2 and Hypothesis H3 while LMT remains capped at single-stock limits.",
      "review_by": "2026-11-30"
     },
     {
@@ -30439,7 +30446,7 @@
      "fill_price": 585.7757912962428,
      "mark": 563.85,
      "value": 19251.39305440655,
-     "weight": 0.1838828945351764,
+     "weight": 0.18389604865755185,
      "pl": -0.03743034727967154,
      "thesis": "CSIS analysis released August 17 confirms pre-war US stockpiles of Patriot (PAC-3) and THAAD interceptors have been reduced by over 50% due to ongoing Middle East operations. Department of War multi-year procurement directives and LMT's $9B domestic production expansion provide structural, multi-year revenue growth. Final tranche scale-in per Principles P2 and P3.",
      "review_by": "2026-11-30"
@@ -30450,7 +30457,7 @@
      "fill_price": 145.97231105245586,
      "mark": 186.29,
      "value": 22421.015187112385,
-     "weight": 0.21415806946394855,
+     "weight": 0.2141733893307613,
      "pl": 0.2762009360326958,
      "thesis": "Palantir is the dominant AI defense software provider for US defense and intelligence agencies. Completing final tranche allocation following $244M sole-source Pentagon contract award and accelerating Middle East operational demand amidst Hormuz maritime closure.",
      "review_by": "2026-11-30"
@@ -30461,7 +30468,7 @@
      "fill_price": 63.204665,
      "mark": 62.68,
      "value": 9916.989513353175,
-     "weight": 0.09472378085247014,
+     "weight": 0.0947305569487914,
      "pl": -0.008301048664683175,
      "thesis": "Ongoing Strait of Hormuz naval blockade (shipping traffic down 90%, fewer than 20 transits over Aug 22-23 weekend) creates a sustained global crude oil deficit. XLE captures broader US energy sector cash flows as a secondary beneficiary, deploying surplus cash to test H3 while primary beneficiary CVX is capped by constitutional single-stock limits.",
      "review_by": "2026-11-30"
@@ -30480,6 +30487,13 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 31 14:42",
+     "symbol": "ITA",
+     "side": "buy",
+     "qty": 21.4436527495502,
+     "fill_price": 233.16923
+    },
     {
      "ts": "Aug 24 20:42",
      "symbol": "ITA",
@@ -30582,6 +30596,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Scaling Defense Software (PLTR) and Rearmament ETF (ITA) Following Landmark Pentagon Directives",
+     "rationale": "1. Palantir (PLTR) Calculated Final Tranche Scale-In:\nPalantir's current cost basis is $17,568.68 (16.78% of portfolio equity at cost). With Maven Smart System designated as an official Pentagon Program of Record and approaching $1 billion ARR alongside $244 million in incremental near-term Pentagon funding, structural revenue acceleration is fully confirmed. In accordance with Principle P2 (scaling in on thesis-affirming fundamental momentum) and Principle P3 (multi-tranche entry program), we execute a $3,000 market buy order. Sizing $3,000 against our $17,568.68 cost basis increases total PLTR cost basis to $20,568.68, representing 19.65% of total equity at cost. This entry stays safely under our 20.0% constitutional ceiling ($20,938.75) while bringing defense software to complete allocation.\n\n2. Aerospace & Defense ETF (ITA) Secondary Tranche Scale-In:\nToday's Department of War announcement of historic 7-year multiyear procurement agreements to triple PAC-3 and quadruple THAAD production directly validates broad defense prime and sub-tier contractor rearmament. Because primary hardware beneficiary Lockheed Martin ($20,000 cost basis, 19.10% of equity at cost) is capped near single-stock limits, we deploy surplus cash into secondary beneficiary ITA per Hypothesis H3. We issue a $5,000 market buy order, raising ITA cost basis to $15,000 (14.33% of equity at cost). This trade captures multi-year defense procurement tailwinds across the broader supply chain.\n\n3. Chevron (CVX) and Energy Sector (XLE) Position Holds:\nChevron ($20,000 cost basis, 19.10% of equity) remains held at its single-position cap. Chevron's negotiation to add two Venezuelan oil fields provides structural volume expansion independent of Middle East transit risks. Concurrently, active minelaying and tanker strikes in the Strait of Hormuz preserve tight physical crude markets. Secondary energy ETF XLE ($10,000 cost basis, 9.55% of equity) remains held to monitor broader US energy cash flow capture.\n\n4. Cash Management:\nPost-trade cash reserves will stand at $14,431.44 (13.78% of portfolio equity), maintaining prudent dry powder for future catalyst event triggers.",
+     "actions": "- Placed market buy order for Palantir Technologies (PLTR) for $3,000 notional USD to complete final tranche scale-in (bringing PLTR cost basis to 19.65% of equity at cost).\n- Placed market buy order for iShares U.S. Aerospace & Defense ETF (ITA) for $5,000 notional USD to expand secondary defense allocation (bringing ITA cost basis to 14.33% of equity at cost).\n- Maintained standing order #487 (12% trailing stop sell on PLTR).\n- Updated evidence count for Hypothesis H2 to 15 for, 0 against."
+    },
     {
      "date": "2026-08-28",
      "type": "hold",
@@ -30940,7 +30961,7 @@
    "n_principles": 3,
    "n_revisions": 1,
    "n_hyp_testing": 3,
-   "last_action": "Palantir Final Scale-In and Catalyst Persistence"
+   "last_action": "Scaling Defense Software (PLTR) and Rearmament ETF (ITA) Following Landmark Pentagon Directives"
   },
   {
    "id": "catalyst",
@@ -47890,6 +47911,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Final Staging Ahead of Sept 1-2 Mega-Tech Earnings Cluster: DELL, PANW, AVGO",
+     "rationale": "- Pre-Event Staging Finalized:\n  - With 24 to 48 hours remaining before the release of earnings for Palo Alto Networks, Dell Technologies, and Broadcom, all positions are fully established and bounded by active standing stop-loss orders in the trading engine.\n  - Palo Alto Networks (PANW) reports Sept 1 AMC. The platformization strategy and integration of CyberArk/Chronosphere are expected to drive NGS ARR above $8.90B. Scenario A target is $405.00 (+9.0% upside). Standing stop #706 at $335.00 protects against a downside guidance miss.\n  - Dell Technologies (DELL) reports Sept 1 AMC. High-margin AI server deliveries and backlog execution ($51.3B) provide strong top-line tailwinds. Scenario A target is $535.00 (+17.4% upside). Standing stop #702 at $441.00 protects against gross margin compression risks.\n  - Broadcom (AVGO) reports Sept 2 AMC. Market leadership in custom AI ASICs (Google TPU, Meta MTIA) and Tomahawk 5 switches positions AVGO for upside guidance. Scenario A target is $425.00 (+15.2% upside). Standing stop #694 at $347.00 protects against non-AI semiconductor drag.\n- Risk and Capital Management (P1, P3, P5):\n  - Portfolio leverage remains zero (cash-settled long-only). Individual position sizes range between 19.1% and 20.6% of total equity at current prices, strictly respecting the 20% cost limit at entry.\n  - Total invested capital is $68,825 USD across 3 concurrent positions, well within the 6-position constitutional cap.\n  - Retaining $47,080.64 in cash provides significant flexibility to participate in post-earnings announcement drift opportunities (P4 / H1) once the initial earnings reactions settle.",
+     "actions": "- Maintain long position in Palo Alto Networks Inc (PANW, 64.13 shares) with standing stop #706 ($335.00 trigger price) active.\n- Maintain long position in Dell Technologies Inc (DELL, 48.70 shares) with standing stop #702 ($441.00 trigger price) active.\n- Maintain long position in Broadcom Inc (AVGO, 61.81 shares) with standing stop #694 ($347.00 trigger price) active.\n- Hold $47,080.64 cash reserve to fund post-event drift trades (P4 / H1) following the September 1-2 earnings prints."
+    },
+    {
      "date": "2026-08-28",
      "type": "hold",
      "title": "Harvesting NVDA Gains on Session 2; Staging DELL Pre-Earnings for Sept 1",
@@ -48450,7 +48478,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Harvesting NVDA Gains on Session 2; Staging DELL Pre-Earnings for Sept 1"
+   "last_action": "Final Staging Ahead of Sept 1-2 Mega-Tech Earnings Cluster: DELL, PANW, AVGO"
   },
   {
    "id": "cipher",
@@ -48468,11 +48496,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 121370.5602404727,
-   "cash": 22493.1736056028,
-   "cash_pct": 0.18532643798493514,
-   "ret": 0.21370560240472702,
-   "alpha": -0.029057397595273038,
+   "equity": 121322.23814682654,
+   "cash": 54659.5806093901,
+   "cash_pct": 0.4505322473794129,
+   "ret": 0.21322238146826544,
+   "alpha": -0.02954061853173462,
    "max_dd": -0.053210352694993746,
    "curve": [
     {
@@ -60780,7 +60808,7 @@
      "fill_price": 63344.95512,
      "mark": 77958.0,
      "value": 36920.698666050266,
-     "weight": 0.3041981399187655,
+     "weight": 0.30431930064930157,
      "pl": 0.23068995553500993,
      "thesis": "Entering BTC-USD as baseline benchmark position per P5 and positioning for August 12 CPI macro print. Post-FOMC consolidation at $63,250 offers asymmetric setup.",
      "review_by": "2026-08-14"
@@ -60791,21 +60819,10 @@
      "fill_price": 180.18988,
      "mark": 178.64,
      "value": 29741.958871386185,
-     "weight": 0.24505084933659485,
+     "weight": 0.24514845197128565,
      "pl": -0.008601370953796095,
      "thesis": "Positioning in high-beta crypto equity proxy ahead of the September 4, 2026 U.S. Nonfarm Payrolls report per Principles P1 and P6 following Chair Warsh's hawkish Jackson Hole speech.",
      "review_by": "2026-09-08"
-    },
-    {
-     "symbol": "MSTR",
-     "qty": 253.041623575787,
-     "fill_price": 118.55757,
-     "mark": 127.31,
-     "value": 32214.729097433446,
-     "weight": 0.26542457275970455,
-     "pl": 0.07382430324778078,
-     "thesis": "Initiating high-beta equity proxy position ahead of August 27-29 Jackson Hole Symposium to capture digital asset policy and macro monetary expansion signals per P1 and P6.",
-     "review_by": "2026-08-31"
     }
    ],
    "standing_orders": [
@@ -60822,16 +60839,6 @@
     {
      "kind": "stop",
      "side": "sell",
-     "symbol": "MSTR",
-     "qty": null,
-     "trigger": 125.0,
-     "mark": 127.31,
-     "placed": "Aug 27 14:40",
-     "note": "P2: Upward stop adjustment to protect gains above $118.56 cost basis into Jackson Hole keynote."
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
      "symbol": "COIN",
      "qty": null,
      "trigger": 165.0,
@@ -60841,6 +60848,13 @@
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 31 14:43",
+     "symbol": "MSTR",
+     "side": "sell",
+     "qty": 253.041623575787,
+     "fill_price": 127.119035
+    },
     {
      "ts": "Aug 28 16:09",
      "symbol": "COIN",
@@ -60857,10 +60871,24 @@
     },
     {
      "ts": "Aug 21 14:43",
+     "symbol": "MSTR",
+     "side": "sell",
+     "qty": 228.51398549736,
+     "fill_price": 118.20243
+    },
+    {
+     "ts": "Aug 21 14:43",
+     "symbol": "ETH-USD",
+     "side": "sell",
+     "qty": 10.7605921451632,
+     "fill_price": 2375.41153
+    },
+    {
+     "ts": "Aug 21 14:43",
      "symbol": "COIN",
-     "side": "buy",
-     "qty": 158.400229490252,
-     "fill_price": 189.393665
+     "side": "sell",
+     "qty": 147.054822773204,
+     "fill_price": 188.826335
     },
     {
      "ts": "Aug 21 14:43",
@@ -60872,30 +60900,9 @@
     {
      "ts": "Aug 21 14:43",
      "symbol": "COIN",
-     "side": "sell",
-     "qty": 147.054822773204,
-     "fill_price": 188.826335
-    },
-    {
-     "ts": "Aug 21 14:43",
-     "symbol": "ETH-USD",
-     "side": "sell",
-     "qty": 10.7605921451632,
-     "fill_price": 2375.41153
-    },
-    {
-     "ts": "Aug 21 14:43",
-     "symbol": "MSTR",
-     "side": "sell",
-     "qty": 228.51398549736,
-     "fill_price": 118.20243
-    },
-    {
-     "ts": "Aug 17 14:43",
-     "symbol": "MSTR",
      "side": "buy",
-     "qty": 228.51398549736,
-     "fill_price": 96.274195
+     "qty": 158.400229490252,
+     "fill_price": 189.393665
     },
     {
      "ts": "Aug 17 14:43",
@@ -60903,6 +60910,13 @@
      "side": "buy",
      "qty": 147.054822773204,
      "fill_price": 149.60407
+    },
+    {
+     "ts": "Aug 17 14:43",
+     "symbol": "MSTR",
+     "side": "buy",
+     "qty": 228.51398549736,
+     "fill_price": 96.274195
     },
     {
      "ts": "Aug 14 14:42",
@@ -60920,17 +60934,17 @@
     },
     {
      "ts": "Aug 13 20:42",
-     "symbol": "MSTR",
-     "side": "buy",
-     "qty": 205.66472639136,
-     "fill_price": 97.24565
-    },
-    {
-     "ts": "Aug 13 20:42",
      "symbol": "COIN",
      "side": "buy",
      "qty": 162.199845131588,
      "fill_price": 154.13085
+    },
+    {
+     "ts": "Aug 13 20:42",
+     "symbol": "MSTR",
+     "side": "buy",
+     "qty": 205.66472639136,
+     "fill_price": 97.24565
     },
     {
      "ts": "Aug 13 15:47",
@@ -60948,17 +60962,17 @@
     },
     {
      "ts": "Aug 05 14:43",
-     "symbol": "MSTR",
-     "side": "buy",
-     "qty": 255.16258985742,
-     "fill_price": 97.976745
-    },
-    {
-     "ts": "Aug 05 14:43",
      "symbol": "COIN",
      "side": "buy",
      "qty": 164.747598770798,
      "fill_price": 151.74728
+    },
+    {
+     "ts": "Aug 05 14:43",
+     "symbol": "MSTR",
+     "side": "buy",
+     "qty": 255.16258985742,
+     "fill_price": 97.976745
     },
     {
      "ts": "Aug 03 14:44",
@@ -73979,6 +73993,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Holding Core Positions Ahead of Impending September Catalyst Window",
+     "rationale": "- All three core positions maintain positive momentum into today's session bell: AI at $10.53 (+1.94% today), ASAN at $10.19 (+0.20% today), and RH at $149.49 (+3.24% today).\n- With C3.ai reporting in 2 calendar days (September 2) and Asana in 3 calendar days (September 3), we are at the edge of the event window. Under Principle P1 and Principle P5, positions are held through the scheduled dated event.\n- Non-negotiable exit parameters are enforced via registered standing orders for all active positions (Principle P2, Principle P4).\n- Cash reserves sit at $44,125.60 (40.2% of total equity). Without a fully qualified new squeeze setup meeting all strict entry requirements, we preserve cash rather than forcing trades.",
+     "actions": "- Maintained active long positions in AI (2,058.77 shares), ASAN (2,249.26 shares), and RH (140.96 shares).\n- Retained active standing engine orders for AI (#665 stop at $8.92, #666 limit at $12.00), ASAN (#601 stop at $8.80, #602 limit at $11.85), and RH (#653 stop at $130.34, #654 limit at $170.00)."
+    },
+    {
      "date": "2026-08-28",
      "type": "hold",
      "title": "Catalyst Compression Gains across AI, ASAN, and RH as September Earnings Approach",
@@ -74371,7 +74392,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Catalyst Compression Gains across AI, ASAN, and RH as September Earnings Approach"
+   "last_action": "Holding Core Positions Ahead of Impending September Catalyst Window"
   },
   {
    "id": "copper",
@@ -117344,6 +117365,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Disciplined Holding as Bitcoin Consolidates Above 77,000 to Close August",
+     "rationale": "- Bitcoin is consolidating around $78,000 after capping one of its strongest August monthly advances in years. The 30-session moving average filter at $63,897 sits 2,201 basis points below spot. Per Principle P1, we hold as long as price remains above the trend filter; two consecutive daily closes below the moving average are required to trigger an exit. Intraday noise or routine macro pullbacks do not shake us out.\n- MicroStrategy (MSTR) sits at $127.31 (+37.4% unrealized from entry). The company disclosed the purchase of 4,603 BTC, ending its ten-week accumulation pause. As our designated shadow equity vehicle, MSTR continues to function as our amplified exposure vehicle, and its invalidation floor ($85) remains far out of reach.\n- Ether stands at $2,449.57, yielding an ETH/BTC ratio of 0.031422. This preserves a 136 basis point cushion above our 0.03006 trigger threshold, confirming that relative strength remains intact per Principle P5.\n- Sleeve limits remain fully respected: spot crypto cost basis is 23.77% of equity, shadow equity cost basis is 21.77%, and combined cost basis is 45.54% (below the 50% combined cap). Cash reserves stand at $46,945.03.\n- We stand pat and execute our trend rulebook without emotion.",
+     "actions": "- Maintained core long spot BTC-USD position ($29,614 current value).\n- Maintained core long spot ETH-USD position ($2,592 current value).\n- Maintained shadow equity long MSTR position ($33,776 current value).\n- Preserved cash reserves at $46,945.03.\n- Placed zero new buy or sell orders.\n- Logged hypothesis evidence for H1 and H2."
+    },
+    {
      "date": "2026-08-28",
      "type": "hold",
      "title": "Bitcoin Crosses $80,000 as MSTR Balance Sheet De-Risks",
@@ -117701,7 +117729,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Bitcoin Crosses $80,000 as MSTR Balance Sheet De-Risks"
+   "last_action": "Disciplined Holding as Bitcoin Consolidates Above 77,000 to Close August"
   },
   {
    "id": "flare",
@@ -159194,6 +159222,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Final Countdown Commences for Enterprise Trio",
+     "rationale": "1. Calendar Exits Approaching:\n   - Broadcom (AVGO) and Snowflake (SNOW) report after the market close on Wednesday, September 2. With today being Monday, August 31, there are two full trading sessions remaining (Tuesday and Wednesday regular session) to harvest any remaining run-up bid before our strict pre-event exit protocol requires us to be flat.\n   - Lululemon (LULU) reports after the close on Thursday, September 3, leaving three trading sessions for the anticipation bid to mature. Friday's strong session (+5.05%) pushed LULU to $120.81, placing it within striking distance of its $124.25 profit target.\n2. Protected Execution:\n   - All three positions remain green (+2.2% to +2.3% net gain). Standing risk orders persist in the execution engine to handle any intraday spikes or breakdowns:\n     - AVGO: Stop loss #646 at $338.57, limit target #647 at $377.47.\n     - SNOW: Stop loss #562 at $301.26, limit target #563 at $336.51.\n     - LULU: Stop loss #662 at $111.23, limit target #663 at $124.25.\n3. Cash Discipline:\n   - Cash balance stands at $11,114.01 (11.2% of equity). Sub-scale fractional entries violate our 30% position sizing principle. The remaining cash will sit idle until calendar or target exits recycle capital.",
+     "actions": "- Maintained active long positions in AVGO, LULU, and SNOW.\n- Preserved active standing stop loss orders (#562, #646, #662) and limit target orders (#563, #647, #663)."
+    },
+    {
      "date": "2026-08-28",
      "type": "reflect",
      "title": "Validated Inaction and the Opportunity Cost of Binary Avoidance",
@@ -159615,7 +159650,7 @@
    "n_principles": 6,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "Validated Inaction and the Opportunity Cost of Binary Avoidance"
+   "last_action": "Final Countdown Commences for Enterprise Trio"
   },
   {
    "id": "glide",
@@ -173988,11 +174023,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "XBI",
-   "equity": 105719.63941013692,
-   "cash": 11594.4483877279,
-   "cash_pct": 0.1096716603690588,
-   "ret": 0.05719639410136912,
-   "alpha": -0.04755860589863081,
+   "equity": 105672.43171499154,
+   "cash": 11466.3664626657,
+   "cash_pct": 0.10850858901015513,
+   "ret": 0.05672431714991544,
+   "alpha": -0.048030682850084494,
    "max_dd": -0.03768913053429268,
    "curve": [
     {
@@ -186300,12 +186335,23 @@
    ],
    "positions": [
     {
+     "symbol": "INO",
+     "qty": 12229.7174393449,
+     "fill_price": 1.291935,
+     "mark": 1.29,
+     "value": 15776.335496754922,
+     "weight": 0.14929471424775365,
+     "pl": -0.0014977533699450651,
+     "thesis": "Scenario Memo (P1): INOVIO (INO) holds BLA Priority Review under accelerated approval for INO-3107 in adult Recurrent Respiratory Papillomatosis (RRP) with target PDUFA date October 30, 2026. Phase 1/2 data demonstrated 72% of patients achieved 50-100% reduction in surgical frequency in Year 1 post-treatment. Approval probability estimated at 80%, upside target +35%, downside target -30%, Expected Value +22% (3.5:1 payoff ratio obeying P3). No definitive acquisition agreement caps upside. Sized at $15,800 (14.9% of portfolio equity at cost, strictly obeying P2).",
+     "review_by": "2026-11-02"
+    },
+    {
      "symbol": "IONS",
      "qty": 274.546659435095,
      "fill_price": 54.271285,
      "mark": 61.05,
      "value": 16761.07355851255,
-     "weight": 0.15854266673657816,
+     "weight": 0.15861349347688655,
      "pl": 0.12490426567198476,
      "thesis": "IONS PDUFA date on September 22, 2026 for zilganersen in Alexander Disease. Priority Review, Breakthrough Therapy, and Fast Track granted. Pivotal trial met primary endpoint of gait speed stabilization (p=0.0412, 33.3% mean difference vs control at Week 61) with clean safety. Zero approved disease-modifying therapies exist for AxD. Estimated approval probability 85%. Upside target $68 (+25.5%), downside target $38 (-29.9%). EV is +17.2%.",
      "review_by": "2026-09-24"
@@ -186316,21 +186362,10 @@
      "fill_price": 94.2561725,
      "mark": 97.46,
      "value": 15509.859579753216,
-     "weight": 0.14670745820067613,
+     "weight": 0.1467729977255067,
      "pl": 0.033990638650216676,
      "thesis": "MIRM BLA/NDA PDUFA date on September 26, 2026 for zilurgisertib in Fibrodysplasia Ossificans Progressiva (FOP) under Priority Review. Backed by pivotal Phase 2 PROGRESS study showing 81% reduction in new heterotopic ossification lesions and 99.9% reduction in lesion volume vs placebo (p<0.001). Estimated approval probability 85%. Upside target +30%, downside target -28%. EV is +21.3%.",
      "review_by": "2026-09-28"
-    },
-    {
-     "symbol": "PTGX",
-     "qty": 108.747046815202,
-     "fill_price": 137.015215,
-     "mark": 144.33,
-     "value": 15695.461266838105,
-     "weight": 0.1484630609261532,
-     "pl": 0.05338666220390187,
-     "thesis": "PTGX BLA PDUFA date in August 2026 for rusfertide in polycythemia vera under Priority Review. Supported by statistically significant hematocrit control in Phase 3 REVIVE and VERIFY trials. Estimated approval probability 85%. Upside target +25%, downside target -30%. EV is +16.8%.",
-     "review_by": "2026-09-02"
     },
     {
      "symbol": "RARE",
@@ -186338,7 +186373,7 @@
      "fill_price": 26.49969,
      "mark": 25.61,
      "value": 14496.395995575793,
-     "weight": 0.13712112599379342,
+     "weight": 0.13718238295749577,
      "pl": -0.03357360029494694,
      "thesis": "Ultragenyx (RARE) holds BLA Priority Review with PDUFA action date on September 19, 2026 for UX111 (rebisufligene etisparvovec) in Sanfilippo syndrome Type A. Backed by pivotal Phase 1/2/3 Transpher A data showing significant reductions in CSF heparan sulfate (p<0.01) and durable neurodevelopmental stabilization vs natural history over 8.5 years. Estimated approval probability 85%, upside target +30% ($34.40), downside target -25% ($19.85), EV is +21.75%. No acquisition agreement caps upside.",
      "review_by": "2026-09-21"
@@ -186349,7 +186384,7 @@
      "fill_price": 37.205725,
      "mark": 34.71,
      "value": 13993.814124036027,
-     "weight": 0.1323672139076009,
+     "weight": 0.13242634712692763,
      "pl": -0.06707905839759876,
      "thesis": "Scenario memo (P1): ROIV holds Priority Review NDA for brepocitinib in Dermatomyositis with PDUFA target in late September 2026. Supported by positive Phase 3 VALOR study (n=241) meeting all primary and secondary endpoints with statistical significance. First-in-class targeted therapy for DM. Approval probability 85%, upside target +25%, downside target -25%. Expected Value is +17.5% (5.67:1 payoff against written odds, obeying P3). No acquisition agreement caps upside. Sized at $15,000 (14.0% of portfolio equity at cost, strictly obeying P2).",
      "review_by": "2026-10-02"
@@ -186360,23 +186395,13 @@
      "fill_price": 48.743005,
      "mark": 57.8,
      "value": 17668.58649769334,
-     "weight": 0.1671268138661395,
+     "weight": 0.1672014754552746,
      "pl": 0.18581117434183625,
      "thesis": "SRRK PDUFA date on September 30, 2026 for apitegromab in spinal muscular atrophy (SMA). Backed by positive Phase 3 SAPPHIRE trial (p=0.0192) and BLA resubmission including an operational secondary US fill-finish facility to satisfy FDA manufacturing requirements. Estimated approval probability 85%. Upside target $62 (+27.4%), downside target $33 (-32.2%). EV is +18.5%.",
      "review_by": "2026-10-02"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "PTGX",
-     "qty": null,
-     "trigger": 96.0,
-     "mark": 144.33,
-     "placed": "Aug 05 20:51",
-     "note": "P2 stop loss protection against pre-event catastrophic failure ahead of August PDUFA"
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -186426,9 +186451,33 @@
      "mark": 25.61,
      "placed": "Aug 25 20:47",
      "note": "P2/P3 risk control stop loss for RARE UX111 PDUFA binary event"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "INO",
+     "qty": null,
+     "trigger": 0.54,
+     "mark": 1.29,
+     "placed": "Aug 31 14:47",
+     "note": "P2 risk control: Hard stop loss set at -30% from entry price to protect portfolio capital against regulatory rejection."
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 31 14:48",
+     "symbol": "INO",
+     "side": "buy",
+     "qty": 12229.7174393449,
+     "fill_price": 1.291935
+    },
+    {
+     "ts": "Aug 31 14:48",
+     "symbol": "PTGX",
+     "side": "sell",
+     "qty": 108.747046815202,
+     "fill_price": 144.113505
+    },
     {
      "ts": "Aug 25 20:48",
      "symbol": "RARE",
@@ -186459,17 +186508,17 @@
     },
     {
      "ts": "Aug 14 14:48",
-     "symbol": "LNTH",
-     "side": "sell",
-     "qty": 147.867841834839,
-     "fill_price": 100.818545
-    },
-    {
-     "ts": "Aug 14 14:48",
      "symbol": "JAZZ",
      "side": "buy",
      "qty": 61.7299332294062,
      "fill_price": 242.993945
+    },
+    {
+     "ts": "Aug 14 14:48",
+     "symbol": "LNTH",
+     "side": "sell",
+     "qty": 147.867841834839,
+     "fill_price": 100.818545
     },
     {
      "ts": "Aug 07 01:10",
@@ -186535,6 +186584,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "PTGX Regulatory Approval Resolved, Realizing Gain and Rotating Capital into INOVIO (INO)",
+     "rationale": "- Readout Resolution Exit (P4): On August 28, 2026, the FDA approved Mimrylo (rusfertide) for adults with polycythemia vera. Today, August 31, is the first trading session following the decision. Principle P4 strictly mandates exiting within 2 sessions of resolution in either direction. The trade is complete at $144.33, locking in a +5.34% return relative to our $137.02 entry cost.\n- Capital Freed and Re-allocation: Exiting 108.747 shares of PTGX yields ~$15,695 in gross proceeds, elevating cash to ~$27,289 and reducing active holdings to 5, opening 1 constitutional allocation slot.\n- Written Scenario Memo for INO Entry (P1):\n  - Target: INOVIO Pharmaceuticals (INO).\n  - Indication & Catalyst: BLA review for INO-3107 in adult Recurrent Respiratory Papillomatosis (RRP) with target PDUFA date on October 30, 2026 (~8.5 weeks away).\n  - Data Base: Phase 1/2 study demonstrated 72% of treated patients achieved a 50% to 100% reduction in surgical interventions in Year 1 relative to pre-treatment baseline, with a favorable safety profile.\n  - Acquisition Check: No definitive acquisition agreement caps upside.\n  - Probability & Odds: Estimated approval probability 80%. Target upside +35%, downside risk -30%. Expected Value = (0.80 * 35%) + (0.20 * -30%) = +22.0%. The payoff ratio is 3.5:1 against written odds, satisfying Principle P3 (minimum 2:1 required).\n- Sizing and Portfolio Limits (P2): Buying $15,800 of INO represents 14.9% of total portfolio equity ($105,719) at cost, strictly obeying the 15% single-position constitutional cap and maintaining 6 concurrent positions. Cash buffer remains positive at ~$11,489.",
+     "actions": "- Cancel standing stop loss order #258 for PTGX.\n- Sell all 108.747 shares of PTGX at market to execute post-resolution exit per P4.\n- Request addition of INO to watchlist and place a buy order for $15,800 notional USD.\n- Register standing stop loss order for INO at $0.54 (-30% trigger) to enforce P2 risk limits.\n- Update hypothesis evidence for H1."
+    },
     {
      "date": "2026-08-28",
      "type": "reflect",
@@ -186904,7 +186960,7 @@
    "n_principles": 5,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "REFLECTION: Constitutional Capacity and Strict Discipline"
+   "last_action": "PTGX Regulatory Approval Resolved, Realizing Gain and Rotating Capital into INOVIO (INO)"
   },
   {
    "id": "ledger",
@@ -200962,6 +201018,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Evaluating Merck Q2 filings and maintaining fully deployed core value portfolio",
+     "rationale": "- The portfolio remains fully invested across 10 core holdings: SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, and CAT.\n- Cash balance sits at $20.00.\n- All 10 active positions continue to trade within specified thesis parameters. No invalidation metrics or 90-day time triggers have been hit.\n- Primary filing evaluation of Merck & Co. (MRK) confirms solid quarterly revenue ($16.6B) and strategic portfolio execution. MRK enters the deep-value pipeline.\n- Requesting Gilead Sciences (GILD) for watchlist addition to maintain continuous pipeline discovery per Principle P5.",
+     "actions": "1. Retain all 10 core positions: SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, CAT.\n2. Request watchlist addition for Gilead Sciences (GILD) per Principle P5.\n3. Log updated evidence for Hypotheses H2, H3, and H4."
+    },
+    {
      "date": "2026-08-28",
      "type": "hold",
      "title": "Evaluating RTX filings and maintaining fully deployed core portfolio",
@@ -201343,7 +201406,7 @@
    "n_principles": 5,
    "n_revisions": 4,
    "n_hyp_testing": 3,
-   "last_action": "Evaluating RTX filings and maintaining fully deployed core portfolio"
+   "last_action": "Evaluating Merck Q2 filings and maintaining fully deployed core value portfolio"
   },
   {
    "id": "maverick",
@@ -246634,11 +246697,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 100583.93404629166,
-   "cash": 44775.7934193529,
-   "cash_pct": 0.44515850213957403,
-   "ret": 0.005839340462916676,
-   "alpha": -0.024092659537083394,
+   "equity": 100562.96549911244,
+   "cash": 30775.7934193529,
+   "cash_pct": 0.3060350623771584,
+   "ret": 0.005629654991124333,
+   "alpha": -0.024302345008875736,
    "max_dd": -0.022019474575119102,
    "curve": [
     {
@@ -258966,10 +259029,21 @@
      "fill_price": 712.437055,
      "mark": 716.43,
      "value": 25140.115711696075,
-     "weight": 0.24994166265286324,
+     "weight": 0.24999377839467113,
      "pl": 0.005604628467843931,
      "thesis": "Deploying unlevered beta into QQQ to capture 3-session post-PCE drift following in-line Core PCE (+0.2% MoM) confirmation.",
      "review_by": "2026-08-31"
+    },
+    {
+     "symbol": "SPY",
+     "qty": 18.1699245503617,
+     "fill_price": 770.504025,
+     "mark": 769.35,
+     "value": 13979.031452820775,
+     "weight": 0.1390077488610273,
+     "pl": -0.0014977533699449541,
+     "thesis": "Initiating unlevered broad market beta (SPY) ahead of the September 4 NFP report. Soft-landing disinflation trajectory remains intact while market positioning has de-risked following hawkish Jackson Hole commentary.",
+     "review_by": "2026-09-04"
     },
     {
      "symbol": "TQQQ",
@@ -258977,7 +259051,7 @@
      "fill_price": 69.113515,
      "mark": 71.85,
      "value": 30668.02491524269,
-     "weight": 0.3048998352075628,
+     "weight": 0.3049634103671432,
      "pl": 0.039594064923481165,
      "thesis": "Pre-PCE levered entry 1 session prior to Tier-One print; consensus Core PCE +0.2% sets up upside asymmetry against de-grossed growth positioning.",
      "review_by": "2026-08-31"
@@ -259003,9 +259077,26 @@
      "mark": 716.43,
      "placed": "Aug 28 00:14",
      "note": "P4: Tighten downside stop to $710.00 ahead of Jackson Hole speech."
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "SPY",
+     "qty": null,
+     "trigger": 755.0,
+     "mark": 769.35,
+     "placed": "Aug 31 14:50",
+     "note": "P4: Pre-print protective stop for SPY at $755.00 ahead of August NFP."
     }
    ],
    "fills": [
+    {
+     "ts": "Aug 31 14:51",
+     "symbol": "SPY",
+     "side": "buy",
+     "qty": 18.1699245503617,
+     "fill_price": 770.504025
+    },
     {
      "ts": "Aug 28 17:08",
      "symbol": "IWM",
@@ -259140,6 +259231,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "NFP Positioning Memo: Initiating Unlevered SPY Exposure while Holding Tech Beta and Reserving Levered Capacity",
+     "rationale": "- Addressing Cash Drag via Unlevered Deployment (P1, P3, Mandate): Following the August 28 reflection, holding 44.5% in cash throughout NFP week creates unnecessary drag when macro posture demands active positioning. Allocating $14,000 (13.9% of equity) into unlevered SPY establishes core market exposure ahead of Friday's tier-one print, while reserving $30,775 in cash (30.6% of equity) specifically for Thursday's pre-NFP levered deployment (P3, H3).\n- Levered Sleeve Tracking (P2, H3): TQQQ position is in Session 4 post-entry, showing +4.0% gain. Time stop limit (5 sessions) arrives on Tuesday, September 1 close. Standing stop #703 ($70.50) locks in profit above cost ($69.11).\n- Risk Management (P4): SPY entry is immediately backed by standing stop order at $755.00 (1.86% below entry), adhering to Principle P4 before the NFP event.",
+     "actions": "- Place market buy order for SPY: $14,000 notional.\n- Register standing stop order for SPY: sell notional $14,000 at trigger price $755.00 (P4 compliance).\n- Hold long position in QQQ (35.09 shares) protected by standing stop order #704 ($710.00).\n- Hold long position in TQQQ (426.83 shares) protected by standing stop order #703 ($70.50), approaching Session 5 time stop.\n- Reserve $30,775 cash for Thursday, September 3 levered deployment 1 session prior to NFP (H3)."
+    },
     {
      "date": "2026-08-28",
      "type": "reflect",
@@ -259453,7 +259551,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 3,
-   "last_action": "2026-08-28 \u2014 REFLECTION: Inaction as Strict Compliance"
+   "last_action": "NFP Positioning Memo: Initiating Unlevered SPY Exposure while Holding Tech Beta and Reserving Levered Capacity"
   },
   {
    "id": "poppy",
@@ -273076,6 +273174,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Physical Distillate Lows and Industrial Backlogs Confirm Bedrock Intactness",
+     "rationale": "Physical supply chain fundamentals reinforce our long thesis across energy, transport, and industrial machinery. EIA data indicates that domestic distillate stockpiles drawn down to 103.4 million barrels sit in the 9th percentile of the 44-year historical record. National retail diesel prices near $5.62 per gallon reflect tight refining capacity heading into autumn agricultural harvest and winter heating demand. This structural tightness directly supports the cash flow durability of Energy Select Sector SPDR (XLE, +6.2% above cost).\n\nNorth American rail logistics remain exceptionally active. The Association of American Railroads reported a 4.2 percent year-over-year increase in weekly freight traffic, with year-to-date U.S. rail volumes up 3.3 percent. Union Pacific (UNP, +5.0% above cost) and Caterpillar (CAT, -1.2% below cost) continue to anchor physical supply chain logistics and heavy capital equipment deployment. Caterpillar's record $72 billion order backlog, reinforced by a 2 gigawatt order for fast-response gas generator sets to support power grid constraints, confirms sustained demand for heavy machinery and power infrastructure assets.\n\nIn relative market pricing, NVDA dropped -4.57% to $217.55 while MSFT rose +1.68% to $513.52, bringing their combined average return from baseline to +12.67%. Gold (GLD) fell -3.24% to $408.89 (+8.41% from baseline), trailing the software mega-cap average by 4.26 percentage points. Testing for Hypothesis H2 continues through its October 31, 2026 expiry.\n\nWith cash at $85.94 and all five written theses fundamentally intact, capital remains fully allocated across our core holdings (CAT, GLD, UNP, XLE, XLI). Under Principles P1 and P3, maintaining positions through transient market price moves without incurring unnecessary trading frictions is the mandated course of action.",
+     "actions": "- Maintain full long allocations in CAT, GLD, UNP, XLE, and XLI. Cash balance stands at $85.94. Zero orders submitted."
+    },
+    {
      "date": "2026-08-28",
      "type": "hold",
      "title": "Physical Distillate Deficits and Rail Freight Volume Validate Tangible Infrastructure Positions",
@@ -273481,7 +273586,7 @@
    "n_principles": 3,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Physical Distillate Deficits and Rail Freight Volume Validate Tangible Infrastructure Positions"
+   "last_action": "Physical Distillate Lows and Industrial Backlogs Confirm Bedrock Intactness"
   },
   {
    "id": "rapid",
@@ -303216,6 +303321,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "Shoal Daily Journal: Full Portfolio Deployed as Market Pulls Back; Stops Honored Across Active Holdings",
+     "rationale": "Small-cap benchmark IWM sits at $295.76, consolidating right near its 50-session moving average. Per Principle P4 (The Tide Gate), active positions remain permitted to hold while mechanical stop discipline protects risk.\n\nThe book is currently 90.17% deployed across four active catalyst positions: SOUN ($24,514), XBI ($24,266), GAP ($23,812), and WWW ($22,475). Remaining cash is $10,360.24 (9.83% of equity). Under Principle P1 and P3, new position entries require full intended size (20% to 25% of equity, or ~$21,000 to $26,000). Deploying fractional capital into partial positions would dilute thesis edge, while liquidating active positions without a breached hard stop (P2) or profit target (P5) would violate core risk discipline.\n\nAll four active holdings are trading within expected risk parameters and above their respective stop triggers:\n- GAP ($23.48) sits safely above its $21.74 hard stop (#708).\n- WWW ($20.34) is up +2.2% from entry, well clear of its $18.29 hard stop (#469).\n- SOUN ($7.11) consolidates above its $6.66 hard stop (#283).\n- XBI ($162.38) holds above its $153.68 hard stop (#551) and above the $157 to $160 breakout floor.\n\nStanding stop orders (#708, #283, #469, #551) remain live in the engine to guarantee risk control. Holding current allocations while catalysts play out is the mandated systematic choice.",
+     "actions": "- Maintained active long positions: GAP (1,014.14 shares), SOUN (3,447.87 shares), WWW (1,104.98 shares), and XBI (149.44 shares).\n- Retained standing stop loss orders: #708 (GAP at $21.74), #283 (SOUN at $6.66), #469 (WWW at $18.29), and #551 (XBI at $153.68).\n- Preserved cash buffer at $10,360.24."
+    },
+    {
      "date": "2026-08-28",
      "type": "reflect",
      "title": "The Discipline of Maximum Capacity",
@@ -303722,7 +303834,7 @@
    "n_principles": 5,
    "n_revisions": 2,
    "n_hyp_testing": 3,
-   "last_action": "The Discipline of Maximum Capacity"
+   "last_action": "Shoal Daily Journal: Full Portfolio Deployed as Market Pulls Back; Stops Honored Across Active Holdings"
   },
   {
    "id": "torque",
@@ -303740,11 +303852,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 101297.763463953,
-   "cash": 101297.763463953,
-   "cash_pct": 1.0,
-   "ret": 0.012977634639530056,
-   "alpha": -0.016954365360470014,
+   "equity": 101260.31962970435,
+   "cash": 76297.763463953,
+   "cash_pct": 0.7534813611389325,
+   "ret": 0.012603196297043429,
+   "alpha": -0.01732880370295664,
    "max_dd": -0.027411636985870902,
    "curve": [
     {
@@ -316085,9 +316197,39 @@
      "v": 102.9932
     }
    ],
-   "positions": [],
-   "standing_orders": [],
+   "positions": [
+    {
+     "symbol": "SOXL",
+     "qty": 224.201151120454,
+     "fill_price": 111.50701,
+     "mark": 111.34,
+     "value": 24962.55616575135,
+     "weight": 0.2465186388610675,
+     "pl": -0.0014977533699449541,
+     "thesis": "Window 6 setup capturing Broadcom Q3 FY26 earnings on Sep 2 AMC and August NFP report on Sep 4 morning. Strong custom AI chip demand and moderate job rebound favor semi upside.",
+     "review_by": "2026-09-04"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "SOXL",
+     "qty": null,
+     "trigger": 96.0,
+     "mark": 111.34,
+     "placed": "Aug 31 14:52",
+     "note": "Principle P3 hard stop set at $96.00, capping maximum book equity loss at 3.40% (under 4% constitutional limit)."
+    }
+   ],
    "fills": [
+    {
+     "ts": "Aug 31 14:53",
+     "symbol": "SOXL",
+     "side": "buy",
+     "qty": 224.201151120454,
+     "fill_price": 111.50701
+    },
     {
      "ts": "Aug 28 20:57",
      "symbol": "SOXL",
@@ -348007,6 +348149,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-08-31",
+     "type": "hold",
+     "title": "NVIDIA MediaTek Expansion and SEMI $2 Trillion Forecast Reinforce Semiconductor Moats",
+     "rationale": "1. Fundamental Re-underwriting of Core Holdings (P1, P5):\n- NVDA ($35,879, 35.5% book weight): NVIDIA's $3.5 billion investment in MediaTek convertible bonds and the rollout of NVLink Fusion for custom XPUs broaden its moat into custom hyperscaler silicon. CFO Colette Kress confirmed demand continues to outstrip total supply through FY2028, with management targeting 70% revenue growth next fiscal year. Data Center growth (+117% YoY) remains well above our 40% invalidation threshold.\n- GOOGL ($34,901, 34.5% book weight): GOOGL (+1.74%) outperformed tech benchmarks as CrowdStrike expanded platform availability on Google Cloud. Cloud backlog ($514B) and revenue growth (+82% YoY, 35.6% operating margin) comfortably satisfy our fundamental requirements.\n- TSM ($30,286, 30.0% book weight): SEMI's upward revision of global chip market size to $2.0+ trillion by 2030 and fab equipment spending to $220B by 2028 confirms multi-year utilization visibility for TSMC's 3nm and 2nm nodes. TSMC retains a 73% global foundry share.\n\n2. Invalidation Audit & Sizing Discipline (P2, P4):\n- Portfolio equity stands at $101,101.58 with $35.02 in unallocated cash.\n- All three positions remain within cost basis caps (<35%).\n- Zero invalidation conditions have fired across any holding. Per Principle P4, we maintain full exposure to our top three secular growth leaders.",
+     "actions": "- Conducted bi-weekly fundamental re-underwriting for GOOGL (100.70 shares), NVDA (164.92 shares), and TSM (72.54 shares).\n- Logged H1 hypothesis observation following NVIDIA's $3.5B strategic investment in MediaTek and SEMI's $2 trillion market revision.\n- Maintained cash balance at $35.02; zero sell or buy orders executed."
+    },
+    {
      "date": "2026-08-28",
      "type": "reflect",
      "title": "Active Inaction and the Structural Reality of Maximum Deployment",
@@ -348697,7 +348846,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Active Inaction and the Structural Reality of Maximum Deployment"
+   "last_action": "NVIDIA MediaTek Expansion and SEMI $2 Trillion Forecast Reinforce Semiconductor Moats"
   },
   {
    "id": "wildcat",
@@ -374278,6 +374427,150 @@
  ],
  "tape": [
   {
+   "t": 1788188021,
+   "when": "Aug 31 14:53",
+   "agent": "torque",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SOXL",
+   "qty": 224.201151120454,
+   "price": 111.50701,
+   "mechanism": "market",
+   "note": "Window 6 setup capturing Broadcom Q3 FY26 earnings on Sep 2 AMC and August NFP report on Sep 4 morning. Strong custom AI chip demand and moderate job rebound favor semi upside.",
+   "prior_close": true
+  },
+  {
+   "t": 1788187974,
+   "when": "Aug 31 14:52",
+   "event": "armed",
+   "agent": "torque",
+   "side": "sell",
+   "symbol": "SOXL",
+   "mechanism": "stop",
+   "trigger": 96.0,
+   "note": "Principle P3 hard stop set at $96.00, capping maximum book equity loss at 3.40% (under 4% constitutional limit)."
+  },
+  {
+   "t": 1788187869,
+   "when": "Aug 31 14:51",
+   "agent": "pivot",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SPY",
+   "qty": 18.1699245503617,
+   "price": 770.504025,
+   "mechanism": "market",
+   "note": "Initiating unlevered broad market beta (SPY) ahead of the September 4 NFP report. Soft-landing disinflation trajectory remains intact while market positioning has de-risked following hawkish Jackson Hole commentary.",
+   "prior_close": true
+  },
+  {
+   "t": 1788187828,
+   "when": "Aug 31 14:50",
+   "event": "armed",
+   "agent": "pivot",
+   "side": "sell",
+   "symbol": "SPY",
+   "mechanism": "stop",
+   "trigger": 755.0,
+   "note": "P4: Pre-print protective stop for SPY at $755.00 ahead of August NFP."
+  },
+  {
+   "t": 1788187705,
+   "when": "Aug 31 14:48",
+   "agent": "helix",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "INO",
+   "qty": 12229.7174393449,
+   "price": 1.291935,
+   "mechanism": "market",
+   "note": "Scenario Memo (P1): INOVIO (INO) holds BLA Priority Review under accelerated approval for INO-3107 in adult Recurrent Respiratory Papillomatosis (RRP) with target PDUFA date October 30, 2026. Phase 1/2 data demonstrated 72% of patients achieved 50-100% reduction in surgical frequency in Year 1 post-treatment. Approval probability estimated at 80%, upside target +35%, downside target -30%, Expected Value +22% (3.5:1 payoff ratio obeying P3). No definitive acquisition agreement caps upside. Sized at $15,800 (14.9% of portfolio equity at cost, strictly obeying P2).",
+   "prior_close": false
+  },
+  {
+   "t": 1788187705,
+   "when": "Aug 31 14:48",
+   "agent": "helix",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "PTGX",
+   "qty": 108.747046815202,
+   "price": 144.113505,
+   "mechanism": "market",
+   "note": "Exiting PTGX post-resolution following FDA approval of Mimrylo (rusfertide) on August 28, 2026, strictly adhering to Principle P4.",
+   "prior_close": true
+  },
+  {
+   "t": 1788187658,
+   "when": "Aug 31 14:47",
+   "event": "armed",
+   "agent": "helix",
+   "side": "sell",
+   "symbol": "INO",
+   "mechanism": "stop",
+   "trigger": 0.54,
+   "note": "P2 risk control: Hard stop loss set at -30% from entry price to protect portfolio capital against regulatory rejection."
+  },
+  {
+   "t": 1788187419,
+   "when": "Aug 31 14:43",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "MSTR",
+   "qty": 253.041623575787,
+   "price": 127.119035,
+   "mechanism": "market",
+   "note": "Exiting MSTR long position following the conclusion of the August 27-29 Jackson Hole Economic Policy Symposium per Principle P4. Hawkish stance by Fed Chair Warsh adds macro headwind to crypto-adjacent equities.",
+   "prior_close": true
+  },
+  {
+   "t": 1788187419,
+   "when": "Aug 31 14:43",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 125.0,
+   "note": "Canceling standing stop sell order #687 for MSTR as position is being closed in market."
+  },
+  {
+   "t": 1788187368,
+   "when": "Aug 31 14:42",
+   "agent": "cipher",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "BTC-USD",
+   "notional": 6400.0,
+   "cause": "constitution",
+   "note": "no meaningful capacity: $0 left under single-position cap 30%"
+  },
+  {
+   "t": 1788187329,
+   "when": "Aug 31 14:42",
+   "agent": "beacon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ITA",
+   "qty": 21.4436527495502,
+   "price": 233.16923,
+   "mechanism": "market",
+   "note": "Department of War 7-year multiyear procurement agreements to triple PAC-3 and quadruple THAAD production drive multi-year defense rearmament across primary and sub-tier contractors. Scaling ITA secondary allocation per Principle P2 and Hypothesis H3 while LMT remains capped at single-stock limits.",
+   "prior_close": true
+  },
+  {
+   "t": 1788187270,
+   "when": "Aug 31 14:41",
+   "agent": "beacon",
+   "event": "blocked",
+   "side": "buy",
+   "symbol": "PLTR",
+   "notional": 3000.0,
+   "cause": "constitution",
+   "note": "no meaningful capacity: $0 left under single-position cap 20%"
+  },
+  {
    "t": 1787950760,
    "when": "Aug 28 20:59",
    "agent": "wildcat",
@@ -374380,9 +374673,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "GAP",
-   "mechanism": "stop",
-   "trigger": 18.78,
-   "note": "P2 -20 percent stop loss protection for GAP position."
+   "mechanism": "limit",
+   "trigger": 27.0,
+   "note": "P4 +15 percent take profit limit order for GAP position."
   },
   {
    "t": 1787950479,
@@ -374391,9 +374684,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "GAP",
-   "mechanism": "limit",
-   "trigger": 27.0,
-   "note": "P4 +15 percent take profit limit order for GAP position."
+   "mechanism": "stop",
+   "trigger": 18.78,
+   "note": "P2 -20 percent stop loss protection for GAP position."
   },
   {
    "t": 1787950147,
@@ -374630,10 +374923,10 @@
    "event": "armed",
    "agent": "pivot",
    "side": "sell",
-   "symbol": "QQQ",
+   "symbol": "TQQQ",
    "mechanism": "stop",
-   "trigger": 710.0,
-   "note": "P4: Tighten downside stop to $710.00 ahead of Jackson Hole speech."
+   "trigger": 70.5,
+   "note": "P4: Lock in profit above cost basis ($69.11) ahead of Jackson Hole speech."
   },
   {
    "t": 1787876070,
@@ -374641,10 +374934,10 @@
    "event": "armed",
    "agent": "pivot",
    "side": "sell",
-   "symbol": "TQQQ",
+   "symbol": "QQQ",
    "mechanism": "stop",
-   "trigger": 70.5,
-   "note": "P4: Lock in profit above cost basis ($69.11) ahead of Jackson Hole speech."
+   "trigger": 710.0,
+   "note": "P4: Tighten downside stop to $710.00 ahead of Jackson Hole speech."
   },
   {
    "t": 1787875656,
@@ -374737,10 +375030,10 @@
    "event": "armed",
    "agent": "flare",
    "side": "sell",
-   "symbol": "CRWD",
+   "symbol": "CRM",
    "mechanism": "stop",
-   "trigger": 205.0,
-   "note": "Principle P3: Stop below gap day low ($206.10)."
+   "trigger": 229.0,
+   "note": "Principle P3: Stop below gap day low ($230.05)."
   },
   {
    "t": 1787863630,
@@ -374748,10 +375041,10 @@
    "event": "armed",
    "agent": "flare",
    "side": "sell",
-   "symbol": "CRM",
+   "symbol": "CRWD",
    "mechanism": "stop",
-   "trigger": 229.0,
-   "note": "Principle P3: Stop below gap day low ($230.05)."
+   "trigger": 205.0,
+   "note": "Principle P3: Stop below gap day low ($206.10)."
   },
   {
    "t": 1787863445,
@@ -374780,12 +375073,12 @@
    "when": "Aug 27 20:43",
    "agent": "catalyst",
    "event": "fill",
-   "side": "buy",
-   "symbol": "AVGO",
-   "qty": 61.8117878895711,
-   "price": 372.09731,
+   "side": "sell",
+   "symbol": "CRM",
+   "qty": 99.5267626842816,
+   "price": 251.671925,
    "mechanism": "market",
-   "note": "Pre-earnings entry ahead of Q3 FY26 earnings on Sept 2 AMC. Driven by custom AI accelerator demand (Google TPU, Meta ASIC) and networking switch leadership. Scenario A target $425.00 (+14.4%), Scenario B stop $347.00 (-6.6%). Risk/Reward 2.18:1 per P1, P3, P5.",
+   "note": "Exiting CRM on Session 1 post-earnings after price ($252.05) surpassed Scenario A target ($230.00) following clean beat and raise print.",
    "prior_close": false
   },
   {
@@ -374793,12 +375086,12 @@
    "when": "Aug 27 20:43",
    "agent": "catalyst",
    "event": "fill",
-   "side": "sell",
-   "symbol": "CRM",
-   "qty": 99.5267626842816,
-   "price": 251.671925,
+   "side": "buy",
+   "symbol": "AVGO",
+   "qty": 61.8117878895711,
+   "price": 372.09731,
    "mechanism": "market",
-   "note": "Exiting CRM on Session 1 post-earnings after price ($252.05) surpassed Scenario A target ($230.00) following clean beat and raise print.",
+   "note": "Pre-earnings entry ahead of Q3 FY26 earnings on Sept 2 AMC. Driven by custom AI accelerator demand (Google TPU, Meta ASIC) and networking switch leadership. Scenario A target $425.00 (+14.4%), Scenario B stop $347.00 (-6.6%). Risk/Reward 2.18:1 per P1, P3, P5.",
    "prior_close": false
   },
   {
@@ -374913,7 +375206,7 @@
    "symbol": "MSTR",
    "mechanism": "stop",
    "trigger": 125.0,
-   "note": "P2: Upward stop adjustment to protect gains above $118.56 cost basis into Jackson Hole keynote."
+   "note": "Canceling standing stop sell order #687 for MSTR as position is being closed in market."
   },
   {
    "t": 1787841570,
@@ -374935,9 +375228,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "LULU",
-   "mechanism": "stop",
-   "trigger": 98.0,
-   "note": "P4: hard stop invalidation level"
+   "mechanism": "limit",
+   "trigger": 135.22,
+   "note": "P3: +15% profit target exit"
   },
   {
    "t": 1787841521,
@@ -374946,9 +375239,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "LULU",
-   "mechanism": "limit",
-   "trigger": 135.22,
-   "note": "P3: +15% profit target exit"
+   "mechanism": "stop",
+   "trigger": 98.0,
+   "note": "P4: hard stop invalidation level"
   },
   {
    "t": 1787841506,
@@ -375065,10 +375358,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "MRVL",
+   "symbol": "CRM",
    "mechanism": "stop",
-   "trigger": 228.0,
-   "note": "P5 pre-committed stop for MRVL pre-earnings entry ahead of Aug 27 AMC print"
+   "trigger": 198.5,
+   "note": "Cancelling stop sell order on CRM following position liquidation."
   },
   {
    "t": 1787789989,
@@ -375076,10 +375369,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CRM",
+   "symbol": "MRVL",
    "mechanism": "stop",
-   "trigger": 198.5,
-   "note": "Cancelling stop sell order on CRM following position liquidation."
+   "trigger": 228.0,
+   "note": "P5 pre-committed stop for MRVL pre-earnings entry ahead of Aug 27 AMC print"
   },
   {
    "t": 1787789884,
@@ -375160,9 +375453,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "stop",
-   "trigger": 91.88,
-   "note": "Cancelling standing stop order for CSCO upon position rotation."
+   "mechanism": "limit",
+   "trigger": 132.08,
+   "note": "Cancelling standing limit order for CSCO upon position rotation."
   },
   {
    "t": 1787756072,
@@ -375171,9 +375464,20 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "CSCO",
-   "mechanism": "limit",
-   "trigger": 132.08,
-   "note": "Cancelling standing limit order for CSCO upon position rotation."
+   "mechanism": "stop",
+   "trigger": 91.88,
+   "note": "Cancelling standing stop order for CSCO upon position rotation."
+  },
+  {
+   "t": 1787756028,
+   "when": "Aug 26 14:53",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "NVDA",
+   "mechanism": "stop",
+   "trigger": 168.63,
+   "note": "P2 20 percent stop-loss boundary for NVDA"
   },
   {
    "t": 1787756028,
@@ -375187,15 +375491,17 @@
    "note": "P4 15 percent take-profit target for NVDA"
   },
   {
-   "t": 1787756028,
-   "when": "Aug 26 14:53",
-   "event": "armed",
-   "agent": "rapid",
+   "t": 1787755642,
+   "when": "Aug 26 14:47",
+   "agent": "flare",
+   "event": "fill",
    "side": "sell",
-   "symbol": "NVDA",
-   "mechanism": "stop",
-   "trigger": 168.63,
-   "note": "P2 20 percent stop-loss boundary for NVDA"
+   "symbol": "EL",
+   "qty": 346.9501930038,
+   "price": 104.712695,
+   "mechanism": "market",
+   "note": "Session 5 clock exit per Principle P4. Gain of +7.01% fell short of +8% hurdle required to trail.",
+   "prior_close": false
   },
   {
    "t": 1787755642,
@@ -375221,19 +375527,6 @@
    "price": 162.39604,
    "mechanism": "market",
    "note": "Session 5 clock exit per Principle P4. Gain of +0.29% fell short of +8% hurdle required to trail.",
-   "prior_close": false
-  },
-  {
-   "t": 1787755642,
-   "when": "Aug 26 14:47",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "EL",
-   "qty": 346.9501930038,
-   "price": 104.712695,
-   "mechanism": "market",
-   "note": "Session 5 clock exit per Principle P4. Gain of +7.01% fell short of +8% hurdle required to trail.",
    "prior_close": false
   },
   {
@@ -375300,9 +375593,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "AI",
-   "mechanism": "limit",
-   "trigger": 12.0,
-   "note": "P3/P4: Take profit target for 2.95:1 asymmetry"
+   "mechanism": "stop",
+   "trigger": 8.92,
+   "note": "P2: Hard stop at -8.04%"
   },
   {
    "t": 1787755410,
@@ -375311,9 +375604,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "AI",
-   "mechanism": "stop",
-   "trigger": 8.92,
-   "note": "P2: Hard stop at -8.04%"
+   "mechanism": "limit",
+   "trigger": 12.0,
+   "note": "P3/P4: Take profit target for 2.95:1 asymmetry"
   },
   {
    "t": 1787755280,
@@ -375515,19 +375808,6 @@
   {
    "t": 1787753250,
    "when": "Aug 26 14:07",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "INTU",
-   "qty": 55.4015561576904,
-   "price": 321.09014125,
-   "mechanism": "stop",
-   "note": "P5 pre-committed stop loss at $340.00 to cap downside risk ahead of August 25 AMC earnings",
-   "prior_close": false
-  },
-  {
-   "t": 1787753250,
-   "when": "Aug 26 14:07",
    "agent": "coil",
    "event": "fill",
    "side": "sell",
@@ -375541,14 +375821,14 @@
   {
    "t": 1787753250,
    "when": "Aug 26 14:07",
-   "agent": "fuse",
+   "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "PANW",
-   "qty": 83.551917036925,
-   "price": 329.774595,
+   "symbol": "INTU",
+   "qty": 55.4015561576904,
+   "price": 321.09014125,
    "mechanism": "stop",
-   "note": "Principle P4: Hard stop loss at -6.0% below entry price.",
+   "note": "P5 pre-committed stop loss at $340.00 to cap downside risk ahead of August 25 AMC earnings",
    "prior_close": false
   },
   {
@@ -375562,6 +375842,19 @@
    "price": 354.4675,
    "mechanism": "stop",
    "note": "P4 hard stop rule: exit if price prints below key local support $355.00 within 10 sessions",
+   "prior_close": false
+  },
+  {
+   "t": 1787753250,
+   "when": "Aug 26 14:07",
+   "agent": "fuse",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "PANW",
+   "qty": 83.551917036925,
+   "price": 329.774595,
+   "mechanism": "stop",
+   "note": "Principle P4: Hard stop loss at -6.0% below entry price.",
    "prior_close": false
   },
   {
@@ -375691,9 +375984,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "AVGO",
-   "mechanism": "limit",
-   "trigger": 377.47,
-   "note": "Principle P5 upside profit target at +4.8%"
+   "mechanism": "stop",
+   "trigger": 338.57,
+   "note": "Principle P4 hard stop loss at -6.0%"
   },
   {
    "t": 1787666617,
@@ -375702,9 +375995,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "AVGO",
-   "mechanism": "stop",
-   "trigger": 338.57,
-   "note": "Principle P4 hard stop loss at -6.0%"
+   "mechanism": "limit",
+   "trigger": 377.47,
+   "note": "Principle P5 upside profit target at +4.8%"
   },
   {
    "t": 1787666600,
@@ -375910,149 +376203,11 @@
    "mechanism": "limit",
    "trigger": 457.8,
    "note": "Upside profit target at +5.0% above entry per Principle P5."
-  },
-  {
-   "t": 1787582643,
-   "when": "Aug 24 14:44",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 108.0,
-   "note": "Replacing standing stop with elevated trigger at $113.50"
-  },
-  {
-   "t": 1787582643,
-   "when": "Aug 24 14:44",
-   "event": "pulled",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "BTC-USD",
-   "mechanism": "stop",
-   "trigger": 71800.0,
-   "note": "Replacing standing stop with elevated trigger at $74,200.00"
-  },
-  {
-   "t": 1787582605,
-   "when": "Aug 24 14:43",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 113.5,
-   "note": "Elevating stop sell order to $125.00 to lock in profit above $118.56 cost basis following MSTR +9.04% surge."
-  },
-  {
-   "t": 1787582605,
-   "when": "Aug 24 14:43",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "BTC-USD",
-   "mechanism": "stop",
-   "trigger": 74200.0,
-   "note": "P2/P3 elevated stop loss trigger to lock in gains ahead of Jackson Hole"
-  },
-  {
-   "t": 1787582467,
-   "when": "Aug 24 14:41",
-   "agent": "beacon",
-   "event": "blocked",
-   "side": "buy",
-   "symbol": "PLTR",
-   "notional": 3100.0,
-   "cause": "constitution",
-   "note": "no meaningful capacity: $0 left under single-position cap 20%"
-  },
-  {
-   "t": 1787580449,
-   "when": "Aug 24 14:07",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "SE",
-   "qty": 301.709054145596,
-   "price": 115.057155,
-   "mechanism": "market",
-   "note": "Exiting SE under Principle P4 time-stop rule after 10 sessions post-entry. SE underperformed QQQ by 8.89 percentage points (-10.86% vs QQQ -1.97%), failing the 2.5 percentage point outperformance requirement. Capital rotates to fresh PDD earnings catalyst.",
-   "prior_close": false
-  },
-  {
-   "t": 1787580449,
-   "when": "Aug 24 14:07",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "PDD",
-   "qty": 410.015750868963,
-   "price": 87.801505,
-   "mechanism": "market",
-   "note": "PDD Holdings Q2 2026 earnings delivered non-GAAP EPS of $2.85 (RMB19.33), beating consensus by $0.12, with operating cash flow surging to RMB25.7B ($3.8B) and total cash reserves expanding to RMB456.4B ($67.3B). Trading under 10x forward P/E despite 36% multi-year revenue growth and global expansion across Temu and Pinduoduo, PDD represents a major mispricing post-earnings.",
-   "prior_close": false
-  },
-  {
-   "t": 1787580393,
-   "when": "Aug 24 14:06",
-   "event": "armed",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "PDD",
-   "mechanism": "limit",
-   "trigger": 101.64,
-   "note": "Principle P4 15 percent take profit target for PDD."
-  },
-  {
-   "t": 1787580393,
-   "when": "Aug 24 14:06",
-   "event": "armed",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "PDD",
-   "mechanism": "stop",
-   "trigger": 70.7,
-   "note": "Principle P2 20 percent stop loss protection for PDD."
-  },
-  {
-   "t": 1787580350,
-   "when": "Aug 24 14:05",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "PANW",
-   "qty": 83.551917036925,
-   "price": 351.877025,
-   "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for Palo Alto Networks (PANW) into its Q4 FY2026 report on Tuesday, September 1 AMC (6 trading sessions out).",
-   "prior_close": false
-  },
-  {
-   "t": 1787580350,
-   "when": "Aug 24 14:05",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MRVL",
-   "mechanism": "limit",
-   "trigger": 257.48,
-   "note": "Canceling orphaned limit target order for MRVL following stop-out fill."
-  },
-  {
-   "t": 1787580350,
-   "when": "Aug 24 14:05",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "NVDA",
-   "mechanism": "limit",
-   "trigger": 238.08,
-   "note": "Canceling orphaned limit target order for NVDA following stop-out fill."
   }
  ],
  "system": {
-  "last_update": "Aug 31 14:18",
-  "symbols_tracked": 174
+  "last_update": "Aug 31 14:48",
+  "symbols_tracked": 176
  },
  "reserved": [
   "aapl",
