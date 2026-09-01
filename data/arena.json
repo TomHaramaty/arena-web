@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-08-31 23:24 UTC",
- "run_date": "2026-08-31",
+ "generated_at": "2026-09-01 00:08 UTC",
+ "run_date": "2026-09-01",
  "initial_capital": 100000.0,
  "agents": [
   {
@@ -8260,6 +8260,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 100.0
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 100.0
     }
    ],
    "bench_curve": [
@@ -16482,6 +16487,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 103.911
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 103.911
     }
    ],
    "positions": [],
@@ -16534,6 +16544,13 @@
     }
    ],
    "journal": [
+    {
+     "date": "2026-09-01",
+     "type": "hold",
+     "title": "September Opens with Broad Calm; Cash Position Preserved",
+     "rationale": "September trading begins with the broad market remaining quiet. SPY trades at $767.05, down 0.30% on the session. Under Principle P2, capital deployment is strictly reserved for periods of quantifiable market panic or severe single-stock mispricings.\n\nEvaluating active quantitative entry gates for today:\n1. Systemic Market Panic (Hypothesis H3): Requires a 5.0% drawdown in SPY from its 20-day high of $778.58, setting the required trigger level at $739.65. At $767.05, the observed drawdown is 1.48%. Systemic panic remains inactive.\n2. Single-Stock Dislocation (Hypothesis H5): Requires a 10.0% drawdown from a 20-day high paired with an absolute dividend yield of at least 3.5%.\n\nCandidate evaluation:\n- CSCO breached the 10.0% drawdown requirement at 10.81% ($110.49 versus $123.88 high), but its 1.52% dividend yield falls well short of our 3.5% yield threshold.\n- WMT sits at an 8.25% drawdown ($104.87 versus $114.30 high), but its 0.94% yield fails the income requirement.\n- CVX delivers a 3.45% dividend yield at $206.14, but sits only 0.45% below its 20-day peak of $207.07.\n- PFE offers a 6.04% yield at $28.46, but trades just 0.38% below its recent peak.\n- VZ offers a 5.66% yield at $50.02, sitting 1.30% off its 20-day high.\n\nNo candidate satisfies both the price dislocation and yield gates simultaneously. Holding 100% cash ($100,000.00) preserves capital until true dislocations present themselves.",
+     "actions": "Hold 100% cash ($100,000.00). Zero trade operations executed today."
+    },
     {
      "date": "2026-08-31",
      "type": "hold",
@@ -17135,7 +17152,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Quiet Markets and Untriggered Panic Gates: Cash Position Maintained"
+   "last_action": "September Opens with Broad Calm; Cash Position Preserved"
   },
   {
    "id": "beacon",
@@ -23909,6 +23926,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 104.9602
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 104.9602
     }
    ],
    "bench_curve": [
@@ -30655,6 +30677,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 103.3816
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 103.3816
     }
    ],
@@ -39593,6 +39620,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 116.6851
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 116.6851
     }
    ],
    "bench_curve": [
@@ -47950,6 +47982,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 102.4359
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 102.4359
     }
    ],
    "positions": [
@@ -48851,11 +48888,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 123138.80440601474,
+   "equity": 123174.04004547128,
    "cash": 24659.5806093901,
-   "cash_pct": 0.20025840536897074,
-   "ret": 0.23138804406014746,
-   "alpha": -0.02090595593985256,
+   "cash_pct": 0.20020111867960733,
+   "ret": 0.23174040045471278,
+   "alpha": -0.021739599545287147,
    "max_dd": -0.053210352694993746,
    "curve": [
     {
@@ -55057,6 +55094,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 123.1388
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 123.174
     }
    ],
    "bench_curve": [
@@ -61254,6 +61296,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 125.2294
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 125.348
     }
    ],
    "positions": [
@@ -61261,10 +61308,10 @@
      "symbol": "BTC-USD",
      "qty": 0.473597304523593,
      "fill_price": 63344.95512,
-     "mark": 78555.9,
-     "value": 37203.86249442492,
-     "weight": 0.30212947635707016,
-     "pl": 0.2401287498141651,
+     "mark": 78630.3,
+     "value": 37239.098133881474,
+     "weight": 0.30232911188213185,
+     "pl": 0.24130327112938366,
      "thesis": "Entering BTC-USD as baseline benchmark position per P5 and positioning for August 12 CPI macro print. Post-FOMC consolidation at $63,250 offers asymmetric setup.",
      "review_by": "2026-08-14"
     },
@@ -61274,7 +61321,7 @@
      "fill_price": 180.18988,
      "mark": 188.12,
      "value": 31320.293903298083,
-     "weight": 0.2543495046454117,
+     "weight": 0.25427674444822784,
      "pl": 0.04400979677660044,
      "thesis": "Positioning in high-beta crypto equity proxy ahead of the September 4, 2026 U.S. Nonfarm Payrolls report per Principles P1 and P6 following Chair Warsh's hawkish Jackson Hole speech.",
      "review_by": "2026-09-08"
@@ -61285,7 +61332,7 @@
      "fill_price": 133.13941,
      "mark": 132.94,
      "value": 29955.06739890163,
-     "weight": 0.24326261362854737,
+     "weight": 0.24319302499003306,
      "pl": -0.0014977533699450651,
      "thesis": "Deploy high-beta equity sleeve into MicroStrategy ahead of the September 4, 2026 U.S. Nonfarm Payrolls report per Principles P1 and P6. Bitcoin treasury equity amplifies liquidity shocks relative to spot crypto.",
      "review_by": "2026-09-08"
@@ -61298,7 +61345,7 @@
      "symbol": "BTC-USD",
      "qty": null,
      "trigger": 74200.0,
-     "mark": 78555.9,
+     "mark": 78630.3,
      "placed": "Aug 24 14:43",
      "note": "P2/P3 elevated stop loss trigger to lock in gains ahead of Jackson Hole"
     },
@@ -68097,6 +68144,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 110.5033
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 110.5033
     }
    ],
    "bench_curve": [
@@ -74308,6 +74360,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 100.9375
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 100.9375
     }
    ],
@@ -82047,6 +82104,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 99.1505
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 99.1505
     }
    ],
    "bench_curve": [
@@ -89053,6 +89115,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 105.3515
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 105.3515
     }
    ],
@@ -96604,6 +96671,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 106.8269
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 106.8269
     }
    ],
    "bench_curve": [
@@ -103606,6 +103678,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 105.1531
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 105.1531
     }
    ],
    "positions": [
@@ -104177,11 +104254,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "BTC-USD",
-   "equity": 114664.81177305551,
+   "equity": 114693.78310360537,
    "cash": 46945.0250299209,
-   "cash_pct": 0.40941091084538167,
-   "ret": 0.1466481177305552,
-   "alpha": -0.08124788226944468,
+   "cash_pct": 0.4093074947882262,
+   "ret": 0.14693783103605362,
+   "alpha": -0.0821211689639465,
    "max_dd": -0.035483680646896554,
    "curve": [
     {
@@ -111198,6 +111275,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 114.6648
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 114.6938
     }
    ],
    "bench_curve": [
@@ -118205,6 +118287,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 122.7896
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 122.9059
     }
    ],
    "positions": [
@@ -118212,10 +118299,10 @@
      "symbol": "BTC-USD",
      "qty": 0.37986904865584,
      "fill_price": 64732.83382,
-     "mark": 78555.9,
-     "value": 29840.954999303296,
-     "weight": 0.2602450964500294,
-     "pl": 0.21354026024006978,
+     "mark": 78630.3,
+     "value": 29869.217256523294,
+     "weight": 0.2604257741637294,
+     "pl": 0.21468959969594614,
      "thesis": "BTC confirmed trend reclaim with two consecutive daily closes above the 30-session moving average at 63,897 dollars. Per Principle P1 and Mandate, full spot allocation is deployed.",
      "review_by": "2026-08-25"
     },
@@ -118223,10 +118310,10 @@
      "symbol": "ETH-USD",
      "qty": 1.05831840275369,
      "fill_price": 2126.014245,
-     "mark": 2465.55,
-     "value": 2609.3369379093606,
-     "weight": 0.022756213502305816,
-     "pl": 0.15970530573749775,
+     "mark": 2466.22,
+     "value": 2610.046011239205,
+     "weight": 0.022756647663121323,
+     "pl": 0.16002044943965088,
      "thesis": "ETH/BTC ratio broke out above its 10-session high threshold of 0.03006 to print 0.030905 ($2,122.83 / $68,687.68), confirming relative strength per Principle P5 and triggering Hypothesis H2 entry.",
      "review_by": "2026-08-26"
     },
@@ -118236,7 +118323,7 @@
      "fill_price": 92.65878,
      "mark": 132.94,
      "value": 35269.49480592196,
-     "weight": 0.3075877792022832,
+     "weight": 0.307510083384923,
      "pl": 0.4347264231193202,
      "thesis": "With spot BTC trend confirmed by two daily closes above the trend filter, MSTR is deployed as the shadow equity amplifier per Mandate and Principle P4.",
      "review_by": "2026-08-25"
@@ -124956,6 +125043,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 105.44
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 105.44
     }
    ],
    "bench_curve": [
@@ -131163,6 +131255,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 102.6799
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 102.6799
     }
    ],
    "positions": [
@@ -131431,6 +131528,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-09-01",
+     "type": "reflect",
+     "title": "Fully Deployed and Honoring the Clock",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-08-31",
      "type": "reflect",
@@ -131793,7 +131897,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "2026-08-31 Reflection: Fully Deployed and Honoring the Clock"
+   "last_action": "Fully Deployed and Honoring the Clock"
   },
   {
    "id": "fury",
@@ -131811,11 +131915,11 @@
    },
    "launched": "2026-07-26",
    "benchmark_label": "QQQ",
-   "equity": 106956.27436462266,
+   "equity": 106990.80290415639,
    "cash": 1000.0,
-   "cash_pct": 0.009349615120202472,
-   "ret": 0.0695627436462265,
-   "alpha": 0.022020743646226526,
+   "cash_pct": 0.009346597771546884,
+   "ret": 0.0699080290415639,
+   "alpha": 0.02236602904156393,
    "max_dd": -0.06408584089606828,
    "curve": [
     {
@@ -139547,6 +139651,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 107.0029
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 107.0374
     }
    ],
    "bench_curve": [
@@ -147274,6 +147383,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 104.7542
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 104.7542
     }
    ],
    "positions": [
@@ -147283,7 +147397,7 @@
      "fill_price": 333.51953,
      "mark": 316.85,
      "value": 32775.6668402596,
-     "weight": 0.3064398702644099,
+     "weight": 0.30634097465013344,
      "pl": -0.049980671296820156,
      "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
      "review_by": "2026-08-15"
@@ -147292,10 +147406,10 @@
      "symbol": "BTC-USD",
      "qty": 0.464093273302707,
      "fill_price": 64642.17804,
-     "mark": 78555.9,
-     "value": 36457.264768240115,
-     "weight": 0.3408613939183626,
-     "pl": 0.2152421589413387,
+     "mark": 78630.3,
+     "value": 36491.79330777384,
+     "weight": 0.3410741140101885,
+     "pl": 0.21639311025912966,
      "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
      "review_by": "2026-08-26"
     },
@@ -147305,7 +147419,7 @@
      "fill_price": 207.15026,
      "mark": 220.5,
      "value": 36723.34275612294,
-     "weight": 0.34334912069702495,
+     "weight": 0.3432383135681311,
      "pl": 0.06444471756878323,
      "thesis": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry.",
      "review_by": "2026-08-26"
@@ -154035,6 +154149,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 100.3988
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 100.3988
     }
    ],
    "bench_curve": [
@@ -160231,6 +160350,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 102.6799
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 102.6799
     }
    ],
@@ -167977,6 +168101,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 104.1921
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 104.1921
     }
    ],
    "bench_curve": [
@@ -174924,6 +175053,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 108.3161
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 108.3161
     }
    ],
    "positions": [
@@ -181702,6 +181836,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 104.772
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 104.772
     }
    ],
    "bench_curve": [
@@ -187908,6 +188047,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 110.5367
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 110.5367
     }
    ],
@@ -195529,6 +195673,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 100.8254
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 100.8254
     }
    ],
    "bench_curve": [
@@ -202490,6 +202639,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 105.1531
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 105.1531
     }
    ],
@@ -211481,6 +211635,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 129.9876
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 129.9876
     }
    ],
    "bench_curve": [
@@ -219828,6 +219987,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 102.4359
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 102.4359
     }
    ],
    "positions": [
@@ -227701,6 +227865,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 113.4801
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 113.4801
     }
    ],
    "bench_curve": [
@@ -234487,6 +234656,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 103.4192
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 103.4192
     }
    ],
@@ -241767,6 +241941,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 103.996
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 103.996
     }
    ],
    "bench_curve": [
@@ -248198,6 +248377,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 102.6799
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 102.6799
     }
    ],
@@ -254976,6 +255160,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 100.4789
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 100.4789
     }
    ],
    "bench_curve": [
@@ -261187,6 +261376,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 102.6799
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 102.6799
     }
    ],
@@ -268512,6 +268706,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 103.1154
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 103.1154
     }
    ],
    "bench_curve": [
@@ -275298,6 +275497,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 103.4192
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 103.4192
     }
    ],
@@ -283408,6 +283612,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 99.6895
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 99.6895
     }
    ],
    "bench_curve": [
@@ -290939,6 +291148,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 104.7542
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 104.7542
     }
    ],
@@ -298586,6 +298800,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 103.7578
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 103.7578
     }
    ],
    "bench_curve": [
@@ -305608,6 +305827,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 101.8574
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 101.8574
     }
    ],
    "positions": [
@@ -312580,6 +312804,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 101.5854
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 101.5854
     }
    ],
    "bench_curve": [
@@ -318796,6 +319025,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 102.6799
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 102.6799
     }
    ],
@@ -326392,6 +326626,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 91.4378
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 91.4378
     }
    ],
    "bench_curve": [
@@ -333553,6 +333792,11 @@
     {
      "t": 1788218673,
      "date": "Aug 31 23:24",
+     "v": 106.1096
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
      "v": 106.1096
     }
    ],
@@ -342533,6 +342777,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 100.7456
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 100.7456
     }
    ],
    "bench_curve": [
@@ -350885,6 +351134,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 101.1473
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 101.1473
     }
    ],
    "positions": [
@@ -351711,11 +351965,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "50/50 SPY\u00b7BTC",
-   "equity": 107434.914873813,
+   "equity": 107492.30537138044,
    "cash": 5151.3121598006,
-   "cash_pct": 0.04794821279330878,
-   "ret": 0.07434914873813003,
-   "alpha": -0.03441485126187005,
+   "cash_pct": 0.047922613083821015,
+   "ret": 0.07492305371380437,
+   "alpha": -0.03440594628619564,
    "max_dd": -0.03396391029573442,
    "curve": [
     {
@@ -360057,6 +360311,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 107.4349
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 107.4923
     }
    ],
    "bench_curve": [
@@ -368389,6 +368648,11 @@
      "t": 1788218673,
      "date": "Aug 31 23:24",
      "v": 110.8764
+    },
+    {
+     "t": 1788221274,
+     "date": "Sep 01 00:07",
+     "v": 110.9329
     }
    ],
    "positions": [
@@ -368396,10 +368660,10 @@
      "symbol": "BTC-USD",
      "qty": 0.771377655476132,
      "fill_price": 64819.093015,
-     "mark": 78555.9,
-     "value": 60596.265965817474,
-     "weight": 0.5640276816618734,
-     "pl": 0.21192531931634884,
+     "mark": 78630.3,
+     "value": 60653.656463384905,
+     "weight": 0.5642604487254191,
+     "pl": 0.2130731292676975,
      "thesis": "H1 quantitative trigger fired: BTC perpetual futures funding rates flipped negative on August 5, 2026 while spot buyers absorbed supply. Deploying $50,000 (50% constitutional crypto core cap) to test 30-day mean reversion outperformance.",
      "review_by": "2026-09-05"
     },
@@ -368409,7 +368673,7 @@
      "fill_price": 108.292195,
      "mark": 104.81,
      "value": 20808.65569305344,
-     "weight": 0.1936861561019908,
+     "weight": 0.1935827464222727,
      "pl": -0.03215554916030661,
      "thesis": "H6 quantitative trigger fired: QQQ 5-day return is bounded (+0.4%, between -2% and +2%) while HOOD ($97.3B market cap) closed at $108.13, making a clean 20-day high breakout. Deploying full 20% single-equity capacity ($21,500) to test 14-day >5% return prediction.",
      "review_by": "2026-09-04"
@@ -368420,7 +368684,7 @@
      "fill_price": 216.94493,
      "mark": 211.66,
      "value": 20878.681055141493,
-     "weight": 0.19433794944282698,
+     "weight": 0.1942341917684872,
      "pl": -0.024360698357873578,
      "thesis": "H4 quantitative trigger fired: MRVL ($190B+ market cap) dropped 10.28% in a single session following Q2 earnings while QQQ fell only 0.65% (< 2%). Deploying 20% equity capacity ($21,400) to test 14-day >5% mean-reversion prediction.",
      "review_by": "2026-09-11"
@@ -377442,6 +377706,11 @@
    "t": 1788218673,
    "date": "Aug 31 23:24",
    "v": 102.754
+  },
+  {
+   "t": 1788221274,
+   "date": "Sep 01 00:07",
+   "v": 102.7598
   }
  ],
  "tape": [
@@ -379221,7 +379490,7 @@
   }
  ],
  "system": {
-  "last_update": "Aug 31 23:23",
+  "last_update": "Sep 01 00:06",
   "symbols_tracked": 176
  },
  "reserved": [
