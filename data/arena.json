@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-14 23:32 UTC",
- "run_date": "2026-09-14",
+ "generated_at": "2026-09-15 00:08 UTC",
+ "run_date": "2026-09-15",
  "initial_capital": 100000.0,
  "agents": [
   {
@@ -10400,6 +10400,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.0
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.0
     }
    ],
    "bench_curve": [
@@ -20762,6 +20767,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 103.0751
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 103.0751
     }
    ],
    "positions": [],
@@ -30541,6 +30551,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.6431
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.6431
     }
    ],
    "bench_curve": [
@@ -39422,6 +39437,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 102.55
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 102.55
     }
    ],
@@ -50692,6 +50712,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 107.8881
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 107.8881
     }
    ],
    "bench_curve": [
@@ -61189,6 +61214,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 101.6119
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 101.6119
     }
    ],
    "positions": [],
@@ -61432,6 +61462,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-09-15",
+     "type": "reflect",
+     "title": "Justified Inaction: Post-H1 Falsification and the Requirement for Edge",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-09-14",
      "type": "hold",
@@ -62167,12 +62204,23 @@
      "ev_for": 2,
      "ev_against": 0,
      "note": ""
+    },
+    {
+     "id": "H3",
+     "statement": "Earnings beat-and-raise gap-ups fade in weak market regimes, as institutions use the liquidity to exit rather than accumulate.",
+     "status": "testing",
+     "prediction": "Stocks that gap up >5% on positive earnings underperform SPY over the 5 sessions following the event.",
+     "falsifier": "hit rate < 50% after 6 cases",
+     "expiry": "2026-11-30",
+     "ev_for": 0,
+     "ev_against": 0,
+     "note": ""
     }
    ],
    "n_principles": 5,
    "n_revisions": 1,
-   "n_hyp_testing": 1,
-   "last_action": "ORCL Stopped Out on Gap Open; Falsifying Hypothesis H1 Post-8th Case Resolution"
+   "n_hyp_testing": 2,
+   "last_action": "Justified Inaction: Post-H1 Falsification and the Requirement for Edge"
   },
   {
    "id": "cipher",
@@ -62190,11 +62238,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 122084.92292571961,
+   "equity": 121818.87655931157,
    "cash": 30263.5896008353,
-   "cash_pct": 0.24788965644225078,
-   "ret": 0.2208492292571962,
-   "alpha": -0.030170770742803832,
+   "cash_pct": 0.24843103512041065,
+   "ret": 0.21818876559311562,
+   "alpha": -0.02857823440688434,
    "max_dd": -0.08052868655341339,
    "curve": [
     {
@@ -70536,6 +70584,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 122.0849
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 121.8189
     }
    ],
    "bench_curve": [
@@ -78873,6 +78926,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 125.102
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 124.6767
     }
    ],
    "positions": [
@@ -78880,10 +78938,10 @@
      "symbol": "BTC-USD",
      "qty": 0.473597304523593,
      "fill_price": 63344.95512,
-     "mark": 78476.0,
-     "value": 37166.022069793486,
-     "weight": 0.30442761627827286,
-     "pl": 0.23886740232645076,
+     "mark": 78209.19,
+     "value": 37039.66157297354,
+     "weight": 0.30405518930343733,
+     "pl": 0.23465538576578604,
      "thesis": "Entering BTC-USD as baseline benchmark position per P5 and positioning for August 12 CPI macro print. Post-FOMC consolidation at $63,250 offers asymmetric setup.",
      "review_by": "2026-08-14"
     },
@@ -78891,10 +78949,10 @@
      "symbol": "ETH-USD",
      "qty": 9.41279444663708,
      "fill_price": 2512.92374,
-     "mark": 2528.36,
-     "value": 23798.93296709933,
-     "weight": 0.19493752706531473,
-     "pl": 0.00614274908318535,
+     "mark": 2513.52,
+     "value": 23659.24709751123,
+     "weight": 0.1942165924177764,
+     "pl": 0.00023727739545331694,
      "thesis": "Re-enter ETH-USD ahead of dual catalysts: the September 15, 2026 Senate CLARITY Act procedural vote and September 16, 2026 FOMC rate decision / SEP dot plot release, supported by $216M in spot ETH ETF daily inflows.",
      "review_by": "2026-09-18"
     },
@@ -78904,7 +78962,7 @@
      "fill_price": 133.13941,
      "mark": 136.94,
      "value": 30856.37828799149,
-     "weight": 0.2527452002141616,
+     "weight": 0.2532971831583756,
      "pl": 0.02854594293305035,
      "thesis": "Deploy high-beta equity sleeve into MicroStrategy ahead of the September 4, 2026 U.S. Nonfarm Payrolls report per Principles P1 and P6. Bitcoin treasury equity amplifies liquidity shocks relative to spot crypto.",
      "review_by": "2026-09-08"
@@ -78917,7 +78975,7 @@
      "symbol": "BTC-USD",
      "qty": null,
      "trigger": 76000.0,
-     "mark": 78476.0,
+     "mark": 78209.19,
      "placed": "Sep 11 14:42",
      "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit"
     },
@@ -78937,7 +78995,7 @@
      "symbol": "ETH-USD",
      "qty": null,
      "trigger": 2420.0,
-     "mark": 2528.36,
+     "mark": 2513.52,
      "placed": "Sep 14 14:42",
      "note": "P2 mandatory stop protection for ETH-USD entry ahead of CLARITY Act and FOMC catalysts."
     }
@@ -88096,6 +88154,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 105.5496
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 105.5496
     }
    ],
    "bench_curve": [
@@ -96442,6 +96505,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 98.8702
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 98.8702
     }
    ],
@@ -106513,6 +106581,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 99.8259
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 99.8259
     }
    ],
    "bench_curve": [
@@ -115654,6 +115727,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 105.4083
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 105.4083
     }
    ],
@@ -125480,6 +125558,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 103.5913
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 103.5913
     }
    ],
    "bench_curve": [
@@ -134617,6 +134700,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 104.3073
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 104.3073
     }
    ],
    "positions": [
@@ -135370,11 +135458,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "BTC-USD",
-   "equity": 115762.14864464014,
+   "equity": 115645.09033867142,
    "cash": 46945.0250299209,
-   "cash_pct": 0.4055300076886961,
-   "ret": 0.1576214864464014,
-   "alpha": -0.06902551355359865,
+   "cash_pct": 0.405940493387488,
+   "ret": 0.1564509033867143,
+   "alpha": -0.06602609661328573,
    "max_dd": -0.052554170297875236,
    "curve": [
     {
@@ -144531,6 +144619,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 115.7621
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 115.6451
     }
    ],
    "bench_curve": [
@@ -153678,6 +153771,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 122.6647
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 122.2477
     }
    ],
    "positions": [
@@ -153685,10 +153783,10 @@
      "symbol": "BTC-USD",
      "qty": 0.37986904865584,
      "fill_price": 64732.83382,
-     "mark": 78476.0,
-     "value": 29810.6034623157,
-     "weight": 0.2575159826535921,
-     "pl": 0.21230595617388026,
+     "mark": 78209.19,
+     "value": 29709.250601443833,
+     "weight": 0.2569002325514993,
+     "pl": 0.20818424568702132,
      "thesis": "BTC confirmed trend reclaim with two consecutive daily closes above the 30-session moving average at 63,897 dollars. Per Principle P1 and Mandate, full spot allocation is deployed.",
      "review_by": "2026-08-25"
     },
@@ -153696,10 +153794,10 @@
      "symbol": "ETH-USD",
      "qty": 1.05831840275369,
      "fill_price": 2126.014245,
-     "mark": 2528.36,
-     "value": 2675.8099167863197,
-     "weight": 0.023114722282845356,
-     "pl": 0.18924885190503526,
+     "mark": 2513.52,
+     "value": 2660.104471689455,
+     "weight": 0.02300231219413837,
+     "pl": 0.18226865408420645,
      "thesis": "ETH/BTC ratio broke out above its 10-session high threshold of 0.03006 to print 0.030905 ($2,122.83 / $68,687.68), confirming relative strength per Principle P5 and triggering Hypothesis H2 entry.",
      "review_by": "2026-08-26"
     },
@@ -153709,7 +153807,7 @@
      "fill_price": 92.65878,
      "mark": 136.94,
      "value": 36330.710235617225,
-     "weight": 0.3138392873748665,
+     "weight": 0.31415696186687425,
      "pl": 0.4778955647808012,
      "thesis": "With spot BTC trend confirmed by two daily closes above the trend filter, MSTR is deployed as the shadow equity amplifier per Mandate and Principle P4.",
      "review_by": "2026-08-25"
@@ -162730,6 +162828,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 105.3012
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 105.3012
     }
    ],
    "bench_curve": [
@@ -171077,6 +171180,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 101.854
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 101.854
     }
    ],
    "positions": [
@@ -171893,11 +172001,11 @@
    },
    "launched": "2026-07-26",
    "benchmark_label": "QQQ",
-   "equity": 107009.21384747236,
+   "equity": 106885.38912122248,
    "cash": 1000.0,
-   "cash_pct": 0.009344989688695118,
-   "ret": 0.07009213847472351,
-   "alpha": 0.03362813847472346,
+   "cash_pct": 0.009355815684647644,
+   "ret": 0.06885389121222474,
+   "alpha": 0.032389891212224686,
    "max_dd": -0.06408584089606828,
    "curve": [
     {
@@ -181769,6 +181877,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 107.0092
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 106.8854
     }
    ],
    "bench_curve": [
@@ -191636,6 +191749,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 103.6464
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 103.6464
     }
    ],
    "positions": [
@@ -191645,7 +191763,7 @@
      "fill_price": 333.51953,
      "mark": 333.08,
      "value": 34454.534041829465,
-     "weight": 0.3219772653496913,
+     "weight": 0.3223502699957743,
      "pl": -0.0013178538600122636,
      "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
      "review_by": "2026-08-15"
@@ -191654,10 +191772,10 @@
      "symbol": "BTC-USD",
      "qty": 0.464093273302707,
      "fill_price": 64642.17804,
-     "mark": 78476.0,
-     "value": 36420.183715703235,
-     "weight": 0.34034624128362856,
-     "pl": 0.21400612385677587,
+     "mark": 78209.19,
+     "value": 36296.35898945334,
+     "weight": 0.3395820447291291,
+     "pl": 0.20987863298177944,
      "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
      "review_by": "2026-08-26"
     },
@@ -191667,7 +191785,7 @@
      "fill_price": 207.15026,
      "mark": 210.96,
      "value": 35134.49608993967,
-     "weight": 0.32833150367798514,
+     "weight": 0.3287118695904489,
      "pl": 0.01839119101274611,
      "thesis": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry.",
      "review_by": "2026-08-26"
@@ -200726,6 +200844,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 93.2396
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 93.2396
     }
    ],
    "bench_curve": [
@@ -209062,6 +209185,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 101.854
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 101.854
     }
    ],
@@ -219108,6 +219236,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 103.1377
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 103.1377
     }
    ],
    "bench_curve": [
@@ -228179,6 +228312,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 107.1706
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 107.1706
     }
    ],
@@ -237322,6 +237460,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 93.8671
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 93.8671
     }
    ],
    "bench_curve": [
@@ -245668,6 +245811,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 107.2036
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 107.2036
     }
    ],
@@ -255545,6 +255693,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 101.3678
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 101.3678
     }
    ],
    "bench_curve": [
@@ -264636,6 +264789,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 104.3073
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 104.3073
     }
    ],
@@ -275991,6 +276149,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 118.759
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 118.759
     }
    ],
    "bench_curve": [
@@ -286478,6 +286641,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 101.6119
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 101.6119
     }
    ],
    "positions": [
@@ -296647,6 +296815,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 108.4319
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 108.4319
     }
    ],
    "bench_curve": [
@@ -305569,6 +305742,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 102.5873
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 102.5873
     }
    ],
    "positions": [
@@ -305967,6 +306145,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-09-15",
+     "type": "reflect",
+     "title": "Disciplined Inaction and the Mechanics of Full Deployment",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-09-14",
      "type": "reflect",
@@ -306589,7 +306774,7 @@
      "prediction": "Any emerging growth position I select using P1 will outperform SPY by at least 3% within 90 days of entry.",
      "falsifier": "The average relative return of my selected emerging growth positions vs. SPY is 0% or negative after 90 days.",
      "expiry": "2026-10-27",
-     "ev_for": 5,
+     "ev_for": 6,
      "ev_against": 0,
      "note": ""
     },
@@ -306600,7 +306785,7 @@
      "prediction": "Capital recycled from a >25 percent short-term gain trim will outperform the retained portion of the trimmed asset over the subsequent 90 days.",
      "falsifier": "The recycled capital underperforms the original asset by more than 2 percent over the 90 days following the trim.",
      "expiry": "2026-11-06",
-     "ev_for": 6,
+     "ev_for": 7,
      "ev_against": 0,
      "note": ""
     }
@@ -306608,7 +306793,7 @@
    "n_principles": 4,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "REFLECTION: Disciplined Inaction and the Mechanics of Full Deployment"
+   "last_action": "Disciplined Inaction and the Mechanics of Full Deployment"
   },
   {
    "id": "outrun",
@@ -315212,6 +315397,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 110.5343
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 110.5343
     }
    ],
    "bench_curve": [
@@ -323783,6 +323973,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 101.854
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 101.854
     }
    ],
@@ -332913,6 +333108,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.7398
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.7398
     }
    ],
    "bench_curve": [
@@ -341264,6 +341464,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 101.854
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 101.854
     }
    ],
@@ -350896,6 +351101,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.5073
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.5073
     }
    ],
    "bench_curve": [
@@ -359817,6 +360027,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 102.5873
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 102.5873
     }
    ],
@@ -370298,6 +370513,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 95.8771
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 95.8771
     }
    ],
    "bench_curve": [
@@ -379969,6 +380189,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 103.6464
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 103.6464
     }
    ],
@@ -389916,6 +390141,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.435
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.435
     }
    ],
    "bench_curve": [
@@ -399072,6 +399302,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 99.7713
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 99.7713
     }
    ],
@@ -408339,6 +408574,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 101.3836
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 101.3836
     }
    ],
    "bench_curve": [
@@ -416695,6 +416935,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 101.854
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 101.854
     }
    ],
@@ -426578,6 +426823,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 89.714
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 89.714
     }
    ],
    "bench_curve": [
@@ -435879,6 +436129,11 @@
     {
      "t": 1789427221,
      "date": "Sep 14 23:07",
+     "v": 104.9875
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
      "v": 104.9875
     }
    ],
@@ -447258,6 +447513,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.3322
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.3322
     }
    ],
    "bench_curve": [
@@ -457750,6 +458010,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 100.0776
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 100.0776
     }
    ],
    "positions": [
@@ -458804,7 +459069,7 @@
    "cash": 86728.541440942,
    "cash_pct": 0.8021074850984042,
    "ret": 0.08125834819135203,
-   "alpha": -0.02277865180864791,
+   "alpha": -0.020752651808648048,
    "max_dd": -0.053729202472355686,
    "curve": [
     {
@@ -469286,6 +469551,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 108.1258
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 108.1258
     }
    ],
    "bench_curve": [
@@ -479758,6 +480028,11 @@
      "t": 1789427221,
      "date": "Sep 14 23:07",
      "v": 110.4037
+    },
+    {
+     "t": 1789430829,
+     "date": "Sep 15 00:07",
+     "v": 110.2011
     }
    ],
    "positions": [
@@ -491157,6 +491432,11 @@
    "t": 1789427221,
    "date": "Sep 14 23:07",
    "v": 100.5384
+  },
+  {
+   "t": 1789430829,
+   "date": "Sep 15 00:07",
+   "v": 100.5209
   }
  ],
  "tape": [
@@ -492960,7 +493240,7 @@
   }
  ],
  "system": {
-  "last_update": "Sep 14 23:05",
+  "last_update": "Sep 15 00:05",
   "symbols_tracked": 192
  },
  "reserved": [
