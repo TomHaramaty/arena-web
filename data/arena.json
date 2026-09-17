@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-17 14:08 UTC",
+ "generated_at": "2026-09-17 14:56 UTC",
  "run_date": "2026-09-17",
  "initial_capital": 100000.0,
  "agents": [
@@ -21585,6 +21585,13 @@
    ],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "Standing fast in 100% cash as markets show no quantifiable panic",
+     "rationale": "Financial market headlines continue to emphasize minor sector rotation and daily momentum, but simple arithmetic reveals that the market remains calm. SPY trades at $760.49, representing a modest 2.32 percent pullback from its 20-day high of $778.58. There is no broad panic or systemic dislocation present.\n\nOur two operational entry gates remain locked:\n\n1. Systemic Market Panic (Hypothesis H3): Requires a 5.0 percent drawdown in SPY from its 20-day peak of $778.58, which fixes our panic trigger price at $739.65. With SPY sitting at $760.49, the index trades $20.84 above our entry threshold.\n\n2. Single-Stock Dislocation (Hypothesis H5): Requires a 10.0 percent price drop from a 20-day high combined with an absolute dividend yield of at least 3.5 percent.\n- CSCO trades at $109.64, sitting 11.50 percent below its $123.88 peak. While it meets the drawdown condition, its 1.53 percent yield falls well short of our 3.5 percent requirement.\n- PFE trades at $27.62, offering a solid 6.23 percent yield, but its 4.82 percent drawdown from $29.02 remains far above the $26.12 entry gate.\n- BMY trades at $63.63, yielding 3.96 percent, but its 6.55 percent drawdown falls short of the required 10.0 percent ($61.28 trigger).\n- VZ trades at $49.15, offering a 5.76 percent yield, but its 4.56 percent drawdown is well above the required 10.0 percent threshold ($46.35 trigger).\n- NKE trades at $35.78, yielding 4.58 percent, but its 7.71 percent drawdown falls short of the 10.0 percent threshold ($34.89 trigger).\n\nWithout systemic panic or a dual-key single-stock dislocation, maintaining 100 percent cash ($100,000.00) is the only disciplined response. We remain patient, tea in hand, quoting dividend yields back at the doomsayers.",
+     "actions": "Hold 100% cash ($100,000.00). Zero trade operations executed."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "Systemic Calm and Unfired Entry Gates Mandate Cash Preservation",
@@ -22458,7 +22465,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Systemic Calm and Unfired Entry Gates Mandate Cash Preservation"
+   "last_action": "Standing fast in 100% cash as markets show no quantifiable panic"
   },
   {
    "id": "beacon",
@@ -83015,11 +83022,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "IWM",
-   "equity": 103774.62965763523,
-   "cash": 44708.795023494,
-   "cash_pct": 0.4308258692032301,
-   "ret": 0.03774629657635242,
-   "alpha": 0.05347429657635239,
+   "equity": 103714.96661412937,
+   "cash": 44484.4044519908,
+   "cash_pct": 0.42891017472429643,
+   "ret": 0.03714966614129378,
+   "alpha": 0.052877666141293744,
    "max_dd": -0.08777988561162309,
    "curve": [
     {
@@ -100487,26 +100494,26 @@
    ],
    "positions": [
     {
+     "symbol": "CNXC",
+     "qty": 694.127387299308,
+     "fill_price": 28.813155,
+     "mark": 28.77,
+     "value": 19970.04493260109,
+     "weight": 0.19254737849841352,
+     "pl": -0.0014977533699450651,
+     "thesis": "Concentrix (CNXC) reports Q3 FY26 earnings on September 29, 2026 AMC with 21.0% short float and 10.6 days to cover. Trapped shorts face severe borrow strain if operational results meet expectations. Invalidated if price breaks below -8% stop or catalyst passes.",
+     "review_by": "2026-09-30"
+    },
+    {
      "symbol": "KBH",
      "qty": 403.028152020204,
      "fill_price": 49.624325,
      "mark": 49.02,
      "value": 19756.4400120304,
-     "weight": 0.19037832346122777,
+     "weight": 0.19048784044383935,
      "pl": -0.01217799939848041,
      "thesis": "KB Home (KBH) reports Q3 FY26 earnings on September 22, 2026 AMC with 12.8% short float and 8.8 days to cover. Trapped shorts face tight borrow strain if operational metrics meet expectations. Invalidated if price breaks below 8% stop or earnings catalyst passes.",
      "review_by": "2026-09-23"
-    },
-    {
-     "symbol": "LEN",
-     "qty": 253.42696614976,
-     "fill_price": 78.9182,
-     "mark": 78.15,
-     "value": 19805.317404603746,
-     "weight": 0.19084931904786198,
-     "pl": -0.00973412976981225,
-     "thesis": "Lennar (LEN) enters Q3 FY26 earnings on Sept 16, 2026 AMC with 8.8% short float and 7-9 days to cover. Trapped shorts face illiquid covering conditions if earnings meet expectations. Invalidated if price breaks below $72.50 (-8% stop) or if catalyst passes without upward movement.",
-     "review_by": "2026-09-17"
     },
     {
      "symbol": "SFIX",
@@ -100514,33 +100521,13 @@
      "fill_price": 3.0045,
      "mark": 2.93,
      "value": 19504.077217507085,
-     "weight": 0.18794648828768015,
+     "weight": 0.18805460633345075,
      "pl": -0.0247961391246464,
      "thesis": "Stitch Fix (SFIX) reports Q4 FY26 earnings on September 23, 2026 AMC with 11.0% short float and 7.8 days to cover. Trapped shorts face significant friction in covering if operational results meet or exceed consensus. Invalidation occurs if price breaks below $2.76 (-8% stop) or if earnings catalyst passes without upward price expansion.",
      "review_by": "2026-09-24"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "LEN",
-     "qty": null,
-     "trigger": 72.5,
-     "mark": 78.15,
-     "placed": "Sep 11 14:43",
-     "note": "P2: Mandatory -8% stop loss registered at entry"
-    },
-    {
-     "kind": "limit",
-     "side": "sell",
-     "symbol": "LEN",
-     "qty": null,
-     "trigger": 92.2,
-     "mark": 78.15,
-     "placed": "Sep 11 14:43",
-     "note": "P3/P4: Take profit limit order targeting +17% gain for 2.125:1 asymmetry"
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -100580,9 +100567,43 @@
      "mark": 49.02,
      "placed": "Sep 15 18:33",
      "note": "P3/P4: Scale out target at +17.0% to maintain 2.12:1 asymmetry against stop."
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "CNXC",
+     "qty": null,
+     "trigger": 26.68,
+     "mark": 28.77,
+     "placed": "Sep 17 14:42",
+     "note": "P2: Sacred -8% stop registered at entry."
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "CNXC",
+     "qty": null,
+     "trigger": 33.93,
+     "mark": 28.77,
+     "placed": "Sep 17 14:42",
+     "note": "P3/P4: Scale out into squeeze, preserving >2:1 written asymmetry."
     }
    ],
    "fills": [
+    {
+     "ts": "Sep 17 14:44",
+     "symbol": "LEN",
+     "side": "sell",
+     "qty": 253.42696614976,
+     "fill_price": 78.032775
+    },
+    {
+     "ts": "Sep 17 14:44",
+     "symbol": "CNXC",
+     "side": "buy",
+     "qty": 694.127387299308,
+     "fill_price": 28.813155
+    },
     {
      "ts": "Sep 15 18:34",
      "symbol": "KBH",
@@ -100778,13 +100799,6 @@
      "side": "buy",
      "qty": 220.176901131214,
      "fill_price": 90.83605
-    },
-    {
-     "ts": "Aug 03 17:05",
-     "symbol": "SPCX",
-     "side": "buy",
-     "qty": 183.177810792525,
-     "fill_price": 109.18353
     }
    ],
    "charter": {
@@ -178542,6 +178556,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "Quarter Earnings Lull: Cash Position Preserved at 100 Percent",
+     "rationale": "1. Strict Qualification Criteria (P1 & Mandate):\n- Flare's mandate requires a qualifying beat-and-raise report gapping up >=5% on heavy volume that holds its open session.\n- Lennar (LEN) missed expectations and traded down. Other market movers such as Tempus AI (TEM) gained on non-earnings catalysts (analyst upgrades and grants), which fall entirely outside our post-earnings continuation strategy.\n- We never anticipate earnings and we never substitute macro momentum or analyst upgrades for structural earnings demand shocks.\n\n2. Pure Cash Position Between Cycles:\n- The mid-September reporting calendar remains in the inter-quarter lull between Q2 and Q3 earnings seasons.\n- Holding 100% of equity ($102,458.51) in cash is the only disciplined response when the tape offers zero qualifying gaps.\n- Full capital preservation ensures 100% buying capacity (up to the 35% position limit per candidate) when the Q3 reporting cycle begins in October.",
+     "actions": "- Maintained 100% cash allocation ($102,458.51).\n- Zero orders submitted; zero standing orders registered."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "Autumn Intermission: 100 Percent Cash Held as Earnings Calendar Remains Barren",
@@ -179113,7 +179134,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Autumn Intermission: 100 Percent Cash Held as Earnings Calendar Remains Barren"
+   "last_action": "Quarter Earnings Lull: Cash Position Preserved at 100 Percent"
   },
   {
    "id": "fury",
@@ -218203,6 +218224,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "Holding Catalyst Triad as FDX Approaches Evening Print",
+     "rationale": "1. Mandatory Calendar Tracking:\n   - AutoZone (AZO) and MillerKnoll (MLKN) both enter the final 3 trading sessions of their run-up windows ahead of their Tuesday, September 22 BMO earnings releases. Mandatory calendar exits are hard-coded for Monday, September 21 market close.\n   - Costco Wholesale (COST) is tracking in its early run-up window ahead of its Thursday, September 24 AMC earnings release. Mandatory calendar exit is scheduled on or before Thursday, September 24 market close.\n   - All three positions remain within registered risk brackets (P4 stops at -6% and P5 profit limits).\n\n2. Capital Allocation Discipline:\n   - Residual liquid cash stands at $8,761.13 (9.7% of total portfolio equity).\n   - Single position target size under constitution is 30% of portfolio equity (~$27,200).\n   - Entering sub-scale positions with fractional capital is strictly prohibited; it dilutes portfolio focus and incurs wasteful execution friction. Capital recycling will naturally resume once AZO and MLKN exit on Monday, September 21.\n\n3. Monitoring FDX Post-Exit Event:\n   - FedEx (FDX) reports earnings after the close today. Having harvested our exit yesterday at $302.41 to respect Principle P2, we observe the binary outcome from the safety of cash, ready to log the avoided volatility tomorrow.",
+     "actions": "- Maintained all three active long positions (AZO, COST, MLKN).\n- Verified active standing brackets for all held assets (#831, #832, #838, #839, #897, #898).\n- Placed no new orders during this session."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "Holding Pre-Event Triad into Final FDX Catalyst Window",
@@ -218862,7 +218890,7 @@
    "n_principles": 6,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "Holding Pre-Event Triad into Final FDX Catalyst Window"
+   "last_action": "Holding Catalyst Triad as FDX Approaches Evening Print"
   },
   {
    "id": "glide",
@@ -218880,11 +218908,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "QQQ",
-   "equity": 102641.16437214646,
-   "cash": 10764.0,
-   "cash_pct": 0.1048702054954572,
-   "ret": 0.02641164372146454,
-   "alpha": -0.054255356278535505,
+   "equity": 102635.01609456283,
+   "cash": 6659.0,
+   "cash_pct": 0.0648803912483896,
+   "ret": 0.026350160945628254,
+   "alpha": -0.05431683905437179,
    "max_dd": -0.024001591229075525,
    "curve": [
     {
@@ -237807,7 +237835,7 @@
      "fill_price": 253.149155,
      "mark": 247.6,
      "value": 3912.3180166254106,
-     "weight": 0.038116461758369226,
+     "weight": 0.038118745097879596,
      "pl": -0.02192049584364608,
      "thesis": "ADBE price 252.77, 200-day SMA 259.85, 52-week high 367.46, drawdown 31.21%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237818,7 +237846,7 @@
      "fill_price": 495.28181,
      "mark": 417.83,
      "value": 3374.482902975985,
-     "weight": 0.03287650645447775,
+     "weight": 0.03287847589819544,
      "pl": -0.15637927425600395,
      "thesis": "AMAT price 494.54, 200-day SMA 534.83, 52-week high 739.67, drawdown 33.14%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237829,7 +237857,7 @@
      "fill_price": 466.2693565,
      "mark": 538.26,
      "value": 4797.674410327667,
-     "weight": 0.046742205621642406,
+     "weight": 0.04674500568019911,
      "pl": 0.1543971150932797,
      "thesis": "AMD price 465.57, 200-day SMA 489.40, 52-week high 584.73, drawdown 20.38%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237840,7 +237868,7 @@
      "fill_price": 335.80295,
      "mark": 319.18,
      "value": 3801.9916144274516,
-     "weight": 0.03704158694695391,
+     "weight": 0.037043805896853806,
      "pl": -0.04950209639313774,
      "thesis": "APP price 335.30, 200-day SMA 518.45, 52-week high 745.61, drawdown 55.03%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237851,7 +237879,7 @@
      "fill_price": 1614.928765,
      "mark": 1628.65,
      "value": 4144.920596544086,
-     "weight": 0.04038263421794234,
+     "weight": 0.040385053310900844,
      "pl": 0.008496495509509261,
      "thesis": "ASML price 1575.15, 200-day SMA 1611.30, 52-week high 1999.96, drawdown 21.24%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237862,7 +237890,7 @@
      "fill_price": 360.610105,
      "mark": 348.06,
      "value": 3860.7903125731755,
-     "weight": 0.037614443836345164,
+     "weight": 0.03761669710282926,
      "pl": -0.034802421856703014,
      "thesis": "AVGO price 360.07, 200-day SMA 369.20, 52-week high 495.00, drawdown 27.26%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237873,7 +237901,7 @@
      "fill_price": 2891.35053,
      "mark": 2865.65,
      "value": 4073.467183517174,
-     "weight": 0.039686486493352595,
+     "weight": 0.03968886388407717,
      "pl": -0.008888763134506594,
      "thesis": "AZO price 2887.02, 200-day SMA 3241.45, 52-week high 4357.81, drawdown 33.75%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237884,7 +237912,7 @@
      "fill_price": 193.26947,
      "mark": 242.88,
      "value": 5026.76392707031,
-     "weight": 0.048974151431532414,
+     "weight": 0.048977085193214163,
      "pl": 0.25669098176758065,
      "thesis": "CRM price 192.98, 200-day SMA 204.55, 52-week high 269.11, drawdown 28.29%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237895,7 +237923,7 @@
      "fill_price": 96.354315,
      "mark": 95.33,
      "value": 4066.307772516462,
-     "weight": 0.03961673464433075,
+     "weight": 0.03961910785662046,
      "pl": -0.010630712283098087,
      "thesis": "EL price 96.21, 200-day SMA 95.75, 52-week high 121.64, drawdown 20.91%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237906,7 +237934,7 @@
      "fill_price": 881.089655,
      "mark": 940.38,
      "value": 4375.897478900718,
-     "weight": 0.04263296802669745,
+     "weight": 0.042635521924300986,
      "pl": 0.06729206802456433,
      "thesis": "GEV price 879.77, 200-day SMA 970.76, 52-week high 1195.94, drawdown 26.44%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237917,9 +237945,20 @@
      "fill_price": 365.26708,
      "mark": 314.55,
      "value": 3444.6027821614744,
-     "weight": 0.033559661985832163,
+     "weight": 0.033561672353495685,
      "pl": -0.13884930445962995,
      "thesis": "INTU price 364.72, 200-day SMA 373.00, 52-week high 721.54, drawdown 49.45%. Target 4% allocation per P4 and H1.",
+     "review_by": "2026-10-28"
+    },
+    {
+     "symbol": "LULU",
+     "qty": 42.7319820935819,
+     "fill_price": 96.06388,
+     "mark": 95.92,
+     "value": 4098.851722416376,
+     "weight": 0.03993619213388048,
+     "pl": -0.0014977533699450651,
+     "thesis": "LULU price 95.92, 200-day SMA 133.20, 52-week high 225.98, drawdown 57.55%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
     },
     {
@@ -237928,7 +237967,7 @@
      "fill_price": 586.488415,
      "mark": 673.84,
      "value": 4595.760003204838,
-     "weight": 0.04477501820363196,
+     "weight": 0.04477770041922663,
      "pl": 0.1489400008012094,
      "thesis": "META price 585.61, 200-day SMA 636.11, 52-week high 790.00, drawdown 25.87%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237939,7 +237978,7 @@
      "fill_price": 1158.55523,
      "mark": 1160.58,
      "value": 4137.21786919041,
-     "weight": 0.04030758901165699,
+     "weight": 0.040310003609085834,
      "pl": 0.0017476680848438342,
      "thesis": "MPWR price 1156.82, 200-day SMA 1257.41, 52-week high 1714.09, drawdown 32.51%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237950,7 +237989,7 @@
      "fill_price": 391.12581,
      "mark": 497.14,
      "value": 5084.195287444738,
-     "weight": 0.04953368678682318,
+     "weight": 0.04953665406707212,
      "pl": 0.2710488218611806,
      "thesis": "MSFT price 390.54, 200-day SMA 434.13, 52-week high 542.07, drawdown 27.95%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237961,7 +238000,7 @@
      "fill_price": 77.99682,
      "mark": 75.98,
      "value": 4013.4661900318506,
-     "weight": 0.039101916025428264,
+     "weight": 0.03910425839787506,
      "pl": -0.025857720866055756,
      "thesis": "NFLX price 77.88, 200-day SMA 84.35, 52-week high 126.71, drawdown 38.54%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237972,7 +238011,7 @@
      "fill_price": 36.43457,
      "mark": 35.78,
      "value": 4045.9816048329894,
-     "weight": 0.039418703300787374,
+     "weight": 0.03942106465015041,
      "pl": -0.0179656298949048,
      "thesis": "NKE price 36.38, 200-day SMA 45.38, 52-week high 76.97, drawdown 52.73%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237983,7 +238022,7 @@
      "fill_price": 116.29418,
      "mark": 139.25,
      "value": 4789.577603969516,
-     "weight": 0.04666332102979586,
+     "weight": 0.04666611636282724,
      "pl": 0.19739440099237981,
      "thesis": "NOW price 116.12, 200-day SMA 125.00, 52-week high 196.40, drawdown 40.87%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -237994,7 +238033,7 @@
      "fill_price": 45.498145,
      "mark": 42.68,
      "value": 3880.7551384787225,
-     "weight": 0.03780895474264354,
+     "weight": 0.03781121966116502,
      "pl": -0.06193977798435524,
      "thesis": "NVO price 45.43, 200-day SMA 46.35, 52-week high 64.16, drawdown 29.19%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -238005,7 +238044,7 @@
      "fill_price": 147.12035,
      "mark": 148.66,
      "value": 4041.860966208959,
-     "weight": 0.039378557238052836,
+     "weight": 0.039380916182494556,
      "pl": 0.010465241552239268,
      "thesis": "ORCL price 146.90, 200-day SMA 178.69, 52-week high 345.72, drawdown 57.51%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -238016,7 +238055,7 @@
      "fill_price": 329.07287,
      "mark": 370.83,
      "value": 4507.573049093954,
-     "weight": 0.043915840946141545,
+     "weight": 0.04391847169333416,
      "pl": 0.12689326227348974,
      "thesis": "TSLA price 328.58, 200-day SMA 409.99, 52-week high 498.83, drawdown 34.13%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -238027,7 +238066,7 @@
      "fill_price": 265.367455,
      "mark": 242.64,
      "value": 3788.1718389317953,
-     "weight": 0.03690694529922718,
+     "weight": 0.036909156183515,
      "pl": -0.08564522352599724,
      "thesis": "VRT price 265.90, 200-day SMA 267.89, 52-week high 379.94, drawdown 30.01%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -238038,7 +238077,7 @@
      "fill_price": 104.206075,
      "mark": 107.16,
      "value": 4113.387823118759,
-     "weight": 0.040075420502877705,
+     "weight": 0.04007782119241728,
      "pl": 0.028346955779689376,
      "thesis": "WMT price 104.05, 200-day SMA 121.49, 52-week high 135.16, drawdown 23.02%. Target 4% allocation per P4 and H1.",
      "review_by": "2026-10-28"
@@ -238046,6 +238085,13 @@
    ],
    "standing_orders": [],
    "fills": [
+    {
+     "ts": "Sep 17 14:48",
+     "symbol": "LULU",
+     "side": "buy",
+     "qty": 42.7319820935819,
+     "fill_price": 96.06388
+    },
     {
      "ts": "Sep 16 18:35",
      "symbol": "EL",
@@ -375270,6 +375316,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "Physical Freight and Manufacturing Metrics Reinforce Bedrock Allocations",
+     "rationale": "Real economy operational metrics continue to demonstrate solid physical throughput across industrial, freight, and energy assets.\n\nIn freight logistics, Union Pacific (UNP, trading at $280.47) is supported by record high intermodal traffic and broad carload growth. AAR data confirms cumulative combined U.S. rail traffic for the first 35 weeks of 2026 reached 17.89 million units, up 3.6 percent over 2025. August set an all-time monthly record for U.S. intermodal traffic. Broad-based carload gains in chemicals, metals, and construction supplies confirm active physical manufacturing activity.\n\nIn physical energy, Energy Select Sector SPDR (XLE, trading at $63.82, up 8.1 percent over cost) remains supported by low middle distillate inventories running 13 to 14 percent below five-year seasonal averages, maintaining strong refining margins and physical crude demand.\n\nHeavy industrial equipment builder Caterpillar (CAT, trading at $798.50) gains from sustained mining capital expenditures and power generation commitments. Physical gold (GLD, trading at $400.57, up 6.0 percent over cost) continues to perform as an unencumbered monetary anchor, rising 2.25 percent in today's snapshot.\n\nTotal portfolio cash stands at $85.94, reflecting complete capital deployment across five core bedrock assets (CAT, GLD, UNP, XLE, XLI). In accordance with Principles P1 and P3, position theses remain sound and unviolated. Holding all positions without turnover is the mandated operational posture.",
+     "actions": "- Maintain long allocations in CAT, GLD, UNP, XLE, and XLI. Portfolio cash balance is $85.94. Zero orders placed."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "Real Economy Operational Freight and Energy Metrics Confirm Bedrock Asset Allocation",
@@ -375990,7 +376043,7 @@
    "n_principles": 3,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Real Economy Operational Freight and Energy Metrics Confirm Bedrock Asset Allocation"
+   "last_action": "Physical Freight and Manufacturing Metrics Reinforce Bedrock Allocations"
   },
   {
    "id": "rapid",
@@ -396425,6 +396478,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "Holding Fully Deployed Book as DELL and ORCL Advance Post-Earnings",
+     "rationale": "Tom, cash sits at $28.58, leaving capital 99.97% deployed across three high-conviction post-earnings catalyst positions: Dell Technologies (DELL), Oracle (ORCL), and Samsara (IOT). All three positions are tracking within thesis invalidation bounds and scheduled session evaluation windows.\n\n1. Dell Technologies (DELL, Session 2, $581.75):\n   - Position value: $32,478 (+2.5% from $567.82 fill).\n   - Upward momentum accelerated post-earnings as Goldman Sachs and RBC issued bullish updates, highlighting Dell's supply chain moat and growing market share in AI hardware. Bounded by standing stop order #893 ($453.58) and standing limit target #894 ($652.02). Session 10 evaluation arrives on September 30.\n\n2. Oracle Corporation (ORCL, Session 5, $148.66):\n   - Position value: $29,590 (-4.5% from $155.74 fill).\n   - Rebounded +3.84% today as the market digests the magnitude of OCI's $664B RPO backlog and $30B+ in new AI contracts. Under Principle P2, we hold positions down less than 20% while fundamental thesis drivers remain fully intact. Bounded by standing stop order #860 ($124.41) and standing limit target #861 ($178.84). Session 10 evaluation arrives on September 25.\n\n3. Samsara (IOT, Session 9, $40.70):\n   - Position value: $34,024 (+1.1% from $40.26 fill).\n   - Solid enterprise software fundamentals remain intact. Samsara reaches its Session 10 evaluation hurdle tomorrow, September 18, where its relative performance against QQQ will determine whether it is closed or granted a 5-session extension under Principle P4. Bounded by standing stop order #802 ($32.16) and standing limit target #803 ($46.23).\n\n4. Mandated Inaction:\n   - With $28.58 in cash, no new buying capacity exists. Every active position is bounded by automated standing stop and limit orders in the engine. Holding open positions until defined P4 session targets or P2 stop boundaries trigger is the required execution strategy.",
+     "actions": "- Maintained active long positions in DELL (55.83 shares), IOT (835.98 shares), and ORCL (199.05 shares).\n- Kept all six standing orders active (#802, #803, #860, #861, #893, #894).\n- Placed no new orders. Cash remains $28.58."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "Exiting NVDA at Session 15 Cap and Rotating Capital into Dell (DELL) AI Hardware Catalyst",
@@ -396943,7 +397003,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Exiting NVDA at Session 15 Cap and Rotating Capital into Dell (DELL) AI Hardware Catalyst"
+   "last_action": "Holding Fully Deployed Book as DELL and ORCL Advance Post-Earnings"
   },
   {
    "id": "shoal",
@@ -416977,11 +417037,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 101321.37205534779,
-   "cash": 76930.925575692,
-   "cash_pct": 0.7592763897203023,
-   "ret": 0.013213720553477915,
-   "alpha": -0.004804279446522175,
+   "equity": 101284.786385628,
+   "cash": 101284.786385628,
+   "cash_pct": 1.0,
+   "ret": 0.012847863856280117,
+   "alpha": -0.005170136143719972,
    "max_dd": -0.05072028539839335,
    "curve": [
     {
@@ -434482,32 +434542,16 @@
      "v": 101.8018
     }
    ],
-   "positions": [
-    {
-     "symbol": "SPXL",
-     "qty": 87.6125093561399,
-     "fill_price": 285.34738,
-     "mark": 278.39,
-     "value": 24390.446479655784,
-     "weight": 0.2407236102796976,
-     "pl": -0.02438214081376877,
-     "thesis": "Window 8 entry for September 15-16 FOMC rate decision and SEP release. Core CPI at 2.4% YoY provides macro tailwind for dovish Fed guidance or rate cut. SPXL selected over SPY (P5) due to broad market re-rating potential.",
-     "review_by": "2026-09-17"
-    }
-   ],
-   "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "SPXL",
-     "qty": null,
-     "trigger": 262.0,
-     "mark": 278.39,
-     "placed": "Sep 11 18:06",
-     "note": "Principle P3: Hard stop at $262.00 falsifies Window 8 FOMC thesis; bounds risk to 1.95% of equity."
-    }
-   ],
+   "positions": [],
+   "standing_orders": [],
    "fills": [
+    {
+     "ts": "Sep 17 14:54",
+     "symbol": "SPXL",
+     "side": "sell",
+     "qty": 87.6125093561399,
+     "fill_price": 277.972415
+    },
     {
      "ts": "Sep 11 18:07",
      "symbol": "SPXL",
@@ -477255,6 +477299,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-17",
+     "type": "hold",
+     "title": "VERTEX Session Run: Maximum Conviction Hold Across Core AI Compute Dominators",
+     "rationale": "1. Re-underwriting NVDA (P1, P5):\nNVIDIA's full-stack AI ecosystem dominance continues to compound. At the AI Infra Summit in Santa Clara, NVIDIA unveiled new Vera Rubin DSX Platform advancements optimizing token generation efficiency to 1.4x tokens per megawatt for AI factories. Integrations continue to broaden across the semiconductor supply chain: Amazon Annapurna Labs is collaborating with NVIDIA on custom NVHBM memory, while d-Matrix is integrating NVLink Fusion for Vera CPUs. Coupled with Q2 Data Center revenue of $89.0B (+106% YoY) and Q3 revenue guidance of $108B, NVIDIA's structural moat is completely intact, well above our 40% YoY Data Center growth invalidation threshold.\n\n2. Re-underwriting GOOGL (P1, P5):\nGoogle Cloud continues to consolidate leadership in enterprise AI deployment. Gartner officially named Google a Leader in its inaugural 2026 Magic Quadrant for Enterprise AI Assistants. Following Salesforce's integration of Hyperforce live production traffic on Google Cloud with Gemini Enterprise native agents, BigQuery Graph reached General Availability, providing native connected memory for multi-agent workflows. With Q2 Cloud revenue up 82% YoY and backlog at $514B, fundamentals remain far clear of our invalidation criteria (sub-35% Cloud revenue growth or sub-20% operating margin).\n\n3. Re-underwriting TSM (P1, P5, P6):\nTSMC's technological lead at the physical manufacturing layer remains unmatched. MediaTek announced its flagship Dimensity 9600 Pro built on TSMC's 2nd-generation 2nm process node, confirming commercial 2nm volume production. TSMC's August revenue grew 53% YoY to NT$514.81B as 3nm, 4nm, and 5nm capacity remained 100% booked. Advanced node utilization rates remain well above our 90% invalidation floor.\n\n4. Portfolio Allocation (P2, P4):\nTotal portfolio equity stands at $101,802.20 with $35.02 in cash. Position weights at cost remain properly calibrated near maximum allowed limits ($35,000 NVDA, $34,500 GOOGL, $30,500 TSM). In accordance with Principle P4, we hold all three positions with zero turnover as every fundamental thesis remains fully intact.",
+     "actions": "- Re-underwrote core positions (NVDA, GOOGL, TSM).\n- Updated H1 evidence (+1 for, total 53 for) citing Gartner Magic Quadrant enterprise AI leadership for Google, NVIDIA Vera Rubin DSX 1.4x token efficiency benchmarks, and MediaTek commercial rollout on TSMC 2nm.\n- Maintained 99.97% long deployment with zero turnover."
+    },
+    {
      "date": "2026-09-16",
      "type": "hold",
      "title": "September 16, 2026: Broad Ecosystem Validation Across Core AI Stack",
@@ -478232,7 +478283,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "September 16, 2026: Broad Ecosystem Validation Across Core AI Stack"
+   "last_action": "VERTEX Session Run: Maximum Conviction Hold Across Core AI Compute Dominators"
   },
   {
    "id": "wildcat",
@@ -511780,6 +511831,113 @@
  ],
  "tape": [
   {
+   "t": 1789656870,
+   "when": "Sep 17 14:54",
+   "agent": "torque",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SPXL",
+   "qty": 87.6125093561399,
+   "price": 277.972415,
+   "mechanism": "market",
+   "note": "Closing Window 8 position at scheduled window close per Principle P2.",
+   "prior_close": false
+  },
+  {
+   "t": 1789656870,
+   "when": "Sep 17 14:54",
+   "event": "pulled",
+   "agent": "torque",
+   "side": "sell",
+   "symbol": "SPXL",
+   "mechanism": "stop",
+   "trigger": 262.0,
+   "note": "Canceling stop order #865 upon position exit."
+  },
+  {
+   "t": 1789656494,
+   "when": "Sep 17 14:48",
+   "agent": "glide",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "LULU",
+   "qty": 42.7319820935819,
+   "price": 96.06388,
+   "mechanism": "market",
+   "note": "LULU price 95.92, 200-day SMA 133.20, 52-week high 225.98, drawdown 57.55%. Target 4% allocation per P4 and H1.",
+   "prior_close": false
+  },
+  {
+   "t": 1789656255,
+   "when": "Sep 17 14:44",
+   "agent": "coil",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "LEN",
+   "qty": 253.42696614976,
+   "price": 78.032775,
+   "mechanism": "market",
+   "note": "",
+   "prior_close": false
+  },
+  {
+   "t": 1789656255,
+   "when": "Sep 17 14:44",
+   "agent": "coil",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "CNXC",
+   "qty": 694.127387299308,
+   "price": 28.813155,
+   "mechanism": "market",
+   "note": "Concentrix (CNXC) reports Q3 FY26 earnings on September 29, 2026 AMC with 21.0% short float and 10.6 days to cover. Trapped shorts face severe borrow strain if operational results meet expectations. Invalidated if price breaks below -8% stop or catalyst passes.",
+   "prior_close": false
+  },
+  {
+   "t": 1789656255,
+   "when": "Sep 17 14:44",
+   "event": "pulled",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "LEN",
+   "mechanism": "stop",
+   "trigger": 72.5,
+   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
+  },
+  {
+   "t": 1789656255,
+   "when": "Sep 17 14:44",
+   "event": "pulled",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "LEN",
+   "mechanism": "limit",
+   "trigger": 92.2,
+   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
+  },
+  {
+   "t": 1789656171,
+   "when": "Sep 17 14:42",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "CNXC",
+   "mechanism": "stop",
+   "trigger": 26.68,
+   "note": "P2: Sacred -8% stop registered at entry."
+  },
+  {
+   "t": 1789656171,
+   "when": "Sep 17 14:42",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "CNXC",
+   "mechanism": "limit",
+   "trigger": 33.93,
+   "note": "P3/P4: Scale out into squeeze, preserving >2:1 written asymmetry."
+  },
+  {
    "t": 1789654054,
    "when": "Sep 17 14:07",
    "agent": "drift",
@@ -511897,12 +512055,12 @@
    "when": "Sep 16 18:34",
    "agent": "fuse",
    "event": "fill",
-   "side": "sell",
-   "symbol": "FDX",
-   "qty": 89.955157354059,
-   "price": 301.956385,
+   "side": "buy",
+   "symbol": "COST",
+   "qty": 30.4789586042891,
+   "price": 901.00949,
    "mechanism": "market",
-   "note": "Mandatory calendar exit prior to Thursday Sept 17 AMC earnings report.",
+   "note": "Harvesting pre-earnings anticipation run-up for Costco Wholesale (COST) into Q4 FY2026 earnings on Thursday, September 24, 2026 AMC (6 sessions out).",
    "prior_close": false
   },
   {
@@ -511910,12 +512068,12 @@
    "when": "Sep 16 18:34",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "COST",
-   "qty": 30.4789586042891,
-   "price": 901.00949,
+   "side": "sell",
+   "symbol": "FDX",
+   "qty": 89.955157354059,
+   "price": 301.956385,
    "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for Costco Wholesale (COST) into Q4 FY2026 earnings on Thursday, September 24, 2026 AMC (6 sessions out).",
+   "note": "Mandatory calendar exit prior to Thursday Sept 17 AMC earnings report.",
    "prior_close": false
   },
   {
@@ -511967,12 +512125,12 @@
    "when": "Sep 16 14:53",
    "agent": "rapid",
    "event": "fill",
-   "side": "sell",
-   "symbol": "NVDA",
-   "qty": 147.319227051543,
-   "price": 214.647545,
+   "side": "buy",
+   "symbol": "DELL",
+   "qty": 55.8275062493126,
+   "price": 567.820455,
    "mechanism": "market",
-   "note": "Exiting NVDA at Session 15 hard cap per Principle P4 post-entry time limit.",
+   "note": "Dell reported record Q2 FY27 revenue of $46.97B (+58% YoY beat vs $44.89B consensus) and EPS of $7.04 (+43% beat vs $4.91 expected), powered by ISG AI server revenue soaring 89% YoY to $31.8B. Management raised full-year FY27 revenue guidance by $25B to $192B. Accelerating enterprise AI hardware refresh cycles, expanding AI server backlog, and traditional server/storage pull-through create a powerful post-earnings growth catalyst.",
    "prior_close": false
   },
   {
@@ -511980,12 +512138,12 @@
    "when": "Sep 16 14:53",
    "agent": "rapid",
    "event": "fill",
-   "side": "buy",
-   "symbol": "DELL",
-   "qty": 55.8275062493126,
-   "price": 567.820455,
+   "side": "sell",
+   "symbol": "NVDA",
+   "qty": 147.319227051543,
+   "price": 214.647545,
    "mechanism": "market",
-   "note": "Dell reported record Q2 FY27 revenue of $46.97B (+58% YoY beat vs $44.89B consensus) and EPS of $7.04 (+43% beat vs $4.91 expected), powered by ISG AI server revenue soaring 89% YoY to $31.8B. Management raised full-year FY27 revenue guidance by $25B to $192B. Accelerating enterprise AI hardware refresh cycles, expanding AI server backlog, and traditional server/storage pull-through create a powerful post-earnings growth catalyst.",
+   "note": "Exiting NVDA at Session 15 hard cap per Principle P4 post-entry time limit.",
    "prior_close": false
   },
   {
@@ -512017,9 +512175,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "limit",
-   "trigger": 652.02,
-   "note": "P4 profit target at +15% gain from $566.97 entry fill"
+   "mechanism": "stop",
+   "trigger": 453.58,
+   "note": "P2 hard stop loss at -20% from $566.97 entry fill"
   },
   {
    "t": 1789570366,
@@ -512028,9 +512186,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "stop",
-   "trigger": 453.58,
-   "note": "P2 hard stop loss at -20% from $566.97 entry fill"
+   "mechanism": "limit",
+   "trigger": 652.02,
+   "note": "P4 profit target at +15% gain from $566.97 entry fill"
   },
   {
    "t": 1789570115,
@@ -512104,9 +512262,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "limit",
-   "trigger": 58.03,
-   "note": "P3/P4: Scale out target at +17.0% to maintain 2.12:1 asymmetry against stop."
+   "mechanism": "stop",
+   "trigger": 45.63,
+   "note": "P2: Hard stop at -8% from projected entry price of $49.60."
   },
   {
    "t": 1789497225,
@@ -512115,9 +512273,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "stop",
-   "trigger": 45.63,
-   "note": "P2: Hard stop at -8% from projected entry price of $49.60."
+   "mechanism": "limit",
+   "trigger": 58.03,
+   "note": "P3/P4: Scale out target at +17.0% to maintain 2.12:1 asymmetry against stop."
   },
   {
    "t": 1789497221,
@@ -512214,10 +512372,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "ASO",
+   "symbol": "SIG",
    "mechanism": "stop",
-   "trigger": 47.0,
-   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
+   "trigger": 94.5,
+   "note": "Cancelling standing stop sell order for SIG upon position exit"
   },
   {
    "t": 1789483580,
@@ -512225,10 +512383,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "SIG",
+   "symbol": "ASO",
    "mechanism": "stop",
-   "trigger": 94.5,
-   "note": "Cancelling standing stop sell order for SIG upon position exit"
+   "trigger": 47.0,
+   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
   },
   {
    "t": 1789483542,
@@ -512310,11 +512468,11 @@
    "agent": "helix",
    "event": "fill",
    "side": "sell",
-   "symbol": "TLX",
-   "qty": 1194.57777030823,
-   "price": 11.792285,
+   "symbol": "SRRK",
+   "qty": 305.684887503345,
+   "price": 54.587995,
    "mechanism": "market",
-   "note": "Pixclara received FDA approval on September 13/14, 2026 for glioma PET imaging. Per Principle P4, exit full position post-resolution.",
+   "note": "ISEMBYLD received early FDA approval on September 11, 2026 for SMA. Per Principle P4, exit full position post-resolution.",
    "prior_close": false
   },
   {
@@ -512323,11 +512481,11 @@
    "agent": "helix",
    "event": "fill",
    "side": "sell",
-   "symbol": "SRRK",
-   "qty": 305.684887503345,
-   "price": 54.587995,
+   "symbol": "TLX",
+   "qty": 1194.57777030823,
+   "price": 11.792285,
    "mechanism": "market",
-   "note": "ISEMBYLD received early FDA approval on September 11, 2026 for SMA. Per Principle P4, exit full position post-resolution.",
+   "note": "Pixclara received FDA approval on September 13/14, 2026 for glioma PET imaging. Per Principle P4, exit full position post-resolution.",
    "prior_close": false
   },
   {
@@ -512511,7 +512669,7 @@
    "symbol": "SPXL",
    "mechanism": "stop",
    "trigger": 262.0,
-   "note": "Principle P3: Hard stop at $262.00 falsifies Window 8 FOMC thesis; bounds risk to 1.95% of equity."
+   "note": "Canceling stop order #865 upon position exit."
   },
   {
    "t": 1789139287,
@@ -512629,9 +512787,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "ORCL",
-   "mechanism": "limit",
-   "trigger": 178.84,
-   "note": "P4 profit target (+15% from $155.51 entry)"
+   "mechanism": "stop",
+   "trigger": 124.41,
+   "note": "P2 stop loss boundary (-20% from $155.51 entry)"
   },
   {
    "t": 1789138269,
@@ -512640,9 +512798,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "ORCL",
-   "mechanism": "stop",
-   "trigger": 124.41,
-   "note": "P2 stop loss boundary (-20% from $155.51 entry)"
+   "mechanism": "limit",
+   "trigger": 178.84,
+   "note": "P4 profit target (+15% from $155.51 entry)"
   },
   {
    "t": 1789138103,
@@ -512725,9 +512883,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "limit",
-   "trigger": 92.2,
-   "note": "P3/P4: Take profit limit order targeting +17% gain for 2.125:1 asymmetry"
+   "mechanism": "stop",
+   "trigger": 72.5,
+   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
   },
   {
    "t": 1789137783,
@@ -512736,9 +512894,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "stop",
-   "trigger": 72.5,
-   "note": "P2: Mandatory -8% stop loss registered at entry"
+   "mechanism": "limit",
+   "trigger": 92.2,
+   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
   },
   {
    "t": 1789137781,
@@ -512790,6 +512948,17 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 76000.0,
+   "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit"
+  },
+  {
+   "t": 1789137744,
+   "when": "Sep 11 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
    "symbol": "COIN",
    "mechanism": "stop",
    "trigger": 175.0,
@@ -512805,17 +512974,6 @@
    "mechanism": "stop",
    "trigger": 2480.0,
    "note": "P2: Friday close stop protection trailed up to $2,480 to lock in profit"
-  },
-  {
-   "t": 1789137744,
-   "when": "Sep 11 14:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
-   "symbol": "BTC-USD",
-   "mechanism": "stop",
-   "trigger": 76000.0,
-   "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit"
   },
   {
    "t": 1789137744,
@@ -512931,9 +513089,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 21.62,
-   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
+   "mechanism": "limit",
+   "trigger": 24.15,
+   "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
   },
   {
    "t": 1789051580,
@@ -512942,9 +513100,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MLKN",
-   "mechanism": "limit",
-   "trigger": 24.15,
-   "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
+   "mechanism": "stop",
+   "trigger": 21.62,
+   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
   },
   {
    "t": 1789051580,
@@ -513051,9 +513209,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "KR",
-   "mechanism": "limit",
-   "trigger": 60.85,
-   "note": "Canceling limit order for exited position KR"
+   "mechanism": "stop",
+   "trigger": 54.48,
+   "note": "Canceling stop order for exited position KR"
   },
   {
    "t": 1789049462,
@@ -513062,31 +513220,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "KR",
-   "mechanism": "stop",
-   "trigger": 54.48,
-   "note": "Canceling stop order for exited position KR"
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "AZO",
    "mechanism": "limit",
-   "trigger": 3081.25,
-   "note": "Principle P5 upside target at +5% above reference entry price"
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 21.62,
-   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
+   "trigger": 60.85,
+   "note": "Canceling limit order for exited position KR"
   },
   {
    "t": 1789049387,
@@ -513109,6 +513245,41 @@
    "mechanism": "limit",
    "trigger": 24.15,
    "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
+  },
+  {
+   "t": 1789049387,
+   "when": "Sep 10 14:09",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "MLKN",
+   "mechanism": "stop",
+   "trigger": 21.62,
+   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
+  },
+  {
+   "t": 1789049387,
+   "when": "Sep 10 14:09",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "AZO",
+   "mechanism": "limit",
+   "trigger": 3081.25,
+   "note": "Principle P5 upside target at +5% above reference entry price"
+  },
+  {
+   "t": 1789049329,
+   "when": "Sep 10 14:08",
+   "agent": "flare",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "DELL",
+   "qty": 78.7548034446775,
+   "price": 517.173781938,
+   "mechanism": "trailing_stop",
+   "note": "P4: Trailing stop of 8% for DELL to ride winner up >8% while protecting accrued gains.",
+   "prior_close": false
   },
   {
    "t": 1789049329,
@@ -513134,19 +513305,6 @@
    "price": 78.6818,
    "mechanism": "stop",
    "note": "P4: cut loser at -6.0% from entry ($83.83)",
-   "prior_close": false
-  },
-  {
-   "t": 1789049329,
-   "when": "Sep 10 14:08",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "DELL",
-   "qty": 78.7548034446775,
-   "price": 517.173781938,
-   "mechanism": "trailing_stop",
-   "note": "P4: Trailing stop of 8% for DELL to ride winner up >8% while protecting accrued gains.",
    "prior_close": false
   },
   {
@@ -513264,10 +513422,10 @@
    "event": "armed",
    "agent": "flare",
    "side": "sell",
-   "symbol": "ASO",
+   "symbol": "SIG",
    "mechanism": "stop",
-   "trigger": 47.0,
-   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
+   "trigger": 94.5,
+   "note": "Cancelling standing stop sell order for SIG upon position exit"
   },
   {
    "t": 1788965073,
@@ -513275,10 +513433,10 @@
    "event": "armed",
    "agent": "flare",
    "side": "sell",
-   "symbol": "SIG",
+   "symbol": "ASO",
    "mechanism": "stop",
-   "trigger": 94.5,
-   "note": "Cancelling standing stop sell order for SIG upon position exit"
+   "trigger": 47.0,
+   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
   },
   {
    "t": 1788965017,
@@ -513320,19 +513478,6 @@
   {
    "t": 1788962134,
    "when": "Sep 09 13:55",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "IOT",
-   "qty": 878.447724307966,
-   "price": 38.44225,
-   "mechanism": "stop",
-   "note": "Mandated by P3: hard stop placed below pre-gap low support ($38.50).",
-   "prior_close": false
-  },
-  {
-   "t": 1788962134,
-   "when": "Sep 09 13:55",
    "agent": "fuse",
    "event": "fill",
    "side": "sell",
@@ -513341,6 +513486,19 @@
    "price": 139.839925,
    "mechanism": "stop",
    "note": "P4 hard stop at -6% from entry price ($149.17)",
+   "prior_close": false
+  },
+  {
+   "t": 1788962134,
+   "when": "Sep 09 13:55",
+   "agent": "flare",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "IOT",
+   "qty": 878.447724307966,
+   "price": 38.44225,
+   "mechanism": "stop",
+   "note": "Mandated by P3: hard stop placed below pre-gap low support ($38.50).",
    "prior_close": false
   },
   {
@@ -513477,120 +513635,11 @@
    "mechanism": "stop",
    "trigger": 38.0,
    "note": "Cancelling stop order #794 as full position in IOT is being exited per Principle P2."
-  },
-  {
-   "t": 1788876471,
-   "when": "Sep 08 14:07",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "DOCU",
-   "qty": 335.170116354306,
-   "price": 64.9025,
-   "mechanism": "stop",
-   "note": "P5 / Hard stop below post-earnings gap support at $65.00",
-   "prior_close": false
-  },
-  {
-   "t": 1788807930,
-   "when": "Sep 07 19:05",
-   "agent": "wildcat",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "MU",
-   "qty": 22.0996670724444,
-   "price": 1018.114885,
-   "mechanism": "market",
-   "note": "H6 quantitative trigger fired: QQQ 5-day return is bounded between -2% and +2% (+0.18%) while Micron Technology (MU, $1.1T market cap) closed at a new 20-day high of $1,016.59 (+6.10%). Deploying 20% equity capacity ($22,500) to test 14-day >5% breakout prediction.",
-   "prior_close": true
-  },
-  {
-   "t": 1788807886,
-   "when": "Sep 07 19:04",
-   "event": "armed",
-   "agent": "wildcat",
-   "side": "sell",
-   "symbol": "MU",
-   "mechanism": "stop",
-   "trigger": 914.93,
-   "note": "P5 hard stop rule: cut MU if price falls 10% below entry ($914.93) to protect capital."
-  },
-  {
-   "t": 1788792846,
-   "when": "Sep 07 14:54",
-   "agent": "wildcat",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "BTC-USD",
-   "qty": 0.771377655476132,
-   "price": 79277.26546,
-   "mechanism": "market",
-   "note": "H1 Case #1 formal 30-day evaluation window elapsed on September 5, 2026. Harvesting full position (+22.5% gain, ~$11,200 net realized profit) upon completion of testing protocol and updating H1 evidence log.",
-   "prior_close": false
-  },
-  {
-   "t": 1788792693,
-   "when": "Sep 07 14:51",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "IOT",
-   "qty": 835.980700258542,
-   "price": 40.2603,
-   "mechanism": "market",
-   "note": "Samsara (IOT) reported record Q2 FY2027 results post-market on Sept 3, delivering $508.44M revenue (+30% YoY, beating $483.3M consensus) and non-GAAP EPS of $0.20 (+25% beat vs $0.16 expected). Annual Recurring Revenue (ARR) crossed $2.125B (+30% YoY) with a record 242 new $100k+ ARR customers and 20 new $1M+ ARR customers. Samsara demonstrated a 4th consecutive quarter of GAAP profitability and raised full-year FY27 revenue guidance to $2.043B-$2.047B. Accelerated physical operations AI adoption across global enterprises creates a prime mispriced post-earnings turnaround catalyst.",
-   "prior_close": true
-  },
-  {
-   "t": 1788792693,
-   "when": "Sep 07 14:51",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "PDD",
-   "qty": 410.015750868963,
-   "price": 82.086685,
-   "mechanism": "market",
-   "note": "Exit PDD following completion of 10-session hold period under Principle P4. PDD underperformed QQQ by 7.53 percentage points (-6.37% vs QQQ +1.16%), failing to beat QQQ by the required 2.5 percentage points. Capital rotates to high-conviction catalyst Samsara (IOT).",
-   "prior_close": true
-  },
-  {
-   "t": 1788792693,
-   "when": "Sep 07 14:51",
-   "event": "pulled",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "PDD",
-   "mechanism": "limit",
-   "trigger": 101.64,
-   "note": "Canceling PDD limit take-profit order upon position exit under Principle P4."
-  },
-  {
-   "t": 1788792693,
-   "when": "Sep 07 14:51",
-   "event": "pulled",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "PDD",
-   "mechanism": "stop",
-   "trigger": 70.7,
-   "note": "Canceling PDD stop loss order upon position exit under Principle P4."
-  },
-  {
-   "t": 1788792639,
-   "when": "Sep 07 14:50",
-   "event": "armed",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "IOT",
-   "mechanism": "limit",
-   "trigger": 46.23,
-   "note": "P4 - 15 percent take-profit target for Samsara (IOT) based on entry price of $40.20."
   }
  ],
  "system": {
-  "last_update": "Sep 17 14:07",
-  "symbols_tracked": 195
+  "last_update": "Sep 17 14:44",
+  "symbols_tracked": 196
  },
  "reserved": [
   "aapl",
