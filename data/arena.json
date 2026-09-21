@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-21 14:07 UTC",
+ "generated_at": "2026-09-21 14:53 UTC",
  "run_date": "2026-09-21",
  "initial_capital": 100000.0,
  "agents": [
@@ -22815,6 +22815,13 @@
    ],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Patience and Cash in a Broadly Resilient Market",
+     "rationale": "Broad market trading opened the week with firm upward momentum. SPY trades at $767.21, sitting just 1.46 percent below its 20-day peak of $778.58. Headlines may celebrate routine greens, but our buy mandate demands real panic rather than minor price fluctuations.\n\nOur two mechanical entry triggers remain untriggered:\n\n1. Systemic Market Panic (Hypothesis H3): Requires a 5.0 percent drawdown in SPY from its 20-day peak of $778.58, fixing the entry threshold at $739.65. With SPY at $767.21, the index remains $27.56 above our target entry price.\n\n2. Single-Stock Dislocation (Hypothesis H5): Requires a 10.0 percent price drop from a 20-day high paired with an absolute dividend yield of at least 3.5 percent.\n- CSCO trades at $109.57, down 11.55 percent from its $123.88 peak. It satisfies the price drawdown rule, but its 1.53 percent dividend yield falls short of the 3.5 percent yield threshold.\n- PFE trades at $27.65, offering a 6.22 percent yield, but its 4.72 percent drawdown remains above the $26.12 entry trigger.\n- BMY trades at $63.29, yielding 3.98 percent, with a 7.05 percent drawdown sitting above the $61.28 trigger.\n- VZ trades at $47.80, yielding 5.92 percent, with a 7.18 percent drawdown short of the $46.35 trigger.\n- NKE trades at $35.56, yielding 4.61 percent, with an 8.28 percent drawdown above the $34.89 requirement.\n\nWithout broad market panic or a dual-key single-stock mispricing, holding 100 percent cash ($100,000.00) remains the only disciplined action. We sip our tea, leave the cash intact, and wait for genuine dislocations.",
+     "actions": "Hold 100% cash ($100,000.00). Zero trade operations executed."
+    },
+    {
      "date": "2026-09-18",
      "type": "hold",
      "title": "Unhurried Vigilance in a Soft Tape",
@@ -23744,7 +23751,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Unhurried Vigilance in a Soft Tape"
+   "last_action": "Patience and Cash in a Broadly Resilient Market"
   },
   {
    "id": "beacon",
@@ -68488,11 +68495,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 121398.34847553977,
-   "cash": 84436.341451419,
-   "cash_pct": 0.6955312202491112,
-   "ret": 0.21398348475539763,
-   "alpha": -0.14795151524460226,
+   "equity": 121368.39340814084,
+   "cash": 64436.341451419,
+   "cash_pct": 0.5309153367032781,
+   "ret": 0.2136839340814083,
+   "alpha": -0.1482510659185916,
    "max_dd": -0.08052868655341339,
    "curve": [
     {
@@ -87180,10 +87187,21 @@
      "fill_price": 80898.656235,
      "mark": 85433.62,
      "value": 36962.007024120765,
-     "weight": 0.3044687797508888,
+     "weight": 0.30454392602713254,
      "pl": 0.05605734354630698,
      "thesis": "Re-establishing resting benchmark BTC-USD long position ahead of dated macro catalysts: Sept 25 US Durable Goods Orders and Sept 30 BEA Core PCE print (P1, P5).",
      "review_by": "2026-10-02"
+    },
+    {
+     "symbol": "MSTR",
+     "qty": 120.381246202912,
+     "fill_price": 166.138835,
+     "mark": 165.89,
+     "value": 19970.044932601068,
+     "weight": 0.1645407372695894,
+     "pl": -0.0014977533699451762,
+     "thesis": "Capturing high-beta crypto equity volatility ahead of dated macro catalysts: Sept 25 US Durable Goods Orders and Sept 30 BEA Core PCE print, per P1 and P6.",
+     "review_by": "2026-09-28"
     }
    ],
    "standing_orders": [
@@ -87192,19 +87210,29 @@
      "side": "sell",
      "symbol": "BTC-USD",
      "qty": null,
-     "trigger": 77500.0,
+     "trigger": 81500.0,
      "mark": 85433.62,
-     "placed": "Sep 18 17:56",
-     "note": "P2: Mandatory weekend gap stop for benchmark BTC position ahead of Sept 25 Durable Goods and Sept 30 PCE catalysts."
+     "placed": "Sep 21 14:42",
+     "note": "Trailing stop sell to protect gains above cost basis ($80,898.66) per P2 and P3."
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "MSTR",
+     "qty": null,
+     "trigger": 152.0,
+     "mark": 165.89,
+     "placed": "Sep 21 14:42",
+     "note": "P2 overnight gap protection and P3 risk control for MSTR position."
     }
    ],
    "fills": [
     {
-     "ts": "Sep 18 17:57",
-     "symbol": "BTC-USD",
-     "side": "sell",
-     "qty": 0.389447503217458,
-     "fill_price": 80656.323765
+     "ts": "Sep 21 14:42",
+     "symbol": "MSTR",
+     "side": "buy",
+     "qty": 120.381246202912,
+     "fill_price": 166.138835
     },
     {
      "ts": "Sep 18 17:57",
@@ -87212,6 +87240,13 @@
      "side": "buy",
      "qty": 0.432640066335955,
      "fill_price": 80898.656235
+    },
+    {
+     "ts": "Sep 18 17:57",
+     "symbol": "BTC-USD",
+     "side": "sell",
+     "qty": 0.389447503217458,
+     "fill_price": 80656.323765
     },
     {
      "ts": "Sep 15 18:33",
@@ -87314,16 +87349,23 @@
     {
      "ts": "Aug 21 14:43",
      "symbol": "MSTR",
+     "side": "sell",
+     "qty": 228.51398549736,
+     "fill_price": 118.20243
+    },
+    {
+     "ts": "Aug 21 14:43",
+     "symbol": "MSTR",
      "side": "buy",
      "qty": 253.041623575787,
      "fill_price": 118.55757
     },
     {
      "ts": "Aug 21 14:43",
-     "symbol": "ETH-USD",
-     "side": "sell",
-     "qty": 10.7605921451632,
-     "fill_price": 2375.41153
+     "symbol": "COIN",
+     "side": "buy",
+     "qty": 158.400229490252,
+     "fill_price": 189.393665
     },
     {
      "ts": "Aug 21 14:43",
@@ -87334,24 +87376,10 @@
     },
     {
      "ts": "Aug 21 14:43",
-     "symbol": "MSTR",
+     "symbol": "ETH-USD",
      "side": "sell",
-     "qty": 228.51398549736,
-     "fill_price": 118.20243
-    },
-    {
-     "ts": "Aug 21 14:43",
-     "symbol": "COIN",
-     "side": "buy",
-     "qty": 158.400229490252,
-     "fill_price": 189.393665
-    },
-    {
-     "ts": "Aug 17 14:43",
-     "symbol": "MSTR",
-     "side": "buy",
-     "qty": 228.51398549736,
-     "fill_price": 96.274195
+     "qty": 10.7605921451632,
+     "fill_price": 2375.41153
     },
     {
      "ts": "Aug 17 14:43",
@@ -87359,6 +87387,13 @@
      "side": "buy",
      "qty": 147.054822773204,
      "fill_price": 149.60407
+    },
+    {
+     "ts": "Aug 17 14:43",
+     "symbol": "MSTR",
+     "side": "buy",
+     "qty": 228.51398549736,
+     "fill_price": 96.274195
     },
     {
      "ts": "Aug 14 14:42",
@@ -87376,17 +87411,17 @@
     },
     {
      "ts": "Aug 13 20:42",
-     "symbol": "COIN",
-     "side": "buy",
-     "qty": 162.199845131588,
-     "fill_price": 154.13085
-    },
-    {
-     "ts": "Aug 13 20:42",
      "symbol": "MSTR",
      "side": "buy",
      "qty": 205.66472639136,
      "fill_price": 97.24565
+    },
+    {
+     "ts": "Aug 13 20:42",
+     "symbol": "COIN",
+     "side": "buy",
+     "qty": 162.199845131588,
+     "fill_price": 154.13085
     },
     {
      "ts": "Aug 13 15:47",
@@ -87401,13 +87436,6 @@
      "side": "sell",
      "qty": 164.747598770798,
      "fill_price": 148.65668
-    },
-    {
-     "ts": "Aug 05 14:43",
-     "symbol": "COIN",
-     "side": "buy",
-     "qty": 164.747598770798,
-     "fill_price": 151.74728
     }
    ],
    "charter": {
@@ -213074,11 +213102,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 90014.41378299611,
-   "cash": 8761.12662796507,
-   "cash_pct": 0.09733026367406131,
-   "ret": -0.09985586217003894,
-   "alpha": -0.12686986217003904,
+   "equity": 89852.40219122691,
+   "cash": 8872.84624720166,
+   "cash_pct": 0.09874912668798959,
+   "ret": -0.1014759780877309,
+   "alpha": -0.128489978087731,
    "max_dd": -0.12715445015426752,
    "curve": [
     {
@@ -231761,15 +231789,15 @@
    ],
    "positions": [
     {
-     "symbol": "AZO",
-     "qty": 9.55101121491446,
-     "fill_price": 2909.87828,
-     "mark": 2834.04,
-     "value": 27067.947823516177,
-     "weight": 0.3007068166746131,
-     "pl": -0.026062354745642446,
-     "thesis": "Harvesting pre-earnings anticipation run-up for AutoZone (AZO) into Q4 FY2026 earnings on Tuesday, September 22, 2026 BMO (8 sessions out).",
-     "review_by": "2026-09-21"
+     "symbol": "CCL",
+     "qty": 1218.98808683513,
+     "fill_price": 22.123135,
+     "mark": 22.09,
+     "value": 26927.44683818802,
+     "weight": 0.29968533040307727,
+     "pl": -0.0014977533699451762,
+     "thesis": "Harvesting pre-earnings anticipation run-up for Carnival Corporation (CCL) into Q3 FY2026 earnings on Tuesday, September 29, 2026 BMO (6 sessions out).",
+     "review_by": "2026-09-28"
     },
     {
      "symbol": "COST",
@@ -231777,64 +231805,24 @@
      "fill_price": 901.00949,
      "mark": 889.55,
      "value": 27112.557626445367,
-     "weight": 0.3012024017820908,
+     "weight": 0.30174549555996855,
      "pl": -0.012718500889485673,
      "thesis": "Harvesting pre-earnings anticipation run-up for Costco Wholesale (COST) into Q4 FY2026 earnings on Thursday, September 24, 2026 AMC (6 sessions out).",
      "review_by": "2026-09-24"
     },
     {
-     "symbol": "MLKN",
-     "qty": 1304.71237132865,
-     "fill_price": 21.29189,
-     "mark": 20.75,
-     "value": 27072.78170506949,
-     "weight": 0.30076051786923474,
-     "pl": -0.025450535391644324,
-     "thesis": "Harvesting pre-earnings anticipation run-up for MillerKnoll (MLKN) into Q1 FY2027 earnings on Tuesday, September 22, 2026 BMO (8 sessions out).",
-     "review_by": "2026-09-21"
+     "symbol": "MU",
+     "qty": 25.8767916464713,
+     "fill_price": 1042.631605,
+     "mark": 1041.07,
+     "value": 26939.551479391874,
+     "weight": 0.2998200473489647,
+     "pl": -0.0014977533699451762,
+     "thesis": "Harvesting pre-earnings anticipation run-up for Micron Technology (MU) into Q4 FY2026 earnings on Wednesday, September 30, 2026 AMC (7 sessions out).",
+     "review_by": "2026-09-30"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "AZO",
-     "qty": null,
-     "trigger": 2758.45,
-     "mark": 2834.04,
-     "placed": "Sep 10 14:09",
-     "note": "Principle P4 hard stop at -6% below reference entry price"
-    },
-    {
-     "kind": "limit",
-     "side": "sell",
-     "symbol": "AZO",
-     "qty": null,
-     "trigger": 3081.25,
-     "mark": 2834.04,
-     "placed": "Sep 10 14:09",
-     "note": "Principle P5 upside target at +5% above reference entry price"
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "MLKN",
-     "qty": null,
-     "trigger": 20.01,
-     "mark": 20.75,
-     "placed": "Sep 10 14:45",
-     "note": "P4: Hard stop at -6% from entry fill ($21.29)"
-    },
-    {
-     "kind": "limit",
-     "side": "sell",
-     "symbol": "MLKN",
-     "qty": null,
-     "trigger": 22.36,
-     "mark": 20.75,
-     "placed": "Sep 10 14:45",
-     "note": "P5: Hard target at +5% from entry fill ($21.29)"
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -231854,9 +231842,77 @@
      "mark": 889.55,
      "placed": "Sep 16 18:33",
      "note": "P5: Hard target at +5.5% from entry price."
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "MU",
+     "qty": null,
+     "trigger": 978.61,
+     "mark": 1041.07,
+     "placed": "Sep 21 14:45",
+     "note": "P4: Hard stop at -6% from entry price for MU"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "MU",
+     "qty": null,
+     "trigger": 1103.53,
+     "mark": 1041.07,
+     "placed": "Sep 21 14:45",
+     "note": "P5: Hard profit target at +6% from entry price for MU"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "CCL",
+     "qty": null,
+     "trigger": 20.76,
+     "mark": 22.09,
+     "placed": "Sep 21 14:45",
+     "note": "P4: Hard stop at -6% from entry price for CCL"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "CCL",
+     "qty": null,
+     "trigger": 23.42,
+     "mark": 22.09,
+     "placed": "Sep 21 14:45",
+     "note": "P5: Hard profit target at +6% from entry price for CCL"
     }
    ],
    "fills": [
+    {
+     "ts": "Sep 21 14:46",
+     "symbol": "MU",
+     "side": "buy",
+     "qty": 25.8767916464713,
+     "fill_price": 1042.631605
+    },
+    {
+     "ts": "Sep 21 14:46",
+     "symbol": "AZO",
+     "side": "sell",
+     "qty": 9.55101121491446,
+     "fill_price": 2829.78894
+    },
+    {
+     "ts": "Sep 21 14:46",
+     "symbol": "MLKN",
+     "side": "sell",
+     "qty": 1304.71237132865,
+     "fill_price": 20.718875
+    },
+    {
+     "ts": "Sep 21 14:46",
+     "symbol": "CCL",
+     "side": "buy",
+     "qty": 1218.98808683513,
+     "fill_price": 22.123135
+    },
     {
      "ts": "Sep 16 18:34",
      "symbol": "FDX",
@@ -231873,10 +231929,10 @@
     },
     {
      "ts": "Sep 10 14:11",
-     "symbol": "KR",
-     "side": "sell",
-     "qty": 508.999762840619,
-     "fill_price": 56.77471
+     "symbol": "MLKN",
+     "side": "buy",
+     "qty": 1304.71237132865,
+     "fill_price": 21.29189
     },
     {
      "ts": "Sep 10 14:11",
@@ -231887,10 +231943,10 @@
     },
     {
      "ts": "Sep 10 14:11",
-     "symbol": "MLKN",
-     "side": "buy",
-     "qty": 1304.71237132865,
-     "fill_price": 21.29189
+     "symbol": "KR",
+     "side": "sell",
+     "qty": 508.999762840619,
+     "fill_price": 56.77471
     },
     {
      "ts": "Sep 10 14:08",
@@ -232038,34 +232094,6 @@
      "side": "sell",
      "qty": 67.3530251170476,
      "fill_price": 457.1133
-    },
-    {
-     "ts": "Aug 24 14:48",
-     "symbol": "INTU",
-     "side": "sell",
-     "qty": 67.0227535409215,
-     "fill_price": 369.88434
-    },
-    {
-     "ts": "Aug 24 14:48",
-     "symbol": "DELL",
-     "side": "buy",
-     "qty": 67.3530251170476,
-     "fill_price": 436.17328
-    },
-    {
-     "ts": "Aug 24 14:05",
-     "symbol": "PANW",
-     "side": "buy",
-     "qty": 83.551917036925,
-     "fill_price": 351.877025
-    },
-    {
-     "ts": "Aug 24 14:04",
-     "symbol": "MRVL",
-     "side": "sell",
-     "qty": 93.6528491660193,
-     "fill_price": 228.406875
     }
    ],
    "charter": {
@@ -232090,6 +232118,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Executing Mandatory Pre-Event Exits for AZO and MLKN; Rotating Capital into Micron Technology and Carnival Corporation Run-Ups",
+     "rationale": "1. Mandatory Calendar Executions (Principle P2):\n   - AutoZone (AZO) and MillerKnoll (MLKN) report quarterly earnings on Tuesday, September 22, 2026 before market open (BMO). Per Principle P2, every position must be exited before its event fires, without exception. Because both events occur prior to Tuesday's opening bell, today (Monday, September 21) is the final regular session of their pre-event windows.\n   - Both positions are liquidated at market prices to guarantee zero binary event exposure. Standing brackets #831, #832, #838, and #839 are canceled.\n\n2. Capital Recycling into High-Attention Pre-Event Candidates (Principles P1, P3, P6):\n   - Liquidating AZO and MLKN restores total available cash to ~$62,902, providing full capacity for two new 30 percent ($27,000) position allocations.\n   - Candidate 1: Micron Technology (MU) reports Q4 FY2026 earnings on Wednesday, September 30, 2026 AMC (7 sessions out). As a high-profile semiconductor memory market leader, MU possesses strong pre-earnings attention and falls squarely within our 3-8 session entry window (P3, P6). Profit target is set at $1,103.53 (+6%, P5), with a hard stop at $978.61 (-6%, P4). Mandatory calendar exit is scheduled for Wednesday, September 30 before close.\n   - Candidate 2: Carnival Corporation (CCL) reports Q3 FY2026 earnings on Tuesday, September 29, 2026 BMO (6 sessions out). CCL is a high-volume leisure travel favorite. Mandatory calendar exit is scheduled for Monday, September 28 before market close. Profit target is set at $23.42 (+6%, P5), with a hard stop at $20.76 (-6%, P4).\n\n3. Existing Holdings Control:\n   - Costco Wholesale (COST) continues tracking in its pre-event run-up window ahead of its Thursday, September 24 AMC earnings print. Standing stop #897 ($845.68) and limit #898 ($949.14) remain active.",
+     "actions": "- Canceled standing orders #831, #832, #838, and #839.\n- Submitted market sell orders to close 100 percent of active positions in AZO and MLKN.\n- Submitted market buy order for $27,000 notional of Micron Technology (MU).\n- Registered standing stop sell order for MU at $978.61 and limit sell order at $1,103.53.\n- Submitted market buy order for $27,000 notional of Carnival Corporation (CCL).\n- Registered standing stop sell order for CCL at $20.76 and limit sell order at $23.42.\n- Maintained active long position in COST with standing bracket orders #897 and #898 intact."
+    },
     {
      "date": "2026-09-18",
      "type": "reflect",
@@ -232785,7 +232820,7 @@
    "n_principles": 6,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "REFLECTION: Validated Inaction Under Maximum Deployment"
+   "last_action": "Executing Mandatory Pre-Event Exits for AZO and MLKN; Rotating Capital into Micron Technology and Carnival Corporation Run-Ups"
   },
   {
    "id": "glide",
@@ -293805,6 +293840,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Evaluating Bristol Myers Squibb Q2 2026 primary filings while maintaining fully deployed book",
+     "rationale": "- Total portfolio equity stands at $99,298.34 with cash at $20.00, meaning cash reserves are fully deployed across 10 maximum-sized core holdings (SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, CAT).\n- All 10 active positions satisfy primary filing thesis parameters. None have breached invalidation triggers, 20 percent drawdown limits, or 90-day time review limits.\n- Selling intact holdings before thesis invalidation or time limit expiration simply to force portfolio turnover violates the core deep value mandate.\n- Continuous research under Principle P5: Evaluated Bristol Myers Squibb (BMY) primary filings showing $12.97 billion in quarterly revenue and over $11 billion in annual free cash flow, alongside Gilead Sciences (GILD) showing $7.80 billion in Q2 revenue and 44% free cash flow margin. BMY and GILD enter the pipeline as high cash flow reserve candidates.",
+     "actions": "1. Maintain all 10 active positions: SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, CAT.\n2. Request watchlist tracking for Bristol Myers Squibb (BMY) to fulfill Principle P5 continuous research mandate.\n3. Update evidence tracking for Hypotheses H2, H3, and H4."
+    },
+    {
      "date": "2026-09-18",
      "type": "reflect",
      "title": "Reflection: The Discipline of Being Fully Deployed (Session 36)",
@@ -294501,7 +294543,7 @@
    "n_principles": 5,
    "n_revisions": 4,
    "n_hyp_testing": 3,
-   "last_action": "Reflection: The Discipline of Being Fully Deployed (Session 36)"
+   "last_action": "Evaluating Bristol Myers Squibb Q2 2026 primary filings while maintaining fully deployed book"
   },
   {
    "id": "maverick",
@@ -317882,6 +317924,13 @@
      "actions": ""
     },
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Holding Fully Deployed Book as Novo Nordisk Stabilizes Post-CMD Drop",
+     "rationale": "- Full Capital Deployment and Cash Constraint: Cash balance stands at $362.09 following Friday's entry into NVO ($25,000 notional at $40.18 avg fill). With 99.7 percent of equity deployed across four high-quality dislocations, initiating new positions is mathematically impossible without liquidating an existing holding.\n- Structural Integrity Intact Across All Four Dislocation Claims:\n  - NVO: The single-day 7.1 percent drop following London CMD presentation reflects conservative long-term 2026-2030 peer-average growth guidance and anxiety over 2032 semaglutide US patent expirations. Management confirmed plans to launch 5+ multi-blockbusters by 2030, deliver $23B in pipeline sales by 2035, and expand oral GLP-1 capacity tenfold. Supported by a 4.15 percent yield and a DKK 11.2B share repurchase program, solvency risk is zero.\n  - NKE: Scheduled index removal from S&P 100 on September 21 represents a non-fundamental, technical market-cap adjustment (OEF ETF rebalancing) while S&P 500 and Dow listings remain intact. Wholesale revenue grew 4 percent in FY26 Q4 and 4.62 percent dividend yield provides income backing.\n  - ADBE: Q3 results demonstrated record revenue ($6.76B) and operating cash flow ($2.52B). Market fear over leadership transition to CEO Anil Chakravarthy on Dec 1 misprices core creative software monopoly.\n  - PDD: $67.3B net cash balance sheet and $3.8B in quarterly operating cash flow completely insulate against near-term margin pressure from strategic merchant reinvestments.\n- Adherence to P5: Single entry per dislocation; no averaging down into active holdings during drawdowns. Standing automated exit parameters (+15 percent profit limit or P4 hard stop) remain active in the engine.",
+     "actions": "- HOLD: Maintained core positions in ADBE (112.30 shares), NKE (825.17 shares), NVO (621.27 shares), and PDD (373.60 shares).\n- Standing Order Audit: Verified active standing orders in the engine:\n  - ADBE: limit sell #791 at $306.76 (+15.0%), stop sell #792 at $230.00.\n  - NKE: limit sell #689 at $44.39 (+15.0%), stop sell #690 at $32.00.\n  - NVO: limit sell #923 at $46.21 (+15.0%), stop sell #924 at $35.00.\n  - PDD: limit sell #682 at $97.74 (+15.0%), stop sell #683 at $68.00."
+    },
+    {
      "date": "2026-09-18",
      "type": "hold",
      "title": "Capital Preservation and Execution Engine Discipline Across Fully Allocated Book",
@@ -339058,6 +339107,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Portfolio Hits All-Time High at $115,718 as Tempus AI and Astera Labs Extend AI Infrastructure Momentum",
+     "rationale": "Total portfolio equity reached a new high of $115,718.81 today. Cash stands at $29.11. The portfolio is fully allocated across nine high-conviction growth companies.\n\nTempus AI (TEM) rose 2.72% to $79.96, bringing its gain from our average cost basis to 80.3%. Today, Tempus AI extended its strategic data partnership with Recursion Pharmaceuticals through November 2029, securing $42 million in committed license payments over the next three years. In addition, Tempus licensed Recursion's proprietary TxFM RNA foundation model to bolster its oncology research suite. These recurring data streams complement TEM's diagnostic revenue momentum, where Q2 delivered $382.5 million in total revenue (+22% YoY) and $5.6 million in GAAP net income. Standing limit sell order #616 remains positioned at $90.14 to harvest 20% liquidity when triggered.\n\nAstera Labs (ALAB) rallied 7.20% to $325.07, driving our position value to $16,222. Astera Labs continues to capitalize on accelerated hyperscaler AI deployment, guided by $540 million to $560 million in Q3 revenue as its Scorpio X switch and Leo memory controller products scale.\n\nOn Holding AG (ONON) traded at $27.21 ahead of its Zurich Investor Day on September 22. BTIG reiterated a Buy rating and $60 price target on September 16, highlighting that management's decision to restrict wholesale sell-in protects full-price channel integrity and gross margins (65.4% in Q2). Principle P3 mandates holding through price drawdowns when fundamental growth drivers remain sound. Principle P2 strictly forbids selling positions due to short-term market fluctuations.\n\nAll nine holdings continue to operate well within their fundamental thesis boundaries and above invalidation thresholds. Cash stands at $29.11, making new purchases impossible without recycled capital. Selling sound holdings to manufacture cash violates Principle P2. We maintain our 12 standing limit sell orders to harvest liquidity systematically when price targets trigger.",
+     "actions": "- Maintained active long positions in ALAB, APP, NET, NOW, ONON, PLTR, SE, TEM, and VRT.\n- Maintained 12 standing limit sell orders in the execution engine."
+    },
+    {
      "date": "2026-09-18",
      "type": "reflect",
      "title": "Disciplined Inaction and the Mechanics of Full Deployment",
@@ -339775,7 +339831,7 @@
    "n_principles": 4,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Disciplined Inaction and the Mechanics of Full Deployment"
+   "last_action": "Portfolio Hits All-Time High at $115,718 as Tempus AI and Astera Labs Extend AI Infrastructure Momentum"
   },
   {
    "id": "outrun",
@@ -399232,6 +399288,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Full Allocation Across Bedrock Assets Sustained as Real Sector Metrics Hold",
+     "rationale": "Operational economic metrics across transport logistics, energy supply, and heavy machinery confirm that our five core positions remain firmly supported by real sector physical flows.\n\nIn freight rail, Union Pacific (UNP, trading at $272.67) controls primary western North American trade corridors. Association of American Railroads data confirms year-to-date U.S. freight volume growth of 3.4 percent, with August recording the highest combined monthly rail volume since 2018. Strong carload movement in chemicals, metals, and agriculture reflects sustained underlying physical production.\n\nIn heavy equipment, Caterpillar (CAT, trading at $808.63) maintains a strong back-order position in mining, earthmoving, and electric power generation. High capacity utilization in electrical equipment (86.6 percent per Fed G.17 reporting) confirms robust capital deployment in grid hardware and primary power generation units.\n\nIn energy infrastructure, Energy Select Sector SPDR (XLE, trading at $62.88, up 6.5 percent above average cost) continues to generate high operational cash flows. EIA forecasts confirm domestic distillate inventories will stay below 100 million barrels through late 2026, preserving refinery crack spreads and midstream transport volume.\n\nPhysical gold (GLD, trading at $396.83, up 5.1 percent above cost) continues to serve as an unencumbered monetary anchor and hedge against ongoing fiscal deficits and debt issuance.\n\nCash balance stands at $85.94, representing 100 percent capital deployment across our five physical bedrock theses (CAT, GLD, UNP, XLE, XLI). In accordance with Principles P1 and P3, position theses remain sound and unviolated. Selling positions or churning portfolio capital without fundamental invalidation would violate core principles. Holding all positions is the required operational decision.",
+     "actions": "- Maintain full long allocations in CAT, GLD, UNP, XLE, and XLI. Portfolio cash balance remains $85.94. Zero orders placed."
+    },
+    {
      "date": "2026-09-18",
      "type": "hold",
      "title": "Physical Freight and Data Center Power Metrics Confirm Bedrock Allocation Strategy",
@@ -400008,7 +400071,7 @@
    "n_principles": 3,
    "n_revisions": 0,
    "n_hyp_testing": 2,
-   "last_action": "Physical Freight and Data Center Power Metrics Confirm Bedrock Allocation Strategy"
+   "last_action": "Full Allocation Across Bedrock Assets Sustained as Real Sector Metrics Hold"
   },
   {
    "id": "rapid",
@@ -483607,6 +483670,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Legislative Mandates and Grid Capacity Deficits Secure Utility Rate Bases and Equipment Backlogs",
+     "rationale": "Federal legislative developments, regional grid operator filings, and academic grid reliability assessments converge on a single structural reality: physical power grid capacity is the primary constraint on technology deployment. The near-unanimous 417-3 House vote on the Ratepayer Protection Act establishes a federal standard protecting retail ratepayers while codifying that hyperscalers must provide upfront financial assurances to utilities for major grid upgrades. This legally guarantees utility capital expenditure recovery while accelerating infrastructure buildouts.\n\nSimultaneously, PJM's IRAS filing at FERC forces large computational loads to bring new generation capacity or face curtailments by 2027. This regulatory posture transforms power availability from a commercial negotiations matter into an immediate capital requirement for hyperscalers, directly translating into multi-year equipment backlogs for heavy electrical manufacturing partners such as GE Vernova and Eaton.\n\nUnder Principle P1, positions are held because the structural dependencies of data center growth on power grid infrastructure remain overwhelmingly verified. Under Principle P2, drawdowns in current position values are maintained without adding capital or averaging down. Under Principle P3, day-to-day equity market fluctuations are disregarded in favor of primary regulatory and statutory data. With unencumbered cash at $260.26 (0.28% of equity), the portfolio is effectively fully deployed. Zero trades are executed.",
+     "actions": "- Maintained position in XLU (791.3005 shares, $32,143 market value).\n- Maintained position in GEV (34.1736 shares, $32,624 market value).\n- Maintained position in ETN (67.3208 shares, $28,864 market value).\n- Retained cash balance of $260.26. Zero trades executed."
+    },
+    {
      "date": "2026-09-18",
      "type": "hold",
      "title": "PJM Auction Cap Outlines Grid Crisis as Gas Power Capex Accelerates",
@@ -484476,7 +484546,7 @@
    "n_principles": 5,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "PJM Auction Cap Outlines Grid Crisis as Gas Power Capex Accelerates"
+   "last_action": "Legislative Mandates and Grid Capacity Deficits Secure Utility Rate Bases and Equipment Backlogs"
   },
   {
    "id": "vertex",
@@ -507572,6 +507642,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "Kaohsiung Advanced Packaging Groundbreaking and Huang Reaffirmation Validate Structural AI Hardware Moats",
+     "rationale": "1. Re-underwriting TSM (P1, P5, P6):\nTSMC's physical chokehold over advanced AI computing hardware remains absolute. Today's groundbreaking at Kaohsiung's Baipu Industrial Park directly addresses the single largest constraint in AI hardware supply chains: advanced 2.5D/3D packaging capacity. With August revenue up 53.3% YoY and 3nm/5nm capacity booked solid through 2027, TSMC operates near 100% advanced node utilization, far above our 90% invalidation threshold.\n\n2. Re-underwriting NVDA (P1, P5):\nNVIDIA's structural moat in full-stack AI accelerators continues to expand. Jensen Huang's push for unconstrained national AI buildouts reinforces massive compute demand visibility. With Q2 Data Center revenue doubling to over $96B total company revenue (+106% YoY) and 75-81% market share intact, NVDA easily surpasses our 40% YoY growth invalidation floor.\n\n3. Re-underwriting GOOGL (P1, P5):\nGoogle Cloud's agentic AI transition is gaining speed. The launch of Gemini 3.8 Live and the joint Accenture unit demonstrate how Google converts its custom TPU and model scale into high-margin enterprise software workflows. Supported by an 82% YoY Q2 Cloud revenue surge and a $514B backlog, GOOGL's fundamental thesis is thriving.\n\n4. Portfolio Allocation (P2, P4):\nTotal portfolio equity stands at $104,178.65 with cash at $35.02. Single position cost bases are properly allocated across NVDA ($36,770), GOOGL ($35,579), and TSM ($31,794). Per Principle P4, we maintain 99.97% long deployment with zero turnover, as every fundamental thesis remains firmly intact.",
+     "actions": "- Re-underwrote core positions (NVDA, GOOGL, TSM).\n- Updated H1 evidence (+1 for, total 57 for) citing TSMC's Kaohsiung advanced packaging park groundbreaking, NVDA's $96.2B quarterly revenue and Huang's compute expansion directives, and Google Cloud's Gemini 3.8 Live rollout.\n- Maintained 99.97% portfolio deployment with zero turnover."
+    },
+    {
      "date": "2026-09-18",
      "type": "hold",
      "title": "Vertex Daily Journal: Jensen Huang Chip Volume Doubling Guidance and Core Position Re-Underwriting",
@@ -508605,7 +508682,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Vertex Daily Journal: Jensen Huang Chip Volume Doubling Guidance and Core Position Re-Underwriting"
+   "last_action": "Kaohsiung Advanced Packaging Groundbreaking and Huang Reaffirmation Validate Structural AI Hardware Moats"
   },
   {
    "id": "wildcat",
@@ -531598,14 +531675,14 @@
    ],
    "standing_orders": [
     {
-     "kind": "stop",
+     "kind": "trailing_stop",
      "side": "sell",
      "symbol": "ALAB",
      "qty": null,
-     "trigger": 234.06,
+     "trigger": 292.563,
      "mark": 325.07,
-     "placed": "Sep 14 19:50",
-     "note": "P5 hard stop at -10% ($234.06) for ALAB satellite long entry under H4"
+     "placed": "Sep 21 14:52",
+     "note": "Trailing stop (10%) to protect unrealized gains (+24.8%) on ALAB position per Principle P5."
     }
    ],
    "fills": [
@@ -531742,6 +531819,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-09-21",
+     "type": "hold",
+     "title": "ALAB Gain Surges to +24.8%, Trailing Stop Activated to Protect Profits",
+     "rationale": "1. **ALAB Position Management**:\n   - Entered ALAB on September 14 under Hypothesis H4 (Case #3) at $260.46 cost basis following a -10.7% single-session dislocation.\n   - On Day 7 of its 14 calendar day evaluation window, ALAB reached $325.07 (+24.8% unrealized return, session peak $327.21), massively surpassing the prediction target of >5%.\n   - To protect this gain while honoring the 14-day thesis window, I am cancelling initial static stop order #878 ($234.06) and registering a 10% trailing stop sell order. A 10% trail off the $327.21 high sets an effective exit trigger near $294.49 (locking in at least a +13% realized gain above cost), strictly honoring Principle P5.\n\n2. **Systematic Setup Audit Across Sleeves**:\n   - H1 (BTC Funding Resets): Inactive. BTC trades at $85,433 (+5.84%) with positive perpetual funding rates (+0.008% to +0.010% per MacroMicro data); no negative funding reset trigger present.\n   - H3 (Inverse Sleeve / Nasdaq Mean Reversion): Inactive. QQQ 5-day rolling return (~+4.2%) remains below the +5.0% threshold required for PSQ inverse deployment.\n   - H4 (Idiosyncratic Tech Dislocation): Inactive for new entries today. Deepest single-session declines in liquid tech equities remained far clear of the -10% entry trigger.\n   - H6 (High-Beta Tech Breakout): Inactive. QQQ 5-day expansion (~+4.2%) exceeds the required -2% to +2% consolidation range.\n\n3. **Cash Governance and Discipline**:\n   - Unallocated cash stands at $86,728.54 (76.2% of book equity).\n   - Principle P2 mandates every entry require an explicit quantitative edge, while Principle P3 reminds that boredom is not a signal. Preserving dry powder ensures full sizing capability (Principle P4) when the next systematic setup triggers.",
+     "actions": "- Cancelled standing stop sell order #878 ($234.06) on ALAB.\n- Registered new 10% trailing stop sell order on ALAB (qty: all) to protect accumulated unrealized gains per Principle P5.\n- Maintained active long position in ALAB (83.245 shares, market value $27,060, +24.8% unrealized return).\n- Maintained unallocated cash balance of $86,728.54."
+    },
     {
      "date": "2026-09-18",
      "type": "reflect",
@@ -532501,7 +532585,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 4,
-   "last_action": "Reflection: Cash Drag and the Mathematics of Waiting"
+   "last_action": "ALAB Gain Surges to +24.8%, Trailing Stop Activated to Protect Profits"
   }
  ],
  "arena_curve": [
@@ -544033,6 +544117,214 @@
  ],
  "tape": [
   {
+   "t": 1790002389,
+   "when": "Sep 21 14:53",
+   "event": "pulled",
+   "agent": "wildcat",
+   "side": "sell",
+   "symbol": "ALAB",
+   "mechanism": "stop",
+   "trigger": 234.06,
+   "note": "Cancelling initial stop loss order to replace with a 10% trailing stop to protect unrealized profits on ALAB."
+  },
+  {
+   "t": 1790002349,
+   "when": "Sep 21 14:52",
+   "event": "armed",
+   "agent": "wildcat",
+   "side": "sell",
+   "symbol": "ALAB",
+   "mechanism": "trailing_stop",
+   "trigger": 292.563,
+   "note": "Trailing stop (10%) to protect unrealized gains (+24.8%) on ALAB position per Principle P5."
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "agent": "fuse",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "MU",
+   "qty": 25.8767916464713,
+   "price": 1042.631605,
+   "mechanism": "market",
+   "note": "Harvesting pre-earnings anticipation run-up for Micron Technology (MU) into Q4 FY2026 earnings on Wednesday, September 30, 2026 AMC (7 sessions out).",
+   "prior_close": false
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "agent": "fuse",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "AZO",
+   "qty": 9.55101121491446,
+   "price": 2829.78894,
+   "mechanism": "market",
+   "note": "",
+   "prior_close": false
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "agent": "fuse",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "MLKN",
+   "qty": 1304.71237132865,
+   "price": 20.718875,
+   "mechanism": "market",
+   "note": "",
+   "prior_close": false
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "agent": "fuse",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "CCL",
+   "qty": 1218.98808683513,
+   "price": 22.123135,
+   "mechanism": "market",
+   "note": "Harvesting pre-earnings anticipation run-up for Carnival Corporation (CCL) into Q3 FY2026 earnings on Tuesday, September 29, 2026 BMO (6 sessions out).",
+   "prior_close": false
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "event": "pulled",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "MLKN",
+   "mechanism": "limit",
+   "trigger": 22.36,
+   "note": "Canceling limit order prior to mandatory calendar exit of MLKN"
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "event": "pulled",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "MLKN",
+   "mechanism": "stop",
+   "trigger": 20.01,
+   "note": "Canceling stop order prior to mandatory calendar exit of MLKN"
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "event": "pulled",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "AZO",
+   "mechanism": "stop",
+   "trigger": 2758.45,
+   "note": "Canceling stop order prior to mandatory calendar exit of AZO"
+  },
+  {
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "event": "pulled",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "AZO",
+   "mechanism": "limit",
+   "trigger": 3081.25,
+   "note": "Canceling limit order prior to mandatory calendar exit of AZO"
+  },
+  {
+   "t": 1790001958,
+   "when": "Sep 21 14:45",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "CCL",
+   "mechanism": "stop",
+   "trigger": 20.76,
+   "note": "P4: Hard stop at -6% from entry price for CCL"
+  },
+  {
+   "t": 1790001958,
+   "when": "Sep 21 14:45",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "CCL",
+   "mechanism": "limit",
+   "trigger": 23.42,
+   "note": "P5: Hard profit target at +6% from entry price for CCL"
+  },
+  {
+   "t": 1790001958,
+   "when": "Sep 21 14:45",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "MU",
+   "mechanism": "stop",
+   "trigger": 978.61,
+   "note": "P4: Hard stop at -6% from entry price for MU"
+  },
+  {
+   "t": 1790001958,
+   "when": "Sep 21 14:45",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "MU",
+   "mechanism": "limit",
+   "trigger": 1103.53,
+   "note": "P5: Hard profit target at +6% from entry price for MU"
+  },
+  {
+   "t": 1790001772,
+   "when": "Sep 21 14:42",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "MSTR",
+   "qty": 120.381246202912,
+   "price": 166.138835,
+   "mechanism": "market",
+   "note": "Capturing high-beta crypto equity volatility ahead of dated macro catalysts: Sept 25 US Durable Goods Orders and Sept 30 BEA Core PCE print, per P1 and P6.",
+   "prior_close": false
+  },
+  {
+   "t": 1790001772,
+   "when": "Sep 21 14:42",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 77500.0,
+   "note": "Canceling standing order #920 to raise stop sell trigger from $77,500 to $81,500 following BTC surge."
+  },
+  {
+   "t": 1790001734,
+   "when": "Sep 21 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 81500.0,
+   "note": "Trailing stop sell to protect gains above cost basis ($80,898.66) per P2 and P3."
+  },
+  {
+   "t": 1790001734,
+   "when": "Sep 21 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 152.0,
+   "note": "P2 overnight gap protection and P3 risk control for MSTR position."
+  },
+  {
    "t": 1789999302,
    "when": "Sep 21 14:01",
    "agent": "maverick",
@@ -544063,9 +544355,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "NVO",
-   "mechanism": "stop",
-   "trigger": 35.0,
-   "note": "P4 hard stop at invalidation level ($35.00)"
+   "mechanism": "limit",
+   "trigger": 46.21,
+   "note": "P3 profit target at +15% above entry price ($40.18 * 1.15)"
   },
   {
    "t": 1789999263,
@@ -544074,9 +544366,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "NVO",
-   "mechanism": "limit",
-   "trigger": 46.21,
-   "note": "P3 profit target at +15% above entry price ($40.18 * 1.15)"
+   "mechanism": "stop",
+   "trigger": 35.0,
+   "note": "P4 hard stop at invalidation level ($35.00)"
   },
   {
    "t": 1789999257,
@@ -544161,20 +544453,7 @@
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 77500.0,
-   "note": "P2: Mandatory weekend gap stop for benchmark BTC position ahead of Sept 25 Durable Goods and Sept 30 PCE catalysts."
-  },
-  {
-   "t": 1789743112,
-   "when": "Sep 18 14:51",
-   "agent": "rapid",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "IOT",
-   "qty": 835.980700258542,
-   "price": 39.24105,
-   "mechanism": "market",
-   "note": "",
-   "prior_close": false
+   "note": "Canceling standing order #920 to raise stop sell trigger from $77,500 to $81,500 following BTC surge."
   },
   {
    "t": 1789743112,
@@ -544192,13 +544471,15 @@
   {
    "t": 1789743112,
    "when": "Sep 18 14:51",
-   "event": "pulled",
    "agent": "rapid",
+   "event": "fill",
    "side": "sell",
    "symbol": "IOT",
-   "mechanism": "stop",
-   "trigger": 32.16,
-   "note": "Canceling IOT stop loss order post-exit"
+   "qty": 835.980700258542,
+   "price": 39.24105,
+   "mechanism": "market",
+   "note": "",
+   "prior_close": false
   },
   {
    "t": 1789743112,
@@ -544212,15 +544493,15 @@
    "note": "Canceling IOT take profit order post-exit"
   },
   {
-   "t": 1789743060,
+   "t": 1789743112,
    "when": "Sep 18 14:51",
-   "event": "armed",
+   "event": "pulled",
    "agent": "rapid",
    "side": "sell",
-   "symbol": "CRWD",
-   "mechanism": "limit",
-   "trigger": 273.1,
-   "note": "P4 +15% take profit target"
+   "symbol": "IOT",
+   "mechanism": "stop",
+   "trigger": 32.16,
+   "note": "Canceling IOT stop loss order post-exit"
   },
   {
    "t": 1789743060,
@@ -544232,6 +544513,17 @@
    "mechanism": "stop",
    "trigger": 189.98,
    "note": "P2 -20% stop loss protection"
+  },
+  {
+   "t": 1789743060,
+   "when": "Sep 18 14:51",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "CRWD",
+   "mechanism": "limit",
+   "trigger": 273.1,
+   "note": "P4 +15% take profit target"
   },
   {
    "t": 1789743012,
@@ -544397,9 +544689,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "limit",
-   "trigger": 92.2,
-   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
+   "mechanism": "stop",
+   "trigger": 72.5,
+   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
   },
   {
    "t": 1789656255,
@@ -544408,20 +544700,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "stop",
-   "trigger": 72.5,
-   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
-  },
-  {
-   "t": 1789656171,
-   "when": "Sep 17 14:42",
-   "event": "armed",
-   "agent": "coil",
-   "side": "sell",
-   "symbol": "CNXC",
    "mechanism": "limit",
-   "trigger": 33.93,
-   "note": "P3/P4: Scale out into squeeze, preserving >2:1 written asymmetry."
+   "trigger": 92.2,
+   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
   },
   {
    "t": 1789656171,
@@ -544433,6 +544714,17 @@
    "mechanism": "stop",
    "trigger": 26.68,
    "note": "P2: Sacred -8% stop registered at entry."
+  },
+  {
+   "t": 1789656171,
+   "when": "Sep 17 14:42",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "CNXC",
+   "mechanism": "limit",
+   "trigger": 33.93,
+   "note": "P3/P4: Scale out into squeeze, preserving >2:1 written asymmetry."
   },
   {
    "t": 1789654054,
@@ -544450,19 +544742,6 @@
   {
    "t": 1789589257,
    "when": "Sep 16 20:07",
-   "agent": "copper",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "SLV",
-   "qty": 158.719161759665,
-   "price": 56.5079108,
-   "mechanism": "trailing_stop",
-   "note": "P3: 12% trailing stop on commodity position SLV",
-   "prior_close": false
-  },
-  {
-   "t": 1789589257,
-   "when": "Sep 16 20:07",
    "agent": "pivot",
    "event": "fill",
    "side": "sell",
@@ -544471,6 +544750,19 @@
    "price": 700.947,
    "mechanism": "stop",
    "note": "Principle P4: Pre-print registered stop protection for QQQ position",
+   "prior_close": false
+  },
+  {
+   "t": 1789589257,
+   "when": "Sep 16 20:07",
+   "agent": "copper",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SLV",
+   "qty": 158.719161759665,
+   "price": 56.5079108,
+   "mechanism": "trailing_stop",
+   "note": "P3: 12% trailing stop on commodity position SLV",
    "prior_close": false
   },
   {
@@ -544552,12 +544844,12 @@
    "when": "Sep 16 18:34",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "COST",
-   "qty": 30.4789586042891,
-   "price": 901.00949,
+   "side": "sell",
+   "symbol": "FDX",
+   "qty": 89.955157354059,
+   "price": 301.956385,
    "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for Costco Wholesale (COST) into Q4 FY2026 earnings on Thursday, September 24, 2026 AMC (6 sessions out).",
+   "note": "Mandatory calendar exit prior to Thursday Sept 17 AMC earnings report.",
    "prior_close": false
   },
   {
@@ -544565,12 +544857,12 @@
    "when": "Sep 16 18:34",
    "agent": "fuse",
    "event": "fill",
-   "side": "sell",
-   "symbol": "FDX",
-   "qty": 89.955157354059,
-   "price": 301.956385,
+   "side": "buy",
+   "symbol": "COST",
+   "qty": 30.4789586042891,
+   "price": 901.00949,
    "mechanism": "market",
-   "note": "Mandatory calendar exit prior to Thursday Sept 17 AMC earnings report.",
+   "note": "Harvesting pre-earnings anticipation run-up for Costco Wholesale (COST) into Q4 FY2026 earnings on Thursday, September 24, 2026 AMC (6 sessions out).",
    "prior_close": false
   },
   {
@@ -544622,19 +544914,6 @@
    "when": "Sep 16 14:53",
    "agent": "rapid",
    "event": "fill",
-   "side": "sell",
-   "symbol": "NVDA",
-   "qty": 147.319227051543,
-   "price": 214.647545,
-   "mechanism": "market",
-   "note": "Exiting NVDA at Session 15 hard cap per Principle P4 post-entry time limit.",
-   "prior_close": false
-  },
-  {
-   "t": 1789570421,
-   "when": "Sep 16 14:53",
-   "agent": "rapid",
-   "event": "fill",
    "side": "buy",
    "symbol": "DELL",
    "qty": 55.8275062493126,
@@ -544646,13 +544925,15 @@
   {
    "t": 1789570421,
    "when": "Sep 16 14:53",
-   "event": "pulled",
    "agent": "rapid",
+   "event": "fill",
    "side": "sell",
    "symbol": "NVDA",
-   "mechanism": "limit",
-   "trigger": 242.41,
-   "note": "Canceling NVDA limit sell upon position exit at Session 15 cap"
+   "qty": 147.319227051543,
+   "price": 214.647545,
+   "mechanism": "market",
+   "note": "Exiting NVDA at Session 15 hard cap per Principle P4 post-entry time limit.",
+   "prior_close": false
   },
   {
    "t": 1789570421,
@@ -544666,15 +544947,15 @@
    "note": "Canceling NVDA stop sell upon position exit at Session 15 cap"
   },
   {
-   "t": 1789570366,
-   "when": "Sep 16 14:52",
-   "event": "armed",
+   "t": 1789570421,
+   "when": "Sep 16 14:53",
+   "event": "pulled",
    "agent": "rapid",
    "side": "sell",
-   "symbol": "DELL",
-   "mechanism": "stop",
-   "trigger": 453.58,
-   "note": "P2 hard stop loss at -20% from $566.97 entry fill"
+   "symbol": "NVDA",
+   "mechanism": "limit",
+   "trigger": 242.41,
+   "note": "Canceling NVDA limit sell upon position exit at Session 15 cap"
   },
   {
    "t": 1789570366,
@@ -544686,6 +544967,17 @@
    "mechanism": "limit",
    "trigger": 652.02,
    "note": "P4 profit target at +15% gain from $566.97 entry fill"
+  },
+  {
+   "t": 1789570366,
+   "when": "Sep 16 14:52",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "DELL",
+   "mechanism": "stop",
+   "trigger": 453.58,
+   "note": "P2 hard stop loss at -20% from $566.97 entry fill"
   },
   {
    "t": 1789570115,
@@ -544759,9 +545051,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "limit",
-   "trigger": 58.03,
-   "note": "P3/P4: Scale out target at +17.0% to maintain 2.12:1 asymmetry against stop."
+   "mechanism": "stop",
+   "trigger": 45.63,
+   "note": "P2: Hard stop at -8% from projected entry price of $49.60."
   },
   {
    "t": 1789497225,
@@ -544770,9 +545062,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "stop",
-   "trigger": 45.63,
-   "note": "P2: Hard stop at -8% from projected entry price of $49.60."
+   "mechanism": "limit",
+   "trigger": 58.03,
+   "note": "P3/P4: Scale out target at +17.0% to maintain 2.12:1 asymmetry against stop."
   },
   {
    "t": 1789497221,
@@ -544804,11 +545096,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "ETH-USD",
-   "qty": 9.41279444663708,
-   "price": 2401.262695,
+   "symbol": "BTC-USD",
+   "qty": 0.473597304523593,
+   "price": 75824.102985,
    "mechanism": "stop",
-   "note": "P2 mandatory stop protection for ETH-USD entry ahead of CLARITY Act and FOMC catalysts.",
+   "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit",
    "prior_close": false
   },
   {
@@ -544817,11 +545109,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "BTC-USD",
-   "qty": 0.473597304523593,
-   "price": 75824.102985,
+   "symbol": "ETH-USD",
+   "qty": 9.41279444663708,
+   "price": 2401.262695,
    "mechanism": "stop",
-   "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit",
+   "note": "P2 mandatory stop protection for ETH-USD entry ahead of CLARITY Act and FOMC catalysts.",
    "prior_close": false
   },
   {
@@ -544869,10 +545161,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "ASO",
+   "symbol": "SIG",
    "mechanism": "stop",
-   "trigger": 47.0,
-   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
+   "trigger": 94.5,
+   "note": "Cancelling standing stop sell order for SIG upon position exit"
   },
   {
    "t": 1789483580,
@@ -544880,10 +545172,10 @@
    "event": "pulled",
    "agent": "flare",
    "side": "sell",
-   "symbol": "SIG",
+   "symbol": "ASO",
    "mechanism": "stop",
-   "trigger": 94.5,
-   "note": "Cancelling standing stop sell order for SIG upon position exit"
+   "trigger": 47.0,
+   "note": "Cancelling fixed stop sell order for ASO to upgrade to a trailing stop"
   },
   {
    "t": 1789483542,
@@ -544944,7 +545236,7 @@
    "symbol": "ALAB",
    "mechanism": "stop",
    "trigger": 234.06,
-   "note": "P5 hard stop at -10% ($234.06) for ALAB satellite long entry under H4"
+   "note": "Cancelling initial stop loss order to replace with a 10% trailing stop to protect unrealized profits on ALAB."
   },
   {
    "t": 1789415064,
@@ -544965,11 +545257,11 @@
    "agent": "helix",
    "event": "fill",
    "side": "sell",
-   "symbol": "SRRK",
-   "qty": 305.684887503345,
-   "price": 54.587995,
+   "symbol": "TLX",
+   "qty": 1194.57777030823,
+   "price": 11.792285,
    "mechanism": "market",
-   "note": "ISEMBYLD received early FDA approval on September 11, 2026 for SMA. Per Principle P4, exit full position post-resolution.",
+   "note": "Pixclara received FDA approval on September 13/14, 2026 for glioma PET imaging. Per Principle P4, exit full position post-resolution.",
    "prior_close": false
   },
   {
@@ -544978,11 +545270,11 @@
    "agent": "helix",
    "event": "fill",
    "side": "sell",
-   "symbol": "TLX",
-   "qty": 1194.57777030823,
-   "price": 11.792285,
+   "symbol": "SRRK",
+   "qty": 305.684887503345,
+   "price": 54.587995,
    "mechanism": "market",
-   "note": "Pixclara received FDA approval on September 13/14, 2026 for glioma PET imaging. Per Principle P4, exit full position post-resolution.",
+   "note": "ISEMBYLD received early FDA approval on September 11, 2026 for SMA. Per Principle P4, exit full position post-resolution.",
    "prior_close": false
   },
   {
@@ -545053,9 +545345,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "SFIX",
-   "mechanism": "limit",
-   "trigger": 3.52,
-   "note": "Principle P3/P4: upside profit target providing 2.17:1 asymmetry against stop"
+   "mechanism": "stop",
+   "trigger": 2.76,
+   "note": "Principle P2: mandatory 8% stop loss registered at entry"
   },
   {
    "t": 1789396961,
@@ -545064,9 +545356,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "SFIX",
-   "mechanism": "stop",
-   "trigger": 2.76,
-   "note": "Principle P2: mandatory 8% stop loss registered at entry"
+   "mechanism": "limit",
+   "trigger": 3.52,
+   "note": "Principle P3/P4: upside profit target providing 2.17:1 asymmetry against stop"
   },
   {
    "t": 1789396957,
@@ -545234,12 +545526,12 @@
    "when": "Sep 11 14:52",
    "agent": "rapid",
    "event": "fill",
-   "side": "buy",
-   "symbol": "ORCL",
-   "qty": 199.04552533941,
-   "price": 155.743265,
+   "side": "sell",
+   "symbol": "GAP",
+   "qty": 1466.74194947448,
+   "price": 21.20814,
    "mechanism": "market",
-   "note": "Oracle (ORCL) reported Q1 FY2027 earnings post-market on Sept 10, 2026, delivering total revenue of $19.35B (+30% YoY, beating $19.1B consensus) and non-GAAP EPS of $1.92 (+30% YoY beat vs $1.74 expected). Cloud infrastructure (IaaS) revenue surged +121% YoY to $7.4B, powered by 850MW of new data center capacity, while Remaining Performance Obligations (RPO backlog) reached a record $664B (+36% YoY). Management raised FY27 full-year revenue outlook to at least $90B. Surging enterprise AI training and cloud infrastructure adoption create a prime post-earnings mispriced catalyst entry.",
+   "note": "",
    "prior_close": false
   },
   {
@@ -545247,12 +545539,12 @@
    "when": "Sep 11 14:52",
    "agent": "rapid",
    "event": "fill",
-   "side": "sell",
-   "symbol": "GAP",
-   "qty": 1466.74194947448,
-   "price": 21.20814,
+   "side": "buy",
+   "symbol": "ORCL",
+   "qty": 199.04552533941,
+   "price": 155.743265,
    "mechanism": "market",
-   "note": "",
+   "note": "Oracle (ORCL) reported Q1 FY2027 earnings post-market on Sept 10, 2026, delivering total revenue of $19.35B (+30% YoY, beating $19.1B consensus) and non-GAAP EPS of $1.92 (+30% YoY beat vs $1.74 expected). Cloud infrastructure (IaaS) revenue surged +121% YoY to $7.4B, powered by 850MW of new data center capacity, while Remaining Performance Obligations (RPO backlog) reached a record $664B (+36% YoY). Management raised FY27 full-year revenue outlook to at least $90B. Surging enterprise AI training and cloud infrastructure adoption create a prime post-earnings mispriced catalyst entry.",
    "prior_close": false
   },
   {
@@ -545380,9 +545672,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "limit",
-   "trigger": 92.2,
-   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
+   "mechanism": "stop",
+   "trigger": 72.5,
+   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
   },
   {
    "t": 1789137783,
@@ -545391,9 +545683,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "LEN",
-   "mechanism": "stop",
-   "trigger": 72.5,
-   "note": "LEN earnings catalyst resolved, cancelling standing stop order"
+   "mechanism": "limit",
+   "trigger": 92.2,
+   "note": "LEN earnings catalyst resolved, cancelling standing limit order"
   },
   {
    "t": 1789137781,
@@ -545456,17 +545748,6 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
-   "mechanism": "stop",
-   "trigger": 130.0,
-   "note": "P2: Friday close stop protection trailed up to $130.00 to limit downside"
-  },
-  {
-   "t": 1789137744,
-   "when": "Sep 11 14:42",
-   "event": "armed",
-   "agent": "cipher",
-   "side": "sell",
    "symbol": "COIN",
    "mechanism": "stop",
    "trigger": 175.0,
@@ -545482,6 +545763,17 @@
    "mechanism": "stop",
    "trigger": 76000.0,
    "note": "P2: Friday close stop protection trailed up to $76,000 to lock in profit"
+  },
+  {
+   "t": 1789137744,
+   "when": "Sep 11 14:42",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "MSTR",
+   "mechanism": "stop",
+   "trigger": 130.0,
+   "note": "P2: Friday close stop protection trailed up to $130.00 to limit downside"
   },
   {
    "t": 1789137742,
@@ -545586,9 +545878,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MLKN",
-   "mechanism": "limit",
-   "trigger": 24.15,
-   "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
+   "mechanism": "stop",
+   "trigger": 21.62,
+   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
   },
   {
    "t": 1789051580,
@@ -545597,9 +545889,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 21.62,
-   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
+   "mechanism": "limit",
+   "trigger": 24.15,
+   "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
   },
   {
    "t": 1789051580,
@@ -545611,224 +545903,6 @@
    "mechanism": "limit",
    "trigger": 88.02,
    "note": "Canceling orphaned limit sell order for LEN following stop-out execution."
-  },
-  {
-   "t": 1789051542,
-   "when": "Sep 10 14:45",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
-   "mechanism": "limit",
-   "trigger": 22.36,
-   "note": "P5: Hard target at +5% from entry fill ($21.29)"
-  },
-  {
-   "t": 1789051542,
-   "when": "Sep 10 14:45",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 20.01,
-   "note": "P4: Hard stop at -6% from entry fill ($21.29)"
-  },
-  {
-   "t": 1789051450,
-   "when": "Sep 10 14:44",
-   "agent": "drift",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ANET",
-   "qty": 166.094080393134,
-   "price": 191.09293,
-   "mechanism": "market",
-   "note": "30-session holding period complete per Principle P3. Realized gain +5.96% over $180.62 cost basis.",
-   "prior_close": false
-  },
-  {
-   "t": 1789051450,
-   "when": "Sep 10 14:44",
-   "agent": "drift",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "MSFT",
-   "qty": 66.8207352359001,
-   "price": 488.675885,
-   "mechanism": "market",
-   "note": "30-session holding period complete per Principle P3. Realized gain +9.01% over $448.96 cost basis.",
-   "prior_close": false
-  },
-  {
-   "t": 1789049462,
-   "when": "Sep 10 14:11",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "AZO",
-   "qty": 9.55101121491446,
-   "price": 2909.87828,
-   "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for AutoZone (AZO) into Q4 FY2026 earnings on Tuesday, September 22, 2026 BMO (8 sessions out).",
-   "prior_close": false
-  },
-  {
-   "t": 1789049462,
-   "when": "Sep 10 14:11",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "KR",
-   "qty": 508.999762840619,
-   "price": 56.77471,
-   "mechanism": "market",
-   "note": "",
-   "prior_close": false
-  },
-  {
-   "t": 1789049462,
-   "when": "Sep 10 14:11",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "MLKN",
-   "qty": 1304.71237132865,
-   "price": 21.29189,
-   "mechanism": "market",
-   "note": "Harvesting pre-earnings anticipation run-up for MillerKnoll (MLKN) into Q1 FY2027 earnings on Tuesday, September 22, 2026 BMO (8 sessions out).",
-   "prior_close": false
-  },
-  {
-   "t": 1789049462,
-   "when": "Sep 10 14:11",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "KR",
-   "mechanism": "limit",
-   "trigger": 60.85,
-   "note": "Canceling limit order for exited position KR"
-  },
-  {
-   "t": 1789049462,
-   "when": "Sep 10 14:11",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "KR",
-   "mechanism": "stop",
-   "trigger": 54.48,
-   "note": "Canceling stop order for exited position KR"
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
-   "mechanism": "limit",
-   "trigger": 24.15,
-   "note": "Canceling miscalculated target order for MLKN to update to exact fill price target."
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "AZO",
-   "mechanism": "limit",
-   "trigger": 3081.25,
-   "note": "Principle P5 upside target at +5% above reference entry price"
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "AZO",
-   "mechanism": "stop",
-   "trigger": 2758.45,
-   "note": "Principle P4 hard stop at -6% below reference entry price"
-  },
-  {
-   "t": 1789049387,
-   "when": "Sep 10 14:09",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 21.62,
-   "note": "Canceling miscalculated stop order for MLKN to update to exact fill price threshold."
-  },
-  {
-   "t": 1789049329,
-   "when": "Sep 10 14:08",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "LEN",
-   "qty": 344.763619206793,
-   "price": 78.6818,
-   "mechanism": "stop",
-   "note": "P4: cut loser at -6.0% from entry ($83.83)",
-   "prior_close": false
-  },
-  {
-   "t": 1789049329,
-   "when": "Sep 10 14:08",
-   "agent": "wildcat",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CRWV",
-   "qty": 221.063389242156,
-   "price": 89.78512,
-   "mechanism": "stop",
-   "note": "P5 sizing floor enforcement: strict 10% hard stop loss on H6 Case #3 entry",
-   "prior_close": false
-  },
-  {
-   "t": 1789049329,
-   "when": "Sep 10 14:08",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "DELL",
-   "qty": 78.7548034446775,
-   "price": 517.173781938,
-   "mechanism": "trailing_stop",
-   "note": "P4: Trailing stop of 8% for DELL to ride winner up >8% while protecting accrued gains.",
-   "prior_close": false
-  },
-  {
-   "t": 1788977289,
-   "when": "Sep 09 18:08",
-   "agent": "glide",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "VRT",
-   "qty": 15.6123138762438,
-   "price": 265.367455,
-   "mechanism": "market",
-   "note": "VRT price 265.90, 200-day SMA 267.89, 52-week high 379.94, drawdown 30.01%. Target 4% allocation per P4 and H1.",
-   "prior_close": false
-  },
-  {
-   "t": 1788965504,
-   "when": "Sep 09 14:51",
-   "agent": "torque",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "TQQQ",
-   "qty": 344.168704891098,
-   "price": 72.638795,
-   "mechanism": "market",
-   "note": "Window 7 deployment ahead of August PPI (Sept 10 8:30 AM ET), ORCL/ADBE earnings (Sept 10 PM), and August CPI (Sept 11 8:30 AM ET). Technical coiling and expected moderating inflation print position 3x tech sleeve for upside resolution drift.",
-   "prior_close": false
   }
  ],
  "system": {
