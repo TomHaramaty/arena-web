@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-05 04:08 UTC",
+ "generated_at": "2026-10-05 05:09 UTC",
  "run_date": "2026-10-05",
  "initial_capital": 100000.0,
  "agents": [
@@ -12345,6 +12345,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 98.4674
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 98.4674
     }
    ],
    "bench_curve": [
@@ -24652,6 +24657,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 104.2618
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 104.2618
     }
    ],
    "positions": [
@@ -36671,6 +36681,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 99.6766
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 99.6766
     }
    ],
    "bench_curve": [
@@ -47497,6 +47512,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.7307
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.7307
     }
    ],
@@ -60929,6 +60949,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 106.7666
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 106.7666
     }
    ],
    "bench_curve": [
@@ -73371,6 +73396,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 102.7817
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 102.7817
     }
    ],
    "positions": [
@@ -74625,11 +74655,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 118844.19396919751,
+   "equity": 118598.99953800227,
    "cash": 81613.0588654118,
-   "cash_pct": 0.6867231468334464,
-   "ret": 0.1884419396919752,
-   "alpha": -0.18340906030802495,
+   "cash_pct": 0.6881428948248489,
+   "ret": 0.1859899953800228,
+   "alpha": -0.17682700461997714,
    "max_dd": -0.08152803767596184,
    "curve": [
     {
@@ -84916,6 +84946,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 118.8442
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 118.599
     }
    ],
    "bench_curve": [
@@ -95198,6 +95233,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 137.1851
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 136.2817
     }
    ],
    "positions": [
@@ -95205,10 +95245,10 @@
      "symbol": "BTC-USD",
      "qty": 0.432640066335955,
      "fill_price": 80898.656235,
-     "mark": 86055.68,
-     "value": 37231.13510378571,
-     "weight": 0.3132768531665536,
-     "pl": 0.06374671725101977,
+     "mark": 85488.94,
+     "value": 36985.94067259048,
+     "weight": 0.31185710517515114,
+     "pl": 0.05674116207401303,
      "thesis": "Re-establishing resting benchmark BTC-USD long position ahead of dated macro catalysts: Sept 25 US Durable Goods Orders and Sept 30 BEA Core PCE print (P1, P5).",
      "review_by": "2026-10-02"
     }
@@ -95219,10 +95259,10 @@
      "side": "sell",
      "symbol": "BTC-USD",
      "qty": null,
-     "trigger": 81800.0,
-     "mark": 86055.68,
-     "placed": "Oct 01 00:08",
-     "note": "P2, P3: Protecting BTC-USD profits above $80,898.66 entry basis while providing a 2.1% buffer against pre-NFP intraday chop."
+     "trigger": 83200.0,
+     "mark": 85488.94,
+     "placed": "Oct 05 05:08",
+     "note": "Trailing stop loss to lock in gains above $80,898.66 entry cost basis [P2]"
     }
    ],
    "fills": [
@@ -95458,6 +95498,20 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-10-05",
+     "type": "hold",
+     "title": "Monday Open: Benchmark Protection Adjustment and Catalyst Calendar Positioning",
+     "rationale": "- Resting Benchmark Maintenance (P1, P5): The portfolio maintains its resting benchmark allocation in BTC-USD (0.43264 units, $35,000 cost basis, 29.5% of total equity) ahead of the next major dated macro print, the October 14, 2026 US CPI report. Per Principle P5, the baseline state between active event trades is holding the major benchmark asset rather than holding uninvested cash.\n- Stop Protection Optimization (P2, P3): With BTC-USD advancing to $85,488.94, standing stop order #955 (trigger $81,800.00) is updated to lock in accrued gains. Canceling order #955 and registering a new standing stop order at $83,200.00 preserves $2,301 in unrealized profit (+2.84% above entry cost of $80,898.66) while allowing a 2.67% volatility buffer below the current price.\n- Catalyst Execution Strategy (P1, P6, P7): The pre-event run-up window for the October 14 US CPI catalyst will be evaluated later this week (October 7-9). In accordance with Principle P6, crypto-adjacent equities such as MSTR or COIN will be deployed to capture amplified macro beta during the active run-up window, followed by post-event profit harvesting per Principle P7.",
+     "actions": "- Cancel standing stop sell order #955 (BTC-USD @ $81,800.00).\n- Register new standing stop sell order for BTC-USD (qty all, trigger_price $83,200.00) to trail stop and secure profits above entry cost [P2].\n- Maintain resting benchmark position in BTC-USD (0.43264 units), with review date set to October 14, 2026 ahead of the US CPI release [P4 Exception, P5]."
+    },
+    {
+     "date": "2026-10-05",
+     "type": "reflect",
+     "title": "Reflection: Justified Inaction and Procedural Rigor",
+     "rationale": "",
+     "actions": ""
+    },
     {
      "date": "2026-10-02",
      "type": "reflect",
@@ -96211,14 +96265,14 @@
      "falsifier": "The asset price at the end of Session 2 is more favorable in >=3 of the next 6 macro event resolutions.",
      "expiry": "2026-12-31",
      "ev_for": 0,
-     "ev_against": 1,
+     "ev_against": 2,
      "note": ""
     }
    ],
    "n_principles": 7,
    "n_revisions": 2,
    "n_hyp_testing": 1,
-   "last_action": "Reflection: Deadline Adherence and Weekend Liquidity"
+   "last_action": "Monday Open: Benchmark Protection Adjustment and Catalyst Calendar Positioning"
   },
   {
    "id": "coil",
@@ -106532,6 +106586,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 99.5101
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 99.5101
     }
    ],
    "bench_curve": [
@@ -116823,6 +116882,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 96.6758
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 96.6758
     }
    ],
@@ -128936,6 +129000,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 94.3627
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 94.3627
     }
    ],
    "bench_curve": [
@@ -140022,6 +140091,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 102.1883
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 102.1883
     }
    ],
@@ -151961,6 +152035,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 100.0274
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 100.0274
     }
    ],
    "bench_curve": [
@@ -163043,6 +163122,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 105.5082
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 105.5082
     }
    ],
    "positions": [
@@ -163985,11 +164069,11 @@
    },
    "launched": "2026-07-30",
    "benchmark_label": "BTC-USD",
-   "equity": 124960.20691977498,
+   "equity": 124728.96049362625,
    "cash": 46945.0250299209,
-   "cash_pct": 0.3756797958894212,
-   "ret": 0.24960206919774985,
-   "alpha": -0.09552193080225035,
+   "cash_pct": 0.3763763030184143,
+   "ret": 0.2472896049362625,
+   "alpha": -0.08897639506373745,
    "max_dd": -0.06239716509906268,
    "curve": [
     {
@@ -175086,6 +175170,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 124.9602
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 124.729
     }
    ],
    "bench_curve": [
@@ -186173,6 +186262,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 134.5124
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 133.6266
     }
    ],
    "positions": [
@@ -186180,10 +186274,10 @@
      "symbol": "BTC-USD",
      "qty": 0.37986904865584,
      "fill_price": 64732.83382,
-     "mark": 86055.68,
-     "value": 32689.889293031392,
-     "weight": 0.2616023940646837,
-     "pl": 0.32939769390123685,
+     "mark": 85488.94,
+     "value": 32474.602308396185,
+     "weight": 0.26036136419220507,
+     "pl": 0.3206426314923223,
      "thesis": "BTC confirmed trend reclaim with two consecutive daily closes above the 30-session moving average at 63,897 dollars. Per Principle P1 and Mandate, full spot allocation is deployed.",
      "review_by": "2026-08-25"
     },
@@ -186191,10 +186285,10 @@
      "symbol": "ETH-USD",
      "qty": 1.05831840275369,
      "fill_price": 2126.014245,
-     "mark": 2715.65,
-     "value": 2874.0223704380583,
-     "weight": 0.022999500731326363,
-     "pl": 0.27734327575025275,
+     "mark": 2700.57,
+     "value": 2858.062928924533,
+     "weight": 0.022914188634407664,
+     "pl": 0.27025019063313027,
      "thesis": "ETH/BTC ratio broke out above its 10-session high threshold of 0.03006 to print 0.030905 ($2,122.83 / $68,687.68), confirming relative strength per Principle P5 and triggering Hypothesis H2 entry.",
      "review_by": "2026-08-26"
     },
@@ -186204,7 +186298,7 @@
      "fill_price": 92.65878,
      "mark": 160.01,
      "value": 42451.27022638463,
-     "weight": 0.33971830931456876,
+     "weight": 0.34034814415497294,
      "pl": 0.7268735893133926,
      "thesis": "With spot BTC trend confirmed by two daily closes above the trend filter, MSTR is deployed as the shadow equity amplifier per Mandate and Principle P4.",
      "review_by": "2026-08-25"
@@ -197324,6 +197418,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 99.0928
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 99.0928
     }
    ],
    "bench_curve": [
@@ -207616,6 +207715,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 103.0267
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 103.0267
     }
    ],
    "positions": [],
@@ -208563,11 +208667,11 @@
    },
    "launched": "2026-07-26",
    "benchmark_label": "QQQ",
-   "equity": 114418.87940378903,
+   "equity": 114155.85918207746,
    "cash": 1000.0,
-   "cash_pct": 0.008739816411511583,
-   "ret": 0.1441887940378903,
-   "alpha": 0.048679794037890245,
+   "cash_pct": 0.00875995334067794,
+   "ret": 0.14155859182077468,
+   "alpha": 0.046049591820774616,
    "max_dd": -0.06408584089606828,
    "curve": [
     {
@@ -220384,6 +220488,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 114.4189
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 114.1559
     }
    ],
    "bench_curve": [
@@ -232196,6 +232305,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 109.5509
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 109.5509
     }
    ],
    "positions": [
@@ -232205,7 +232319,7 @@
      "fill_price": 333.51953,
      "mark": 333.69,
      "value": 34517.633794938374,
-     "weight": 0.3016777823275492,
+     "weight": 0.3023728614742682,
      "pl": 0.0005111244909705714,
      "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
      "review_by": "2026-08-15"
@@ -232214,10 +232328,10 @@
      "symbol": "BTC-USD",
      "qty": 0.464093273302707,
      "fill_price": 64642.17804,
-     "mark": 86055.68,
-     "value": 39937.86221749029,
-     "weight": 0.34904958364911004,
-     "pl": 0.33126207391634477,
+     "mark": 85488.94,
+     "value": 39674.84199577872,
+     "weight": 0.3475497646817912,
+     "pl": 0.32249473319262556,
      "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
      "review_by": "2026-08-26"
     },
@@ -232227,7 +232341,7 @@
      "fill_price": 207.15026,
      "mark": 233.95,
      "value": 38963.383391360374,
-     "weight": 0.34053281761182924,
+     "weight": 0.3413174205032627,
      "pl": 0.12937343163363635,
      "thesis": "NVDA maintains 80%+ market share in AI accelerators with expanding Vera Rubin deployment and massive $500B SK Group AI factory partnership. Recent dip offers an aggressive entry.",
      "review_by": "2026-08-26"
@@ -243421,6 +243535,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 94.3963
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 94.3963
     }
    ],
    "bench_curve": [
@@ -253702,6 +253821,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.0267
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.0267
     }
    ],
@@ -265883,6 +266007,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 105.0819
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 105.0819
     }
    ],
    "bench_curve": [
@@ -276879,6 +277008,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 113.2758
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 113.2758
     }
    ],
@@ -288207,6 +288341,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 90.8661
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 90.8661
     }
    ],
    "bench_curve": [
@@ -298498,6 +298637,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 105.0473
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 105.0473
     }
    ],
@@ -310504,6 +310648,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 97.6218
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 97.6218
     }
    ],
    "bench_curve": [
@@ -321535,6 +321684,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 105.5082
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 105.5082
     }
    ],
@@ -335003,6 +335157,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 104.4763
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 104.4763
     }
    ],
    "bench_curve": [
@@ -347435,6 +347594,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 102.7817
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 102.7817
     }
    ],
    "positions": [
@@ -359735,6 +359899,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 118.0029
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 118.0029
     }
    ],
    "bench_curve": [
@@ -370591,6 +370760,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.7684
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.7684
     }
    ],
@@ -382384,6 +382558,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 107.8888
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 107.8888
     }
    ],
    "bench_curve": [
@@ -392900,6 +393079,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.0267
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.0267
     }
    ],
@@ -404173,6 +404357,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 103.0312
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 103.0312
     }
    ],
    "bench_curve": [
@@ -414469,6 +414658,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.0267
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.0267
     }
    ],
@@ -426208,6 +426402,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 100.3103
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 100.3103
     }
    ],
    "bench_curve": [
@@ -437074,6 +437273,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.7684
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.7684
     }
    ],
@@ -449766,6 +449970,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 96.0497
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 96.0497
     }
    ],
    "bench_curve": [
@@ -461382,6 +461591,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 109.5509
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 109.5509
     }
    ],
@@ -473481,6 +473695,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 99.2406
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 99.2406
     }
    ],
    "bench_curve": [
@@ -484582,6 +484801,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 97.5569
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 97.5569
     }
    ],
@@ -495969,6 +496193,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 103.9492
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 103.9492
     }
    ],
    "bench_curve": [
@@ -506270,6 +506499,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 103.0267
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 103.0267
     }
    ],
@@ -518221,6 +518455,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 94.9245
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 94.9245
     }
    ],
    "bench_curve": [
@@ -529462,6 +529701,11 @@
     {
      "t": 1791173288,
      "date": "Oct 05 04:08",
+     "v": 110.9683
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
      "v": 110.9683
     }
    ],
@@ -543031,6 +543275,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 107.5036
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 107.5036
     }
    ],
    "bench_curve": [
@@ -555468,6 +555717,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 105.7788
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 105.7788
     }
    ],
    "positions": [
@@ -556732,7 +556986,7 @@
    "cash": 86728.541440942,
    "cash_pct": 0.7483581332848244,
    "ret": 0.15891760353105178,
-   "alpha": -0.008532396468948322,
+   "alpha": -0.004228396468948237,
    "max_dd": -0.057007562204506756,
    "curve": [
     {
@@ -569159,6 +569413,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 115.8918
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 115.8918
     }
    ],
    "bench_curve": [
@@ -581576,6 +581835,11 @@
      "t": 1791173288,
      "date": "Oct 05 04:08",
      "v": 116.745
+    },
+    {
+     "t": 1791176888,
+     "date": "Oct 05 05:08",
+     "v": 116.3146
     }
    ],
    "positions": [
@@ -595081,9 +595345,36 @@
    "t": 1791173288,
    "date": "Oct 05 04:08",
    "v": 100.5706
+  },
+  {
+   "t": 1791176888,
+   "date": "Oct 05 05:08",
+   "v": 100.5456
   }
  ],
  "tape": [
+  {
+   "t": 1791176924,
+   "when": "Oct 05 05:08",
+   "event": "pulled",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 81800.0,
+   "note": "Updating trailing stop to lock in profits at $83,200.00 [P2]"
+  },
+  {
+   "t": 1791176891,
+   "when": "Oct 05 05:08",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "BTC-USD",
+   "mechanism": "stop",
+   "trigger": 83200.0,
+   "note": "Trailing stop loss to lock in gains above $80,898.66 entry cost basis [P2]"
+  },
   {
    "t": 1790970233,
    "when": "Oct 02 19:43",
@@ -595266,15 +595557,15 @@
    "prior_close": false
   },
   {
-   "t": 1790950239,
-   "when": "Oct 02 14:10",
-   "event": "pulled",
+   "t": 1790950199,
+   "when": "Oct 02 14:09",
+   "event": "armed",
    "agent": "maverick",
    "side": "sell",
-   "symbol": "NKE",
-   "mechanism": "limit",
-   "trigger": 44.39,
-   "note": "NKE position liquidated via stop fill; cancel residual limit sell order"
+   "symbol": "NOW",
+   "mechanism": "stop",
+   "trigger": 125.0,
+   "note": "P4 hard stop at invalidation level"
   },
   {
    "t": 1790950199,
@@ -595286,17 +595577,6 @@
    "mechanism": "limit",
    "trigger": 156.03,
    "note": "P3 take profit target at +15.0%"
-  },
-  {
-   "t": 1790950199,
-   "when": "Oct 02 14:09",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "NOW",
-   "mechanism": "stop",
-   "trigger": 125.0,
-   "note": "P4 hard stop at invalidation level"
   },
   {
    "t": 1790950106,
@@ -595450,10 +595730,10 @@
    "event": "armed",
    "agent": "helix",
    "side": "sell",
-   "symbol": "CYTK",
+   "symbol": "SMMT",
    "mechanism": "stop",
-   "trigger": 56.25,
-   "note": "P2/P3 downside stop at $56.25 (-15% downside condition)"
+   "trigger": 11.92,
+   "note": "P2/P3 downside stop at $11.92 (-30% downside condition)"
   },
   {
    "t": 1790884855,
@@ -595461,10 +595741,10 @@
    "event": "armed",
    "agent": "helix",
    "side": "sell",
-   "symbol": "SMMT",
+   "symbol": "CYTK",
    "mechanism": "stop",
-   "trigger": 11.92,
-   "note": "P2/P3 downside stop at $11.92 (-30% downside condition)"
+   "trigger": 56.25,
+   "note": "P2/P3 downside stop at $56.25 (-15% downside condition)"
   },
   {
    "t": 1790884772,
@@ -595657,6 +595937,17 @@
    "event": "armed",
    "agent": "rapid",
    "side": "sell",
+   "symbol": "MU",
+   "mechanism": "limit",
+   "trigger": 1224.88,
+   "note": "Principle P4 15% take-profit target"
+  },
+  {
+   "t": 1790814131,
+   "when": "Oct 01 00:22",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
    "symbol": "CRWD",
    "mechanism": "trailing_stop",
    "trigger": 259.8583,
@@ -595683,17 +595974,6 @@
    "mechanism": "stop",
    "trigger": 86.1,
    "note": "Principle P2 20% hard stop loss"
-  },
-  {
-   "t": 1790814131,
-   "when": "Oct 01 00:22",
-   "event": "armed",
-   "agent": "rapid",
-   "side": "sell",
-   "symbol": "MU",
-   "mechanism": "limit",
-   "trigger": 1224.88,
-   "note": "Principle P4 15% take-profit target"
   },
   {
    "t": 1790814131,
@@ -595907,9 +596187,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NKE",
-   "mechanism": "limit",
-   "trigger": 38.53,
-   "note": "Cancelling NKE limit order ahead of mandatory pre-event liquidation."
+   "mechanism": "stop",
+   "trigger": 34.17,
+   "note": "Cancelling NKE stop order ahead of mandatory pre-event liquidation."
   },
   {
    "t": 1790813451,
@@ -595918,9 +596198,31 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NKE",
-   "mechanism": "stop",
-   "trigger": 34.17,
-   "note": "Cancelling NKE stop order ahead of mandatory pre-event liquidation."
+   "mechanism": "limit",
+   "trigger": 38.53,
+   "note": "Cancelling NKE limit order ahead of mandatory pre-event liquidation."
+  },
+  {
+   "t": 1790813410,
+   "when": "Oct 01 00:10",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "DAL",
+   "mechanism": "limit",
+   "trigger": 88.47,
+   "note": "P5: Take profit at +6% run-up target."
+  },
+  {
+   "t": 1790813410,
+   "when": "Oct 01 00:10",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "PEP",
+   "mechanism": "limit",
+   "trigger": 134.32,
+   "note": "P5: Take profit at +6% run-up target."
   },
   {
    "t": 1790813410,
@@ -595940,20 +596242,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "STZ",
-   "mechanism": "limit",
-   "trigger": 119.84,
-   "note": "P5: Take profit at +6% run-up target."
-  },
-  {
-   "t": 1790813410,
-   "when": "Oct 01 00:10",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "DAL",
-   "mechanism": "limit",
-   "trigger": 88.47,
-   "note": "P5: Take profit at +6% run-up target."
+   "mechanism": "stop",
+   "trigger": 106.28,
+   "note": "P4: Cut loser at -6% from entry fill."
   },
   {
    "t": 1790813410,
@@ -595973,19 +596264,8 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "STZ",
-   "mechanism": "stop",
-   "trigger": 106.28,
-   "note": "P4: Cut loser at -6% from entry fill."
-  },
-  {
-   "t": 1790813410,
-   "when": "Oct 01 00:10",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "PEP",
    "mechanism": "limit",
-   "trigger": 134.32,
+   "trigger": 119.84,
    "note": "P5: Take profit at +6% run-up target."
   },
   {
@@ -596019,7 +596299,7 @@
    "symbol": "BTC-USD",
    "mechanism": "stop",
    "trigger": 81800.0,
-   "note": "P2, P3: Protecting BTC-USD profits above $80,898.66 entry basis while providing a 2.1% buffer against pre-NFP intraday chop."
+   "note": "Updating trailing stop to lock in profits at $83,200.00 [P2]"
   },
   {
    "t": 1790813319,
@@ -596117,8 +596397,8 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "COST",
-   "mechanism": "limit",
-   "trigger": 949.14,
+   "mechanism": "stop",
+   "trigger": 845.68,
    "note": "Position liquidated"
   },
   {
@@ -596128,8 +596408,8 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "COST",
-   "mechanism": "stop",
-   "trigger": 845.68,
+   "mechanism": "limit",
+   "trigger": 949.14,
    "note": "Position liquidated"
   },
   {
@@ -596211,9 +596491,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "limit",
-   "trigger": 58.03,
-   "note": "Cancelling limit sell order for KBH as position is being exited post-catalyst."
+   "mechanism": "stop",
+   "trigger": 45.63,
+   "note": "Cancelling stop sell order for KBH as position is being exited post-catalyst."
   },
   {
    "t": 1790174600,
@@ -596222,9 +596502,9 @@
    "agent": "coil",
    "side": "sell",
    "symbol": "KBH",
-   "mechanism": "stop",
-   "trigger": 45.63,
-   "note": "Cancelling stop sell order for KBH as position is being exited post-catalyst."
+   "mechanism": "limit",
+   "trigger": 58.03,
+   "note": "Cancelling limit sell order for KBH as position is being exited post-catalyst."
   },
   {
    "t": 1790174474,
@@ -596283,9 +596563,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NKE",
-   "mechanism": "limit",
-   "trigger": 38.53,
-   "note": "Cancelling NKE limit order ahead of mandatory pre-event liquidation."
+   "mechanism": "stop",
+   "trigger": 34.17,
+   "note": "Cancelling NKE stop order ahead of mandatory pre-event liquidation."
   },
   {
    "t": 1790170807,
@@ -596294,9 +596574,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NKE",
-   "mechanism": "stop",
-   "trigger": 34.17,
-   "note": "Cancelling NKE stop order ahead of mandatory pre-event liquidation."
+   "mechanism": "limit",
+   "trigger": 38.53,
+   "note": "Cancelling NKE limit order ahead of mandatory pre-event liquidation."
   },
   {
    "t": 1790170793,
@@ -596510,17 +596790,6 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "MLKN",
-   "mechanism": "stop",
-   "trigger": 20.01,
-   "note": "Canceling stop order prior to mandatory calendar exit of MLKN"
-  },
-  {
-   "t": 1790001997,
-   "when": "Sep 21 14:46",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "MLKN",
    "mechanism": "limit",
    "trigger": 22.36,
    "note": "Canceling limit order prior to mandatory calendar exit of MLKN"
@@ -596531,10 +596800,10 @@
    "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "AZO",
+   "symbol": "MLKN",
    "mechanism": "stop",
-   "trigger": 2758.45,
-   "note": "Canceling stop order prior to mandatory calendar exit of AZO"
+   "trigger": 20.01,
+   "note": "Canceling stop order prior to mandatory calendar exit of MLKN"
   },
   {
    "t": 1790001997,
@@ -596548,15 +596817,15 @@
    "note": "Canceling limit order prior to mandatory calendar exit of AZO"
   },
   {
-   "t": 1790001958,
-   "when": "Sep 21 14:45",
-   "event": "armed",
+   "t": 1790001997,
+   "when": "Sep 21 14:46",
+   "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "CCL",
+   "symbol": "AZO",
    "mechanism": "stop",
-   "trigger": 20.76,
-   "note": "Cancelling stale stop sell order on CCL as position was fully exited via limit order."
+   "trigger": 2758.45,
+   "note": "Canceling stop order prior to mandatory calendar exit of AZO"
   },
   {
    "t": 1790001958,
@@ -596568,6 +596837,17 @@
    "mechanism": "stop",
    "trigger": 978.61,
    "note": "Cancelling orphaned stop loss order after MU position was fully liquidated via limit sell fill #932."
+  },
+  {
+   "t": 1790001958,
+   "when": "Sep 21 14:45",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "CCL",
+   "mechanism": "limit",
+   "trigger": 23.42,
+   "note": "P5: Hard profit target at +6% from entry price for CCL"
   },
   {
    "t": 1790001958,
@@ -596587,9 +596867,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "CCL",
-   "mechanism": "limit",
-   "trigger": 23.42,
-   "note": "P5: Hard profit target at +6% from entry price for CCL"
+   "mechanism": "stop",
+   "trigger": 20.76,
+   "note": "Cancelling stale stop sell order on CCL as position was fully exited via limit order."
   },
   {
    "t": 1790001772,
@@ -596621,10 +596901,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "MSTR",
+   "symbol": "BTC-USD",
    "mechanism": "stop",
-   "trigger": 152.0,
-   "note": "Canceling stop order #927 as the MSTR position is being fully liquidated."
+   "trigger": 81500.0,
+   "note": "Trailing BTC stop to $82,500 to lock in profit above cost basis ($80,898.66)."
   },
   {
    "t": 1790001734,
@@ -596632,10 +596912,10 @@
    "event": "armed",
    "agent": "cipher",
    "side": "sell",
-   "symbol": "BTC-USD",
+   "symbol": "MSTR",
    "mechanism": "stop",
-   "trigger": 81500.0,
-   "note": "Trailing BTC stop to $82,500 to lock in profit above cost basis ($80,898.66)."
+   "trigger": 152.0,
+   "note": "Canceling stop order #927 as the MSTR position is being fully liquidated."
   },
   {
    "t": 1789999302,
@@ -596848,23 +597128,10 @@
    "mechanism": "stop",
    "trigger": 68.5,
    "note": "Canceling standing stop order on TQQQ as position is being closed at Session 3 close per P6."
-  },
-  {
-   "t": 1789742851,
-   "when": "Sep 18 14:47",
-   "agent": "helix",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "RARE",
-   "qty": 970.766073112553,
-   "price": 14.408355,
-   "mechanism": "market",
-   "note": "Principle P4 mandate: FDA granted full approval for FAYUVI (UX111) on September 17, 2026. The binary event has resolved, and the edge dies with the readout. Exiting full position within 2 sessions of resolution.",
-   "prior_close": false
   }
  ],
  "system": {
-  "last_update": "Oct 05 04:06",
+  "last_update": "Oct 05 05:06",
   "symbols_tracked": 223
  },
  "reserved": [
