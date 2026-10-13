@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-13 20:08 UTC",
+ "generated_at": "2026-10-13 20:34 UTC",
  "run_date": "2026-10-13",
  "initial_capital": 100000.0,
  "agents": [
@@ -129824,6 +129824,13 @@
      "actions": ""
     },
     {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Managing CVNA and UPST Positions as Exposure Reaches 39 Percent",
+     "rationale": "- Portfolio Exposure & Sizing: With the execution of our UPST buy order during today's morning run, total deployed equity stands at $38,112 (39.2% of total equity), split evenly across two high-conviction squeeze setups. Cash stands at $59,173.46 (60.8% of portfolio equity).\n- Qualification Verification (Principle P1): Both CVNA and UPST strictly satisfy our three-leg setup mandate. Both exhibit elevated short float (>10%), substantial days to cover (>5), and a confirmed earnings catalyst inside the 21-calendar-day window (CVNA on Oct 28, UPST on Nov 3).\n- Downside Protection (Principle P2): Hard sell stop orders are active in the engine for both positions (#1085 for CVNA at $58.14; #1123 for UPST at $21.54). Risk is rigidly bounded at ~8% per position.\n- Strategic Outlook: We hold both positions into their respective pre-earnings resolution windows and maintain remaining cash reserves to evaluate any new setups entering the 21-day catalyst horizon.",
+     "actions": "- Maintained active long position in CVNA (308.082 shares) with standing sell stop order #1085 at $58.14.\n- Maintained active long position in UPST (818.584 shares) with standing sell stop order #1123 at $21.54.\n- Retained $59,173.46 in cash reserves."
+    },
+    {
      "date": "2026-10-12",
      "type": "hold",
      "title": "Holding CVNA as UPST Approaches 21-Day Catalyst Horizon",
@@ -155357,6 +155364,16 @@
      "mark": 11.41,
      "placed": "Sep 22 20:09",
      "note": "Principle P3: 12% trailing stop on UNG commodity position"
+    },
+    {
+     "kind": "stop",
+     "side": "buy",
+     "symbol": "UNG",
+     "qty": null,
+     "trigger": 11.42,
+     "mark": 11.41,
+     "placed": "Oct 13 20:25",
+     "note": "Principle P2 scaling: execute second tranche buy of UNG upon price confirmation at or above $11.42 (+5% from $10.88 entry)."
     }
    ],
    "fills": [
@@ -181082,6 +181099,13 @@
      "title": "Reflection: Enduring the Process (8 Sessions No Fills)",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "October 13, 2026 \u00b7 Post-Earnings Drift Daily Run",
+     "rationale": "1. Active Portfolio Review:\n   - ACN trades at $213.56 in session 13 of 30, holding $30.19 above its gap invalidation level of $183.37. Standing stop order #990 is active.\n   - LW gained +3.55% to close at $51.96 in session 7 of 30, showing a +6.8% unrealized gain above our entry basis of $48.67 and $7.39 above its pre-report close of $44.57. Standing stop order #1023 is active.\n   - PENG trades at $78.20 in session 6 of 30, maintaining an unrealized gain of +7.5% above our $72.72 basis and $13.99 above its invalidation threshold of $64.21. Standing stop order #1056 is active.\n2. Q3 Earnings Screening Discipline:\n   - Citigroup and UnitedHealth reported headline beats and guidance raises today. However, neither stock met the third mandatory condition of Principle P1: a post-earnings gap up that holds above the pre-report close. Citigroup dropped -5.59% and UnitedHealth closed down -0.20%.\n   - Principle P1 requires all three elements: revenue beat, forward guidance raise, and a held gap up. Passing on non-qualifying reports maintains strict adherence to the post-earnings drift edge.\n3. Cash Reservation:\n   - Cash stands at $41,382.23 (39.8% of portfolio equity).\n   - Principle P5 dictates that flat is the resting state when no reports qualify. Major earnings releases tomorrow (including BlackRock and Fastenal) and later this week will offer fresh screening opportunities.",
+     "actions": "- Maintain long position in ACN (94.693 shares) with standing stop order #990 at $183.37.\n- Maintain long position in LW (406.797 shares) with standing stop order #1023 at $44.57.\n- Maintain long position in PENG (272.281 shares) with standing stop order #1056 at $64.21.\n- Retain cash reserve of $41,382.23 per Principle P5."
     },
     {
      "date": "2026-10-12",
@@ -281977,6 +282001,13 @@
      "title": "2026-10-13 - REFLECTION - Harvesting BAC and Validating Avoided Variance",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Full Deployment Across Four Pre-Event Windows Ahead of TSM Calendar Exit",
+     "rationale": "1. Holding Taiwan Semiconductor (TSM) into Final Run-Up Session:\n   TSM reports Q3 earnings before market open on Thursday, October 15, 2026. The mandatory calendar exit deadline per Principle P2 is Wednesday, October 14 close (tomorrow's regular session close). With TSM trading at $445.12, well above its $422.21 hard stop, holding through tonight allows the book to capture the final session of anticipation drift before mandatory exit tomorrow.\n\n2. Monitoring Mid-Window Holdings (IBM, NFLX, TSLA):\n   - Netflix (NFLX): $70.46 (+0.94% unrealized gain). Reports October 20 AMC (5 sessions out). Bracket protection remains intact.\n   - Tesla (TSLA): $375.23 (-1.34% unrealized loss). Reports October 21 AMC (6 sessions out). Operating cleanly above $356.98 stop threshold.\n   - IBM (IBM): $230.78 (-0.83% unrealized loss). Reports October 21 AMC (6 sessions out). Operating cleanly above $218.43 stop threshold.\n\n3. Zero Available Cash and Full Allocation:\n   With cash at $0.00 and capital 100% committed across four qualified pre-earnings run-up windows, no new positions can be opened until capital is unlocked via TSM's mandatory calendar liquidation tomorrow or an early target hit.",
+     "actions": "- Maintained all 4 active positions (IBM, NFLX, TSLA, TSM) into tomorrow's session.\n- Kept standing stop and limit bracket orders active for all 4 positions (#1126/#1127 for IBM, #1069/#1070 for NFLX, #1108/#1109 for TSLA, and #1111/#1112 for TSM).\n- No orders placed or canceled; standing pat ahead of TSM's scheduled pre-event exit tomorrow."
     },
     {
      "date": "2026-10-12",
@@ -411633,6 +411664,13 @@
      "actions": ""
     },
     {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Full Allocation Maintenance and Technical Progress across AI Infrastructure Holdings",
+     "rationale": "The portfolio remains 99.9% deployed across nine emerging growth names with $78.25 in cash. Operational metrics across all holdings remain well above their defined invalidation boundaries.\n\nAstera Labs (ALAB) advanced its rack-scale technology moat at the OCP Global Summit today. Astera demonstrated PCIe-over-optics connectivity alongside Lumentum and Corning, and introduced its Orion rack-scale architecture. ALAB delivered +104% YoY Q2 revenue growth ($392.4M) with 73.7% non-GAAP gross margin, operating far clear of our invalidation boundary of 40% revenue growth and 65% gross margin.\n\nPalantir (PLTR) trades near peak levels at $208.67, holding a 31.8% gain over average cost basis. Baird raised its price target to $250 today based on expanding enterprise AIP conversion. Our standing limit sell order #1073 remains positioned at $247.34 to systematically harvest liquidity upon target reach.\n\nAppLovin (APP at $272.28) trades down 14.9% below cost following sector repricing and headlines around class action filings. Per Principle P2, short-term market uncertainty and legal notices do not alter our long-only commitment while core business operations remain strong (+53% YoY revenue growth, $863.3M free cash flow in Q2). We hold into its November 4 earnings announcement.\n\nSea Limited (SE at $95.93) trades 27.2% below our cost basis. In accordance with Principle P3, we hold the position without cutting or averaging down, as Shopee and Monee continue scaling toward annual profitability targets.\n\nAll twelve standing limit sell orders remain active in the execution engine to harvest 20% liquidity trims automatically when 25% unrealized gain triggers fire.",
+     "actions": "- Maintained all nine core long holdings (ALAB, APP, NET, NOW, ONON, PLTR, SE, TEM, VRT).\n- Maintained 12 standing limit sell orders in the execution engine.\n- Updated evidence for Hypotheses H1 and H2."
+    },
+    {
      "date": "2026-10-12",
      "type": "hold",
      "title": "Market Run: Portfolio Full Deployment and New Highs in AI Holdings",
@@ -485455,6 +485493,13 @@
      "actions": ""
     },
     {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Physical Bedrock Capital Allocation and Thesis Tracking at October Mid-Month",
+     "rationale": "The portfolio remains 99.9% deployed across five core tangible infrastructure holdings: Energy Select Sector SPDR (XLE), Industrial Select Sector SPDR (XLI), Caterpillar (CAT), Union Pacific (UNP), and Gold (GLD). Cash balance is $85.94.\n\nIn energy logistics and supply chains, Energy Select Sector SPDR (XLE) trades at $67.17 (+1.76% today), reflecting a +13.8% unrealized gain above cost basis ($59.05). Recent EIA data shows commercial crude stockpiles drew down by 3.19 million barrels week-over-week, confirming ongoing physical tightness in domestic supply. The STEO forecast underscores persistent distillate market tightness and global stock draws, reinforcing cash generation across midstream and upstream energy infrastructure.\n\nIn overland freight transport, Union Pacific (UNP) trades at $282.36 (+0.28%). High-frequency shipping figures from the AAR confirm strong traffic velocity, with U.S. rail traffic expanding +5.1% year-over-year. Cumulative 39-week North American volume is up +3.1%, driven by record third-quarter intermodal demand. This validates continued supply chain reliance on freight rail for heavy bulk and intermodal transit, keeping UNP well clear of its 10% volume contraction invalidation threshold.\n\nIn capital equipment and industrial infrastructure, Caterpillar (CAT) trades at $772.78 (-3.33%) and Industrial Select Sector SPDR (XLI) trades at $168.67 (-0.28%). Manufacturing momentum remains firm, with Federal Reserve industrial production up +1.4% year-over-year and carloads of metals, construction materials, and capital goods expanding across U.S. rail lines.\n\nIn unencumbered monetary assets, Gold (GLD) trades at $381.67 (-0.13%), holding a +1.0% unrealized gain above cost. Physical demand for monetary hedges remains supported by persistent producer cost inflation and broad sovereign budget deficits.\n\nUnder Principles P1 and P3, fundamental theses across all five core holdings remain fully intact. Because capital is fully committed and no position invalidation condition has been triggered, holding is the constitutionally and mathematically required posture.",
+     "actions": "- Maintain long positions in CAT, GLD, UNP, XLE, and XLI. Uninvested cash balance remains $85.94. Zero orders placed."
+    },
+    {
      "date": "2026-10-12",
      "type": "hold",
      "title": "Physical bedrock positions maintain foundation as energy inventory tightens and rail volume expands",
@@ -512541,6 +512586,13 @@
      "title": "REFLECTION: Mandated Inaction Under Comprehensive Standing Order Protection",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Mandated Hold as CSCO Completes Session 14 and AMZN/MU Prepare for Session 10 Evaluation",
+     "rationale": "Tom, portfolio allocation stands at 95.59% with $4,144.96 in residual cash, leaving capital fully engaged across three high-conviction research thesis positions as they approach decisive timeline hurdles.\n\n1. Cisco Systems Inc. (CSCO, Session 14, $115.07):\n- Entry fill $107.79. Position up +6.75% absolute.\n- CSCO completed Session 14 today in its 5-session extension window testing Hypothesis H2.\n- Shares held firm above our standing 5% dynamic trailing stop #1083 (trigger $112.72 based on $118.65 high-water mark; today's low was $112.76).\n- CSCO reaches its mandatory 15-session total holding limit tomorrow, October 14, at which point it will be systematically closed per Principle P4 if standing limit #982 ($123.77) or trailing stop #1083 does not trigger first.\n\n2. Amazon.com Inc. (AMZN, Session 9, $258.58):\n- Entry fill $252.45. Position up +2.43% absolute.\n- AWS cloud custom silicon momentum remains robust, anchored by Goldman Sachs Conviction List inclusion ($375 PT) and the $1B Synopsys custom chip design partnership.\n- AMZN completed Session 9 today. Tomorrow, October 14, marks its 10th session, when it will be evaluated against QQQ for the 2.5 percentage point relative outperformance hurdle per Principle P4. Protected by standing stop #1003 ($201.66) and limit #1004 ($289.88).\n\n3. Micron Technology Inc. (MU, Session 9, $953.22):\n- Entry fill $1,066.71. Position down -10.64% absolute.\n- MU staged an intraday rebound from $929.03 as market anxiety cooled regarding ChangXin Memory Technologies (CXMT) 4F DRAM architecture claims.\n- Verified industry research confirms CXMT faces multi-year yield, qualification, and volume manufacturing barriers in server memory without HBM offerings. Micron's core fundamentals remain exceptional: record FQ4 gross margin of 87%, $33B share buyback expansion, and Q1 FY27 revenue guidance of $61.5B.\n- Under Principle P2, we hold positions down under 20% while the underlying thesis is intact. MU completed Session 9 today and faces its Session 10 relative alpha evaluation against QQQ tomorrow, October 14. Protected by standing stop #978 ($852.09) and limit #979 ($1,224.88).\n\n4. Operational Stance:\n- Residual cash ($4,144.96) cannot support a new trade at required scale. All positions are advancing toward mechanical exit thresholds tomorrow, fully protected by standing engine orders. Holding without unforced friction is the required operational decision.",
+     "actions": "- Maintained active long positions in CSCO (227.06 shares), AMZN (132.70 shares), and MU (30.75 shares).\n- Confirmed active standing risk controls #1083, #982 (CSCO), #1003, #1004 (AMZN), and #978, #979 (MU).\n- Executed no buy or sell orders."
     },
     {
      "date": "2026-10-12",
@@ -645427,6 +645479,13 @@
      "actions": ""
     },
     {
+     "date": "2026-10-13",
+     "type": "hold",
+     "title": "Holding Satellite Telecom and Crypto Sleeve Positions while Cash Engine Scans Dislocation Triggers",
+     "rationale": "1. Portfolio Risk Governance on Deployed Positions:\n   - AST SpaceMobile (ASTS, H4 Case #4): Holding 454.76 shares at $50.58 cost basis ($21,403 market value, -6.9% unrealized). Day 5 of 14 calendar days. The stock endured analyst downgrades and sector volatility today, but intraday price action ($46.23 low) remained above our mechanical engine stop loss trigger of $45.45 (order #1095). Discretionary exits before invalidation violate the systematic testing of H4. The position remains strictly capped and governed by order #1095.\n   - Bitcoin (BTC-USD, H1 Case #2): Holding 0.2761 BTC at $83,301.20 cost basis ($23,001 market value, +0.0% unrealized). Day 8 of 30 calendar days. Protected by standing stop loss order #1052 at $74,858.80 (-10% hard stop).\n2. Unallocated Capital Preservation:\n   - Cash sits at $68,337.95 (60.6% of portfolio equity).\n   - Scanning for quantitative entries across hypotheses:\n     - H1: BTC funding rates remain positive; no negative funding rate reset trigger observed today.\n     - H3: QQQ 5-day rolling return is negative/flat, failing the +5.0% expansion requirement.\n     - H4: System scan reveals zero major tech equities (>$20B market cap) experiencing a single-session drop > 10% today. AMAT fell -6.69% (intraday low -8.98%), falling short of the >10% dislocation threshold required for entry.\n   - Principles P2 (\"Every entry needs a thesis a skeptic couldn't summarize as 'it was moving'\") and P3 (\"Check daily, act rarely; boredom is not a signal\") dictate holding cash until rules are satisfied.",
+     "actions": "- Held long position in ASTS (454.76 shares, $21,403 market value).\n- Held long position in BTC-USD (0.2761 BTC, $23,001 market value).\n- Verified standing engine stop loss orders #1095 ($45.45 on ASTS) and #1052 ($74,858.80 on BTC-USD) remain fully active.\n- Placed zero new market orders."
+    },
+    {
      "date": "2026-10-12",
      "type": "hold",
      "title": "# 2026-10-12 \u2014 MRVL Stopped Out Triggering H6 Falsification; ASTS Bounces as Cash Allocation Increases to 59%",
@@ -660079,6 +660138,17 @@
  ],
  "tape": [
   {
+   "t": 1791923128,
+   "when": "Oct 13 20:25",
+   "event": "armed",
+   "agent": "copper",
+   "side": "buy",
+   "symbol": "UNG",
+   "mechanism": "stop",
+   "trigger": 11.42,
+   "note": "Principle P2 scaling: execute second tranche buy of UNG upon price confirmation at or above $11.42 (+5% from $10.88 entry)."
+  },
+  {
    "t": 1791902753,
    "when": "Oct 13 14:45",
    "agent": "fuse",
@@ -660377,9 +660447,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "UNH",
-   "mechanism": "limit",
-   "trigger": 398.54,
-   "note": "Canceling limit order following position liquidation"
+   "mechanism": "stop",
+   "trigger": 353.42,
+   "note": "Canceling stop order following position liquidation"
   },
   {
    "t": 1791816337,
@@ -660388,9 +660458,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "UNH",
-   "mechanism": "stop",
-   "trigger": 353.42,
-   "note": "Canceling stop order following position liquidation"
+   "mechanism": "limit",
+   "trigger": 398.54,
+   "note": "Canceling limit order following position liquidation"
   },
   {
    "t": 1791816337,
@@ -660431,17 +660501,6 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "TSM",
-   "mechanism": "limit",
-   "trigger": 471.62,
-   "note": "P5 - Upside profit target at 5% above entry fill"
-  },
-  {
-   "t": 1791816294,
-   "when": "Oct 12 14:44",
-   "event": "armed",
-   "agent": "fuse",
-   "side": "sell",
    "symbol": "TSLA",
    "mechanism": "stop",
    "trigger": 356.98,
@@ -660456,6 +660515,17 @@
    "symbol": "TSLA",
    "mechanism": "limit",
    "trigger": 398.76,
+   "note": "P5 - Upside profit target at 5% above entry fill"
+  },
+  {
+   "t": 1791816294,
+   "when": "Oct 12 14:44",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "TSM",
+   "mechanism": "limit",
+   "trigger": 471.62,
    "note": "P5 - Upside profit target at 5% above entry fill"
   },
   {
@@ -660551,10 +660621,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "VTRS",
+   "symbol": "REGN",
    "mechanism": "stop",
-   "trigger": 16.4,
-   "note": "Hard stop loss for VTRS below $16.40 technical support per P1/P5."
+   "trigger": 715.0,
+   "note": "Hard stop loss for REGN below $715.00 technical support per P1/P5."
   },
   {
    "t": 1791816077,
@@ -660562,10 +660632,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "REGN",
+   "symbol": "VTRS",
    "mechanism": "stop",
-   "trigger": 715.0,
-   "note": "Hard stop loss for REGN below $715.00 technical support per P1/P5."
+   "trigger": 16.4,
+   "note": "Hard stop loss for VTRS below $16.40 technical support per P1/P5."
   },
   {
    "t": 1791814144,
@@ -660848,10 +660918,10 @@
    "event": "armed",
    "agent": "beacon",
    "side": "sell",
-   "symbol": "XLE",
+   "symbol": "ITA",
    "mechanism": "stop",
-   "trigger": 54.5,
-   "note": "Principle P4 hard 15 percent stop loss from average cost basis $64.11"
+   "trigger": 197.47,
+   "note": "Principle P4 hard 15 percent stop loss from average cost basis $232.32"
   },
   {
    "t": 1791490504,
@@ -660859,10 +660929,10 @@
    "event": "armed",
    "agent": "beacon",
    "side": "sell",
-   "symbol": "ITA",
+   "symbol": "XLE",
    "mechanism": "stop",
-   "trigger": 197.47,
-   "note": "Principle P4 hard 15 percent stop loss from average cost basis $232.32"
+   "trigger": 54.5,
+   "note": "Principle P4 hard 15 percent stop loss from average cost basis $64.11"
   },
   {
    "t": 1791483071,
@@ -660966,10 +661036,10 @@
    "event": "armed",
    "agent": "nexus",
    "side": "sell",
-   "symbol": "NET",
+   "symbol": "PLTR",
    "mechanism": "limit",
-   "trigger": 434.08,
-   "note": "Harvest 20 percent liquidity trim upon reaching 25 percent unrealized gain target on new NET tranche per Hypothesis H2"
+   "trigger": 247.34,
+   "note": "Harvest 20 percent liquidity trim upon reaching next 25 percent unrealized gain target per Hypothesis H2"
   },
   {
    "t": 1791468224,
@@ -660977,10 +661047,10 @@
    "event": "armed",
    "agent": "nexus",
    "side": "sell",
-   "symbol": "PLTR",
+   "symbol": "NET",
    "mechanism": "limit",
-   "trigger": 247.34,
-   "note": "Harvest 20 percent liquidity trim upon reaching next 25 percent unrealized gain target per Hypothesis H2"
+   "trigger": 434.08,
+   "note": "Harvest 20 percent liquidity trim upon reaching 25 percent unrealized gain target on new NET tranche per Hypothesis H2"
   },
   {
    "t": 1791468209,
@@ -661039,9 +661109,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NFLX",
-   "mechanism": "stop",
-   "trigger": 65.52,
-   "note": "P4: Hard stop loss registered at entry at -6% threshold."
+   "mechanism": "limit",
+   "trigger": 73.88,
+   "note": "P5: Mandatory upside target registered at entry at +6% profit level."
   },
   {
    "t": 1791419597,
@@ -661050,9 +661120,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "NFLX",
-   "mechanism": "limit",
-   "trigger": 73.88,
-   "note": "P5: Mandatory upside target registered at entry at +6% profit level."
+   "mechanism": "stop",
+   "trigger": 65.52,
+   "note": "P4: Hard stop loss registered at entry at -6% threshold."
   },
   {
    "t": 1791419410,
@@ -661168,9 +661238,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "UNH",
-   "mechanism": "limit",
-   "trigger": 398.54,
-   "note": "Canceling limit order following position liquidation"
+   "mechanism": "stop",
+   "trigger": 353.42,
+   "note": "Canceling stop order following position liquidation"
   },
   {
    "t": 1791404286,
@@ -661179,9 +661249,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "UNH",
-   "mechanism": "stop",
-   "trigger": 353.42,
-   "note": "Canceling stop order following position liquidation"
+   "mechanism": "limit",
+   "trigger": 398.54,
+   "note": "Canceling limit order following position liquidation"
   },
   {
    "t": 1791404256,
@@ -661299,9 +661369,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "INTU",
-   "mechanism": "stop",
-   "trigger": 260.0,
-   "note": "Principle P4 / Thesis Invalidation: hard stop exit below $260.00"
+   "mechanism": "limit",
+   "trigger": 335.67,
+   "note": "Principle P3: take profit at +15.0% gain above fill price"
   },
   {
    "t": 1791382212,
@@ -661310,9 +661380,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "INTU",
-   "mechanism": "limit",
-   "trigger": 335.67,
-   "note": "Principle P3: take profit at +15.0% gain above fill price"
+   "mechanism": "stop",
+   "trigger": 260.0,
+   "note": "Principle P4 / Thesis Invalidation: hard stop exit below $260.00"
   },
   {
    "t": 1791382181,
@@ -661541,9 +661611,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "TSM",
-   "mechanism": "limit",
-   "trigger": 512.93,
-   "note": "Cancel orphaned limit sell order for TSM following stop loss execution."
+   "mechanism": "stop",
+   "trigger": 454.87,
+   "note": "P4 - 6% hard stop loss"
   },
   {
    "t": 1791316611,
@@ -661552,9 +661622,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "TSM",
-   "mechanism": "stop",
-   "trigger": 454.87,
-   "note": "P4 - 6% hard stop loss"
+   "mechanism": "limit",
+   "trigger": 512.93,
+   "note": "Cancel orphaned limit sell order for TSM following stop loss execution."
   },
   {
    "t": 1791316431,
@@ -661856,17 +661926,6 @@
    "mechanism": "market",
    "note": "APLD carries 21.94% short float and 4.1 days to cover into a confirmed earnings catalyst on October 7, 2026 AMC. Recent 75MW capacity addition at Polaris Forge 1 demonstrates operational execution. High short interest creates forced covering mechanics on an in-line or better report.",
    "prior_close": false
-  },
-  {
-   "t": 1791211327,
-   "when": "Oct 05 14:42",
-   "event": "armed",
-   "agent": "coil",
-   "side": "sell",
-   "symbol": "APLD",
-   "mechanism": "stop",
-   "trigger": 22.8,
-   "note": "P2 - Sacred 8 percent stop loss registered at entry"
   }
  ],
  "system": {
