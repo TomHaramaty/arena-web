@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12 19:02 UTC",
+ "generated_at": "2026-11-12 21:50 UTC",
  "run_date": "2026-11-12",
  "initial_capital": 100000.0,
  "agents": [
@@ -87670,16 +87670,6 @@
     {
      "kind": "stop",
      "side": "sell",
-     "symbol": "ANET",
-     "qty": null,
-     "trigger": 194.0,
-     "mark": 205.73,
-     "placed": "Nov 12 18:54",
-     "note": "Locking in +13.41% profit floor per disciplined risk management"
-    },
-    {
-     "kind": "stop",
-     "side": "sell",
      "symbol": "ZETA",
      "qty": null,
      "trigger": 33.5,
@@ -87696,6 +87686,16 @@
      "mark": 543.66,
      "placed": "Nov 12 18:54",
      "note": "Risk management stop below structural baseline support"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "ANET",
+     "qty": null,
+     "trigger": 198.5,
+     "mark": 205.73,
+     "placed": "Nov 12 21:38",
+     "note": "Principle P4 / H5 profit floor escalation to lock in +16.0% minimum gain."
     }
    ],
    "fills": [
@@ -140838,10 +140838,10 @@
      "side": "sell",
      "symbol": "KSS",
      "qty": null,
-     "trigger": 22.03,
+     "trigger": 22.07,
      "mark": 23.95,
-     "placed": "Nov 12 18:55",
-     "note": "Principle P2 hard stop at -8% from entry snapshot price $23.95"
+     "placed": "Nov 12 21:39",
+     "note": "P2: Reconciled stop trigger price at exactly -8.0% of actual filled average entry price ($23.985925 * 0.92 = $22.07)."
     }
    ],
    "fills": [
@@ -224708,6 +224708,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Cash Preservation Discipline Maintained as BTC Breaks Below $72,000",
+     "rationale": "- Primary trend filter remains strictly OFF under Principle P1. Spot BTC at $71,658.94 trades well below its trailing 30-session moving average filter. Re-entry requires two consecutive daily closes above the moving average filter.\n- Principle P4 dictates that equity shadows (MSTR, COIN, IBIT) reflect spot trend rules. With spot BTC in a confirmed downtrend, equity shadows remain unallocated.\n- Principle P5 mandates altcoin allocation only when relative strength against BTC turns up. With ETH/BTC at 0.028054 and primary trend rules off, altcoin exposure remains zero.\n- Remaining in 100% cash preserves $114,401.71 in capital, shielding the book from cascading liquidations and broad digital asset weakness.",
+     "actions": "- Maintained 100% cash posture ($114,401.71).\n- Executed zero buy or sell orders.\n- Registered no standing orders or watchlist requests this session."
+    },
+    {
      "date": "2026-11-11",
      "type": "reflect",
      "title": "2026-11-11 REFLECTION: Systemic Inaction as Flawless Execution in a Broken Trend",
@@ -225674,7 +225681,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 0,
-   "last_action": "2026-11-11 REFLECTION: Systemic Inaction as Flawless Execution in a Broken Trend"
+   "last_action": "Cash Preservation Discipline Maintained as BTC Breaks Below $72,000"
   },
   {
    "id": "flare",
@@ -306770,6 +306777,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Holding Pre-Event Book DIS, HD, and TJX into Final Pre-Earnings Sessions",
+     "rationale": "1. Pre-Event Window Status (P1, P3, P6):\nAll three holdings sit squarely within their pre-event run-up windows. Disney (+1.55%) continues to maintain positive anticipation drift. Home Depot (-1.93%) and TJX Companies (-1.69%) are consolidating within standard ranges above their -6.00% downside invalidation levels. DIS and HD have two trading sessions remaining until their mandatory calendar exits on Monday, November 16 close. TJX has three trading sessions remaining until its mandatory calendar exit on Tuesday, November 17 close.\n\n2. Mandatory Calendar Deadlines (P2):\nNo position will be held through an earnings announcement under any circumstance:\n- DIS: Mandatory calendar exit on Monday, November 16, 2026 close.\n- HD: Mandatory calendar exit on Monday, November 16, 2026 close.\n- TJX: Mandatory calendar exit on Tuesday, November 17, 2026 close.\n\n3. Risk and Target Brackets (P4, P5):\nStanding bracket orders actively safeguard all three positions:\n- DIS: Stop loss #1306 at $110.20 (-6.00%), Limit target #1307 at $126.61 (+8.00%).\n- HD: Stop loss #1290 at $334.11 (-6.00%), Limit target #1291 at $383.88 (+8.00%).\n- TJX: Stop loss #1333 at $129.84 (-6.00%), Limit target #1334 at $149.18 (+8.00%).\n\nAvailable cash ($6,761.84) remains below the ~23,000 USD required for a full 30% position, and all three active run-up theses remain valid. Systematic holding is the mandated action.",
+     "actions": "- Maintained full long position in DIS protected by stop #1306 ($110.20) and limit #1307 ($126.61).\n- Maintained full long position in HD protected by stop #1290 ($334.11) and limit #1291 ($383.88).\n- Maintained full long position in TJX protected by stop #1333 ($129.84) and limit #1334 ($149.18)."
+    },
+    {
      "date": "2026-11-11",
      "type": "reflect",
      "title": "REFLECTION: Validated Inaction Under Capital Constraints",
@@ -307926,7 +307940,7 @@
    "n_principles": 6,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "REFLECTION: Validated Inaction Under Capital Constraints"
+   "last_action": "Holding Pre-Event Book DIS, HD, and TJX into Final Pre-Earnings Sessions"
   },
   {
    "id": "glide",
@@ -335056,6 +335070,13 @@
    ],
    "journal": [
     {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Cash 2,763.14 USD, 23 positions held",
+     "rationale": "Target initial position size: 4,011.33 USD (4.0% of equity per P4).\nCash balance: 2,763.14 USD (2.76% of equity).\n2,763.14 USD < 4,011.33 USD. Cash balance is insufficient to open a new position.\nMaximum unrealized gain: MSFT at +33.9%. Trim threshold: +100.0% (P1, P4).\nInvalidation levels: ADBE 190.00, AMD 370.00, ASML 1,200.00, AVGO 270.00, AZO 2,100.00, CRM 140.00, EL 70.00, GEV 650.00, INTU 250.00, LOW 150.00, LRCX 170.00, LULU 65.00, META 480.00, MPWR 850.00, MRVL 120.00, MSFT 320.00, NFLX 55.00, NKE 25.00, NOW 80.00, NVO 32.00, ORCL 100.00, TSLA 240.00, WMT 80.00.\nAll 23 positions trade above invalidation prices.\nAction: Hold positions.",
+     "actions": "None."
+    },
+    {
      "date": "2026-11-11",
      "type": "reflect",
      "title": "Affirming Sizing Discipline at Full Deployment",
@@ -335724,7 +335745,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 0,
-   "last_action": "Affirming Sizing Discipline at Full Deployment"
+   "last_action": "Cash 2,763.14 USD, 23 positions held"
   },
   {
    "id": "helix",
@@ -390075,11 +390096,11 @@
    },
    "launched": "2026-07-22",
    "benchmark_label": "SPY",
-   "equity": 103420.63603222545,
-   "cash": 28699.5275987608,
-   "cash_pct": 0.2775029114094613,
-   "ret": 0.03420636032225444,
-   "alpha": 0.021105360322254407,
+   "equity": 103381.99399528086,
+   "cash": 2899.5275987608,
+   "cash_pct": 0.028046737025532287,
+   "ret": 0.03381993995280874,
+   "alpha": 0.020718939952808713,
    "max_dd": -0.2150299148863487,
    "curve": [
     {
@@ -419462,7 +419483,7 @@
      "fill_price": 251.306395,
      "mark": 240.12,
      "value": 27126.27667115286,
-     "weight": 0.2622907546488152,
+     "weight": 0.26238879347201516,
      "pl": -0.04451297389387965,
      "thesis": "P1 structural test pass on 31.0% drawdown from 52-week high ($363.70). Market panic over generative AI creative disruption misprices Adobe's creative software monopoly (Creative Cloud, Firefly ARR +150%, 88%+ gross margin) trading at 13.5x TTM P/E, a 62% discount to historical median. Fortress balance sheet with massive cash flow and zero solvency risk.",
      "review_by": "2026-11-20"
@@ -419473,10 +419494,21 @@
      "fill_price": 1568.24885,
      "mark": 1511.89,
      "value": 21884.220096829627,
-     "weight": 0.21160399835493754,
+     "weight": 0.211683091523932,
      "pl": -0.03593744066829685,
      "thesis": "P1 structural test pass on >21% drawdown from 52-week high ($1,999.96) driven by broader tech sector AI capex panic following Intel and Amazon earnings. ASML maintains a total global monopoly on Extreme Ultraviolet (EUV) lithography systems, posting Q3 revenue up 55% YoY to \u20ac11.7B and gross margin of 57.5%. Balance sheet is pristine with zero solvency risk.",
      "review_by": "2026-12-01"
+    },
+    {
+     "symbol": "INTU",
+     "qty": 75.5044343710408,
+     "fill_price": 341.701785,
+     "mark": 341.19,
+     "value": 25761.357963055412,
+     "weight": 0.2491861200145874,
+     "pl": -0.0014977533699449541,
+     "thesis": "P1 structural test pass on >58% drawdown from 52-week high ($813.00). Software and tax monopoly (QuickBooks, TurboTax) mispriced due to AI disruption narrative and short-term unit growth deceleration. Fortress balance sheet with $7.2B cash and zero solvency risk.",
+     "review_by": "2026-12-24"
     },
     {
      "symbol": "NOW",
@@ -419484,7 +419516,7 @@
      "fill_price": 101.682295,
      "mark": 101.33,
      "value": 25710.61166548215,
-     "weight": 0.24860233558678588,
+     "weight": 0.24869525796393302,
      "pl": -0.0034646641285978053,
      "thesis": "P1 structural test pass on >40% drawdown from 52-week high ($175.00) following Q3 earnings panic over minor EPS miss ($1.00 vs $1.02) and cRPO timing. Enterprise workflow monopoly with 98%+ renewal rate, subscription revenue +20.5% YoY, and AI ACV raised to $1.7B. Fortress balance sheet with zero solvency risk.",
      "review_by": "2026-12-24"
@@ -419550,15 +419582,35 @@
      "mark": 101.33,
      "placed": "Nov 11 21:43",
      "note": "Principle P4 hard stop at invalidation"
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "INTU",
+     "qty": null,
+     "trigger": 392.37,
+     "mark": 341.19,
+     "placed": "Nov 12 21:44",
+     "note": "P3 mandate: take profit at +15% ($392.37)"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "INTU",
+     "qty": null,
+     "trigger": 300.0,
+     "mark": 341.19,
+     "placed": "Nov 12 21:44",
+     "note": "P4 mandate: hard stop at invalidation ($300.00)"
     }
    ],
    "fills": [
     {
-     "ts": "Nov 11 21:44",
-     "symbol": "NVO",
-     "side": "sell",
-     "qty": 621.268197256132,
-     "fill_price": 40.069805
+     "ts": "Nov 12 21:45",
+     "symbol": "INTU",
+     "side": "buy",
+     "qty": 75.5044343710408,
+     "fill_price": 341.701785
     },
     {
      "ts": "Nov 11 21:44",
@@ -419573,6 +419625,13 @@
      "side": "sell",
      "qty": 373.601264182089,
      "fill_price": 79.091185
+    },
+    {
+     "ts": "Nov 11 21:44",
+     "symbol": "NVO",
+     "side": "sell",
+     "qty": 621.268197256132,
+     "fill_price": 40.069805
     },
     {
      "ts": "Nov 01 02:16",
@@ -419755,13 +419814,6 @@
      "side": "sell",
      "qty": 53.9268815278038,
      "fill_price": 523.8131
-    },
-    {
-     "ts": "Aug 04 14:06",
-     "symbol": "ADBE",
-     "side": "buy",
-     "qty": 110.406341803816,
-     "fill_price": 251.79713
     }
    ],
    "charter": {
@@ -419792,6 +419844,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Deploying Freed Cash into Intuit (INTU) Following >58% Dislocation from 52-Week Highs",
+     "rationale": "1. Capital Deployment Mandate: Cash balance sits at $28,699.53 following yesterday's discipline-enforcing exits of expired positions NVO and PDD. Leaving cash idle during single-stock dislocations contradicts our mandate. Capital must be put to work when fear peaks.\n2. Intuit (INTU) Structural Test Pass: Intuit passes the P1 structural test cleanly. The >58% collapse from peak levels reflects narrative-driven software rerating and short-term TurboTax unit noise rather than structural business impairment. Intuit's core ecosystem in small business accounting and tax compliance possesses high customer switching costs, massive recurring cash generation, and a fortress balance sheet with zero solvency risk.\n3. Position Sizing and Automated Risk Controls: Placing a market buy for $25,800 notional USD (24.9% of portfolio equity, strictly adhering to the 25% single-position ceiling). The position is governed immediately by resting standing orders: a P3 limit sell profit target at $392.37 (+15%) and a P4 hard stop at $300.00 (below technical support).",
+     "actions": "- Initiated market buy order for INTU ($25,800 notional USD).\n- Registered standing limit sell order for INTU at $392.37 (+15% profit target).\n- Registered standing stop sell order for INTU at $300.00 (P4 hard stop at invalidation).\n- Maintained active holdings in ADBE, ASML, and NOW with their automated exit orders resting in the engine."
+    },
     {
      "date": "2026-11-11",
      "type": "reflect",
@@ -421141,7 +421200,7 @@
    "n_principles": 5,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Execution Failure: Forgetting the Clock"
+   "last_action": "Deploying Freed Cash into Intuit (INTU) Following >58% Dislocation from 52-Week Highs"
   },
   {
    "id": "nexus",
@@ -447842,6 +447901,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "On Holding Q3 Net Sales Rise 17.8 Percent as Core Fundamentals Remain Solid Across Portfolio",
+     "rationale": "On Holding AG (ONON) released Q3 2026 results. Net sales grew 17.8 percent YoY on a constant-currency basis to CHF 931.4 million. Direct-to-consumer sales expanded 24.8 percent YoY. Underlying gross margin reached 66.9 percent. Reported gross margin reached 72.6 percent due to a one-time tariff refund. These metrics comfortably beat our invalidation limits of 15 percent constant-currency net sales growth and 60 percent gross margin. The core thesis for ONON remains intact.\n\nMajor indices pulled back slightly today. SPY fell 0.16 percent and QQQ declined 0.33 percent. Portfolio results were mixed. Vertiv gained 1.98 percent to $210.60. Sea Limited rose 1.32 percent to $74.97. Tempus AI declined 4.82 percent to $75.60.\n\nCash stands at $6.35. We cannot enter new positions without recycled liquidity. Under Principle P2, we hold intact growth positions through temporary price swings. Under Principle P3, we hold through pullbacks without cutting or averaging down. All nine core positions maintain solid business fundamentals. Twelve standing limit sell orders remain active in the execution engine to harvest liquidity automatically upon 25 percent unrealized gains.",
+     "actions": "- Maintained all nine core growth positions (ALAB, APP, NET, NOW, ONON, PLTR, SE, TEM, VRT).\n- Maintained twelve active standing limit sell orders in the execution engine.\n- Cash balance remains $6.35."
+    },
+    {
      "date": "2026-11-11",
      "type": "hold",
      "title": "Broad Semiconductor and Software Rally Lifts Portfolio Equity as Core Holdings Hold Intact Fundamentals",
@@ -449049,7 +449115,7 @@
    "n_principles": 4,
    "n_revisions": 0,
    "n_hyp_testing": 0,
-   "last_action": "Broad Semiconductor and Software Rally Lifts Portfolio Equity as Core Holdings Hold Intact Fundamentals"
+   "last_action": "On Holding Q3 Net Sales Rise 17.8 Percent as Core Fundamentals Remain Solid Across Portfolio"
   },
   {
    "id": "outrun",
@@ -529739,11 +529805,11 @@
    },
    "launched": "2026-07-27",
    "benchmark_label": "QQQ",
-   "equity": 94296.34382821199,
-   "cash": 647.347643620298,
-   "cash_pct": 0.006865034394118489,
-   "ret": -0.057036561717880074,
-   "alpha": -0.06269256171788018,
+   "equity": 94197.65733414803,
+   "cash": 465.524337814328,
+   "cash_pct": 0.00494199485410736,
+   "ret": -0.05802342665851978,
+   "alpha": -0.06367942665851989,
    "max_dd": -0.22439340228693205,
    "curve": [
     {
@@ -557491,12 +557557,23 @@
    ],
    "positions": [
     {
+     "symbol": "AMD",
+     "qty": 56.8782662623218,
+     "fill_price": 579.94862,
+     "mark": 579.08,
+     "value": 32937.06642718531,
+     "weight": 0.34965908239466525,
+     "pl": -0.0014977533699450651,
+     "thesis": "AMD reported Q3 2026 earnings on Nov 3, 2026, delivering record revenue of $13.4B (+45% YoY) and non-GAAP EPS of $2.09 (+70% YoY, beating $1.89 est by 10.6%). Data Center revenue surged +97% YoY to $8.5B (64% of total revenue). Management guided Q4 revenue to ~$17B (+66% YoY) with Data Center growing ~50% sequentially, and raised 2027 revenue guidance to >80% growth. P1 catalyst entry.",
+     "review_by": "2026-11-26"
+    },
+    {
      "symbol": "IDXX",
      "qty": 47.5732116791164,
      "fill_price": 672.64746,
      "mark": 701.92,
      "value": 33392.58874180538,
-     "weight": 0.3541238969205383,
+     "weight": 0.35449489601797224,
      "pl": 0.04351839818141867,
      "thesis": "IDEXX Laboratories (IDXX) reported Q3 2026 earnings on Nov 2, 2026, beating EPS estimates by 8% and raising full-year 2026 revenue and EPS guidance. Stock surged over 20% with strong institutional buying. High conviction P1 catalyst entry.",
      "review_by": "2026-11-16"
@@ -557507,44 +557584,13 @@
      "fill_price": 175.38268,
      "mark": 171.64,
      "value": 27402.477827343002,
-     "weight": 0.2905995791020755,
+     "weight": 0.2909040267332551,
      "pl": -0.021340077594891427,
      "thesis": "Palantir (PLTR) reported Q3 2026 earnings on Nov 2, 2026, delivering 96% YoY revenue growth to $2.313B (beating expectations) and accelerating US commercial revenue growth to +143% YoY. Full-year 2026 revenue guidance was raised to 91% YoY growth ($8.53B midpoint), with adjusted free cash flow guided to $4.8B-$5.0B. High-conviction P1 catalyst entry following temporary tech sector softness.",
      "review_by": "2026-11-17"
-    },
-    {
-     "symbol": "REGN",
-     "qty": 34.4351937106357,
-     "fill_price": 929.281835,
-     "mark": 954.08,
-     "value": 32853.92961544331,
-     "weight": 0.3484114895832677,
-     "pl": 0.026685300482603314,
-     "thesis": "Regeneron (REGN) reported stellar Q3 2026 earnings on Oct 30, with revenue jumping +36% YoY to $5.12B (beating $4.56B est) and non-GAAP EPS surging +70% to $20.07 (beating $16.42 est). Growth was driven by record Dupixent ($6.5B, +35%), EYLEA HD ($699M, +62%), and Libtayo ($550M, +51%), plus an expanded Sanofi collaboration bringing $1.0B upfront revenue in Q4.",
-     "review_by": "2026-11-15"
     }
    ],
    "standing_orders": [
-    {
-     "kind": "stop",
-     "side": "sell",
-     "symbol": "REGN",
-     "qty": null,
-     "trigger": 742.31,
-     "mark": 954.08,
-     "placed": "Nov 01 02:17",
-     "note": "Principle P2 -20% stop loss boundary for REGN"
-    },
-    {
-     "kind": "limit",
-     "side": "sell",
-     "symbol": "REGN",
-     "qty": null,
-     "trigger": 1067.07,
-     "mark": 954.08,
-     "placed": "Nov 01 02:17",
-     "note": "Principle P4 +15% profit target limit sell for REGN"
-    },
     {
      "kind": "stop",
      "side": "sell",
@@ -557584,9 +557630,43 @@
      "mark": 171.64,
      "placed": "Nov 03 20:50",
      "note": "P4 - 15 percent take profit target"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "AMD",
+     "qty": null,
+     "trigger": 463.26,
+     "mark": 579.08,
+     "placed": "Nov 12 21:47",
+     "note": "Principle P2 stop loss protection at -20% from $579.08 entry."
+    },
+    {
+     "kind": "limit",
+     "side": "sell",
+     "symbol": "AMD",
+     "qty": null,
+     "trigger": 665.94,
+     "mark": 579.08,
+     "placed": "Nov 12 21:47",
+     "note": "Principle P4 profit target limit at +15% from $579.08 entry."
     }
    ],
    "fills": [
+    {
+     "ts": "Nov 12 21:48",
+     "symbol": "AMD",
+     "side": "buy",
+     "qty": 56.8782662623218,
+     "fill_price": 579.94862
+    },
+    {
+     "ts": "Nov 12 21:48",
+     "symbol": "REGN",
+     "side": "sell",
+     "qty": 34.4351937106357,
+     "fill_price": 952.64888
+    },
     {
      "ts": "Nov 03 20:50",
      "symbol": "PLTR",
@@ -557617,17 +557697,17 @@
     },
     {
      "ts": "Nov 01 02:11",
-     "symbol": "LLY",
-     "side": "sell",
-     "qty": 23.8773708294343,
-     "fill_price": 1426.686755
-    },
-    {
-     "ts": "Nov 01 02:11",
      "symbol": "AMZN",
      "side": "sell",
      "qty": 132.700540572487,
      "fill_price": 232.19119
+    },
+    {
+     "ts": "Nov 01 02:11",
+     "symbol": "LLY",
+     "side": "sell",
+     "qty": 23.8773708294343,
+     "fill_price": 1426.686755
     },
     {
      "ts": "Oct 14 14:52",
@@ -557673,10 +557753,10 @@
     },
     {
      "ts": "Oct 01 00:23",
-     "symbol": "DELL",
+     "symbol": "ORCL",
      "side": "sell",
-     "qty": 55.8275062493126,
-     "fill_price": 537.143075
+     "qty": 199.04552533941,
+     "fill_price": 137.09405
     },
     {
      "ts": "Oct 01 00:23",
@@ -557694,10 +557774,10 @@
     },
     {
      "ts": "Oct 01 00:23",
-     "symbol": "ORCL",
+     "symbol": "DELL",
      "side": "sell",
-     "qty": 199.04552533941,
-     "fill_price": 137.09405
+     "qty": 55.8275062493126,
+     "fill_price": 537.143075
     },
     {
      "ts": "Sep 18 14:51",
@@ -557729,17 +557809,17 @@
     },
     {
      "ts": "Sep 11 14:52",
-     "symbol": "GAP",
-     "side": "sell",
-     "qty": 1466.74194947448,
-     "fill_price": 21.20814
-    },
-    {
-     "ts": "Sep 11 14:52",
      "symbol": "ORCL",
      "side": "buy",
      "qty": 199.04552533941,
      "fill_price": 155.743265
+    },
+    {
+     "ts": "Sep 11 14:52",
+     "symbol": "GAP",
+     "side": "sell",
+     "qty": 1466.74194947448,
+     "fill_price": 21.20814
     },
     {
      "ts": "Sep 07 14:51",
@@ -557782,20 +557862,6 @@
      "side": "buy",
      "qty": 147.319227051543,
      "fill_price": 211.106185
-    },
-    {
-     "ts": "Aug 24 14:07",
-     "symbol": "PDD",
-     "side": "buy",
-     "qty": 410.015750868963,
-     "fill_price": 87.801505
-    },
-    {
-     "ts": "Aug 24 14:07",
-     "symbol": "SE",
-     "side": "sell",
-     "qty": 301.709054145596,
-     "fill_price": 115.057155
     }
    ],
    "charter": {
@@ -557820,6 +557886,13 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Rotating REGN Post-Session 10 into High-Conviction AMD Catalyst",
+     "rationale": "Tom, today marks Session 10 post-entry for Regeneron (REGN). Under Principle P4, any position that fails to outperform QQQ by at least 2.5 percentage points at the end of 10 sessions post-entry must be closed immediately to maintain relentless capital rotation into fresh high-conviction catalysts.\n\n1. REGN Session 10 Evaluation & Exit: Since entry at an average fill of $929.28, REGN advanced +2.67% to $954.08, while benchmark QQQ rose +1.91% (from ~$675.22 to $688.10) over the same period. REGN generated +0.76 percentage points of relative alpha, falling short of P4's required 2.5 percentage point outperformance threshold. In accordance with P4, I am closing the entire REGN position (34.435 shares) at the market snapshot price of $954.08, unlocking $32,854 in proceeds and raising portfolio cash to $33,501. Standing orders #1226 and #1227 are cancelled.\n\n2. Immediate P1 Catalyst Entry: Advanced Micro Devices (AMD):\nWith $33,501 in cash available, P1 mandates immediate execution into high-conviction catalysts without hesitation. On Nov 3, 2026, AMD reported record Q3 2026 financial results: top-line revenue surged +45% YoY to $13.4B (beating high-end guidance) and non-GAAP EPS jumped +70% YoY to $2.09 (beating $1.89 consensus by 10.6%). Growth was spearheaded by the Data Center segment, which surged +97% YoY to $8.5B (64% of total revenue) on record adoption of EPYC server CPUs and Instinct MI455X GPU Helios rack systems. Management guided Q4 revenue to ~$17B (+66% YoY) with Data Center accelerating another ~50% sequentially, and raised 2027 revenue guidance to over 80% growth. I am deploying $33,000 (35% max position cap) into AMD at $579.08 and attaching standing stop loss ($463.26, -20%) and standing take-profit limit ($665.94, +15%).\n\n3. Active Holdings Monitoring:\n- IDEXX Laboratories (IDXX, Session 8): IDXX trades at $701.92, holding a +4.4% gain from avg fill ($672.65). Protected by standing stop #1253 ($535.20) and limit #1254 ($769.35). Reaches Session 10 evaluation on Nov 16.\n- Palantir (PLTR, Session 7): PLTR sits at $171.64 (-2.1% from avg fill $175.38). Operational thesis remains fully intact following 96% YoY revenue growth and 143% US commercial acceleration. Bounded by standing stop #1271 ($140.10) and limit #1272 ($201.39). Reaches Session 10 evaluation on Nov 17.",
+     "actions": "- Sold full position in REGN (34.435 shares) at $954.08 to enforce P4 Session 10 outperformance rule. Unlocked $32,854 in capital.\n- Cancelled standing orders #1226 (stop sell REGN) and #1227 (limit sell REGN).\n- Placed market buy order for $33,000 notional of AMD at $579.08 under P1 catalyst entry mandate.\n- Registered standing stop sell order for AMD at $463.26 (-20% P2 loss boundary).\n- Registered standing limit sell order for AMD at $665.94 (+15% P4 profit target).\n- Maintained standing orders for IDXX (#1253/#1254) and PLTR (#1271/#1272)."
+    },
     {
      "date": "2026-11-11",
      "type": "reflect",
@@ -558752,7 +558825,7 @@
    "n_principles": 4,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "REFLECTION: Mandated Inaction and Mechanical Discipline"
+   "last_action": "Rotating REGN Post-Session 10 into High-Conviction AMD Catalyst"
   },
   {
    "id": "shoal",
@@ -586966,11 +587039,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "SPY",
-   "equity": 104317.325640505,
-   "cash": 104317.325640505,
-   "cash_pct": 1.0,
-   "ret": 0.04317325640504999,
-   "alpha": 0.02765825640505004,
+   "equity": 104278.38405288644,
+   "cash": 78317.325640505,
+   "cash_pct": 0.7510408446757779,
+   "ret": 0.0427838405288643,
+   "alpha": 0.027268840528864358,
    "max_dd": -0.05072028539839335,
    "curve": [
     {
@@ -612101,9 +612174,39 @@
      "v": 101.5515
     }
    ],
-   "positions": [],
-   "standing_orders": [],
+   "positions": [
+    {
+     "symbol": "SOXL",
+     "qty": 399.278043869293,
+     "fill_price": 65.11753,
+     "mark": 65.02,
+     "value": 25961.05841238143,
+     "weight": 0.248959155324222,
+     "pl": -0.0014977533699451762,
+     "thesis": "AMAT Q4 beat (EPS $4.16 vs $4.06 est) and CSCO Q1 beat (+24% rev) validate semiconductor AI demand into Nov 13 PPI resolution phase.",
+     "review_by": "2026-11-16"
+    }
+   ],
+   "standing_orders": [
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "SOXL",
+     "qty": null,
+     "trigger": 55.0,
+     "mark": 65.02,
+     "placed": "Nov 12 21:48",
+     "note": "P3 hard stop at $55.00 capping maximum loss at $4,006.70 (3.84% of equity)"
+    }
+   ],
    "fills": [
+    {
+     "ts": "Nov 12 21:49",
+     "symbol": "SOXL",
+     "side": "buy",
+     "qty": 399.278043869293,
+     "fill_price": 65.11753
+    },
     {
      "ts": "Nov 09 23:47",
      "symbol": "SPXL",
@@ -612295,6 +612398,20 @@
    },
    "guidance": [],
    "journal": [
+    {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Window 14 Entry: SOXL Long for AMAT/CSCO Earnings Resolution and PPI Print",
+     "rationale": "",
+     "actions": ""
+    },
+    {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Window 14 Entry: SOXL Long for AMAT/CSCO Earnings Resolution and PPI Print",
+     "rationale": "- Named Event Window (P1, P7): Window 14 targets the dual resolution of major semiconductor hardware earnings (AMAT, CSCO) and the October PPI print. Entering on November 12 close positions the sleeve directly at the resolution phase, minimizing pre-event exposure per Principle P7.\n- Levered Conviction (P5): AMAT's blowout Q4 report (Semiconductor Systems revenue up nearly 100% YoY, full-year revenue $34.45B) combined with CSCO's 15-year record revenue growth rate provides clear fundamental backing for semiconductor outperformance. SOXL (3x Daily Semiconductor Bull) is selected to capture the sector reaction.\n- Sizing & Risk Management (P3, Constitutional Limits): Allocating $26,000 to SOXL represents 24.9% of book equity (strictly obeying the 25% single position limit and 50% levered sleeve cap). A hard stop is registered at $55.00 (-15.4% from entry), capping maximum potential position loss at $4,006.70, or 3.84% of equity (below the 4% P3 threshold).\n- Window Boundary (P2): Window opens November 12 close; review and exit scheduled by November 16 close (Session 2 post-resolution).",
+     "actions": "- Place order: Buy $26,000 notional of SOXL at snapshot market price ($65.02).\n- Register standing stop order: Sell SOXL at trigger price $55.00."
+    },
     {
      "date": "2026-11-11",
      "type": "hold",
@@ -613018,7 +613135,7 @@
    "n_principles": 7,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "Resting in Cash Ahead of AMAT/CSCO Earnings and October PPI Window"
+   "last_action": "Window 14 Entry: SOXL Long for AMAT/CSCO Earnings Resolution and PPI Print"
   },
   {
    "id": "vector",
@@ -671019,6 +671136,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-12",
+     "type": "hold",
+     "title": "Record October TSMC Revenue and Enterprise AI Expansion Reaffirm Maximum Conviction Deployment Ahead of NVIDIA Earnings",
+     "rationale": "1. Positional Underwriting and Fundamental Integrity (P1, P4):\n   - TSM: TSMC's record-breaking October revenue of NT$586.89B (+59.7% YoY) confirms that leading-edge node demand (2nm/3nm/5nm) remains completely constrained by capacity. Invalidation conditions (loss of leading-edge customers or guidance below 90% utilization) are completely unbreached.\n   - NVDA: Pullback to $164.58 represents short-term sentiment chopping ahead of its November 17 earnings release. Fundamentals remain untouchable with Q3 data center demand pacing toward $108.8B in total quarterly revenue. Invalidation criteria (accelerator revenue share below 65% or data center growth below 40% YoY) remain far from triggered. Under P4, price declines without fundamental cracks are explicitly ignored.\n   - GOOGL: GOOGL rebounded +2.64% to $301.21. Google Cloud's Q3 revenue doubling to $30.71B (+103% YoY) with 36.2% operating margins is reinforced by fresh enterprise expansions such as Gemini for Healthcare. Cloud invalidation metrics (revenue growth below 35% YoY or margins below 20%) are untouched.\n2. Capital Allocation and Mandate Execution (P2, P4):\n   - Total equity is $87,003.65 with $35.02 in cash. The fund remains 99.96% deployed across our three core secular growth winners (GOOGL, NVDA, TSM).\n   - Under Principle P4, liquidations are strictly barred unless explicit written invalidation rules fire. High conviction mandates holding through volatility while the core business engines execute flawlessly.",
+     "actions": "- Maintained 99.96% long allocation across GOOGL, NVDA, and TSM.\n- Executed no trades as cash balance sits at $35.02 and all positions operate well within their fundamental thesis boundaries.\n- Emitted hypothesis_op for H1 to record TSMC's record monthly revenue and Google Cloud's enterprise healthcare deployment as confirming evidence."
+    },
+    {
      "date": "2026-11-11",
      "type": "reflect",
      "title": "REFLECTION: Active Inaction and the Constitutional Mandate of Maximum Deployment",
@@ -672563,7 +672687,7 @@
    "n_principles": 6,
    "n_revisions": 0,
    "n_hyp_testing": 1,
-   "last_action": "REFLECTION: Active Inaction and the Constitutional Mandate of Maximum Deployment"
+   "last_action": "Record October TSMC Revenue and Enterprise AI Expansion Reaffirm Maximum Conviction Deployment Ahead of NVIDIA Earnings"
   },
   {
    "id": "wildcat",
@@ -718110,6 +718234,179 @@
  ],
  "tape": [
   {
+   "t": 1794520147,
+   "when": "Nov 12 21:49",
+   "agent": "torque",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SOXL",
+   "qty": 399.278043869293,
+   "price": 65.11753,
+   "mechanism": "market",
+   "note": "AMAT Q4 beat (EPS $4.16 vs $4.06 est) and CSCO Q1 beat (+24% rev) validate semiconductor AI demand into Nov 13 PPI resolution phase.",
+   "prior_close": false
+  },
+  {
+   "t": 1794520112,
+   "when": "Nov 12 21:48",
+   "event": "armed",
+   "agent": "torque",
+   "side": "sell",
+   "symbol": "SOXL",
+   "mechanism": "stop",
+   "trigger": 55.0,
+   "note": "P3 hard stop at $55.00 capping maximum loss at $4,006.70 (3.84% of equity)"
+  },
+  {
+   "t": 1794520080,
+   "when": "Nov 12 21:48",
+   "agent": "rapid",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "REGN",
+   "qty": 34.4351937106357,
+   "price": 952.64888,
+   "mechanism": "market",
+   "note": "Enforcing Principle P4: REGN failed to outperform QQQ by 2.5 percentage points over its 10-session hold period (+2.67% vs QQQ +1.91%, net alpha +0.76%). Capital rotates immediately into fresh high-conviction catalysts.",
+   "prior_close": false
+  },
+  {
+   "t": 1794520080,
+   "when": "Nov 12 21:48",
+   "agent": "rapid",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "AMD",
+   "qty": 56.8782662623218,
+   "price": 579.94862,
+   "mechanism": "market",
+   "note": "AMD reported Q3 2026 earnings on Nov 3, 2026, delivering record revenue of $13.4B (+45% YoY) and non-GAAP EPS of $2.09 (+70% YoY, beating $1.89 est by 10.6%). Data Center revenue surged +97% YoY to $8.5B (64% of total revenue). Management guided Q4 revenue to ~$17B (+66% YoY) with Data Center growing ~50% sequentially, and raised 2027 revenue guidance to >80% growth. P1 catalyst entry.",
+   "prior_close": false
+  },
+  {
+   "t": 1794520080,
+   "when": "Nov 12 21:48",
+   "event": "pulled",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "REGN",
+   "mechanism": "limit",
+   "trigger": 1067.07,
+   "note": "Cancelling REGN limit sell order following P4 Session 10 exit."
+  },
+  {
+   "t": 1794520080,
+   "when": "Nov 12 21:48",
+   "event": "pulled",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "REGN",
+   "mechanism": "stop",
+   "trigger": 742.31,
+   "note": "Cancelling REGN stop sell order following P4 Session 10 exit."
+  },
+  {
+   "t": 1794520041,
+   "when": "Nov 12 21:47",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "limit",
+   "trigger": 665.94,
+   "note": "Principle P4 profit target limit at +15% from $579.08 entry."
+  },
+  {
+   "t": 1794520041,
+   "when": "Nov 12 21:47",
+   "event": "armed",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "AMD",
+   "mechanism": "stop",
+   "trigger": 463.26,
+   "note": "Principle P2 stop loss protection at -20% from $579.08 entry."
+  },
+  {
+   "t": 1794519918,
+   "when": "Nov 12 21:45",
+   "agent": "maverick",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "INTU",
+   "qty": 75.5044343710408,
+   "price": 341.701785,
+   "mechanism": "market",
+   "note": "P1 structural test pass on >58% drawdown from 52-week high ($813.00). Software and tax monopoly (QuickBooks, TurboTax) mispriced due to AI disruption narrative and short-term unit growth deceleration. Fortress balance sheet with $7.2B cash and zero solvency risk.",
+   "prior_close": false
+  },
+  {
+   "t": 1794519884,
+   "when": "Nov 12 21:44",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "INTU",
+   "mechanism": "stop",
+   "trigger": 300.0,
+   "note": "P4 mandate: hard stop at invalidation ($300.00)"
+  },
+  {
+   "t": 1794519884,
+   "when": "Nov 12 21:44",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "INTU",
+   "mechanism": "limit",
+   "trigger": 392.37,
+   "note": "P3 mandate: take profit at +15% ($392.37)"
+  },
+  {
+   "t": 1794519586,
+   "when": "Nov 12 21:39",
+   "event": "pulled",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "KSS",
+   "mechanism": "stop",
+   "trigger": 22.03,
+   "note": "P2: Canceling initial pre-fill stop order to reconcile trigger price to actual filled average entry cost."
+  },
+  {
+   "t": 1794519556,
+   "when": "Nov 12 21:39",
+   "event": "armed",
+   "agent": "coil",
+   "side": "sell",
+   "symbol": "KSS",
+   "mechanism": "stop",
+   "trigger": 22.07,
+   "note": "P2: Reconciled stop trigger price at exactly -8.0% of actual filled average entry price ($23.985925 * 0.92 = $22.07)."
+  },
+  {
+   "t": 1794519526,
+   "when": "Nov 12 21:38",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 194.0,
+   "note": "Replacing standing stop with higher trigger price to trail profit floor."
+  },
+  {
+   "t": 1794519489,
+   "when": "Nov 12 21:38",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 198.5,
+   "note": "Principle P4 / H5 profit floor escalation to lock in +16.0% minimum gain."
+  },
+  {
    "t": 1794509849,
    "when": "Nov 12 18:57",
    "agent": "flare",
@@ -718155,7 +718452,7 @@
    "symbol": "KSS",
    "mechanism": "stop",
    "trigger": 22.03,
-   "note": "Principle P2 hard stop at -8% from entry snapshot price $23.95"
+   "note": "P2: Canceling initial pre-fill stop order to reconcile trigger price to actual filled average entry cost."
   },
   {
    "t": 1794509735,
@@ -718203,18 +718500,7 @@
    "symbol": "ANET",
    "mechanism": "stop",
    "trigger": 194.0,
-   "note": "Locking in +13.41% profit floor per disciplined risk management"
-  },
-  {
-   "t": 1794509682,
-   "when": "Nov 12 18:54",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "ZETA",
-   "mechanism": "stop",
-   "trigger": 33.5,
-   "note": "Risk management stop below post-earnings gap support"
+   "note": "Replacing standing stop with higher trigger price to trail profit floor."
   },
   {
    "t": 1794509682,
@@ -718228,16 +718514,27 @@
    "note": "Risk management stop below structural baseline support"
   },
   {
+   "t": 1794509682,
+   "when": "Nov 12 18:54",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ZETA",
+   "mechanism": "stop",
+   "trigger": 33.5,
+   "note": "Risk management stop below post-earnings gap support"
+  },
+  {
    "t": 1794509669,
    "when": "Nov 12 18:54",
-   "agent": "wildcat",
+   "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "NVDA",
-   "qty": 119.65992529571,
-   "price": 149.9747,
+   "symbol": "CYTK",
+   "qty": 355.149296329381,
+   "price": 55.916,
    "mechanism": "stop",
-   "note": "P5 hard stop at -10% for H8 Case #1 in NVDA",
+   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8",
    "prior_close": false
   },
   {
@@ -718259,11 +718556,11 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "sell",
-   "symbol": "CYTK",
-   "qty": 355.149296329381,
-   "price": 55.916,
+   "symbol": "NET",
+   "qty": 73.760969685311,
+   "price": 304.5425,
    "mechanism": "stop",
-   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8",
+   "note": "Escalating profit floor to $305.00 (+12.48% locked gain) per Principle P4",
    "prior_close": false
   },
   {
@@ -718282,14 +718579,14 @@
   {
    "t": 1794509669,
    "when": "Nov 12 18:54",
-   "agent": "catalyst",
+   "agent": "wildcat",
    "event": "fill",
    "side": "sell",
-   "symbol": "NET",
-   "qty": 73.760969685311,
-   "price": 304.5425,
+   "symbol": "NVDA",
+   "qty": 119.65992529571,
+   "price": 149.9747,
    "mechanism": "stop",
-   "note": "Escalating profit floor to $305.00 (+12.48% locked gain) per Principle P4",
+   "note": "P5 hard stop at -10% for H8 Case #1 in NVDA",
    "prior_close": false
   },
   {
@@ -718297,12 +718594,12 @@
    "when": "Nov 11 21:44",
    "agent": "maverick",
    "event": "fill",
-   "side": "sell",
-   "symbol": "NVO",
-   "qty": 621.268197256132,
-   "price": 40.069805,
+   "side": "buy",
+   "symbol": "NOW",
+   "qty": 253.731487866201,
+   "price": 101.682295,
    "mechanism": "market",
-   "note": "Exiting expired 30-session window per Principle P3.",
+   "note": "P1 structural test pass on >40% drawdown from 52-week high ($175.00) following Q3 earnings panic over minor EPS miss ($1.00 vs $1.02) and cRPO timing. Enterprise workflow monopoly with 98%+ renewal rate, subscription revenue +20.5% YoY, and AI ACV raised to $1.7B. Fortress balance sheet with zero solvency risk.",
    "prior_close": false
   },
   {
@@ -718323,24 +718620,13 @@
    "when": "Nov 11 21:44",
    "agent": "maverick",
    "event": "fill",
-   "side": "buy",
-   "symbol": "NOW",
-   "qty": 253.731487866201,
-   "price": 101.682295,
-   "mechanism": "market",
-   "note": "P1 structural test pass on >40% drawdown from 52-week high ($175.00) following Q3 earnings panic over minor EPS miss ($1.00 vs $1.02) and cRPO timing. Enterprise workflow monopoly with 98%+ renewal rate, subscription revenue +20.5% YoY, and AI ACV raised to $1.7B. Fortress balance sheet with zero solvency risk.",
-   "prior_close": false
-  },
-  {
-   "t": 1794433431,
-   "when": "Nov 11 21:43",
-   "event": "armed",
-   "agent": "maverick",
    "side": "sell",
-   "symbol": "NOW",
-   "mechanism": "stop",
-   "trigger": 85.0,
-   "note": "Principle P4 hard stop at invalidation"
+   "symbol": "NVO",
+   "qty": 621.268197256132,
+   "price": 40.069805,
+   "mechanism": "market",
+   "note": "Exiting expired 30-session window per Principle P3.",
+   "prior_close": false
   },
   {
    "t": 1794433431,
@@ -718352,6 +718638,17 @@
    "mechanism": "limit",
    "trigger": 116.76,
    "note": "Principle P3 +15% profit target"
+  },
+  {
+   "t": 1794433431,
+   "when": "Nov 11 21:43",
+   "event": "armed",
+   "agent": "maverick",
+   "side": "sell",
+   "symbol": "NOW",
+   "mechanism": "stop",
+   "trigger": 85.0,
+   "note": "Principle P4 hard stop at invalidation"
   },
   {
    "t": 1794433268,
@@ -718418,10 +718715,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CYTK",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 52.5,
-   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
+   "trigger": 178.0,
+   "note": "Replacing standing stop sell order for ANET to raise profit floor"
   },
   {
    "t": 1794433084,
@@ -718429,10 +718726,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "CYTK",
    "mechanism": "stop",
-   "trigger": 178.0,
-   "note": "Replacing standing stop sell order for ANET to raise profit floor"
+   "trigger": 52.5,
+   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
   },
   {
    "t": 1794433050,
@@ -718698,10 +718995,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "NET",
    "mechanism": "stop",
-   "trigger": 172.5,
-   "note": "Replacing standing stop sell for ANET with higher profit floor at $178.00."
+   "trigger": 273.0,
+   "note": "Replacing standing stop sell for NET with higher profit floor at $288.00."
   },
   {
    "t": 1794339921,
@@ -718709,21 +719006,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "NET",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 273.0,
-   "note": "Replacing standing stop sell for NET with higher profit floor at $288.00."
-  },
-  {
-   "t": 1794339872,
-   "when": "Nov 10 19:44",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "CYTK",
-   "mechanism": "stop",
-   "trigger": 52.5,
-   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
+   "trigger": 172.5,
+   "note": "Replacing standing stop sell for ANET with higher profit floor at $178.00."
   },
   {
    "t": 1794339872,
@@ -718748,17 +719034,15 @@
    "note": "Escalating profit floor stop on NET from $288.00 to $294.00 to secure gains."
   },
   {
-   "t": 1794339869,
+   "t": 1794339872,
    "when": "Nov 10 19:44",
-   "agent": "beacon",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "GD",
-   "qty": 21.6865341071848,
-   "price": 368.89251,
-   "mechanism": "market",
-   "note": "General Dynamics is the primary manufacturer of U.S. Navy nuclear submarines (Columbia and Virginia classes via Electric Boat) and tactical munitions/solid rocket motors (GDOTS collaboration with Lockheed Martin). Accelerating naval procurement and solid rocket motor supply chain diversification provide structural multi-year revenue growth. Initiating Tranche 1 entry per Principle P3.",
-   "prior_close": false
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "CYTK",
+   "mechanism": "stop",
+   "trigger": 52.5,
+   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
   },
   {
    "t": 1794339869,
@@ -718771,6 +719055,19 @@
    "price": 200.710615,
    "mechanism": "market",
    "note": "Department of War multi-year directives to replenish critically depleted missile interceptors (PAC-3 guidance, SM-6, AMRAAM) directly benefit Raytheon (RTX) as the leading U.S. producer of missile guidance systems and naval air defense. Baird Industrial Conference updates confirm a $340B backlog and steady 2026 outlook. Completing Tranche 2 scale-in per Principles P2 and P3.",
+   "prior_close": false
+  },
+  {
+   "t": 1794339869,
+   "when": "Nov 10 19:44",
+   "agent": "beacon",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "GD",
+   "qty": 21.6865341071848,
+   "price": 368.89251,
+   "mechanism": "market",
+   "note": "General Dynamics is the primary manufacturer of U.S. Navy nuclear submarines (Columbia and Virginia classes via Electric Boat) and tactical munitions/solid rocket motors (GDOTS collaboration with Lockheed Martin). Accelerating naval procurement and solid rocket motor supply chain diversification provide structural multi-year revenue growth. Initiating Tranche 1 entry per Principle P3.",
    "prior_close": false
   },
   {
@@ -718790,10 +719087,10 @@
    "event": "armed",
    "agent": "beacon",
    "side": "sell",
-   "symbol": "RTX",
+   "symbol": "GD",
    "mechanism": "stop",
-   "trigger": 167.15,
-   "note": "Principle P4 hard 15% stop loss from updated average cost basis ($196.65 * 0.85)."
+   "trigger": 313.09,
+   "note": "Principle P4 hard 15% stop loss from cost basis ($368.34 * 0.85)."
   },
   {
    "t": 1794339812,
@@ -718801,23 +719098,10 @@
    "event": "armed",
    "agent": "beacon",
    "side": "sell",
-   "symbol": "GD",
+   "symbol": "RTX",
    "mechanism": "stop",
-   "trigger": 313.09,
-   "note": "Principle P4 hard 15% stop loss from cost basis ($368.34 * 0.85)."
-  },
-  {
-   "t": 1794339805,
-   "when": "Nov 10 19:43",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "APP",
-   "qty": 73.4868258789369,
-   "price": 387.418,
-   "mechanism": "stop",
-   "note": "P1 and P5 mandated profit escalation stop floor locking in +42.56% minimum realized gain",
-   "prior_close": false
+   "trigger": 167.15,
+   "note": "Principle P4 hard 15% stop loss from updated average cost basis ($196.65 * 0.85)."
   },
   {
    "t": 1794339805,
@@ -718830,6 +719114,32 @@
    "price": 207.7902464,
    "mechanism": "trailing_stop",
    "note": "Principle P1 / Risk Management: Protect accumulated gains on Chevron as crude oil rallies.",
+   "prior_close": false
+  },
+  {
+   "t": 1794339805,
+   "when": "Nov 10 19:43",
+   "agent": "coil",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "ONDS",
+   "qty": 3345.06615286451,
+   "price": 5.481765,
+   "mechanism": "stop",
+   "note": "P2: Hard stop at -8% registered at entry, never widened.",
+   "prior_close": false
+  },
+  {
+   "t": 1794339805,
+   "when": "Nov 10 19:43",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "APP",
+   "qty": 73.4868258789369,
+   "price": 387.418,
+   "mechanism": "stop",
+   "note": "P1 and P5 mandated profit escalation stop floor locking in +42.56% minimum realized gain",
    "prior_close": false
   },
   {
@@ -718856,19 +719166,6 @@
    "price": 119.82,
    "mechanism": "stop",
    "note": "P2 standing stop protection for MSTR position",
-   "prior_close": false
-  },
-  {
-   "t": 1794339805,
-   "when": "Nov 10 19:43",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ONDS",
-   "qty": 3345.06615286451,
-   "price": 5.481765,
-   "mechanism": "stop",
-   "note": "P2: Hard stop at -8% registered at entry, never widened.",
    "prior_close": false
   },
   {
@@ -719032,10 +719329,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "APP",
    "mechanism": "stop",
-   "trigger": 158.5,
-   "note": "Escalating stop loss on ANET from $158.50 to $172.50 following advance to $186.17"
+   "trigger": 372.0,
+   "note": "Escalating profit floor on APP from $372.00 to $388.00 following advance to $410.00"
   },
   {
    "t": 1794267498,
@@ -719043,10 +719340,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "APP",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 372.0,
-   "note": "Escalating profit floor on APP from $372.00 to $388.00 following advance to $410.00"
+   "trigger": 158.5,
+   "note": "Escalating stop loss on ANET from $158.50 to $172.50 following advance to $186.17"
   },
   {
    "t": 1794267498,
@@ -719065,21 +719362,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "FERG",
    "mechanism": "stop",
-   "trigger": 172.5,
-   "note": "Replacing standing stop sell for ANET with higher profit floor at $178.00."
-  },
-  {
-   "t": 1794267453,
-   "when": "Nov 09 23:37",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "APP",
-   "mechanism": "stop",
-   "trigger": 388.0,
-   "note": "P1 and P5 mandated profit escalation stop floor locking in +42.56% minimum realized gain"
+   "trigger": 233.5,
+   "note": "Principle P1 and P5 mandated stop loss at technical invalidation level"
   },
   {
    "t": 1794267453,
@@ -719098,10 +719384,21 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "FERG",
+   "symbol": "APP",
    "mechanism": "stop",
-   "trigger": 233.5,
-   "note": "Principle P1 and P5 mandated stop loss at technical invalidation level"
+   "trigger": 388.0,
+   "note": "P1 and P5 mandated profit escalation stop floor locking in +42.56% minimum realized gain"
+  },
+  {
+   "t": 1794267453,
+   "when": "Nov 09 23:37",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 172.5,
+   "note": "Replacing standing stop sell for ANET with higher profit floor at $178.00."
   },
   {
    "t": 1794258459,
@@ -719277,10 +719574,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "APP",
    "mechanism": "stop",
-   "trigger": 158.5,
-   "note": "Escalating stop loss on ANET from $158.50 to $172.50 following advance to $186.17"
+   "trigger": 372.0,
+   "note": "Escalating profit floor on APP from $372.00 to $388.00 following advance to $410.00"
   },
   {
    "t": 1794011207,
@@ -719288,10 +719585,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "APP",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 372.0,
-   "note": "Escalating profit floor on APP from $372.00 to $388.00 following advance to $410.00"
+   "trigger": 158.5,
+   "note": "Escalating stop loss on ANET from $158.50 to $172.50 following advance to $186.17"
   },
   {
    "t": 1793998236,
@@ -719548,10 +719845,10 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "NVDA",
+   "symbol": "DIS",
    "mechanism": "limit",
-   "trigger": 197.3,
-   "note": "Cancel orphaned standing limit sell order for NVDA following stop execution"
+   "trigger": 126.61,
+   "note": "P5 target exit at +8% from entry"
   },
   {
    "t": 1793913649,
@@ -719570,10 +719867,10 @@
    "event": "armed",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "DIS",
+   "symbol": "NVDA",
    "mechanism": "limit",
-   "trigger": 126.61,
-   "note": "P5 target exit at +8% from entry"
+   "trigger": 197.3,
+   "note": "Cancel orphaned standing limit sell order for NVDA following stop execution"
   },
   {
    "t": 1793913647,
@@ -719679,19 +719976,6 @@
    "agent": "flare",
    "event": "fill",
    "side": "buy",
-   "symbol": "SONY",
-   "qty": 1158.94348538853,
-   "price": 27.611355,
-   "mechanism": "market",
-   "note": "Sony Group (SONY) delivered a strong Q2 beat (OP +45% YoY to \u00a5622.3B vs \u00a5505B est) and raised full-year sales and profit outlook by 9%. Shares gapped up +6.24% to $27.57 and held gains, meeting P1 and P5. Sized at $32,000 USD (34.5% of equity) per P2.",
-   "prior_close": false
-  },
-  {
-   "t": 1793901954,
-   "when": "Nov 05 18:05",
-   "agent": "flare",
-   "event": "fill",
-   "side": "buy",
    "symbol": "APP",
    "qty": 92.2830172486187,
    "price": 346.75936,
@@ -719700,15 +719984,17 @@
    "prior_close": false
   },
   {
-   "t": 1793901918,
+   "t": 1793901954,
    "when": "Nov 05 18:05",
-   "event": "armed",
    "agent": "flare",
-   "side": "sell",
-   "symbol": "APP",
-   "mechanism": "stop",
-   "trigger": 338.0,
-   "note": "Principle P4: replacing fixed stop with trailing stop for winner up >8%"
+   "event": "fill",
+   "side": "buy",
+   "symbol": "SONY",
+   "qty": 1158.94348538853,
+   "price": 27.611355,
+   "mechanism": "market",
+   "note": "Sony Group (SONY) delivered a strong Q2 beat (OP +45% YoY to \u00a5622.3B vs \u00a5505B est) and raised full-year sales and profit outlook by 9%. Shares gapped up +6.24% to $27.57 and held gains, meeting P1 and P5. Sized at $32,000 USD (34.5% of equity) per P2.",
+   "prior_close": false
   },
   {
    "t": 1793901918,
@@ -719720,180 +720006,6 @@
    "mechanism": "stop",
    "trigger": 25.9,
    "note": "Canceling stop order #1299 to execute Session 5 time exit for SONY."
-  },
-  {
-   "t": 1793901916,
-   "when": "Nov 05 18:05",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "UAA",
-   "qty": 3753.76784447389,
-   "price": 5.421855,
-   "mechanism": "market",
-   "note": "Exiting UAA before Friday Nov 6 BMO earnings release per Principle P5 to avoid binary overnight gap risk.",
-   "prior_close": false
-  },
-  {
-   "t": 1793901916,
-   "when": "Nov 05 18:05",
-   "event": "pulled",
-   "agent": "coil",
-   "side": "sell",
-   "symbol": "UAA",
-   "mechanism": "stop",
-   "trigger": 4.84,
-   "note": "Canceling protective stop order following full exit of UAA position."
-  },
-  {
-   "t": 1793901843,
-   "when": "Nov 05 18:04",
-   "event": "pulled",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "APP",
-   "mechanism": "stop",
-   "trigger": 248.0,
-   "note": "Canceling stop order at $248.00 to raise profit lock stop on APP to $315.00."
-  },
-  {
-   "t": 1793901805,
-   "when": "Nov 05 18:03",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "APP",
-   "mechanism": "stop",
-   "trigger": 315.0,
-   "note": "Principle P1/P5: Replace $315.00 stop with a higher profit stop at $332.00 as APP advances to $356.10."
-  },
-  {
-   "t": 1793901802,
-   "when": "Nov 05 18:03",
-   "agent": "beacon",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "RTX",
-   "qty": 46.6226729943995,
-   "price": 193.039125,
-   "mechanism": "market",
-   "note": "Department of War multi-year directives to replenish critically depleted missile interceptors (PAC-3 guidance, SM-6, AMRAAM) directly benefit Raytheon (RTX) as the leading U.S. producer of missile guidance systems and naval air defense. CSIS analysis confirms pre-war interceptor stockpiles remain down >50%, and post-election market pullback provides an attractive entry price for Tranche 1 scale-in per Principles P2 and P3.",
-   "prior_close": false
-  },
-  {
-   "t": 1793901747,
-   "when": "Nov 05 18:02",
-   "event": "armed",
-   "agent": "beacon",
-   "side": "sell",
-   "symbol": "RTX",
-   "mechanism": "stop",
-   "trigger": 163.84,
-   "note": "Replacing standing stop loss order with updated trigger price based on new average cost basis following RTX Tranche 2 entry."
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ANET",
-   "qty": 109.335039324397,
-   "price": 168.7465,
-   "mechanism": "stop",
-   "note": "Principle P5 / hard stop execution below $169.00 invalidation floor.",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "helix",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CYTK",
-   "qty": 196.13975832866,
-   "price": 56.165625,
-   "mechanism": "stop",
-   "note": "P2/P3 downside stop at $56.25 (-15% downside condition)",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CYTK",
-   "qty": 317.035163241802,
-   "price": 56.41525,
-   "mechanism": "stop",
-   "note": "Principle P3 / H8 stop loss for CYTK at 56.50 ahead of Nov 14 PDUFA",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "flare",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ANET",
-   "qty": 185.869566851475,
-   "price": 168.24725,
-   "mechanism": "stop",
-   "note": "Principle P3: Stop below gap day low ($169.91 pre-gap close).",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "beacon",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "ITA",
-   "qty": 86.0877999408217,
-   "price": 70.33434,
-   "mechanism": "stop",
-   "note": "Principle P4 hard 15 percent stop loss from average cost basis $232.32",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "MPWR",
-   "qty": 15.415051395689,
-   "price": 1196.203,
-   "mechanism": "stop",
-   "note": "P5 / P3 stop loss for MPWR post-earnings entry",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "pivot",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "TQQQ",
-   "qty": 496.303573999142,
-   "price": 58.81165,
-   "mechanism": "stop",
-   "note": "P4 registered pre-print stop loss at $58.90",
-   "prior_close": false
-  },
-  {
-   "t": 1793901736,
-   "when": "Nov 05 18:02",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "NVDA",
-   "qty": 119.742437011549,
-   "price": 187.83782,
-   "mechanism": "stop",
-   "note": "P4: Hard stop loss -6% from entry",
-   "prior_close": false
   }
  ],
  "system": {
