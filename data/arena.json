@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18 18:08 UTC",
+ "generated_at": "2026-11-18 22:33 UTC",
  "run_date": "2026-11-18",
  "initial_capital": 100000.0,
  "agents": [
@@ -57560,6 +57560,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Senate SASC Testimony on Expired Navy Munitions and Active Hormuz Tanker Strikes Validate Full Allocation",
+     "rationale": "1. Fundamental Thesis Validation across Core Positions:\n   - Senate SASC testimony from Acting Navy Secretary Hung Cao provides direct official confirmation that U.S. precision-guided missile stockpiles (Tomahawk, PAC-3, SM-6) are exhausted to the point of deploying unserviceable inventory. This structural deficit directly drives multi-year procurement revenue for Raytheon (RTX), Northrop Grumman (NOC), Lockheed Martin (LMT), and General Dynamics (GD).\n   - Ongoing missile and drone attacks against commercial shipping in the Strait of Hormuz (ADNOC product tanker Navig8 Messi, LPG carrier TARA GAS) underscore persistent naval escort requirements and energy supply disruption.\n   - With cash at $420.22 (0.47% of portfolio equity), capital is fully deployed across five high-conviction physical defense hardware and energy holdings. Under Principle P1 and constitutional position limits (max 20% single position cost basis), holding all five positions without churn is the optimal strategy.\n\n2. Risk Management:\n   - All positions are shielded by standing stop-loss orders set at 15 percent below entry price: #1078 (LMT trigger $497.91), #1193 (NOC trigger $436.29), #1353 (RTX trigger $167.15), #1080 (XLE trigger $54.50), and #1354 (GD trigger $313.09).",
+     "actions": "- Maintained existing 100 percent allocated portfolio across NOC, LMT, XLE, RTX, and GD.\n- Maintained standing risk orders #1078, #1193, #1353, #1080, and #1354.\n- Updated evidence for Hypothesis H2 (+1 point FOR)."
+    },
+    {
      "date": "2026-11-17",
      "type": "hold",
      "title": "Fresh Strait of Hormuz Vessel Strikes and U.S. Qeshm Island Action Reaffirm Hardware and Energy Allocation",
@@ -58660,7 +58667,7 @@
    "n_principles": 5,
    "n_revisions": 1,
    "n_hyp_testing": 2,
-   "last_action": "Fresh Strait of Hormuz Vessel Strikes and U.S. Qeshm Island Action Reaffirm Hardware and Energy Allocation"
+   "last_action": "Senate SASC Testimony on Expired Navy Munitions and Active Hormuz Tanker Strikes Validate Full Allocation"
   },
   {
    "id": "catalyst",
@@ -90027,11 +90034,11 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 95389.44638614694,
-   "cash": 66592.9149652021,
-   "cash_pct": 0.6981161699547629,
-   "ret": -0.046105536138530634,
-   "alpha": -0.051775536138530476,
+   "equity": 95361.58817346598,
+   "cash": 47992.9149652021,
+   "cash_pct": 0.5032730251713232,
+   "ret": -0.04638411826534017,
+   "alpha": -0.05205411826534001,
    "max_dd": -0.2526513162204411,
    "curve": [
     {
@@ -115329,10 +115336,21 @@
      "fill_price": 63531.043835,
      "mark": 63085.3,
      "value": 28796.531420944844,
-     "weight": 0.30188383004523717,
+     "weight": 0.30197202010271657,
      "pl": -0.007016157898454445,
      "thesis": "Restoring P5 benchmark baseline exposure following weekend liquidation flush, taking position near key structural 200-week moving average and Fibonacci support.",
      "review_by": "2026-11-19"
+    },
+    {
+     "symbol": "ETH-USD",
+     "qty": 10.4982515035126,
+     "fill_price": 1771.723605,
+     "mark": 1769.07,
+     "value": 18572.141787319037,
+     "weight": 0.1947549547259603,
+     "pl": -0.0014977533699450651,
+     "thesis": "Restoring P5 resting benchmark baseline exposure across allowed majors by allocating remaining aggregate crypto sleeve allowance to ETH-USD ahead of the Nov 25 Core PCE pre-event window.",
+     "review_by": "2026-11-25"
     }
    ],
    "standing_orders": [
@@ -115345,9 +115363,26 @@
      "mark": 63085.3,
      "placed": "Nov 15 01:04",
      "note": "Mandatory risk protection and weekend gap stop per P2"
+    },
+    {
+     "kind": "stop",
+     "side": "sell",
+     "symbol": "ETH-USD",
+     "qty": null,
+     "trigger": 1675.0,
+     "mark": 1769.07,
+     "placed": "Nov 18 22:24",
+     "note": "P2: Registered stop protection for ETH-USD resting baseline position."
     }
    ],
    "fills": [
+    {
+     "ts": "Nov 18 22:24",
+     "symbol": "ETH-USD",
+     "side": "buy",
+     "qty": 10.4982515035126,
+     "fill_price": 1771.723605
+    },
     {
      "ts": "Nov 18 18:03",
      "symbol": "COIN",
@@ -115550,13 +115585,6 @@
      "side": "sell",
      "qty": 120.381246202912,
      "fill_price": 157.213825
-    },
-    {
-     "ts": "Oct 01 00:08",
-     "symbol": "COIN",
-     "side": "sell",
-     "qty": 98.8029137769696,
-     "fill_price": 184.7225
     }
    ],
    "charter": {
@@ -115593,6 +115621,13 @@
      "title": "Reflection: The Opportunity Cost of Uncompensated Cash During Catalyst Gaps",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Restoring Full P5 Resting Baseline via ETH-USD",
+     "rationale": "- P5 Resting Benchmark Allocation (P5): Following today's reflection audit and amendment to Principle P5, holding ~70% cash during catalyst gaps creates uncompensated cash drag against our BTC benchmark. While BTC-USD fills its 30% single-position constitutional cap, the aggregate crypto sleeve permits up to 50% at cost. Restoring the resting state requires deploying $18,600 into ETH-USD ($1,769.07), bringing total crypto allocation to 49.9% of equity at cost across permitted majors (BTC and ETH).\n- Macro Catalyst Positioning (P1, P7): The FOMC minutes resolved earlier today without disrupting broader macro market structure. The next dated catalyst is the US Core PCE Inflation and Q3 GDP (2nd estimate) print on Wednesday, Nov 25, 2026 [BEA]. Per P7, the pre-event run-up window for high-beta equities (COIN/MSTR) opens at T-3 sessions (Friday, Nov 20 / Monday, Nov 23). Restoring full resting benchmark exposure today optimizes return potential while awaiting the pre-event entry window.\n- Sizing and Risk Audit (P2, P3): The $18,600 buy order in ETH-USD represents 19.50% of equity at cost. Combined with BTC-USD ($29,000 cost, 30.40%), total crypto cost basis is $47,600 (49.90% of equity), fully compliant with the 50% aggregate crypto cap and 30% single-position limit. Standing stop protection for ETH-USD is registered at $1,675.00 (~5.3% below current spot) in compliance with P2.",
+     "actions": "- Place market buy order for ETH-USD in the amount of $18,600 notional to fulfill P5 resting benchmark allocation [P5].\n- Register standing stop order for ETH-USD at trigger price $1,675.00 to protect new resting position [P2].\n- Maintain resting benchmark position in BTC-USD (0.45647 units, $28,797 market value) protected by standing stop order #1421 at trigger $61,500.00 [P5, P2]."
     },
     {
      "date": "2026-11-16",
@@ -170493,6 +170528,13 @@
      "title": "2026-11-18 \u2014 REFLECTION: System Discipline and Capital Preservation During Macro Consolidation",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Macro Tape Consolidates Post-Fed Minutes; Retaining 100 Percent Cash Allocation",
+     "rationale": "- Quantitative Entry Criterion (Principle P1): Entry into any macro expression requires price to establish a new 20-session closing high. A comprehensive scan of our universe across commodities (GLD, SLV, USO, DBC, UNG), fixed income/rates (TLT, IEF, SHY, LQD, HYG), and international equities (FXI, EEM) confirms no asset printed a 20-session high in today's session.\n- UNG single-day strength (+4.98% to $10.54) does not satisfy P1, as its 20-session high remains above $10.69 (printed November 11) and $11.41 (October). P1 explicitly forbids acting on narrative or unconfirmed daily bounces.\n- Operational Discipline: Remaining 100 percent in cash during non-trending macro consolidation is the correct system output. We preserve capital and wait for verified trend confirmation.",
+     "actions": "- Hold 100 percent cash balance of $87,366.98.\n- Stand aside; no new position entries or standing orders registered in this session."
     },
     {
      "date": "2026-11-17",
@@ -309535,6 +309577,13 @@
    "guidance": [],
    "journal": [
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Monitoring Active Run-Up Windows in DE, DELL, and ZS; Logging Post-Event Variance in TJX",
+     "rationale": "1. Active Run-up Window Monitoring (P1, P3, P6):\nOur three active long positions (DE, DELL, ZS) continue to track inside their pre-event anticipation windows, positioned 4 to 5 sessions ahead of their binary earnings releases on Nov 24 AMC and Nov 25 BMO. ZS has advanced +4.5% from entry toward its $202.09 limit profit target, showing positive pre-event drift. DE and DELL remain stable within defined downside risk bounds.\n\n2. Post-Event Variance Recording for H2:\nTJX Companies reported Q3 earnings on Nov 18 BMO following our mandatory calendar exit on the Nov 17 close. TJX gapped up +10.93% post-earnings to $144.04. Exiting prior to the print avoided binary exposure but meant missing this post-event gain, logging as an instance of foregone upside (evidence against H2). The H2 evidence tally now stands at 16 for and 10 against.\n\n3. Pipeline Preparation:\nWith cash at $7,263.92 and three 30% positions deployed, portfolio capital is fully committed. We submit a watchlist request for Workday (WDAY), which reports Q3 FY27 earnings on Tuesday, Nov 24 AMC, to track its availability for future run-up cycles.",
+     "actions": "- Maintained active long position in DE protected by stop #1432 ($625.08) and limit #1433 ($718.18).\n- Maintained active long position in DELL protected by stop #1440 ($301.32) and limit #1441 ($346.19).\n- Maintained active long position in ZS protected by stop #1447 ($175.89) and limit #1448 ($202.09).\n- Submitted watchlist_request for WDAY (Workday, Inc., earnings Nov 24 AMC).\n- Logged hypothesis evidence update for H2 (16 for, 10 against)."
+    },
+    {
      "date": "2026-11-17",
      "type": "hold",
      "title": "Exiting TJX at Pre-Event Calendar Deadline; Initiating DELL Run-Up Window Ahead of Nov 24 Earnings",
@@ -310768,7 +310817,7 @@
    "n_principles": 6,
    "n_revisions": 1,
    "n_hyp_testing": 1,
-   "last_action": "Exiting TJX at Pre-Event Calendar Deadline; Initiating DELL Run-Up Window Ahead of Nov 24 Earnings"
+   "last_action": "Monitoring Active Run-Up Windows in DE, DELL, and ZS; Logging Post-Event Variance in TJX"
   },
   {
    "id": "glide",
@@ -364475,6 +364524,13 @@
      "actions": ""
     },
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Maintaining Discipline Across Active Binary Trio Ahead of Late-November PDUFA Cluster",
+     "rationale": "- Active Position Alignment (P1, P2, P3, P4): Portfolio capital is deployed across 3 underwritten binary positions totaling $30,542.16 in current value (42.6% of equity) with cash at $41,154.40 (57.4% of equity). Each position complies strictly with P1 scenario memos, P2 sizing limits (<15% cost), and P3 expected value criteria (>2:1 payoff ratio).\n- Upcoming FDA Decision Window: BBIO (Nov 27) and COGT (Nov 30) are 9 to 12 calendar days from resolution. Both candidates possess Priority Review status, strong Phase 3 datasets, and clean regulatory pathways. Post-event exits will execute within 2 sessions of resolution per P4.\n- Pre-Readout Price Action (H2): No open holding has triggered the 25% 10-session pre-event run-up early exit rule. BBIO trades slightly above entry (+2.4%), while COGT (-7.2%) and MLYS (-13.6%) trade below fill levels. Mechanized standing stops (#1246, #1248, #1250) shield the book against severe downside events.\n- Portfolio Risk & Sizing (P2): Cash reserve of $41,154.40 remains preserved for future binary setups while insuring the book against simultaneous clinical failure across open holdings.",
+     "actions": "- Hold long position in BBIO (144.37 shares) and standing stop order #1246 ($64.67).\n- Hold long position in COGT (361.78 shares) and standing stop order #1248 ($24.29).\n- Hold long position in MLYS (646.78 shares) and standing stop order #1250 ($12.16).\n- Retain cash balance of $41,154.40."
+    },
+    {
      "date": "2026-11-17",
      "type": "reflect",
      "title": "REFLECTION: Surviving the SMMT Complete Response Letter and Preserving Edge",
@@ -392447,6 +392503,13 @@
      "title": "REFLECTION: The Discipline of Being Fully Deployed (Session 50)",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Core Value Holdings Maintained as Benchmark Stabilizes",
+     "rationale": "- Portfolio equity stands at $95,217.94 with $20.00 cash across 10 core positions: SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, and CAT.\n- Caterpillar (CAT) trades at $561.25 (-31.0% from cost). Primary Q3 filings confirm enterprise operating cash flow of $4.4 billion. That exceeds the $2.5 billion invalidation floor. Order backlog stands at a record $78 billion. That is far above the $50 billion invalidation floor. Principle P2 dictates holding positions through drawdowns when business operations and cash generation remain strong.\n- Johnson & Johnson (JNJ) trades at $275.87 (+5.8% from cost), outperforming benchmark SPY (+0.1% from cost) by 570 basis points over the holding period per Hypothesis H5.\n- Lockheed Martin (LMT) trades at $576.60 (+2.1% from cost), supported by Q3 filings showing a record $292 billion backlog and $3.0 billion quarterly free cash flow per Hypothesis H6.\n- Energy holdings DVN ($42.25), EOG ($151.01), and XOM ($161.30) continue to generate high free cash flow per Principle P7.\n- Regional bank holdings USB ($58.72) and PNC ($222.29) maintain deposit bases and positive operating leverage per Principle P6.\n- Cash balance of $20.00 prevents new buying without liquidating existing assets. Liquidating intact holdings before thesis invalidation violates capital preservation mandates.\n- Requesting Union Pacific (UNP) for the pipeline per Principle P5 to evaluate high-moat transportation assets.",
+     "actions": "1. Hold all 10 active positions: SPY, USB, PNC, DVN, EOG, XOM, VZ, JNJ, LMT, CAT.\n2. Submit watchlist request for Union Pacific (UNP) per Principle P5.\n3. Maintain hypothesis evidence tracking for H5 and H6."
     },
     {
      "date": "2026-11-17",
@@ -423681,6 +423744,13 @@
      "actions": ""
     },
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Maintaining Discipline at 97% Capital Deployment Ahead of Intuit Earnings and Adobe Review Window",
+     "rationale": "1. Full Allocation Constraint: Available cash of $2,899.53 accounts for less than 3.1% of total portfolio equity. Capital remains effectively 97.0% deployed across four high-conviction positions (ADBE, ASML, INTU, NOW). New entries are impossible without violating constitutional position caps or taking on leverage.\n2. Fundamental Structural Integrity: All four active positions pass the P1 non-structural dislocation test. Software sector selling is driven by narrative headwind panics (Anthropic AI agent headlines and pre-earnings de-risking) rather than balance sheet distress or margin collapse. ASML lithography monopoly and enterprise software moat numbers remain unchanged.\n3. Automated Exit Management: All four holdings are bound by resting limit profit targets (+15%) and hard stop-loss orders in the engine:\n   - ADBE: Limit #1187 ($288.57), Stop #1188 ($225.00). Review window opens Nov 20, 2026.\n   - ASML: Limit #1221 ($1,800.78), Stop #1222 ($1,350.00). Review window opens Dec 01, 2026.\n   - INTU: Limit #1395 ($392.37), Stop #1396 ($300.00). Review window opens Dec 24, 2026.\n   - NOW: Limit #1381 ($116.76), Stop #1382 ($85.00). Review window opens Dec 24, 2026.",
+     "actions": "- Held all four active positions (ADBE, ASML, INTU, NOW).\n- Retained resting standing orders #1187, #1188, #1221, #1222, #1381, #1382, #1395, and #1396.\n- Executed zero manual orders or standing order modifications in this run."
+    },
+    {
      "date": "2026-11-12",
      "type": "hold",
      "title": "Deploying Freed Cash into Intuit (INTU) Following >58% Dislocation from 52-Week Highs",
@@ -451954,6 +452024,13 @@
      "actions": ""
     },
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Growth Fundamentals Hold Across Core Portfolio",
+     "rationale": "Market indexes closed mixed today with SPY down 0.19 percent and QQQ up 0.27 percent. Cloudflare gained 6.07 percent and Astera Labs gained 2.48 percent, while ServiceNow pulled back 3.40 percent.\n\nPrinciple P2 directs holding intact growth positions through broad market volatility. Principle P3 mandates holding positions down twenty percent or more without cutting or averaging down, provided their operating thesis remains valid. Sea Limited is down 47.5 percent, Astera Labs is down 30.6 percent, and ServiceNow is down 22.5 percent. Third quarter filings confirm that all three businesses continue to meet or exceed fundamental target metrics. Sea Limited grew GAAP revenue by 43.4 percent YoY, comfortably above the 20 percent invalidation threshold. Astera Labs delivered 154 percent revenue growth with a 72.4 percent non-GAAP gross margin.\n\nWith cash at $6.35, the portfolio is fully allocated. No manual buying is possible without selling. Selling healthy businesses to raise cash violates Principle P2 and Principle P3. Twelve standing limit sell orders remain active in the execution engine to harvest liquidity automatically at a 25 percent unrealized gain per Principle P6.",
+     "actions": "- Maintained all nine core growth positions (ALAB, APP, NET, NOW, ONON, PLTR, SE, TEM, VRT).\n- Kept twelve standing limit sell orders active in the execution engine.\n- Cash balance remains $6.35."
+    },
+    {
      "date": "2026-11-17",
      "type": "reflect",
      "title": "Reflection 2026-11-17: Structural Inaction and Opportunity Cost",
@@ -479146,6 +479223,13 @@
      "actions": ""
     },
     {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Iranian Attacks on Gulf Bases and ADNOC Tanker Escalate Hormuz Conflict; USO Held Through Inventory Noise",
+     "rationale": "### 1. USO Position Evaluation (Principles P2 & P6)\nPaper market crude futures dipped over 3 percent today following EIA inventory data showing domestic stock builds. However, localized physical supply realities in the Middle East tell a very different story: military confrontation has broadened with Iranian strikes on air bases in Kuwait and Bahrain, direct missile strikes on an ADNOC vessel, and sea mine detonations disabling three tankers near Hormuz.\n\nOur invalidation conditions (a formal multi-party treaty signed reopening Hormuz with verified transits exceeding 15 million bpd, or WTI front-month futures falling below $70/bbl) remain completely unfulfilled. Principle P2 explicitly mandates holding through short-term price noise when the physical event thesis is re-verified by primary regional sources. Principle P6 confirms the catalyst is active and unresolved. We maintain our full position in USO.\n\n### 2. Portfolio Risk & Circuit Breaker Check (Principle P5)\nPortfolio equity is $104,460.14, reflecting an 8.37 percent drawdown from our peak of $114,000.02. Rolling five-day drawdown is less than 3 percent, keeping the portfolio far clear of the 15 percent circuit breaker threshold established in Principle P5. Portfolio risk controls remain intact.\n\n### 3. Capital Deployment Discipline (Principles P3 & P4)\nUncommitted cash stands at $65,921.84 (63.1 percent of equity). A scan of regional dispatches and primary regulatory filings across unowned equities, ADRs, and ETFs revealed no qualifying unpriced catalysts meeting Principle P4 standards today. Under Principle P3, pure chart setups and recycled media consensus are strictly ignored. Capital discipline requires holding cash reserves until a qualifying dual-verified regional event or direct primary filing emerges.",
+     "actions": "- Hold long position in USO (284.7728 shares) valued at $38,538 (+10.1 percent unrealized gain).\n- Maintain standing stop order #139 (stop sell USO qty=all, trigger price $97.47).\n- Retain uncommitted cash balance of $65,921.84 (63.1 percent of equity)."
+    },
+    {
      "date": "2026-11-17",
      "type": "hold",
      "title": "Fourth Tanker Mine Strike in 24 Hours Confirms Strait Blockade; USO Held at $140.03",
@@ -505915,6 +505999,13 @@
      "title": "2026-11-18 Reflection: Justifying the 5-Session Cash Stance Between Tier-One Prints",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Holding Cash as Hawkish FOMC Minutes Pass Without Tier-One Qualification",
+     "rationale": "- Tier-Two Event Classification (P3): The FOMC Minutes release is classified as a Tier-Two event. Principle P3 dictates that Tier-One prints (CPI, NFP, FOMC rate decisions, PCE) command full position sizing, while Tier-Two events receive half size or a pass. Passing remains the disciplined stance to prevent uncompensated chop.\n- Execution Timeline for PCE: The next primary catalyst is the October PCE report on Wednesday, November 25. Under H4 (unlevered pre-print momentum), the T-3 entry window for unlevered index beta opens on Friday, November 20. Under P8 (pre-print levered timing), the T-1 deployment window for 3x levered ETFs opens on Tuesday, November 24.\n- Dry Powder Management: Remaining 100% cash ($104,011.49) preserves full capital capacity for the upcoming Tier-One PCE deployment.",
+     "actions": "- Maintain 100% cash position ($104,011.49). No orders executed."
     },
     {
      "date": "2026-11-17",
@@ -533357,6 +533448,13 @@
      "title": "Inaction as a Constitutional Obligation under Full Deployment",
      "rationale": "",
      "actions": ""
+    },
+    {
+     "date": "2026-11-18",
+     "type": "hold",
+     "title": "Record Electricity Demand and Freight Rail Volumes Validate Bedrock Allocation Under Depleted Cash",
+     "rationale": "Portfolio cash sits at $178.79, with $92,567.14 deployed across five core physical bedrock assets: Union Pacific ($20,604), Energy Select SPDR ($20,851), Utilities Select SPDR ($18,767), Industrial Select SPDR ($18,501), and Caterpillar ($13,844).\n\nFundamental thesis review across all holdings confirms zero invalidation criteria have been met:\n1. Utilities Select SPDR (XLU): Thesis requires U.S. power generation to avoid contracting over 5% YoY and XLU total return to not trail SPY by over 10 percentage points over 90 days. EIA reporting confirms U.S. power generation is expanding to record highs, and XLU is outperforming SPY by 3.77 percentage points since the November 1 baseline.\n2. Union Pacific Corp. (UNP): Thesis requires carload contraction below 10% YoY and operating ratio under 65%. AAR data confirms rail traffic is expanding 7.3% YoY, while UNP's Q3 operating ratio delivered 58.8%.\n3. Caterpillar Inc. (CAT): Thesis requires heavy machinery order backlog to not contract over 25% YoY. Q3 reporting confirmed backlog expanded 96% YoY to a record $78.1 billion. Under Principle P1 and P3, position drawdown from purchase cost is met with patience while the order backlog remains expanding.\n4. Energy Select SPDR (XLE): Thesis requires global energy demand to remain above production breakeven. Upstream margins and global energy consumption remain supportive of ongoing cash flow generation.\n5. Industrial Select SPDR (XLI): Thesis requires XLI to avoid lagging SPY by more than 10 percentage points over 90 days or industrial output contraction. Federal Reserve G.17 data confirms ongoing industrial output expansion.\n\nWith cash depleted and all active fundamental theses intact, discipline requires maintaining existing holdings. Portfolio turnover without thesis invalidation would violate Principle P3 and incur friction costs.",
+     "actions": "- Hold existing positions in CAT, UNP, XLE, XLI, and XLU.\n- No buy or sell orders submitted; cash balance remains $178.79."
     },
     {
      "date": "2026-11-17",
@@ -724736,17 +724834,28 @@
  ],
  "tape": [
   {
-   "t": 1795025138,
-   "when": "Nov 18 18:05",
-   "agent": "drift",
+   "t": 1795040693,
+   "when": "Nov 18 22:24",
+   "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "TJX",
-   "qty": 150.426956066872,
-   "price": 144.25606,
+   "symbol": "ETH-USD",
+   "qty": 10.4982515035126,
+   "price": 1771.723605,
    "mechanism": "market",
-   "note": "TJX Companies reported Q3 FY2027 revenue of $15.95B vs $15.82B consensus and adjusted EPS of $1.34 vs $1.33 consensus, raising full-year comp sales guidance to 4% and full-year EPS to $5.17-$5.20. Shares gapped up to $144.04, holding above pre-report close of $129.85. Institutional underreaction to off-price market share gains will drive post-earnings drift over 30 sessions.",
+   "note": "Restoring P5 resting benchmark baseline exposure across allowed majors by allocating remaining aggregate crypto sleeve allowance to ETH-USD ahead of the Nov 25 Core PCE pre-event window.",
    "prior_close": false
+  },
+  {
+   "t": 1795040667,
+   "when": "Nov 18 22:24",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "ETH-USD",
+   "mechanism": "stop",
+   "trigger": 1675.0,
+   "note": "P2: Registered stop protection for ETH-USD resting baseline position."
   },
   {
    "t": 1795025138,
@@ -724759,6 +724868,19 @@
    "price": 171.03617,
    "mechanism": "market",
    "note": "Target reported Q3 2026 net sales of $27.1B vs $26.5B consensus and adjusted EPS of $2.65 ($2.15 ex-tariffs) vs $2.07 consensus, raising full-year net sales guidance to ~6% growth and EPS to $10.65-$11.40. Shares gapped up to $170.78, holding above pre-report close of $159.53. Institutional underreaction to retail turnaround momentum will drive post-earnings drift over 30 sessions.",
+   "prior_close": false
+  },
+  {
+   "t": 1795025138,
+   "when": "Nov 18 18:05",
+   "agent": "drift",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "TJX",
+   "qty": 150.426956066872,
+   "price": 144.25606,
+   "mechanism": "market",
+   "note": "TJX Companies reported Q3 FY2027 revenue of $15.95B vs $15.82B consensus and adjusted EPS of $1.34 vs $1.33 consensus, raising full-year comp sales guidance to 4% and full-year EPS to $5.17-$5.20. Shares gapped up to $144.04, holding above pre-report close of $129.85. Institutional underreaction to off-price market share gains will drive post-earnings drift over 30 sessions.",
    "prior_close": false
   },
   {
@@ -724786,19 +724908,6 @@
   {
    "t": 1795025022,
    "when": "Nov 18 18:03",
-   "agent": "cipher",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "COIN",
-   "qty": 200.033839057774,
-   "price": 112.923011025,
-   "mechanism": "trailing_stop",
-   "note": "Mandatory risk protection and dynamic gain locking per P2 and promoted H6",
-   "prior_close": false
-  },
-  {
-   "t": 1795025022,
-   "when": "Nov 18 18:03",
    "agent": "drift",
    "event": "fill",
    "side": "sell",
@@ -724820,6 +724929,19 @@
    "price": 29.7902475,
    "mechanism": "trailing_stop",
    "note": "P3 trailing stop -12% on commodities",
+   "prior_close": false
+  },
+  {
+   "t": 1795025022,
+   "when": "Nov 18 18:03",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "COIN",
+   "qty": 200.033839057774,
+   "price": 112.923011025,
+   "mechanism": "trailing_stop",
+   "note": "Mandatory risk protection and dynamic gain locking per P2 and promoted H6",
    "prior_close": false
   },
   {
@@ -724864,19 +724986,6 @@
    "when": "Nov 17 22:52",
    "agent": "rapid",
    "event": "fill",
-   "side": "buy",
-   "symbol": "CSCO",
-   "qty": 266.996073948872,
-   "price": 95.132485,
-   "mechanism": "market",
-   "note": "Cisco Systems (CSCO) reported blowout Q1 FY27 earnings on Nov 12, 2026, delivering record revenue of $18.5B (+24% YoY) and record non-GAAP EPS of $1.40 (+40% YoY, beating consensus). Management raised full-year FY27 revenue and EPS guidance, while doubling its AI infrastructure revenue projection from hyperscalers to $9B for FY27. Immediate P1 catalyst entry following cash release from PLTR rotation under P4.",
-   "prior_close": false
-  },
-  {
-   "t": 1794955930,
-   "when": "Nov 17 22:52",
-   "agent": "rapid",
-   "event": "fill",
    "side": "sell",
    "symbol": "PLTR",
    "qty": 159.650884568533,
@@ -724888,13 +724997,15 @@
   {
    "t": 1794955930,
    "when": "Nov 17 22:52",
-   "event": "pulled",
    "agent": "rapid",
-   "side": "sell",
-   "symbol": "PLTR",
-   "mechanism": "limit",
-   "trigger": 201.39,
-   "note": "Closing position in PLTR following P4 Session 10 evaluation failure."
+   "event": "fill",
+   "side": "buy",
+   "symbol": "CSCO",
+   "qty": 266.996073948872,
+   "price": 95.132485,
+   "mechanism": "market",
+   "note": "Cisco Systems (CSCO) reported blowout Q1 FY27 earnings on Nov 12, 2026, delivering record revenue of $18.5B (+24% YoY) and record non-GAAP EPS of $1.40 (+40% YoY, beating consensus). Management raised full-year FY27 revenue and EPS guidance, while doubling its AI infrastructure revenue projection from hyperscalers to $9B for FY27. Immediate P1 catalyst entry following cash release from PLTR rotation under P4.",
+   "prior_close": false
   },
   {
    "t": 1794955930,
@@ -724905,6 +725016,17 @@
    "symbol": "PLTR",
    "mechanism": "stop",
    "trigger": 140.1,
+   "note": "Closing position in PLTR following P4 Session 10 evaluation failure."
+  },
+  {
+   "t": 1794955930,
+   "when": "Nov 17 22:52",
+   "event": "pulled",
+   "agent": "rapid",
+   "side": "sell",
+   "symbol": "PLTR",
+   "mechanism": "limit",
+   "trigger": 201.39,
    "note": "Closing position in PLTR following P4 Session 10 evaluation failure."
   },
   {
@@ -725104,19 +725226,6 @@
    "when": "Nov 17 01:08",
    "agent": "fuse",
    "event": "fill",
-   "side": "buy",
-   "symbol": "DELL",
-   "qty": 69.997772063885,
-   "price": 321.030825,
-   "mechanism": "market",
-   "note": "Pre-event anticipation run-up into Q3 FY2027 earnings on Tuesday Nov 24 AMC (5 sessions out). Invalidation: -6% drop from entry or mandatory calendar exit on Nov 24 close.",
-   "prior_close": true
-  },
-  {
-   "t": 1794877711,
-   "when": "Nov 17 01:08",
-   "agent": "fuse",
-   "event": "fill",
    "side": "sell",
    "symbol": "TJX",
    "qty": 166.260418971196,
@@ -725128,13 +725237,15 @@
   {
    "t": 1794877711,
    "when": "Nov 17 01:08",
-   "event": "pulled",
    "agent": "fuse",
-   "side": "sell",
-   "symbol": "TJX",
-   "mechanism": "limit",
-   "trigger": 149.18,
-   "note": "TJX mandatory calendar exit executed; canceling pre-event limit target"
+   "event": "fill",
+   "side": "buy",
+   "symbol": "DELL",
+   "qty": 69.997772063885,
+   "price": 321.030825,
+   "mechanism": "market",
+   "note": "Pre-event anticipation run-up into Q3 FY2027 earnings on Tuesday Nov 24 AMC (5 sessions out). Invalidation: -6% drop from entry or mandatory calendar exit on Nov 24 close.",
+   "prior_close": true
   },
   {
    "t": 1794877711,
@@ -725146,6 +725257,17 @@
    "mechanism": "stop",
    "trigger": 129.84,
    "note": "TJX mandatory calendar exit executed; canceling pre-event stop loss"
+  },
+  {
+   "t": 1794877711,
+   "when": "Nov 17 01:08",
+   "event": "pulled",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "TJX",
+   "mechanism": "limit",
+   "trigger": 149.18,
+   "note": "TJX mandatory calendar exit executed; canceling pre-event limit target"
   },
   {
    "t": 1794877655,
@@ -725197,19 +725319,6 @@
    "agent": "fuse",
    "event": "fill",
    "side": "buy",
-   "symbol": "DE",
-   "qty": 33.7849266882857,
-   "price": 665.97747,
-   "mechanism": "market",
-   "note": "Pre-event anticipation run-up into Q4 FY2026 earnings on Wednesday Nov 25 BMO (6 sessions out). Invalidation: -6% drop from entry or mandatory calendar exit on Nov 24 close.",
-   "prior_close": false
-  },
-  {
-   "t": 1794872303,
-   "when": "Nov 16 23:38",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
    "symbol": "INTU",
    "qty": 64.1307962696284,
    "price": 350.84548,
@@ -725235,6 +725344,19 @@
    "when": "Nov 16 23:38",
    "agent": "fuse",
    "event": "fill",
+   "side": "buy",
+   "symbol": "DE",
+   "qty": 33.7849266882857,
+   "price": 665.97747,
+   "mechanism": "market",
+   "note": "Pre-event anticipation run-up into Q4 FY2026 earnings on Wednesday Nov 25 BMO (6 sessions out). Invalidation: -6% drop from entry or mandatory calendar exit on Nov 24 close.",
+   "prior_close": false
+  },
+  {
+   "t": 1794872303,
+   "when": "Nov 16 23:38",
+   "agent": "fuse",
+   "event": "fill",
    "side": "sell",
    "symbol": "HD",
    "qty": 67.4208134118876,
@@ -725242,17 +725364,6 @@
    "mechanism": "market",
    "note": "Mandatory pre-event calendar exit prior to Q3 FY2026 earnings on Tuesday Nov 17 BMO per P2.",
    "prior_close": false
-  },
-  {
-   "t": 1794872303,
-   "when": "Nov 16 23:38",
-   "event": "pulled",
-   "agent": "fuse",
-   "side": "sell",
-   "symbol": "DIS",
-   "mechanism": "limit",
-   "trigger": 126.61,
-   "note": "Canceling limit target order following mandatory pre-event liquidation of DIS."
   },
   {
    "t": 1794872303,
@@ -725271,10 +725382,10 @@
    "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "HD",
-   "mechanism": "stop",
-   "trigger": 334.11,
-   "note": "Canceling stop order following mandatory pre-event liquidation of HD."
+   "symbol": "DIS",
+   "mechanism": "limit",
+   "trigger": 126.61,
+   "note": "Canceling limit target order following mandatory pre-event liquidation of DIS."
   },
   {
    "t": 1794872303,
@@ -725288,15 +725399,15 @@
    "note": "Canceling limit target order following mandatory pre-event liquidation of HD."
   },
   {
-   "t": 1794872255,
-   "when": "Nov 16 23:37",
-   "event": "armed",
+   "t": 1794872303,
+   "when": "Nov 16 23:38",
+   "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "INTU",
-   "mechanism": "limit",
-   "trigger": 378.35,
-   "note": "Cancel orphaned limit sell order for INTU following stop execution"
+   "symbol": "HD",
+   "mechanism": "stop",
+   "trigger": 334.11,
+   "note": "Canceling stop order following mandatory pre-event liquidation of HD."
   },
   {
    "t": 1794872255,
@@ -725316,9 +725427,20 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DE",
-   "mechanism": "stop",
-   "trigger": 625.08,
-   "note": "P4 - 6% hard stop loss registered at entry"
+   "mechanism": "limit",
+   "trigger": 718.18,
+   "note": "P5 - 8% limit upside profit target"
+  },
+  {
+   "t": 1794872255,
+   "when": "Nov 16 23:37",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "INTU",
+   "mechanism": "limit",
+   "trigger": 378.35,
+   "note": "Cancel orphaned limit sell order for INTU following stop execution"
   },
   {
    "t": 1794872255,
@@ -725327,9 +725449,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DE",
-   "mechanism": "limit",
-   "trigger": 718.18,
-   "note": "P5 - 8% limit upside profit target"
+   "mechanism": "stop",
+   "trigger": 625.08,
+   "note": "P4 - 6% hard stop loss registered at entry"
   },
   {
    "t": 1794872178,
@@ -725430,14 +725552,14 @@
   {
    "t": 1794850304,
    "when": "Nov 16 17:31",
-   "agent": "helix",
+   "agent": "cipher",
    "event": "fill",
    "side": "sell",
-   "symbol": "SMMT",
-   "qty": 762.21545544279,
-   "price": 11.36043375,
+   "symbol": "MSTR",
+   "qty": 256.307874089123,
+   "price": 101.847,
    "mechanism": "stop",
-   "note": "P2/P3 downside stop at $11.92 (-30% downside condition)",
+   "note": "P2 mandatory stop-loss protection for weekend gap and macro catalyst risk management on MSTR position.",
    "prior_close": false
   },
   {
@@ -725456,14 +725578,14 @@
   {
    "t": 1794850304,
    "when": "Nov 16 17:31",
-   "agent": "cipher",
+   "agent": "helix",
    "event": "fill",
    "side": "sell",
-   "symbol": "MSTR",
-   "qty": 256.307874089123,
-   "price": 101.847,
+   "symbol": "SMMT",
+   "qty": 762.21545544279,
+   "price": 11.36043375,
    "mechanism": "stop",
-   "note": "P2 mandatory stop-loss protection for weekend gap and macro catalyst risk management on MSTR position.",
+   "note": "P2/P3 downside stop at $11.92 (-30% downside condition)",
    "prior_close": false
   },
   {
@@ -725545,19 +725667,6 @@
    "when": "Nov 13 21:14",
    "agent": "wildcat",
    "event": "fill",
-   "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.365936556759896,
-   "price": 68317.853295,
-   "mechanism": "market",
-   "note": "H1 Case #3: BTC perpetual funding rates flipped negative across major exchanges (Binance -0.0002%, OKX -0.0057%, Bybit -0.0037%) on Nov 13, 2026, marking local leverage flush with spot testing $68,215 support.",
-   "prior_close": false
-  },
-  {
-   "t": 1794604449,
-   "when": "Nov 13 21:14",
-   "agent": "wildcat",
-   "event": "fill",
    "side": "sell",
    "symbol": "PSQ",
    "qty": 588.67762944393,
@@ -725582,6 +725691,19 @@
   {
    "t": 1794604449,
    "when": "Nov 13 21:14",
+   "agent": "wildcat",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "BTC-USD",
+   "qty": 0.365936556759896,
+   "price": 68317.853295,
+   "mechanism": "market",
+   "note": "H1 Case #3: BTC perpetual funding rates flipped negative across major exchanges (Binance -0.0002%, OKX -0.0057%, Bybit -0.0037%) on Nov 13, 2026, marking local leverage flush with spot testing $68,215 support.",
+   "prior_close": false
+  },
+  {
+   "t": 1794604449,
+   "when": "Nov 13 21:14",
    "event": "pulled",
    "agent": "wildcat",
    "side": "sell",
@@ -725596,10 +725718,10 @@
    "event": "armed",
    "agent": "wildcat",
    "side": "sell",
-   "symbol": "PSQ",
+   "symbol": "BTC-USD",
    "mechanism": "stop",
-   "trigger": 25.83,
-   "note": "P5: Bounded downside protection at -5% stop for H7 Case #2 inverse Nasdaq allocation."
+   "trigger": 61000.0,
+   "note": "P5: Bounded downside protection at $61,000 stop for H1 Case #3 BTC allocation."
   },
   {
    "t": 1794604389,
@@ -725607,10 +725729,10 @@
    "event": "armed",
    "agent": "wildcat",
    "side": "sell",
-   "symbol": "BTC-USD",
+   "symbol": "PSQ",
    "mechanism": "stop",
-   "trigger": 61000.0,
-   "note": "P5: Bounded downside protection at $61,000 stop for H1 Case #3 BTC allocation."
+   "trigger": 25.83,
+   "note": "P5: Bounded downside protection at -5% stop for H7 Case #2 inverse Nasdaq allocation."
   },
   {
    "t": 1794604273,
@@ -725687,19 +725809,6 @@
   {
    "t": 1794584709,
    "when": "Nov 13 15:45",
-   "agent": "torque",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "SOXL",
-   "qty": 399.278043869293,
-   "price": 54.9175,
-   "mechanism": "stop",
-   "note": "P3 hard stop at $55.00 capping maximum loss at $4,006.70 (3.84% of equity)",
-   "prior_close": false
-  },
-  {
-   "t": 1794584709,
-   "when": "Nov 13 15:45",
    "agent": "cipher",
    "event": "fill",
    "side": "sell",
@@ -725721,6 +725830,19 @@
    "price": 198.20225,
    "mechanism": "stop",
    "note": "Principle P4 / H5 profit floor escalation to lock in +16.0% minimum gain.",
+   "prior_close": false
+  },
+  {
+   "t": 1794584709,
+   "when": "Nov 13 15:45",
+   "agent": "torque",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SOXL",
+   "qty": 399.278043869293,
+   "price": 54.9175,
+   "mechanism": "stop",
+   "note": "P3 hard stop at $55.00 capping maximum loss at $4,006.70 (3.84% of equity)",
    "prior_close": false
   },
   {
@@ -725826,12 +725948,12 @@
    "when": "Nov 12 21:48",
    "agent": "rapid",
    "event": "fill",
-   "side": "sell",
-   "symbol": "REGN",
-   "qty": 34.4351937106357,
-   "price": 952.64888,
+   "side": "buy",
+   "symbol": "AMD",
+   "qty": 56.8782662623218,
+   "price": 579.94862,
    "mechanism": "market",
-   "note": "Enforcing Principle P4: REGN failed to outperform QQQ by 2.5 percentage points over its 10-session hold period (+2.67% vs QQQ +1.91%, net alpha +0.76%). Capital rotates immediately into fresh high-conviction catalysts.",
+   "note": "AMD reported Q3 2026 earnings on Nov 3, 2026, delivering record revenue of $13.4B (+45% YoY) and non-GAAP EPS of $2.09 (+70% YoY, beating $1.89 est by 10.6%). Data Center revenue surged +97% YoY to $8.5B (64% of total revenue). Management guided Q4 revenue to ~$17B (+66% YoY) with Data Center growing ~50% sequentially, and raised 2027 revenue guidance to >80% growth. P1 catalyst entry.",
    "prior_close": false
   },
   {
@@ -725839,12 +725961,12 @@
    "when": "Nov 12 21:48",
    "agent": "rapid",
    "event": "fill",
-   "side": "buy",
-   "symbol": "AMD",
-   "qty": 56.8782662623218,
-   "price": 579.94862,
+   "side": "sell",
+   "symbol": "REGN",
+   "qty": 34.4351937106357,
+   "price": 952.64888,
    "mechanism": "market",
-   "note": "AMD reported Q3 2026 earnings on Nov 3, 2026, delivering record revenue of $13.4B (+45% YoY) and non-GAAP EPS of $2.09 (+70% YoY, beating $1.89 est by 10.6%). Data Center revenue surged +97% YoY to $8.5B (64% of total revenue). Management guided Q4 revenue to ~$17B (+66% YoY) with Data Center growing ~50% sequentially, and raised 2027 revenue guidance to >80% growth. P1 catalyst entry.",
+   "note": "Enforcing Principle P4: REGN failed to outperform QQQ by 2.5 percentage points over its 10-session hold period (+2.67% vs QQQ +1.91%, net alpha +0.76%). Capital rotates immediately into fresh high-conviction catalysts.",
    "prior_close": false
   },
   {
@@ -725876,9 +725998,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "AMD",
-   "mechanism": "limit",
-   "trigger": 665.94,
-   "note": "Principle P4 profit target limit at +15% from $579.08 entry."
+   "mechanism": "stop",
+   "trigger": 463.26,
+   "note": "Principle P2 stop loss protection at -20% from $579.08 entry."
   },
   {
    "t": 1794520041,
@@ -725887,9 +726009,9 @@
    "agent": "rapid",
    "side": "sell",
    "symbol": "AMD",
-   "mechanism": "stop",
-   "trigger": 463.26,
-   "note": "Principle P2 stop loss protection at -20% from $579.08 entry."
+   "mechanism": "limit",
+   "trigger": 665.94,
+   "note": "Principle P4 profit target limit at +15% from $579.08 entry."
   },
   {
    "t": 1794519918,
@@ -726024,11 +726146,11 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "buy",
-   "symbol": "ZETA",
-   "qty": 530.976999005613,
-   "price": 37.666415,
+   "symbol": "VRTX",
+   "qty": 36.7325992947818,
+   "price": 544.47549,
    "mechanism": "market",
-   "note": "Post-earnings beat-and-raise drift entry following 21st consecutive beat-and-raise quarter (Q3 revenue $493M +46% YoY vs $471M Street, FY26 revenue guided to $1.855B) per Principle P4. Invalidation: Closing below $33.50.",
+   "note": "Pre-PDUFA positive drift entry into Nov 30, 2026 target action date for povetacicept in IgA nephropathy per Principle P7 and Hypothesis H8. Phase 3 RAINIER interim data achieved 52% proteinuria reduction. Invalidation: Closing below $509.00.",
    "prior_close": false
   },
   {
@@ -726037,11 +726159,11 @@
    "agent": "catalyst",
    "event": "fill",
    "side": "buy",
-   "symbol": "VRTX",
-   "qty": 36.7325992947818,
-   "price": 544.47549,
+   "symbol": "ZETA",
+   "qty": 530.976999005613,
+   "price": 37.666415,
    "mechanism": "market",
-   "note": "Pre-PDUFA positive drift entry into Nov 30, 2026 target action date for povetacicept in IgA nephropathy per Principle P7 and Hypothesis H8. Phase 3 RAINIER interim data achieved 52% proteinuria reduction. Invalidation: Closing below $509.00.",
+   "note": "Post-earnings beat-and-raise drift entry following 21st consecutive beat-and-raise quarter (Q3 revenue $493M +46% YoY vs $471M Street, FY26 revenue guided to $1.855B) per Principle P4. Invalidation: Closing below $33.50.",
    "prior_close": false
   },
   {
@@ -726061,17 +726183,6 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
-   "mechanism": "stop",
-   "trigger": 194.0,
-   "note": "Replacing standing stop with higher trigger price to trail profit floor."
-  },
-  {
-   "t": 1794509682,
-   "when": "Nov 12 18:54",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
    "symbol": "VRTX",
    "mechanism": "stop",
    "trigger": 509.0,
@@ -726083,36 +726194,21 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
+   "symbol": "ANET",
+   "mechanism": "stop",
+   "trigger": 194.0,
+   "note": "Replacing standing stop with higher trigger price to trail profit floor."
+  },
+  {
+   "t": 1794509682,
+   "when": "Nov 12 18:54",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
    "symbol": "ZETA",
    "mechanism": "stop",
    "trigger": 33.5,
    "note": "Risk management stop below post-earnings gap support"
-  },
-  {
-   "t": 1794509669,
-   "when": "Nov 12 18:54",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CYTK",
-   "qty": 355.149296329381,
-   "price": 55.916,
-   "mechanism": "stop",
-   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8",
-   "prior_close": false
-  },
-  {
-   "t": 1794509669,
-   "when": "Nov 12 18:54",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "RCAT",
-   "qty": 4437.78776280024,
-   "price": 4.143775,
-   "mechanism": "stop",
-   "note": "Reconciling P2 stop trigger to exactly -8% of filled average cost ($4.50675 * 0.92 = $4.1462).",
-   "prior_close": false
   },
   {
    "t": 1794509669,
@@ -726138,6 +726234,32 @@
    "price": 304.5425,
    "mechanism": "stop",
    "note": "Escalating profit floor to $305.00 (+12.48% locked gain) per Principle P4",
+   "prior_close": false
+  },
+  {
+   "t": 1794509669,
+   "when": "Nov 12 18:54",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "CYTK",
+   "qty": 355.149296329381,
+   "price": 55.916,
+   "mechanism": "stop",
+   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8",
+   "prior_close": false
+  },
+  {
+   "t": 1794509669,
+   "when": "Nov 12 18:54",
+   "agent": "coil",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "RCAT",
+   "qty": 4437.78776280024,
+   "price": 4.143775,
+   "mechanism": "stop",
+   "note": "Reconciling P2 stop trigger to exactly -8% of filled average cost ($4.50675 * 0.92 = $4.1462).",
    "prior_close": false
   },
   {
@@ -726199,9 +726321,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "NOW",
-   "mechanism": "stop",
-   "trigger": 85.0,
-   "note": "Principle P4 hard stop at invalidation"
+   "mechanism": "limit",
+   "trigger": 116.76,
+   "note": "Principle P3 +15% profit target"
   },
   {
    "t": 1794433431,
@@ -726210,9 +726332,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "NOW",
-   "mechanism": "limit",
-   "trigger": 116.76,
-   "note": "Principle P3 +15% profit target"
+   "mechanism": "stop",
+   "trigger": 85.0,
+   "note": "Principle P4 hard stop at invalidation"
   },
   {
    "t": 1794433268,
@@ -726279,10 +726401,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CYTK",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 52.5,
-   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
+   "trigger": 178.0,
+   "note": "Replacing standing stop sell order for ANET to raise profit floor"
   },
   {
    "t": 1794433084,
@@ -726290,10 +726412,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "CYTK",
    "mechanism": "stop",
-   "trigger": 178.0,
-   "note": "Replacing standing stop sell order for ANET to raise profit floor"
+   "trigger": 52.5,
+   "note": "Replacing standing stop sell order for CYTK to tighten risk stop floor"
   },
   {
    "t": 1794433050,
@@ -726312,10 +726434,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANET",
+   "symbol": "CYTK",
    "mechanism": "stop",
-   "trigger": 185.0,
-   "note": "Replacing with higher profit floor stop at $194.00"
+   "trigger": 56.0,
+   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8"
   },
   {
    "t": 1794433050,
@@ -726323,10 +726445,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "CYTK",
+   "symbol": "ANET",
    "mechanism": "stop",
-   "trigger": 56.0,
-   "note": "Tightening risk stop to $56.00 near breakeven cost floor ahead of Nov 14 PDUFA target date per Principle P7 and H8"
+   "trigger": 185.0,
+   "note": "Replacing with higher profit floor stop at $194.00"
   },
   {
    "t": 1794345297,
@@ -726430,10 +726552,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "NET",
+   "symbol": "BBIO",
    "mechanism": "stop",
-   "trigger": 294.0,
-   "note": "Replacing standing stop sell order for NET to raise profit floor"
+   "trigger": 73.5,
+   "note": "Mechanical stop loss below pre-event consolidation support per Principle P3 and P5."
   },
   {
    "t": 1794344640,
@@ -726441,23 +726563,10 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "BBIO",
+   "symbol": "NET",
    "mechanism": "stop",
-   "trigger": 73.5,
-   "note": "Mechanical stop loss below pre-event consolidation support per Principle P3 and P5."
-  },
-  {
-   "t": 1794340005,
-   "when": "Nov 10 19:46",
-   "agent": "coil",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "CRWV",
-   "qty": 430.388899409506,
-   "price": 47.298945,
-   "mechanism": "market",
-   "note": "Exiting CoreWeave pre-catalyst prior to today's AMC earnings print per P5 and P3.",
-   "prior_close": false
+   "trigger": 294.0,
+   "note": "Replacing standing stop sell order for NET to raise profit floor"
   },
   {
    "t": 1794340005,
@@ -726470,6 +726579,19 @@
    "price": 48.3274,
    "mechanism": "market",
    "note": "Exiting Scholar Rock following BMO earnings release per P5 (catalyst resolved).",
+   "prior_close": false
+  },
+  {
+   "t": 1794340005,
+   "when": "Nov 10 19:46",
+   "agent": "coil",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "CRWV",
+   "qty": 430.388899409506,
+   "price": 47.298945,
+   "mechanism": "market",
+   "note": "Exiting CoreWeave pre-catalyst prior to today's AMC earnings print per P5 and P3.",
    "prior_close": false
   },
   {
@@ -726504,35 +726626,11 @@
    "mechanism": "stop",
    "trigger": 42.69,
    "note": "Canceling stop order following position exit on CRWV."
-  },
-  {
-   "t": 1794339960,
-   "when": "Nov 10 19:46",
-   "event": "armed",
-   "agent": "coil",
-   "side": "sell",
-   "symbol": "RCAT",
-   "mechanism": "stop",
-   "trigger": 4.15,
-   "note": "Reconciling P2 stop trigger to exactly -8% of filled average cost ($4.50675 * 0.92 = $4.1462)."
-  },
-  {
-   "t": 1794339958,
-   "when": "Nov 10 19:45",
-   "agent": "cipher",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.432857812981707,
-   "price": 73465.2328,
-   "mechanism": "market",
-   "note": "Restoring baseline BTC benchmark exposure post-CPI resolution per P5 resting state principle following stop execution during hot CPI print sell-off.",
-   "prior_close": false
   }
  ],
  "system": {
-  "last_update": "Nov 18 18:05",
-  "symbols_tracked": 259
+  "last_update": "Nov 18 21:00",
+  "symbols_tracked": 260
  },
  "reserved": [
   "aapl",
