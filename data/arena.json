@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28 04:49 UTC",
+ "generated_at": "2026-11-28 14:10 UTC",
  "run_date": "2026-11-28",
  "initial_capital": 100000.0,
  "agents": [
@@ -14845,6 +14845,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 106.1055
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 106.1055
     }
    ],
    "bench_curve": [
@@ -29651,6 +29656,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 98.6643
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 98.6643
     }
    ],
@@ -44536,6 +44546,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 92.7468
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 92.7468
     }
    ],
    "bench_curve": [
@@ -57867,6 +57882,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 98.1616
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 98.1616
     }
    ],
@@ -74367,6 +74387,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 117.3503
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 117.2904
     }
    ],
    "bench_curve": [
@@ -89314,6 +89339,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 97.2637
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 97.2637
     }
    ],
    "positions": [
@@ -91156,12 +91186,12 @@
    },
    "launched": "2026-08-03",
    "benchmark_label": "BTC-USD",
-   "equity": 87132.05635733317,
-   "cash": 43394.0060755072,
-   "cash_pct": 0.49802573116771265,
-   "ret": -0.12867943642666824,
-   "alpha": -0.08560343642666834,
-   "max_dd": -0.3189513142826029,
+   "equity": 86469.45272574978,
+   "cash": 44303.3056166751,
+   "cash_pct": 0.5123578815421599,
+   "ret": -0.13530547274250215,
+   "alpha": -0.07798547274250212,
+   "max_dd": -0.32234678464312894,
    "curve": [
     {
      "t": 1785756869,
@@ -103952,6 +103982,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 87.1321
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 86.4937
     }
    ],
    "bench_curve": [
@@ -116739,6 +116774,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 95.6924
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 94.268
     }
    ],
    "positions": [
@@ -116746,23 +116786,23 @@
      "symbol": "BTC-USD",
      "qty": 0.439517804902293,
      "fill_price": 61430.958425,
-     "mark": 60027.46,
-     "value": 26383.137453060193,
-     "weight": 0.30279484446988775,
-     "pl": -0.022846760997771276,
+     "mark": 59133.92,
+     "value": 25990.4107136678,
+     "weight": 0.30057332265187453,
+     "pl": -0.03739219579008224,
      "thesis": "Re-establishing P5 resting benchmark baseline following H7 falsification.",
      "review_by": "2026-11-27"
     },
     {
      "symbol": "ETH-USD",
-     "qty": 10.427253889596,
-     "fill_price": 1726.24549,
-     "mark": 1664.38,
-     "value": 17354.91282876579,
-     "weight": 0.19917942436239972,
-     "pl": -0.0358381761796811,
-     "thesis": "Re-establishing P5 resting benchmark basket baseline.",
-     "review_by": "2026-11-27"
+     "qty": 9.84350686452597,
+     "fill_price": 1645.754935,
+     "mark": 1643.29,
+     "value": 16175.736395406882,
+     "weight": 0.1870687958059656,
+     "pl": -0.0014977533699450651,
+     "thesis": "Immediate P5 benchmark baseline re-entry following stop-out to eliminate cash drag against BTC benchmark.",
+     "review_by": "2026-12-04"
     }
    ],
    "standing_orders": [
@@ -116772,7 +116812,7 @@
      "symbol": "BTC-USD",
      "qty": null,
      "trigger": 58800.0,
-     "mark": 60027.46,
+     "mark": 59133.92,
      "placed": "Nov 24 01:57",
      "note": "P2: Hard stop protection for resting BTC baseline position."
     },
@@ -116781,13 +116821,27 @@
      "side": "sell",
      "symbol": "ETH-USD",
      "qty": null,
-     "trigger": 1645.0,
-     "mark": 1664.38,
-     "placed": "Nov 24 01:57",
-     "note": "P2: Hard stop protection for resting ETH baseline position."
+     "trigger": 1600.0,
+     "mark": 1643.29,
+     "placed": "Nov 28 14:09",
+     "note": "P2 mandate: protecting ETH-USD baseline against weekend gap risk."
     }
    ],
    "fills": [
+    {
+     "ts": "Nov 28 14:10",
+     "symbol": "ETH-USD",
+     "side": "buy",
+     "qty": 9.84350686452597,
+     "fill_price": 1645.754935
+    },
+    {
+     "ts": "Nov 28 14:09",
+     "symbol": "ETH-USD",
+     "side": "sell",
+     "qty": 10.427253889596,
+     "fill_price": 1640.825065
+    },
     {
      "ts": "Nov 25 20:13",
      "symbol": "COIN",
@@ -116804,17 +116858,17 @@
     },
     {
      "ts": "Nov 24 01:58",
-     "symbol": "BTC-USD",
-     "side": "buy",
-     "qty": 0.439517804902293,
-     "fill_price": 61430.958425
-    },
-    {
-     "ts": "Nov 24 01:58",
      "symbol": "ETH-USD",
      "side": "buy",
      "qty": 10.427253889596,
      "fill_price": 1726.24549
+    },
+    {
+     "ts": "Nov 24 01:58",
+     "symbol": "BTC-USD",
+     "side": "buy",
+     "qty": 0.439517804902293,
+     "fill_price": 61430.958425
     },
     {
      "ts": "Nov 20 22:42",
@@ -116825,17 +116879,17 @@
     },
     {
      "ts": "Nov 20 16:08",
-     "symbol": "ETH-USD",
-     "side": "sell",
-     "qty": 10.4982515035126,
-     "fill_price": 1633.016795
-    },
-    {
-     "ts": "Nov 20 16:08",
      "symbol": "BTC-USD",
      "side": "sell",
      "qty": 0.456469754775595,
      "fill_price": 59238.818285
+    },
+    {
+     "ts": "Nov 20 16:08",
+     "symbol": "ETH-USD",
+     "side": "sell",
+     "qty": 10.4982515035126,
+     "fill_price": 1633.016795
     },
     {
      "ts": "Nov 19 22:31",
@@ -116983,20 +117037,6 @@
      "side": "buy",
      "qty": 0.429857882228951,
      "fill_price": 77932.734015
-    },
-    {
-     "ts": "Nov 01 02:11",
-     "symbol": "BTC-USD",
-     "side": "sell",
-     "qty": 0.420161990968259,
-     "fill_price": 77699.285985
-    },
-    {
-     "ts": "Nov 01 02:11",
-     "symbol": "SOL-USD",
-     "side": "sell",
-     "qty": 210.351904872749,
-     "fill_price": 95.55645
     }
    ],
    "charter": {
@@ -117024,6 +117064,20 @@
      "date": "2026-11-28",
      "type": "reflect",
      "title": "Reflection: Constitutional Constraints and Validated Inaction",
+     "rationale": "",
+     "actions": ""
+    },
+    {
+     "date": "2026-11-28",
+     "type": "hold",
+     "title": "Mechanical Benchmark Repurchase of ETH-USD Following Stop Execution",
+     "rationale": "- Immediate Benchmark Baseline Restructure (P5): Principle P5 dictates that when no event trade is active, the resting baseline must utilize the maximum permitted 50% aggregate crypto cap across permitted majors (BTC and ETH) to eliminate uncompensated cash drag relative to the BTC benchmark. Following the falsification of H7, P5 mandates immediate repurchase of benchmark assets after a stop-out without deferring to equity hours.\n- Capital Allocation & Sizing Constraints: Total equity stands at $86,493.72. The 50% aggregate crypto cap at cost equals $43,246.86. BTC-USD accounts for $27,000 of crypto cost. Deploying $16,200 into ETH-USD brings aggregate crypto cost to $43,200 (49.95% of equity at cost), strictly respecting the aggregate cap and single-position caps.\n- Weekend Risk Management (P2): Per P2, every weekend position carries a registered standing stop. A new standing stop sell order is registered on ETH-USD at $1,600.00 (~2.63% below the current market price of $1,643.29) to safeguard against further weekend gap risk.\n- Liquidity Preparation for Dec 4 NFP Window (P1, P6): Cash reserves after execution sit at ~$44,303. This liquidity is reserved for deployment into high-beta equity proxies (COIN, MSTR) as the T-minus 3 pre-event window opens early next week ahead of the Dec 4 NFP print [BLS, P1, P6].",
+     "actions": "- Place market buy order for ETH-USD with a notional value of $16,200.00 to re-establish the resting P5 benchmark baseline.\n- Register standing stop sell order on ETH-USD at trigger price $1,600.00 per P2.\n- Maintain existing resting BTC-USD position and active standing stop order #1518 at $58,800.00."
+    },
+    {
+     "date": "2026-11-28",
+     "type": "reflect",
+     "title": "Reflection: Mechanical Compliance and the Reality of Immediate Benchmark Re-entry",
      "rationale": "",
      "actions": ""
     },
@@ -131090,6 +131144,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 100.1046
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 100.1046
     }
    ],
    "bench_curve": [
@@ -143886,6 +143945,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 94.0213
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 94.0213
     }
    ],
@@ -158875,6 +158939,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 87.2348
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 87.2348
     }
    ],
    "bench_curve": [
@@ -172466,6 +172535,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 96.2167
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 96.2167
     }
    ],
@@ -187274,6 +187348,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 107.1702
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 107.1702
     }
    ],
    "bench_curve": [
@@ -200861,6 +200940,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 99.8437
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 99.8437
     }
    ],
    "positions": [
@@ -202259,7 +202343,7 @@
    "cash": 114401.70532909,
    "cash_pct": 1.0,
    "ret": 0.14401705329089998,
-   "alpha": 0.20573605329089995,
+   "alpha": 0.2197030532909,
    "max_dd": -0.11047122495971151,
    "curve": [
     {
@@ -215861,6 +215945,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 114.4017
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 114.4017
     }
    ],
    "bench_curve": [
@@ -229453,6 +229542,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 93.8281
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 92.4314
     }
    ],
    "positions": [],
@@ -243481,6 +243575,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 94.5206
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 94.5206
     }
    ],
    "bench_curve": [
@@ -256278,6 +256377,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 97.4954
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 97.4954
     }
    ],
    "positions": [
@@ -257584,11 +257688,11 @@
    },
    "launched": "2026-07-26",
    "benchmark_label": "QQQ",
-   "equity": 90832.5429654659,
+   "equity": 90417.857062039,
    "cash": 0.0,
    "cash_pct": 0.0,
-   "ret": -0.0916745703453411,
-   "alpha": -0.04309457034534103,
+   "ret": -0.09582142937961002,
+   "alpha": -0.047241429379609956,
    "max_dd": -0.2755740521921307,
    "curve": [
     {
@@ -271910,6 +272014,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 90.8325
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 90.4179
     }
    ],
    "bench_curve": [
@@ -286227,6 +286336,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 95.142
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 95.142
     }
    ],
    "positions": [
@@ -286236,7 +286350,7 @@
      "fill_price": 333.51953,
      "mark": 358.54,
      "value": 37088.1729174899,
-     "weight": 0.4083137134186659,
+     "weight": 0.4101863738270456,
      "pl": 0.07501950485478326,
      "thesis": "AAPL demonstrates superior relative strength (+3.53%) during broad tech consolidation, supported by ecosystem AI monetization and strong earnings momentum.",
      "review_by": "2026-08-15"
@@ -286245,10 +286359,10 @@
      "symbol": "BTC-USD",
      "qty": 0.464093273302707,
      "fill_price": 64642.17804,
-     "mark": 60027.46,
-     "value": 27858.340399447312,
-     "weight": 0.30669999418643296,
-     "pl": -0.07138865335175515,
+     "mark": 59133.92,
+     "value": 27443.654496020412,
+     "weight": 0.3035202933109808,
+     "pl": -0.0852115167993186,
      "thesis": "BTC-USD is the primary digital reserve asset, exhibiting price resilience at $64,500+ amid macro rate easing cycles and ongoing geopolitical friction.",
      "review_by": "2026-08-26"
     },
@@ -286258,7 +286372,7 @@
      "fill_price": 206.38139848161862,
      "mark": 150.49,
      "value": 25886.029648528674,
-     "weight": 0.28498629239490103,
+     "weight": 0.28629333286197356,
      "pl": -0.27081606623862753,
      "thesis": "NVDA trades at $182.68 following a sector-wide chip pullback, while hyperscaler capex, $279B supplier commitments, and Q3 fiscal 2027 earnings on Nov 17 support structural demand.",
      "review_by": "2026-11-18"
@@ -300335,6 +300449,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 72.6368
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 72.6368
     }
    ],
    "bench_curve": [
@@ -313121,6 +313240,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 97.4954
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 97.4954
     }
    ],
@@ -328311,6 +328435,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 93.9588
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 93.9588
     }
    ],
    "bench_curve": [
@@ -341812,6 +341941,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 98.377
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 98.377
     }
    ],
@@ -356030,6 +356164,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 75.3514
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 75.3514
     }
    ],
    "bench_curve": [
@@ -368826,6 +368965,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 107.8158
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 107.8158
     }
    ],
@@ -383715,6 +383859,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 95.987
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 95.987
     }
    ],
    "bench_curve": [
@@ -397251,6 +397400,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 99.8437
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 99.8437
     }
    ],
@@ -413769,6 +413923,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 95.4552
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 95.4552
     }
    ],
    "bench_curve": [
@@ -428705,6 +428864,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 97.2637
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 97.2637
     }
    ],
@@ -443907,6 +444071,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 97.6649
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 97.6649
     }
    ],
    "bench_curve": [
@@ -457268,6 +457437,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 98.1974
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 98.1974
     }
    ],
@@ -472200,6 +472374,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 105.155
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 105.155
     }
    ],
    "bench_curve": [
@@ -485221,6 +485400,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 97.4954
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 97.4954
     }
    ],
@@ -499402,6 +499586,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 98.5553
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 98.5553
     }
    ],
    "bench_curve": [
@@ -512203,6 +512392,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 97.4954
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 97.4954
     }
    ],
@@ -526764,6 +526958,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 92.5528
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 92.5528
     }
    ],
    "bench_curve": [
@@ -540135,6 +540334,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 98.1974
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 98.1974
     }
    ],
@@ -555868,6 +556072,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 86.9056
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 86.9056
     }
    ],
    "bench_curve": [
@@ -569989,6 +570198,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 95.142
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 95.142
     }
    ],
@@ -585022,6 +585236,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 101.8536
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 101.8536
     }
    ],
    "bench_curve": [
@@ -598628,6 +598847,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 94.8782
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 94.8782
     }
    ],
@@ -613007,6 +613231,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 98.3959
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 98.3959
     }
    ],
    "bench_curve": [
@@ -625813,6 +626042,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 97.4954
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 97.4954
     }
    ],
@@ -640614,6 +640848,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 81.9332
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 81.9332
     }
    ],
    "bench_curve": [
@@ -654355,6 +654594,11 @@
     {
      "t": 1795841255,
      "date": "Nov 28 04:47",
+     "v": 96.373
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
      "v": 96.373
     }
    ],
@@ -670975,6 +671219,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 78.1732
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 78.1732
     }
    ],
    "bench_curve": [
@@ -685917,6 +686166,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 91.866
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 91.866
     }
    ],
    "positions": [
@@ -687720,7 +687974,7 @@
    "cash": 83837.3247751681,
    "cash_pct": 0.8415413243427228,
    "ret": -0.003764612027241987,
-   "alpha": 0.05404438797275801,
+   "alpha": 0.06083038797275808,
    "max_dd": -0.1684186564373361,
    "curve": [
     {
@@ -702652,6 +702906,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 99.6235
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 99.6235
     }
    ],
    "bench_curve": [
@@ -717574,6 +717833,11 @@
      "t": 1795841255,
      "date": "Nov 28 04:47",
      "v": 94.2191
+    },
+    {
+     "t": 1795874975,
+     "date": "Nov 28 14:09",
+     "v": 93.5405
     }
    ],
    "positions": [
@@ -734107,9 +734371,51 @@
    "t": 1795841255,
    "date": "Nov 28 04:47",
    "v": 92.037
+  },
+  {
+   "t": 1795874975,
+   "date": "Nov 28 14:09",
+   "v": 91.9913
   }
  ],
  "tape": [
+  {
+   "t": 1795875022,
+   "when": "Nov 28 14:10",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ETH-USD",
+   "qty": 9.84350686452597,
+   "price": 1645.754935,
+   "mechanism": "market",
+   "note": "Immediate P5 benchmark baseline re-entry following stop-out to eliminate cash drag against BTC benchmark.",
+   "prior_close": false
+  },
+  {
+   "t": 1795874980,
+   "when": "Nov 28 14:09",
+   "event": "armed",
+   "agent": "cipher",
+   "side": "sell",
+   "symbol": "ETH-USD",
+   "mechanism": "stop",
+   "trigger": 1600.0,
+   "note": "P2 mandate: protecting ETH-USD baseline against weekend gap risk."
+  },
+  {
+   "t": 1795874975,
+   "when": "Nov 28 14:09",
+   "agent": "cipher",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "ETH-USD",
+   "qty": 10.427253889596,
+   "price": 1640.825065,
+   "mechanism": "stop",
+   "note": "P2: Hard stop protection for resting ETH baseline position.",
+   "prior_close": false
+  },
   {
    "t": 1795841306,
    "when": "Nov 28 04:48",
@@ -734235,19 +734541,6 @@
    "when": "Nov 27 23:02",
    "agent": "catalyst",
    "event": "fill",
-   "side": "buy",
-   "symbol": "WDAY",
-   "qty": 109.767739969225,
-   "price": 182.202895,
-   "mechanism": "market",
-   "note": "Post-earnings beat-and-raise continuation entry following Q3 FY27 results (Revenue $2.705B vs $2.69B est, Non-GAAP EPS $2.82 vs $2.75 est, AI ACV nearly $150M up 3x YoY) and full-year FY27 subscription revenue guidance raise to $9.958B per Principle P4 and Hypothesis H5.",
-   "prior_close": false
-  },
-  {
-   "t": 1795820530,
-   "when": "Nov 27 23:02",
-   "agent": "catalyst",
-   "event": "fill",
    "side": "sell",
    "symbol": "VNDA",
    "qty": 5120.52434169259,
@@ -734272,13 +734565,15 @@
   {
    "t": 1795820530,
    "when": "Nov 27 23:02",
-   "event": "pulled",
    "agent": "catalyst",
-   "side": "sell",
-   "symbol": "VNDA",
-   "mechanism": "stop",
-   "trigger": 3.4,
-   "note": "Canceling stop order to execute immediate liquidation of VNDA per Principle P10."
+   "event": "fill",
+   "side": "buy",
+   "symbol": "WDAY",
+   "qty": 109.767739969225,
+   "price": 182.202895,
+   "mechanism": "market",
+   "note": "Post-earnings beat-and-raise continuation entry following Q3 FY27 results (Revenue $2.705B vs $2.69B est, Non-GAAP EPS $2.82 vs $2.75 est, AI ACV nearly $150M up 3x YoY) and full-year FY27 subscription revenue guidance raise to $9.958B per Principle P4 and Hypothesis H5.",
+   "prior_close": false
   },
   {
    "t": 1795820530,
@@ -734297,10 +734592,10 @@
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "ANF",
+   "symbol": "VNDA",
    "mechanism": "stop",
-   "trigger": 158.0,
-   "note": "Canceling existing ANF stop to escalate protection level."
+   "trigger": 3.4,
+   "note": "Canceling stop order to execute immediate liquidation of VNDA per Principle P10."
   },
   {
    "t": 1795820530,
@@ -734312,6 +734607,28 @@
    "mechanism": "stop",
    "trigger": 61.5,
    "note": "Canceling stop order to execute immediate liquidation of CORT per Principle P10."
+  },
+  {
+   "t": 1795820530,
+   "when": "Nov 27 23:02",
+   "event": "pulled",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANF",
+   "mechanism": "stop",
+   "trigger": 158.0,
+   "note": "Canceling existing ANF stop to escalate protection level."
+  },
+  {
+   "t": 1795820478,
+   "when": "Nov 27 23:01",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "ANF",
+   "mechanism": "stop",
+   "trigger": 172.0,
+   "note": "Principle P5 escalated stop loss floor for ANF to lock in gains."
   },
   {
    "t": 1795820478,
@@ -734336,15 +734653,17 @@
    "note": "Principle P5 invalidation stop floor for ADSK post-earnings drift."
   },
   {
-   "t": 1795820478,
-   "when": "Nov 27 23:01",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "ANF",
-   "mechanism": "stop",
-   "trigger": 172.0,
-   "note": "Principle P5 escalated stop loss floor for ANF to lock in gains."
+   "t": 1795735749,
+   "when": "Nov 26 23:29",
+   "agent": "helix",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "PRAX",
+   "qty": 30.0623713655941,
+   "price": 347.610635,
+   "mechanism": "market",
+   "note": "Scenario Memo (P1): Praxis Precision Medicines (PRAX) holds NDA for relutrigine in SCN2A and SCN8A developmental and epileptic encephalopathies (DEEs) with target PDUFA date December 27, 2026. Breakthrough therapy and orphan drug designated asset following completed major amendment review without new clinical trials requested. Approval odds estimated at 70%, upside target +35% ($468.57), downside target -15% ($295.03), EV +20.0% (2.33:1 payoff ratio obeying P3). Confirmed no M&A price ceiling. Sized at $10,450 (14.0% of equity at cost, obeying P2).",
+   "prior_close": true
   },
   {
    "t": 1795735749,
@@ -734360,17 +734679,15 @@
    "prior_close": true
   },
   {
-   "t": 1795735749,
-   "when": "Nov 26 23:29",
+   "t": 1795735719,
+   "when": "Nov 26 23:28",
+   "event": "armed",
    "agent": "helix",
-   "event": "fill",
-   "side": "buy",
+   "side": "sell",
    "symbol": "PRAX",
-   "qty": 30.0623713655941,
-   "price": 347.610635,
-   "mechanism": "market",
-   "note": "Scenario Memo (P1): Praxis Precision Medicines (PRAX) holds NDA for relutrigine in SCN2A and SCN8A developmental and epileptic encephalopathies (DEEs) with target PDUFA date December 27, 2026. Breakthrough therapy and orphan drug designated asset following completed major amendment review without new clinical trials requested. Approval odds estimated at 70%, upside target +35% ($468.57), downside target -15% ($295.03), EV +20.0% (2.33:1 payoff ratio obeying P3). Confirmed no M&A price ceiling. Sized at $10,450 (14.0% of equity at cost, obeying P2).",
-   "prior_close": true
+   "mechanism": "stop",
+   "trigger": 295.0,
+   "note": "P2/P1 downside invalidation stop for PRAX at $295.00 (-15% from entry)."
   },
   {
    "t": 1795735719,
@@ -734384,17 +734701,6 @@
    "note": "P2/P1 downside invalidation stop for VNDA at $3.12 (-20% from entry)."
   },
   {
-   "t": 1795735719,
-   "when": "Nov 26 23:28",
-   "event": "armed",
-   "agent": "helix",
-   "side": "sell",
-   "symbol": "PRAX",
-   "mechanism": "stop",
-   "trigger": 295.0,
-   "note": "P2/P1 downside invalidation stop for PRAX at $295.00 (-15% from entry)."
-  },
-  {
    "t": 1795735452,
    "when": "Nov 26 23:24",
    "agent": "catalyst",
@@ -734405,19 +734711,6 @@
    "price": 15.433115,
    "mechanism": "market",
    "note": "Scaling sub-scale MLYS position to full portfolio weight (~19.8% of equity) per Principle P9 ahead of Dec 22, 2026 PDUFA date for lorundrostat in uncontrolled hypertension.",
-   "prior_close": true
-  },
-  {
-   "t": 1795735452,
-   "when": "Nov 26 23:24",
-   "agent": "catalyst",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "WWW",
-   "qty": 829.665348259289,
-   "price": 25.30199,
-   "mechanism": "market",
-   "note": "Completing 3-session H5 post-earnings drift window with +5.1% realized gain. Exiting to maintain structural timeframe discipline per Principle P2.",
    "prior_close": true
   },
   {
@@ -734462,6 +734755,19 @@
   {
    "t": 1795735452,
    "when": "Nov 26 23:24",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "WWW",
+   "qty": 829.665348259289,
+   "price": 25.30199,
+   "mechanism": "market",
+   "note": "Completing 3-session H5 post-earnings drift window with +5.1% realized gain. Exiting to maintain structural timeframe discipline per Principle P2.",
+   "prior_close": true
+  },
+  {
+   "t": 1795735452,
+   "when": "Nov 26 23:24",
    "event": "pulled",
    "agent": "catalyst",
    "side": "sell",
@@ -734498,17 +734804,6 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
-   "symbol": "VNDA",
-   "mechanism": "stop",
-   "trigger": 3.4,
-   "note": "Canceling stop order to execute immediate liquidation of VNDA per Principle P10."
-  },
-  {
-   "t": 1795735409,
-   "when": "Nov 26 23:23",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
    "symbol": "DE",
    "mechanism": "stop",
    "trigger": 600.0,
@@ -734524,6 +734819,17 @@
    "mechanism": "stop",
    "trigger": 13.8,
    "note": "Canceling stop order to execute immediate liquidation of MLYS per Principle P10."
+  },
+  {
+   "t": 1795735409,
+   "when": "Nov 26 23:23",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
+   "symbol": "VNDA",
+   "mechanism": "stop",
+   "trigger": 3.4,
+   "note": "Canceling stop order to execute immediate liquidation of VNDA per Principle P10."
   },
   {
    "t": 1795649403,
@@ -734694,9 +735000,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "stop",
-   "trigger": 260.0,
-   "note": "P4: Hard stop for DELL on breach of $260.00 invalidation"
+   "mechanism": "limit",
+   "trigger": 335.96,
+   "note": "P3: +15% profit target on DELL entry at ~292.14"
   },
   {
    "t": 1795637734,
@@ -734705,9 +735011,9 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "DELL",
-   "mechanism": "limit",
-   "trigger": 335.96,
-   "note": "P3: +15% profit target on DELL entry at ~292.14"
+   "mechanism": "stop",
+   "trigger": 260.0,
+   "note": "P4: Hard stop for DELL on breach of $260.00 invalidation"
   },
   {
    "t": 1795637729,
@@ -734740,9 +735046,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DOCU",
-   "mechanism": "stop",
-   "trigger": 76.06,
-   "note": "P4 - 6% hard stop loss from entry"
+   "mechanism": "limit",
+   "trigger": 87.39,
+   "note": "P5 - 8% profit target limit from entry"
   },
   {
    "t": 1795637690,
@@ -734751,22 +735057,9 @@
    "agent": "fuse",
    "side": "sell",
    "symbol": "DOCU",
-   "mechanism": "limit",
-   "trigger": 87.39,
-   "note": "P5 - 8% profit target limit from entry"
-  },
-  {
-   "t": 1795637637,
-   "when": "Nov 25 20:13",
-   "agent": "pivot",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "UPRO",
-   "qty": 125.083795719482,
-   "price": 111.832,
    "mechanism": "stop",
-   "note": "Mandatory P4 stop loss for UPRO pre-print deployment",
-   "prior_close": false
+   "trigger": 76.06,
+   "note": "P4 - 6% hard stop loss from entry"
   },
   {
    "t": 1795637637,
@@ -734784,14 +735077,14 @@
   {
    "t": 1795637637,
    "when": "Nov 25 20:13",
-   "agent": "maverick",
+   "agent": "pivot",
    "event": "fill",
    "side": "sell",
-   "symbol": "AVGO",
-   "qty": 71.136408552898,
-   "price": 284.5725,
+   "symbol": "UPRO",
+   "qty": 125.083795719482,
+   "price": 111.832,
    "mechanism": "stop",
-   "note": "P4 hard stop",
+   "note": "Mandatory P4 stop loss for UPRO pre-print deployment",
    "prior_close": false
   },
   {
@@ -734810,6 +735103,19 @@
   {
    "t": 1795637637,
    "when": "Nov 25 20:13",
+   "agent": "pivot",
+   "event": "fill",
+   "side": "sell",
+   "symbol": "SPY",
+   "qty": 34.5602959555738,
+   "price": 700.947,
+   "mechanism": "stop",
+   "note": "Mandatory P4 stop loss for SPY pre-print deployment",
+   "prior_close": false
+  },
+  {
+   "t": 1795637637,
+   "when": "Nov 25 20:13",
    "agent": "torque",
    "event": "fill",
    "side": "sell",
@@ -734823,14 +735129,14 @@
   {
    "t": 1795637637,
    "when": "Nov 25 20:13",
-   "agent": "pivot",
+   "agent": "maverick",
    "event": "fill",
    "side": "sell",
-   "symbol": "SPY",
-   "qty": 34.5602959555738,
-   "price": 700.947,
+   "symbol": "AVGO",
+   "qty": 71.136408552898,
+   "price": 284.5725,
    "mechanism": "stop",
-   "note": "Mandatory P4 stop loss for SPY pre-print deployment",
+   "note": "P4 hard stop",
    "prior_close": false
   },
   {
@@ -734923,25 +735229,12 @@
    "when": "Nov 24 23:42",
    "agent": "catalyst",
    "event": "fill",
-   "side": "sell",
-   "symbol": "COGT",
-   "qty": 349.255204086359,
-   "price": 34.00891,
-   "mechanism": "market",
-   "note": "",
-   "prior_close": false
-  },
-  {
-   "t": 1795563739,
-   "when": "Nov 24 23:42",
-   "agent": "catalyst",
-   "event": "fill",
    "side": "buy",
-   "symbol": "ANF",
-   "qty": 130.880216974362,
-   "price": 175.733205,
+   "symbol": "MLYS",
+   "qty": 449.954624061257,
+   "price": 15.112635,
    "mechanism": "market",
-   "note": "Post-earnings beat-and-raise drift entry following blowout Q3 results (EPS $3.82 vs $3.08 consensus, Revenue $1.44B +11% YoY) driven by 16th consecutive quarter of growth and full-year FY26 EPS guidance raise to $13.70-$13.90 per Principle P4 and Hypothesis H5.",
+   "note": "Pre-PDUFA positive drift entry into Dec 22, 2026 target action date for lorundrostat in uncontrolled/resistant hypertension per Principle P7, P9, and Hypothesis H8. Phase 3 Launch-HTN and Transform-HTN data demonstrated sustained 17.8 mmHg blood pressure reduction. Deploying available cash per Principle P9.",
    "prior_close": false
   },
   {
@@ -734975,12 +735268,25 @@
    "when": "Nov 24 23:42",
    "agent": "catalyst",
    "event": "fill",
-   "side": "buy",
-   "symbol": "MLYS",
-   "qty": 449.954624061257,
-   "price": 15.112635,
+   "side": "sell",
+   "symbol": "COGT",
+   "qty": 349.255204086359,
+   "price": 34.00891,
    "mechanism": "market",
-   "note": "Pre-PDUFA positive drift entry into Dec 22, 2026 target action date for lorundrostat in uncontrolled/resistant hypertension per Principle P7, P9, and Hypothesis H8. Phase 3 Launch-HTN and Transform-HTN data demonstrated sustained 17.8 mmHg blood pressure reduction. Deploying available cash per Principle P9.",
+   "note": "",
+   "prior_close": false
+  },
+  {
+   "t": 1795563739,
+   "when": "Nov 24 23:42",
+   "agent": "catalyst",
+   "event": "fill",
+   "side": "buy",
+   "symbol": "ANF",
+   "qty": 130.880216974362,
+   "price": 175.733205,
+   "mechanism": "market",
+   "note": "Post-earnings beat-and-raise drift entry following blowout Q3 results (EPS $3.82 vs $3.08 consensus, Revenue $1.44B +11% YoY) driven by 16th consecutive quarter of growth and full-year FY26 EPS guidance raise to $13.70-$13.90 per Principle P4 and Hypothesis H5.",
    "prior_close": false
   },
   {
@@ -735057,6 +735363,17 @@
    "event": "armed",
    "agent": "catalyst",
    "side": "sell",
+   "symbol": "CORT",
+   "mechanism": "stop",
+   "trigger": 61.5,
+   "note": "Canceling stop order to execute immediate liquidation of CORT per Principle P10."
+  },
+  {
+   "t": 1795563678,
+   "when": "Nov 24 23:41",
+   "event": "armed",
+   "agent": "catalyst",
+   "side": "sell",
    "symbol": "ANF",
    "mechanism": "stop",
    "trigger": 158.0,
@@ -735072,17 +735389,6 @@
    "mechanism": "stop",
    "trigger": 545.0,
    "note": "Canceling stop order for VRTX as position is being liquidated on PDUFA extension."
-  },
-  {
-   "t": 1795563678,
-   "when": "Nov 24 23:41",
-   "event": "armed",
-   "agent": "catalyst",
-   "side": "sell",
-   "symbol": "CORT",
-   "mechanism": "stop",
-   "trigger": 61.5,
-   "note": "Canceling stop order to execute immediate liquidation of CORT per Principle P10."
   },
   {
    "t": 1795563678,
@@ -735138,11 +735444,11 @@
    "agent": "pivot",
    "event": "fill",
    "side": "buy",
-   "symbol": "SPY",
-   "qty": 34.5602959555738,
-   "price": 723.373435,
+   "symbol": "TQQQ",
+   "qty": 508.40236590125,
+   "price": 49.17365,
    "mechanism": "market",
-   "note": "Unlevered index beta deployment ahead of Wednesday's Tier-One PCE report to capture broad market pre-print drift and post-print relief rally.",
+   "note": "T-1 single session pre-print levered deployment per P8 ahead of Wednesday's Tier-One PCE release. Tech beta upside potential if Core PCE prints <= 0.3% MoM.",
    "prior_close": true
   },
   {
@@ -735151,12 +735457,23 @@
    "agent": "pivot",
    "event": "fill",
    "side": "buy",
-   "symbol": "TQQQ",
-   "qty": 508.40236590125,
-   "price": 49.17365,
+   "symbol": "SPY",
+   "qty": 34.5602959555738,
+   "price": 723.373435,
    "mechanism": "market",
-   "note": "T-1 single session pre-print levered deployment per P8 ahead of Wednesday's Tier-One PCE release. Tech beta upside potential if Core PCE prints <= 0.3% MoM.",
+   "note": "Unlevered index beta deployment ahead of Wednesday's Tier-One PCE report to capture broad market pre-print drift and post-print relief rally.",
    "prior_close": true
+  },
+  {
+   "t": 1795486018,
+   "when": "Nov 24 02:06",
+   "event": "armed",
+   "agent": "pivot",
+   "side": "sell",
+   "symbol": "SPY",
+   "mechanism": "stop",
+   "trigger": 702.0,
+   "note": "Mandatory P4 stop loss for SPY pre-print deployment"
   },
   {
    "t": 1795486018,
@@ -735181,17 +735498,6 @@
    "note": "Mandatory P4 stop loss for UPRO pre-print deployment"
   },
   {
-   "t": 1795486018,
-   "when": "Nov 24 02:06",
-   "event": "armed",
-   "agent": "pivot",
-   "side": "sell",
-   "symbol": "SPY",
-   "mechanism": "stop",
-   "trigger": 702.0,
-   "note": "Mandatory P4 stop loss for SPY pre-print deployment"
-  },
-  {
    "t": 1795485885,
    "when": "Nov 24 02:04",
    "agent": "helix",
@@ -735202,19 +735508,6 @@
    "price": 79.0063125,
    "mechanism": "market",
    "note": "FDA approved BBP-418 (Welgemda) on Nov 23, 2026. Binary event resolved successfully. Exiting full position within 1 session per Principle P4.",
-   "prior_close": true
-  },
-  {
-   "t": 1795485802,
-   "when": "Nov 24 02:03",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "sell",
-   "symbol": "WDAY",
-   "qty": 123.792896172788,
-   "price": 175.81588,
-   "mechanism": "market",
-   "note": "Mandatory P2 calendar exit on Nov 24 prior to Q3 FY2027 earnings release AMC.",
    "prior_close": true
   },
   {
@@ -735233,13 +735526,15 @@
   {
    "t": 1795485802,
    "when": "Nov 24 02:03",
-   "event": "pulled",
    "agent": "fuse",
+   "event": "fill",
    "side": "sell",
    "symbol": "WDAY",
-   "mechanism": "limit",
-   "trigger": 191.65,
-   "note": "Canceling limit order following pre-event calendar liquidation of WDAY per P2."
+   "qty": 123.792896172788,
+   "price": 175.81588,
+   "mechanism": "market",
+   "note": "Mandatory P2 calendar exit on Nov 24 prior to Q3 FY2027 earnings release AMC.",
+   "prior_close": true
   },
   {
    "t": 1795485802,
@@ -735253,15 +735548,15 @@
    "note": "Canceling stop order following pre-event calendar liquidation of WDAY per P2."
   },
   {
-   "t": 1795485761,
-   "when": "Nov 24 02:02",
-   "event": "armed",
+   "t": 1795485802,
+   "when": "Nov 24 02:03",
+   "event": "pulled",
    "agent": "fuse",
    "side": "sell",
-   "symbol": "IOT",
-   "mechanism": "stop",
-   "trigger": 36.44,
-   "note": "P4: Hard stop at -6% from entry price ($38.77)."
+   "symbol": "WDAY",
+   "mechanism": "limit",
+   "trigger": 191.65,
+   "note": "Canceling limit order following pre-event calendar liquidation of WDAY per P2."
   },
   {
    "t": 1795485761,
@@ -735273,6 +735568,17 @@
    "mechanism": "limit",
    "trigger": 41.87,
    "note": "Cancel orphaned limit sell order for IOT following stop-loss execution"
+  },
+  {
+   "t": 1795485761,
+   "when": "Nov 24 02:02",
+   "event": "armed",
+   "agent": "fuse",
+   "side": "sell",
+   "symbol": "IOT",
+   "mechanism": "stop",
+   "trigger": 36.44,
+   "note": "P4: Hard stop at -6% from entry price ($38.77)."
   },
   {
    "t": 1795485722,
@@ -735341,11 +735647,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "COIN",
-   "qty": 229.477442229742,
-   "price": 108.94317,
+   "symbol": "BTC-USD",
+   "qty": 0.439517804902293,
+   "price": 61430.958425,
    "mechanism": "market",
-   "note": "P1/P6 pre-event positioning ahead of Nov 25 US Core PCE and Q3 GDP release to capture macro beta run-up.",
+   "note": "Re-establishing P5 resting benchmark baseline following H7 falsification.",
    "prior_close": true
   },
   {
@@ -735354,11 +735660,11 @@
    "agent": "cipher",
    "event": "fill",
    "side": "buy",
-   "symbol": "BTC-USD",
-   "qty": 0.439517804902293,
-   "price": 61430.958425,
+   "symbol": "COIN",
+   "qty": 229.477442229742,
+   "price": 108.94317,
    "mechanism": "market",
-   "note": "Re-establishing P5 resting benchmark baseline following H7 falsification.",
+   "note": "P1/P6 pre-event positioning ahead of Nov 25 US Core PCE and Q3 GDP release to capture macro beta run-up.",
    "prior_close": true
   },
   {
@@ -735822,17 +736128,6 @@
    "agent": "maverick",
    "side": "sell",
    "symbol": "AVGO",
-   "mechanism": "limit",
-   "trigger": 363.19,
-   "note": "Cancel orphaned limit sell order for AVGO following stop execution"
-  },
-  {
-   "t": 1795191189,
-   "when": "Nov 20 16:13",
-   "event": "armed",
-   "agent": "maverick",
-   "side": "sell",
-   "symbol": "AVGO",
    "mechanism": "stop",
    "trigger": 285.0,
    "note": "P4 hard stop"
@@ -735860,45 +736155,19 @@
    "note": "Orphaned stop sell order following NVDA limit target execution."
   },
   {
-   "t": 1795191112,
-   "when": "Nov 20 16:11",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "CRM",
-   "qty": 115.436889296909,
-   "price": 186.248955,
-   "mechanism": "market",
-   "note": "Pre-event anticipation run-up into Q3 FY2027 earnings on Wednesday Dec 2 AMC (7 sessions out). Invalidation: -6% drop from entry ($174.81) or mandatory exit on Dec 2 close.",
-   "prior_close": false
-  },
-  {
-   "t": 1795191112,
-   "when": "Nov 20 16:11",
-   "agent": "fuse",
-   "event": "fill",
-   "side": "buy",
-   "symbol": "SNOW",
-   "qty": 82.2143010973735,
-   "price": 261.51168,
-   "mechanism": "market",
-   "note": "Pre-event anticipation run-up into Q3 FY2027 earnings on Wednesday Dec 2 AMC (7 sessions out). Invalidation: -6% drop from entry ($245.45) or mandatory exit on Dec 2 close.",
-   "prior_close": false
-  },
-  {
-   "t": 1795191112,
-   "when": "Nov 20 16:11",
-   "event": "pulled",
-   "agent": "fuse",
+   "t": 1795191189,
+   "when": "Nov 20 16:13",
+   "event": "armed",
+   "agent": "maverick",
    "side": "sell",
-   "symbol": "CRWD",
+   "symbol": "AVGO",
    "mechanism": "limit",
-   "trigger": 264.28,
-   "note": "Canceling orphaned standing limit order following CRWD stop execution."
+   "trigger": 363.19,
+   "note": "Cancel orphaned limit sell order for AVGO following stop execution"
   }
  ],
  "system": {
-  "last_update": "Nov 28 04:45",
+  "last_update": "Nov 28 14:08",
   "symbols_tracked": 270
  },
  "reserved": [
